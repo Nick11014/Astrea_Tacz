@@ -3,14 +3,14 @@ package com.tacz.guns.init;
 import com.tacz.guns.entity.sync.ModSyncedEntityData;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.resource.GunPackLoader;
-import net.minecraftforge.event.AddPackFindersEvent;
-import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public final class CommonRegistry {
     private static boolean LOAD_COMPLETE = false;
 
@@ -18,6 +18,12 @@ public final class CommonRegistry {
     public static void onSetupEvent(FMLCommonSetupEvent event) {
         event.enqueueWork(NetworkHandler::init);
         event.enqueueWork(ModSyncedEntityData::init);
+        
+        // Registrar DataComponents
+        event.enqueueWork(() -> {
+            // Os DataComponents são registrados automaticamente pelo DeferredRegister
+            // quando o registro é anexado ao event bus do mod
+        });
     }
 
     @SubscribeEvent

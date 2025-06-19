@@ -35,6 +35,15 @@ Esta fase foca em atualizar os sistemas fundamentais do mod, especialmente a for
 
 ## Status:
 - [ ] Não iniciado
-- [ ] Em progresso  
+- [x] Em progresso (40% concluído)
 - [ ] Concluído
 - [ ] Testado
+
+### 📊 Progresso Detalhado:
+- ✅ **DataComponents:** 16/16 componentes criados
+- ✅ **Dependências:** LuaJ e Apache Commons Math adicionadas
+- 🟡 **Migração NBT:** 1/6 classes migradas (AmmoItemDataAccessor)
+- ❌ **Sistema de Eventos:** Pendente (~100 erros para resolver)
+- ❌ **Testes:** Aguardando resolução de erros de compilação
+
+**Próximo foco:** Resolver erros de APIs Forge → NeoForge para permitir compilação

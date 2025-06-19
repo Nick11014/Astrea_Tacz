@@ -84,6 +84,14 @@ dependencies {
     // Use the latest version of Neo
     implementation "net.neoforged:neoforge:${neo_version}"
 
+    // === Dependências necessárias para TacZ ===
+    
+    // LuaJ - Para sistema de animação e scripting
+    implementation 'org.luaj:luaj-jse:3.0.1'
+    
+    // Apache Commons Math - Para sistema de recuo e interpolação
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"

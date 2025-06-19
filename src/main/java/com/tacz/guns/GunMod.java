@@ -9,14 +9,13 @@ import com.tacz.guns.init.*;
 import com.tacz.guns.resource.GunPackLoader;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import net.minecraft.server.packs.PackType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +28,7 @@ public class GunMod {
      */
     public static final String DEFAULT_GUN_PACK_NAME = "tacz_default_gun";
 
-    public GunMod() {
+    public GunMod(IEventBus modEventBus) {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.init());
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.init());
@@ -37,21 +36,23 @@ public class GunMod {
         Dist side = FMLLoader.getDist();
         GunPackLoader.INSTANCE.packType = side.isClient() ? PackType.CLIENT_RESOURCES : PackType.SERVER_DATA;
 
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModBlocks.BLOCKS.register(bus);
-        ModBlocks.TILE_ENTITIES.register(bus);
-        ModCreativeTabs.TABS.register(bus);
-        ModItems.ITEMS.register(bus);
-        ModEntities.ENTITY_TYPES.register(bus);
-        ModRecipe.RECIPE_SERIALIZERS.register(bus);
-        ModRecipe.RECIPE_TYPES.register(bus);
-        ModContainer.CONTAINER_TYPE.register(bus);
-        ModSounds.SOUNDS.register(bus);
-        ModParticles.PARTICLE_TYPES.register(bus);
-        ModAttributes.ATTRIBUTES.register(bus);
-        ModPainting.PAINTINGS.register(bus);
+        // Registrar DataComponents (prioridade máxima - Nova funcionalidade 1.21.1)
+        ModDataComponents.COMPONENTS.register(modEventBus);
+        
+        // Registros existentes
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModBlocks.TILE_ENTITIES.register(modEventBus);
+        ModCreativeTabs.TABS.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
+        ModRecipe.RECIPE_SERIALIZERS.register(modEventBus);
+        ModRecipe.RECIPE_TYPES.register(modEventBus);
+        ModContainer.CONTAINER_TYPE.register(modEventBus);
+        ModSounds.SOUNDS.register(modEventBus);
+        ModParticles.PARTICLE_TYPES.register(modEventBus);        ModAttributes.ATTRIBUTES.register(modEventBus);
+        ModPainting.PAINTINGS.register(modEventBus);
         if (ModList.get().isLoaded("kubejs")) {
-            bus.register(new TimelessKubeJSPlugin());
+            modEventBus.register(new TimelessKubeJSPlugin());
         }
 
         registerDefaultExtraGunPack();

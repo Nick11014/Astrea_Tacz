@@ -4,8 +4,7 @@ import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IAmmo;
 import com.tacz.guns.api.item.IGun;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
+import com.tacz.guns.init.ModDataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -13,28 +12,26 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
+/**
+ * Acessor de dados para munição utilizando DataComponents.
+ * Migrado de NBT para DataComponents no NeoForge 1.21.1.
+ */
 public interface AmmoItemDataAccessor extends IAmmo {
-    String AMMO_ID_TAG = "AmmoId";
 
     @Override
     @Nonnull
     default ResourceLocation getAmmoId(ItemStack ammo) {
-        CompoundTag nbt = ammo.getOrCreateTag();
-        if (nbt.contains(AMMO_ID_TAG, Tag.TAG_STRING)) {
-            ResourceLocation gunId = ResourceLocation.tryParse(nbt.getString(AMMO_ID_TAG));
-            return Objects.requireNonNullElse(gunId, DefaultAssets.EMPTY_AMMO_ID);
-        }
-        return DefaultAssets.EMPTY_AMMO_ID;
+        ResourceLocation ammoId = ammo.get(ModDataComponents.AMMO_ID.get());
+        return Objects.requireNonNullElse(ammoId, DefaultAssets.EMPTY_AMMO_ID);
     }
 
     @Override
     default void setAmmoId(ItemStack ammo, @Nullable ResourceLocation ammoId) {
-        CompoundTag nbt = ammo.getOrCreateTag();
         if (ammoId != null) {
-            nbt.putString(AMMO_ID_TAG, ammoId.toString());
-            return;
+            ammo.set(ModDataComponents.AMMO_ID.get(), ammoId);
+        } else {
+            ammo.set(ModDataComponents.AMMO_ID.get(), DefaultAssets.DEFAULT_AMMO_ID);
         }
-        nbt.putString(AMMO_ID_TAG, DefaultAssets.DEFAULT_AMMO_ID.toString());
     }
 
     @Override
