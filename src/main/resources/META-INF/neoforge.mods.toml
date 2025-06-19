@@ -1,33 +1,32 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
-license = "GPL3 / CC BY-NC-ND 4.0"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
 
 [[mods]]
-modId = "tacz"
-version = "${file.jarVersion}"
-displayName = "Timeless & Classics Guns: Zero"
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
 logoFile = "logo.png"
 updateJSONURL = ""
 displayURL = ""
-authors = "Serene Wave Studio | Timeless Squad"
+authors = "${mod_authors}"
 description = '''
+${mod_description}
 '''
 
-[[dependencies.tacz]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 mandatory = true
-versionRange = "[21.1.77,)"
+versionRange = "${neo_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.tacz]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.21.1,1.21.2)"
+versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
-
-[[dependencies.tacz]]
 modId = "shouldersurfing"
 mandatory = false
 versionRange = "[1.21.1-4.0.0,)"
