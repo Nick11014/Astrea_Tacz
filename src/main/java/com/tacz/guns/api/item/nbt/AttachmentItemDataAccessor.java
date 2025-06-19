@@ -2,6 +2,7 @@ package com.tacz.guns.api.item.nbt;
 
 import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.init.ModDataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
@@ -46,20 +47,19 @@ public interface AttachmentItemDataAccessor extends IAttachment {
 
     static void setZoomNumberToTag(CompoundTag nbt, int zoomNumber) {
         nbt.putInt(ZOOM_NUMBER_TAG, zoomNumber);
-    }
-
-    @Override
+    }    @Override
     @Nonnull
     default ResourceLocation getAttachmentId(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        return getAttachmentIdFromTag(nbt);
+        ResourceLocation attachmentId = attachmentStack.get(ModDataComponents.ATTACHMENT_ID.get());
+        return Objects.requireNonNullElse(attachmentId, DefaultAssets.EMPTY_ATTACHMENT_ID);
     }
 
     @Override
     default void setAttachmentId(ItemStack attachmentStack, @Nullable ResourceLocation attachmentId) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
         if (attachmentId != null) {
-            nbt.putString(ATTACHMENT_ID_TAG, attachmentId.toString());
+            attachmentStack.set(ModDataComponents.ATTACHMENT_ID.get(), attachmentId);
+        } else {
+            attachmentStack.remove(ModDataComponents.ATTACHMENT_ID.get());
         }
     }
 
@@ -93,26 +93,21 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     default void setZoomNumber(ItemStack attachmentStack, int zoomNumber) {
         CompoundTag nbt = attachmentStack.getOrCreateTag();
         setZoomNumberToTag(nbt, zoomNumber);
-    }
-
-    @Override
+    }    @Override
     default boolean hasCustomLaserColor(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        return nbt.contains(LASER_COLOR_TAG, Tag.TAG_INT);
+        return attachmentStack.has(ModDataComponents.LASER_COLOR.get());
     }
 
     @Override
     default int getLaserColor(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
         if (!hasCustomLaserColor(attachmentStack)) {
             return 0xFF0000;
         }
-        return nbt.getInt(LASER_COLOR_TAG);
+        return attachmentStack.getOrDefault(ModDataComponents.LASER_COLOR.get(), 0xFF0000);
     }
 
     @Override
     default void setLaserColor(ItemStack attachmentStack, int color) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        nbt.putInt(LASER_COLOR_TAG, color);
+        attachmentStack.set(ModDataComponents.LASER_COLOR.get(), color);
     }
 }

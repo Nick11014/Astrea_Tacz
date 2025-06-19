@@ -205,9 +205,7 @@ public class ModDataComponents {
             .persistent(ResourceLocation.CODEC)
             .networkSynchronized(ResourceLocation.STREAM_CODEC)
             .build()
-    );
-
-    /**
+    );    /**
      * Quantidade de munição na caixa (int)
      * Para AmmoBoxItemDataAccessor
      */
@@ -215,6 +213,39 @@ public class ModDataComponents {
         () -> DataComponentType.<Integer>builder()
             .persistent(Codec.INT)
             .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
+            .build()
+    );
+
+    /**
+     * Nível da caixa de munição (int)
+     * Para AmmoBoxItemDataAccessor
+     */
+    public static final Supplier<DataComponentType<Integer>> AMMO_BOX_LEVEL = COMPONENTS.register("ammo_box_level",
+        () -> DataComponentType.<Integer>builder()
+            .persistent(Codec.INT)
+            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
+            .build()
+    );
+
+    /**
+     * Modo criativo da caixa de munição (boolean)
+     * Para AmmoBoxItemDataAccessor
+     */
+    public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_CREATIVE = COMPONENTS.register("ammo_box_creative",
+        () -> DataComponentType.<Boolean>builder()
+            .persistent(Codec.BOOL)
+            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
+            .build()
+    );
+
+    /**
+     * Modo criativo universal da caixa de munição (boolean)
+     * Para AmmoBoxItemDataAccessor
+     */
+    public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_ALL_TYPE_CREATIVE = COMPONENTS.register("ammo_box_all_type_creative",
+        () -> DataComponentType.<Boolean>builder()
+            .persistent(Codec.BOOL)
+            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
             .build()
     );
 
