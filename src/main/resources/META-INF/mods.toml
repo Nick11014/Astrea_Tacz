@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[46,)"
+loaderVersion = "[4,)"
 license = "GPL3 / CC BY-NC-ND 4.0"
 
 [[mods]]
@@ -14,23 +14,23 @@ description = '''
 '''
 
 [[dependencies.tacz]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
-versionRange = "[46,)"
+versionRange = "[21.1.77,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.tacz]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20,1.20.2)"
+versionRange = "[1.21.1,1.21.2)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.tacz]]
 modId = "shouldersurfing"
 mandatory = false
-versionRange = "[1.20.1-4.0.0,)"
+versionRange = "[1.21.1-4.0.0,)"
 ordering = "NONE"
 side = "CLIENT"
 
