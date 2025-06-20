@@ -2,8 +2,8 @@ package com.tacz.guns.event;
 
 import com.tacz.guns.api.entity.KnockBackModifier;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class KnockbackChange {

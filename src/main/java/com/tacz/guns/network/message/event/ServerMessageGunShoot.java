@@ -6,11 +6,12 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.LogicalSide;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.fml.LogicalSide;
+// TODO: Migrar para sistema de Payloads do NeoForge 1.21.1
+// import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -47,10 +48,9 @@ public class ServerMessageGunShoot {
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null) {
             return;
-        }
-        if (level.getEntity(message.shooterId) instanceof LivingEntity shooter) {
+        }        if (level.getEntity(message.shooterId) instanceof LivingEntity shooter) {
             GunShootEvent gunShootEvent = new GunShootEvent(shooter, message.gunItemStack, LogicalSide.CLIENT);
-            MinecraftForge.EVENT_BUS.post(gunShootEvent);
+            NeoForge.EVENT_BUS.post(gunShootEvent);
         }
     }
 }

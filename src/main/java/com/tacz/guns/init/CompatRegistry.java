@@ -4,13 +4,14 @@ import com.tacz.guns.client.gui.compat.ClothConfigScreen;
 import com.tacz.guns.compat.carryon.BlackList;
 import com.tacz.guns.compat.cloth.MenuIntegration;
 import com.tacz.guns.compat.oculus.OculusCompat;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+// TODO: DistExecutor foi removido no NeoForge - refatorar para usar FMLEnvironment.dist 
+// import net.neoforged.fml.DistExecutor; 
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CompatRegistry {

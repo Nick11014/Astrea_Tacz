@@ -13,7 +13,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,10 +27,9 @@ public final class BlockRayTrace {
 
     public static BlockHitResult rayTraceBlocks(Level level, ClipContext context) {
         return performRayTrace(context, (rayTraceContext, blockPos) -> {
-            BlockState blockState = level.getBlockState(blockPos);
-            // 这里添加判断方块是否可以穿透，如果可以穿透则返回 null
+            BlockState blockState = level.getBlockState(blockPos);            // 这里添加判断方块是否可以穿透，如果可以穿透则返回 null
             List<String> ids = AmmoConfig.PASS_THROUGH_BLOCKS.get();
-            ResourceLocation blockId = ForgeRegistries.BLOCKS.getKey(blockState.getBlock());
+            ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(blockState.getBlock());
             if (blockId != null && ids.contains(blockId.toString())) {
                 return null;
             }

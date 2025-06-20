@@ -7,8 +7,8 @@ import com.mojang.brigadier.context.CommandContext;
 import com.tacz.guns.config.sync.SyncConfig;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EnumArgument;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.server.command.EnumArgument;
 
 public class ConfigCommand {
     private static final String CONFIG_NAME = "config";

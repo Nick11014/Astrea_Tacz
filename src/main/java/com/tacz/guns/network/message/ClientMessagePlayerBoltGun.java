@@ -3,7 +3,8 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.api.entity.IGunOperator;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
+// TODO: Migrar para novo sistema de rede do NeoForge 1.21.1 (IPayload/IPayloadHandler)
+// import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 

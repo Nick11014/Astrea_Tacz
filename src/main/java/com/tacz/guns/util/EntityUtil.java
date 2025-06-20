@@ -2,12 +2,12 @@ package com.tacz.guns.util;
 
 import com.tacz.guns.config.util.HeadShotAABBConfigRead;
 import com.tacz.guns.entity.EntityKineticBullet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -83,9 +83,8 @@ public class EntityUtil {
         // 爆头判定
         if (hitPos == null) {
             return null;
-        }
-        Vec3 hitBoxPos = hitPos.subtract(entity.position());
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+        }        Vec3 hitBoxPos = hitPos.subtract(entity.position());
+        ResourceLocation entityId = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
         // 有配置的调用配置
         if (entityId != null) {
             AABB aabb = HeadShotAABBConfigRead.getAABB(entityId);

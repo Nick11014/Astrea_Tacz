@@ -2,10 +2,10 @@ package com.tacz.guns.config;
 
 import com.electronwill.nightconfig.core.CommentedConfig;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.config.IConfigEvent;
-import net.minecraftforge.fml.config.IConfigSpec;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.IConfigEvent;
+import net.neoforged.fml.config.IConfigSpec;
+import net.neoforged.fml.config.ModConfig;
 
 import java.nio.file.Path;
 

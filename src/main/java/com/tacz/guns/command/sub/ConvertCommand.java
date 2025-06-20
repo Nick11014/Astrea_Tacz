@@ -6,8 +6,10 @@ import com.mojang.brigadier.context.CommandContext;
 import com.tacz.guns.resource.PackConvertor;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
+import net.neoforged.api.distmarker.Dist;
+// TODO: DistExecutor foi removido, usar FMLEnvironment.dist
+// import net.neoforged.fml.DistExecutor;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 public class ConvertCommand {
     private static final String CONVERT_NAME = "convert";

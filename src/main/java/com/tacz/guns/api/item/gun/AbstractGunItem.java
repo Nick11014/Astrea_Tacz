@@ -26,12 +26,12 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -138,13 +138,12 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
         // 无限备弹不需要消耗实际子弹
         if (gunIndex.getGunData().getReloadData().isInfinite()) {
             return true;
-        }
-        // 虚拟备弹处理
+        }        // 虚拟备弹处理
         if (useDummyAmmo(gunItem)) {
             return getDummyAmmoAmount(gunItem) > 0;
         }
         // 检查背包内的弹药数量
-        return shooter.getCapability(ForgeCapabilities.ITEM_HANDLER, null).map(cap -> {
+        return shooter.getCapability(Capabilities.ItemHandler.ENTITY, null).map(cap -> {
             // 背包检查
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
@@ -422,9 +421,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
         // 虚拟备弹处理
         if (useDummyAmmo(gun)) {
             return getDummyAmmoAmount(gun) > 0;
-        }
-        // 检查背包内的弹药数量
-        return shooter.getCapability(ForgeCapabilities.ITEM_HANDLER, null).map(cap -> {
+        }        // 检查背包内的弹药数量
+        return shooter.getCapability(Capabilities.ItemHandler.ENTITY, null).map(cap -> {
             // 背包检查
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
