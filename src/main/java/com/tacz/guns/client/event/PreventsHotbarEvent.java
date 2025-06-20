@@ -4,12 +4,12 @@ import com.tacz.guns.client.gui.GunRefitScreen;
 import com.tacz.guns.client.gui.GunSmithTableScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.RenderGuiOverlayEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT)
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class PreventsHotbarEvent {
     @SubscribeEvent
     public static void onRenderHotbarEvent(RenderGuiOverlayEvent.Pre event) {

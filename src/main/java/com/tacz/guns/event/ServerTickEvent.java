@@ -1,11 +1,11 @@
 package com.tacz.guns.event;
 
 import com.tacz.guns.util.CycleTaskHelper;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
 public class ServerTickEvent {
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {

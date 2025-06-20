@@ -8,7 +8,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.neoforged.api.distmarker.Dist;
 // TODO: DistExecutor foi removido, usar FMLEnvironment.dist
-// import net.neoforged.fml.DistExecutor;
+// import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLEnvironment;
 
 public class ConvertCommand {

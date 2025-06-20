@@ -20,8 +20,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.common.extensions.IForgeMenuType;
 
 import javax.annotation.Nullable;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.tacz.guns.config.client;
 
 import com.tacz.guns.client.renderer.crosshair.CrosshairType;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.common.ForgeConfigSpec;
 
 public class RenderConfig {
     public static ForgeConfigSpec.BooleanValue ENABLE_LASER_FADE_OUT;

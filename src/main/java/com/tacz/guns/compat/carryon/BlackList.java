@@ -2,7 +2,7 @@ package com.tacz.guns.compat.carryon;
 
 import com.tacz.guns.GunMod;
 import net.neoforged.fml.InterModComms;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.registries.ForgeRegistries;
 
 public class BlackList {
     private static final String CARRY_ON_ID = "carryon";

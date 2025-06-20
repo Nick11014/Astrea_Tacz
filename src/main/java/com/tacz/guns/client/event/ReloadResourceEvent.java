@@ -2,12 +2,12 @@ package com.tacz.guns.client.event;
 
 import com.tacz.guns.client.resource.InternalAssetLoader;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.TextureStitchEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.TextureStitchEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ReloadResourceEvent {
     public static final ResourceLocation BLOCK_ATLAS_TEXTURE = new ResourceLocation("textures/atlas/blocks.png");
 

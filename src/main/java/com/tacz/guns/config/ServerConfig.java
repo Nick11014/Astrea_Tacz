@@ -1,7 +1,7 @@
 package com.tacz.guns.config;
 
 import com.tacz.guns.config.sync.SyncConfig;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.common.ForgeConfigSpec;
 
 public class ServerConfig {
     /**

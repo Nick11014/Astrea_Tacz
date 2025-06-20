@@ -2,8 +2,8 @@ package com.tacz.guns.network.message;
 
 import com.tacz.guns.api.client.event.SwapItemWithOffHand;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 

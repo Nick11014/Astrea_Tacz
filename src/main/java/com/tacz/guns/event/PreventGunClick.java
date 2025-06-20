@@ -3,11 +3,11 @@ package com.tacz.guns.event;
 import com.tacz.guns.api.item.IGun;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
 public class PreventGunClick {
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {

@@ -2,12 +2,12 @@ package com.tacz.guns.client.event;
 
 import com.mojang.blaze3d.audio.SoundBuffer;
 import com.tacz.guns.client.sound.GunSoundInstance;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.sound.PlaySoundSourceEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.sound.PlaySoundSourceEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT)
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class PlayGunSoundEvent {
     @SubscribeEvent
     public static void onPlaySoundSource(PlaySoundSourceEvent event) {

@@ -4,8 +4,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.neoforged.bus.api.Cancelable;
 import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.ICancellableEvent;
 import net.neoforged.fml.LogicalSide;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.ApiStatus;
@@ -45,13 +45,10 @@ public class EntityHurtByGunEvent extends Event implements KubeJSGunEventPoster<
         this.isHeadShot = isHeadShot;
         this.headshotMultiplier = headshotMultiplier;
         this.logicalSide = logicalSide;
-    }
-
-    /**
+    }    /**
      * 实体受到枪击，伤害判定前触发的事件，可以设置枪击的伤害属性
      */
-    @Cancelable
-    public static class Pre extends EntityHurtByGunEvent {
+    public static class Pre extends EntityHurtByGunEvent implements ICancellableEvent {
         @ApiStatus.Internal
         public Pre(Entity bullet, @Nullable Entity hurtEntity, @Nullable LivingEntity attacker,
                    ResourceLocation gunId, ResourceLocation gunDisplayId,

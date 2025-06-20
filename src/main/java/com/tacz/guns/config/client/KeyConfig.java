@@ -1,6 +1,6 @@
 package com.tacz.guns.config.client;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.common.ForgeConfigSpec;
 
 public class KeyConfig {
     public static ForgeConfigSpec.BooleanValue HOLD_TO_AIM;

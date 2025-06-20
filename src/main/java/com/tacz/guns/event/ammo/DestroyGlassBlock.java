@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
 public class DestroyGlassBlock {
     @SubscribeEvent
     public static void onAmmoHitBlock(AmmoHitBlockEvent event) {

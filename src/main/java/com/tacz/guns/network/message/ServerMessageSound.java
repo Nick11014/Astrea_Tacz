@@ -4,7 +4,7 @@ import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 

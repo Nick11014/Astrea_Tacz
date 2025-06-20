@@ -5,10 +5,10 @@ import com.tacz.guns.network.message.ServerMessageSyncBaseTimestamp;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.fml.common.EventBusSubscriber;`r`nimport net.neoforged.neoforge.network.PacketDistributor;
 
 @Mod.EventBusSubscriber
 public class SyncBaseTimestamp {

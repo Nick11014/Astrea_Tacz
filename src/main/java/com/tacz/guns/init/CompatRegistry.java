@@ -7,10 +7,10 @@ import com.tacz.guns.compat.oculus.OculusCompat;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 // TODO: DistExecutor foi removido no NeoForge - refatorar para usar FMLEnvironment.dist 
-// import net.neoforged.fml.DistExecutor; 
+// import net.neoforged.fml.loading.FMLLoader; 
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.common.EventBusSubscriber;`r`nimport net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

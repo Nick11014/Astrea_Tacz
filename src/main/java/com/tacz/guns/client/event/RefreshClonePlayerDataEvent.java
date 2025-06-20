@@ -4,13 +4,13 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.util.DelayedTask;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
-import net.minecraftforge.event.TickEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-import java.util.function.BooleanSupplier;
+import net.neoforged.fml.common.EventBusSubscriber;`r`nimport java.util.function.BooleanSupplier;
 
 /**
  * 当玩家跨越维度时，客户端需要刷新一次玩家的配件属性缓存

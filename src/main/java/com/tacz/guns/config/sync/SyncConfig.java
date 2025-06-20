@@ -1,7 +1,7 @@
 package com.tacz.guns.config.sync;
 
 import com.google.common.collect.Lists;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.common.ForgeConfigSpec;
 
 import java.util.List;
 

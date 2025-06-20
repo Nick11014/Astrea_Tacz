@@ -4,12 +4,12 @@ import com.tacz.guns.init.ModAttributes;
 import com.tacz.guns.init.ModDamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
 public class EntityDamageEvent {
 
     @SubscribeEvent(priority = EventPriority.LOW)

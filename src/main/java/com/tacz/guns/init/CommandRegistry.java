@@ -5,7 +5,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
 public final class CommandRegistry {
     @SubscribeEvent
     public static void onServerStaring(RegisterCommandsEvent event) {

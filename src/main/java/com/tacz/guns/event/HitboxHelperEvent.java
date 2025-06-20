@@ -2,13 +2,13 @@ package com.tacz.guns.event;
 
 import com.tacz.guns.config.common.OtherConfig;
 import com.tacz.guns.util.HitboxHelper;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.Mod;
 
-@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
 public class HitboxHelperEvent {
     @SubscribeEvent(receiveCanceled = true)
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {

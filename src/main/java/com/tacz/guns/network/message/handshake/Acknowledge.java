@@ -4,7 +4,7 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.network.IMessage;
 import com.tacz.guns.network.LoginIndexHolder;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
