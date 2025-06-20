@@ -25,7 +25,10 @@ import java.util.List;
 
 import static net.minecraft.world.item.ItemDisplayContext.GUI;
 
-
+/**
+ * Renderizador de itens de munição para NeoForge 1.21.1
+ * Mantém a herança de BlockEntityWithoutLevelRenderer por compatibilidade
+ */
 public class AmmoItemRenderer extends BlockEntityWithoutLevelRenderer {
     private static final SlotModel SLOT_AMMO_MODEL = new SlotModel();
 
