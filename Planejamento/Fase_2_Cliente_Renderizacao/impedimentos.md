@@ -75,10 +75,43 @@ O sistema de build Gradle não completa execução:
 - Dependências não resolvem corretamente
 - Processo de compilação interrompido
 
+**Recurso Disponível:**
+- Pasta `MDK-1.21-NeoGradle-main/`: Template oficial do Mod Developer Kit para NeoForge 1.21.1
+- Contém configuração correta de `build.gradle`, `gradle.properties` e estrutura de projeto
+- Pode ser usado como referência para corrigir a configuração atual
+
 ### 💥 Impacto:
 - ⚠️ **BLOQUEANTE** - Impossível validar mudanças de código
 - Ciclo de desenvolvimento interrompido
 - Testes de integração bloqueados
+
+### 🔧 Próximas Ações (Fase 0):
+1. **Analisar template MDK:** Comparar `MDK-1.21-NeoGradle-main/` com configuração atual
+2. **Atualizar build.gradle:** Aplicar configurações corretas do template oficial
+3. **Verificar gradle.properties:** Ajustar versões e configurações
+4. **Testar build básico:** Garantir que `./gradlew build` completa sem erros
+5. **Validar sincronização IDE:** Confirmar que dependências são resolvidas corretamente
+
+### 🔍 Análise Inicial - Incompatibilidades Encontradas:
+
+**VERSÕES - Diferença Crítica:**
+- **Template MDK (✅ funcional):** Minecraft 1.21 + NeoForge 21.0.167
+- **Projeto atual (❌ problemático):** Minecraft 1.21.1 + NeoForge 21.1.42
+
+### 🚨 **CONFIRMAÇÃO CRÍTICA (19/06/2025 23:30):**
+**BUILD FAILED com 100 erros de compilação - Problema confirmado:**
+
+**Root Cause Identificado:** O problema **NÃO** é nas versões, mas sim na **migração incompleta de APIs**. O projeto ainda usa massivamente APIs do Forge 1.20.1 que não existem no NeoForge 1.21.1.
+
+**APIs Problemáticas:**
+- `net.minecraftforge.eventbus.api.*` → `net.neoforged.bus.api.*`
+- `net.minecraftforge.api.distmarker.*` → `net.neoforged.api.distmarker.*`  
+- `net.minecraftforge.entity.*` → APIs mudaram significativamente
+- `net.minecraftforge.registries.*` → `net.neoforged.neoforge.registries.*`
+- `net.minecraftforge.network.*` → Sistema de rede reformulado
+- `net.minecraftforge.common.capabilities.*` → Sistema mudou
+
+**CONCLUSÃO:** Durante a Fase 1, migramos apenas NBT→DataComponents, mas **TODO** o resto do código ainda usa APIs do Forge antigo. Precisamos de uma **migração sistemática completa** de APIs.
 
 ---
 
@@ -91,9 +124,31 @@ O sistema de build Gradle não completa execução:
 - **Bloqueantes:** 2
 
 **Próximas Ações Prioritárias:**
-1. Investigar e resolver problemas do build system
-2. Estabilizar ambiente de compilação
-3. Implementar migração IClientItemExtensions após resolução dos bloqueantes
+🚨 **CONFIRMADO: Root Cause Identificado**
+
+**IMPEDIMENTO #3 CONFIRMADO COMO CRÍTICO:**
+- **Build FAILED** com 100 erros de compilação
+- **Causa:** Migração incompleta de APIs Forge → NeoForge
+- **Impacto:** TODO o sistema de eventos, entidades, registry, networking usa APIs obsoletas
+
+**ESTRATÉGIA REVISADA:**
+1. **PAUSAR** completamente a Fase 2 (Cliente/Renderização)
+2. **RETORNAR** à Fase 1 (Core Migration) com escopo ampliado
+3. **PRIORIZAR** migração sistemática de APIs:
+   - Sistema de Eventos (`Event`, `Cancelable`, etc.)
+   - Marcadores de Side (`@OnlyIn`, `Dist`, etc.)
+   - Sistema de Registry (`RegistryObject` → `DeferredHolder`)
+   - Entidades (`IEntityAdditionalSpawnData`, etc.)
+   - Networking (`NetworkHooks`, etc.)
+   - Capabilities (`ForgeCapabilities`, etc.)
+
+**RECURSOS DISPONÍVEIS:**
+- Template MDK-1.21-NeoGradle-main (funcionando perfeitamente)
+- Logs de build com todos os 100 erros mapeados
+- Documentação oficial do NeoForge para migração de APIs
+
+### 🎯 **NOVA PRIORIDADE:**
+**Fase 1 Expandida:** Migração Completa de APIs (não apenas DataComponents)
 
 ### 🔍 O que foi tentado:
 1. **Atualização de imports:** Tentativa de migrar imports do Forge para NeoForge

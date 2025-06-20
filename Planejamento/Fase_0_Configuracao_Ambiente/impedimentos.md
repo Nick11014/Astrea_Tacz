@@ -89,7 +89,78 @@ Unsupported class file major version 68
 
 ---
 
-## 📊 Status Geral da Fase 0:
-- **Progresso:** ✅ **100% COMPLETO**
-- **Status:** ✅ **RESOLVIDO** - Todas as configurações funcionais
-- **Próxima fase:** Fase 1 - Migração do Core (100 erros de dependências para resolver)
+## Impedimento #3 - 23/06/2025
+
+### 📍 Contexto:
+- **Fase:** 0 - Configuração do Ambiente (REABERTA)
+- **Item do Checklist:** Diagnóstico de problemas no build system
+- **Arquivo(s) Afetado(s):** build.gradle, gradle.properties, sistema de build Gradle
+
+### 🚫 Problema Encontrado:
+**Build System Issues após retorno à Fase 0**
+
+Durante a Fase 2 (Cliente/Renderização), foram identificados problemas persistentes no sistema de build que impediram o progresso efetivo. O build.gradle apresentou inconsistências e o IDE não estava sincronizando corretamente as dependências do NeoForge 1.21.1.
+
+**Sintomas:**
+- Falhas de sincronização do IDE com NeoForge 1.21.1
+- Possíveis conflitos de versões entre Minecraft/NeoForge
+- Problemas de dependências não resolvidos corretamente
+
+**Impacto:** ⚠️ **BLOQUEANTE** - Impede progresso efetivo nas fases de migração.
+
+### 🔍 Investigação Realizada:
+
+#### **Comparação com Template Oficial:**
+- **Template MDK-1.21-NeoGradle-main:** ✅ **BUILD SUCCESSFUL**
+  - Minecraft: 1.21
+  - NeoForge: 21.0.167
+  - Gradle: 8.7
+
+- **Projeto Principal:** ❓ **EM TESTE**
+  - Minecraft: 1.21.1  
+  - NeoForge: 21.1.42
+  - Gradle: 8.14.2
+
+#### **Diferenças Identificadas:**
+1. **Versões mais recentes** no projeto principal
+2. **Configurações adicionais** no build.gradle do projeto
+3. **Estrutura mais complexa** comparada ao template
+
+### 🎯 Status Atual:
+- [x] Impedimento registrado
+- [x] Template oficial testado (funciona perfeitamente)
+- [x] Build do projeto principal executado
+- [x] **BUILD FAILED CONFIRMADO** - 100 erros de compilação identificados
+
+### 🚨 **PROBLEMA CONFIRMADO:**
+**Migração Incompleta de APIs Forge → NeoForge**
+
+**100 erros de compilação** causados por APIs do Forge 1.20.1 que não existem no NeoForge 1.21.1:
+
+#### **APIs Problemáticas Identificadas:**
+1. **Event System:**
+   - `net.minecraftforge.eventbus.api.Event` → `net.neoforged.bus.api.Event`
+   - `net.minecraftforge.eventbus.api.Cancelable` → `net.neoforged.bus.api.ICancellableEvent`
+   - `net.minecraftforge.fml.LogicalSide` → `net.neoforged.fml.LogicalSide`
+
+2. **Side Markers:**
+   - `net.minecraftforge.api.distmarker.*` → `net.neoforged.api.distmarker.*`
+
+3. **Entity System:**
+   - `net.minecraftforge.entity.IEntityAdditionalSpawnData` → API mudou
+   - `net.minecraftforge.entity.PartEntity` → API mudou
+
+4. **Registry System:**
+   - `net.minecraftforge.registries.RegistryObject` → `net.neoforged.neoforge.registries.DeferredHolder`
+
+5. **Capabilities:**
+   - `net.minecraftforge.common.capabilities.ForgeCapabilities` → Sistema mudou
+
+6. **Networking:**
+   - `net.minecraftforge.network.NetworkHooks` → API mudou
+
+### 📊 Próximos Passos (PRIORIDADE MÁXIMA):
+1. **PAUSAR** todas as outras fases
+2. **Migrar sistematicamente** todas as APIs Forge → NeoForge
+3. **Iniciar nova Fase 1** focada em APIs (não apenas DataComponents)
+4. **Usar template MDK** como referência para APIs corretas
