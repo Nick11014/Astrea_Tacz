@@ -18,10 +18,35 @@ group = mod_group_id
 
 repositories {
     mavenCentral()
+    // NeoForged Maven
+    maven {
+        name = "NeoForged"
+        url = "https://maven.neoforged.net/releases/"
+    }
     // Cloth Config repository
     maven {
         name = "Shedaniel"
         url = "https://maven.shedaniel.me/"
+    }
+    // JEI Maven repository
+    maven {
+        name = "Progwml6 (JEI)"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    // MrCrayfish Maven for Controllable mod
+    maven {
+        name = "MrCrayfish"
+        url = "https://maven.mrcrayfish.com/repository/maven-public/"
+    }
+    // KubeJS and Rhino dependencies
+    maven {
+        name = "Latvian Mods"
+        url = "https://maven.latvian.dev/"
+    }
+    // CurseForge Maven for other mods
+    maven {
+        name = "CurseMaven"
+        url = "https://cursemaven.com"
     }
     // Add here additional repositories if required by some of the dependencies below.
 }
@@ -108,13 +133,35 @@ dependencies {
     // Cloth Config API - Para telas de configuração (opcional)
     compileOnly "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
     localRuntime "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
+    
+    // Controllable - Para suporte a controles/joysticks (opcional) - v0.23.3 para NeoForge 1.21.1
+    compileOnly "curse.maven:controllable-317269:6277379"
+    localRuntime "curse.maven:controllable-317269:6277379"
 
     // Example optional mod dependency with JEI
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
-    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
-    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
+    // JEI - Using CurseMaven as alternative to direct Maven dependency
+    compileOnly "curse.maven:jei-238222:${jei_file_id}"
+    localRuntime "curse.maven:jei-238222:${jei_file_id}"
+    
+    // KubeJS - Para integração de scripts (opcional) - usando CurseMaven
+    compileOnly "curse.maven:kubejs-238086:${kubejs_file_id}"
+    localRuntime "curse.maven:kubejs-238086:${kubejs_file_id}"
+    
+    // Rhino - Dependência do KubeJS para execução de scripts JavaScript
+    compileOnly "curse.maven:rhino-416294:6184623"
+    localRuntime "curse.maven:rhino-416294:6184623"
+    
+    // Player Animator - Para animações customizadas (opcional)
+    compileOnly "curse.maven:player-animator-658587:${player_animator_file_id}"
+    localRuntime "curse.maven:player-animator-658587:${player_animator_file_id}"
+    
+    // Shoulder Surfing Reloaded - Compatibilidade de camera (opcional)
+    compileOnly "curse.maven:shoulder-surfing-reloaded-243190:${shoulder_surfing_file_id}"
+    localRuntime "curse.maven:shoulder-surfing-reloaded-243190:${shoulder_surfing_file_id}"
+    
+    // Carry On - Compatibilidade para transporte de blocos (opcional)
+    compileOnly "curse.maven:carry-on-274259:${carry_on_file_id}"
+    localRuntime "curse.maven:carry-on-274259:${carry_on_file_id}"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
