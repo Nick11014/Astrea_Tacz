@@ -10,7 +10,8 @@ import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-import net.neoforged.fml.common.EventBusSubscriber;`r`nimport java.util.function.BooleanSupplier;
+import net.neoforged.fml.common.EventBusSubscriber;
+import java.util.function.BooleanSupplier;
 
 /**
  * 当玩家跨越维度时，客户端需要刷新一次玩家的配件属性缓存

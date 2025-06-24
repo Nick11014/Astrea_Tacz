@@ -1,14 +1,14 @@
 package com.tacz.guns.compat.carryon;
 
 import com.tacz.guns.GunMod;
-import net.neoforged.fml.InterModComms;
-import net.neoforged.registries.ForgeRegistries;
+import net.neoforged.neoforge.InterModComms;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class BlackList {
     private static final String CARRY_ON_ID = "carryon";
 
     public static void addBlackList() {
-        ForgeRegistries.BLOCKS.getKeys().stream().filter(id -> id.getNamespace().equals(GunMod.MOD_ID))
+        NeoForgeRegistries.BLOCKS.getKeys().stream().filter(id -> id.getNamespace().equals(GunMod.MOD_ID))
                 .forEach(id -> InterModComms.sendTo(CARRY_ON_ID, "blacklistBlock", id::toString));
     }
 }

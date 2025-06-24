@@ -3,7 +3,7 @@ package com.tacz.guns.init;
 import com.tacz.guns.GunMod;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.neoforged.registries.DeferredRegister;
-import net.neoforged.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.registries.RegistryObject;
 
 public class ModPainting {

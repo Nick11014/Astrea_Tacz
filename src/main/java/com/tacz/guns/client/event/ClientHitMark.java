@@ -18,7 +18,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.Mod;
 
-import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber(value = Dist.CLIENT)
+import net.neoforged.fml.common.EventBusSubscriber;
+@Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class ClientHitMark {
     public static long lastHitTimestamp = 0;
     public static float damageAmount = 0;

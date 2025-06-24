@@ -12,7 +12,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-import net.neoforged.fml.common.EventBusSubscriber;`r`nimport java.io.File;
+import net.neoforged.fml.common.EventBusSubscriber;
+import java.io.File;
 
 
 @OnlyIn(Dist.CLIENT)

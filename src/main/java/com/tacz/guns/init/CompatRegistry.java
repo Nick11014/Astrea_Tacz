@@ -6,11 +6,10 @@ import com.tacz.guns.compat.cloth.MenuIntegration;
 import com.tacz.guns.compat.oculus.OculusCompat;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-// TODO: DistExecutor foi removido no NeoForge - refatorar para usar FMLEnvironment.dist 
-// import net.neoforged.fml.loading.FMLLoader; 
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.common.EventBusSubscriber;`r`nimport net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -21,9 +20,10 @@ public class CompatRegistry {
 
     @SubscribeEvent
     public static void onEnqueue(final InterModEnqueueEvent event) {
-        event.enqueueWork(() -> checkModLoad(CLOTH_CONFIG, () -> DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> MenuIntegration::registerModsPage)));
+        // Registrar tela de configuração do ClothConfig apenas no cliente
         event.enqueueWork(() -> {
             if (FMLEnvironment.dist == Dist.CLIENT) {
+                checkModLoad(CLOTH_CONFIG, MenuIntegration::registerModsPage);
                 ClothConfigScreen.registerNoClothConfigPage();
             }
         });

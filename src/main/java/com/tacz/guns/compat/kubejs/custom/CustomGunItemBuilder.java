@@ -4,7 +4,7 @@ import com.tacz.guns.compat.kubejs.TimelessKubeJSPlugin;
 import dev.latvian.mods.kubejs.item.ItemBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.neoforged.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.registries.RegistryObject;
 
 public class CustomGunItemBuilder extends ItemBuilder {

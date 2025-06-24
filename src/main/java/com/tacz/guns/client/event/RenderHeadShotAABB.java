@@ -13,7 +13,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.common.EventBusSubscriber;`r`nimport net.neoforged.registries.ForgeRegistries;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class RenderHeadShotAABB {

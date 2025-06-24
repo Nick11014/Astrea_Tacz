@@ -4,7 +4,7 @@ import com.tacz.guns.GunMod;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.neoforged.registries.DeferredRegister;
-import net.neoforged.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.registries.RegistryObject;
 
 public class ModAttributes {

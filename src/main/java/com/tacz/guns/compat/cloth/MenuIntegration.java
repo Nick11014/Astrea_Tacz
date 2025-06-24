@@ -10,7 +10,7 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.neoforged.client.ConfigScreenHandler;
+import net.neoforged.neoforge.client.ConfigScreenHandler;
 import net.neoforged.fml.ModLoadingContext;
 
 import javax.annotation.Nullable;

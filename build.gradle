@@ -18,6 +18,11 @@ group = mod_group_id
 
 repositories {
     mavenCentral()
+    // Cloth Config repository
+    maven {
+        name = "Shedaniel"
+        url = "https://maven.shedaniel.me/"
+    }
     // Add here additional repositories if required by some of the dependencies below.
 }
 
@@ -99,6 +104,10 @@ dependencies {
     
     // Apache Commons Math - Para sistema de recuo e interpolação
     implementation 'org.apache.commons:commons-math3:3.6.1'
+    
+    // Cloth Config API - Para telas de configuração (opcional)
+    compileOnly "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
+    localRuntime "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

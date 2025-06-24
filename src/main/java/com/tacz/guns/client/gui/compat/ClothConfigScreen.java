@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.neoforged.client.ConfigScreenHandler;
+import net.neoforged.neoforge.client.ConfigScreenHandler;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.ModLoadingContext;
 import org.apache.commons.lang3.StringUtils;

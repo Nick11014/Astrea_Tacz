@@ -223,7 +223,7 @@ $net.minecraftforge$ para o novo pacote $net.neoforged$.
 | $net.minecraftforge.event.TickEvent.PlayerTickEvent$ | $net.neoforged.neoforge.event.tick.PlayerTickEvent$ |
 | $net.minecraftforge.common.util.FakePlayer$ | $net.neoforged.neoforge.common.util.FakePlayer$ |
 | $net.minecraftforge.common.ToolActions$ | $net.neoforged.neoforge.common.ItemAbilities$ |
-| $net.minecraftforge.client.gui.overlay.ForgeGui$ | $net.neoforged.neoforge.client.gui.overlay.ExtendedGui$ |
+| $net.minecraftforge.client.gui.overlay.ForgeGui$ | $net.neoforged.neoforge.client.gui.ExtendedGui$ |
 | $net.minecraftforge.common.level.Forge biomeModifiers$ | $net.neoforged.neoforge.common.world.BiomeModifier$ |
 | ... (e muitas outras renomeações de pacotes e classes)... | ... |
 

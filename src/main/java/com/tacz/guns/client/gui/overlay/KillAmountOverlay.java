@@ -10,15 +10,16 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.gui.overlay.ForgeGui;
-import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
+// The IGuiOverlay import has been corrected to the new package
+import net.neoforged.neoforge.client.gui.IGuiOverlay;
 
 public class KillAmountOverlay implements IGuiOverlay {
     private static long killTimestamp = -1L;
     private static int killAmount = 0;
 
+    // The method signature for 'render' has been updated to match the new IGuiOverlay interface
     @Override
-    public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int width, int height) {
+    public void render(GuiGraphics graphics, float partialTick, int screenWidth, int screenHeight) {
         if (!RenderConfig.KILL_AMOUNT_ENABLE.get()) {
             return;
         }
@@ -62,7 +63,8 @@ public class KillAmountOverlay implements IGuiOverlay {
         poseStack.pushPose();
         {
             poseStack.scale(0.5f, 0.5f, 1);
-            graphics.drawString(mc.font, text, (int) (width - fontWith / 2.0f), (height - 45) * 2 - 1, color);
+            // Use the updated screenWidth and screenHeight parameters
+            graphics.drawString(mc.font, text, (int) (screenWidth - fontWith / 2.0f), (screenHeight - 45) * 2 - 1, color);
         }
         poseStack.popPose();
         RenderSystem.disableBlend();

@@ -8,7 +8,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-import net.neoforged.fml.common.EventBusSubscriber;`r`n@Mod.EventBusSubscriber
+import net.neoforged.fml.common.EventBusSubscriber;
+@Mod.EventBusSubscriber
 public class BellRing {
     @SubscribeEvent
     public static void onAmmoHitBlock(AmmoHitBlockEvent event) {

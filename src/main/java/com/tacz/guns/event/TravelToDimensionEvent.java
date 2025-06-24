@@ -8,7 +8,8 @@ import net.neoforged.neoforge.event.entity.EntityTravelToDimensionEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
-import net.neoforged.fml.common.EventBusSubscriber;`r`n/**
+import net.neoforged.fml.common.EventBusSubscriber;
+/**
  * 修正跨纬度时，枪械数据不刷新的问题，这是服务端的刷新
  */
 @Mod.EventBusSubscriber
