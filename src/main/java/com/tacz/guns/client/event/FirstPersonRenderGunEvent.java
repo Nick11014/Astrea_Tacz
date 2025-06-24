@@ -47,7 +47,7 @@ import java.util.Optional;
 /**
  * 负责第一人称的枪械模型额外效果的渲染。其他部分参见 {@link GunItemRendererWrapper}
  */
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class FirstPersonRenderGunEvent {
     // 用于生成瞄准动作的运动曲线，使动作看起来更平滑
     private static final SecondOrderDynamics AIMING_DYNAMICS = new SecondOrderDynamics(1.2f, 1.2f, 0.5f, 0);

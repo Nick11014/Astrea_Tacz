@@ -13,7 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class RefitTransform {
     // 以下参数、变量用于改装窗口动画插值
     private static final float REFIT_SCREEN_TRANSFORM_TIMES = 0.25f;

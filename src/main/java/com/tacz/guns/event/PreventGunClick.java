@@ -8,7 +8,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
 import net.neoforged.fml.common.EventBusSubscriber;
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class PreventGunClick {
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {

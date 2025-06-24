@@ -16,7 +16,7 @@ import java.util.function.BooleanSupplier;
 /**
  * 当玩家跨越维度时，客户端需要刷新一次玩家的配件属性缓存
  */
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class RefreshClonePlayerDataEvent {
     @SubscribeEvent
     public static void onClientPlayerClone(ClientPlayerNetworkEvent.Clone event) {

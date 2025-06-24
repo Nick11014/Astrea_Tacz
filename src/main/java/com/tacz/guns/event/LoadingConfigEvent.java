@@ -7,7 +7,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LoadingConfigEvent {
     private static final String CONFIG_NAME = "tacz-server.toml";
 

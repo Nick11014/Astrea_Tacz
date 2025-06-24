@@ -3,7 +3,7 @@ package com.tacz.guns.config;
 import com.tacz.guns.config.common.AmmoConfig;
 import com.tacz.guns.config.common.GunConfig;
 import com.tacz.guns.config.common.OtherConfig;
-import net.neoforged.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ForgeConfigSpec;
 
 public final class CommonConfig {
     public static ForgeConfigSpec init() {

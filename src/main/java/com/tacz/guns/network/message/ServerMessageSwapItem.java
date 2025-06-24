@@ -3,7 +3,7 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.api.client.event.SwapItemWithOffHand;
 import net.minecraft.network.FriendlyByteBuf;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.function.Supplier;
 

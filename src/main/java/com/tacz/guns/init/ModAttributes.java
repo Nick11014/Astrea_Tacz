@@ -3,9 +3,9 @@ package com.tacz.guns.init;
 import com.tacz.guns.GunMod;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
-import net.neoforged.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModAttributes {
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, GunMod.MOD_ID);

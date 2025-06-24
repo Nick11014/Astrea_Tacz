@@ -11,7 +11,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class SyncBaseTimestamp {
     @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {

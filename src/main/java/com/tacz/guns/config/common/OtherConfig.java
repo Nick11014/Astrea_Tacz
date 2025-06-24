@@ -1,6 +1,6 @@
 package com.tacz.guns.config.common;
 
-import net.neoforged.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ForgeConfigSpec;
 
 public class OtherConfig {
     public static ForgeConfigSpec.BooleanValue DEFAULT_PACK_DEBUG;

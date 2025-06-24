@@ -2,7 +2,7 @@ package com.tacz.guns.network;
 
 import net.minecraft.network.FriendlyByteBuf;
 // TODO: Migrar para sistema de Payloads do NeoForge 1.21.1
-// import net.neoforged.neoforge.network.NetworkEvent;
+// import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.function.Supplier;
 

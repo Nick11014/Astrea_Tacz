@@ -1,7 +1,7 @@
 package com.tacz.guns.compat.carryon;
 
 import com.tacz.guns.GunMod;
-import net.neoforged.neoforge.InterModComms;
+import net.neoforged.fml.InterModComms;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class BlackList {

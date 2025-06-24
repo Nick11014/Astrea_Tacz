@@ -1,7 +1,7 @@
 package com.tacz.guns.client.resource.manager;
 
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.audio.OggAudioStream;
+import net.minecraft.client.sounds.OggAudioStream;
 import com.tacz.guns.GunMod;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;

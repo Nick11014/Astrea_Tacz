@@ -6,7 +6,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
 import net.neoforged.fml.common.EventBusSubscriber;
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class ServerTickEvent {
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {

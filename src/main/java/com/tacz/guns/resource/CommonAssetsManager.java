@@ -48,7 +48,7 @@ import org.luaj.vm2.LuaTable;
 import java.util.*;
 import java.util.function.Consumer;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class CommonAssetsManager implements ICommonResourceProvider {
     private static CommonAssetsManager INSTANCE;
     public static final Gson GSON = new GsonBuilder()

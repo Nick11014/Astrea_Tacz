@@ -11,7 +11,7 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 // The IGuiOverlay import has been corrected to the new package
-import net.neoforged.neoforge.client.gui.IGuiOverlay;
+import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 
 public class KillAmountOverlay implements IGuiOverlay {
     private static long killTimestamp = -1L;

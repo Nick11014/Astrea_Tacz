@@ -42,7 +42,7 @@ import org.apache.commons.math3.analysis.polynomials.PolynomialSplineFunction;
 
 import java.util.Optional;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class CameraSetupEvent {
     /**
      * 用于平滑 FOV 变化

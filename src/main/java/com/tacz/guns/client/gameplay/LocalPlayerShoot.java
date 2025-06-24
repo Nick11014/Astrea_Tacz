@@ -131,7 +131,7 @@ public class LocalPlayerShoot {
             return ShootResult.IS_SPRINTING;
         }
         // 触发开火事件
-        if (MinecraftForge.EVENT_BUS.post(new GunShootEvent(player, mainHandItem, LogicalSide.CLIENT))) {
+        if (MinecraftForge.EVENT_BUS.post(new GunShootEvent(player, mainHandItem, LogicalSide.CLIENT).isCanceled())) {
             return ShootResult.FORGE_EVENT_CANCEL;
         }
         // 切换状态锁，不允许换弹、检视等行为进行。

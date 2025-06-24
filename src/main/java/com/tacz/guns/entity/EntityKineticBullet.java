@@ -62,7 +62,7 @@ import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 // Corrected import for PartEntity
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.handling.NetworkHooks;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2d;
@@ -80,9 +80,9 @@ import static com.tacz.guns.api.event.common.GunDamageSourcePart.NON_ARMOR_PIERC
 // Implemented the new IEntityWithComplexSpawn interface
 public class EntityKineticBullet extends Projectile implements IEntityWithComplexSpawn {
     public static final EntityType<EntityKineticBullet> TYPE = EntityType.Builder.<EntityKineticBullet>of(EntityKineticBullet::new, MobCategory.MISC).noSummon().noSave().fireImmune().sized(0.0625F, 0.0625F).clientTrackingRange(5).updateInterval(5).setShouldReceiveVelocityUpdates(false).build("bullet");
-    public static final TagKey<EntityType<?>> USE_MAGIC_DAMAGE_ON = TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("tacz:use_magic_damage_on"));
-    public static final TagKey<EntityType<?>> USE_VOID_DAMAGE_ON = TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("tacz:use_void_damage_on"));
-    public static final TagKey<EntityType<?>> PRETEND_MELEE_DAMAGE_ON = TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("tacz:pretend_melee_damage_on"));
+    public static final TagKey<EntityType<?>> USE_MAGIC_DAMAGE_ON = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse("tacz:use_magic_damage_on"));
+    public static final TagKey<EntityType<?>> USE_VOID_DAMAGE_ON = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse("tacz:use_void_damage_on"));
+    public static final TagKey<EntityType<?>> PRETEND_MELEE_DAMAGE_ON = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse("tacz:pretend_melee_damage_on"));
 
     /**
      * 允许其他 mod 使用 persistent data（永久数据） 控制曳光弹的颜色和粗细。<p>

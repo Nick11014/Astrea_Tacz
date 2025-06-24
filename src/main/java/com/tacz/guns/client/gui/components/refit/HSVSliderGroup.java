@@ -7,7 +7,7 @@ import com.tacz.guns.util.LaserColorUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.client.gui.widget.ForgeSlider;
+import net.minecraft.client.gui.components.Slider;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;

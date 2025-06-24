@@ -12,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 /**
  * 修正跨纬度时，枪械数据不刷新的问题，这是服务端的刷新
  */
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class TravelToDimensionEvent {
     @SubscribeEvent
     public static void onTravelToDimension(EntityTravelToDimensionEvent event) {

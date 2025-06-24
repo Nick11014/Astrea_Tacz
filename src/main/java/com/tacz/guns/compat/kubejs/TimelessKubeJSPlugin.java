@@ -23,8 +23,8 @@ import dev.latvian.mods.rhino.util.wrap.TypeWrappers;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.registries.RegisterEvent;
-import net.neoforged.registries.RegistryObject;
+import net.neoforged.neoforge.registries.RegisterEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.HashMap;
 import java.util.Map;

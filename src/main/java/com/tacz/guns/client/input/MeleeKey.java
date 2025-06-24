@@ -18,7 +18,7 @@ import org.lwjgl.glfw.GLFW;
 import static com.tacz.guns.util.InputExtraCheck.isInGame;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(value = Dist.CLIENT)
 public class MeleeKey {
     public static final KeyMapping MELEE_KEY = new KeyMapping("key.tacz.melee.desc",
             KeyConflictContext.IN_GAME,

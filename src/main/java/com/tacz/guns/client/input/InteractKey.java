@@ -25,7 +25,7 @@ import org.lwjgl.glfw.GLFW;
 import static com.tacz.guns.util.InputExtraCheck.isInGame;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(value = Dist.CLIENT)
 public class InteractKey {
     public static final KeyMapping INTERACT_KEY = new KeyMapping("key.tacz.interact.desc",
             KeyConflictContext.IN_GAME,

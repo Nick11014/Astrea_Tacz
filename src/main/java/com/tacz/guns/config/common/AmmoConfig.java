@@ -1,7 +1,7 @@
 package com.tacz.guns.config.common;
 
 import com.google.common.collect.Lists;
-import net.neoforged.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ForgeConfigSpec;
 
 import java.util.List;
 

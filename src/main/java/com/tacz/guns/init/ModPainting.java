@@ -2,9 +2,9 @@ package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
 import net.minecraft.world.entity.decoration.PaintingVariant;
-import net.neoforged.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModPainting {
     public static final DeferredRegister<PaintingVariant> PAINTINGS = DeferredRegister.create(ForgeRegistries.PAINTING_VARIANTS, GunMod.MOD_ID);

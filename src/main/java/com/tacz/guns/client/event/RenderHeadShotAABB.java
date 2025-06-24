@@ -16,7 +16,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT)
+@EventBusSubscriber(value = Dist.CLIENT)
 public class RenderHeadShotAABB {
     @SubscribeEvent
     public static void onRenderEntity(RenderLivingEvent.Post<?, ?> event) {

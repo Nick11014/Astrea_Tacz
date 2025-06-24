@@ -17,7 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 // Removed import net.neoforged.neoforge.client.gui.ForgeGui;
-import net.neoforged.neoforge.client.gui.IGuiOverlay;
+import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 import org.apache.commons.lang3.StringUtils;
 
 public class InteractKeyTextOverlay implements IGuiOverlay {

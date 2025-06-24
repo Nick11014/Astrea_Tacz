@@ -128,7 +128,7 @@ public class LivingEntityShoot {
             iGun.setBulletInBarrel(currentGunItem, true);
         }
         // 触发射击事件
-        if (MinecraftForge.EVENT_BUS.post(new GunShootEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
+        if (MinecraftForge.EVENT_BUS.post(new GunShootEvent(shooter, currentGunItem, LogicalSide.SERVER).isCanceled())) {
             return ShootResult.FORGE_EVENT_CANCEL;
         }
 

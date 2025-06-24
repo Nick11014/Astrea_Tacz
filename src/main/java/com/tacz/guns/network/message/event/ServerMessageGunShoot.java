@@ -11,7 +11,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
 // TODO: Migrar para sistema de Payloads do NeoForge 1.21.1
-// import net.neoforged.neoforge.network.NetworkEvent;
+// import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.function.Supplier;
 

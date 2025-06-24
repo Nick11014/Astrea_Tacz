@@ -27,7 +27,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 // Removed import net.neoforged.neoforge.client.gui.ForgeGui;
-import net.neoforged.neoforge.client.gui.IGuiOverlay;
+import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 import net.neoforged.fml.ModList;
 import org.jetbrains.annotations.Nullable;
 

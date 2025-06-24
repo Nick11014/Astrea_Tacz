@@ -12,7 +12,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CompatRegistry {
     public static final String CLOTH_CONFIG = "cloth_config";
     public static final String OCULUS = "oculus";

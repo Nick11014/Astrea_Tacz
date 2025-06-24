@@ -9,7 +9,7 @@ import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.Mod;
 
 import net.neoforged.fml.common.EventBusSubscriber;
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class HitboxHelperEvent {
     @SubscribeEvent(receiveCanceled = true)
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {

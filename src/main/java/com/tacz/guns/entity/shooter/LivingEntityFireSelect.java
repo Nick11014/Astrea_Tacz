@@ -28,7 +28,7 @@ public class LivingEntityFireSelect {
         if (!(currentGunItem.getItem() instanceof IGun iGun)) {
             return;
         }
-        if (MinecraftForge.EVENT_BUS.post(new GunFireSelectEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
+        if (MinecraftForge.EVENT_BUS.post(new GunFireSelectEvent(shooter, currentGunItem, LogicalSide.SERVER).isCanceled())) {
             return;
         }
         NetworkHandler.sendToTrackingEntity(new ServerMessageGunFireSelect(shooter.getId(), currentGunItem), shooter);

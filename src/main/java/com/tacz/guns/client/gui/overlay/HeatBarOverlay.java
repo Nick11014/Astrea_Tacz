@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.item.ItemStack;
 // Removed import net.neoforged.neoforge.client.gui.ForgeGui;
-import net.neoforged.neoforge.client.gui.IGuiOverlay;
+import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 
 import java.text.DecimalFormat;
 

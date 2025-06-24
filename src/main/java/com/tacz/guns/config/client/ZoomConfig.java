@@ -1,6 +1,6 @@
 package com.tacz.guns.config.client;
 
-import net.neoforged.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ForgeConfigSpec;
 
 public class ZoomConfig {
     public static ForgeConfigSpec.DoubleValue SCREEN_DISTANCE_COEFFICIENT;

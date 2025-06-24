@@ -5,7 +5,7 @@ import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.entity.shooter.ShooterDataHolder;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.neoforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 

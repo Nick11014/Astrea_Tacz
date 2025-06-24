@@ -228,7 +228,7 @@ public class GunDisplayInstance {
         ResourceLocation stateMachineLocation = display.getStateMachineLocation();
         if (stateMachineLocation == null) {
             // 如果没指定状态机，则使用默认状态机
-            stateMachineLocation = new ResourceLocation("tacz", "default_state_machine");
+            stateMachineLocation = ResourceLocation.fromNamespaceAndPath("tacz", "default_state_machine");
         }
         LuaTable script = ClientAssetsManager.INSTANCE.getScript(stateMachineLocation);
         if (script != null) {
