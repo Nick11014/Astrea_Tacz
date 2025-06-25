@@ -5,7 +5,7 @@ import com.tacz.guns.entity.sync.core.SyncedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.EventBusSubscriber;
+import net.neoforged.fml.common.EventBusSubscriber;
 
 @EventBusSubscriber(modid = com.tacz.guns.GunMod.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class CapabilityRegistry {

@@ -13,7 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 @EventBusSubscriber(value = Dist.CLIENT)
 public class PreventsHotbarEvent {
     @SubscribeEvent
-    public static void onRenderHotbarEvent(RenderGuiOverlayEvent.Pre event) {
+    public static void onRenderHotbarEvent(RenderGuiLayerEvent.Pre event) {
         // todo 需要测试行为
         Screen screen = Minecraft.getInstance().screen;
         // 枪械合成台界面关闭背景

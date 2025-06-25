@@ -10,19 +10,23 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
-// The IGuiOverlay import has been corrected to the new package
-import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.gui.LayeredDraw;
 
-public class KillAmountOverlay implements IGuiOverlay {
+public class KillAmountOverlay implements LayeredDraw.Layer {
     private static long killTimestamp = -1L;
     private static int killAmount = 0;
 
-    // The method signature for 'render' has been updated to match the new IGuiOverlay interface
+    // The method signature for 'render' has been updated to match the new LayeredDraw.Layer interface
     @Override
-    public void render(GuiGraphics graphics, float partialTick, int screenWidth, int screenHeight) {
+    public void render(GuiGraphics graphics, DeltaTracker deltaTracker) {
         if (!RenderConfig.KILL_AMOUNT_ENABLE.get()) {
             return;
         }
+        
+        int screenWidth = graphics.guiWidth();
+        int screenHeight = graphics.guiHeight();
+        float partialTick = deltaTracker.getGameTimeDeltaPartialTick(false);
         int timeout = (int) (RenderConfig.KILL_AMOUNT_DURATION_SECOND.get() * 1000);
         float colorCount = 30;
 
