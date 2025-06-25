@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public final class OculusCompat {
-    private static final DefaultArtifactVersion VERSION = new DefaultArtifactVersion("1.7.0");
+    private static final DefaultArtifactVersion VERSION = new DefaultArtifactVersion("1.8.0");
     private static Function<MultiBufferSource.BufferSource, Boolean> END_BATCH_FUNCTION;
     private static Supplier<Boolean> IS_RENDER_SHADOW_SUPPER;
 
