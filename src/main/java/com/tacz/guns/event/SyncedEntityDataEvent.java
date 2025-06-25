@@ -8,14 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.neoforge.event.AttachCapabilitiesEvent;
 import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.EventBusSubscriber;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.HashMap;
@@ -25,17 +23,8 @@ import java.util.stream.Collectors;
 
 @EventBusSubscriber
 public final class SyncedEntityDataEvent {
-    @SubscribeEvent
-    public static void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        if (SyncedEntityData.instance().hasSyncedDataKey(event.getObject())) {
-            DataHolderCapabilityProvider provider = new DataHolderCapabilityProvider();
-            event.addCapability(new ResourceLocation(GunMod.MOD_ID, "synced_entity_data"), provider);
-            // Don't add invalidate to server player since it's persistent
-            if (!(event.getObject() instanceof ServerPlayer)) {
-                event.addListener(provider::invalidate);
-            }
-        }
-    }
+    // O AttachCapabilitiesEvent foi removido - agora as capabilities são registradas
+    // automaticamente através do RegisterCapabilitiesEvent no CapabilityRegistry
 
     @SubscribeEvent
     public static void onStartTracking(PlayerEvent.StartTracking event) {
