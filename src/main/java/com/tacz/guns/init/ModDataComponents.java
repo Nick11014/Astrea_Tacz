@@ -1,8 +1,8 @@
 package com.tacz.guns.init;
 
 import com.mojang.serialization.Codec;
-import com.tacz.guns.GunMod;
-import com.tacz.guns.api.item.gun.FireMode;
+// import com.tacz.guns.GunMod; // TODO: Re-enable when GunMod is available
+// import com.tacz.guns.api.item.gun.FireMode; // TODO: Re-enable when FireMode is available
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -19,8 +19,11 @@ import java.util.function.Supplier;
  * onde ItemStack.getOrCreateTag() foi substituído por DataComponents.
  */
 public class ModDataComponents {
+    // TODO: Replace with GunMod.MOD_ID when GunMod is available
+    private static final String MOD_ID = "tacz";
+    
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = 
-        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
+        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MOD_ID);
 
     // === DADOS DE ARMAS ===
     
@@ -38,13 +41,16 @@ public class ModDataComponents {
     /**
      * Modo de tiro da arma (FireMode)
      * Substitui: GUN_FIRE_MODE_TAG
+     * TODO: Re-enable when FireMode is available
      */
+    /*
     public static final Supplier<DataComponentType<FireMode>> GUN_FIRE_MODE = COMPONENTS.register("gun_fire_mode",
         () -> DataComponentType.<FireMode>builder()
             .persistent(FireMode.CODEC)
             .networkSynchronized(FireMode.STREAM_CODEC)
             .build()
     );
+    */
 
     /**
      * Se há bala no cano (boolean)

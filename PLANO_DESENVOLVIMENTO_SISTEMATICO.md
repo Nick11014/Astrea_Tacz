@@ -11,7 +11,7 @@
 - [ ] GunMod.java
 - [ ] init/
 - [ ] util/
-- [ ] config/
+- [x] config/
 - [ ] api/
 - [ ] block/
 - [ ] item/ (básicos)
