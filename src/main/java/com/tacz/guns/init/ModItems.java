@@ -1,8 +1,8 @@
 package com.tacz.guns.init;
 
-import com.tacz.guns.GunMod;
-import com.tacz.guns.api.item.gun.GunItemManager;
-import com.tacz.guns.item.*;
+// import com.tacz.guns.GunMod; // TODO: Re-enable when GunMod is available
+// import com.tacz.guns.api.item.gun.GunItemManager; // TODO: Re-enable when GunItemManager is available
+// import com.tacz.guns.item.*; // TODO: Re-enable when item classes are available
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -15,8 +15,13 @@ import java.util.function.Supplier;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, GunMod.MOD_ID);
+    // TODO: Replace with GunMod.MOD_ID when GunMod is available
+    private static final String MOD_ID = "tacz";
+    
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, MOD_ID);
 
+    // TODO: Re-enable when item classes are available
+    /*
     public static Supplier<ModernKineticGunItem> MODERN_KINETIC_GUN = ITEMS.register("modern_kinetic_gun", ModernKineticGunItem::new);
 
 //    public static Supplier<ThrowableItem> M67 = ITEMS.register("m67", ThrowableItem::new);
@@ -34,11 +39,13 @@ public class ModItems {
     public static Supplier<Item> STATUE = ITEMS.register("statue", () -> new BlockItem(ModBlocks.STATUE.get(), new Item.Properties()));
     public static Supplier<Item> AMMO_BOX = ITEMS.register("ammo_box", AmmoBoxItem::new);
     public static Supplier<Item> TARGET_MINECART = ITEMS.register("target_minecart", TargetMinecartItem::new);
+    */
 
     @SubscribeEvent
     public static void onItemRegister(RegisterEvent event) {
         if (event.getRegistryKey().equals(Registries.ITEM)) {
-            GunItemManager.registerGunItem(ModernKineticGunItem.TYPE_NAME, MODERN_KINETIC_GUN);
+            // TODO: Re-enable when GunItemManager is available
+            // GunItemManager.registerGunItem(ModernKineticGunItem.TYPE_NAME, MODERN_KINETIC_GUN);
         }
     }
 }
