@@ -1,6 +1,6 @@
 package com.tacz.guns.config.client;
 
-import com.tacz.guns.client.renderer.crosshair.CrosshairType;
+// import com.tacz.guns.client.renderer.crosshair.CrosshairType; // TODO: Re-enable in Phase 6
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class RenderConfig {
@@ -8,7 +8,7 @@ public class RenderConfig {
     public static ModConfigSpec.IntValue GUN_LOD_RENDER_DISTANCE;
     public static ModConfigSpec.IntValue BULLET_HOLE_PARTICLE_LIFE;
     public static ModConfigSpec.DoubleValue BULLET_HOLE_PARTICLE_FADE_THRESHOLD;
-    public static ModConfigSpec.EnumValue<CrosshairType> CROSSHAIR_TYPE;
+    // public static ModConfigSpec.EnumValue<CrosshairType> CROSSHAIR_TYPE; // TODO: Re-enable in Phase 6
     public static ModConfigSpec.DoubleValue HIT_MARKET_START_POSITION;
     public static ModConfigSpec.BooleanValue HEAD_SHOT_DEBUG_HITBOX;
     public static ModConfigSpec.BooleanValue GUN_HUD_ENABLE;
@@ -37,7 +37,7 @@ public class RenderConfig {
         BULLET_HOLE_PARTICLE_FADE_THRESHOLD = builder.defineInRange("BulletHoleParticleFadeThreshold", 0.98, 0, 1);
 
         builder.comment("The crosshair when holding a gun");
-        CROSSHAIR_TYPE = builder.defineEnum("CrosshairType", CrosshairType.DOT_1);
+        // CROSSHAIR_TYPE = builder.defineEnum("CrosshairType", CrosshairType.DOT_1); // TODO: Re-enable in Phase 6
 
         builder.comment("The starting position of the hit marker");
         HIT_MARKET_START_POSITION = builder.defineInRange("HitMarketStartPosition", 4d, -1024d, 1024d);
