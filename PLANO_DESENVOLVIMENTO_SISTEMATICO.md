@@ -9,7 +9,7 @@
 ## ✅ CHECKLIST DE PROGRESSO GERAL
 
 - [ ] GunMod.java
-- [ ] init/
+- [x] init/
 - [ ] util/
 - [x] config/
 - [ ] api/

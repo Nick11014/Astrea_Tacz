@@ -1,6 +1,6 @@
 package com.tacz.guns.init;
 
-// import com.tacz.guns.GunMod; // TODO: Re-enable when GunMod is available
+import com.tacz.guns.GunMod;
 // import com.tacz.guns.block.*; // TODO: Re-enable when block classes are available
 // import com.tacz.guns.block.entity.GunSmithTableBlockEntity; // TODO: Re-enable when block entities are available
 // import com.tacz.guns.block.entity.StatueBlockEntity; // TODO: Re-enable when block entities are available
@@ -15,11 +15,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModBlocks {
-    // TODO: Replace with GunMod.MOD_ID when GunMod is available
-    private static final String MOD_ID = "tacz";
-    
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, MOD_ID);
-    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, GunMod.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, GunMod.MOD_ID);
 
     // TODO: Re-enable when block classes are available
     /*
@@ -38,5 +35,5 @@ public class ModBlocks {
     public static DeferredHolder<BlockEntityType<?>, BlockEntityType<StatueBlockEntity>> STATUE_BE = TILE_ENTITIES.register("statue", () -> StatueBlockEntity.TYPE);
     */
     
-    public static final TagKey<Block> BULLET_IGNORE_BLOCKS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(MOD_ID, "bullet_ignore"));
+    public static final TagKey<Block> BULLET_IGNORE_BLOCKS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "bullet_ignore"));
 }

@@ -1,8 +1,11 @@
 package com.tacz.guns.init;
 
-// import com.tacz.guns.GunMod; // TODO: Re-enable when GunMod is available
-// import com.tacz.guns.api.item.gun.GunItemManager; // TODO: Re-enable when GunItemManager is available
-// import com.tacz.guns.item.*; // TODO: Re-enable when item classes are available
+import com.tacz.guns.GunMod;
+// TODO: Re-enable when dependencies are available
+/*
+import com.tacz.guns.api.item.gun.GunItemManager;
+import com.tacz.guns.item.*;
+*/
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -15,10 +18,7 @@ import java.util.function.Supplier;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class ModItems {
-    // TODO: Replace with GunMod.MOD_ID when GunMod is available
-    private static final String MOD_ID = "tacz";
-    
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, MOD_ID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, GunMod.MOD_ID);
 
     // TODO: Re-enable when item classes are available
     /*

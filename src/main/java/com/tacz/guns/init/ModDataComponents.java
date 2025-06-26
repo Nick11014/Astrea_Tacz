@@ -1,7 +1,7 @@
 package com.tacz.guns.init;
 
 import com.mojang.serialization.Codec;
-// import com.tacz.guns.GunMod; // TODO: Re-enable when GunMod is available
+import com.tacz.guns.GunMod;
 // import com.tacz.guns.api.item.gun.FireMode; // TODO: Re-enable when FireMode is available
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -19,11 +19,8 @@ import java.util.function.Supplier;
  * onde ItemStack.getOrCreateTag() foi substituído por DataComponents.
  */
 public class ModDataComponents {
-    // TODO: Replace with GunMod.MOD_ID when GunMod is available
-    private static final String MOD_ID = "tacz";
-    
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = 
-        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MOD_ID);
+        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
 
     // === DADOS DE ARMAS ===
     

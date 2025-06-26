@@ -1,6 +1,6 @@
 package com.tacz.guns.init;
 
-// import com.tacz.guns.GunMod; // TODO: Re-enable when GunMod is available
+import com.tacz.guns.GunMod;
 // All other imports commented out temporarily until their classes are available
 /*
 import com.tacz.guns.api.DefaultAssets;
@@ -25,10 +25,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 @SuppressWarnings("all")
 public class ModCreativeTabs {
-    // TODO: Replace with GunMod.MOD_ID when GunMod is available
-    private static final String MOD_ID = "tacz";
-    
-    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MOD_ID);
+    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, GunMod.MOD_ID);
 
     // TODO: Re-enable when item classes are available - using basic tabs for now
     public static DeferredHolder<CreativeModeTab, CreativeModeTab> OTHER_TAB = TABS.register("other", () -> CreativeModeTab.builder()
