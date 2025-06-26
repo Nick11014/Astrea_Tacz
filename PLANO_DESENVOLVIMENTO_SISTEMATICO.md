@@ -8,7 +8,7 @@
 
 ## ✅ CHECKLIST DE PROGRESSO GERAL
 
-- [ ] GunMod.java
+- [x] GunMod.java
 - [x] init/
 - [ ] util/
 - [x] config/
@@ -302,7 +302,7 @@
 - [ ] **Fase 9:** 0/30 arquivos habilitados
 
 ### Build Status:
-- [ ] Fase 1 Build Success
+- [x] Fase 1 Build Success
 - [ ] Fase 2 Build Success  
 - [ ] Fase 3 Build Success
 - [ ] Fase 4 Build Success
