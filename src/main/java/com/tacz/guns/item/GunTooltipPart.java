@@ -1,7 +1,6 @@
 package com.tacz.guns.item;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 
 public enum GunTooltipPart {
@@ -19,14 +18,12 @@ public enum GunTooltipPart {
     }
 
     public static int getHideFlags(ItemStack stack) {
-        CompoundTag tag = stack.getTag();
-        if (tag != null && tag.contains("HideFlags", Tag.TAG_ANY_NUMERIC)) {
-            return tag.getInt("HideFlags");
-        }
-        return stack.getItem().getDefaultTooltipHideFlags(stack);
+        // Usar DataComponents em vez de NBT - HideFlags agora é um componente nativo
+        return stack.getOrDefault(DataComponents.HIDE_TOOLTIP, 0);
     }
 
     public static void setHideFlags(ItemStack stack, int mask) {
-        stack.getOrCreateTag().putInt("HideFlags", mask);
+        // Usar DataComponents em vez de NBT
+        stack.set(DataComponents.HIDE_TOOLTIP, mask);
     }
 }
