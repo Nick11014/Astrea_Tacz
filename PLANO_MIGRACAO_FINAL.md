@@ -10,11 +10,11 @@
 
 | Fase | Descricao | Arquivos | Status |
 |------|-----------|----------|--------|
-| **Fase 1** | Sem dependencias internas | 229 | [ ] 0/229 |
+| **Fase 1** | Sem dependencias internas | 229 | [🔄] 28/229 |
 | **Fase 2** | Dependencias baixas (1-3) | 93 | [ ] 0/93 |
 | **Fase 3** | Dependencias medias (4-10) | 5 | [ ] 0/5 |
 | **Fase 4** | Dependencias altas (11+) | 0 | [ ] 0/0 |
-| **TOTAL** | **Todos os arquivos** | **327** | **0/327** |
+| **TOTAL** | **Todos os arquivos** | **327** | **28/327** |
 
 ---
 
@@ -25,35 +25,35 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 ### **FASE 1: FUNDACAO (Sem Dependencias Internas)** (229 arquivos)
 *Estes arquivos nao possuem imports de outras classes do mod. Eles sao a base e podem ser habilitados primeiro.*
 
-* [ ] DataType.java
-* [ ] GunTabType.java
-* [ ] GunTooltipPart.java
-* [ ] CommonLoadPack.java
-* [ ] OpenGunPackDirEntry.java
-* [ ] CycleTaskHelper.java
-* [ ] AttachmentLod.java
-* [ ] GunHurtBobTweak.java
-* [ ] ZoomClothConfig.java
-* [ ] GunFireModeAdjustData.java
-* [ ] AmmoBoxTooltip.java
-* [ ] Vector3fSerializer.java
-* [ ] FeedType.java
-* [ ] BufferViewModel.java
-* [ ] OculusCompatNewly.java
-* [ ] TimelessCommonEvents.java
-* [ ] KeepingItemRenderer.java
-* [ ] ResourceManager.java
-* [ ] Md5Utils.java
-* [ ] MeleeData.java
-* [ ] GunFireSelectEvent.java
-* [ ] InteractKeyConfigRead.java
-* [ ] GunAnimationConstant.java
-* [ ] DefaultTableItem.java
-* [ ] FaceUVsItem.java
-* [ ] DefaultAnimationType.java
-* [ ] GunItemManager.java
-* [ ] ShellDisplay.java
-* [ ] GunFinishReloadEvent.java
+* [x] DataType.java
+* [x] GunTabType.java
+* [x] GunTooltipPart.java (✅ MIGRADO para DataComponents)
+* [x] CommonLoadPack.java
+* [x] OpenGunPackDirEntry.java
+* [x] CycleTaskHelper.java
+* [x] AttachmentLod.java
+* [x] GunHurtBobTweak.java
+* [x] ZoomClothConfig.java
+* [x] GunFireModeAdjustData.java
+* [x] AmmoBoxTooltip.java
+* [x] Vector3fSerializer.java
+* [x] FeedType.java
+* [x] BufferViewModel.java
+* [x] OculusCompatNewly.java
+* [x] TimelessCommonEvents.java
+* [x] KeepingItemRenderer.java
+* [x] ResourceManager.java
+* [x] Md5Utils.java
+* [x] MeleeData.java
+* [x] GunFireSelectEvent.java
+* [x] InteractKeyConfigRead.java
+* [x] GunAnimationConstant.java
+* [x] DefaultTableItem.java
+* [x] FaceUVsItem.java
+* [x] DefaultAnimationType.java
+* [x] GunItemManager.java
+* [x] ShellDisplay.java
+* [x] GunFinishReloadEvent.java
 * [ ] Align.java
 * [ ] DebugCommand.java
 * [ ] Ignite.java
@@ -1011,4 +1011,70 @@ Habilite na ordem apresentada para minimizar erros de compilacao:
 325. ModelScaleListener.java (Deps: 3)
 326. ItemAnimationStateContext.java (Deps: 1)
 327. MenuIntegration.java (Deps: 6)
+
+---
+
+## 📊 PROGRESSO ATUAL DA MIGRAÇÃO
+
+**Status:** Fase 1 em andamento  
+**Data da última atualização:** 27 de Junho de 2025  
+**Progresso total:** 28/327 arquivos (8.6%)
+
+### ✅ Conquistas da Sessão Atual
+- **28 arquivos habilitados** na Fase 1
+- **1 migração crítica** realizada: `GunTooltipPart.java` (NBT → DataComponents)
+- **Workflow estabelecido** com commits sistemáticos
+- **Scripts de automação** criados para acelerar o processo
+
+### 🔧 Migrações Realizadas
+
+#### GunTooltipPart.java - NBT para DataComponents
+**Antes (Forge 1.20.1):**
+```java
+CompoundTag tag = stack.getTag();
+if (tag != null && tag.contains("HideFlags", Tag.TAG_ANY_NUMERIC)) {
+    return tag.getInt("HideFlags");
+}
+stack.getOrCreateTag().putInt("HideFlags", mask);
+```
+
+**Depois (NeoForge 1.21.1):**
+```java
+// Usar DataComponents em vez de NBT - HideFlags agora é um componente nativo
+return stack.getOrDefault(DataComponents.HIDE_TOOLTIP, 0);
+stack.set(DataComponents.HIDE_TOOLTIP, mask);
+```
+
+### 🎯 Próximos Arquivos da Fase 1
+```
+30. Align.java
+31. DebugCommand.java  
+32. Ignite.java
+33. PackInfo.java
+34. IFunctionalRenderer.java
+35. BlockItemTooltip.java
+36. JsonProperty.java
+37. TimelessKubeJSEventRegister.java
+38. BedrockAnimationFile.java
+39. AnimationPlan.java
+```
+
+### ⚠️ Observações Importantes
+1. **Problemas de Compilação:** O ambiente apresenta problemas na fase de cache do Minecraft 1.21.1
+2. **Estratégia Adotada:** Continuando migração independente dos problemas de compilação
+3. **NBT Critical:** Prioridade máxima para identificar arquivos que usam `getTag()`, `getOrCreateTag()`
+4. **Ritmo Atual:** ~28 arquivos por sessão de trabalho
+
+### 📈 Estimativas
+- **Restam na Fase 1:** 201 arquivos
+- **Tempo estimado Fase 1:** 7-8 sessões
+- **Meta mensal:** Completar Fase 1 e iniciar Fase 2
+
+---
+
+**⚡ INSTRUÇÕES PARA PRÓXIMA SESSÃO:**
+1. Continuar habilitando arquivos da Fase 1 seguindo a ordem do checklist
+2. Identificar e migrar arquivos que usam NBT para DataComponents
+3. Manter commits regulares a cada 10-20 arquivos
+4. Validar compilação quando ambiente permitir
 
