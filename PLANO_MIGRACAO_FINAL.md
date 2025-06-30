@@ -95,24 +95,24 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [x] StairBlockAccessor.java
 * [x] LuaEntityAccessor.java
 * [x] LuaNbtAccessor.java
-* [ ] AnimationSampler.java
-* [ ] PathHandler.java
-* [ ] GunRecoil.java
-* [ ] BlockData.java
-* [ ] IThirdPersonAnimation.java
-* [ ] GetJarResources.java
+* [x] AnimationSampler.java
+* [x] PathHandler.java
+* [x] GunRecoil.java
+* [x] BlockData.java
+* [x] IThirdPersonAnimation.java
+* [x] GetJarResources.java
 * [ ] ObjectAnimation.java
 * [ ] DataEntry.java
 * [ ] AnimationState.java
-* [ ] AnimationChannelTarget.java
-* [ ] Easing.java
+* [x] AnimationChannelTarget.java
+* [x] Easing.java
 * [ ] GunClothConfig.java
 * [ ] DefaultAssets.java
 * [ ] BlockIndexPOJO.java
 * [ ] GunReloadEvent.java
 * [ ] RootCommand.java
 * [ ] GunMeleeEvent.java
-* [ ] AnimationName.java
+* [x] AnimationName.java
 * [ ] LuaLibrary.java
 * [ ] ListPackCommand.java
 * [ ] Bolt.java
@@ -121,16 +121,16 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] LayerGunShow.java
 * [ ] AccessorIntData.java
 * [ ] PapiManager.java
-* [ ] IBlock.java
-* [ ] GunReloadData.java
+* [x] IBlock.java
+* [x] GunReloadData.java
 * [ ] DataHolder.java
 * [ ] GunSmithTableIngredient.java
-* [ ] IAmmo.java
+* [x] IAmmo.java
 * [ ] StatueBlockEntity.java
 * [ ] TypeButton.java
-* [ ] AccessorData.java
+* [x] AccessorData.java
 * [ ] TimelessItemNbtFactory.java
-* [ ] DelayedTask.java
+* [x] DelayedTask.java
 * [ ] AnimationModel.java
 * [ ] MuzzleFlash.java
 * [ ] BedrockCube.java
@@ -138,24 +138,24 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] InterpolatorUtil.java
 * [ ] GunSmithTableBlockC.java
 * [ ] BonesItem.java
-* [ ] GunDefaultMeleeData.java
+* [x] GunDefaultMeleeData.java
 * [ ] AnimationChannelContent.java
-* [ ] OptifineCompat.java
-* [ ] TrackArrayMismatchException.java
+* [x] OptifineCompat.java
+* [x] TrackArrayMismatchException.java
 * [ ] AnimationListener.java
 * [ ] AnimationListenerSupplier.java
-* [ ] IFilter.java
-* [ ] AmmoCountStyle.java
+* [x] IFilter.java
+* [x] AmmoCountStyle.java
 * [ ] GunPackProgressScreen.java
-* [ ] LiteralFilter.java
+* [x] LiteralFilter.java
 * [ ] AmmoClothConfig.java
-* [ ] ColorHex.java
-* [ ] AttachmentType.java
-* [ ] IAmmoBox.java
-* [ ] RenderDistance.java
+* [x] ColorHex.java
+* [x] AttachmentType.java
+* [x] IAmmoBox.java
+* [x] RenderDistance.java
 * [ ] AccessorSparse.java
 * [ ] HeadShotAABBConfigRead.java
-* [ ] FireMode.java
+* [x] FireMode.java
 * [ ] ItemStackSerializer.java
 * [ ] IStackTooltip.java
 * [ ] BufferView.java
@@ -163,44 +163,44 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] NodeModel.java
 * [ ] GunMeleeDebug.java
 * [ ] EffectData.java
-* [ ] PerlinNoise.java
+* [x] PerlinNoise.java
 * [ ] LanguageMixin.java
-* [ ] IDisplay.java
-* [ ] Modifier.java
+* [x] IDisplay.java
+* [x] Modifier.java
 * [ ] BedrockVertex.java
 * [ ] ModDamageTypes.java
 * [ ] AnimationKeyframes.java
 * [ ] GeometryModelLegacy.java
-* [ ] MathUtil.java
+* [x] MathUtil.java
 * [ ] GunSmithTableResult.java
-* [ ] Node.java
-* [ ] FaceItem.java
+* [x] Node.java
+* [x] FaceItem.java
 * [ ] ShoulderSurfingCompatInner.java
 * [ ] AmmoParticle.java
 * [ ] ModAttributes.java
-* [ ] GunIndexPOJO.java
-* [ ] IComponentTooltip.java
-* [ ] MoveSpeed.java
+* [x] GunIndexPOJO.java
+* [x] IComponentTooltip.java
+* [x] MoveSpeed.java
 * [ ] BedrockVersion.java
 * [ ] CommonTransformObject.java
 * [ ] AnimationChannel.java
 * [ ] Accessor.java
 * [ ] BedrockCubeBox.java
-* [ ] PairSerializer.java
+* [x] PairSerializer.java
 * [ ] ModPainting.java
 * [ ] ThirdPersonManager.java
-* [ ] LaserConfig.java
+* [x] LaserConfig.java
 * [ ] SyncedDataKey.java
 * [ ] ConfigCommand.java
 * [ ] GunReloadTime.java
 * [ ] EntityHurtByGunEvent.java
 * [ ] SoundAssetsManager.java
-* [ ] ElementType.java
+* [x] ElementType.java
 * [ ] AccessorSparseIndices.java
 * [ ] AccessorSparseValues.java
-* [ ] BufferModel.java
-* [ ] AmmoIndexPOJO.java
-* [ ] RegexFilter.java
+* [x] BufferModel.java
+* [x] AmmoIndexPOJO.java
+* [x] RegexFilter.java
 * [ ] VersionChecker.java
 * [ ] PreLoadConfig.java
 * [ ] ServerMessageLevelUp.java
@@ -211,26 +211,26 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] GunMeleeData.java
 * [ ] IAnimationItem.java
 * [ ] GunFireEvent.java
-* [ ] ShellEjection.java
-* [ ] KnockBackModifier.java
-* [ ] Vec3Serializer.java
+* [x] ShellEjection.java
+* [x] KnockBackModifier.java
+* [x] Vec3Serializer.java
 * [ ] AccessorShortData.java
-* [ ] GunHeatData.java
+* [x] GunHeatData.java
 * [ ] AccessorFloatData.java
 * [ ] FlatColorButton.java
 * [ ] BlackList.java
 * [ ] ExtraDamage.java
 * [ ] InputExtraCheck.java
-* [ ] DamageStyle.java
+* [x] DamageStyle.java
 * [ ] PreLoadModConfig.java
 * [ ] ControllableData.java
 * [ ] GunLod.java
-* [ ] CacheValue.java
+* [x] CacheValue.java
 * [ ] ResultButton.java
 * [ ] LivingEntityAmmoCheck.java
-* [ ] AnimationConstant.java
+* [x] AnimationConstant.java
 * [ ] Description.java
-* [ ] TransformScale.java
+* [x] TransformScale.java
 * [ ] TextShow.java
 * [ ] GunDamageSourcePart.java
 * [ ] AccessorByteData.java
@@ -240,12 +240,12 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] AmmoEntityDisplay.java
 * [ ] GunSmithTableBlockB.java
 * [ ] PlayerNamePapi.java
-* [ ] ReloadState.java
-* [ ] AttachmentSkin.java
+* [x] ReloadState.java
+* [x] AttachmentSkin.java
 * [ ] RawAnimationStructure.java
 * [ ] Animation.java
 * [ ] AnimationBone.java
-* [ ] AbstractAccessorData.java
+* [x] AbstractAccessorData.java
 * [ ] ResourceScanner.java
 * [ ] Buffer.java
 * [ ] BedrockModelPOJO.java
@@ -256,12 +256,12 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] BedrockAnimation.java
 * [ ] TimelessItemType.java
 * [ ] OculusCompatLegacy.java
-* [ ] Buffers.java
+* [x] Buffers.java
 * [ ] NumberArrays.java
 * [ ] IMessage.java
 * [ ] AnimationController.java
 * [ ] StairBlockAccessor.java
-* [ ] SecondOrderDynamics.java
+* [x] SecondOrderDynamics.java
 * [ ] GunModSubtype.java
 
 ---
