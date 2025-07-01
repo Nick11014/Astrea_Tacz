@@ -10,11 +10,11 @@
 
 | Fase | Descricao | Arquivos | Status |
 |------|-----------|----------|--------|
-| **Fase 1** | Sem dependencias internas | 229 | [🔄] 88/229 |
+| **Fase 1** | Sem dependencias internas | 229 | [🔄] 74/229 |
 | **Fase 2** | Dependencias baixas (1-3) | 93 | [ ] 0/93 |
 | **Fase 3** | Dependencias medias (4-10) | 5 | [ ] 0/5 |
 | **Fase 4** | Dependencias altas (11+) | 0 | [ ] 0/0 |
-| **TOTAL** | **Todos os arquivos** | **327** | **88/327** |
+| **TOTAL** | **Todos os arquivos** | **327** | **74/327** |
 
 ---
 
