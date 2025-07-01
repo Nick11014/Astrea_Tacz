@@ -219,17 +219,17 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] AccessorFloatData.java
 * [ ] FlatColorButton.java
 * [ ] BlackList.java
-* [ ] ExtraDamage.java
+* [x] ExtraDamage.java
 * [ ] InputExtraCheck.java
 * [x] DamageStyle.java
 * [ ] PreLoadModConfig.java
-* [ ] ControllableData.java
-* [ ] GunLod.java
+* [x] ControllableData.java
+* [x] GunLod.java
 * [x] CacheValue.java
 * [ ] ResultButton.java
 * [ ] LivingEntityAmmoCheck.java
 * [x] AnimationConstant.java
-* [ ] Description.java
+* [x] Description.java
 * [x] TransformScale.java
 * [ ] TextShow.java
 * [ ] GunDamageSourcePart.java
@@ -257,7 +257,7 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] TimelessItemType.java
 * [ ] OculusCompatLegacy.java
 * [x] Buffers.java
-* [ ] NumberArrays.java
+* [x] NumberArrays.java
 * [ ] IMessage.java
 * [ ] AnimationController.java
 * [ ] StairBlockAccessor.java
