@@ -197,18 +197,18 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] SoundAssetsManager.java
 * [x] ElementType.java
 * [ ] AccessorSparseIndices.java
-* [ ] AccessorSparseValues.java
+* [x] AccessorSparseValues.java
 * [x] BufferModel.java
 * [x] AmmoIndexPOJO.java
 * [x] RegexFilter.java
 * [ ] VersionChecker.java
 * [ ] PreLoadConfig.java
 * [ ] ServerMessageLevelUp.java
-* [ ] DiscreteTrackArray.java
+* [x] DiscreteTrackArray.java
 * [ ] ThrowableAnimationStateContext.java
 * [ ] LoginIndexHolder.java
 * [ ] ControllableCompat.java
-* [ ] GunMeleeData.java
+* [x] GunMeleeData.java
 * [ ] IAnimationItem.java
 * [ ] GunFireEvent.java
 * [x] ShellEjection.java
@@ -216,8 +216,8 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [x] Vec3Serializer.java
 * [ ] AccessorShortData.java
 * [x] GunHeatData.java
-* [ ] AccessorFloatData.java
-* [ ] FlatColorButton.java
+* [x] AccessorFloatData.java
+* [x] FlatColorButton.java
 * [ ] BlackList.java
 * [x] ExtraDamage.java
 * [ ] InputExtraCheck.java
