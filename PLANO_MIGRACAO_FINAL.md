@@ -10,11 +10,11 @@
 
 | Fase | Descricao | Arquivos | Status |
 |------|-----------|----------|--------|
-| **Fase 1** | Sem dependencias internas | 229 | [🔄] 78/229 |
+| **Fase 1** | Sem dependencias internas | 229 | [🔄] 82/229 |
 | **Fase 2** | Dependencias baixas (1-3) | 93 | [ ] 0/93 |
 | **Fase 3** | Dependencias medias (4-10) | 5 | [ ] 0/5 |
 | **Fase 4** | Dependencias altas (11+) | 0 | [ ] 0/0 |
-| **TOTAL** | **Todos os arquivos** | **327** | **78/327** |
+| **TOTAL** | **Todos os arquivos** | **327** | **82/327** |
 
 ---
 
@@ -206,10 +206,10 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] ServerMessageLevelUp.java
 * [x] DiscreteTrackArray.java
 * [ ] ThrowableAnimationStateContext.java
-* [ ] LoginIndexHolder.java
+* [x] LoginIndexHolder.java
 * [ ] ControllableCompat.java
 * [x] GunMeleeData.java
-* [ ] IAnimationItem.java
+* [x] IAnimationItem.java
 * [ ] GunFireEvent.java
 * [x] ShellEjection.java
 * [x] KnockBackModifier.java
@@ -250,12 +250,12 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [ ] Buffer.java
 * [ ] BedrockModelPOJO.java
 * [ ] BedrockPart.java
-* [ ] BulletData.java
+* [x] BulletData.java
 * [ ] AccessorSparseUtils.java
 * [ ] GunRecoilKeyFrame.java
 * [ ] BedrockAnimation.java
 * [ ] TimelessItemType.java
-* [ ] OculusCompatLegacy.java
+* [x] OculusCompatLegacy.java
 * [x] Buffers.java
 * [x] NumberArrays.java
 * [ ] IMessage.java
