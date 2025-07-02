@@ -101,33 +101,33 @@ Esta lista foi gerada para garantir que, ao habilitar um arquivo, todas as suas 
 * [x] BlockData.java
 * [x] IThirdPersonAnimation.java
 * [x] GetJarResources.java
-* [ ] ObjectAnimation.java
-* [ ] DataEntry.java
-* [ ] AnimationState.java
+* [x] ObjectAnimation.java
+* [x] DataEntry.java
+* [x] AnimationState.java
 * [x] AnimationChannelTarget.java
 * [x] Easing.java
-* [ ] GunClothConfig.java
-* [ ] DefaultAssets.java
-* [ ] BlockIndexPOJO.java
-* [ ] GunReloadEvent.java
-* [ ] RootCommand.java
-* [ ] GunMeleeEvent.java
+* [x] GunClothConfig.java
+* [x] DefaultAssets.java
+* [x] BlockIndexPOJO.java
+* [x] GunReloadEvent.java
+* [x] RootCommand.java
+* [x] GunMeleeEvent.java
 * [x] AnimationName.java
-* [ ] LuaLibrary.java
-* [ ] ListPackCommand.java
+* [x] LuaLibrary.java
+* [x] ListPackCommand.java
 * [ ] Bolt.java
-* [ ] ShoulderSurfingCompat.java
-* [ ] GunSmithTableBlockA.java
-* [ ] LayerGunShow.java
-* [ ] AccessorIntData.java
-* [ ] PapiManager.java
+* [x] ShoulderSurfingCompat.java
+* [x] GunSmithTableBlockA.java
+* [x] LayerGunShow.java
+* [x] AccessorIntData.java
+* [x] PapiManager.java
 * [x] IBlock.java
 * [x] GunReloadData.java
-* [ ] DataHolder.java
-* [ ] GunSmithTableIngredient.java
+* [x] DataHolder.java
+* [x] GunSmithTableIngredient.java
 * [x] IAmmo.java
-* [ ] StatueBlockEntity.java
-* [ ] TypeButton.java
+* [x] StatueBlockEntity.java
+* [x] TypeButton.java
 * [x] AccessorData.java
 * [ ] TimelessItemNbtFactory.java
 * [x] DelayedTask.java

@@ -8,8 +8,6 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
-import java.util.function.Supplier;
-
 public class Acknowledge extends LoginIndexHolder implements IMessage<Acknowledge> {
     public static final Marker ACKNOWLEDGE = MarkerManager.getMarker("HANDSHAKE_ACKNOWLEDGE");
 
@@ -23,8 +21,8 @@ public class Acknowledge extends LoginIndexHolder implements IMessage<Acknowledg
     }
 
     @Override
-    public void handle(Acknowledge message, Supplier<NetworkEvent.Context> c) {
+    public void handle(Acknowledge message, IPayloadContext context) {
         GunMod.LOGGER.debug(ACKNOWLEDGE, "Received acknowledgement from client");
-        c.get().setPacketHandled(true);
+        // No need to call setPacketHandled in NeoForge 1.21.1
     }
 }

@@ -35,6 +35,21 @@ public interface AttachmentItemDataAccessor extends IAttachment {
         return DefaultAssets.EMPTY_ATTACHMENT_ID;
     }
 
+    /**
+     * Método para migração de dados antigos NBT para DataComponents
+     */
+    @Nonnull
+    static ResourceLocation getAttachmentIdFromStack(ItemStack stack) {
+        // Primeiro tenta pegar do DataComponent (novo sistema)
+        if (stack.has(ModDataComponents.ATTACHMENT_ID.get())) {
+            ResourceLocation attachmentId = stack.get(ModDataComponents.ATTACHMENT_ID.get());
+            return Objects.requireNonNullElse(attachmentId, DefaultAssets.EMPTY_ATTACHMENT_ID);
+        }
+        // Fallback para NBT (dados antigos)
+        CompoundTag nbt = stack.getTag();
+        return getAttachmentIdFromTag(nbt);
+    }
+
     static int getZoomNumberFromTag(@Nullable CompoundTag nbt) {
         if (nbt == null) {
             return 0;
@@ -47,6 +62,19 @@ public interface AttachmentItemDataAccessor extends IAttachment {
 
     static void setZoomNumberToTag(CompoundTag nbt, int zoomNumber) {
         nbt.putInt(ZOOM_NUMBER_TAG, zoomNumber);
+    }
+
+    /**
+     * Método para migração de dados antigos NBT para DataComponents
+     */
+    static int getZoomNumberFromStack(ItemStack stack) {
+        // Primeiro tenta pegar do DataComponent (novo sistema)
+        if (stack.has(ModDataComponents.ZOOM_NUMBER.get())) {
+            return stack.getOrDefault(ModDataComponents.ZOOM_NUMBER.get(), 0);
+        }
+        // Fallback para NBT (dados antigos)
+        CompoundTag nbt = stack.getTag();
+        return getZoomNumberFromTag(nbt);
     }    @Override
     @Nonnull
     default ResourceLocation getAttachmentId(ItemStack attachmentStack) {
@@ -66,33 +94,26 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     @Override
     @Nullable
     default ResourceLocation getSkinId(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        if (nbt.contains(SKIN_ID_TAG, Tag.TAG_STRING)) {
-            return ResourceLocation.tryParse(nbt.getString(SKIN_ID_TAG));
-        }
-        return null;
+        return attachmentStack.get(ModDataComponents.SKIN_ID.get());
     }
 
     @Override
     default void setSkinId(ItemStack attachmentStack, @Nullable ResourceLocation skinId) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
         if (skinId != null) {
-            nbt.putString(SKIN_ID_TAG, skinId.toString());
+            attachmentStack.set(ModDataComponents.SKIN_ID.get(), skinId);
         } else {
-            nbt.remove(SKIN_ID_TAG);
+            attachmentStack.remove(ModDataComponents.SKIN_ID.get());
         }
     }
 
     @Override
     default int getZoomNumber(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        return getZoomNumberFromTag(nbt);
+        return attachmentStack.getOrDefault(ModDataComponents.ZOOM_NUMBER.get(), 0);
     }
 
     @Override
     default void setZoomNumber(ItemStack attachmentStack, int zoomNumber) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        setZoomNumberToTag(nbt, zoomNumber);
+        attachmentStack.set(ModDataComponents.ZOOM_NUMBER.get(), zoomNumber);
     }    @Override
     default boolean hasCustomLaserColor(ItemStack attachmentStack) {
         return attachmentStack.has(ModDataComponents.LASER_COLOR.get());
