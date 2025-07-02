@@ -1,26 +1,28 @@
 # =============================================================================
 # Enable-Phase-1.ps1 - Habilita e valida os arquivos da Fase 1 do plano
 # =============================================================================
-# Este script lê o arquivo PLANO_MIGRACAO.md, identifica os arquivos da
-# "Fase 1", os renomeia de .java.disabled para .java e executa um build
-# para garantir que a base continua estável.
+# Este script le o arquivo PLANO_MIGRACAO.md, identifica os arquivos da
+# "Fase 1", os renomeia de .java.disabled para .java e executa um build.
+#
+# Se o build falhar, o script revertera automaticamente os arquivos
+# habilitados para seu estado .java.disabled original.
 # =============================================================================
 
-Write-Host "=== HABILITANDO ARQUIVOS DA FASE 1 ===" -ForegroundColor Cyan
+Write-Host "=== HABILITANDO ARQUIVOS DA FASE 1 (com reversao automatica) ===" -ForegroundColor Cyan
 
 # --- Verificacao do Ambiente ---
 $baseDir = "src\main\java\com\tacz\guns"
 $planFile = "PLANO_MIGRACAO.md"
 $buildFile = "build.gradle"
 
-# Validar se o plano de migração existe
+# Validar se o plano de migracao existe
 if (-not (Test-Path $planFile)) {
     Write-Host "ERRO: Arquivo de plano nao encontrado: $planFile" -ForegroundColor Red
     Write-Host "Execute este script na mesma pasta onde PLANO_MIGRACAO.md se encontra." -ForegroundColor Yellow
     exit 1
 }
 
-# Validar se o diretório base existe
+# Validar se o diretorio base existe
 if (-not (Test-Path $baseDir)) {
     Write-Host "ERRO: Diretorio base nao encontrado: $baseDir" -ForegroundColor Red
     exit 1
@@ -32,13 +34,11 @@ if (-not (Test-Path $buildFile)) {
     exit 1
 }
 
-# --- Leitura e Análise do Plano ---
+# --- Leitura e Analise do Plano ---
 Write-Host "Lendo o plano de migracao: $planFile" -ForegroundColor White
 
 try {
     $planContent = Get-Content $planFile -Raw -Encoding UTF8
-    # Regex CORRIGIDA: Ignora caracteres extras (como emojis) no final do título
-    # e busca pelo conteúdo entre o título e a próxima linha '---'
     $phase1Regex = [regex]'(?ms)### \*\*FASE 1: PRIMEIRA CAMADA\*\*.*?\n(.*?)\n---'
     $match = $phase1Regex.Match($planContent)
 
@@ -48,7 +48,6 @@ try {
     }
 
     $fileListText = $match.Groups[1].Value
-    # Regex para extrair nomes de arquivos da lista
     $fileNameRegex = [regex]'- \[ \] ([\w\.]+)'
     $filesToEnable = $fileNameRegex.Matches($fileListText) | ForEach-Object { $_.Groups[1].Value }
 
@@ -62,11 +61,10 @@ catch {
     exit 1
 }
 
-
 Write-Host "Encontrados $($filesToEnable.Count) arquivos para habilitar na Fase 1." -ForegroundColor Green
 Write-Host ""
 
-# --- Habilitação dos Arquivos ---
+# --- Habilitacao dos Arquivos ---
 $enabledCount = 0
 $notFoundCount = 0
 $enabledList = @()
@@ -76,7 +74,6 @@ foreach ($fileName in $filesToEnable) {
     Write-Host "Processando: $fileName" -ForegroundColor White
     $disabledFileName = "$fileName.disabled"
     
-    # Busca o arquivo recursivamente no diretório base
     $fileToEnable = Get-ChildItem -Path $baseDir -Recurse -Filter $disabledFileName | Select-Object -First 1
 
     if ($null -ne $fileToEnable) {
@@ -112,12 +109,11 @@ if ($notFoundCount -gt 0) {
 Write-Host "-----------------------------"
 Write-Host ""
 
-# --- Validação com Build ---
+# --- Validacao com Build ---
 if ($enabledCount -gt 0) {
     Write-Host "Executando validacao com './gradlew build'. Isso pode levar alguns minutos..." -ForegroundColor Yellow
     
     try {
-        # Executa o gradlew build e captura toda a saida (stdout e stderr)
         $buildResult = & .\gradlew build 2>&1 | Out-String
         
         if ($LASTEXITCODE -eq 0 -and $buildResult -match "BUILD SUCCESSFUL") {
@@ -127,8 +123,7 @@ if ($enabledCount -gt 0) {
             Write-Host "Total de $enabledCount arquivos habilitados." -ForegroundColor Green
             Write-Host "===============================================" -ForegroundColor Green
             
-            # (Opcional) Atualizar o plano para marcar os itens como concluídos
-            Write-Host "Para atualizar o plano, execute o script 'Generate-Plan.ps1' novamente." -ForegroundColor Cyan
+            Write-Host "Para atualizar o plano com o progresso, execute o script 'Generate-Plan.ps1' novamente." -ForegroundColor Cyan
 
         }
         else {
@@ -136,12 +131,36 @@ if ($enabledCount -gt 0) {
             Write-Host "BUILD FALHOU!" -ForegroundColor Red
             Write-Host "A habilitacao da Fase 1 resultou em erros de compilacao." -ForegroundColor Red
             
-            # Salva o log de erro para análise
             $errorLogPath = "build_errors_phase1.txt"
             $buildResult | Out-File -FilePath $errorLogPath -Encoding UTF8
             Write-Host "O log de erro completo foi salvo em: $errorLogPath" -ForegroundColor Yellow
             
-            # Exibe os primeiros erros encontrados
+            #------------------------------------------------
+            # Bloco de Reversao Automatica
+            #------------------------------------------------
+            Write-Host ""
+            Write-Host "INICIANDO REVERSAO AUTOMATICA DAS ALTERACOES..." -ForegroundColor Magenta
+            
+            $revertedCount = 0
+            foreach ($fileToRevertName in $enabledList) {
+                $fileToRevert = Get-ChildItem -Path $baseDir -Recurse -Filter $fileToRevertName | Select-Object -First 1
+                if ($null -ne $fileToRevert) {
+                    try {
+                        $revertedName = "$($fileToRevert.FullName).disabled"
+                        Move-Item -Path $fileToRevert.FullName -Destination $revertedName -Force
+                        Write-Host "  - REVERTIDO: $fileToRevertName" -ForegroundColor Magenta
+                        $revertedCount++
+                    }
+                    catch {
+                        # CORRIGIDO: Delimitada a variavel com ${} para evitar erro de parsing
+                        Write-Host "  - ERRO AO REVERTER ${fileToRevertName}: $($_.Exception.Message)" -ForegroundColor Red
+                    }
+                }
+            }
+            Write-Host "$revertedCount de $($enabledList.Count) arquivos foram revertidos para .java.disabled." -ForegroundColor Magenta
+            Write-Host "O projeto foi restaurado a um estado compillavel." -ForegroundColor Magenta
+            #------------------------------------------------
+
             $errorLines = $buildResult -split "`n" | Where-Object { $_ -match "(error|Error|ERROR|FAILURE:)" } | Select-Object -First 10
             if ($errorLines.Count -gt 0) {
                 Write-Host ""
@@ -151,7 +170,7 @@ if ($enabledCount -gt 0) {
                 }
             }
             Write-Host ""
-            Write-Host "ACAO RECOMENDADA: REVERTA as alteracoes (ex: 'git restore .') e analise o log de erro." -ForegroundColor Yellow
+            Write-Host "ACAO RECOMENDADA: Analise o log '$errorLogPath' para corrigir as APIs nos arquivos da Fase 1." -ForegroundColor Yellow
             Write-Host "===============================================" -ForegroundColor Red
         }
     }

@@ -1,4 +1,6 @@
-﻿# PLANO DE MIGRACAO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
+﻿# PLANO DE MIG| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 78 | â³ 0/78 |
+| **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
+| **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
 
 **Projeto:** Migracao TacZ de Forge 1.20.1 para NeoForge 1.21.1  
 **Estrategia:** Habilitacao incremental baseada em analise topologica de dependencias  
@@ -124,9 +126,90 @@
 ---
 
 ### **FASE 1: PRIMEIRA CAMADA** â­ 
-*Proxima a ser executada - Dependem apenas da fundacao*
+*Próxima a ser executada - Dependem apenas da fundação*
 
-*Estes arquivos podem ser habilitados com seguranca pois todas as suas dependencias ja estao habilitadas na Fase 0.*
+Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (Fase 0), mas que falham devido a mudanças na API do NeoForge 1.21.1.
+
+#### **Fase 1.1: Sistema de Configuração**
+*O sistema de configuração do Forge/NeoForge foi completamente reestruturado. Classes não devem mais herdar de `ModConfig`.*
+
+**Ação Recomendada:**
+- Remova a herança de `ModConfig`.
+- Utilize `ModConfigSpec.Builder` para construir sua especificação de configuração.
+- Registre sua configuração no construtor da sua classe de mod principal usando `ModLoadingContext.get().registerConfig(ModConfig.Type, spec)`.
+- Para ler os valores ou reagir a mudanças, utilize os eventos `ModConfigEvent.Loading` e `ModConfigEvent.Reloading`.
+
+- [ ] PreLoadModConfig.java
+
+---
+
+#### **Fase 1.2: Sistema de Eventos e Rede (Networking)**
+*O sistema de eventos teve pacotes movidos e o sistema de rede foi modernizado, eliminando `NetworkEvent`.*
+
+**Ação Recomendada:**
+- **Eventos de Tick:** Altere o import do `TickEvent` para o pacote correto, como `net.neoforged.neoforge.event.tick.ServerTickEvent`.
+- **Rede (Networking):** Migre o sistema de mensagens para o `PacketRegistrar` do NeoForge.
+  - Defina suas mensagens (packets).
+  - Crie um `PacketRegistrar` e registre suas mensagens nele.
+  - A lógica de manipulação da mensagem (o `handle`) não recebe mais um `Supplier<NetworkEvent.Context>`, mas sim um `IPayloadContext`.
+
+- [ ] ServerTickEvent.java
+- [ ] IMessage.java
+- [ ] ServerMessageLevelUp.java
+
+---
+
+#### **Fase 1.3: Interação com Itens e Dados (ItemStack & Data Components)**
+*O acesso direto a NBT via `.getTag()` foi substituído pelo sistema de "Data Components" para melhorar o desempenho e a clareza.*
+
+**Ação Recomendada:**
+- **Comparação de Itens:** Substitua `ItemStack.isSameItemSameTags(stackA, stackB)` por `ItemStack.matches(stackA, stackB)`.
+- **Acesso a Dados:** Defina seus próprios `DataComponentType` para os dados customizados que você precisa armazenar.
+  - Substitua `stack.getTag()` e `stack.getOrCreateTag()` por `stack.get(MyComponents.MY_DATA)` para ler e `stack.set(MyComponents.MY_DATA, value)` para escrever.
+- **Tooltips:** O método `getTooltipLines` mudou sua assinatura. Agora ele requer `(TooltipContext, Player, TooltipFlag)`.
+- **Serialização:** O `CraftingHelper.getItemStack` foi alterado. Investigue as novas formas de carregar `ItemStack` de JSON, possivelmente através de `ItemStack.CODEC`.
+
+- [ ] IAnimationItem.java
+- [ ] LuaNbtAccessor.java
+- [ ] IComponentTooltip.java
+- [ ] GunTooltipPart.java
+- [ ] ItemStackSerializer.java
+
+---
+
+#### **Fase 1.4: Renderização e GUI**
+*A API de renderização passou por atualizações para se alinhar com as mudanças internas do Minecraft.*
+
+**Ação Recomendada:**
+- **Fundo de Telas (GUI):** A assinatura do método `renderBackground` foi atualizada para `renderBackground(GuiGraphics, int, int, float)`.
+- **Renderização Manual (Tesselator):** O fluxo de renderização com `Tesselator` e `BufferBuilder` foi simplificado.
+  - `Tesselator.getInstance().getBuilder()` foi substituído, o fluxo agora é mais direto.
+  - As chamadas `begin()` e `end()` foram substituídas por um método final que constrói e desenha a geometria, como `BufferUploader.drawWithShader(bufferBuilder.buildOrThrow())`.
+
+- [ ] GunPackProgressScreen.java
+- [ ] RenderHelper.java
+
+---
+
+#### **Fase 1.5: API Geral do NeoForge/Minecraft**
+*Esta seção agrupa diversas outras mudanças de API pontuais.*
+
+**Ação Recomendada:**
+- **ResourceLocation:** O construtor `new ResourceLocation("string")` foi alterado. Use `ResourceLocation.fromNamespaceAndPath("modid", "path")`.
+- **Ingredient:** O método `Ingredient.fromJson()` foi alterado. O método recomendado agora é usar o `Codec` do `Ingredient`: `Ingredient.CODEC.parse(JsonOps.INSTANCE, jsonElement)`.
+- **ServerPlayer:** A propriedade `latency` para obter o ping do jogador foi movida ou seu acesso foi alterado. Verifique os novos métodos da classe `ServerPlayer`.
+
+- [ ] HeadShotAABBConfigRead.java
+- [ ] SyncedClassKey.java
+- [ ] TacPathVisitor.java
+- [ ] GunSmithTableIngredientSerializer.java
+- [ ] HitboxHelper.java
+- [ ] ConfigCommand.java
+
+---
+
+#### **Arquivos Restantes da Fase 1**
+*Arquivos sem dependências internas que podem ser habilitados com segurança:*
 
 - [ ] AccessorSparseIndices.java (Deps: 0)
 - [ ] AccessorSparseValues.java (Deps: 0)
@@ -145,18 +228,10 @@
 - [ ] FireMode.java (Deps: 0)
 - [ ] FlatColorButton.java (Deps: 0)
 - [ ] GunLevelUpToast.java (Deps: 0)
-- [ ] GunModSubtype.java (Deps: 0)
-- [ ] GunPackProgressScreen.java (Deps: 0)
 - [ ] GunRecoilKeyFrame.java (Deps: 0)
-- [ ] GunTooltipPart.java (Deps: 0)
-- [ ] IAnimationItem.java (Deps: 0)
-- [ ] IComponentTooltip.java (Deps: 0)
 - [ ] IDisplay.java (Deps: 0)
-- [ ] IMessage.java (Deps: 0)
-- [ ] ItemStackSerializer.java (Deps: 0)
 - [ ] LayerGunShow.java (Deps: 0)
 - [ ] LoginIndexHolder.java (Deps: 0)
-- [ ] LuaNbtAccessor.java (Deps: 0)
 - [ ] MathUtil.java (Deps: 0)
 - [ ] Md5Utils.java (Deps: 0)
 - [ ] MoveSpeed.java (Deps: 0)
@@ -166,13 +241,8 @@
 - [ ] PairSerializer.java (Deps: 0)
 - [ ] PerlinNoise.java (Deps: 0)
 - [ ] PlayerNamePapi.java (Deps: 0)
-- [ ] PreLoadModConfig.java (Deps: 0)
 - [ ] ReloadState.java (Deps: 0)
-- [ ] RootCommand.java (Deps: 0)
-- [ ] ServerMessageLevelUp.java (Deps: 0)
 - [ ] ShellEjection.java (Deps: 0)
-- [ ] SyncedClassKey.java (Deps: 0)
-- [ ] TacHitResult.java (Deps: 0)
 - [ ] TimelessItemNbtFactory.java (Deps: 0)
 - [ ] TransformScale.java (Deps: 0)
 - [ ] Vec3Serializer.java (Deps: 0)
@@ -182,12 +252,9 @@
 - [ ] AttachmentItemTooltip.java (Deps: 1)
 - [ ] BedrockPart.java (Deps: 1)
 - [ ] CommonAmmoIndex.java (Deps: 1)
-- [ ] ConfigCommand.java (Deps: 1)
 - [ ] DistanceDamagePairSerializer.java (Deps: 1)
 - [ ] GunClothConfig.java (Deps: 1)
 - [ ] GunResult.java (Deps: 1)
-- [ ] GunSmithTableIngredientSerializer.java (Deps: 1)
-- [ ] HeadShotAABBConfigRead.java (Deps: 1)
 - [ ] IAttachment.java (Deps: 1)
 - [ ] IgniteSerializer.java (Deps: 1)
 - [ ] INetworkCacheReloadListener.java (Deps: 1)
@@ -196,23 +263,22 @@
 - [ ] LiteralFilter.java (Deps: 1)
 - [ ] LivingEntityAmmoCheck.java (Deps: 1)
 - [ ] RegexFilter.java (Deps: 1)
-- [ ] RenderHelper.java (Deps: 1)
 - [ ] ServerConfig.java (Deps: 1)
-- [ ] ServerTickEvent.java (Deps: 1)
 - [ ] SoundEffectKeyframesSerializer.java (Deps: 1)
-- [ ] TacPathVisitor.java (Deps: 1)
 - [ ] TextShow.java (Deps: 1)
 - [ ] ThirdPersonManager.java (Deps: 1)
 - [ ] ZoomClothConfig.java (Deps: 1)
 - [ ] AttachmentData.java (Deps: 2)
 - [ ] GunReloadData.java (Deps: 2)
-- [ ] HitboxHelper.java (Deps: 2)
 - [ ] BulletData.java (Deps: 3)
 - [ ] CommonConfig.java (Deps: 3)
 ---
 
 ### **FASE 2: DEPENDENCIAS BAIXAS (1-3)** (259 arquivos)
 *Arquivos com poucas dependencias internas do mod*
+
+**Arquivos movidos da Fase 1 (dependem de outras classes do mod):**
+- [ ] TacHitResult.java (Deps: 1 - depende de `EntityKineticBullet` que está na Fase 4)
 
 - [ ] AbstractButtonMixin.java (Deps: 1)
 - [ ] Accessor.java (Deps: 1)
@@ -477,6 +543,10 @@
 
 ### **FASE 3: DEPENDENCIAS MEDIAS (4-10)** (137 arquivos)
 *Arquivos com dependencias moderadas*
+
+**Arquivos movidos da Fase 1 (dependem de outras classes do mod):**
+- [ ] RootCommand.java (Deps: 0 - mas depende de sub-comandos como `AttachmentLockCommand`, `DummyAmmoCommand`, etc.)
+- [ ] GunModSubtype.java (Deps: 0 - mas depende da interface `IGun`)
 
 - [ ] AbstractGunSmithTableBlock.java (Deps: 4)
 - [ ] AmmoCountPapi.java (Deps: 4)
