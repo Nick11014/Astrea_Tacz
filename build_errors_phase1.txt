@@ -1,27 +1,26 @@
 ﻿Reusing configuration cache.
 > Task :processTestResources NO-SOURCE
-> Task :neoFormListLibraries UP-TO-DATE
-> Task :neoFormUnzipAdditionalSources UP-TO-DATE
 > Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :neoFormUnzipAdditionalSources UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
 > Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
-> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
 > Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
 > Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
-> Task :neoFormStripClient UP-TO-DATE
-> Task :neoFormExtractServer UP-TO-DATE
 > Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
-> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :neoFormExtractServer UP-TO-DATE
 > Task :cacheVersionMappingsServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
 > Task :neoFormStripServer UP-TO-DATE
 > Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
-> Task :neoFormMergeMappings UP-TO-DATE
 > Task :neoFormMerge UP-TO-DATE
-> Task :processResources UP-TO-DATE
 > Task :neoFormRename UP-TO-DATE
 > Task :neoFormDecompile UP-TO-DATE
+> Task :processResources UP-TO-DATE
 > Task :neoFormApplyForgesAccessTransformer UP-TO-DATE
 > Task :neoFormInject UP-TO-DATE
-> Task :sourcesJar UP-TO-DATE
 > Task :neoFormPatch UP-TO-DATE
 > Task :neoFormPatchUserDev UP-TO-DATE
 > Task :neoFormApplyOfficialMappings UP-TO-DATE
@@ -32,10 +31,10 @@
 > Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.42 UP-TO-DATE
 > Task :writeMinecraftClasspathJunit UP-TO-DATE
 
-> Task :compileJava
+> Task :compileJava FAILED
 gradlew.bat : C:\Users\mathe\OneDrive\┴rea de 
 Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\PreLoadModConfig.java:6: error: cannot find symbol
-No C:\Users\mathe\OneDrive\Área de Trabalho\Modding\Astrea_Arsenal\Enable-Phase1.ps1:117 caractere:24
+No C:\Users\mathe\OneDrive\Área de Trabalho\Modding\Astrea_Arsenal\tempCodeRunnerFile.ps1:117 caractere:24
 +         $buildResult = & .\gradlew build 2>&1 | Out-String
 +                        ~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (C:\Users\mathe\...not find symbol:String) [], RemoteException
@@ -62,372 +61,14 @@ Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\PreLoadModCon
   symbol:   class IConfigEvent
   location: class PreLoadModConfig
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\event\ServerTickEvent.java:4: error: cannot find symbol
-import net.neoforged.neoforge.event.tick.TickEvent;
-                                        ^
-  symbol:   class TickEvent
-  location: package net.neoforged.neoforge.event.tick
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\event\ServerTickEvent.java:12: error: package TickEvent 
-does not exist
-    public static void onServerTick(TickEvent.ServerTickEvent event) {
-                                             ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\network\IMessage.java:14: 
-error: package NetworkEvent does not exist
-    void handle(T message, Supplier<NetworkEvent.Context> supplier);
-                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\network\message\ServerMessageLevelUp.java:33: error: 
-package NetworkEvent does not exist
-    public static void handle(ServerMessageLevelUp message, Supplier<NetworkEvent.Context> contextSupplier) {
-                                                                                 ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\TacHitResult.java:3: 
-error: cannot find symbol
-import com.tacz.guns.entity.EntityKineticBullet;
-                           ^
-  symbol:   class EntityKineticBullet
-  location: package com.tacz.guns.entity
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\TacHitResult.java:9: 
-error: package EntityKineticBullet does not exist
-    public TacHitResult(EntityKineticBullet.EntityResult result) {
-                                           ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\IAnimationItem.java:18: error: cannot find symbol
-            return ItemStack.isSameItemSameTags(pStack, pOther);
-                            ^
-  symbol:   method isSameItemSameTags(ItemStack,ItemStack)
-  location: class ItemStack
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:16: error: cannot find symbol
-        return new LuaNbtAccessor(stack.getTag());
-                                       ^
-  symbol:   method getTag()
-  location: variable stack of type ItemStack
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\refit\IComponentTooltip.java:20: 
-error: method getTooltipLines in class ItemStack cannot be applied to given types;
-        return stack.getTooltipLines(player, options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : 
-TooltipFlag.Default.NORMAL);
-                    ^
-  required: TooltipContext,Player,TooltipFlag
-  found:    LocalPlayer,options.ad[...]ORMAL
-  reason: actual and formal argument lists differ in length
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\refit\IComponentTooltip.java:20: 
-error: incompatible types: LocalPlayer cannot be converted to TooltipContext
-        return stack.getTooltipLines(player, options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : 
-TooltipFlag.Default.NORMAL);
-                                     ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\GunPackProgressScreen.java:37: error: method 
-renderBackground in class Screen cannot be applied to given types;
-            this.renderBackground(gui);
-                ^
-  required: GuiGraphics,int,int,float
-  found:    @org.jetbrains.annotations.NotNull GuiGraphics
-  reason: actual and formal argument lists differ in length
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\serialize\ItemStackSerializer.java:14: 
-error: cannot find symbol
-            return CraftingHelper.getItemStack(jsonObject, true, false);
-                                 ^
-  symbol:   method getItemStack(JsonObject,boolean,boolean)
-  location: class CraftingHelper
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\RootCommand.java:15: error: cannot find symbol
-        root.then(AttachmentLockCommand.get());
-                  ^
-  symbol:   variable AttachmentLockCommand
-  location: class RootCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\RootCommand.java:17: error: cannot find symbol
-        root.then(DummyAmmoCommand.get());
-                  ^
-  symbol:   variable DummyAmmoCommand
-  location: class RootCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\RootCommand.java:18: error: cannot find symbol
-        root.then(OverwriteCommand.get());
-                  ^
-  symbol:   variable OverwriteCommand
-  location: class RootCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\RootCommand.java:19: error: cannot find symbol
-        root.then(ReloadCommand.get());
-                  ^
-  symbol:   variable ReloadCommand
-  location: class RootCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\RootCommand.java:20: error: cannot find symbol
-        root.then(HideTooltipPartCommand.get());
-                  ^
-  symbol:   variable HideTooltipPartCommand
-  location: class RootCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\RootCommand.java:21: error: cannot find symbol
-        root.then(ConvertCommand.get());
-                  ^
-  symbol:   variable ConvertCommand
-  location: class RootCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\command\sub\ConfigCommand.java:20: error: cannot find 
-symbol
-        var configKey = Commands.argument(KEY, EnumArgument.enumArgument(ConfigKey.class));
-                                               ^
-  symbol:   variable EnumArgument
-  location: class ConfigCommand
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:8: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-    public static IIngredientSubtypeInterpreter<ItemStack> getAmmoSubtype() {
-                  ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:9: warning: [removal] 
-apply(T,UidContext) in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-        return (stack, context) -> {
-               ^
-  where T is a type-variable:
-    T extends Object declared in interface IIngredientSubtypeInterpreter
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:13: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:13: warning: [removal] NONE 
-in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:17: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-    public static IIngredientSubtypeInterpreter<ItemStack> getGunSubtype() {
-                  ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:18: warning: [removal] 
-apply(T,UidContext) in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-        return (stack, context) -> {
-               ^
-  where T is a type-variable:
-    T extends Object declared in interface IIngredientSubtypeInterpreter
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:19: error: cannot find symbol
-            if (stack.getItem() instanceof IGun iGun) {
-                                           ^
-  symbol:   class IGun
-  location: class GunModSubtype
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:22: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:22: warning: [removal] NONE 
-in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:26: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-    public static IIngredientSubtypeInterpreter<ItemStack> getAttachmentSubtype() {
-                  ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:27: warning: [removal] 
-apply(T,UidContext) in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-        return (stack, context) -> {
-               ^
-  where T is a type-variable:
-    T extends Object declared in interface IIngredientSubtypeInterpreter
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:31: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:31: warning: [removal] NONE 
-in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:35: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-    public static IIngredientSubtypeInterpreter<ItemStack> getTableSubType() {
-                  ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:36: warning: [removal] 
-apply(T,UidContext) in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-        return (stack, context) -> {
-               ^
-  where T is a type-variable:
-    T extends Object declared in interface IIngredientSubtypeInterpreter
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:40: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:40: warning: [removal] NONE 
-in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:45: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-    public static IIngredientSubtypeInterpreter<ItemStack> getAmmoBoxSubtype() {
-                  ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:46: warning: [removal] 
-apply(T,UidContext) in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-        return (stack, context) -> {
-               ^
-  where T is a type-variable:
-    T extends Object declared in interface IIngredientSubtypeInterpreter
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:56: warning: [removal] 
-IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\jei\GunModSubtype.java:56: warning: [removal] NONE 
-in IIngredientSubtypeInterpreter has been deprecated and marked for removal
-            return IIngredientSubtypeInterpreter.NONE;
-                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
 Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\PreLoadModConfig.java:27: error: incompatible 
 types: CommentedConfig cannot be converted to ILoadedConfig
         this.getSpec().acceptConfig(this.configData);
                                         ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\util\HeadShotAABBConfigRead.java:30: error: 
-constructor ResourceLocation in class ResourceLocation cannot be applied to given types;
-            ResourceLocation id = new ResourceLocation(matcher.group(1));
-                                  ^
-  required: String,String
-  found:    String
-  reason: actual and formal argument lists differ in length
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\entity\sync\core\SyncedClassKey.java:12: error: 
-constructor ResourceLocation in class ResourceLocation cannot be applied to given types;
-    public static final SyncedClassKey<LivingEntity> LIVING_ENTITY = new SyncedClassKey<>(LivingEntity.class, new 
-ResourceLocation("living_entity"));
-                                                                                                              ^
-  required: String,String
-  found:    String
-  reason: actual and formal argument lists differ in length
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\item\GunTooltipPart.java:22: error: cannot find symbol
-        CompoundTag tag = stack.getTag();
-                               ^
-  symbol:   method getTag()
-  location: variable stack of type ItemStack
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\item\GunTooltipPart.java:26: error: cannot find symbol
-        return stack.getItem().getDefaultTooltipHideFlags(stack);
-                              ^
-  symbol:   method getDefaultTooltipHideFlags(ItemStack)
-  location: class Item
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\item\GunTooltipPart.java:30: error: cannot find symbol
-        stack.getOrCreateTag().putInt("HideFlags", mask);
-             ^
-  symbol:   method getOrCreateTag()
-  location: variable stack of type ItemStack
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\network\message\ServerMessageLevelUp.java:23: error: 
-cannot find symbol
-        buf.writeItemStack(message.gun, true);
-           ^
-  symbol:   method writeItemStack(ItemStack,boolean)
-  location: variable buf of type FriendlyByteBuf
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\network\message\ServerMessageLevelUp.java:28: error: 
-cannot find symbol
-        ItemStack gun = buf.readItem();
-                           ^
-  symbol:   method readItem()
-  location: variable buf of type FriendlyByteBuf
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\network\message\ServerMessageLevelUp.java:34: error: 
-package NetworkEvent does not exist
-        NetworkEvent.Context context = contextSupplier.get();
-                    ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\serialize\GunSmith
-TableIngredientSerializer.java:18: error: cannot find symbol
-            Ingredient ingredient = Ingredient.fromJson(jsonObject.get("item"));
-                                              ^
-  symbol:   method fromJson(JsonElement)
-  location: class Ingredient
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\HitboxHelper.java:88: 
-error: cannot find symbol
-            int ping = Mth.floor((serverPlayerOwner.latency / 1000.0) * 20.0 + 0.5);
-                                                   ^
-  symbol:   variable latency
-  location: variable serverPlayerOwner of type ServerPlayer
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:36: 
-error: cannot find symbol
-        BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
-                                                              ^
-  symbol:   method getBuilder()
-  location: class Tesselator
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:37: 
-error: cannot find symbol
-        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-                     ^
-  symbol:   method begin(Mode,VertexFormat)
-  location: variable bufferbuilder of type BufferBuilder
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:38: 
-error: cannot find symbol
-        bufferbuilder.vertex(matrix, x1, y2, blitOffset).uv(minU, maxV).endVertex();
-                     ^
-  symbol:   method vertex(Matrix4f,float,float,float)
-  location: variable bufferbuilder of type BufferBuilder
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:39: 
-error: cannot find symbol
-        bufferbuilder.vertex(matrix, x2, y2, blitOffset).uv(maxU, maxV).endVertex();
-                     ^
-  symbol:   method vertex(Matrix4f,float,float,float)
-  location: variable bufferbuilder of type BufferBuilder
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:40: 
-error: cannot find symbol
-        bufferbuilder.vertex(matrix, x2, y1, blitOffset).uv(maxU, minV).endVertex();
-                     ^
-  symbol:   method vertex(Matrix4f,float,float,float)
-  location: variable bufferbuilder of type BufferBuilder
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:41: 
-error: cannot find symbol
-        bufferbuilder.vertex(matrix, x1, y1, blitOffset).uv(minU, minV).endVertex();
-                     ^
-  symbol:   method vertex(Matrix4f,float,float,float)
-  location: variable bufferbuilder of type BufferBuilder
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:42: 
-error: cannot find symbol
-        BufferUploader.draw(bufferbuilder.end());
-                                         ^
-  symbol:   method end()
-  location: variable bufferbuilder of type BufferBuilder
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\RenderHelper.java:78: 
-error: cannot find symbol
-        RenderSystem.setShaderTexture(0, player.getSkinTextureLocation());
-                                               ^
-  symbol:   method getSkinTextureLocation()
-  location: variable player of type LocalPlayer
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\TacPathVisitor.java:29: error: 
-ResourceLocation(String,String) has private access in ResourceLocation
-            ResourceLocation id = new ResourceLocation(namespace, path);
-                                  ^
-Note: C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\math\MathUtil.java uses or overrides a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-Note: C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\kubejs\util\TimelessItemNbtFactory.java uses 
-unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
 Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
-44 errors
-20 warnings
+5 errors
 
-> Task :compileJava FAILED
+> Task :sourcesJar
 
 [Incubating] Problems report is available at: file:///C:/Users/mathe/OneDrive/%C3%81rea%20de%20Trabalho/Modding/Astrea_Arsenal/build/reports/problems/problems-report.html
 
@@ -442,14 +83,13 @@ Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\PreLoadModCon
                                  ^
     symbol:   class IConfigEvent
     location: package net.neoforged.fml.config
-  44 errors
-  20 warnings
+  5 errors
 
 * Try:
 > Check your code and dependencies to fix the compilation error(s)
 > Run with --scan to get full insights.
 
-BUILD FAILED in 4s
-32 actionable tasks: 1 executed, 31 up-to-date
+BUILD FAILED in 5s
+32 actionable tasks: 2 executed, 30 up-to-date
 Configuration cache entry reused.
 
