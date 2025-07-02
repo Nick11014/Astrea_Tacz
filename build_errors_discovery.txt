@@ -1,0 +1,712 @@
+﻿Reusing configuration cache.
+> Task :processTestResources NO-SOURCE
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :neoFormUnzipAdditionalSources UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsServer1.21.1 UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :neoFormExtractServer UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormApplyForgesAccessTransformer UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormApplyOfficialMappings UP-TO-DATE
+> Task :neoFormUnzipSources UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :neoFormPackRecomp UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.42 UP-TO-DATE
+> Task :writeMinecraftClasspathJunit UP-TO-DATE
+
+> Task :compileJava FAILED
+gradlew.bat : C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationListener.java:14: 
+error: package ObjectAnimationChannel does not exist
+No C:\Users\mathe\OneDrive\Área de Trabalho\Modding\Astrea_Arsenal\Discover-And-Enable-True-Baseline.ps1:149 
+caractere:24
++         $buildResult = & .\gradlew build 2>&1 | Out-String
++                        ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\mathe\... does not exist:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    ObjectAnimationChannel.ChannelType getType();
+                          ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation
+\AnimationListenerSupplier.java:8: error: package ObjectAnimationChannel does not exist
+    AnimationListener supplyListeners(String nodeName, ObjectAnimationChannel.ChannelType type);
+                                                                             ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationPlan.java:5: error: 
+package ObjectAnimation does not exist
+    public ObjectAnimation.PlayType playType;
+                          ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationPlan.java:8: error: 
+package ObjectAnimation does not exist
+    public AnimationPlan(String animationName, ObjectAnimation.PlayType playType, float transitionTimeS) {
+                                                              ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:87: 
+error: cannot find symbol
+    public record Channel(Sampler sampler, NodeModel nodeModel, String path) {
+                                           ^
+  symbol:   class NodeModel
+  location: class Channel
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:98: 
+error: cannot find symbol
+                NodeModel nodeModel,
+                ^
+  symbol:   class NodeModel
+  location: class Channel
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:61: 
+error: cannot find symbol
+    public record Sampler(AccessorModel input, Interpolation interpolation, AccessorModel output) {
+                          ^
+  symbol:   class AccessorModel
+  location: class Sampler
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:61: 
+error: cannot find symbol
+    public record Sampler(AccessorModel input, Interpolation interpolation, AccessorModel output) {
+                                                                            ^
+  symbol:   class AccessorModel
+  location: class Sampler
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:70: 
+error: cannot find symbol
+                AccessorModel input,
+                ^
+  symbol:   class AccessorModel
+  location: class Sampler
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:72: 
+error: cannot find symbol
+                AccessorModel output) {
+                ^
+  symbol:   class AccessorModel
+  location: class Sampler
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\bedrock\BedrockPolygon.java:7: error: 
+cannot find symbol
+    public final BedrockVertex[] vertices;
+                 ^
+  symbol:   class BedrockVertex
+  location: class BedrockPolygon
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\bedrock\BedrockPolygon.java:10: error: 
+cannot find symbol
+    public BedrockPolygon(BedrockVertex[] vertices, float u1, float v1, float u2, float v2, float texWidth, 
+float texHeight, boolean mirror, Direction direction) {
+                          ^
+  symbol:   class BedrockVertex
+  location: class BedrockPolygon
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\bedrock\ModelRendererWrapper.java:9: 
+error: cannot find symbol
+    private final BedrockPart modelRenderer;
+                  ^
+  symbol:   class BedrockPart
+  location: class ModelRendererWrapper
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\bedrock\ModelRendererWrapper.java:11: 
+error: cannot find symbol
+    public ModelRendererWrapper(BedrockPart modelRenderer) {
+                                ^
+  symbol:   class BedrockPart
+  location: class ModelRendererWrapper
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\bedrock\ModelRendererWrapper.java:15: 
+error: cannot find symbol
+    public BedrockPart getModelRenderer() {
+           ^
+  symbol:   class BedrockPart
+  location: class ModelRendererWrapper
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\renderer\crosshair\CrosshairType.java:4: 
+error: cannot find symbol
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:5: error: 
+cannot find symbol
+import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
+                                              ^
+  symbol:   class AnimationStructure
+  location: package com.tacz.guns.api.client.animation.gltf
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:6: error: 
+cannot find symbol
+import com.tacz.guns.api.vmlib.LuaAnimationConstant;
+                              ^
+  symbol:   class LuaAnimationConstant
+  location: package com.tacz.guns.api.vmlib
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:7: error: 
+cannot find symbol
+import com.tacz.guns.api.vmlib.LuaGunAnimationConstant;
+                              ^
+  symbol:   class LuaGunAnimationConstant
+  location: package com.tacz.guns.api.vmlib
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:9: error: 
+package com.tacz.guns.client.resource.manager does not exist
+import com.tacz.guns.client.resource.manager.DisplayManager;
+                                            ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:10: error: 
+package com.tacz.guns.client.resource.manager does not exist
+import com.tacz.guns.client.resource.manager.GltfManager;
+                                            ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:11: error: 
+package com.tacz.guns.client.resource.manager does not exist
+import com.tacz.guns.client.resource.manager.PackInfoManager;
+                                            ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:12: error: 
+package com.tacz.guns.client.resource.manager does not exist
+import com.tacz.guns.client.resource.manager.SoundAssetsManager;
+                                            ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:13: error: 
+cannot find symbol
+import com.tacz.guns.client.resource.pojo.CommonTransformObject;
+                                         ^
+  symbol:   class CommonTransformObject
+  location: package com.tacz.guns.client.resource.pojo
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:18: error: 
+cannot find symbol
+import com.tacz.guns.client.resource.pojo.display.ammo.AmmoDisplay;
+                                                      ^
+  symbol:   class AmmoDisplay
+  location: package com.tacz.guns.client.resource.pojo.display.ammo
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:19: error: 
+cannot find symbol
+import com.tacz.guns.client.resource.pojo.display.attachment.AttachmentDisplay;
+                                                            ^
+  symbol:   class AttachmentDisplay
+  location: package com.tacz.guns.client.resource.pojo.display.attachment
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:20: error: 
+package com.tacz.guns.client.resource.pojo.display.block does not exist
+import com.tacz.guns.client.resource.pojo.display.block.BlockDisplay;
+                                                       ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:21: error: 
+cannot find symbol
+import com.tacz.guns.client.resource.pojo.display.gun.GunDisplay;
+                                                     ^
+  symbol:   class GunDisplay
+  location: package com.tacz.guns.client.resource.pojo.display.gun
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:22: error: 
+cannot find symbol
+import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
+                                               ^
+  symbol:   class BedrockModelPOJO
+  location: package com.tacz.guns.client.resource.pojo.model
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:23: error: 
+cannot find symbol
+import com.tacz.guns.client.resource.pojo.model.CubesItem;
+                                               ^
+  symbol:   class CubesItem
+  location: package com.tacz.guns.client.resource.pojo.model
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:24: error: 
+package com.tacz.guns.client.resource.serialize does not exist
+import com.tacz.guns.client.resource.serialize.AnimationKeyframesSerializer;
+                                              ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:25: error: 
+package com.tacz.guns.client.resource.serialize does not exist
+import com.tacz.guns.client.resource.serialize.ItemStackSerializer;
+                                              ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:26: error: 
+package com.tacz.guns.client.resource.serialize does not exist
+import com.tacz.guns.client.resource.serialize.SoundEffectKeyframesSerializer;
+                                              ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:27: error: 
+package com.tacz.guns.client.resource.serialize does not exist
+import com.tacz.guns.client.resource.serialize.Vector3fSerializer;
+                                              ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:28: error: 
+cannot find symbol
+import com.tacz.guns.resource.CommonAssetsManager;
+                             ^
+  symbol:   class CommonAssetsManager
+  location: package com.tacz.guns.resource
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:29: error: 
+package com.tacz.guns.resource.manager does not exist
+import com.tacz.guns.resource.manager.JsonDataManager;
+                                     ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:30: error: 
+package com.tacz.guns.resource.manager does not exist
+import com.tacz.guns.resource.manager.ScriptManager;
+                                     ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:70: error: 
+cannot find symbol
+    private JsonDataManager<GunDisplay> gunDisplay;
+            ^
+  symbol:   class JsonDataManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:70: error: 
+cannot find symbol
+    private JsonDataManager<GunDisplay> gunDisplay;
+                            ^
+  symbol:   class GunDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:72: error: 
+cannot find symbol
+    private JsonDataManager<AmmoDisplay> ammoDisplay;
+            ^
+  symbol:   class JsonDataManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:72: error: 
+cannot find symbol
+    private JsonDataManager<AmmoDisplay> ammoDisplay;
+                            ^
+  symbol:   class AmmoDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:74: error: 
+cannot find symbol
+    private JsonDataManager<AttachmentDisplay> attachmentDisplay;
+            ^
+  symbol:   class JsonDataManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:74: error: 
+cannot find symbol
+    private JsonDataManager<AttachmentDisplay> attachmentDisplay;
+                            ^
+  symbol:   class AttachmentDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:76: error: 
+cannot find symbol
+    private JsonDataManager<BlockDisplay> blockDisplay;
+            ^
+  symbol:   class JsonDataManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:76: error: 
+cannot find symbol
+    private JsonDataManager<BlockDisplay> blockDisplay;
+                            ^
+  symbol:   class BlockDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:78: error: 
+cannot find symbol
+    private JsonDataManager<BedrockModelPOJO> bedrockModel;
+            ^
+  symbol:   class JsonDataManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:78: error: 
+cannot find symbol
+    private JsonDataManager<BedrockModelPOJO> bedrockModel;
+                            ^
+  symbol:   class BedrockModelPOJO
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:80: error: 
+cannot find symbol
+    private JsonDataManager<BedrockAnimationFile> bedrockAnimation;
+            ^
+  symbol:   class JsonDataManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:82: error: 
+cannot find symbol
+    private GltfManager gltfAnimation;
+            ^
+  symbol:   class GltfManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:85: error: 
+cannot find symbol
+    private ScriptManager scriptManager;
+            ^
+  symbol:   class ScriptManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:87: error: 
+cannot find symbol
+    private SoundAssetsManager soundAssetsManager;
+            ^
+  symbol:   class SoundAssetsManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:89: error: 
+cannot find symbol
+    private PackInfoManager packInfo;
+            ^
+  symbol:   class PackInfoManager
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:116: 
+error: cannot find symbol
+    public GunDisplay getGunDisplay(ResourceLocation id) {
+           ^
+  symbol:   class GunDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:120: 
+error: cannot find symbol
+    public Set<Map.Entry<ResourceLocation, GunDisplay>> getGunDisplays() {
+                                           ^
+  symbol:   class GunDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:125: 
+error: cannot find symbol
+    public AttachmentDisplay getAttachmentDisplay(ResourceLocation id) {
+           ^
+  symbol:   class AttachmentDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:130: 
+error: cannot find symbol
+    public AmmoDisplay getAmmoDisplay(ResourceLocation id) {
+           ^
+  symbol:   class AmmoDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:135: 
+error: cannot find symbol
+    public BlockDisplay getBlockDisplay(ResourceLocation id) {
+           ^
+  symbol:   class BlockDisplay
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:140: 
+error: cannot find symbol
+    public BedrockModelPOJO getBedrockModelPOJO(ResourceLocation id) {
+           ^
+  symbol:   class BedrockModelPOJO
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:155: 
+error: cannot find symbol
+    public AnimationStructure getGltfAnimation(ResourceLocation id) {
+           ^
+  symbol:   class AnimationStructure
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:160: 
+error: package SoundAssetsManager does not exist
+    public SoundAssetsManager.SoundData getSoundBuffers(ResourceLocation id) {
+                             ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:6: error: cannot find symbol
+    private List<Accessor> accessors;
+                 ^
+  symbol:   class Accessor
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:7: error: cannot find symbol
+    private List<Animation> animations;
+                 ^
+  symbol:   class Animation
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:8: error: cannot find symbol
+    private List<Buffer> buffers;
+                 ^
+  symbol:   class Buffer
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:9: error: cannot find symbol
+    private List<BufferView> bufferViews;
+                 ^
+  symbol:   class BufferView
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:10: error: cannot find symbol
+    private List<Node> nodes;
+                 ^
+  symbol:   class Node
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:12: error: cannot find symbol
+    public List<Accessor> getAccessors() {
+                ^
+  symbol:   class Accessor
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:16: error: cannot find symbol
+    public void setAccessors(List<Accessor> accessors) {
+                                  ^
+  symbol:   class Accessor
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:20: error: cannot find symbol
+    public List<Animation> getAnimations() {
+                ^
+  symbol:   class Animation
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:24: error: cannot find symbol
+    public void setAnimations(List<Animation> animations) {
+                                   ^
+  symbol:   class Animation
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:28: error: cannot find symbol
+    public List<Buffer> getBuffers() {
+                ^
+  symbol:   class Buffer
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:32: error: cannot find symbol
+    public void setBuffers(List<Buffer> buffers) {
+                                ^
+  symbol:   class Buffer
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:36: error: cannot find symbol
+    public List<BufferView> getBufferViews() {
+                ^
+  symbol:   class BufferView
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:40: error: cannot find symbol
+    public void setBufferViews(List<BufferView> bufferViews) {
+                                    ^
+  symbol:   class BufferView
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:44: error: cannot find symbol
+    public List<Node> getNodes() {
+                ^
+  symbol:   class Node
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\animation\gltf\RawAnimationStructure.java:48: error: cannot find symbol
+    public void setNodes(List<Node> nodes) {
+                              ^
+  symbol:   class Node
+  location: class RawAnimationStructure
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo\model\BedrockVersion.java:23: 
+error: cannot find symbol
+    public static boolean isNewVersion(BedrockModelPOJO bedrockModel) {
+                                       ^
+  symbol:   class BedrockModelPOJO
+  location: class BedrockVersion
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo\model\BedrockVersion.java:32: 
+error: cannot find symbol
+    public static boolean isLegacyVersion(BedrockModelPOJO bedrockModel) {
+                                          ^
+  symbol:   class BedrockModelPOJO
+  location: class BedrockVersion
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\model\GeometryModelLegacy.java:11: error: cannot find symbol
+    private List<BonesItem> bones;
+                 ^
+  symbol:   class BonesItem
+  location: class GeometryModelLegacy
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\pojo
+\model\GeometryModelLegacy.java:29: error: cannot find symbol
+    public List<BonesItem> getBones() {
+                ^
+  symbol:   class BonesItem
+  location: class GeometryModelLegacy
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\kubejs\util\TimelessItemType.java:3: error: 
+package com.tacz.guns.init does not exist
+import com.tacz.guns.init.ModItems;
+                         ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\network\IMessage.java:14: error: package 
+NetworkEvent does not exist
+    void handle(T message, Supplier<NetworkEvent.Context> supplier);
+                                                ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\pojo\data\gun\InaccuracyType.java:5: 
+error: cannot find symbol
+import com.tacz.guns.api.entity.IGunOperator;
+                               ^
+  symbol:   class IGunOperator
+  location: package com.tacz.guns.api.entity
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\pojo\data\gun\InaccuracyType.java:6: 
+error: cannot find symbol
+import com.tacz.guns.util.HitboxHelper;
+                         ^
+  symbol:   class HitboxHelper
+  location: package com.tacz.guns.util
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\BufferModel.java:34: 
+error: cannot find symbol
+        return Buffers.createSlice(bufferData);
+               ^
+  symbol:   variable Buffers
+  location: class BufferModel
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\BufferViewModel.java:66: 
+error: cannot find symbol
+                Buffers.createSlice(bufferData, getByteOffset(), getByteLength());
+                ^
+  symbol:   variable Buffers
+  location: class BufferViewModel
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\IAnimationItem.java:18: error: cannot find 
+symbol
+            return ItemStack.isSameItemSameTags(pStack, pOther);
+                            ^
+  symbol:   method isSameItemSameTags(ItemStack,ItemStack)
+  location: class ItemStack
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\component
+s\refit\IComponentTooltip.java:20: error: method getTooltipLines in class ItemStack cannot be applied to given 
+types;
+        return stack.getTooltipLines(player, options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : 
+TooltipFlag.Default.NORMAL);
+                    ^
+  required: TooltipContext,Player,TooltipFlag
+  found:    LocalPlayer,options.ad[...]ORMAL
+  reason: actual and formal argument lists differ in length
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\component
+s\refit\IComponentTooltip.java:20: error: incompatible types: LocalPlayer cannot be converted to TooltipContext
+        return stack.getTooltipLines(player, options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : 
+TooltipFlag.Default.NORMAL);
+                                     ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\bedrock\BedrockPolygon.java:21: error: 
+cannot find symbol
+                BedrockVertex bedrockVertex = vertices[j];
+                ^
+  symbol:   class BedrockVertex
+  location: class BedrockPolygon
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\renderer\crosshair\CrosshairType.java:39: 
+error: cannot find symbol
+            location = new ResourceLocation(GunMod.MOD_ID, 
+"textures/crosshair/normal/%s.png".formatted(type.name().toLowerCase(Locale.US)));
+                                            ^
+  symbol:   variable GunMod
+  location: class CrosshairType
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:64: error: 
+cannot find symbol
+            .registerTypeAdapter(SoundEffectKeyframes.class, new SoundEffectKeyframesSerializer())
+                                                                 ^
+  symbol:   class SoundEffectKeyframesSerializer
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:63: error: 
+cannot find symbol
+            .registerTypeAdapter(AnimationKeyframes.class, new AnimationKeyframesSerializer())
+                                                               ^
+  symbol:   class AnimationKeyframesSerializer
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:62: error: 
+cannot find symbol
+            .registerTypeAdapter(ItemStack.class, new ItemStackSerializer())
+                                                      ^
+  symbol:   class ItemStackSerializer
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:61: error: 
+cannot find symbol
+            .registerTypeAdapter(CommonTransformObject.class, new CommonTransformObject.Serializer())
+                                 ^
+  symbol:   class CommonTransformObject
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:61: error: 
+package CommonTransformObject does not exist
+            .registerTypeAdapter(CommonTransformObject.class, new CommonTransformObject.Serializer())
+                                                                                       ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:60: error: 
+cannot find symbol
+            .registerTypeAdapter(Vector3f.class, new Vector3fSerializer())
+                                                     ^
+  symbol:   class Vector3fSerializer
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:59: error: 
+cannot find symbol
+            .registerTypeAdapter(CubesItem.class, new CubesItem.Deserializer())
+                                 ^
+  symbol:   class CubesItem
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:59: error: 
+package CubesItem does not exist
+            .registerTypeAdapter(CubesItem.class, new CubesItem.Deserializer())
+                                                               ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:84: error: 
+cannot find symbol
+    private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
+                                                         ^
+  symbol:   class LuaAnimationConstant
+  location: class ClientAssetsManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\resource\ClientAssetsManager.java:84: error: 
+cannot find symbol
+    private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
+                                                                                     ^
+  symbol:   class LuaGunAnimationConstant
+  location: class ClientAssetsManager
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+100 errors
+
+> Task :sourcesJar
+
+[Incubating] Problems report is available at: file:///C:/Users/mathe/OneDrive/%C3%81rea%20de%20Trabalho/Modding/Astrea_Arsenal/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationListener.java:14: 
+error: package ObjectAnimationChannel does not exist
+      ObjectAnimationChannel.ChannelType getType();
+                            ^
+  100 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 5s
+32 actionable tasks: 2 executed, 30 up-to-date
+Configuration cache entry reused.
+

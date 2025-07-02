@@ -55,18 +55,26 @@ foreach ($file in $disabledFiles) {
         # Ler o conteudo completo do arquivo
         $content = Get-Content $file.FullName -Raw -Encoding UTF8
         
-        # REGRA A: Verificar ausencia de imports internos
-        # Usar aspas simples para a regex como solicitado
+        # REGRA A: Verificar ausencia de imports internos (TODOS os imports com.tacz.guns)
+        # Para ser base minima absoluta, NAO pode depender de NENHUMA classe interna
         $hasInternalImports = $content -match 'import com\.tacz\.guns\.'
         
-        # REGRA B: Verificar ausencia de heranca (extends)
-        $hasExtends = $content -match '\bextends\b'
+        # REGRA B: Verificar se e um enum puro (permitido)
+        $isPureEnum = $content -match 'public enum \w+\s*\{' -and $content -notmatch 'class \w+' -and $content -notmatch 'interface \w+'
         
-        # REGRA C: Verificar ausencia de implementacao de interfaces (implements)
-        $hasImplements = $content -match '\bimplements\b'
+        # REGRA C: Verificar ausencia de heranca complexa (permite apenas Enum e Exception simples)
+        $hasComplexExtends = $content -match '\bextends\b' -and $content -notmatch 'extends (Enum|RuntimeException|Exception)\b'
         
-        # Determinar se o arquivo e seguro (deve passar em TODAS as regras)
-        $isSafe = -not ($hasInternalImports -or $hasExtends -or $hasImplements)
+        # REGRA D: Verificar ausencia de implementacao de interfaces (exceto básicas do Java)
+        $hasComplexImplements = $content -match '\bimplements\b' -and $content -notmatch 'implements\s+(Serializable|Comparable|Cloneable)\b'
+        
+        # REGRA E: Verificar se contem apenas constantes/enums (sem logica complexa)
+        $hasComplexLogic = $content -match '(new\s+\w+\(|@Override|synchronized\s+|volatile\s+|transient\s+)'
+        
+        # Determinar se o arquivo e seguro:
+        # - Enums puros sempre passam
+        # - OU arquivos sem QUALQUER import interno, heranca complexa, interfaces complexas e logica complexa
+        $isSafe = $isPureEnum -or (-not ($hasInternalImports -or $hasComplexExtends -or $hasComplexImplements -or $hasComplexLogic))
         
         if ($isSafe) {
             # Arquivo seguro - habilitar
@@ -87,8 +95,9 @@ foreach ($file in $disabledFiles) {
             # Arquivo nao seguro - determinar motivo especifico
             $reasons = @()
             if ($hasInternalImports) { $reasons += "imports internos" }
-            if ($hasExtends) { $reasons += "heranca (extends)" }
-            if ($hasImplements) { $reasons += "interfaces (implements)" }
+            if ($hasComplexExtends) { $reasons += "heranca complexa" }
+            if ($hasComplexImplements) { $reasons += "interfaces complexas" }
+            if ($hasComplexLogic) { $reasons += "logica complexa" }
             
             $reasonText = $reasons -join ", "
             $ignoredFiles++
@@ -144,8 +153,24 @@ if ($enabledFiles -gt 0) {
             Write-Host "Total de $enabledFiles arquivos seguros habilitados com sucesso." -ForegroundColor Green
         }
         else {
-            Write-Host "BUILD FALHOU! Verifique os erros de compilacao." -ForegroundColor Red
-            Write-Host "Pode ser necessario revisar as regras de descoberta ou o ambiente." -ForegroundColor Red
+            Write-Host "BUILD FALHOU! Salvando erros para analise..." -ForegroundColor Red
+            
+            # Salvar erros em arquivo para analise
+            $buildResult | Out-File -FilePath "build_errors_discovery.txt" -Encoding UTF8
+            Write-Host "Erros salvos em: build_errors_discovery.txt" -ForegroundColor Yellow
+            
+            # Mostrar primeiros erros para diagnostico rapido
+            $errorLines = $buildResult -split "`n" | Where-Object { $_ -match "(error|Error|ERROR)" } | Select-Object -First 5
+            if ($errorLines.Count -gt 0) {
+                Write-Host ""
+                Write-Host "PRIMEIROS ERROS ENCONTRADOS:" -ForegroundColor Red
+                foreach ($errorLine in $errorLines) {
+                    Write-Host "  $errorLine" -ForegroundColor Red
+                }
+            }
+            
+            Write-Host ""
+            Write-Host "Pode ser necessario revisar as regras de descoberta ou corrigir APIs." -ForegroundColor Red
         }
     }
     catch {
