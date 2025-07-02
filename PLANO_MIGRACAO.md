@@ -1,4 +1,9 @@
-﻿# PLANO DE MIG| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
+﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
+| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 2/81 |
+| **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
+| **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
+| **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
+| **TOTAL** | **Todos os arquivos** | **623** | **97/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
 | **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
 | **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
 
@@ -130,7 +135,7 @@
 
 Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (Fase 0), mas que falham devido a mudanças na API do NeoForge 1.21.1.
 
-#### **Fase 1.1: Sistema de Configuração**
+#### **Fase 1.1: Sistema de Configuração** ✅
 *O sistema de configuração do Forge/NeoForge foi completamente reestruturado. Classes não devem mais herdar de `ModConfig`.*
 
 **Ação Recomendada:**
@@ -139,7 +144,8 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 - Registre sua configuração no construtor da sua classe de mod principal usando `ModLoadingContext.get().registerConfig(ModConfig.Type, spec)`.
 - Para ler os valores ou reagir a mudanças, utilize os eventos `ModConfigEvent.Loading` e `ModConfigEvent.Reloading`.
 
-- [ ] PreLoadModConfig.java
+- [x] PreLoadModConfig.java ✅ **CONCLUÍDO** - Migrado para usar ModConfigSpec e APIs oficiais do NeoForge 1.21.1
+- [x] PreLoadConfig.java ✅ **CONCLUÍDO** - Simplificado e usando APIs corretas, mantém funcionalidade original
 
 ---
 

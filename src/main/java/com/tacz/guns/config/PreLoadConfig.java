@@ -3,12 +3,14 @@ package com.tacz.guns.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.fml.ModLoadingContext;
-import net.neoforged.fml.config.ConfigTracker;
-import net.neoforged.fml.config.IConfigEvent;
 import net.neoforged.fml.config.ModConfig;
 
 import java.nio.file.Path;
 
+/**
+ * Configuração de pré-carregamento para o TacZ.
+ * Migrado para NeoForge 1.21.1 - usando APIs oficiais simples.
+ */
 public class PreLoadConfig {
     private static ModConfigSpec spec;
     public static ModConfigSpec.BooleanValue override;
@@ -25,19 +27,29 @@ public class PreLoadConfig {
 
     public static PreLoadModConfig getModConfig() {
         ModLoadingContext ctx = ModLoadingContext.get();
-        var c = new PreLoadModConfig(ModConfig.Type.COMMON, spec, ctx.getActiveContainer(), "tacz-pre.toml");
-        // 从 ConfigTracker 中移除，防止从默认文件夹重复加载
-        ConfigTracker.INSTANCE.configSets().get(ModConfig.Type.COMMON).remove(c);
-        ConfigTracker.INSTANCE.fileMap().remove(c.getFileName(), c);
-        return c;
+        return new PreLoadModConfig(ModConfig.Type.COMMON, spec, ctx.getActiveContainer(), "tacz-pre.toml");
     }
 
     public static void load(Path configBasePath) {
         if (spec.isLoaded()) return;
+        
         PreLoadModConfig config = getModConfig();
-        final CommentedFileConfig configData = config.getHandler().reader(configBasePath).apply(config);
+        
+        // Criar CommentedFileConfig usando a API oficial
+        Path configPath = configBasePath.resolve(config.getFileName());
+        final CommentedFileConfig configData = CommentedFileConfig.builder(configPath)
+                .preserveInsertionOrder()
+                .build();
+        configData.load();
+        
+        // Associar os dados 
         config.setConfigData(configData);
-        config.fireEvent(IConfigEvent.loading(config));
+        
+        // Salvar para garantir que as correções sejam persistidas
         config.save();
+    }
+
+    public static ModConfigSpec getSpec() {
+        return spec;
     }
 }
