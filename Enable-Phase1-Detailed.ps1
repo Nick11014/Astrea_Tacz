@@ -29,7 +29,9 @@ $fase1_3_ItemStackData = @(
 
 $fase1_4_Rendering = @(
     "GunPackProgressScreen.java",
-    "RenderHelper.java"
+    "RenderHelper.java",
+    "FlatColorButton.java",
+    "OpenGunPackDirEntry.java"
 )
 
 $fase1_5_GeneralAPI = @(
@@ -47,10 +49,10 @@ $fase1_Restantes = @(
     "AmmoParticle.java", "AnimationChannelTarget.java", "AnimationSampler.java",
     "BedrockVertex.java", "BlockItemTooltip.java", "Buffer.java", "Buffers.java",
     "BufferView.java", "CommonTransformObject.java", "DiscreteTrackArray.java",
-    "FaceItem.java", "FireMode.java", "FlatColorButton.java", "GunLevelUpToast.java",
+    "FaceItem.java", "FireMode.java", "GunLevelUpToast.java",
     "GunRecoilKeyFrame.java", "IDisplay.java", "LayerGunShow.java", "LoginIndexHolder.java",
     "MathUtil.java", "Md5Utils.java", "MoveSpeed.java", "Node.java", "NodeModel.java",
-    "OpenGunPackDirEntry.java", "PairSerializer.java", "PerlinNoise.java", "PlayerNamePapi.java",
+    "PairSerializer.java", "PerlinNoise.java", "PlayerNamePapi.java",
     "ReloadState.java", "ShellEjection.java", "TimelessItemNbtFactory.java", "TransformScale.java",
     "Vec3Serializer.java", "Vector3fSerializer.java", "AmmoClothConfig.java", "AttachmentIndexPOJO.java",
     "AttachmentItemTooltip.java", "BedrockPart.java", "CommonAmmoIndex.java", "DistanceDamagePairSerializer.java",

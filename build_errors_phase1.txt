@@ -1,24 +1,24 @@
 ﻿Reusing configuration cache.
 > Task :processTestResources NO-SOURCE
-> Task :cacheVersionManifest1.21.1 UP-TO-DATE
-> Task :neoFormUnzipAdditionalSources UP-TO-DATE
-> Task :neoFormListLibraries UP-TO-DATE
-> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
-> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
 > Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormUnzipAdditionalSources UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
 > Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
 > Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
 > Task :neoFormExtractServer UP-TO-DATE
-> Task :cacheVersionMappingsServer1.21.1 UP-TO-DATE
 > Task :neoFormStripClient UP-TO-DATE
+> Task :cacheVersionMappingsServer1.21.1 UP-TO-DATE
 > Task :neoFormMergeMappings UP-TO-DATE
 > Task :create1.21.1ClientExtraJar UP-TO-DATE
-> Task :neoFormStripServer UP-TO-DATE
 > Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
 > Task :neoFormMerge UP-TO-DATE
 > Task :neoFormRename UP-TO-DATE
-> Task :neoFormDecompile UP-TO-DATE
 > Task :processResources UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
 > Task :neoFormApplyForgesAccessTransformer UP-TO-DATE
 > Task :neoFormInject UP-TO-DATE
 > Task :neoFormPatch UP-TO-DATE
@@ -34,7 +34,7 @@
 > Task :compileJava FAILED
 gradlew.bat : C:\Users\mathe\OneDrive\┴rea de 
 Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\PreLoadModConfig.java:6: error: cannot find symbol
-No C:\Users\mathe\OneDrive\Área de Trabalho\Modding\Astrea_Arsenal\tempCodeRunnerFile.ps1:117 caractere:24
+No C:\Users\mathe\OneDrive\Área de Trabalho\Modding\Astrea_Arsenal\Enable-Phase1.ps1:117 caractere:24
 +         $buildResult = & .\gradlew build 2>&1 | Out-String
 +                        ~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (C:\Users\mathe\...not find symbol:String) [], RemoteException
@@ -89,7 +89,7 @@ Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\config\PreLoadModCon
 > Check your code and dependencies to fix the compilation error(s)
 > Run with --scan to get full insights.
 
-BUILD FAILED in 5s
+BUILD FAILED in 4s
 32 actionable tasks: 2 executed, 30 up-to-date
 Configuration cache entry reused.
 
