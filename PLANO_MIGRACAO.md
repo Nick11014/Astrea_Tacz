@@ -1,9 +1,9 @@
 ﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 11/81 |
+| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 15/81 |
 | **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
 | **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
 | **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **106/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
+| **TOTAL** | **Todos os arquivos** | **623** | **110/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
 | **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
 | **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
 
@@ -184,7 +184,7 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 
 ---
 
-#### **Fase 1.4: Renderização e GUI**
+#### **Fase 1.4: Renderização e GUI** ✅
 *A API de renderização passou por atualizações para se alinhar com as mudanças internas do Minecraft.*
 
 **Ação Recomendada:**
@@ -193,10 +193,10 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
   - `Tesselator.getInstance().getBuilder()` foi substituído, o fluxo agora é mais direto.
   - As chamadas `begin()` e `end()` foram substituídas por um método final que constrói e desenha a geometria, como `BufferUploader.drawWithShader(bufferBuilder.buildOrThrow())`.
 
-- [ ] GunPackProgressScreen.java
-- [ ] RenderHelper.java
-- [ ] FlatColorButton.java (usa GuiGraphics para renderização)
-- [ ] OpenGunPackDirEntry.java (usa GuiGraphics para renderização)
+- [x] GunPackProgressScreen.java ✅ **CONCLUÍDO** - Migrado renderBackground para nova assinatura
+- [x] RenderHelper.java ✅ **CONCLUÍDO** - Modernizado fluxo de renderização e corrigido getSkinTextureLocation
+- [x] FlatColorButton.java ✅ **CONCLUÍDO** - Já compatível com NeoForge 1.21.1
+- [x] OpenGunPackDirEntry.java ✅ **CONCLUÍDO** - Já compatível com NeoForge 1.21.1
 
 ---
 

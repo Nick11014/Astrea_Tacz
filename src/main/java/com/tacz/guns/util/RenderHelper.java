@@ -33,13 +33,15 @@ public final class RenderHelper {
 
     private static void innerBlit(Matrix4f matrix, float x1, float x2, float y1, float y2, float blitOffset, float minU, float maxU, float minV, float maxV) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
-        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        bufferbuilder.vertex(matrix, x1, y2, blitOffset).uv(minU, maxV).endVertex();
-        bufferbuilder.vertex(matrix, x2, y2, blitOffset).uv(maxU, maxV).endVertex();
-        bufferbuilder.vertex(matrix, x2, y1, blitOffset).uv(maxU, minV).endVertex();
-        bufferbuilder.vertex(matrix, x1, y1, blitOffset).uv(minU, minV).endVertex();
-        BufferUploader.draw(bufferbuilder.end());
+        // Migrado para NeoForge 1.21.1: Fluxo de renderização simplificado
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferbuilder.addVertex(matrix, x1, y2, blitOffset).setUv(minU, maxV);
+        bufferbuilder.addVertex(matrix, x2, y2, blitOffset).setUv(maxU, maxV);
+        bufferbuilder.addVertex(matrix, x2, y1, blitOffset).setUv(maxU, minV);
+        bufferbuilder.addVertex(matrix, x1, y1, blitOffset).setUv(minU, minV);
+        // Novo fluxo: construir e desenhar a geometria diretamente
+        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
     }
 
     public static void enableItemEntityStencilTest() {
@@ -75,7 +77,8 @@ public final class RenderHelper {
         PlayerRenderer renderer = (PlayerRenderer) renderManager.getRenderer(player);
         MultiBufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
         int oldId = RenderSystem.getShaderTexture(0);
-        RenderSystem.setShaderTexture(0, player.getSkinTextureLocation());
+        // Migrado para NeoForge 1.21.1: getSkinTextureLocation -> getSkin().texture()
+        RenderSystem.setShaderTexture(0, player.getSkin().texture());
 
         if (hand == HumanoidArm.RIGHT) {
             renderer.renderRightHand(matrixStack, buffer, combinedLight, player);
