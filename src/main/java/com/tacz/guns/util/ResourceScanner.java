@@ -5,12 +5,13 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import com.tacz.guns.GunMod;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ResourceScanner {
+    private static final Logger LOGGER = LogManager.getLogger(ResourceScanner.class);
+    
     /**
      * 扫描指定目录下的所有json文件<br>
      * 与原版的scanDirectory方法的区别在于，查询结果是作为返回值返回的，而且允许注释
@@ -44,7 +47,7 @@ public class ResourceScanner {
                     throw new IllegalStateException("Duplicate data file ignored with ID " + resourcelocation1);
                 }
             } catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-                GunMod.LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+                LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
             }
         }
         return output;
@@ -70,7 +73,7 @@ public class ResourceScanner {
                     List<JsonElement> list = output.computeIfAbsent(resourcelocation1, k -> Lists.newArrayList());
                     list.add(jsonelement);
                 } catch (IllegalArgumentException | IOException | JsonParseException jsonparseexception) {
-                    GunMod.LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
+                    LOGGER.error("Couldn't parse data file {} from {}", resourcelocation1, resourcelocation, jsonparseexception);
                 }
             }
         }

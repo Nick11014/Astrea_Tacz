@@ -9,7 +9,8 @@ import net.minecraft.world.entity.LivingEntity;
  * Open source at <a href="https://github.com/MrCrayfish/Framework">Github</a> under LGPL License.
  */
 public record SyncedClassKey<E extends Entity>(Class<E> entityClass, ResourceLocation id) {
-    public static final SyncedClassKey<LivingEntity> LIVING_ENTITY = new SyncedClassKey<>(LivingEntity.class, new ResourceLocation("living_entity"));
+    // Migrado para NeoForge 1.21.1: new ResourceLocation(String) -> ResourceLocation.parse(String) 
+    public static final SyncedClassKey<LivingEntity> LIVING_ENTITY = new SyncedClassKey<>(LivingEntity.class, ResourceLocation.parse("living_entity"));
 
     @Override
     public boolean equals(Object o) {

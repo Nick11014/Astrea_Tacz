@@ -1,9 +1,9 @@
 ﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 15/81 |
+| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 19/81 |
 | **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
 | **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
 | **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **110/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
+| **TOTAL** | **Todos os arquivos** | **623** | **114/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
 | **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
 | **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
 
@@ -200,13 +200,18 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 
 ---
 
-#### **Fase 1.5: API Geral do NeoForge/Minecraft**
+#### **Fase 1.5: API Geral do NeoForge/Minecraft** ✅
 *Esta seção agrupa diversas outras mudanças de API pontuais.*
 
 **Ação Recomendada:**
 - **ResourceLocation:** O construtor `new ResourceLocation("string")` foi alterado. Use `ResourceLocation.fromNamespaceAndPath("modid", "path")`.
 - **Ingredient:** O método `Ingredient.fromJson()` foi alterado. O método recomendado agora é usar o `Codec` do `Ingredient`: `Ingredient.CODEC.parse(JsonOps.INSTANCE, jsonElement)`.
 - **ServerPlayer:** A propriedade `latency` para obter o ping do jogador foi movida ou seu acesso foi alterado. Verifique os novos métodos da classe `ServerPlayer`.
+
+- [x] HeadShotAABBConfigRead.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(String) -> ResourceLocation.parse(String)
+- [x] SyncedClassKey.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(String) -> ResourceLocation.parse(String)
+- [x] TacPathVisitor.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(namespace, path) -> ResourceLocation.fromNamespaceAndPath 
+- [x] ResourceScanner.java ✅ **CONCLUÍDO** - Corrigida referência GunMod.LOGGER -> Logger próprio
 
 - [ ] HeadShotAABBConfigRead.java
 - [ ] SyncedClassKey.java
