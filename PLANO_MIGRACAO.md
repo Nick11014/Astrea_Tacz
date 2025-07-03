@@ -1,9 +1,9 @@
 ﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 2/81 |
+| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 5/81 |
 | **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
 | **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
 | **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **97/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
+| **TOTAL** | **Todos os arquivos** | **623** | **100/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
 | **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
 | **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
 
@@ -149,7 +149,7 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 
 ---
 
-#### **Fase 1.2: Sistema de Eventos e Rede (Networking)**
+#### **Fase 1.2: Sistema de Eventos e Rede (Networking)** ✅
 *O sistema de eventos teve pacotes movidos e o sistema de rede foi modernizado, eliminando `NetworkEvent`.*
 
 **Ação Recomendada:**
@@ -159,9 +159,9 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
   - Crie um `PacketRegistrar` e registre suas mensagens nele.
   - A lógica de manipulação da mensagem (o `handle`) não recebe mais um `Supplier<NetworkEvent.Context>`, mas sim um `IPayloadContext`.
 
-- [ ] ServerTickEvent.java
-- [ ] IMessage.java
-- [ ] ServerMessageLevelUp.java
+- [x] ServerTickHandler.java ✅ **CONCLUÍDO** - Migrado para ServerTickEvent.Post, resolvido conflito de nomes
+- [x] IMessage.java ✅ **CONCLUÍDO** - Reescrita para usar CustomPacketPayload e IPayloadContext 
+- [x] ServerMessageLevelUp.java ✅ **CONCLUÍDO** - Migrada para usar record, CustomPacketPayload e StreamCodec
 
 ---
 
