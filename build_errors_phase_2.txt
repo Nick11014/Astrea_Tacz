@@ -1,0 +1,556 @@
+﻿Reusing configuration cache.
+> Task :processTestResources NO-SOURCE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormUnzipAdditionalSources UP-TO-DATE
+> Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
+> Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
+> Task :neoFormExtractServer UP-TO-DATE
+> Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
+> Task :cacheVersionMappingsServer1.21.1 UP-TO-DATE
+> Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
+> Task :create1.21.1ClientExtraJar UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormMerge UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :neoFormRename UP-TO-DATE
+> Task :neoFormDecompile UP-TO-DATE
+> Task :neoFormApplyForgesAccessTransformer UP-TO-DATE
+> Task :neoFormInject UP-TO-DATE
+> Task :neoFormPatch UP-TO-DATE
+> Task :neoFormPatchUserDev UP-TO-DATE
+> Task :neoFormApplyOfficialMappings UP-TO-DATE
+> Task :neoFormUnzipSources UP-TO-DATE
+> Task :neoFormRecompile UP-TO-DATE
+> Task :neoFormPackRecomp UP-TO-DATE
+> Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
+> Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.42 UP-TO-DATE
+> Task :writeMinecraftClasspathJunit UP-TO-DATE
+
+> Task :compileJava FAILED
+gradlew.bat : C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\ma
+in\java\com\tacz\guns\api\util\LuaNbtAccessor.java:3: error: package 
+com.tacz.guns.init does not exist
+No C:\Users\mathe\OneDrive\Área de 
+Trabalho\Modding\Astrea_Arsenal\Process-Next-Phase.ps1:86 caractere:16
++ $buildResult = & .\gradlew build 2>&1 | Out-String
++                ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\mathe\... does not exist:Stri 
+   ng) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+import com.tacz.guns.init.ModDataComponents;
+                         ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\client\animation\statemachine\ThrowableAnimationStateContext.java:5: error: 
+cannot find symbol
+public class ThrowableAnimationStateContext extends ItemAnimationStateContext {
+                                                    ^
+  symbol: class ItemAnimationStateContext
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\client\resource\pojo\model\GeometryModelLegacy.java:11: error: cannot find 
+symbol
+    private List<BonesItem> bones;
+                 ^
+  symbol:   class BonesItem
+  location: class GeometryModelLegacy
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\client\resource\pojo\model\GeometryModelLegacy.java:29: error: cannot find 
+symbol
+    public List<BonesItem> getBones() {
+                ^
+  symbol:   class BonesItem
+  location: class GeometryModelLegacy
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\client\resource\pojo\model\GeometryModelNew.java:14: error: cannot find 
+symbol
+    private List<BonesItem> bones;
+                 ^
+  symbol:   class BonesItem
+  location: class GeometryModelNew
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\client\resource\pojo\model\GeometryModelNew.java:21: error: cannot find 
+symbol
+    public List<BonesItem> getBones() {
+                ^
+  symbol:   class BonesItem
+  location: class GeometryModelNew
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\event\HitboxHelperEvent.java:5: error: cannot find symbol
+import net.neoforged.neoforge.event.tick.TickEvent;
+                                        ^
+  symbol:   class TickEvent
+  location: package net.neoforged.neoforge.event.tick
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\event\HitboxHelperEvent.java:15: error: package TickEvent does not exist
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+                                             ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\item\GunTooltipPart.java:3: error: package com.tacz.guns.init does not exist
+import com.tacz.guns.init.ModDataComponents;
+                         ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\util\EntityUtil.java:4: 
+error: package com.tacz.guns.entity does not exist
+import com.tacz.guns.entity.EntityKineticBullet;
+                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:21: error: package EntityKineticBullet does not exist
+    public static EntityKineticBullet.EntityResult findEntityOnPath(Projectile 
+bulletEntity, Vec3 startVec, Vec3 endVec) {
+                                     ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:57: error: package EntityKineticBullet does not exist
+    public static List<EntityKineticBullet.EntityResult> 
+findEntitiesOnPath(Projectile bulletEntity, Vec3 startVec, Vec3 endVec) {
+                                          ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:79: error: package EntityKineticBullet does not exist
+    protected static EntityKineticBullet.EntityResult getHitResult(Projectile 
+bulletEntity, Entity entity, Vec3 startVec, Vec3 endVec) {
+                                        ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\TacHitResult.java:3: error: package com.tacz.guns.entity does not exist
+import com.tacz.guns.entity.EntityKineticBullet;
+                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\TacHitResult.java:9: error: package EntityKineticBullet does not exist
+    public TacHitResult(EntityKineticBullet.EntityResult result) {
+                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:133: error: package ModDataComponents does not 
+exist
+            case "current_ammo" -> stack.get(ModDataComponents.CURRENT_AMMO.get());
+                                                              ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:134: error: package ModDataComponents does not 
+exist
+            case "has_bullet_in_barrel" -> 
+stack.get(ModDataComponents.HAS_BULLET_IN_BARREL.get());
+                                                                      ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:135: error: package ModDataComponents does not 
+exist
+            case "shoot_cooldown" -> 
+stack.get(ModDataComponents.SHOOT_COOLDOWN.get());
+                                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:136: error: package ModDataComponents does not 
+exist
+            case "reload_state_type" -> 
+stack.get(ModDataComponents.RELOAD_STATE_TYPE.get());
+                                                                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:137: error: package ModDataComponents does not 
+exist
+            case "reload_state_count" -> 
+stack.get(ModDataComponents.RELOAD_STATE_COUNT.get());
+                                                                    ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:138: error: package ModDataComponents does not 
+exist
+            case "fire_mode" -> stack.get(ModDataComponents.FIRE_MODE.get());
+                                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:139: error: package ModDataComponents does not 
+exist
+            case "aim_status" -> stack.get(ModDataComponents.AIM_STATUS.get());
+                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:140: error: package ModDataComponents does not 
+exist
+            case "draw_cooldown" -> 
+stack.get(ModDataComponents.DRAW_COOLDOWN.get());
+                                                               ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:141: error: package ModDataComponents does not 
+exist
+            case "draw_timestamp" -> 
+stack.get(ModDataComponents.DRAW_TIMESTAMP.get());
+                                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:142: error: package ModDataComponents does not 
+exist
+            case "put_away_cooldown" -> 
+stack.get(ModDataComponents.PUT_AWAY_COOLDOWN.get());
+                                                                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:143: error: package ModDataComponents does not 
+exist
+            case "put_away_timestamp" -> 
+stack.get(ModDataComponents.PUT_AWAY_TIMESTAMP.get());
+                                                                    ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:144: error: package ModDataComponents does not 
+exist
+            case "hide_flags" -> stack.get(ModDataComponents.HIDE_FLAGS.get());
+                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:145: error: package ModDataComponents does not 
+exist
+            case "attachment_scope_id" -> 
+stack.get(ModDataComponents.ATTACHMENT_SCOPE_ID.get());
+                                                                     ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:146: error: package ModDataComponents does not 
+exist
+            case "attachment_muzzle_id" -> 
+stack.get(ModDataComponents.ATTACHMENT_MUZZLE_ID.get());
+                                                                      ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:147: error: package ModDataComponents does not 
+exist
+            case "attachment_foregrip_id" -> 
+stack.get(ModDataComponents.ATTACHMENT_FOREGRIP_ID.get());
+                                                                        ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:148: error: package ModDataComponents does not 
+exist
+            case "attachment_stock_id" -> 
+stack.get(ModDataComponents.ATTACHMENT_STOCK_ID.get());
+                                                                     ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:149: error: package ModDataComponents does not 
+exist
+            case "attachment_extended_mag_id" -> 
+stack.get(ModDataComponents.ATTACHMENT_EXTENDED_MAG_ID.get());
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:164: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.CURRENT_AMMO.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:169: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Boolean>) 
+ModDataComponents.HAS_BULLET_IN_BARREL.get(), boolValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:174: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.SHOOT_COOLDOWN.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:179: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.RELOAD_STATE_TYPE.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:184: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.RELOAD_STATE_COUNT.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:189: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.FIRE_MODE.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:194: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Boolean>) 
+ModDataComponents.AIM_STATUS.get(), boolValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:199: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.DRAW_COOLDOWN.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:204: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Long>) 
+ModDataComponents.DRAW_TIMESTAMP.get(), longValue);
+                                                                         ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:209: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.PUT_AWAY_COOLDOWN.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:214: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Long>) 
+ModDataComponents.PUT_AWAY_TIMESTAMP.get(), longValue);
+                                                                         ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:219: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<Integer>) 
+ModDataComponents.HIDE_FLAGS.get(), intValue);
+                                                                            ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:224: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<String>) 
+ModDataComponents.ATTACHMENT_SCOPE_ID.get(), stringValue);
+                                                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:229: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<String>) 
+ModDataComponents.ATTACHMENT_MUZZLE_ID.get(), stringValue);
+                                                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:234: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<String>) 
+ModDataComponents.ATTACHMENT_FOREGRIP_ID.get(), stringValue);
+                                                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:239: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<String>) 
+ModDataComponents.ATTACHMENT_STOCK_ID.get(), stringValue);
+                                                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\api\util\LuaNbtAccessor.java:244: error: package ModDataComponents does not 
+exist
+                    stack.set((DataComponentType<String>) 
+ModDataComponents.ATTACHMENT_EXTENDED_MAG_ID.get(), stringValue);
+                                                                           ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\client\model\bedrock\BedrockCubeBox.java:94: error: cannot find symbol
+                consumer.vertex(vector4f.x(), vector4f.y(), vector4f.z(), red, 
+green, blue, alpha, vertex.u, vertex.v, overlay, light, nx, ny, nz);
+                        ^
+  symbol:   method vertex(float,float,float,float,float,float,float,float,float,int,
+int,float,float,float)
+  location: variable consumer of type VertexConsumer
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\command\RootCommand.java:15: error: cannot find symbol
+        root.then(AttachmentLockCommand.get());
+                  ^
+  symbol:   variable AttachmentLockCommand
+  location: class RootCommand
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\command\RootCommand.java:17: error: cannot find symbol
+        root.then(DummyAmmoCommand.get());
+                  ^
+  symbol:   variable DummyAmmoCommand
+  location: class RootCommand
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\command\RootCommand.java:19: error: cannot find symbol
+        root.then(ReloadCommand.get());
+                  ^
+  symbol:   variable ReloadCommand
+  location: class RootCommand
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\command\RootCommand.java:20: error: cannot find symbol
+        root.then(HideTooltipPartCommand.get());
+                  ^
+  symbol:   variable HideTooltipPartCommand
+  location: class RootCommand
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\command\RootCommand.java:21: error: cannot find symbol
+        root.then(ConvertCommand.get());
+                  ^
+  symbol:   variable ConvertCommand
+  location: class RootCommand
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:8: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+    public static IIngredientSubtypeInterpreter<ItemStack> getAmmoSubtype() {
+                  ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:9: warning: [removal] apply(T,UidContext) in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+        return (stack, context) -> {
+               ^
+  where T is a type-variable:
+    T extends Object declared in interface IIngredientSubtypeInterpreter
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:13: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:13: warning: [removal] NONE in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:17: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+    public static IIngredientSubtypeInterpreter<ItemStack> getGunSubtype() {
+                  ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:18: warning: [removal] apply(T,UidContext) in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+        return (stack, context) -> {
+               ^
+  where T is a type-variable:
+    T extends Object declared in interface IIngredientSubtypeInterpreter
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:19: error: cannot find symbol
+            if (stack.getItem() instanceof IGun iGun) {
+                                           ^
+  symbol:   class IGun
+  location: class GunModSubtype
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:22: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:22: warning: [removal] NONE in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:26: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+    public static IIngredientSubtypeInterpreter<ItemStack> getAttachmentSubtype() {
+                  ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:27: warning: [removal] apply(T,UidContext) in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+        return (stack, context) -> {
+               ^
+  where T is a type-variable:
+    T extends Object declared in interface IIngredientSubtypeInterpreter
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:31: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:31: warning: [removal] NONE in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:35: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+    public static IIngredientSubtypeInterpreter<ItemStack> getTableSubType() {
+                  ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:36: warning: [removal] apply(T,UidContext) in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+        return (stack, context) -> {
+               ^
+  where T is a type-variable:
+    T extends Object declared in interface IIngredientSubtypeInterpreter
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:40: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:40: warning: [removal] NONE in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:45: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+    public static IIngredientSubtypeInterpreter<ItemStack> getAmmoBoxSubtype() {
+                  ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:46: warning: [removal] apply(T,UidContext) in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+        return (stack, context) -> {
+               ^
+  where T is a type-variable:
+    T extends Object declared in interface IIngredientSubtypeInterpreter
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:56: warning: [removal] 
+IIngredientSubtypeInterpreter in mezz.jei.api.ingredients.subtypes has been 
+deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\compat\jei\GunModSubtype.java:56: warning: [removal] NONE in 
+IIngredientSubtypeInterpreter has been deprecated and marked for removal
+            return IIngredientSubtypeInterpreter.NONE;
+                                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\event\HitboxHelperEvent.java:19: error: package TickEvent does not exist
+        if (event.side == LogicalSide.SERVER && event.phase == TickEvent.Phase.END) 
+{
+                                                                        ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\item\GunTooltipPart.java:22: error: package ModDataComponents does not exist
+        Integer hideFlags = stack.get(ModDataComponents.HIDE_FLAGS.get());
+                                                       ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\item\GunTooltipPart.java:32: error: package ModDataComponents does not exist
+        stack.set(ModDataComponents.HIDE_FLAGS.get(), mask);
+                                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:37: error: package EntityKineticBullet does not exist
+                EntityKineticBullet.EntityResult result = 
+getHitResult(bulletEntity, entity, startVec, endVec);
+                                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:53: error: package EntityKineticBullet does not exist
+        return hitEntity != null ? new EntityKineticBullet.EntityResult(hitEntity, 
+hitVec, headshot) : null;
+                                                          ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:58: error: package EntityKineticBullet does not exist
+        List<EntityKineticBullet.EntityResult> hitEntities = new ArrayList<>();
+                                ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:66: error: package EntityKineticBullet does not exist
+                EntityKineticBullet.EntityResult result = 
+getHitResult(bulletEntity, entity, startVec, endVec);
+                                   ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:92: error: package EntityKineticBullet does not exist
+                return new EntityKineticBullet.EntityResult(entity, hitPos, 
+aabb.contains(hitBoxPos));
+                                              ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\ta
+cz\guns\util\EntityUtil.java:101: error: package EntityKineticBullet does not exist
+        return new EntityKineticBullet.EntityResult(entity, hitPos, headshot);
+                                      ^
+65 errors
+20 warnings
+
+> Task :sourcesJar
+
+[Incubating] Problems report is available at: file:///C:/Users/mathe/OneDrive/%C3%81rea%20de%20Trabalho/Modding/Astrea_Arsenal/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\
+tacz\guns\api\util\LuaNbtAccessor.java:3: error: package com.tacz.guns.init does 
+not exist
+  import com.tacz.guns.init.ModDataComponents;
+                           ^
+  65 errors
+  20 warnings
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 6s
+32 actionable tasks: 2 executed, 30 up-to-date
+Configuration cache entry reused.
+

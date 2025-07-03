@@ -1,16 +1,9 @@
-﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | ✅ **81/81** |
-| **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
-| **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
-| **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **176/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
-| **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
-| **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
+﻿# PLANO DE MIGRACAO SISTEMATICA - TacZ NeoForge 1.21.1 (v4.3)
 
-**Projeto:** Migracao TacZ de Forge 1.20.1 para NeoForge 1.21.1  
-**Estrategia:** Habilitacao incremental baseada em analise topologica de dependencias  
-**Data de Geracao:** 2025-07-02 18:01:20  
-**Script:** Generate-Plan.ps1 v3.0  
+**Projeto:** Migracao TacZ de Forge 1.20.1 para NeoForge 1.21.1
+**Estrategia:** Habilitacao incremental baseada em ordenacao topologica de dependencias
+**Data de Geracao:** 2025-07-03 00:21:48
+**Script:** Generate-Plan.ps1 v4.3
 
 ---
 
@@ -18,43 +11,68 @@
 
 | Fase | Descricao | Arquivos | Status |
 |------|-----------|----------|--------|
-| **Fase 0** | Fundacao (ja habilitada) | 95 | âœ… 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | â³ 0/81 |
-| **Fase 2** | Dependencias Baixas (1-3) | 259 | â³ 0/259 |
-| **Fase 3** | Dependencias Medias (4-10) | 137 | â³ 0/137 |
-| **Fase 4** | Dependencias Altas (11+) | 51 | â³ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **95/623** |
-
+| **Fases 0 e 1** | Fundacao (ja habilitada) | 188 | [OK] 188/188 |
+| **Fase 2** | Proxima camada de habilitacao | 23 | [Pendente] 0/23 |
+| **Fase 3** | Proxima camada de habilitacao | 9 | [Pendente] 0/9 |
+| **Fase 4** | Proxima camada de habilitacao | 3 | [Pendente] 0/3 |
+| **N/A** | Nao Resolvidos (Circular/Ausente) | 400 | [ERRO] 0/400 |
+| **TOTAL** | **Todos os arquivos** | **623** | **188/623** |
 ---
 
 ## PLANO DE EXECUCAO ORDENADO
 
-### **FASE 0: FUNDACAO (Ja Habilitada)** âœ…
+### **FASES 0 e 1: FUNDACAO (Ja Habilitada)** [OK]
 
 *Esta e a base solida ja estabelecida. Estes arquivos compilam sem erros e servem como fundacao para as proximas fases.*
 
 - [x] AccessorData.java (Fundacao)
+- [x] AccessorSparseIndices.java (Fundacao)
+- [x] AccessorSparseValues.java (Fundacao)
 - [x] Align.java (Fundacao)
+- [x] AmmoBoxTooltip.java (Fundacao)
+- [x] AmmoClothConfig.java (Fundacao)
 - [x] AmmoConfig.java (Fundacao)
 - [x] AmmoCountStyle.java (Fundacao)
 - [x] AmmoEntityDisplay.java (Fundacao)
 - [x] AmmoIndexPOJO.java (Fundacao)
+- [x] AmmoParticle.java (Fundacao)
 - [x] AnimationBone.java (Fundacao)
 - [x] AnimationChannelContent.java (Fundacao)
+- [x] AnimationChannelTarget.java (Fundacao)
 - [x] AnimationConstant.java (Fundacao)
 - [x] AnimationKeyframes.java (Fundacao)
 - [x] AnimationName.java (Fundacao)
+- [x] AnimationSampler.java (Fundacao)
 - [x] AnimationSoundChannelContent.java (Fundacao)
+- [x] AttachmentData.java (Fundacao)
+- [x] AttachmentIndexPOJO.java (Fundacao)
+- [x] AttachmentItemTooltip.java (Fundacao)
 - [x] AttachmentLod.java (Fundacao)
 - [x] AttachmentSkin.java (Fundacao)
 - [x] AttachmentType.java (Fundacao)
 - [x] BedrockAnimation.java (Fundacao)
 - [x] BedrockAnimationFile.java (Fundacao)
 - [x] BedrockCube.java (Fundacao)
+- [x] BedrockPart.java (Fundacao)
+- [x] BedrockPolygon.java (Fundacao)
+- [x] BedrockVertex.java (Fundacao)
+- [x] BlockDisplay.java (Fundacao)
+- [x] BlockItemTooltip.java (Fundacao)
 - [x] Bolt.java (Fundacao)
+- [x] Buffer.java (Fundacao)
+- [x] BufferModel.java (Fundacao)
+- [x] Buffers.java (Fundacao)
+- [x] BufferView.java (Fundacao)
+- [x] BufferViewModel.java (Fundacao)
+- [x] BulletData.java (Fundacao)
 - [x] BurstData.java (Fundacao)
 - [x] CacheValue.java (Fundacao)
 - [x] ColorHex.java (Fundacao)
+- [x] CommonAmmoIndex.java (Fundacao)
+- [x] CommonAmmoIndexSerializer.java (Fundacao)
+- [x] CommonConfig.java (Fundacao)
+- [x] CommonTransformObject.java (Fundacao)
+- [x] ConfigCommand.java (Fundacao)
 - [x] ControllableData.java (Fundacao)
 - [x] CycleTaskHelper.java (Fundacao)
 - [x] DamageStyle.java (Fundacao)
@@ -63,15 +81,24 @@
 - [x] DefaultAnimationType.java (Fundacao)
 - [x] DelayedTask.java (Fundacao)
 - [x] Description.java (Fundacao)
+- [x] DiscreteTrackArray.java (Fundacao)
+- [x] DistanceDamagePairSerializer.java (Fundacao)
 - [x] Easing.java (Fundacao)
 - [x] EffectData.java (Fundacao)
 - [x] ElementType.java (Fundacao)
 - [x] ExplosionData.java (Fundacao)
 - [x] ExtraDamage.java (Fundacao)
+- [x] FaceItem.java (Fundacao)
 - [x] FeedType.java (Fundacao)
+- [x] FireMode.java (Fundacao)
 - [x] FireSound.java (Fundacao)
+- [x] FlatColorButton.java (Fundacao)
+- [x] GeometryModelLegacy.java (Fundacao)
+- [x] GeometryModelNew.java (Fundacao)
 - [x] GltfConstants.java (Fundacao)
+- [x] GunAmmo.java (Fundacao)
 - [x] GunAnimationConstant.java (Fundacao)
+- [x] GunClothConfig.java (Fundacao)
 - [x] GunConfig.java (Fundacao)
 - [x] GunDamageSourcePart.java (Fundacao)
 - [x] GunDefaultMeleeData.java (Fundacao)
@@ -79,694 +106,2019 @@
 - [x] GunHeatData.java (Fundacao)
 - [x] GunHurtBobTweak.java (Fundacao)
 - [x] GunIndexPOJO.java (Fundacao)
+- [x] GunLevelUpToast.java (Fundacao)
 - [x] GunLod.java (Fundacao)
 - [x] GunMeleeData.java (Fundacao)
 - [x] GunMeleeDebug.java (Fundacao)
 - [x] GunModelConstant.java (Fundacao)
+- [x] GunPackProgressScreen.java (Fundacao)
 - [x] GunProperty.java (Fundacao)
+- [x] GunRecoil.java (Fundacao)
+- [x] GunRecoilKeyFrame.java (Fundacao)
+- [x] GunReloadData.java (Fundacao)
 - [x] GunReloadTime.java (Fundacao)
+- [x] GunResult.java (Fundacao)
 - [x] GunSmithTableIngredient.java (Fundacao)
+- [x] GunSmithTableIngredientSerializer.java (Fundacao)
 - [x] GunTabType.java (Fundacao)
+- [x] GunTooltipPart.java (Fundacao)
+- [x] HeadShotAABBConfigRead.java (Fundacao)
+- [x] HitboxHelper.java (Fundacao)
 - [x] IAmmo.java (Fundacao)
 - [x] IAmmoBox.java (Fundacao)
+- [x] IAnimationItem.java (Fundacao)
+- [x] IAttachment.java (Fundacao)
 - [x] IBlock.java (Fundacao)
+- [x] IComponentTooltip.java (Fundacao)
 - [x] IDataSerializer.java (Fundacao)
+- [x] IDisplay.java (Fundacao)
 - [x] IFilter.java (Fundacao)
 - [x] IFunctionalRenderer.java (Fundacao)
 - [x] Ignite.java (Fundacao)
+- [x] IgniteSerializer.java (Fundacao)
+- [x] IMessage.java (Fundacao)
+- [x] INetworkCacheReloadListener.java (Fundacao)
 - [x] InputExtraCheck.java (Fundacao)
+- [x] Interpolator.java (Fundacao)
 - [x] IStackTooltip.java (Fundacao)
 - [x] ITargetEntity.java (Fundacao)
+- [x] ItemStackSerializer.java (Fundacao)
 - [x] IThirdPersonAnimation.java (Fundacao)
 - [x] JsonProperty.java (Fundacao)
 - [x] KeepingItemRenderer.java (Fundacao)
 - [x] KeyConfig.java (Fundacao)
+- [x] KnockbackChange.java (Fundacao)
 - [x] KnockBackModifier.java (Fundacao)
 - [x] LanguageMixin.java (Fundacao)
 - [x] LaserConfig.java (Fundacao)
+- [x] LayerGunShow.java (Fundacao)
+- [x] Linear.java (Fundacao)
 - [x] ListPackCommand.java (Fundacao)
+- [x] LiteralFilter.java (Fundacao)
+- [x] LivingEntityAmmoCheck.java (Fundacao)
+- [x] LoginIndexHolder.java (Fundacao)
 - [x] LuaEntityAccessor.java (Fundacao)
 - [x] LuaLibrary.java (Fundacao)
+- [x] LuaNbtAccessor.java (Fundacao)
+- [x] MathUtil.java (Fundacao)
+- [x] Md5Utils.java (Fundacao)
 - [x] MeleeData.java (Fundacao)
 - [x] Modifier.java (Fundacao)
+- [x] MoveSpeed.java (Fundacao)
 - [x] MuzzleFlash.java (Fundacao)
+- [x] Node.java (Fundacao)
+- [x] NodeModel.java (Fundacao)
 - [x] NumberArrays.java (Fundacao)
 - [x] OculusCompatLegacy.java (Fundacao)
 - [x] OculusCompatNewly.java (Fundacao)
+- [x] OpenGunPackDirEntry.java (Fundacao)
 - [x] OptifineCompat.java (Fundacao)
 - [x] OtherConfig.java (Fundacao)
 - [x] PackInfo.java (Fundacao)
 - [x] PackMeta.java (Fundacao)
+- [x] PairSerializer.java (Fundacao)
 - [x] PathHandler.java (Fundacao)
+- [x] PerlinNoise.java (Fundacao)
+- [x] PlayerNamePapi.java (Fundacao)
+- [x] PreLoadConfig.java (Fundacao)
+- [x] PreLoadModConfig.java (Fundacao)
+- [x] RegexFilter.java (Fundacao)
+- [x] ReloadState.java (Fundacao)
+- [x] RenderHelper.java (Fundacao)
+- [x] ResourceScanner.java (Fundacao)
 - [x] SecondOrderDynamics.java (Fundacao)
+- [x] ServerConfig.java (Fundacao)
+- [x] ServerMessageLevelUp.java (Fundacao)
+- [x] ServerTickHandler.java (Fundacao)
 - [x] ShellDisplay.java (Fundacao)
+- [x] ShellEjection.java (Fundacao)
 - [x] ShootResult.java (Fundacao)
 - [x] ShoulderSurfingCompat.java (Fundacao)
 - [x] ShoulderSurfingCompatInner.java (Fundacao)
 - [x] SoundEffectKeyframes.java (Fundacao)
+- [x] SoundEffectKeyframesSerializer.java (Fundacao)
+- [x] Spline.java (Fundacao)
 - [x] StairBlockAccessor.java (Fundacao)
+- [x] Step.java (Fundacao)
 - [x] SyncConfig.java (Fundacao)
+- [x] SyncedClassKey.java (Fundacao)
+- [x] TacPathVisitor.java (Fundacao)
+- [x] TextShow.java (Fundacao)
+- [x] ThirdPersonManager.java (Fundacao)
+- [x] ThrowableAnimationStateContext.java (Fundacao)
+- [x] TimelessItemNbtFactory.java (Fundacao)
 - [x] TrackArrayMismatchException.java (Fundacao)
+- [x] TransformScale.java (Fundacao)
+- [x] Vec3Serializer.java (Fundacao)
+- [x] Vector3fSerializer.java (Fundacao)
+- [x] ZoomClothConfig.java (Fundacao)
 - [x] ZoomConfig.java (Fundacao)
 ---
 
-### **FASE 1: PRIMEIRA CAMADA** â­ 
-*Próxima a ser executada - Dependem apenas da fundação*
 
-Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (Fase 0), mas que falham devido a mudanças na API do NeoForge 1.21.1.
 
-#### **Fase 1.1: Sistema de Configuração** ✅
-*O sistema de configuração do Forge/NeoForge foi completamente reestruturado. Classes não devem mais herdar de `ModConfig`.*
 
-**Ação Recomendada:**
-- Remova a herança de `ModConfig`.
-- Utilize `ModConfigSpec.Builder` para construir sua especificação de configuração.
-- Registre sua configuração no construtor da sua classe de mod principal usando `ModLoadingContext.get().registerConfig(ModConfig.Type, spec)`.
-- Para ler os valores ou reagir a mudanças, utilize os eventos `ModConfigEvent.Loading` e `ModConfigEvent.Reloading`.
+### **FASE 2: ANALISE E CORRECAO** (Gerado em 07/03/2025 00:43:48)
 
-- [x] PreLoadModConfig.java ✅ **CONCLUÍDO** - Migrado para usar ModConfigSpec e APIs oficiais do NeoForge 1.21.1
-- [x] PreLoadConfig.java ✅ **CONCLUÍDO** - Simplificado e usando APIs corretas, mantém funcionalidade original
-
+*Esta secao foi gerada automaticamente. Os arquivos da Fase 2 foram agrupados por tipo de erro para facilitar a correcao.*
+**Arquivos ja concluidos nesta fase:**
+- [x] AccessorSparse.java
+- [x] AmmoTransform.java
+- [x] AnimationChannel.java
+- [x] AttachmentDisplay.java
+- [x] BedrockModelPOJO.java
+- [x] ClientAmmoBoxTooltip.java
+- [x] CustomInterpolator.java
+- [x] FaceUVsItem.java
+- [x] FunctionalBedrockPart.java
+- [x] GunTransform.java
+- [x] KeyClothConfig.java
+- [x] LuaGunLogicConstant.java
+- [x] ModelRendererWrapper.java
+- [x] ModSerializers.java
+- [x] OtherClothConfig.java
+- [x] OverwriteCommand.java
+- [x] SLerp.java
 ---
+#### **Fase 2.6: Imports_Dependencias** (3 arquivos)
 
-#### **Fase 1.2: Sistema de Eventos e Rede (Networking)** ✅
-*O sistema de eventos teve pacotes movidos e o sistema de rede foi modernizado, eliminando `NetworkEvent`.*
+- [ ] EntityUtil.java
+- [ ] GunTooltipPart.java
+- [ ] TacHitResult.java
 
-**Ação Recomendada:**
-- **Eventos de Tick:** Altere o import do `TickEvent` para o pacote correto, como `net.neoforged.neoforge.event.tick.ServerTickEvent`.
-- **Rede (Networking):** Migre o sistema de mensagens para o `PacketRegistrar` do NeoForge.
-  - Defina suas mensagens (packets).
-  - Crie um `PacketRegistrar` e registre suas mensagens nele.
-  - A lógica de manipulação da mensagem (o `handle`) não recebe mais um `Supplier<NetworkEvent.Context>`, mas sim um `IPayloadContext`.
+#### **Fase 2.9: API_Desconhecida** (8 arquivos)
 
-- [x] ServerTickHandler.java ✅ **CONCLUÍDO** - Migrado para ServerTickEvent.Post, resolvido conflito de nomes
-- [x] IMessage.java ✅ **CONCLUÍDO** - Reescrita para usar CustomPacketPayload e IPayloadContext 
-- [x] ServerMessageLevelUp.java ✅ **CONCLUÍDO** - Migrada para usar record, CustomPacketPayload e StreamCodec
+- [ ] BedrockCubeBox.java
+- [ ] GeometryModelLegacy.java
+- [ ] GeometryModelNew.java
+- [ ] GunModSubtype.java
+- [ ] HitboxHelperEvent.java
+- [ ] LuaNbtAccessor.java
+- [ ] RootCommand.java
+- [ ] ThrowableAnimationStateContext.java
 
----
+### **FASE 3: PROXIMA CAMADA DE HABILITACAO** (9 arquivos)
+*Arquivos cujas dependencias foram resolvidas nas fases anteriores. Esta e a proxima fase a ser trabalhada.*
 
-#### **Fase 1.3: Interação com Itens e Dados (ItemStack & Data Components)** ✅
-*O acesso direto a NBT via `.getTag()` foi substituído pelo sistema de "Data Components" para melhorar o desempenho e a clareza.*
-
-**Ação Recomendada:**
-- **Comparação de Itens:** Substitua `ItemStack.isSameItemSameTags(stackA, stackB)` por `ItemStack.matches(stackA, stackB)`.
-- **Acesso a Dados:** Defina seus próprios `DataComponentType` para os dados customizados que você precisa armazenar.
-  - Substitua `stack.getTag()` e `stack.getOrCreateTag()` por `stack.get(MyComponents.MY_DATA)` para ler e `stack.set(MyComponents.MY_DATA, value)` para escrever.
-- **Tooltips:** O método `getTooltipLines` mudou sua assinatura. Agora ele requer `(TooltipContext, Player, TooltipFlag)`.
-- **Serialização:** O `CraftingHelper.getItemStack` foi alterado. Investigue as novas formas de carregar `ItemStack` de JSON, possivelmente através de `ItemStack.CODEC`.
-
-- [x] ModDataComponents.java ✅ **CRIADO** - Sistema completo de DataComponents para substituir NBT
-- [x] IAnimationItem.java ✅ **CONCLUÍDO** - Migrado ItemStack.isSameItemSameTags -> ItemStack.matches
-- [x] LuaNbtAccessor.java ✅ **CONCLUÍDO** - Reescrito para usar DataComponents com fallback NBT 
-- [x] IComponentTooltip.java ✅ **CONCLUÍDO** - Atualizado getTooltipLines para usar TooltipContext
-- [x] GunTooltipPart.java ✅ **CONCLUÍDO** - Migrado de NBT para DataComponents (hide flags)
-- [x] ItemStackSerializer.java ✅ **CONCLUÍDO** - Migrado CraftingHelper.getItemStack -> ItemStack.CODEC
-
----
-
-#### **Fase 1.4: Renderização e GUI** ✅
-*A API de renderização passou por atualizações para se alinhar com as mudanças internas do Minecraft.*
-
-**Ação Recomendada:**
-- **Fundo de Telas (GUI):** A assinatura do método `renderBackground` foi atualizada para `renderBackground(GuiGraphics, int, int, float)`.
-- **Renderização Manual (Tesselator):** O fluxo de renderização com `Tesselator` e `BufferBuilder` foi simplificado.
-  - `Tesselator.getInstance().getBuilder()` foi substituído, o fluxo agora é mais direto.
-  - As chamadas `begin()` e `end()` foram substituídas por um método final que constrói e desenha a geometria, como `BufferUploader.drawWithShader(bufferBuilder.buildOrThrow())`.
-
-- [x] GunPackProgressScreen.java ✅ **CONCLUÍDO** - Migrado renderBackground para nova assinatura
-- [x] RenderHelper.java ✅ **CONCLUÍDO** - Modernizado fluxo de renderização e corrigido getSkinTextureLocation
-- [x] FlatColorButton.java ✅ **CONCLUÍDO** - Já compatível com NeoForge 1.21.1
-- [x] OpenGunPackDirEntry.java ✅ **CONCLUÍDO** - Já compatível com NeoForge 1.21.1
-
----
-
-#### **Fase 1.5: API Geral do NeoForge/Minecraft** ✅
-*Esta seção agrupa diversas outras mudanças de API pontuais.*
-
-**Ação Recomendada:**
-- **ResourceLocation:** O construtor `new ResourceLocation("string")` foi alterado. Use `ResourceLocation.fromNamespaceAndPath("modid", "path")`.
-- **Ingredient:** O método `Ingredient.fromJson()` foi alterado. O método recomendado agora é usar o `Codec` do `Ingredient`: `Ingredient.CODEC.parse(JsonOps.INSTANCE, jsonElement)`.
-- **ServerPlayer:** A propriedade `latency` para obter o ping do jogador foi movida ou seu acesso foi alterado. Verifique os novos métodos da classe `ServerPlayer`.
-
-- [x] HeadShotAABBConfigRead.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(String) -> ResourceLocation.parse(String)
-- [x] SyncedClassKey.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(String) -> ResourceLocation.parse(String)
-- [x] TacPathVisitor.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(namespace, path) -> ResourceLocation.fromNamespaceAndPath 
-- [x] ResourceScanner.java ✅ **CONCLUÍDO** - Corrigida referência GunMod.LOGGER -> Logger próprio
-- [x] GunSmithTableIngredientSerializer.java ✅ **CONCLUÍDO** - Migrado Ingredient.fromJson() -> Ingredient.CODEC.parse()
-- [x] HitboxHelper.java ✅ **CONCLUÍDO** - Migrado serverPlayerOwner.latency -> serverPlayerOwner.connection.latency()
-- [x] ConfigCommand.java ✅ **CONCLUÍDO** - Reescrito para usar StringArgumentType com sugestões personalizadas
-
----
-
-#### **Arquivos Restantes da Fase 1** ✅ **COMPLETOS**
-*Arquivos sem dependências internas que podem ser habilitados com segurança:*
-
-- [x] AccessorSparseIndices.java (Deps: 0)
-- [x] AccessorSparseValues.java (Deps: 0)
-- [x] AmmoBoxTooltip.java (Deps: 0)
-- [x] AmmoParticle.java (Deps: 0)
-- [x] AnimationChannelTarget.java (Deps: 0)
-- [x] AnimationSampler.java (Deps: 0)
-- [x] BedrockVertex.java (Deps: 0)
-- [x] BlockItemTooltip.java (Deps: 0)
-- [x] Buffer.java (Deps: 0)
-- [x] Buffers.java (Deps: 0)
-- [x] BufferView.java (Deps: 0)
-- [x] CommonTransformObject.java (Deps: 0)
-- [x] DiscreteTrackArray.java (Deps: 0)
-- [x] FaceItem.java (Deps: 0)
-- [x] FireMode.java (Deps: 0)
-- [x] GunLevelUpToast.java (Deps: 0)
-- [x] GunRecoilKeyFrame.java (Deps: 0)
-- [x] IDisplay.java (Deps: 0)
-- [x] LayerGunShow.java (Deps: 0)
-- [x] LoginIndexHolder.java (Deps: 0)
-- [x] MathUtil.java (Deps: 0)
-- [x] Md5Utils.java (Deps: 0)
-- [x] MoveSpeed.java (Deps: 0)
-- [x] Node.java (Deps: 0)
-- [x] NodeModel.java (Deps: 0)
-- [x] PairSerializer.java (Deps: 0)
-- [x] PerlinNoise.java (Deps: 0)
-- [x] PlayerNamePapi.java (Deps: 0)
-- [x] ReloadState.java (Deps: 0)
-- [x] ShellEjection.java (Deps: 0)
-- [x] TimelessItemNbtFactory.java (Deps: 0)
-- [x] TransformScale.java (Deps: 0)
-- [x] Vec3Serializer.java (Deps: 0)
-- [x] Vector3fSerializer.java (Deps: 0)
-- [x] AmmoClothConfig.java (Deps: 1)
-- [x] AttachmentIndexPOJO.java (Deps: 1)
-- [x] AttachmentItemTooltip.java (Deps: 1)
-- [x] BedrockPart.java (Deps: 1)
-- [x] CommonAmmoIndex.java (Deps: 1)
-- [x] DistanceDamagePairSerializer.java (Deps: 1)
-- [x] GunClothConfig.java (Deps: 1)
-- [x] GunResult.java (Deps: 1)
-- [x] IAttachment.java (Deps: 1)
-- [x] IgniteSerializer.java (Deps: 1)
-- [x] INetworkCacheReloadListener.java (Deps: 1)
-- [x] Interpolator.java (Deps: 1)
-- [x] KnockbackChange.java (Deps: 1)
-- [x] LiteralFilter.java (Deps: 1)
-- [x] LivingEntityAmmoCheck.java (Deps: 1)
-- [x] RegexFilter.java (Deps: 1)
-- [x] ServerConfig.java (Deps: 1)
-- [x] SoundEffectKeyframesSerializer.java (Deps: 1)
-- [x] TextShow.java (Deps: 1)
-- [x] ThirdPersonManager.java (Deps: 1)
-- [x] ZoomClothConfig.java (Deps: 1)
-- [x] AttachmentData.java (Deps: 2)
-- [x] GunReloadData.java (Deps: 2)
-- [x] BulletData.java (Deps: 3)
-- [x] CommonConfig.java (Deps: 3)
----
-
-### **FASE 2: DEPENDENCIAS BAIXAS (1-3)** (259 arquivos)
-*Arquivos com poucas dependencias internas do mod*
-
-**Arquivos movidos da Fase 1 (dependem de outras classes do mod):**
-- [ ] TacHitResult.java (Deps: 1 - depende de `EntityKineticBullet` que está na Fase 4)
-
-- [ ] AbstractButtonMixin.java (Deps: 1)
 - [ ] Accessor.java (Deps: 1)
-- [ ] AllowAttachmentTagMatcher.java (Deps: 1)
-- [ ] AmmoHitBlockEvent.java (Deps: 1)
-- [ ] AmmoTransform.java (Deps: 1)
-- [ ] AnimationChannel.java (Deps: 1)
-- [ ] AnimationListener.java (Deps: 1)
-- [ ] AnimationPlan.java (Deps: 1)
-- [ ] AttachmentIdFix.java (Deps: 1)
-- [ ] AttachmentLockCommand.java (Deps: 1)
-- [ ] BedrockPolygon.java (Deps: 1)
 - [ ] BedrockVersion.java (Deps: 1)
-- [ ] BeforeRenderHandEvent.java (Deps: 1)
-- [ ] BellRing.java (Deps: 1)
-- [ ] BlackList.java (Deps: 1)
-- [ ] BlockDisplay.java (Deps: 1)
-- [ ] BlockIndexPOJO.java (Deps: 1)
-- [ ] BonesItem.java (Deps: 1)
-- [ ] BufferModel.java (Deps: 1)
-- [ ] ClientMessageCraft.java (Deps: 1)
-- [ ] ClientMessagePlayerAim.java (Deps: 1)
-- [ ] ClientMessagePlayerBoltGun.java (Deps: 1)
-- [ ] ClientMessagePlayerCancelReload.java (Deps: 1)
-- [ ] ClientMessagePlayerDrawGun.java (Deps: 1)
-- [ ] ClientMessagePlayerFireSelect.java (Deps: 1)
-- [ ] ClientMessagePlayerMelee.java (Deps: 1)
-- [ ] ClientMessagePlayerReloadGun.java (Deps: 1)
-- [ ] ClientMessagePlayerShoot.java (Deps: 1)
-- [ ] ClientMessagePlayerZoom.java (Deps: 1)
-- [ ] ClothConfigScreen.java (Deps: 1)
 - [ ] CommandRegistry.java (Deps: 1)
-- [ ] CommonLoadPack.java (Deps: 1)
-- [ ] ControllableCompat.java (Deps: 1)
-- [ ] ConvertCommand.java (Deps: 1)
-- [ ] CrosshairDropdown.java (Deps: 1)
-- [ ] CrosshairType.java (Deps: 1)
 - [ ] CubesItem.java (Deps: 1)
-- [ ] DefaultAssets.java (Deps: 1)
-- [ ] DummyAmmoCommand.java (Deps: 1)
-- [ ] FaceUVsItem.java (Deps: 1)
-- [ ] GeometryModelLegacy.java (Deps: 1)
-- [ ] GunAmmo.java (Deps: 1)
-- [ ] GunDrawEvent.java (Deps: 1)
-- [ ] GunFinishReloadEvent.java (Deps: 1)
-- [ ] GunFireSelectEvent.java (Deps: 1)
-- [ ] GunItemManager.java (Deps: 1)
-- [ ] GunMeleeEvent.java (Deps: 1)
-- [ ] GunRecoil.java (Deps: 1)
-- [ ] GunReloadEvent.java (Deps: 1)
-- [ ] GunSmithTableBlockA.java (Deps: 1)
-- [ ] GunSmithTableBlockB.java (Deps: 1)
-- [ ] GunSmithTableBlockC.java (Deps: 1)
-- [ ] GunTransform.java (Deps: 1)
-- [ ] HumanoidModelMixin.java (Deps: 1)
-- [ ] InspectKey.java (Deps: 1)
-- [ ] ItemAnimationStateContext.java (Deps: 1)
-- [ ] KubeJSCustomGunItem.java (Deps: 1)
-- [ ] MeleeKey.java (Deps: 1)
-- [ ] ModAttributes.java (Deps: 1)
-- [ ] ModDamageTypes.java (Deps: 1)
-- [ ] ModelRendererWrapper.java (Deps: 1)
-- [ ] ModPainting.java (Deps: 1)
-- [ ] ModSounds.java (Deps: 1)
-- [ ] OverwriteCommand.java (Deps: 1)
-- [ ] PlayerAnimatorAssetManager.java (Deps: 1)
-- [ ] PlayerEnterWorld.java (Deps: 1)
-- [ ] PlayGunSoundEvent.java (Deps: 1)
-- [ ] PreLoadConfig.java (Deps: 1)
-- [ ] PreventGunClick.java (Deps: 1)
-- [ ] ReloadResourceEvent.java (Deps: 1)
-- [ ] RenderConfig.java (Deps: 1)
-- [ ] RenderDistance.java (Deps: 1)
-- [ ] RenderItemInHandBobEvent.java (Deps: 1)
-- [ ] RenderLevelBobEvent.java (Deps: 1)
-- [ ] ResourceManager.java (Deps: 1)
-- [ ] ResourceScanner.java (Deps: 1)
-- [ ] ResultButton.java (Deps: 1)
-- [ ] ServerGamePacketListenerImplMixin.java (Deps: 1)
-- [ ] ServerMessageCraft.java (Deps: 1)
-- [ ] ServerMessageGunDraw.java (Deps: 1)
-- [ ] ServerMessageGunFire.java (Deps: 1)
-- [ ] ServerMessageGunFireSelect.java (Deps: 1)
-- [ ] ServerMessageGunHurt.java (Deps: 1)
-- [ ] ServerMessageGunKill.java (Deps: 1)
-- [ ] ServerMessageGunMelee.java (Deps: 1)
-- [ ] ServerMessageGunReload.java (Deps: 1)
-- [ ] ServerMessageGunShoot.java (Deps: 1)
-- [ ] ServerMessageSwapItem.java (Deps: 1)
-- [ ] ServerPlayerMixin.java (Deps: 1)
-- [ ] SoundAssetsManager.java (Deps: 1)
-- [ ] StatueBlockEntity.java (Deps: 1)
-- [ ] SwapItemWithOffHand.java (Deps: 1)
-- [ ] TargetMinecartItem.java (Deps: 1)
-- [ ] ThrowableAnimationStateContext.java (Deps: 1)
-- [ ] TimelessItemType.java (Deps: 1)
-- [ ] TimelessKubeJSEventRegister.java (Deps: 1)
-- [ ] TypeButton.java (Deps: 1)
-- [ ] AbstractAccessorData.java (Deps: 2)
-- [ ] Accessors.java (Deps: 2)
-- [ ] AccessorSparse.java (Deps: 2)
-- [ ] AccessorSparseUtils.java (Deps: 2)
-- [ ] AdjustmentYRotModifier.java (Deps: 2)
-- [ ] AmmoParticleSpawner.java (Deps: 2)
 - [ ] Animation.java (Deps: 2)
-- [ ] AnimationDataRegisterFactory.java (Deps: 2)
-- [ ] AnimationKeyframesSerializer.java (Deps: 2)
-- [ ] AnimationListenerSupplier.java (Deps: 2)
-- [ ] AnimationModel.java (Deps: 2)
-- [ ] AnimationState.java (Deps: 2)
-- [ ] AttachmentPropertyEvent.java (Deps: 2)
-- [ ] BedrockModelPOJO.java (Deps: 2)
-- [ ] BlockData.java (Deps: 2)
-- [ ] BlockItemBuilder.java (Deps: 2)
-- [ ] BlockRayTrace.java (Deps: 2)
-- [ ] BufferViewModel.java (Deps: 2)
-- [ ] BulletHoleOption.java (Deps: 2)
-- [ ] ClientAmmoBoxTooltip.java (Deps: 2)
-- [ ] ClientMessagePlayerCrawl.java (Deps: 2)
-- [ ] CommonAmmoIndexSerializer.java (Deps: 2)
-- [ ] CommonAttachmentIndexSerializer.java (Deps: 2)
-- [ ] CommonBlockIndexSerializer.java (Deps: 2)
-- [ ] CommonGunIndexSerializer.java (Deps: 2)
-- [ ] CustomGunItemBuilder.java (Deps: 2)
-- [ ] DataEntry.java (Deps: 2)
-- [ ] DataHolder.java (Deps: 2)
-- [ ] DefaultTableItem.java (Deps: 2)
-- [ ] DestroyGlassBlock.java (Deps: 2)
-- [ ] EntityDamageEvent.java (Deps: 2)
-- [ ] EntityKillByGunEvent.java (Deps: 2)
-- [ ] EntityUtil.java (Deps: 2)
-- [ ] ExplodeUtil.java (Deps: 2)
-- [ ] FireSelectKey.java (Deps: 2)
-- [ ] FunctionalBedrockPart.java (Deps: 2)
-- [ ] GeometryModelNew.java (Deps: 2)
-- [ ] GetJarResources.java (Deps: 2)
-- [ ] GunFireEvent.java (Deps: 2)
-- [ ] GunShootEvent.java (Deps: 2)
-- [ ] GunSmithTableCategory.java (Deps: 2)
-- [ ] GunSmithTableResult.java (Deps: 2)
-- [ ] GunSmithTableResultComponents.java (Deps: 2)
-- [ ] GunSmithTableResultInfo.java (Deps: 2)
-- [ ] GunSoundInstance.java (Deps: 2)
-- [ ] GunTooltip.java (Deps: 2)
-- [ ] HideTooltipPartCommand.java (Deps: 2)
-- [ ] HitboxHelperEvent.java (Deps: 2)
-- [ ] IClientPlayerGunOperator.java (Deps: 2)
-- [ ] InaccuracyType.java (Deps: 2)
-- [ ] InteractKey.java (Deps: 2)
-- [ ] InteractKeyConfigRead.java (Deps: 2)
-- [ ] InventoryAttachmentSlot.java (Deps: 2)
-- [ ] JsonDataManager.java (Deps: 2)
-- [ ] JsonResourceLoader.java (Deps: 2)
-- [ ] KeyClothConfig.java (Deps: 2)
-- [ ] Linear.java (Deps: 2)
-- [ ] LivingEntityHeat.java (Deps: 2)
-- [ ] LoadingConfigEvent.java (Deps: 2)
-- [ ] LocalPlayerDataHolder.java (Deps: 2)
-- [ ] LocalPlayerMixin.java (Deps: 2)
-- [ ] ModCapabilities.java (Deps: 2)
-- [ ] ModContainer.java (Deps: 2)
-- [ ] ModContainerScreen.java (Deps: 2)
-- [ ] ModDataComponents.java (Deps: 2)
-- [ ] ModEntities.java (Deps: 2)
-- [ ] ModParticles.java (Deps: 2)
-- [ ] ModSerializers.java (Deps: 2)
-- [ ] ObjectAnimationSoundChannel.java (Deps: 2)
-- [ ] OtherClothConfig.java (Deps: 2)
-- [ ] PapiManager.java (Deps: 2)
-- [ ] ParameterizedCache.java (Deps: 2)
-- [ ] ParameterizedCachePair.java (Deps: 2)
-- [ ] PlayerModelMixin.java (Deps: 2)
-- [ ] PreventsHotbarEvent.java (Deps: 2)
-- [ ] RefitKey.java (Deps: 2)
-- [ ] RefitTurnPageButton.java (Deps: 2)
-- [ ] RefitUnloadButton.java (Deps: 2)
-- [ ] ReloadCommand.java (Deps: 2)
-- [ ] RenderHeadShotAABB.java (Deps: 2)
-- [ ] ScriptManager.java (Deps: 2)
-- [ ] Serializers.java (Deps: 2)
-- [ ] ServerMessageRefreshRefitScreen.java (Deps: 2)
-- [ ] ServerMessageSound.java (Deps: 2)
-- [ ] ServerMessageUpdateEntityData.java (Deps: 2)
-- [ ] ServerPlayNetHandlerMixin.java (Deps: 2)
-- [ ] ShooterDataHolder.java (Deps: 2)
-- [ ] SLerp.java (Deps: 2)
-- [ ] SoundManager.java (Deps: 2)
-- [ ] Spline.java (Deps: 2)
-- [ ] Step.java (Deps: 2)
-- [ ] SyncBaseTimestamp.java (Deps: 2)
-- [ ] TableRecipe.java (Deps: 2)
-- [ ] TargetBlock.java (Deps: 2)
-- [ ] TimelessCommonEvents.java (Deps: 2)
-- [ ] TravelToDimensionEvent.java (Deps: 2)
-- [ ] VersionChecker.java (Deps: 2)
-- [ ] AccessorByteData.java (Deps: 3)
-- [ ] AccessorFloatData.java (Deps: 3)
-- [ ] AccessorIntData.java (Deps: 3)
-- [ ] AccessorShortData.java (Deps: 3)
-- [ ] Acknowledge.java (Deps: 3)
-- [ ] AimKey.java (Deps: 3)
-- [ ] AmmoItemBuilder.java (Deps: 3)
-- [ ] AnimationStateMachine.java (Deps: 3)
-- [ ] AttachmentItemBuilder.java (Deps: 3)
-- [ ] AttachmentItemDataAccessor.java (Deps: 3)
-- [ ] AttachmentQueryCategory.java (Deps: 3)
-- [ ] BedrockCubeBox.java (Deps: 3)
-- [ ] BlockItemDataAccessor.java (Deps: 3)
-- [ ] CapabilityRegistry.java (Deps: 3)
-- [ ] ChangeGunPropertyEvent.java (Deps: 3)
-- [ ] ClientAttachmentSkinIndex.java (Deps: 3)
-- [ ] ClientConfig.java (Deps: 3)
-- [ ] ClientMessageLaserColor.java (Deps: 3)
-- [ ] ClientMessageSyncBaseTimestamp.java (Deps: 3)
-- [ ] ClientPreventGunClick.java (Deps: 3)
-- [ ] CommonDataManager.java (Deps: 3)
-- [ ] ConfigKey.java (Deps: 3)
-- [ ] ConstraintTranslateListener.java (Deps: 3)
-- [ ] CustomInterpolator.java (Deps: 3)
-- [ ] DisplayManager.java (Deps: 3)
-- [ ] EntityHurtByGunEvent.java (Deps: 3)
-- [ ] GameRendererMixin.java (Deps: 3)
-- [ ] GunModelTypeManager.java (Deps: 3)
-- [ ] GunPackList.java (Deps: 3)
-- [ ] GunProperties.java (Deps: 3)
-- [ ] GunSmithTableBlockEntity.java (Deps: 3)
-- [ ] GunSmithTableItemRenderer.java (Deps: 3)
-- [ ] ItemInHandRendererMixin.java (Deps: 3)
-- [ ] KillAmountOverlay.java (Deps: 3)
-- [ ] KubeJSGunEventPoster.java (Deps: 3)
-- [ ] LeftHandRender.java (Deps: 3)
-- [ ] LivingEntityCrawl.java (Deps: 3)
-- [ ] LivingEntitySprint.java (Deps: 3)
-- [ ] LocalPlayerSprint.java (Deps: 3)
-- [ ] LuaAnimationConstant.java (Deps: 3)
-- [ ] LuaAnimationState.java (Deps: 3)
-- [ ] LuaGunLogicConstant.java (Deps: 3)
-- [ ] ModelAdditionalMagazineListener.java (Deps: 3)
-- [ ] ModelScaleListener.java (Deps: 3)
-- [ ] ModItems.java (Deps: 3)
-- [ ] ModRecipe.java (Deps: 3)
-- [ ] ObjectAnimationChannel.java (Deps: 3)
-- [ ] OculusCompat.java (Deps: 3)
-- [ ] PackConvertor.java (Deps: 3)
-- [ ] PackInfoManager.java (Deps: 3)
-- [ ] ParticleFactoryRegistry.java (Deps: 3)
-- [ ] PlayerAnimatorLoader.java (Deps: 3)
-- [ ] PlayerHurtByGunEvent.java (Deps: 3)
-- [ ] ProjectileExplosion.java (Deps: 3)
-- [ ] RefitTransform.java (Deps: 3)
-- [ ] RefreshClonePlayerDataEvent.java (Deps: 3)
-- [ ] RenderClothConfig.java (Deps: 3)
-- [ ] RightHandRender.java (Deps: 3)
-- [ ] ServerMessageSyncGunPack.java (Deps: 3)
-- [ ] SlotModel.java (Deps: 3)
-- [ ] StatueBlock.java (Deps: 3)
-- [ ] SyncedDataKey.java (Deps: 3)
-- [ ] TimelessForgeEventWrappers.java (Deps: 3)
-- [ ] TimelessGunSmithTableRecipeSchema.java (Deps: 3)
-- [ ] ZoomKey.java (Deps: 3)
----
-
-### **FASE 3: DEPENDENCIAS MEDIAS (4-10)** (137 arquivos)
-*Arquivos com dependencias moderadas*
-
-**Arquivos movidos da Fase 1 (dependem de outras classes do mod):**
-- [ ] RootCommand.java (Deps: 0 - mas depende de sub-comandos como `AttachmentLockCommand`, `DummyAmmoCommand`, etc.)
-- [ ] GunModSubtype.java (Deps: 0 - mas depende da interface `IGun`)
-
-- [ ] AbstractGunSmithTableBlock.java (Deps: 4)
-- [ ] AmmoCountPapi.java (Deps: 4)
-- [ ] AmmoNbtFactory.java (Deps: 4)
-- [ ] AnimationController.java (Deps: 4)
-- [ ] AttachmentDisplay.java (Deps: 4)
-- [ ] AttachmentNbtFactory.java (Deps: 4)
-- [ ] BedrockAmmoModel.java (Deps: 4)
-- [ ] BulletHoleParticle.java (Deps: 4)
-- [ ] CameraRotateListener.java (Deps: 4)
-- [ ] ClientBlockItemTooltip.java (Deps: 4)
-- [ ] CommonAttachmentIndex.java (Deps: 4)
-- [ ] CommonBlockIndex.java (Deps: 4)
-- [ ] CommonGunIndex.java (Deps: 4)
-- [ ] CommonRegistry.java (Deps: 4)
-- [ ] CompatRegistry.java (Deps: 4)
-- [ ] ConstraintRotateListener.java (Deps: 4)
-- [ ] ControllableInner.java (Deps: 4)
-- [ ] CrawlKey.java (Deps: 4)
-- [ ] GltfManager.java (Deps: 4)
-- [ ] GunAttachmentSlot.java (Deps: 4)
-- [ ] GunSmithTableRecipe.java (Deps: 4)
-- [ ] HSVSliderGroup.java (Deps: 4)
-- [ ] HumanoidOffhandRender.java (Deps: 4)
-- [ ] IAttachmentModifier.java (Deps: 4)
-- [ ] IGun.java (Deps: 4)
-- [ ] IGunOperator.java (Deps: 4)
-- [ ] InteractKeyTextOverlay.java (Deps: 4)
-- [ ] ItemInHandLayerMixin.java (Deps: 4)
-- [ ] LocalPlayerCrawl.java (Deps: 4)
-- [ ] LuaAnimationStateMachine.java (Deps: 4)
-- [ ] ModBlocks.java (Deps: 4)
-- [ ] ModelRotateListener.java (Deps: 4)
-- [ ] PlayerRespawnEvent.java (Deps: 4)
-- [ ] RecipeFilter.java (Deps: 4)
-- [ ] SyncedEntityDataEvent.java (Deps: 4)
-- [ ] TargetBlockEntity.java (Deps: 4)
-- [ ] TargetMinecartRenderer.java (Deps: 4)
-- [ ] TextShowRender.java (Deps: 4)
-- [ ] TickAnimationEvent.java (Deps: 4)
-- [ ] TimelessServerEvents.java (Deps: 4)
-- [ ] AccessorModel.java (Deps: 5)
-- [ ] AmmoBoxItemDataAccessor.java (Deps: 5)
 - [ ] AmmoDisplay.java (Deps: 5)
-- [ ] AmmoItemDataAccessor.java (Deps: 5)
-- [ ] AttachmentCacheProperty.java (Deps: 5)
-- [ ] AttachmentsTagManager.java (Deps: 5)
 - [ ] BedrockCubePerFace.java (Deps: 5)
-- [ ] CameraAnimationObject.java (Deps: 5)
-- [ ] ClientMessageRefitGun.java (Deps: 5)
-- [ ] ClientMessageUnloadAttachment.java (Deps: 5)
-- [ ] FirstPersonRenderEvent.java (Deps: 5)
-- [ ] GunSmithTableSerializer.java (Deps: 5)
 - [ ] InterpolatorUtil.java (Deps: 5)
-- [ ] InventoryEvent.java (Deps: 5)
-- [ ] LuaGunAnimationConstant.java (Deps: 5)
-- [ ] LuaStateMachineFactory.java (Deps: 5)
-- [ ] ModelTranslateListener.java (Deps: 5)
-- [ ] NetworkHandler.java (Deps: 5)
-- [ ] ObjectAnimation.java (Deps: 5)
-- [ ] ObjectAnimationRunner.java (Deps: 5)
-- [ ] RawAnimationStructure.java (Deps: 5)
-- [ ] ReloadKey.java (Deps: 5)
-- [ ] ServerMessageSyncBaseTimestamp.java (Deps: 5)
-- [ ] StatueRenderer.java (Deps: 5)
-- [ ] TooltipEvent.java (Deps: 5)
-- [ ] AccessorDatas.java (Deps: 6)
-- [ ] AmmoItemRenderer.java (Deps: 6)
-- [ ] AttachmentDataManager.java (Deps: 6)
-- [ ] AttachmentItemRenderer.java (Deps: 6)
-- [ ] AttachmentQueryEntry.java (Deps: 6)
-- [ ] BedrockModel.java (Deps: 6)
-- [ ] ClientAmmoIndex.java (Deps: 6)
-- [ ] ClientBlockIndex.java (Deps: 6)
-- [ ] ClientGunIndex.java (Deps: 6)
-- [ ] GunPackLoader.java (Deps: 6)
-- [ ] GunSmithTableItem.java (Deps: 6)
-- [ ] GunSmithTableResultSerializer.java (Deps: 6)
-- [ ] InnerThirdPersonManager.java (Deps: 6)
-- [ ] LaserColorUtil.java (Deps: 6)
-- [ ] MenuIntegration.java (Deps: 6)
-- [ ] PlayerAnimatorCompat.java (Deps: 6)
-- [ ] RecipeFilterManager.java (Deps: 6)
-- [ ] SyncedEntityData.java (Deps: 6)
-- [ ] TabConfig.java (Deps: 6)
-- [ ] TargetRenderer.java (Deps: 6)
-- [ ] TimelessClientEvents.java (Deps: 6)
-- [ ] AnimationStateContext.java (Deps: 7)
-- [ ] ConstraintObject.java (Deps: 7)
-- [ ] EntityBulletRenderer.java (Deps: 7)
-- [ ] ExtraMovementModifier.java (Deps: 7)
-- [ ] GunKubeJSEvents.java (Deps: 7)
-- [ ] GunMod.java (Deps: 7)
-- [ ] GunSmithTableRenderer.java (Deps: 7)
-- [ ] LivingEntityFireSelect.java (Deps: 7)
-- [ ] LivingEntityMixin.java (Deps: 7)
-- [ ] ModSyncedEntityData.java (Deps: 7)
-- [ ] ServerMessageSyncedEntityDataMapping.java (Deps: 7)
-- [ ] ShootKey.java (Deps: 7)
-- [ ] AnimateGeoItemRenderer.java (Deps: 8)
-- [ ] AttachmentRender.java (Deps: 8)
-- [ ] ClientHitMark.java (Deps: 8)
-- [ ] GunItemBuilder.java (Deps: 8)
-- [ ] GunNbtFactory.java (Deps: 8)
-- [ ] ICommonResourceProvider.java (Deps: 8)
-- [ ] IgniteModifier.java (Deps: 8)
-- [ ] InternalAssetLoader.java (Deps: 8)
-- [ ] LivingEntityBolt.java (Deps: 8)
-- [ ] LivingEntityDrawGun.java (Deps: 8)
-- [ ] LivingEntitySpeedModifier.java (Deps: 8)
-- [ ] LocalPlayerAim.java (Deps: 8)
-- [ ] AdsModifier.java (Deps: 9)
-- [ ] AimInaccuracyModifier.java (Deps: 9)
-- [ ] AmmoBoxItem.java (Deps: 9)
-- [ ] AmmoItem.java (Deps: 9)
-- [ ] AttachmentItem.java (Deps: 9)
-- [ ] AttachmentPropertyManager.java (Deps: 9)
-- [ ] EffectiveRangeModifier.java (Deps: 9)
-- [ ] ExplosionModifier.java (Deps: 9)
-- [ ] GunPropertyDiagrams.java (Deps: 9)
-- [ ] GunSmithTableMenu.java (Deps: 9)
-- [ ] HeatBarOverlay.java (Deps: 9)
-- [ ] LocalPlayerDraw.java (Deps: 9)
-- [ ] LocalPlayerInspect.java (Deps: 9)
-- [ ] ModEntitiesRender.java (Deps: 9)
-- [ ] PierceModifier.java (Deps: 9)
-- [ ] RawGunTableResult.java (Deps: 9)
-- [ ] SilenceModifier.java (Deps: 9)
-- [ ] SoundPlayManager.java (Deps: 9)
-- [ ] WeightModifier.java (Deps: 9)
-- [ ] AnimationStructure.java (Deps: 10)
-- [ ] BeamRenderer.java (Deps: 10)
-- [ ] ClientAttachmentItemTooltip.java (Deps: 10)
-- [ ] MouseHandlerMixin.java (Deps: 10)
-- [ ] ShellRender.java (Deps: 10)
-- [ ] TargetMinecart.java (Deps: 10)
-- [ ] TimelessItemWrapper.java (Deps: 10)
-- [ ] TimelessRecipeJS.java (Deps: 10)
----
-
-### **FASE 4: DEPENDENCIAS ALTAS (11+)** (51 arquivos)
-*Arquivos complexos do nucleo do mod*
-
-- [ ] AnimationManager.java (Deps: 11)
-- [ ] BedrockAttachmentModel.java (Deps: 11)
-- [ ] GunModPlugin.java (Deps: 11)
-- [ ] LivingEntityAim.java (Deps: 11)
-- [ ] LivingEntityReload.java (Deps: 11)
-- [ ] LocalPlayerFireSelect.java (Deps: 11)
-- [ ] MuzzleFlashRender.java (Deps: 11)
-- [ ] RpmModifier.java (Deps: 11)
-- [ ] AmmoSpeedModifier.java (Deps: 12)
-- [ ] GunItemDataAccessor.java (Deps: 12)
-- [ ] LocalPlayerBolt.java (Deps: 12)
-- [ ] RecoilModifier.java (Deps: 12)
-- [ ] RenderCrosshairEvent.java (Deps: 12)
-- [ ] ClientAttachmentIndex.java (Deps: 13)
-- [ ] InaccuracyModifier.java (Deps: 13)
-- [ ] KnockbackModifier.java (Deps: 13)
-- [ ] ModCreativeTabs.java (Deps: 13)
-- [ ] TimelessKubeJSPlugin.java (Deps: 13)
-- [ ] CommonNetworkCache.java (Deps: 14)
 - [ ] GunDisplay.java (Deps: 14)
-- [ ] LivingEntityMelee.java (Deps: 14)
-- [ ] LocalPlayerMelee.java (Deps: 14)
-- [ ] ModernKineticGunItem.java (Deps: 14)
-- [ ] ArmorIgnoreModifier.java (Deps: 15)
-- [ ] ClientIndexManager.java (Deps: 15)
-- [ ] DamageModifier.java (Deps: 15)
-- [ ] GunHudOverlay.java (Deps: 15)
-- [ ] HeadShotModifier.java (Deps: 15)
-- [ ] LivingEntityShoot.java (Deps: 15)
-- [ ] AbstractGunItem.java (Deps: 16)
-- [ ] Animations.java (Deps: 16)
-- [ ] AttachmentDataUtils.java (Deps: 16)
-- [ ] GunRefitScreen.java (Deps: 16)
-- [ ] LocalPlayerReload.java (Deps: 16)
-- [ ] TimelessAPI.java (Deps: 16)
-- [ ] BedrockAnimatedModel.java (Deps: 17)
-- [ ] BedrockGunModel.java (Deps: 17)
-- [ ] ClientGunTooltip.java (Deps: 18)
-- [ ] GunData.java (Deps: 18)
-- [ ] GunAnimationStateContext.java (Deps: 19)
-- [ ] ClientSetupEvent.java (Deps: 20)
-- [ ] GunDisplayInstance.java (Deps: 20)
-- [ ] FirstPersonRenderGunEvent.java (Deps: 21)
-- [ ] GunItemRendererWrapper.java (Deps: 21)
-- [ ] CameraSetupEvent.java (Deps: 22)
-- [ ] CommonAssetsManager.java (Deps: 22)
-- [ ] GunSmithTableScreen.java (Deps: 22)
-- [ ] LocalPlayerShoot.java (Deps: 22)
-- [ ] ModernKineticGunScriptAPI.java (Deps: 24)
-- [ ] EntityKineticBullet.java (Deps: 25)
-- [ ] ClientAssetsManager.java (Deps: 27)
 ---
 
-## WORKFLOW DE EXECUCAO
+### **FASE 4: PROXIMA CAMADA DE HABILITACAO** (3 arquivos)
+*Arquivos cujas dependencias foram resolvidas nas fases anteriores. Esta e a proxima fase a ser trabalhada.*
 
-Para cada arquivo na ordem das fases:
-
-1. **Habilitar:** Renomeie .java.disabled para .java
-2. **Corrigir:** Adapte o codigo para NeoForge 1.21.1 APIs
-3. **Testar:** Execute ./gradlew compileJava
-4. **Validar:** Se compila, continue. Se falha, reverta e analise dependencias
-
-## REGRAS IMPORTANTES
-
-- âœ… **SEMPRE** siga a ordem das fases rigorosamente  
-- âœ… **NUNCA** pule arquivos dentro de uma fase  
-- âœ… **SEMPRE** teste a compilacao apos cada arquivo habilitado  
-- âœ… **REVERTA** imediatamente se houver falha de compilacao  
-
+- [ ] BonesItem.java (Deps: 1)
+- [ ] SlotModel.java (Deps: 3)
+- [ ] RawAnimationStructure.java (Deps: 5)
 ---
 
-*Plano gerado automaticamente em 2025-07-02 18:01:20 pelo Generate-Plan.ps1 v3.0*
+### **ARQUIVOS NAO RESOLVIDOS** [ERRO]
+*Estes arquivos nao puderam ser classificados. Eles provavelmente possuem dependencias circulares entre si ou dependem de uma classe ausente/nao mapeada.*
+
+- [ ] **AbstractAccessorData.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.for (NAO RESOLVIDO)*
+- [ ] **AbstractButtonMixin.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+- [ ] **AbstractGunItem.java** (Deps: 16)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.GunItemRendererWrapper (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AllowAttachmentTagMatcher (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.inventory.tooltip.GunTooltip (NAO RESOLVIDO)*
+- [ ] **AbstractGunSmithTableBlock.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.block.entity.GunSmithTableBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.BlockItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.BlockItemBuilder (NAO RESOLVIDO)*
+- [ ] **AccessorByteData.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AbstractAccessorData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorDatas (NAO RESOLVIDO)*
+- [ ] **AccessorDatas.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.for (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AccessorModel (NAO RESOLVIDO)*
+- [ ] **AccessorFloatData.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AbstractAccessorData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorDatas (NAO RESOLVIDO)*
+- [ ] **AccessorIntData.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AbstractAccessorData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorDatas (NAO RESOLVIDO)*
+- [ ] **AccessorModel.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorDatas (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.Accessors (NAO RESOLVIDO)*
+- [ ] **Accessors.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.for (NAO RESOLVIDO)*
+- [ ] **AccessorShortData.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AbstractAccessorData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorDatas (NAO RESOLVIDO)*
+- [ ] **AccessorSparseUtils.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.for (NAO RESOLVIDO)*
+- [ ] **Acknowledge.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **AdjustmentYRotModifier.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+- [ ] **AdsModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **AimInaccuracyModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.InaccuracyType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.InaccuracyModifier (NAO RESOLVIDO)*
+- [ ] **AimKey.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AllowAttachmentTagMatcher.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **AmmoBoxItem.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+- [ ] **AmmoBoxItemDataAccessor.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModDataComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AmmoCountPapi.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AmmoHitBlockEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **AmmoItem.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAmmoIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AmmoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AmmoItemDataAccessor (NAO RESOLVIDO)*
+- [ ] **AmmoItemBuilder.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+- [ ] **AmmoItemDataAccessor.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModDataComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AmmoItemRenderer.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAmmoModel (NAO RESOLVIDO)*
+- [ ] **AmmoNbtFactory.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.compat.kubejs.util.TimelessItemType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AmmoItem (NAO RESOLVIDO)*
+- [ ] **AmmoParticleSpawner.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+- [ ] **AmmoSpeedModifier.java** (Deps: 12)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **AnimateGeoItemRenderer.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAnimatedModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaAnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.statemachine.ItemAnimationStateContext (NAO RESOLVIDO)*
+- [ ] **AnimationController.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationRunner (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationPlan (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListenerSupplier (NAO RESOLVIDO)*
+- [ ] **AnimationDataRegisterFactory.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.compat.playeranimator.PlayerAnimatorCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.AdjustmentYRotModifier (NAO RESOLVIDO)*
+- [ ] **AnimationKeyframesSerializer.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **AnimationListener.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **AnimationListenerSupplier.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **AnimationManager.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.api.event.common.GunShootEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.PlayerAnimatorCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunReloadEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunDrawEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.PlayerAnimatorAssetManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunMeleeEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **AnimationModel.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AccessorModel (NAO RESOLVIDO)*
+- [ ] **AnimationPlan.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+- [ ] **Animations.java** (Deps: 16)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationSoundChannel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AccessorModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AnimationStructure (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListenerSupplier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AnimationModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationController (NAO RESOLVIDO)*
+- [ ] **AnimationState.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+- [ ] **AnimationStateContext.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationRunner (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationController (NAO RESOLVIDO)*
+- [ ] **AnimationStateMachine.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationState (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationController (NAO RESOLVIDO)*
+- [ ] **AnimationStructure.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorDatas (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AccessorModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.accessor.AccessorSparseUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AnimationModel (NAO RESOLVIDO)*
+- [ ] **ArmorIgnoreModifier.java** (Deps: 15)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **AttachmentCacheProperty.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+- [ ] **AttachmentDataManager.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.manager.CommonDataManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **AttachmentDataUtils.java** (Deps: 16)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AttachmentIdFix.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **AttachmentItem.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AttachmentItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+- [ ] **AttachmentItemBuilder.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+- [ ] **AttachmentItemDataAccessor.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.init.ModDataComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **AttachmentItemRenderer.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.client.model.BedrockAttachmentModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.RenderDistance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+- [ ] **AttachmentLockCommand.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AttachmentNbtFactory.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.compat.kubejs.util.TimelessItemType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AttachmentItem (NAO RESOLVIDO)*
+- [ ] **AttachmentPropertyEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+- [ ] **AttachmentPropertyManager.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.AttachmentPropertyEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.event.ChangeGunPropertyEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **AttachmentQueryCategory.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.compat.jei.entry.AttachmentQueryEntry (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModCreativeTabs (NAO RESOLVIDO)*
+- [ ] **AttachmentQueryEntry.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.compat.jei.category.AttachmentQueryCategory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **AttachmentRender.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.client.model.BedrockAttachmentModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.RenderDistance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AttachmentItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+- [ ] **AttachmentsTagManager.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **BeamRenderer.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.LaserColorUtil (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **BedrockAmmoModel.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+- [ ] **BedrockAnimatedModel.java** (Deps: 17)
+  - *Depende de: com.tacz.guns.client.model.listener.model.ModelScaleListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.constraint.ConstraintObject (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.model.ModelRotateListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.model.ModelTranslateListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.camera.CameraAnimationObject (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListenerSupplier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **BedrockAttachmentModel.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.BeamRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.oculus.OculusCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAnimatedModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.TextShowRender (NAO RESOLVIDO)*
+- [ ] **BedrockGunModel.java** (Deps: 17)
+  - *Depende de: com.tacz.guns.client.model.listener.model.ModelAdditionalMagazineListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAnimatedModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **BedrockModel.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.compat.oculus.OculusCompat (NAO RESOLVIDO)*
+- [ ] **BeforeRenderHandEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **BellRing.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.server.AmmoHitBlockEvent (NAO RESOLVIDO)*
+- [ ] **BlackList.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **BlockData.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.TabConfig (NAO RESOLVIDO)*
+- [ ] **BlockIndexPOJO.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **BlockItemBuilder.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **BlockItemDataAccessor.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.init.ModDataComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **BlockRayTrace.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+- [ ] **BulletHoleOption.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModParticles (NAO RESOLVIDO)*
+- [ ] **BulletHoleParticle.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.particles.BulletHoleOption (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **CameraAnimationObject.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListenerSupplier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.camera.CameraRotateListener (NAO RESOLVIDO)*
+- [ ] **CameraRotateListener.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.camera.CameraAnimationObject (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **CameraSetupEvent.java** (Deps: 22)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.RecoilModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.modifier.ParameterizedCachePair (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **CapabilityRegistry.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModCapabilities (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.DataHolder (NAO RESOLVIDO)*
+- [ ] **ChangeGunPropertyEvent.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.AttachmentPropertyEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientAmmoIndex.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAmmoModel (NAO RESOLVIDO)*
+- [ ] **ClientAssetsManager.java** (Deps: 27)
+  - *Depende de: com.tacz.guns.client.resource.manager.PackInfoManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.ClientIndexManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.manager.GltfManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.vmlib.LuaGunAnimationConstant (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.vmlib.LuaAnimationConstant (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.manager.SoundAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.manager.JsonDataManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AnimationStructure (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.manager.DisplayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.manager.ScriptManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.serialize.AnimationKeyframesSerializer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ClientAttachmentIndex.java** (Deps: 13)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAttachmentModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentSkinIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ClientAttachmentItemTooltip.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientAttachmentSkinIndex.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.BedrockAttachmentModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+- [ ] **ClientBlockIndex.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.BlockIndexPOJO (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+- [ ] **ClientBlockItemTooltip.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+- [ ] **ClientConfig.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **ClientGunIndex.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ClientGunTooltip.java** (Deps: 18)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.input.RefitKey (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.inventory.tooltip.GunTooltip (NAO RESOLVIDO)*
+- [ ] **ClientHitMark.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.entity.TargetMinecart (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.event.RenderCrosshairEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityHurtByGunEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.overlay.KillAmountOverlay (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityKillByGunEvent (NAO RESOLVIDO)*
+- [ ] **ClientIndexManager.java** (Deps: 15)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAmmoIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.BlockIndexPOJO (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientMessageCraft.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.inventory.GunSmithTableMenu (NAO RESOLVIDO)*
+- [ ] **ClientMessageLaserColor.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerAim.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerBoltGun.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerCancelReload.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerCrawl.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerDrawGun.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerFireSelect.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerMelee.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerReloadGun.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerShoot.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessagePlayerZoom.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessageRefitGun.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageRefreshRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientMessageSyncBaseTimestamp.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ClientMessageUnloadAttachment.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageRefreshRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientPreventGunClick.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.input.InteractKey (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ClientSetupEvent.java** (Deps: 20)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.tooltip.ClientBlockItemTooltip (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.PlayerAnimatorCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.tooltip.ClientAttachmentItemTooltip (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.overlay.HeatBarOverlay (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AmmoBoxItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.tooltip.ClientGunTooltip (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.controllable.ControllableCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.overlay.InteractKeyTextOverlay (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.overlay.KillAmountOverlay (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.overlay.GunHudOverlay (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.inventory.tooltip.GunTooltip (NAO RESOLVIDO)*
+- [ ] **ClothConfigScreen.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.init.CompatRegistry (NAO RESOLVIDO)*
+- [ ] **CommonAssetsManager.java** (Deps: 22)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.BlockData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.network.CommonNetworkCache (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.TabConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageSyncGunPack (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.ICommonResourceProvider (NAO RESOLVIDO)*
+- [ ] **CommonAttachmentIndex.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **CommonAttachmentIndexSerializer.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+- [ ] **CommonBlockIndex.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.BlockData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.BlockIndexPOJO (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **CommonBlockIndexSerializer.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.index.CommonBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.BlockIndexPOJO (NAO RESOLVIDO)*
+- [ ] **CommonDataManager.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.resource.manager.JsonDataManager (NAO RESOLVIDO)*
+- [ ] **CommonGunIndex.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **CommonGunIndexSerializer.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+- [ ] **CommonLoadPack.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **CommonNetworkCache.java** (Deps: 14)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.BlockData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.ICommonResourceProvider (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **CommonRegistry.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.ModSyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModAttributes (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.GunPackLoader (NAO RESOLVIDO)*
+- [ ] **CompatRegistry.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.compat.oculus.OculusCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.compat.ClothConfigScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.carryon.BlackList (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.cloth.MenuIntegration (NAO RESOLVIDO)*
+- [ ] **ConfigKey.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.gui.compat.ClothConfigScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.cloth.MenuIntegration (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.CompatRegistry (NAO RESOLVIDO)*
+- [ ] **ConstraintObject.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.client.model.listener.constraint.ConstraintTranslateListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.listener.constraint.ConstraintRotateListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListenerSupplier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ConstraintRotateListener.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.model.listener.constraint.ConstraintObject (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ConstraintTranslateListener.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.listener.constraint.ConstraintObject (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ControllableCompat.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.compat.controllable.ControllableInner (NAO RESOLVIDO)*
+- [ ] **ControllableInner.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ConvertCommand.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.resource.PackConvertor (NAO RESOLVIDO)*
+- [ ] **CrawlKey.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **CrosshairDropdown.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.renderer.crosshair.CrosshairType (NAO RESOLVIDO)*
+- [ ] **CrosshairType.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **CustomGunItemBuilder.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.compat.kubejs.custom.KubeJSCustomGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.TimelessKubeJSPlugin (NAO RESOLVIDO)*
+- [ ] **DamageModifier.java** (Deps: 15)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **DataEntry.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedDataKey (NAO RESOLVIDO)*
+- [ ] **DataHolder.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.entity.sync.core.DataEntry (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedDataKey (NAO RESOLVIDO)*
+- [ ] **DefaultAssets.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **DefaultTableItem.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.GunSmithTableItem (NAO RESOLVIDO)*
+- [ ] **DestroyGlassBlock.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.event.server.AmmoHitBlockEvent (NAO RESOLVIDO)*
+- [ ] **DisplayManager.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.manager.JsonDataManager (NAO RESOLVIDO)*
+- [ ] **DummyAmmoCommand.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **EffectiveRangeModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **EntityBulletRenderer.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.client.resource.InternalAssetLoader (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAmmoModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.GunItemRendererWrapper (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **EntityDamageEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.init.ModDamageTypes (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModAttributes (NAO RESOLVIDO)*
+- [ ] **EntityHurtByGunEvent.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityKillByGunEvent (NAO RESOLVIDO)*
+- [ ] **EntityKillByGunEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **EntityKineticBullet.java** (Deps: 25)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.ExplodeUtil (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.particles.BulletHoleOption (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunKill (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModDamageTypes (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.server.AmmoHitBlockEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.block.BlockRayTrace (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityHurtByGunEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.particle.AmmoParticleSpawner (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunHurt (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityKillByGunEvent (NAO RESOLVIDO)*
+- [ ] **ExplodeUtil.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.util.block.ProjectileExplosion (NAO RESOLVIDO)*
+- [ ] **ExplosionModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ExtraMovementModifier.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **FireSelectKey.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **FirstPersonRenderEvent.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+- [ ] **FirstPersonRenderGunEvent.java** (Deps: 21)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.screen.RefitTransform (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.MuzzleFlashRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAttachmentModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.RenderItemInHandBobEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.GunItemRendererWrapper (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GameRendererMixin.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.event.RenderLevelBobEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.RenderItemInHandBobEvent (NAO RESOLVIDO)*
+- [ ] **GetJarResources.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **GltfManager.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AnimationStructure (NAO RESOLVIDO)*
+- [ ] **GunAnimationStateContext.java** (Deps: 19)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.ShellRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.statemachine.ItemAnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **GunAttachmentSlot.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GunData.java** (Deps: 18)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.InaccuracyType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.RpmModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **GunDisplayInstance.java** (Deps: 20)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.sound.SoundManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.InternalAssetLoader (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaAnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.other.GunModelTypeManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.Animations (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.gltf.AnimationStructure (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.statemachine.GunAnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaStateMachineFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationController (NAO RESOLVIDO)*
+- [ ] **GunDrawEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **GunFinishReloadEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **GunFireEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.event.common.GunShootEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **GunFireSelectEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **GunHudOverlay.java** (Deps: 15)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **GunItemBuilder.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.gun.GunItemManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GunItemDataAccessor.java** (Deps: 12)
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModDataComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GunItemManager.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+- [ ] **GunItemRendererWrapper.java** (Deps: 21)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.screen.RefitTransform (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.MuzzleFlashRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.RenderDistance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.event.FirstPersonRenderGunEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.event.CameraSetupEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaAnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.ShellRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.statemachine.GunAnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GunKubeJSEvents.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessForgeEventWrappers (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.RenderLevelBobEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.RenderItemInHandBobEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.server.AmmoHitBlockEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.SwapItemWithOffHand (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GunMeleeEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **GunMod.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.ClientConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.resource.ResourceManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.TimelessKubeJSPlugin (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.GunPackLoader (NAO RESOLVIDO)*
+- [ ] **GunModelTypeManager.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+- [ ] **GunModPlugin.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.compat.jei.category.AttachmentQueryCategory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.jei.entry.AttachmentQueryEntry (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.jei.category.GunSmithTableCategory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.gun.GunItemManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.BlockItemBuilder (NAO RESOLVIDO)*
+- [ ] **GunNbtFactory.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.TimelessItemType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.AttachmentNbtFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AttachmentItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **GunPackList.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.GunSmithTableScreen (NAO RESOLVIDO)*
+- [ ] **GunPackLoader.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.util.GetJarResources (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.resource.ResourceManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **GunProperties.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.modifier.ParameterizedCachePair (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.InaccuracyModifier (NAO RESOLVIDO)*
+- [ ] **GunPropertyDiagrams.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **GunRefitScreen.java** (Deps: 16)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.screen.RefitTransform (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.sound.SoundManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessageLaserColor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessageUnloadAttachment (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessageRefitGun (NAO RESOLVIDO)*
+- [ ] **GunReloadEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **GunShootEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireEvent (NAO RESOLVIDO)*
+- [ ] **GunSmithTableBlockA.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.block.AbstractGunSmithTableBlock (NAO RESOLVIDO)*
+- [ ] **GunSmithTableBlockB.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.block.AbstractGunSmithTableBlock (NAO RESOLVIDO)*
+- [ ] **GunSmithTableBlockC.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.block.AbstractGunSmithTableBlock (NAO RESOLVIDO)*
+- [ ] **GunSmithTableBlockEntity.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.inventory.GunSmithTableMenu (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **GunSmithTableCategory.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+- [ ] **GunSmithTableItem.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.client.resource.index.ClientBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.BlockItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.GunSmithTableItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.BlockItemBuilder (NAO RESOLVIDO)*
+- [ ] **GunSmithTableItemRenderer.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.block.GunSmithTableRenderer (NAO RESOLVIDO)*
+- [ ] **GunSmithTableMenu.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageCraft (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **GunSmithTableRecipe.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.resource.pojo.data.recipe.TableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+- [ ] **GunSmithTableRenderer.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.client.resource.index.ClientBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.GunSmithTableBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.AbstractGunSmithTableBlock (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **GunSmithTableResult.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.TabConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.RawGunTableResult (NAO RESOLVIDO)*
+- [ ] **GunSmithTableResultComponents.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.compat.kubejs.recipe.TimelessRecipeJS (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.GunSmithTableResultInfo (NAO RESOLVIDO)*
+- [ ] **GunSmithTableResultInfo.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.compat.kubejs.util.TimelessItemWrapper (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+- [ ] **GunSmithTableResultSerializer.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.TabConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.RawGunTableResult (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **GunSmithTableScreen.java** (Deps: 22)
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.inventory.GunSmithTableMenu (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.RenderDistance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessageCraft (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.components.smith.TypeButton (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.components.smith.ResultButton (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.TabConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.components.GunPackList (NAO RESOLVIDO)*
+- [ ] **GunSmithTableSerializer.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.recipe.TableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **GunSoundInstance.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.manager.SoundAssetsManager (NAO RESOLVIDO)*
+- [ ] **GunTooltip.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **HeadShotModifier.java** (Deps: 15)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **HeatBarOverlay.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **HideTooltipPartCommand.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **HSVSliderGroup.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.util.LaserColorUtil (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **HumanoidModelMixin.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.animation.third.InnerThirdPersonManager (NAO RESOLVIDO)*
+- [ ] **HumanoidOffhandRender.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **IAttachmentModifier.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+- [ ] **IClientPlayerGunOperator.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+- [ ] **ICommonResourceProvider.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.BlockData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+- [ ] **IgniteModifier.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **IGun.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **IGunOperator.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+- [ ] **InaccuracyModifier.java** (Deps: 13)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.InaccuracyType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **InaccuracyType.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **InnerThirdPersonManager.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.compat.playeranimator.PlayerAnimatorCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **InspectKey.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+- [ ] **InteractKey.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.util.InteractKeyConfigRead (NAO RESOLVIDO)*
+- [ ] **InteractKeyConfigRead.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **InteractKeyTextOverlay.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.input.InteractKey (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.util.InteractKeyConfigRead (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **InternalAssetLoader.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.Animations (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+- [ ] **InventoryAttachmentSlot.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+- [ ] **InventoryEvent.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.SwapItemWithOffHand (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ItemAnimationStateContext.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+- [ ] **ItemInHandLayerMixin.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.model.functional.MuzzleFlashRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.functional.ShellRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.other.HumanoidOffhandRender (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ItemInHandRendererMixin.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **JsonDataManager.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **JsonResourceLoader.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **KillAmountOverlay.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **KnockbackModifier.java** (Deps: 13)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **KubeJSCustomGunItem.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.item.ModernKineticGunItem (NAO RESOLVIDO)*
+- [ ] **KubeJSGunEventPoster.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessClientEvents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessCommonEvents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessServerEvents (NAO RESOLVIDO)*
+- [ ] **LaserColorUtil.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LeftHandRender.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.BedrockAnimatedModel (NAO RESOLVIDO)*
+- [ ] **LivingEntityAim.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.AdsModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LivingEntityBolt.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.LivingEntityDrawGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.LivingEntityShoot (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LivingEntityCrawl.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LivingEntityDrawGun.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunDraw (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunDrawEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LivingEntityFireSelect.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunFireSelect (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireSelectEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LivingEntityHeat.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+- [ ] **LivingEntityMelee.java** (Deps: 14)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunMelee (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.LivingEntityDrawGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunMeleeEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LivingEntityMixin.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.ModSyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LivingEntityReload.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.LivingEntityDrawGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunReload (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.LivingEntityShoot (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunReloadEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LivingEntityShoot.java** (Deps: 15)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunShoot (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunShootEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.LivingEntityDrawGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageSyncBaseTimestamp (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LivingEntitySpeedModifier.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.WeightModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.ExtraMovementModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LivingEntitySprint.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LoadingConfigEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.config.util.InteractKeyConfigRead (NAO RESOLVIDO)*
+- [ ] **LocalPlayerAim.java** (Deps: 8)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.AdsModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerAim (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LocalPlayerBolt.java** (Deps: 12)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerBoltGun (NAO RESOLVIDO)*
+- [ ] **LocalPlayerCrawl.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerCrawl (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LocalPlayerDataHolder.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LocalPlayerDraw.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerDrawGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunDrawEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LocalPlayerFireSelect.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerFireSelect (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireSelectEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+- [ ] **LocalPlayerInspect.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **LocalPlayerMelee.java** (Deps: 14)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerMelee (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunMeleeEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+- [ ] **LocalPlayerMixin.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+- [ ] **LocalPlayerReload.java** (Deps: 16)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerReloadGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunReloadEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerCancelReload (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LocalPlayerShoot.java** (Deps: 22)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunShootEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.sound.SoundManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.SilenceModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerShoot (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+- [ ] **LocalPlayerSprint.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **LuaAnimationConstant.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+- [ ] **LuaAnimationState.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaStateMachineFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationState (NAO RESOLVIDO)*
+- [ ] **LuaAnimationStateMachine.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaStateMachineFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationController (NAO RESOLVIDO)*
+- [ ] **LuaGunAnimationConstant.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.vmlib.LuaAnimationConstant (NAO RESOLVIDO)*
+- [ ] **LuaStateMachineFactory.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaAnimationStateMachine (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.LuaAnimationState (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationState (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationController (NAO RESOLVIDO)*
+- [ ] **MeleeKey.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+- [ ] **MenuIntegration.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.compat.cloth.client.RenderClothConfig (NAO RESOLVIDO)*
+- [ ] **ModAttributes.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModBlocks.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.block.entity.StatueBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.GunSmithTableBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.TargetBlockEntity (NAO RESOLVIDO)*
+- [ ] **ModCapabilities.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.DataHolder (NAO RESOLVIDO)*
+- [ ] **ModContainer.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.inventory.GunSmithTableMenu (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModContainerScreen.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.inventory.GunSmithTableMenu (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.GunSmithTableScreen (NAO RESOLVIDO)*
+- [ ] **ModCreativeTabs.java** (Deps: 13)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AmmoItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AmmoBoxItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.GunSmithTableItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AttachmentItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+- [ ] **ModDamageTypes.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModDataComponents.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModelAdditionalMagazineListener.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ModelRotateListener.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ModelScaleListener.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ModelTranslateListener.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.client.model.BedrockAnimatedModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ModEntities.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.entity.TargetMinecart (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModEntitiesRender.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.entity.TargetMinecart (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.StatueBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.GunSmithTableBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.entity.TargetMinecartRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.block.StatueRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.block.TargetRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.entity.EntityBulletRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.TargetBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.block.GunSmithTableRenderer (NAO RESOLVIDO)*
+- [ ] **ModernKineticGunItem.java** (Deps: 14)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.ModernKineticGunScriptAPI (NAO RESOLVIDO)*
+- [ ] **ModernKineticGunScriptAPI.java** (Deps: 24)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.shooter.ShooterDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.sound.SoundManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.util.AttachmentDataUtils (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.SilenceModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.AmmoSpeedModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunFire (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.GunFireEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.animation.statemachine.GunAnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.InaccuracyModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ModItems.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.gun.GunItemManager (NAO RESOLVIDO)*
+- [ ] **ModPainting.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModParticles.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.particles.BulletHoleOption (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModRecipe.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableSerializer (NAO RESOLVIDO)*
+- [ ] **ModSounds.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ModSyncedEntityData.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.Serializers (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedDataKey (NAO RESOLVIDO)*
+- [ ] **MouseHandlerMixin.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **MuzzleFlashRender.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.compat.oculus.OculusCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.custom.SilenceModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+- [ ] **NetworkHandler.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.handshake.Acknowledge (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.handshake.ServerMessageSyncedEntityDataMapping (NAO RESOLVIDO)*
+- [ ] **ObjectAnimation.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationRunner (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationSoundChannel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListenerSupplier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ObjectAnimationChannel.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+- [ ] **ObjectAnimationRunner.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationSoundChannel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.AnimationListener (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimation (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.ObjectAnimationChannel (NAO RESOLVIDO)*
+- [ ] **ObjectAnimationSoundChannel.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+- [ ] **OculusCompat.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.init.CompatRegistry (NAO RESOLVIDO)*
+- [ ] **PackConvertor.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **PackInfoManager.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **PapiManager.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.model.papi.AmmoCountPapi (NAO RESOLVIDO)*
+- [ ] **ParameterizedCache.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+- [ ] **ParameterizedCachePair.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.modifier.ParameterizedCache (NAO RESOLVIDO)*
+- [ ] **ParticleFactoryRegistry.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.particle.BulletHoleParticle (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModParticles (NAO RESOLVIDO)*
+- [ ] **PierceModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **PlayerAnimatorAssetManager.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **PlayerAnimatorCompat.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.AnimationDataRegisterFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.AnimationManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.PlayerAnimatorLoader (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.PlayerAnimatorAssetManager (NAO RESOLVIDO)*
+- [ ] **PlayerAnimatorLoader.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.playeranimator.animation.PlayerAnimatorAssetManager (NAO RESOLVIDO)*
+- [ ] **PlayerEnterWorld.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.resource.PackConvertor (NAO RESOLVIDO)*
+- [ ] **PlayerHurtByGunEvent.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityHurtByGunEvent (NAO RESOLVIDO)*
+- [ ] **PlayerModelMixin.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **PlayerRespawnEvent.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.ModernKineticGunScriptAPI (NAO RESOLVIDO)*
+- [ ] **PlayGunSoundEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.sound.GunSoundInstance (NAO RESOLVIDO)*
+- [ ] **PreventGunClick.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **PreventsHotbarEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.GunSmithTableScreen (NAO RESOLVIDO)*
+- [ ] **ProjectileExplosion.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.util.block.BlockRayTrace (NAO RESOLVIDO)*
+- [ ] **RawGunTableResult.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.block.TabConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+- [ ] **RecipeFilter.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **RecipeFilterManager.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.resource.filter.RecipeFilter (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **RecoilModifier.java** (Deps: 12)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.modifier.ParameterizedCachePair (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **RefitKey.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **RefitTransform.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **RefitTurnPageButton.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+- [ ] **RefitUnloadButton.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+- [ ] **RefreshClonePlayerDataEvent.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ReloadCommand.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.resource.ClientAssetsManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ReloadKey.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ReloadResourceEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.resource.InternalAssetLoader (NAO RESOLVIDO)*
+- [ ] **RenderClothConfig.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.renderer.crosshair.CrosshairType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.cloth.widget.CrosshairDropdown (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **RenderConfig.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.renderer.crosshair.CrosshairType (NAO RESOLVIDO)*
+- [ ] **RenderCrosshairEvent.java** (Deps: 12)
+  - *Depende de: com.tacz.guns.client.renderer.crosshair.CrosshairType (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateContext (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine (NAO RESOLVIDO)*
+- [ ] **RenderDistance.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **RenderHeadShotAABB.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **RenderItemInHandBobEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **RenderLevelBobEvent.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **ResourceManager.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **ResultButton.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **RightHandRender.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.model.BedrockAnimatedModel (NAO RESOLVIDO)*
+- [ ] **RpmModifier.java** (Deps: 11)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ScriptManager.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **Serializers.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedDataKey (NAO RESOLVIDO)*
+- [ ] **ServerGamePacketListenerImplMixin.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ServerMessageCraft.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.client.gui.GunSmithTableScreen (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunDraw.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.GunDrawEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunFire.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.GunFireEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunFireSelect.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.GunFireSelectEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunHurt.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.EntityHurtByGunEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunKill.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.EntityKillByGunEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunMelee.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.GunMeleeEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunReload.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.GunReloadEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageGunShoot.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.GunShootEvent (NAO RESOLVIDO)*
+- [ ] **ServerMessageRefreshRefitScreen.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gui.GunRefitScreen (NAO RESOLVIDO)*
+- [ ] **ServerMessageSound.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+- [ ] **ServerMessageSwapItem.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.client.event.SwapItemWithOffHand (NAO RESOLVIDO)*
+- [ ] **ServerMessageSyncBaseTimestamp.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerDataHolder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessageSyncBaseTimestamp (NAO RESOLVIDO)*
+- [ ] **ServerMessageSyncedEntityDataMapping.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.handshake.Acknowledge (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedDataKey (NAO RESOLVIDO)*
+- [ ] **ServerMessageSyncGunPack.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.client.resource.ClientIndexManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.network.CommonNetworkCache (NAO RESOLVIDO)*
+- [ ] **ServerMessageUpdateEntityData.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedEntityData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.DataEntry (NAO RESOLVIDO)*
+- [ ] **ServerPlayerMixin.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **ServerPlayNetHandlerMixin.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageSwapItem (NAO RESOLVIDO)*
+- [ ] **ShellRender.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.oculus.OculusCompat (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockAmmoModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.BedrockGunModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **ShooterDataHolder.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+- [ ] **ShootKey.java** (Deps: 7)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.gameplay.LocalPlayerSprint (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.SoundPlayManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **SilenceModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **SoundAssetsManager.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **SoundManager.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.network.message.ServerMessageSound (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+- [ ] **SoundPlayManager.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageSound (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.sound.GunSoundInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.sound.SoundManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModSounds (NAO RESOLVIDO)*
+- [ ] **StatueBlock.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.block.entity.StatueBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+- [ ] **StatueBlockEntity.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+- [ ] **StatueRenderer.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.block.entity.StatueBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.InternalAssetLoader (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.TargetBlock (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **SwapItemWithOffHand.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.api.event.common.KubeJSGunEventPoster (NAO RESOLVIDO)*
+- [ ] **SyncBaseTimestamp.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageSyncBaseTimestamp (NAO RESOLVIDO)*
+- [ ] **SyncedDataKey.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedEntityData (NAO RESOLVIDO)*
+- [ ] **SyncedEntityData.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.init.CommonRegistry (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.handshake.ServerMessageSyncedEntityDataMapping (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.SyncedDataKey (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.entity.sync.core.DataHolder (NAO RESOLVIDO)*
+- [ ] **SyncedEntityDataEvent.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ServerMessageUpdateEntityData (NAO RESOLVIDO)*
+- [ ] **TabConfig.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+- [ ] **TableRecipe.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+- [ ] **TargetBlock.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.TargetBlockEntity (NAO RESOLVIDO)*
+- [ ] **TargetBlockEntity.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.TargetBlock (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModSounds (NAO RESOLVIDO)*
+- [ ] **TargetMinecart.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.entity.public (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModBlocks (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.EntityHurtByGunEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModSounds (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.event.ServerMessageGunHurt (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **TargetMinecartItem.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.entity.TargetMinecart (NAO RESOLVIDO)*
+- [ ] **TargetMinecartRenderer.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.entity.TargetMinecart (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.InternalAssetLoader (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+- [ ] **TargetRenderer.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.client.resource.InternalAssetLoader (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.TargetBlock (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.block.entity.TargetBlockEntity (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **TextShowRender.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.client.model.papi.PapiManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.model.bedrock.BedrockModel (NAO RESOLVIDO)*
+- [ ] **TickAnimationEvent.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **TimelessAPI.java** (Deps: 16)
+  - *Depende de: com.tacz.guns.resource.index.CommonAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.ClientIndexManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientBlockIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAttachmentIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientAmmoIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.GunSmithTableRecipe (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.index.ClientGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.client.resource.GunDisplayInstance (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **TimelessClientEvents.java** (Deps: 6)
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessKubeJSEventRegister (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.RenderLevelBobEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.RenderItemInHandBobEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.client.event.SwapItemWithOffHand (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.GunKubeJSEvents (NAO RESOLVIDO)*
+- [ ] **TimelessCommonEvents.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessKubeJSEventRegister (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.GunKubeJSEvents (NAO RESOLVIDO)*
+- [ ] **TimelessForgeEventWrappers.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.event.BeforeRenderHandEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.server.AmmoHitBlockEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+- [ ] **TimelessGunSmithTableRecipeSchema.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.compat.kubejs.recipe.GunSmithTableResultComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.recipe.TimelessRecipeJS (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.GunSmithTableResultInfo (NAO RESOLVIDO)*
+- [ ] **TimelessItemType.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+- [ ] **TimelessItemWrapper.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.AmmoNbtFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AmmoItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.AttachmentNbtFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.GunNbtFactory (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.item.AttachmentItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.DefaultAssets (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.BlockItemBuilder (NAO RESOLVIDO)*
+- [ ] **TimelessKubeJSEventRegister.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.compat.kubejs.events.GunKubeJSEvents (NAO RESOLVIDO)*
+- [ ] **TimelessKubeJSPlugin.java** (Deps: 13)
+  - *Depende de: com.tacz.guns.api.item.gun.AbstractGunItem (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.recipe.TimelessGunSmithTableRecipeSchema (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessClientEvents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.recipe.GunSmithTableResultComponents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessCommonEvents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.TimelessItemWrapper (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.GunSmithTableResultInfo (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.gun.GunItemManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessServerEvents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.GunKubeJSEvents (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.custom.CustomGunItemBuilder (NAO RESOLVIDO)*
+- [ ] **TimelessRecipeJS.java** (Deps: 10)
+  - *Depende de: com.tacz.guns.api.item.builder.AmmoItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.AttachmentItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.TimelessAPI (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.index.CommonGunIndex (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.builder.GunItemBuilder (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.util.GunSmithTableResultInfo (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.crafting.result.GunSmithTableResult (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **TimelessServerEvents.java** (Deps: 4)
+  - *Depende de: com.tacz.guns.compat.kubejs.events.TimelessKubeJSEventRegister (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.server.AmmoHitBlockEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.event.common.AttachmentPropertyEvent (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.compat.kubejs.events.GunKubeJSEvents (NAO RESOLVIDO)*
+- [ ] **TooltipEvent.java** (Deps: 5)
+  - *Depende de: com.tacz.guns.api.item.nbt.BlockItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.init.ModItems (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.item.nbt.AmmoItemDataAccessor (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.config.client.RenderConfig (NAO RESOLVIDO)*
+- [ ] **TravelToDimensionEvent.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.api.item.IGun (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.entity.IGunOperator (NAO RESOLVIDO)*
+- [ ] **TypeButton.java** (Deps: 1)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+- [ ] **VersionChecker.java** (Deps: 2)
+  - *Depende de: com.tacz.guns.GunMod (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **WeightModifier.java** (Deps: 9)
+  - *Depende de: com.tacz.guns.api.modifier.IAttachmentModifier (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentPropertyManager (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.pojo.data.gun.GunData (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.api.GunProperties (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.modifier.AttachmentCacheProperty (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.resource.CommonAssetsManager (NAO RESOLVIDO)*
+- [ ] **ZoomKey.java** (Deps: 3)
+  - *Depende de: com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.NetworkHandler (NAO RESOLVIDO)*
+  - *Depende de: com.tacz.guns.network.message.ClientMessagePlayerZoom (NAO RESOLVIDO)*
+
+---
+*Plano gerado automaticamente em 2025-07-03 00:21:48 pelo Generate-Plan.ps1 v4.3*
+
+
+
