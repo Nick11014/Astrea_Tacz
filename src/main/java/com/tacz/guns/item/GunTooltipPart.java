@@ -1,7 +1,6 @@
 package com.tacz.guns.item;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
+import com.tacz.guns.init.ModDataComponents;
 import net.minecraft.world.item.ItemStack;
 
 public enum GunTooltipPart {
@@ -19,14 +18,17 @@ public enum GunTooltipPart {
     }
 
     public static int getHideFlags(ItemStack stack) {
-        CompoundTag tag = stack.getTag();
-        if (tag != null && tag.contains("HideFlags", Tag.TAG_ANY_NUMERIC)) {
-            return tag.getInt("HideFlags");
+        // Migrado para DataComponents no NeoForge 1.21.1
+        Integer hideFlags = stack.get(ModDataComponents.HIDE_FLAGS.get());
+        if (hideFlags != null) {
+            return hideFlags;
         }
-        return stack.getItem().getDefaultTooltipHideFlags(stack);
+        // Fallback para 0 se não houver flags definidas
+        return 0;
     }
 
     public static void setHideFlags(ItemStack stack, int mask) {
-        stack.getOrCreateTag().putInt("HideFlags", mask);
+        // Migrado para DataComponents no NeoForge 1.21.1
+        stack.set(ModDataComponents.HIDE_FLAGS.get(), mask);
     }
 }

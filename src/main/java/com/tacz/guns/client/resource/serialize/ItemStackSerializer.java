@@ -1,8 +1,8 @@
 package com.tacz.guns.client.resource.serialize;
 
 import com.google.gson.*;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.crafting.CraftingHelper;
 
 import java.lang.reflect.Type;
 
@@ -11,7 +11,13 @@ public class ItemStackSerializer implements JsonDeserializer<ItemStack> {
     public ItemStack deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         if (json.isJsonObject()) {
             JsonObject jsonObject = json.getAsJsonObject();
-            return CraftingHelper.getItemStack(jsonObject, true, false);
+            // Migrado para NeoForge 1.21.1: CraftingHelper.getItemStack -> ItemStack.CODEC
+            try {
+                return ItemStack.CODEC.parse(JsonOps.INSTANCE, jsonObject)
+                    .getOrThrow(error -> new JsonSyntaxException("Failed to parse ItemStack: " + error));
+            } catch (Exception e) {
+                throw new JsonSyntaxException("Failed to deserialize ItemStack from JSON: " + jsonObject, e);
+            }
         } else {
             throw new JsonSyntaxException("Expected " + json + " to be a ItemStack because it's not an object");
         }

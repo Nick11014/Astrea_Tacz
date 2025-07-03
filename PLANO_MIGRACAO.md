@@ -1,9 +1,9 @@
 ﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 5/81 |
+| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | 🔄 11/81 |
 | **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
 | **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
 | **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **100/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
+| **TOTAL** | **Todos os arquivos** | **623** | **106/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
 | **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
 | **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
 
@@ -165,7 +165,7 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 
 ---
 
-#### **Fase 1.3: Interação com Itens e Dados (ItemStack & Data Components)**
+#### **Fase 1.3: Interação com Itens e Dados (ItemStack & Data Components)** ✅
 *O acesso direto a NBT via `.getTag()` foi substituído pelo sistema de "Data Components" para melhorar o desempenho e a clareza.*
 
 **Ação Recomendada:**
@@ -175,11 +175,12 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 - **Tooltips:** O método `getTooltipLines` mudou sua assinatura. Agora ele requer `(TooltipContext, Player, TooltipFlag)`.
 - **Serialização:** O `CraftingHelper.getItemStack` foi alterado. Investigue as novas formas de carregar `ItemStack` de JSON, possivelmente através de `ItemStack.CODEC`.
 
-- [ ] IAnimationItem.java
-- [ ] LuaNbtAccessor.java
-- [ ] IComponentTooltip.java
-- [ ] GunTooltipPart.java
-- [ ] ItemStackSerializer.java
+- [x] ModDataComponents.java ✅ **CRIADO** - Sistema completo de DataComponents para substituir NBT
+- [x] IAnimationItem.java ✅ **CONCLUÍDO** - Migrado ItemStack.isSameItemSameTags -> ItemStack.matches
+- [x] LuaNbtAccessor.java ✅ **CONCLUÍDO** - Reescrito para usar DataComponents com fallback NBT 
+- [x] IComponentTooltip.java ✅ **CONCLUÍDO** - Atualizado getTooltipLines para usar TooltipContext
+- [x] GunTooltipPart.java ✅ **CONCLUÍDO** - Migrado de NBT para DataComponents (hide flags)
+- [x] ItemStackSerializer.java ✅ **CONCLUÍDO** - Migrado CraftingHelper.getItemStack -> ItemStack.CODEC
 
 ---
 
