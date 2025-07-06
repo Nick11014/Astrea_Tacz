@@ -2,6 +2,7 @@ package com.tacz.guns.api.item.gun;
 
 import com.google.gson.annotations.SerializedName;
 import com.mojang.serialization.Codec;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.StringRepresentable;
@@ -21,7 +22,8 @@ public enum FireMode implements StringRepresentable {
      * 多连发
      */
     @SerializedName("burst")
-    BURST,    /**
+    BURST,
+    /**
      * 未知的其他情况？
      */
     @SerializedName("unknown")
@@ -29,7 +31,17 @@ public enum FireMode implements StringRepresentable {
 
     // Codecs necessários para DataComponents no NeoForge 1.21.1
     public static final Codec<FireMode> CODEC = StringRepresentable.fromEnum(FireMode::values);
-    public static final StreamCodec<?, FireMode> STREAM_CODEC = ByteBufCodecs.fromCodec(CODEC);
+    public static final StreamCodec<RegistryFriendlyByteBuf, FireMode> STREAM_CODEC = 
+        StreamCodec.of((buf, mode) -> buf.writeUtf(mode.getSerializedName()),
+                      buf -> {
+                          String name = buf.readUtf();
+                          for (FireMode mode : values()) {
+                              if (mode.getSerializedName().equals(name)) {
+                                  return mode;
+                              }
+                          }
+                          return UNKNOWN;
+                      });
 
     @Override
     public String getSerializedName() {

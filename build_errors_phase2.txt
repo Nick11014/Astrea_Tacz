@@ -1,663 +1,732 @@
-﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
-Reusing configuration cache.
-> Task :cacheVersionManifest1.21.1 UP-TO-DATE
-> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
-> Task :neoFormUnzipAdditionalSources UP-TO-DATE
-> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+﻿Reusing configuration cache.
 > Task :processTestResources NO-SOURCE
+> Task :neoFormUnzipAdditionalSources UP-TO-DATE
+> Task :neoFormListLibraries UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430DownloadAssets UP-TO-DATE
+> Task :neoFormJoined1.21.1-20240808.144430ExtractNatives UP-TO-DATE
+> Task :cacheVersionManifest1.21.1 UP-TO-DATE
 > Task :cacheVersionExecutableClient1.21.1 UP-TO-DATE
 > Task :cacheVersionExecutableServer1.21.1 UP-TO-DATE
 > Task :cacheVersionMappingsClient1.21.1 UP-TO-DATE
 > Task :neoFormExtractServer UP-TO-DATE
-> Task :neoFormStripClient UP-TO-DATE
 > Task :cacheVersionMappingsServer1.21.1 UP-TO-DATE
-> Task :neoFormStripServer UP-TO-DATE
 > Task :create1.21.1ClientExtraJar UP-TO-DATE
 > Task :neoFormMergeMappings UP-TO-DATE
+> Task :neoFormStripClient UP-TO-DATE
 > Task :selectRawArtifactNg_dummy_ng.net.minecraft_client_1.21.1_client-extra UP-TO-DATE
+> Task :neoFormStripServer UP-TO-DATE
 > Task :neoFormMerge UP-TO-DATE
-> Task :neoFormListLibraries UP-TO-DATE
 > Task :neoFormRename UP-TO-DATE
+> Task :processResources UP-TO-DATE
 > Task :neoFormDecompile UP-TO-DATE
 > Task :neoFormApplyForgesAccessTransformer UP-TO-DATE
 > Task :neoFormInject UP-TO-DATE
 > Task :neoFormPatch UP-TO-DATE
 > Task :neoFormPatchUserDev UP-TO-DATE
 > Task :neoFormApplyOfficialMappings UP-TO-DATE
-> Task :processResources UP-TO-DATE
 > Task :neoFormUnzipSources UP-TO-DATE
 > Task :neoFormRecompile UP-TO-DATE
 > Task :neoFormPackRecomp UP-TO-DATE
 > Task :supplyRawJarForneoFormJoined1.21.1-20240808.144430 UP-TO-DATE
 > Task :selectRawArtifactNg_dummy_ng.net.neoforged_neoforge_21.1.42 UP-TO-DATE
 > Task :writeMinecraftClasspathJunit UP-TO-DATE
-> Task :sourcesJar
 
 > Task :compileJava
-gradlew.bat : C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\g
-uns\api\client\animation\AnimationListener.java:14: error: package ObjectAnimationChannel does not 
-exist
-No C:\Users\mathe\OneDrive\Área de 
-Trabalho\Modding\Astrea_Arsenal\Enable-Phase2-Analysis-Fixed.ps1:113 caractere:24
-+ ... ildOutput = & .\gradlew build --no-daemon --console=plain 2>&1 | Out- ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (C:\Users\mathe\... does not exist:String) [], RemoteExce 
-   ption
+gradlew.bat : C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationPlan.java:5: error: package 
+ObjectAnimation does not exist
+No C:\Users\mathe\OneDrive\Área de Trabalho\Modding\Astrea_Arsenal\Enable-Phase1.ps1:118 caractere:24
++         $buildResult = & .\gradlew build 2>&1 | Out-String
++                        ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\mathe\... does not exist:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
-    ObjectAnimationChannel.ChannelType getType();
+    public ObjectAnimation.PlayType playType;
                           ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client
-\animation\gltf\AnimationModel.java:61: error: cannot find symbol
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationPlan.java:8: error: package 
+ObjectAnimation does not exist
+    public AnimationPlan(String animationName, ObjectAnimation.PlayType playType, float transitionTimeS) {
+                                                              ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:61: error: 
+cannot find symbol
     public record Sampler(AccessorModel input, Interpolation interpolation, AccessorModel output) {
                           ^
   symbol:   class AccessorModel
   location: class Sampler
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client
-\animation\gltf\AnimationModel.java:61: error: cannot find symbol
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:61: error: 
+cannot find symbol
     public record Sampler(AccessorModel input, Interpolation interpolation, AccessorModel output) {
                                                                             ^
   symbol:   class AccessorModel
   location: class Sampler
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client
-\animation\gltf\AnimationModel.java:70: error: cannot find symbol
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:70: error: 
+cannot find symbol
                 AccessorModel input,
                 ^
   symbol:   class AccessorModel
   location: class Sampler
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client
-\animation\gltf\AnimationModel.java:72: error: cannot find symbol
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\gltf\AnimationModel.java:72: error: 
+cannot find symbol
                 AccessorModel output) {
                 ^
   symbol:   class AccessorModel
   location: class Sampler
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client
-\animation\statemachine\AnimationState.java:3: error: cannot find symbol
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\ObjectAnimationSoundChannel.java:3: 
+error: cannot find symbol
+import com.tacz.guns.client.sound.SoundPlayManager;
+                                 ^
+  symbol:   class SoundPlayManager
+  location: package com.tacz.guns.client.sound
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statemachine\AnimationState.java:3: 
+error: cannot find symbol
 public interface AnimationState<T extends AnimationStateContext> {
                                           ^
   symbol: class AnimationStateContext
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statem
+achine\AnimationStateMachine.java:3: error: cannot find symbol
+import com.tacz.guns.api.client.animation.AnimationController;
+                                         ^
+  symbol:   class AnimationController
+  location: package com.tacz.guns.api.client.animation
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statem
+achine\AnimationStateMachine.java:15: error: cannot find symbol
+public class AnimationStateMachine<T extends AnimationStateContext> {
+                                             ^
+  symbol: class AnimationStateContext
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statem
+achine\AnimationStateMachine.java:34: error: cannot find symbol
+    private final @Nonnull AnimationController animationController;
+                           ^
+  symbol:   class AnimationController
+  location: class AnimationStateMachine<T>
+  where T is a type-variable:
+    T declared in class AnimationStateMachine
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statem
+achine\AnimationStateMachine.java:41: error: cannot find symbol
+    public AnimationStateMachine(@Nonnull AnimationController animationController) {
+                                          ^
+  symbol:   class AnimationController
+  location: class AnimationStateMachine<T>
+  where T is a type-variable:
+    T declared in class AnimationStateMachine
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statem
+achine\AnimationStateMachine.java:150: error: cannot find symbol
+    public @Nonnull AnimationController getAnimationController() {
+                    ^
+  symbol:   class AnimationController
+  location: class AnimationStateMachine<T>
+  where T is a type-variable:
+    T declared in class AnimationStateMachine
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\statem
+achine\LuaAnimationState.java:9: error: cannot find symbol
+public class LuaAnimationState<T extends AnimationStateContext> implements AnimationState<T> {
+                                         ^
+  symbol: class AnimationStateContext
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:3: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\KubeJSGunEventPoster.java:3: error: 
+cannot find symbol
+import com.tacz.guns.compat.kubejs.events.TimelessClientEvents;
+                                         ^
+  symbol:   class TimelessClientEvents
+  location: package com.tacz.guns.compat.kubejs.events
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\KubeJSGunEventPoster.java:5: error: 
+cannot find symbol
+import com.tacz.guns.compat.kubejs.events.TimelessServerEvents;
+                                         ^
+  symbol:   class TimelessServerEvents
+  location: package com.tacz.guns.compat.kubejs.events
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gameplay\LocalPlayerDataHolder.java:3: error: 
+cannot find symbol
+import com.tacz.guns.api.entity.IGunOperator;
+                               ^
+  symbol:   class IGunOperator
+  location: package com.tacz.guns.api.entity
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gameplay\LocalPlayerDataHolder.java:66: error: 
+cannot find symbol
+    public Predicate<IGunOperator> lockedCondition = null;
+                     ^
+  symbol:   class IGunOperator
+  location: class LocalPlayerDataHolder
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gameplay\LocalPlayerDataHolder.java:79: error: 
+cannot find symbol
+    public void lockState(@Nullable Predicate<IGunOperator> lockedCondition) {
+                                              ^
+  symbol:   class IGunOperator
+  location: class LocalPlayerDataHolder
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\other\GunModelTypeManager.java:3: error: cannot 
 find symbol
+import com.tacz.guns.client.model.BedrockGunModel;
+                                 ^
+  symbol:   class BedrockGunModel
+  location: package com.tacz.guns.client.model
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\other\GunModelTypeManager.java:12: error: 
+cannot find symbol
+    public static final Map<String, BiFunction<BedrockModelPOJO, BedrockVersion, ? extends BedrockGunModel>> 
+GUN_MODEL_TYPE_MAP = new HashMap<>();
+                                                                                           ^
+  symbol:   class BedrockGunModel
+  location: class GunModelTypeManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\other\GunModelTypeManager.java:16: error: 
+cannot find symbol
+    public static synchronized void registerModelType(String typeName, BiFunction<BedrockModelPOJO, BedrockVersion, ? 
+extends BedrockGunModel> constructor) {
+                                                                                                                       
+       ^
+  symbol:   class BedrockGunModel
+  location: class GunModelTypeManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\other\GunModelTypeManager.java:21: error: 
+cannot find symbol
+    public static synchronized BiFunction<BedrockModelPOJO, BedrockVersion, ? extends BedrockGunModel> 
+getModelInstanceConstructor(String typeName) {
+                                                                                      ^
+  symbol:   class BedrockGunModel
+  location: class GunModelTypeManager
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:3: 
+error: cannot find symbol
 import com.tacz.guns.GunMod;
                     ^
   symbol:   class GunMod
   location: package com.tacz.guns
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunDrawEvent.java:11: 
-error: cannot find symbol
-public class GunDrawEvent extends Event implements KubeJSGunEventPoster<GunDrawEvent>{
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\AttachmentPropertyEvent.java:3: error: 
+package com.tacz.guns.resource.modifier does not exist
+import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
+                                      ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\AttachmentPropertyEvent.java:14: error: 
+cannot find symbol
+    private final AttachmentCacheProperty cacheProperty;
+                  ^
+  symbol:   class AttachmentCacheProperty
+  location: class AttachmentPropertyEvent
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\AttachmentPropertyEvent.java:16: error: 
+cannot find symbol
+    public AttachmentPropertyEvent(ItemStack gunItem, AttachmentCacheProperty attachmentProperty) {
+                                                      ^
+  symbol:   class AttachmentCacheProperty
+  location: class AttachmentPropertyEvent
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\AttachmentPropertyEvent.java:25: error: 
+cannot find symbol
+    public AttachmentCacheProperty getCacheProperty() {
+           ^
+  symbol:   class AttachmentCacheProperty
+  location: class AttachmentPropertyEvent
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\server\AmmoHitBlockEvent.java:4: error: cannot 
+find symbol
+import com.tacz.guns.entity.EntityKineticBullet;
+                           ^
+  symbol:   class EntityKineticBullet
+  location: package com.tacz.guns.entity
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\server\AmmoHitBlockEvent.java:17: error: cannot 
+find symbol
+    private final EntityKineticBullet ammo;
+                  ^
+  symbol:   class EntityKineticBullet
+  location: class AmmoHitBlockEvent
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\server\AmmoHitBlockEvent.java:19: error: cannot 
+find symbol
+    public AmmoHitBlockEvent(Level level, BlockHitResult hitResult, BlockState state, EntityKineticBullet ammo) {
+                                                                                      ^
+  symbol:   class EntityKineticBullet
+  location: class AmmoHitBlockEvent
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\server\AmmoHitBlockEvent.java:44: error: cannot 
+find symbol
+    public EntityKineticBullet getAmmo() {
+           ^
+  symbol:   class EntityKineticBullet
+  location: class AmmoHitBlockEvent
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\GunProperties.java:5: 
+error: package com.tacz.guns.resource.modifier.custom does not exist
+import com.tacz.guns.resource.modifier.custom.InaccuracyModifier;
+                                             ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\pojo\data\gun\InaccuracyType.java:5: error: 
+cannot find symbol
+import com.tacz.guns.api.entity.IGunOperator;
+                               ^
+  symbol:   class IGunOperator
+  location: package com.tacz.guns.api.entity
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\modifier\ParameterizedCache.java:5: error: package 
+com.tacz.guns.resource.modifier does not exist
+import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+                                      ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:10: error: cannot find 
+symbol
+    private static final Map<String, DeferredHolder<? extends AbstractGunItem>> GUN_ITEM_MAP = Maps.newHashMap();
+                                                              ^
+  symbol:   class AbstractGunItem
+  location: class GunItemManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:10: error: wrong number 
+of type arguments; required 2
+    private static final Map<String, DeferredHolder<? extends AbstractGunItem>> GUN_ITEM_MAP = Maps.newHashMap();
                                                    ^
-  symbol: class KubeJSGunEventPoster
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\
-common\GunFinishReloadEvent.java:10: error: cannot find symbol
-public class GunFinishReloadEvent extends Event implements KubeJSGunEventPoster<GunFinishReloadEvent>{
-                                                           ^
-  symbol: class KubeJSGunEventPoster
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunFireEvent.java:11: 
-error: cannot find symbol
-public class GunFireEvent extends Event implements KubeJSGunEventPoster<GunFireEvent>{
-                                                   ^
-  symbol: class KubeJSGunEventPoster
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\
-common\GunFireSelectEvent.java:11: error: cannot find symbol
-public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<GunFireSelectEvent>{
-                                                         ^
-  symbol: class KubeJSGunEventPoster
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:15: error: cannot find 
+symbol
+    public static void registerGunItem(String name, DeferredHolder<? extends AbstractGunItem> registryObject) {
+                                                                             ^
+  symbol:   class AbstractGunItem
+  location: class GunItemManager
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunMeleeEvent.java:11: 
-error: cannot find symbol
-public class GunMeleeEvent extends Event implements KubeJSGunEventPoster<GunMeleeEvent>{
-                                                    ^
-  symbol: class KubeJSGunEventPoster
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:15: error: wrong number 
+of type arguments; required 2
+    public static void registerGunItem(String name, DeferredHolder<? extends AbstractGunItem> registryObject) {
+                                                                  ^
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunReloadEvent.java:11: 
-error: cannot find symbol
-public class GunReloadEvent extends Event implements KubeJSGunEventPoster<GunReloadEvent>{
-                                                     ^
-  symbol: class KubeJSGunEventPoster
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:19: error: cannot find 
+symbol
+    public static DeferredHolder<? extends AbstractGunItem> getGunItemRegistryObject(String key) {
+                                           ^
+  symbol:   class AbstractGunItem
+  location: class GunItemManager
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:3: error: 
-package com.tacz.guns.init does not exist
-import com.tacz.guns.init.ModDataComponents;
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:19: error: wrong number 
+of type arguments; required 2
+    public static DeferredHolder<? extends AbstractGunItem> getGunItemRegistryObject(String key) {
+                                ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:23: error: cannot find 
+symbol
+    public static Collection<DeferredHolder<? extends AbstractGunItem>> getAllGunItems() {
+                                                      ^
+  symbol:   class AbstractGunItem
+  location: class GunItemManager
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\gun\GunItemManager.java:23: error: wrong number 
+of type arguments; required 2
+    public static Collection<DeferredHolder<? extends AbstractGunItem>> getAllGunItems() {
+                                           ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\resource\JsonResourceLoader.java:5: error: cannot find 
+symbol
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\resource\ResourceManager.java:5: error: cannot find 
+symbol
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\vmlib\LuaAnimationConstant.java:4: error: cannot find 
+symbol
+import com.tacz.guns.api.client.animation.ObjectAnimation;
+                                         ^
+  symbol:   class ObjectAnimation
+  location: package com.tacz.guns.api.client.animation
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\entity\GunSmithTableBlockEntity.java:4: error: 
+cannot find symbol
+import com.tacz.guns.init.ModBlocks;
                          ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\ani
-mation\statemachine\ItemAnimationStateContext.java:3: error: cannot find symbol
+  symbol:   class ModBlocks
+  location: package com.tacz.guns.init
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\entity\GunSmithTableBlockEntity.java:5: error: 
+cannot find symbol
+import com.tacz.guns.inventory.GunSmithTableMenu;
+                              ^
+  symbol:   class GunSmithTableMenu
+  location: package com.tacz.guns.inventory
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\entity\StatueBlockEntity.java:3: error: cannot find 
+symbol
+import com.tacz.guns.init.ModBlocks;
+                         ^
+  symbol:   class ModBlocks
+  location: package com.tacz.guns.init
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\StatueBlock.java:3: 
+error: cannot find symbol
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\StatueBlock.java:5: 
+error: cannot find symbol
+import com.tacz.guns.init.ModBlocks;
+                         ^
+  symbol:   class ModBlocks
+  location: package com.tacz.guns.init
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\GunSmithTableBlockA.java:11: error: cannot find 
+symbol
+public class GunSmithTableBlockA extends AbstractGunSmithTableBlock {
+                                         ^
+  symbol: class AbstractGunSmithTableBlock
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\GunSmithTableBlockB.java:24: error: cannot find 
+symbol
+public class GunSmithTableBlockB extends AbstractGunSmithTableBlock {
+                                         ^
+  symbol: class AbstractGunSmithTableBlock
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\GunSmithTableBlockC.java:24: error: cannot find 
+symbol
+public class GunSmithTableBlockC extends AbstractGunSmithTableBlock {
+                                         ^
+  symbol: class AbstractGunSmithTableBlock
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\TargetBlock.java:4: 
+error: cannot find symbol
+import com.tacz.guns.block.entity.TargetBlockEntity;
+                                 ^
+  symbol:   class TargetBlockEntity
+  location: package com.tacz.guns.block.entity
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\TargetBlock.java:5: 
+error: cannot find symbol
+import com.tacz.guns.entity.EntityKineticBullet;
+                           ^
+  symbol:   class EntityKineticBullet
+  location: package com.tacz.guns.entity
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\block\TargetBlock.java:6: 
+error: cannot find symbol
+import com.tacz.guns.init.ModBlocks;
+                         ^
+  symbol:   class ModBlocks
+  location: package com.tacz.guns.init
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\animation\screen\RefitTransform.java:3: error: 
+cannot find symbol
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\animation\screen\RefitTransform.java:5: error: 
+cannot find symbol
+import com.tacz.guns.client.gui.GunRefitScreen;
+                               ^
+  symbol:   class GunRefitScreen
+  location: package com.tacz.guns.client.gui
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\animation\screen\RefitTransform.java:8: error: 
+cannot find symbol
+import net.neoforged.neoforge.event.tick.TickEvent;
+                                        ^
+  symbol:   class TickEvent
+  location: package net.neoforged.neoforge.event.tick
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\animation\screen\RefitTransform.java:64: error: 
+package TickEvent does not exist
+    public static void tickInterpolation(TickEvent.RenderTickEvent event) {
+                                                  ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\animation\statemachi
+ne\ItemAnimationStateContext.java:3: error: cannot find symbol
 import com.tacz.guns.api.client.animation.statemachine.AnimationStateContext;
                                                       ^
   symbol:   class AnimationStateContext
   location: package com.tacz.guns.api.client.animation.statemachine
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\ani
-mation\statemachine\ItemAnimationStateContext.java:5: error: cannot find symbol
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\animation\statemachi
+ne\ItemAnimationStateContext.java:5: error: cannot find symbol
 public class ItemAnimationStateContext extends AnimationStateContext {
                                                ^
   symbol: class AnimationStateContext
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\PlayGunSoundEvent.java:4: 
-error: package com.tacz.guns.client.sound does not exist
-import com.tacz.guns.client.sound.GunSoundInstance;
-                                 ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\BedrockAmmoModel.java:3: 
-error: cannot find symbol
-import com.tacz.guns.client.model.bedrock.BedrockModel;
-                                         ^
-  symbol:   class BedrockModel
-  location: package com.tacz.guns.client.model.bedrock
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\BedrockAmmoModel.java:5: 
-error: cannot find symbol
-import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
-                                               ^
-  symbol:   class BedrockModelPOJO
-  location: package com.tacz.guns.client.resource.pojo.model
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\BedrockAmmoModel.java:6: 
-error: cannot find symbol
-import com.tacz.guns.client.resource.pojo.model.BedrockVersion;
-                                               ^
-  symbol:   class BedrockVersion
-  location: package com.tacz.guns.client.resource.pojo.model
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\BedrockAmmoModel.java:11: 
-error: cannot find symbol
-public class BedrockAmmoModel extends BedrockModel {
-                                      ^
-  symbol: class BedrockModel
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\BedrockAmmoModel.java:23: 
-error: cannot find symbol
-    public BedrockAmmoModel(BedrockModelPOJO pojo, BedrockVersion version) {
-                            ^
-  symbol:   class BedrockModelPOJO
-  location: class BedrockAmmoModel
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\BedrockAmmoModel.java:23: 
-error: cannot find symbol
-    public BedrockAmmoModel(BedrockModelPOJO pojo, BedrockVersion version) {
-                                                   ^
-  symbol:   class BedrockVersion
-  location: class BedrockAmmoModel
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\SlotModel.java:5: error: 
-cannot find symbol
-import com.tacz.guns.client.model.bedrock.BedrockCubePerFace;
-                                         ^
-  symbol:   class BedrockCubePerFace
-  location: package com.tacz.guns.client.model.bedrock
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\model\SlotModel.java:7: error: 
-cannot find symbol
-import com.tacz.guns.client.resource.pojo.model.FaceUVsItem;
-                                               ^
-  symbol:   class FaceUVsItem
-  location: package com.tacz.guns.client.resource.pojo.model
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\ren
-derer\crosshair\CrosshairType.java:4: error: cannot find symbol
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\ClientPreventGunClick.java:3: error: cannot 
+find symbol
 import com.tacz.guns.GunMod;
                     ^
   symbol:   class GunMod
   location: package com.tacz.guns
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\animation\gltf\RawAnimationStructure.java:6: error: cannot find symbol
-    private List<Accessor> accessors;
-                 ^
-  symbol:   class Accessor
-  location: class RawAnimationStructure
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\animation\gltf\RawAnimationStructure.java:12: error: cannot find symbol
-    public List<Accessor> getAccessors() {
-                ^
-  symbol:   class Accessor
-  location: class RawAnimationStructure
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\animation\gltf\RawAnimationStructure.java:16: error: cannot find symbol
-    public void setAccessors(List<Accessor> accessors) {
-                                  ^
-  symbol:   class Accessor
-  location: class RawAnimationStructure
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\display\ammo\AmmoDisplay.java:37: error: cannot find symbol
-    private AmmoTransform transform;
-            ^
-  symbol:   class AmmoTransform
-  location: class AmmoDisplay
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\display\ammo\AmmoDisplay.java:72: error: cannot find symbol
-    public AmmoTransform getTransform() {
-           ^
-  symbol:   class AmmoTransform
-  location: class AmmoDisplay
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\model\BonesItem.java:11: error: cannot find symbol
-    private List<CubesItem> cubes;
-                 ^
-  symbol:   class CubesItem
-  location: class BonesItem
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\res
-ource\pojo\model\BonesItem.java:29: error: cannot find symbol
-    public List<CubesItem> getCubes() {
-                ^
-  symbol:   class CubesItem
-  location: class BonesItem
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\carryon\BlackList.java:3: error: 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\ClientPreventGunClick.java:4: error: cannot 
+find symbol
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\PlayerHurtByGunEvent.java:3: error: cannot 
+find symbol
+import com.tacz.guns.api.TimelessAPI;
+                        ^
+  symbol:   class TimelessAPI
+  location: package com.tacz.guns.api
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\PreventsHotbarEvent.java:3: error: cannot 
+find symbol
+import com.tacz.guns.client.gui.GunRefitScreen;
+                               ^
+  symbol:   class GunRefitScreen
+  location: package com.tacz.guns.client.gui
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\PreventsHotbarEvent.java:4: error: cannot 
+find symbol
+import com.tacz.guns.client.gui.GunSmithTableScreen;
+                               ^
+  symbol:   class GunSmithTableScreen
+  location: package com.tacz.guns.client.gui
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\RefreshClonePlayerDataEvent.java:3: error: 
 cannot find symbol
 import com.tacz.guns.GunMod;
                     ^
   symbol:   class GunMod
   location: package com.tacz.guns
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\entity\sync\core\DataEntry.java:9: error: 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\RefreshClonePlayerDataEvent.java:4: error: 
 cannot find symbol
-    private final SyncedDataKey<E, T> key;
-                  ^
-  symbol:   class SyncedDataKey
-  location: class DataEntry<E,T>
-  where E,T are type-variables:
-    E extends Entity declared in class DataEntry
-    T extends Object declared in class DataEntry
+import com.tacz.guns.api.entity.IGunOperator;
+                               ^
+  symbol:   class IGunOperator
+  location: package com.tacz.guns.api.entity
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\entity\sync\core\DataEntry.java:13: 
-error: cannot find symbol
-    public DataEntry(SyncedDataKey<E, T> key) {
-                     ^
-  symbol:   class SyncedDataKey
-  location: class DataEntry<E,T>
-  where E,T are type-variables:
-    E extends Entity declared in class DataEntry
-    T extends Object declared in class DataEntry
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\entity\sync\core\DataEntry.java:26: 
-error: cannot find symbol
-    public SyncedDataKey<E, T> getKey() {
-           ^
-  symbol:   class SyncedDataKey
-  location: class DataEntry<E,T>
-  where E,T are type-variables:
-    E extends Entity declared in class DataEntry
-    T extends Object declared in class DataEntry
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\item\DefaultTableItem.java:3: error: 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\RefreshClonePlayerDataEvent.java:9: error: 
 cannot find symbol
-import com.tacz.guns.GunMod;
-                    ^
-  symbol:   class GunMod
-  location: package com.tacz.guns
+import net.neoforged.neoforge.event.tick.TickEvent;
+                                        ^
+  symbol:   class TickEvent
+  location: package net.neoforged.neoforge.event.tick
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\item\DefaultTableItem.java:10: error: 
-cannot find symbol
-public class DefaultTableItem extends GunSmithTableItem{
-                                      ^
-  symbol: class GunSmithTableItem
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\RefreshClonePlayerDataEvent.java:33: error: 
+package TickEvent does not exist
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+                                             ^
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\item\GunTooltipPart.java:3: error: 
-package com.tacz.guns.init does not exist
-import com.tacz.guns.init.ModDataComponents;
-                         ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\pojo\BlockIndexPOJO.java:4: 
-error: cannot find symbol
-import com.tacz.guns.GunMod;
-                    ^
-  symbol:   class GunMod
-  location: package com.tacz.guns
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\p
-ojo\data\block\BlockData.java:4: error: cannot find symbol
-import com.tacz.guns.GunMod;
-                    ^
-  symbol:   class GunMod
-  location: package com.tacz.guns
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\p
-ojo\data\block\BlockData.java:17: error: cannot find symbol
-    private List<TabConfig> tabs = new ArrayList<>();
-                 ^
-  symbol:   class TabConfig
-  location: class BlockData
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\p
-ojo\data\block\BlockData.java:25: error: cannot find symbol
-    public List<TabConfig> getTabs() {
-                ^
-  symbol:   class TabConfig
-  location: class BlockData
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\p
-ojo\data\recipe\TableRecipe.java:5: error: package com.tacz.guns.crafting.result does not exist
-import com.tacz.guns.crafting.result.GunSmithTableResult;
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\ReloadResourceEvent.java:3: error: cannot 
+find symbol
+import com.tacz.guns.client.resource.InternalAssetLoader;
                                     ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\p
-ojo\data\recipe\TableRecipe.java:14: error: cannot find symbol
-    private GunSmithTableResult result;
-            ^
-  symbol:   class GunSmithTableResult
-  location: class TableRecipe
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\p
-ojo\data\recipe\TableRecipe.java:20: error: cannot find symbol
-    public GunSmithTableResult getResult() {
-           ^
-  symbol:   class GunSmithTableResult
-  location: class TableRecipe
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\s
-erialize\CommonAttachmentIndexSerializer.java:7: error: cannot find symbol
-import com.tacz.guns.resource.index.CommonAttachmentIndex;
-                                   ^
-  symbol:   class CommonAttachmentIndex
-  location: package com.tacz.guns.resource.index
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\s
-erialize\CommonAttachmentIndexSerializer.java:12: error: cannot find symbol
-public class CommonAttachmentIndexSerializer implements JsonDeserializer<CommonAttachmentIndex> {
-                                                                         ^
-  symbol: class CommonAttachmentIndex
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\resource\s
-erialize\CommonAttachmentIndexSerializer.java:14: error: cannot find symbol
-    public CommonAttachmentIndex deserialize(JsonElement json, Type typeOfT, 
-JsonDeserializationContext context) throws JsonParseException {
-           ^
-  symbol:   class CommonAttachmentIndex
-  location: class CommonAttachmentIndexSerializer
+  symbol:   class InternalAssetLoader
+  location: package com.tacz.guns.client.resource
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:7: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\ReloadResourceEvent.java:6: error: cannot 
 find symbol
-    public static ResourceLocation DEFAULT_GUN_DISPLAY_ID = new ResourceLocation(GunMod.MOD_ID, 
-"default");
-                                                                                 ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import net.neoforged.neoforge.client.event.TextureStitchEvent;
+                                          ^
+  symbol:   class TextureStitchEvent
+  location: package net.neoforged.neoforge.client.event
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:8: error: cannot 
-find symbol
-    public static ResourceLocation EMPTY_GUN_ID = new ResourceLocation(GunMod.MOD_ID, "empty");
-                                                                       ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\event\ReloadResourceEvent.java:16: error: package 
+TextureStitchEvent does not exist
+    public static void onTextureStitchEventPost(TextureStitchEvent.Post event) {
+                                                                  ^
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:10: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gameplay\LocalPlayerSprint.java:3: error: cannot 
 find symbol
-    public static ResourceLocation DEFAULT_AMMO_ID = new ResourceLocation(GunMod.MOD_ID, "762x39");
-                                                                          ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import com.tacz.guns.api.entity.IGunOperator;
+                               ^
+  symbol:   class IGunOperator
+  location: package com.tacz.guns.api.entity
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:11: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\compat\ClothConfigScreen.java:3: error: cannot 
 find symbol
-    public static ResourceLocation EMPTY_AMMO_ID = new ResourceLocation(GunMod.MOD_ID, "empty");
-                                                                        ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import com.tacz.guns.init.CompatRegistry;
+                         ^
+  symbol:   class CompatRegistry
+  location: package com.tacz.guns.init
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:13: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\compat\ClothConfigScreen.java:13: error: cannot 
 find symbol
-    public static ResourceLocation DEFAULT_BLOCK_ID = new ResourceLocation(GunMod.MOD_ID, 
-"gun_smith_table");
-                                                                           ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import net.neoforged.neoforge.client.ConfigScreenHandler;
+                                    ^
+  symbol:   class ConfigScreenHandler
+  location: package net.neoforged.neoforge.client
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:14: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\GunPackList.java:5: error: cannot 
 find symbol
-    public static ResourceLocation EMPTY_BLOCK_ID = new ResourceLocation(GunMod.MOD_ID, "empty");
-                                                                         ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import com.tacz.guns.client.gui.GunSmithTableScreen;
+                               ^
+  symbol:   class GunSmithTableScreen
+  location: package com.tacz.guns.client.gui
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:16: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\GunPackList.java:6: error: cannot 
 find symbol
-    public static ResourceLocation DEFAULT_ATTACHMENT_ID = new ResourceLocation(GunMod.MOD_ID, 
-"sight_sro_dot");
-                                                                                ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import com.tacz.guns.client.resource.ClientAssetsManager;
+                                    ^
+  symbol:   class ClientAssetsManager
+  location: package com.tacz.guns.client.resource
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:17: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\GunPackList.java:26: error: cannot 
 find symbol
-    public static ResourceLocation EMPTY_ATTACHMENT_ID = new ResourceLocation(GunMod.MOD_ID, "empty");
+    private final GunSmithTableScreen parent;
+                  ^
+  symbol:   class GunSmithTableScreen
+  location: class GunPackList
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\GunPackList.java:33: error: cannot 
+find symbol
+                       Map<ResourceLocation, List<ResourceLocation>> recipes, GunSmithTableScreen parent) {
                                                                               ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+  symbol:   class GunSmithTableScreen
+  location: class GunPackList
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\refit
+\InventoryAttachmentSlot.java:4: error: cannot find symbol
+import com.tacz.guns.client.gui.GunRefitScreen;
+                               ^
+  symbol:   class GunRefitScreen
+  location: package com.tacz.guns.client.gui
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:19: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\refit\RefitTurnPageButton.java:4: 
+error: cannot find symbol
+import com.tacz.guns.client.gui.GunRefitScreen;
+                               ^
+  symbol:   class GunRefitScreen
+  location: package com.tacz.guns.client.gui
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\refit\RefitUnloadButton.java:4: 
+error: cannot find symbol
+import com.tacz.guns.client.gui.GunRefitScreen;
+                               ^
+  symbol:   class GunRefitScreen
+  location: package com.tacz.guns.client.gui
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\smith\ResultButton.java:4: error: 
+cannot find symbol
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\components\smith\TypeButton.java:4: error: 
+cannot find symbol
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\gui\overlay\KillAmountOverlay.java:6: error: cannot 
 find symbol
-    public static ResourceLocation DEFAULT_ATTACHMENT_SKIN_ID = new ResourceLocation(GunMod.MOD_ID, 
-"sight_sro_dot_blue");
-                                                                                     ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\DefaultAssets.java:20: error: cannot 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\init\ModContainerScreen.java:3: error: cannot find 
+symbol
+import com.tacz.guns.client.gui.GunSmithTableScreen;
+                               ^
+  symbol:   class GunSmithTableScreen
+  location: package com.tacz.guns.client.gui
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\init\ModContainerScreen.java:4: error: cannot find 
+symbol
+import com.tacz.guns.inventory.GunSmithTableMenu;
+                              ^
+  symbol:   class GunSmithTableMenu
+  location: package com.tacz.guns.inventory
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\init\ParticleFactoryRegistry.java:3: error: cannot 
 find symbol
-    public static ResourceLocation EMPTY_ATTACHMENT_SKIN_ID = new ResourceLocation(GunMod.MOD_ID, 
-"empty");
-                                                                                   ^
-  symbol:   variable GunMod
-  location: class DefaultAssets
+import com.tacz.guns.GunMod;
+                    ^
+  symbol:   class GunMod
+  location: package com.tacz.guns
 C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunDrawEvent.java:22: 
-error: cannot find symbol
-        postEventToKubeJS(this);
-        ^
-  symbol:   method postEventToKubeJS(GunDrawEvent)
-  location: class GunDrawEvent
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\
-common\GunFinishReloadEvent.java:17: error: cannot find symbol
-        postEventToKubeJS(this);
-        ^
-  symbol:   method postEventToKubeJS(GunFinishReloadEvent)
-  location: class GunFinishReloadEvent
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\
-common\GunFinishReloadEvent.java:20: error: method does not override or implement a method from a 
-supertype
-    @Override
-    ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunFireEvent.java:20: 
-error: cannot find symbol
-        postEventToKubeJS(this);
-        ^
-  symbol:   method postEventToKubeJS(GunFireEvent)
-  location: class GunFireEvent
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunFireEvent.java:23: 
-error: method does not override or implement a method from a supertype
-    @Override
-    ^
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\
-common\GunFireSelectEvent.java:20: error: cannot find symbol
-        postEventToKubeJS(this);
-        ^
-  symbol:   method postEventToKubeJS(GunFireSelectEvent)
-  location: class GunFireSelectEvent
-C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\
-common\GunFireSelectEvent.java:23: error: method does not override or implement a method from a 
-supertype
-    @Override
-    ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunMeleeEvent.java:20: 
-error: cannot find symbol
-        postEventToKubeJS(this);
-        ^
-  symbol:   method postEventToKubeJS(GunMeleeEvent)
-  location: class GunMeleeEvent
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunMeleeEvent.java:23: 
-error: method does not override or implement a method from a supertype
-    @Override
-    ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunReloadEvent.java:20: 
-error: cannot find symbol
-        postEventToKubeJS(this);
-        ^
-  symbol:   method postEventToKubeJS(GunReloadEvent)
-  location: class GunReloadEvent
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\event\common\GunReloadEvent.java:23: 
-error: method does not override or implement a method from a supertype
-    @Override
-    ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:133: error: 
-package ModDataComponents does not exist
-            case "current_ammo" -> stack.get(ModDataComponents.CURRENT_AMMO.get());
-                                                              ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:134: error: 
-package ModDataComponents does not exist
-            case "has_bullet_in_barrel" -> stack.get(ModDataComponents.HAS_BULLET_IN_BARREL.get());
-                                                                      ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:135: error: 
-package ModDataComponents does not exist
-            case "shoot_cooldown" -> stack.get(ModDataComponents.SHOOT_COOLDOWN.get());
-                                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:136: error: 
-package ModDataComponents does not exist
-            case "reload_state_type" -> stack.get(ModDataComponents.RELOAD_STATE_TYPE.get());
-                                                                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:137: error: 
-package ModDataComponents does not exist
-            case "reload_state_count" -> stack.get(ModDataComponents.RELOAD_STATE_COUNT.get());
-                                                                    ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:138: error: 
-package ModDataComponents does not exist
-            case "fire_mode" -> stack.get(ModDataComponents.FIRE_MODE.get());
-                                                           ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:139: error: 
-package ModDataComponents does not exist
-            case "aim_status" -> stack.get(ModDataComponents.AIM_STATUS.get());
-                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:140: error: 
-package ModDataComponents does not exist
-            case "draw_cooldown" -> stack.get(ModDataComponents.DRAW_COOLDOWN.get());
-                                                               ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:141: error: 
-package ModDataComponents does not exist
-            case "draw_timestamp" -> stack.get(ModDataComponents.DRAW_TIMESTAMP.get());
-                                                                ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:142: error: 
-package ModDataComponents does not exist
-            case "put_away_cooldown" -> stack.get(ModDataComponents.PUT_AWAY_COOLDOWN.get());
-                                                                   ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:143: error: 
-package ModDataComponents does not exist
-            case "put_away_timestamp" -> stack.get(ModDataComponents.PUT_AWAY_TIMESTAMP.get());
-                                                                    ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:144: error: 
-package ModDataComponents does not exist
-            case "hide_flags" -> stack.get(ModDataComponents.HIDE_FLAGS.get());
-                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:145: error: 
-package ModDataComponents does not exist
-            case "attachment_scope_id" -> stack.get(ModDataComponents.ATTACHMENT_SCOPE_ID.get());
-                                                                     ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:146: error: 
-package ModDataComponents does not exist
-            case "attachment_muzzle_id" -> stack.get(ModDataComponents.ATTACHMENT_MUZZLE_ID.get());
-                                                                      ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:147: error: 
-package ModDataComponents does not exist
-            case "attachment_foregrip_id" -> 
-stack.get(ModDataComponents.ATTACHMENT_FOREGRIP_ID.get());
-                                                                        ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:148: error: 
-package ModDataComponents does not exist
-            case "attachment_stock_id" -> stack.get(ModDataComponents.ATTACHMENT_STOCK_ID.get());
-                                                                     ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:149: error: 
-package ModDataComponents does not exist
-            case "attachment_extended_mag_id" -> 
-stack.get(ModDataComponents.ATTACHMENT_EXTENDED_MAG_ID.get());
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:164: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.CURRENT_AMMO.get(), 
-intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:169: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Boolean>) 
-ModDataComponents.HAS_BULLET_IN_BARREL.get(), boolValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:174: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.SHOOT_COOLDOWN.get(), 
-intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:179: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.RELOAD_STATE_TYPE.get(), 
-intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:184: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) 
-ModDataComponents.RELOAD_STATE_COUNT.get(), intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:189: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.FIRE_MODE.get(), 
-intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:194: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Boolean>) ModDataComponents.AIM_STATUS.get(), 
-boolValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:199: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.DRAW_COOLDOWN.get(), 
-intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:204: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Long>) ModDataComponents.DRAW_TIMESTAMP.get(), 
-longValue);
-                                                                         ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:209: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.PUT_AWAY_COOLDOWN.get(), 
-intValue);
-                                                                            ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:214: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Long>) ModDataComponents.PUT_AWAY_TIMESTAMP.get(), 
-longValue);
-                                                                         ^
-C:\Users\mathe\OneDrive\┴rea de 
-Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\util\LuaNbtAccessor.java:219: error: 
-package ModDataComponents does not exist
-                    stack.set((DataComponentType<Integer>) ModDataComponents.HIDE_FLAGS.get(), 
-intValue);
-                                                                            ^
-100 errors
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\init\ParticleFactoryRegistry.java:4: error: cannot 
+find symbol
+import com.tacz.guns.client.particle.BulletHoleParticle;
+                                    ^
+  symbol:   class BulletHoleParticle
 
+  location: package com.tacz.guns.client.particle
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\AimKey.java:5: error: cannot find symbol
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\AimKey.java:15: error: cannot find symbol
+import net.neoforged.neoforge.event.tick.TickEvent;
+                                        ^
+  symbol:   class TickEvent
+  location: package net.neoforged.neoforge.event.tick
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\AimKey.java:88: error: package TickEvent does 
+not exist
+    public static void cancelAim(TickEvent.ClientTickEvent event) {
+                                          ^
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\ConfigKey.java:5: error: cannot find symbol
+import com.tacz.guns.compat.cloth.MenuIntegration;
+                                 ^
+  symbol:   class MenuIntegration
+  location: package com.tacz.guns.compat.cloth
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\ConfigKey.java:6: error: cannot find symbol
+import com.tacz.guns.init.CompatRegistry;
+                         ^
+  symbol:   class CompatRegistry
+  location: package com.tacz.guns.init
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\FireSelectKey.java:5: error: cannot find 
+symbol
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\InteractKey.java:4: error: cannot find symbol
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
+C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\client\input\RefitKey.java:4: error: cannot find symbol
+import com.tacz.guns.api.item.IGun;
+                             ^
+  symbol:   class IGun
+  location: package com.tacz.guns.api.item
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\playeranimator\anima
+tion\PlayerAnimatorAssetManager.java:35: warning: [removal] AnimationSerializing in 
+dev.kosmx.playerAnim.core.data.gson has been deprecated and marked for removal
+        List<KeyframeAnimation> keyframeAnimations = AnimationSerializing.deserializeAnimation(stream);
+                                                     ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\playeranimator\anima
+tion\PlayerAnimatorAssetManager.java:35: warning: [removal] deserializeAnimation(InputStream) in AnimationSerializing 
+has been deprecated and marked for removal
+        List<KeyframeAnimation> keyframeAnimations = AnimationSerializing.deserializeAnimation(stream);
+                                                                         ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\playeranimator\anima
+tion\PlayerAnimatorAssetManager.java:68: warning: [removal] AnimationSerializing in 
+dev.kosmx.playerAnim.core.data.gson has been deprecated and marked for removal
+                List<KeyframeAnimation> keyframeAnimations = AnimationSerializing.deserializeAnimation(reader);
+                                                             ^
+C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\playeranimator\anima
+tion\PlayerAnimatorAssetManager.java:68: warning: [removal] deserializeAnimation(Reader) in AnimationSerializing has 
+been deprecated and marked for removal
+                List<KeyframeAnimation> keyframeAnimations = AnimationSerializing.deserializeAnimation(reader);
+                                                                                 ^
+Note: C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\item\nbt\AttachmentItemDataAccessor.java uses or 
+overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\compat\kubejs\events\TimelessKubeJSEventRegister.java uses 
+unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+100 errors
+4 warnings
 > Task :compileJava FAILED
+> Task :sourcesJar
 
 [Incubating] Problems report is available at: file:///C:/Users/mathe/OneDrive/%C3%81rea%20de%20Trabalho/Modding/Astrea_Arsenal/build/reports/problems/problems-report.html
 
@@ -666,17 +735,19 @@ FAILURE: Build failed with an exception.
 * What went wrong:
 Execution failed for task ':compileJava'.
 > Compilation failed; see the compiler output below.
-  C:\Users\mathe\OneDrive\┴rea de Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\clie
-nt\animation\AnimationListener.java:14: error: package ObjectAnimationChannel does not exist
-      ObjectAnimationChannel.ChannelType getType();
+  C:\Users\mathe\OneDrive\┴rea de 
+Trabalho\Modding\Astrea_Arsenal\src\main\java\com\tacz\guns\api\client\animation\AnimationPlan.java:5: error: package 
+ObjectAnimation does not exist
+      public ObjectAnimation.PlayType playType;
                             ^
   100 errors
+  4 warnings
 
 * Try:
 > Check your code and dependencies to fix the compilation error(s)
 > Run with --scan to get full insights.
 
-BUILD FAILED in 56s
+BUILD FAILED in 4s
 32 actionable tasks: 2 executed, 30 up-to-date
 Configuration cache entry reused.
 

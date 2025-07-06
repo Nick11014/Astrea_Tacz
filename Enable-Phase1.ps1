@@ -1,14 +1,14 @@
 # =============================================================================
-# Enable-Phase-1.ps1 - Habilita e valida os arquivos da Fase 1 do plano
+# Enable-Phase-2.ps1 - Habilita e valida os arquivos da Fase 2 do plano
 # =============================================================================
 # Este script le o arquivo PLANO_MIGRACAO.md, identifica os arquivos da
-# "Fase 1", os renomeia de .java.disabled para .java e executa um build.
+# "Fase 2", os renomeia de .java.disabled para .java e executa um build.
 #
 # Se o build falhar, o script revertera automaticamente os arquivos
 # habilitados para seu estado .java.disabled original.
 # =============================================================================
 
-Write-Host "=== HABILITANDO ARQUIVOS DA FASE 1 (com reversao automatica) ===" -ForegroundColor Cyan
+Write-Host "=== HABILITANDO ARQUIVOS DA FASE 2 (com reversao automatica) ===" -ForegroundColor Cyan
 
 # --- Verificacao do Ambiente ---
 $baseDir = "src\main\java\com\tacz\guns"
@@ -39,11 +39,12 @@ Write-Host "Lendo o plano de migracao: $planFile" -ForegroundColor White
 
 try {
     $planContent = Get-Content $planFile -Raw -Encoding UTF8
-    $phase1Regex = [regex]'(?ms)### \*\*FASE 1: PRIMEIRA CAMADA\*\*.*?\n(.*?)\n---'
-    $match = $phase1Regex.Match($planContent)
+    # CORRIGIDO: Expressao regular ajustada para encontrar a FASE 2. Parenteses foram escapados com '\'.
+    $phase2Regex = [regex]'(?ms)### \*\*FASE 2: DEPENDENCIAS BAIXAS \(1-3\)\*\*.*?\n(.*?)\n---'
+    $match = $phase2Regex.Match($planContent)
 
     if (-not $match.Success) {
-        Write-Host "ERRO: Nao foi possivel encontrar a secao da 'FASE 1' no plano." -ForegroundColor Red
+        Write-Host "ERRO: Nao foi possivel encontrar a secao da 'FASE 2' no plano." -ForegroundColor Red
         exit 1
     }
 
@@ -52,7 +53,7 @@ try {
     $filesToEnable = $fileNameRegex.Matches($fileListText) | ForEach-Object { $_.Groups[1].Value }
 
     if ($filesToEnable.Count -eq 0) {
-        Write-Host "AVISO: Nenhum arquivo encontrado para habilitar na Fase 1. Verifique se eles ja nao estao marcados como '[x]'." -ForegroundColor Yellow
+        Write-Host "AVISO: Nenhum arquivo encontrado para habilitar na Fase 2. Verifique se eles ja nao estao marcados como '[x]'." -ForegroundColor Yellow
         exit 0
     }
 }
@@ -61,7 +62,7 @@ catch {
     exit 1
 }
 
-Write-Host "Encontrados $($filesToEnable.Count) arquivos para habilitar na Fase 1." -ForegroundColor Green
+Write-Host "Encontrados $($filesToEnable.Count) arquivos para habilitar na Fase 2." -ForegroundColor Green
 Write-Host ""
 
 # --- Habilitacao dos Arquivos ---
@@ -119,7 +120,7 @@ if ($enabledCount -gt 0) {
         if ($LASTEXITCODE -eq 0 -and $buildResult -match "BUILD SUCCESSFUL") {
             Write-Host "===============================================" -ForegroundColor Green
             Write-Host "BUILD SUCCESSFUL!" -ForegroundColor Green
-            Write-Host "A Fase 1 foi habilitada e compilada com sucesso." -ForegroundColor Green
+            Write-Host "A Fase 2 foi habilitada e compilada com sucesso." -ForegroundColor Green
             Write-Host "Total de $enabledCount arquivos habilitados." -ForegroundColor Green
             Write-Host "===============================================" -ForegroundColor Green
             
@@ -129,9 +130,10 @@ if ($enabledCount -gt 0) {
         else {
             Write-Host "===============================================" -ForegroundColor Red
             Write-Host "BUILD FALHOU!" -ForegroundColor Red
-            Write-Host "A habilitacao da Fase 1 resultou em erros de compilacao." -ForegroundColor Red
+            Write-Host "A habilitacao da Fase 2 resultou em erros de compilacao." -ForegroundColor Red
             
-            $errorLogPath = "build_errors_phase1.txt"
+            # CORRIGIDO: Nome do arquivo de log alterado para fase 2
+            $errorLogPath = "build_errors_phase2.txt"
             $buildResult | Out-File -FilePath $errorLogPath -Encoding UTF8
             Write-Host "O log de erro completo foi salvo em: $errorLogPath" -ForegroundColor Yellow
             
@@ -152,7 +154,6 @@ if ($enabledCount -gt 0) {
                         $revertedCount++
                     }
                     catch {
-                        # CORRIGIDO: Delimitada a variavel com ${} para evitar erro de parsing
                         Write-Host "  - ERRO AO REVERTER ${fileToRevertName}: $($_.Exception.Message)" -ForegroundColor Red
                     }
                 }
@@ -170,7 +171,8 @@ if ($enabledCount -gt 0) {
                 }
             }
             Write-Host ""
-            Write-Host "ACAO RECOMENDADA: Analise o log '$errorLogPath' para corrigir as APIs nos arquivos da Fase 1." -ForegroundColor Yellow
+            # CORRIGIDO: Mensagem de acao recomendada atualizada para Fase 2
+            Write-Host "ACAO RECOMENDADA: Analise o log '$errorLogPath' para corrigir as APIs nos arquivos da Fase 2." -ForegroundColor Yellow
             Write-Host "===============================================" -ForegroundColor Red
         }
     }
@@ -183,4 +185,4 @@ else {
 }
 
 Write-Host ""
-Write-Host "Processo da Fase 1 concluido." -ForegroundColor Cyan
+Write-Host "Processo da Fase 2 concluido." -ForegroundColor Cyan
