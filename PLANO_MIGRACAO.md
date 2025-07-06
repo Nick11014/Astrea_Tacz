@@ -1,37 +1,30 @@
-﻿# PLANO DE MIG|| **Fase 0** | Fundacao (ja habilitada) | 95 | ✅ 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | ✅ **81/81** |
-| **Fase 2** | Dependencias Baixas (1-3) | 259 | ⏳ 0/259 |
-| **Fase 3** | Dependencias Medias (4-10) | 137 | ⏳ 0/137 |
-| **Fase 4** | Dependencias Altas (11+) | 51 | ⏳ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **176/623** |e 1** | Primeira Camada (dependem apenas da fundacao) | 78 | 🔄 53/78 |
-| **Fase 2** | Dependencias Baixas (1-3) | 260 | â³ 0/260 |
-| **Fase 3** | Dependencias Medias (4-10) | 139 | â³ 0/139 |AO SISTEMATICA - TacZ NeoForge 1.21.1 (v3.0)
+﻿# PLANO DE MIGRAÇÃO SISTEMÁTICA - TacZ NeoForge 1.21.1 (v5.0)
 
-**Projeto:** Migracao TacZ de Forge 1.20.1 para NeoForge 1.21.1  
-**Estrategia:** Habilitacao incremental baseada em analise topologica de dependencias  
-**Data de Geracao:** 2025-07-02 18:01:20  
-**Script:** Generate-Plan.ps1 v3.0  
+**Projeto:** Migração TacZ de Forge 1.20.1 para NeoForge 1.21.1  
+**Estratégia:** Habilitação incremental baseada em análise topológica de dependências  
+**Data de Atualização:** 2025-07-06 19:15:00  
+**Última Análise:** Fase 2 - Log de Erros Analisado e Plano Refinado  
 
 ---
 
-## RESUMO ESTATISTICO
+## RESUMO ESTATÍSTICO (ATUALIZADO v3)
 
-| Fase | Descricao | Arquivos | Status |
+| Fase | Descrição | Arquivos | Status |
 |------|-----------|----------|--------|
-| **Fase 0** | Fundacao (ja habilitada) | 95 | âœ… 95/95 |
-| **Fase 1** | Primeira Camada (dependem apenas da fundacao) | 81 | â³ 0/81 |
-| **Fase 2** | Dependencias Baixas (1-3) | 259 | â³ 0/259 |
-| **Fase 3** | Dependencias Medias (4-10) | 137 | â³ 0/137 |
-| **Fase 4** | Dependencias Altas (11+) | 51 | â³ 0/51 |
-| **TOTAL** | **Todos os arquivos** | **623** | **95/623** |
+| **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
+| **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
+| **Fase 2** | Cliente e Renderização (v3 - Refinada) | 20 | ⏳ 0/20 |
+| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 287 | ⏳ 0/287 |
+| **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ 0/140 |
+| **TOTAL** | **Todos os arquivos** | **623** | **176/623** |
 
 ---
 
-## PLANO DE EXECUCAO ORDENADO
+## PLANO DE EXECUÇÃO ORDENADO
 
-### **FASE 0: FUNDACAO (Ja Habilitada)** âœ…
+### **FASE 0: FUNDAÇÃO (Já Habilitada)** ✅
 
-*Esta e a base solida ja estabelecida. Estes arquivos compilam sem erros e servem como fundacao para as proximas fases.*
+*Esta é a base sólida já estabelecida. Estes arquivos compilam sem erros e servem como fundação para as próximas fases.*
 
 - [x] AccessorData.java (Fundacao)
 - [x] Align.java (Fundacao)
@@ -128,616 +121,573 @@
 - [x] SyncConfig.java (Fundacao)
 - [x] TrackArrayMismatchException.java (Fundacao)
 - [x] ZoomConfig.java (Fundacao)
----
-
-### **FASE 1: PRIMEIRA CAMADA** â­ 
-*Próxima a ser executada - Dependem apenas da fundação*
-
-Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (Fase 0), mas que falham devido a mudanças na API do NeoForge 1.21.1.
-
-#### **Fase 1.1: Sistema de Configuração** ✅
-*O sistema de configuração do Forge/NeoForge foi completamente reestruturado. Classes não devem mais herdar de `ModConfig`.*
-
-**Ação Recomendada:**
-- Remova a herança de `ModConfig`.
-- Utilize `ModConfigSpec.Builder` para construir sua especificação de configuração.
-- Registre sua configuração no construtor da sua classe de mod principal usando `ModLoadingContext.get().registerConfig(ModConfig.Type, spec)`.
-- Para ler os valores ou reagir a mudanças, utilize os eventos `ModConfigEvent.Loading` e `ModConfigEvent.Reloading`.
-
-- [x] PreLoadModConfig.java ✅ **CONCLUÍDO** - Migrado para usar ModConfigSpec e APIs oficiais do NeoForge 1.21.1
-- [x] PreLoadConfig.java ✅ **CONCLUÍDO** - Simplificado e usando APIs corretas, mantém funcionalidade original
 
 ---
 
-#### **Fase 1.2: Sistema de Eventos e Rede (Networking)** ✅
-*O sistema de eventos teve pacotes movidos e o sistema de rede foi modernizado, eliminando `NetworkEvent`.*
-
-**Ação Recomendada:**
-- **Eventos de Tick:** Altere o import do `TickEvent` para o pacote correto, como `net.neoforged.neoforge.event.tick.ServerTickEvent`.
-- **Rede (Networking):** Migre o sistema de mensagens para o `PacketRegistrar` do NeoForge.
-  - Defina suas mensagens (packets).
-  - Crie um `PacketRegistrar` e registre suas mensagens nele.
-  - A lógica de manipulação da mensagem (o `handle`) não recebe mais um `Supplier<NetworkEvent.Context>`, mas sim um `IPayloadContext`.
-
-- [x] ServerTickHandler.java ✅ **CONCLUÍDO** - Migrado para ServerTickEvent.Post, resolvido conflito de nomes
-- [x] IMessage.java ✅ **CONCLUÍDO** - Reescrita para usar CustomPacketPayload e IPayloadContext 
-- [x] ServerMessageLevelUp.java ✅ **CONCLUÍDO** - Migrada para usar record, CustomPacketPayload e StreamCodec
-
----
-
-#### **Fase 1.3: Interação com Itens e Dados (ItemStack & Data Components)** ✅
-*O acesso direto a NBT via `.getTag()` foi substituído pelo sistema de "Data Components" para melhorar o desempenho e a clareza.*
-
-**Ação Recomendada:**
-- **Comparação de Itens:** Substitua `ItemStack.isSameItemSameTags(stackA, stackB)` por `ItemStack.matches(stackA, stackB)`.
-- **Acesso a Dados:** Defina seus próprios `DataComponentType` para os dados customizados que você precisa armazenar.
-  - Substitua `stack.getTag()` e `stack.getOrCreateTag()` por `stack.get(MyComponents.MY_DATA)` para ler e `stack.set(MyComponents.MY_DATA, value)` para escrever.
-- **Tooltips:** O método `getTooltipLines` mudou sua assinatura. Agora ele requer `(TooltipContext, Player, TooltipFlag)`.
-- **Serialização:** O `CraftingHelper.getItemStack` foi alterado. Investigue as novas formas de carregar `ItemStack` de JSON, possivelmente através de `ItemStack.CODEC`.
-
-- [x] ModDataComponents.java ✅ **CRIADO** - Sistema completo de DataComponents para substituir NBT
-- [x] IAnimationItem.java ✅ **CONCLUÍDO** - Migrado ItemStack.isSameItemSameTags -> ItemStack.matches
-- [x] LuaNbtAccessor.java ✅ **CONCLUÍDO** - Reescrito para usar DataComponents com fallback NBT 
-- [x] IComponentTooltip.java ✅ **CONCLUÍDO** - Atualizado getTooltipLines para usar TooltipContext
-- [x] GunTooltipPart.java ✅ **CONCLUÍDO** - Migrado de NBT para DataComponents (hide flags)
-- [x] ItemStackSerializer.java ✅ **CONCLUÍDO** - Migrado CraftingHelper.getItemStack -> ItemStack.CODEC
-
----
-
-#### **Fase 1.4: Renderização e GUI** ✅
-*A API de renderização passou por atualizações para se alinhar com as mudanças internas do Minecraft.*
-
-**Ação Recomendada:**
-- **Fundo de Telas (GUI):** A assinatura do método `renderBackground` foi atualizada para `renderBackground(GuiGraphics, int, int, float)`.
-- **Renderização Manual (Tesselator):** O fluxo de renderização com `Tesselator` e `BufferBuilder` foi simplificado.
-  - `Tesselator.getInstance().getBuilder()` foi substituído, o fluxo agora é mais direto.
-  - As chamadas `begin()` e `end()` foram substituídas por um método final que constrói e desenha a geometria, como `BufferUploader.drawWithShader(bufferBuilder.buildOrThrow())`.
-
-- [x] GunPackProgressScreen.java ✅ **CONCLUÍDO** - Migrado renderBackground para nova assinatura
-- [x] RenderHelper.java ✅ **CONCLUÍDO** - Modernizado fluxo de renderização e corrigido getSkinTextureLocation
-- [x] FlatColorButton.java ✅ **CONCLUÍDO** - Já compatível com NeoForge 1.21.1
-- [x] OpenGunPackDirEntry.java ✅ **CONCLUÍDO** - Já compatível com NeoForge 1.21.1
-
----
-
-#### **Fase 1.5: API Geral do NeoForge/Minecraft** ✅
-*Esta seção agrupa diversas outras mudanças de API pontuais.*
-
-**Ação Recomendada:**
-- **ResourceLocation:** O construtor `new ResourceLocation("string")` foi alterado. Use `ResourceLocation.fromNamespaceAndPath("modid", "path")`.
-- **Ingredient:** O método `Ingredient.fromJson()` foi alterado. O método recomendado agora é usar o `Codec` do `Ingredient`: `Ingredient.CODEC.parse(JsonOps.INSTANCE, jsonElement)`.
-- **ServerPlayer:** A propriedade `latency` para obter o ping do jogador foi movida ou seu acesso foi alterado. Verifique os novos métodos da classe `ServerPlayer`.
-
-- [x] HeadShotAABBConfigRead.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(String) -> ResourceLocation.parse(String)
-- [x] SyncedClassKey.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(String) -> ResourceLocation.parse(String)
-- [x] TacPathVisitor.java ✅ **CONCLUÍDO** - Migrado new ResourceLocation(namespace, path) -> ResourceLocation.fromNamespaceAndPath 
-- [x] ResourceScanner.java ✅ **CONCLUÍDO** - Corrigida referência GunMod.LOGGER -> Logger próprio
-- [x] GunSmithTableIngredientSerializer.java ✅ **CONCLUÍDO** - Migrado Ingredient.fromJson() -> Ingredient.CODEC.parse()
-- [x] HitboxHelper.java ✅ **CONCLUÍDO** - Migrado serverPlayerOwner.latency -> serverPlayerOwner.connection.latency()
-- [x] ConfigCommand.java ✅ **CONCLUÍDO** - Reescrito para usar StringArgumentType com sugestões personalizadas
-
----
-
-#### **Arquivos Restantes da Fase 1** ✅ **COMPLETOS**
-*Arquivos sem dependências internas que podem ser habilitados com segurança:*
+### **FASE 1: PRIMEIRA CAMADA** ✅ (81 arquivos)
+*Esta fase foi concluída com sucesso.*
 
 - [x] AccessorSparseIndices.java (Deps: 0)
 - [x] AccessorSparseValues.java (Deps: 0)
 - [x] AmmoBoxTooltip.java (Deps: 0)
+- [x] AmmoClothConfig.java (Deps: 1)
 - [x] AmmoParticle.java (Deps: 0)
 - [x] AnimationChannelTarget.java (Deps: 0)
 - [x] AnimationSampler.java (Deps: 0)
+- [x] AttachmentData.java (Deps: 2)
+- [x] AttachmentIndexPOJO.java (Deps: 1)
+- [x] AttachmentItemTooltip.java (Deps: 1)
+- [x] BedrockPart.java (Deps: 1)
 - [x] BedrockVertex.java (Deps: 0)
 - [x] BlockItemTooltip.java (Deps: 0)
 - [x] Buffer.java (Deps: 0)
 - [x] Buffers.java (Deps: 0)
 - [x] BufferView.java (Deps: 0)
+- [x] BulletData.java (Deps: 3)
+- [x] CommonAmmoIndex.java (Deps: 1)
+- [x] CommonConfig.java (Deps: 3)
 - [x] CommonTransformObject.java (Deps: 0)
+- [x] ConfigCommand.java (Deps: 0)
 - [x] DiscreteTrackArray.java (Deps: 0)
+- [x] DistanceDamagePairSerializer.java (Deps: 1)
 - [x] FaceItem.java (Deps: 0)
 - [x] FireMode.java (Deps: 0)
+- [x] FlatColorButton.java (Deps: 0)
+- [x] GunClothConfig.java (Deps: 1)
 - [x] GunLevelUpToast.java (Deps: 0)
 - [x] GunRecoilKeyFrame.java (Deps: 0)
+- [x] GunReloadData.java (Deps: 2)
+- [x] GunResult.java (Deps: 1)
+- [x] GunSmithTableIngredientSerializer.java (Deps: 0)
+- [x] GunTooltipPart.java (Deps: 0)
+- [x] HeadShotAABBConfigRead.java (Deps: 0)
+- [x] HitboxHelper.java (Deps: 0)
+- [x] IAnimationItem.java (Deps: 0)
+- [x] IAttachment.java (Deps: 1)
+- [x] IComponentTooltip.java (Deps: 0)
 - [x] IDisplay.java (Deps: 0)
+- [x] IgniteSerializer.java (Deps: 1)
+- [x] IMessage.java (Deps: 0)
+- [x] INetworkCacheReloadListener.java (Deps: 1)
+- [x] Interpolator.java (Deps: 1)
+- [x] ItemStackSerializer.java (Deps: 0)
+- [x] KnockbackChange.java (Deps: 1)
 - [x] LayerGunShow.java (Deps: 0)
+- [x] LiteralFilter.java (Deps: 1)
+- [x] LivingEntityAmmoCheck.java (Deps: 1)
 - [x] LoginIndexHolder.java (Deps: 0)
+- [x] LuaNbtAccessor.java (Deps: 0)
 - [x] MathUtil.java (Deps: 0)
 - [x] Md5Utils.java (Deps: 0)
+- [x] ModDataComponents.java (Deps: 0)
 - [x] MoveSpeed.java (Deps: 0)
 - [x] Node.java (Deps: 0)
 - [x] NodeModel.java (Deps: 0)
+- [x] OpenGunPackDirEntry.java (Deps: 0)
 - [x] PairSerializer.java (Deps: 0)
 - [x] PerlinNoise.java (Deps: 0)
 - [x] PlayerNamePapi.java (Deps: 0)
+- [x] PreLoadConfig.java (Deps: 0)
+- [x] PreLoadModConfig.java (Deps: 0)
+- [x] RegexFilter.java (Deps: 1)
 - [x] ReloadState.java (Deps: 0)
+- [x] RenderHelper.java (Deps: 0)
+- [x] ResourceScanner.java (Deps: 0)
+- [x] ServerConfig.java (Deps: 1)
+- [x] ServerMessageLevelUp.java (Deps: 0)
+- [x] ServerTickHandler.java (Deps: 0)
 - [x] ShellEjection.java (Deps: 0)
+- [x] SoundEffectKeyframesSerializer.java (Deps: 1)
+- [x] SyncedClassKey.java (Deps: 0)
+- [x] TacPathVisitor.java (Deps: 0)
+- [x] TextShow.java (Deps: 1)
+- [x] ThirdPersonManager.java (Deps: 1)
 - [x] TimelessItemNbtFactory.java (Deps: 0)
 - [x] TransformScale.java (Deps: 0)
 - [x] Vec3Serializer.java (Deps: 0)
 - [x] Vector3fSerializer.java (Deps: 0)
-- [x] AmmoClothConfig.java (Deps: 1)
-- [x] AttachmentIndexPOJO.java (Deps: 1)
-- [x] AttachmentItemTooltip.java (Deps: 1)
-- [x] BedrockPart.java (Deps: 1)
-- [x] CommonAmmoIndex.java (Deps: 1)
-- [x] DistanceDamagePairSerializer.java (Deps: 1)
-- [x] GunClothConfig.java (Deps: 1)
-- [x] GunResult.java (Deps: 1)
-- [x] IAttachment.java (Deps: 1)
-- [x] IgniteSerializer.java (Deps: 1)
-- [x] INetworkCacheReloadListener.java (Deps: 1)
-- [x] Interpolator.java (Deps: 1)
-- [x] KnockbackChange.java (Deps: 1)
-- [x] LiteralFilter.java (Deps: 1)
-- [x] LivingEntityAmmoCheck.java (Deps: 1)
-- [x] RegexFilter.java (Deps: 1)
-- [x] ServerConfig.java (Deps: 1)
-- [x] SoundEffectKeyframesSerializer.java (Deps: 1)
-- [x] TextShow.java (Deps: 1)
-- [x] ThirdPersonManager.java (Deps: 1)
 - [x] ZoomClothConfig.java (Deps: 1)
-- [x] AttachmentData.java (Deps: 2)
-- [x] GunReloadData.java (Deps: 2)
-- [x] BulletData.java (Deps: 3)
-- [x] CommonConfig.java (Deps: 3)
+
 ---
 
-### **FASE 2: DEPENDENCIAS BAIXAS (1-3)** (259 arquivos)
-*Arquivos com poucas dependencias internas do mod*
+### **FASE 2: CLIENTE E RENDERIZAÇÃO (REESTRUTURADA v3)** (20 arquivos)
+*Próxima a ser executada. Focada exclusivamente em cliente, renderização e APIs base.*
 
-**Arquivos movidos da Fase 1 (dependem de outras classes do mod):**
-- [ ] TacHitResult.java (Deps: 1 - depende de `EntityKineticBullet` que está na Fase 4)
+> [!IMPORTANT]
+> ### ✅ ARQUIVOS JÁ HABILITADOS (Verificado em 2025-07-06)
+> Os seguintes 10 arquivos mencionados como "não encontrados" no log de erros **JÁ ESTÃO HABILITADOS**:
+> - ✅ AmmoTransform.java 
+> - ✅ BedrockPolygon.java 
+> - ✅ BlockDisplay.java 
+> - ✅ BufferModel.java 
+> - ✅ FaceUVsItem.java 
+> - ✅ GunAmmo.java 
+> - ✅ GunRecoil.java 
+> - ✅ GunTransform.java 
+> - ✅ ModelRendererWrapper.java 
+> - ✅ OverwriteCommand.java
 
-- [ ] AbstractButtonMixin.java (Deps: 1)
-- [ ] Accessor.java (Deps: 1)
-- [ ] AllowAttachmentTagMatcher.java (Deps: 1)
-- [ ] AmmoHitBlockEvent.java (Deps: 1)
-- [ ] AmmoTransform.java (Deps: 1)
-- [ ] AnimationChannel.java (Deps: 1)
-- [ ] AnimationListener.java (Deps: 1)
-- [ ] AnimationPlan.java (Deps: 1)
-- [ ] AttachmentIdFix.java (Deps: 1)
-- [ ] AttachmentLockCommand.java (Deps: 1)
-- [ ] BedrockPolygon.java (Deps: 1)
-- [ ] BedrockVersion.java (Deps: 1)
-- [ ] BeforeRenderHandEvent.java (Deps: 1)
-- [ ] BellRing.java (Deps: 1)
-- [ ] BlackList.java (Deps: 1)
-- [ ] BlockDisplay.java (Deps: 1)
-- [ ] BlockIndexPOJO.java (Deps: 1)
-- [ ] BonesItem.java (Deps: 1)
-- [ ] BufferModel.java (Deps: 1)
-- [ ] ClientMessageCraft.java (Deps: 1)
-- [ ] ClientMessagePlayerAim.java (Deps: 1)
-- [ ] ClientMessagePlayerBoltGun.java (Deps: 1)
-- [ ] ClientMessagePlayerCancelReload.java (Deps: 1)
-- [ ] ClientMessagePlayerDrawGun.java (Deps: 1)
-- [ ] ClientMessagePlayerFireSelect.java (Deps: 1)
-- [ ] ClientMessagePlayerMelee.java (Deps: 1)
-- [ ] ClientMessagePlayerReloadGun.java (Deps: 1)
-- [ ] ClientMessagePlayerShoot.java (Deps: 1)
-- [ ] ClientMessagePlayerZoom.java (Deps: 1)
-- [ ] ClothConfigScreen.java (Deps: 1)
-- [ ] CommandRegistry.java (Deps: 1)
-- [ ] CommonLoadPack.java (Deps: 1)
-- [ ] ControllableCompat.java (Deps: 1)
-- [ ] ConvertCommand.java (Deps: 1)
-- [ ] CrosshairDropdown.java (Deps: 1)
-- [ ] CrosshairType.java (Deps: 1)
-- [ ] CubesItem.java (Deps: 1)
-- [ ] DefaultAssets.java (Deps: 1)
-- [ ] DummyAmmoCommand.java (Deps: 1)
-- [ ] FaceUVsItem.java (Deps: 1)
-- [ ] GeometryModelLegacy.java (Deps: 1)
-- [ ] GunAmmo.java (Deps: 1)
-- [ ] GunDrawEvent.java (Deps: 1)
-- [ ] GunFinishReloadEvent.java (Deps: 1)
-- [ ] GunFireSelectEvent.java (Deps: 1)
-- [ ] GunItemManager.java (Deps: 1)
-- [ ] GunMeleeEvent.java (Deps: 1)
-- [ ] GunRecoil.java (Deps: 1)
-- [ ] GunReloadEvent.java (Deps: 1)
-- [ ] GunSmithTableBlockA.java (Deps: 1)
-- [ ] GunSmithTableBlockB.java (Deps: 1)
-- [ ] GunSmithTableBlockC.java (Deps: 1)
-- [ ] GunTransform.java (Deps: 1)
-- [ ] HumanoidModelMixin.java (Deps: 1)
-- [ ] InspectKey.java (Deps: 1)
-- [ ] ItemAnimationStateContext.java (Deps: 1)
-- [ ] KubeJSCustomGunItem.java (Deps: 1)
-- [ ] MeleeKey.java (Deps: 1)
-- [ ] ModAttributes.java (Deps: 1)
-- [ ] ModDamageTypes.java (Deps: 1)
-- [ ] ModelRendererWrapper.java (Deps: 1)
-- [ ] ModPainting.java (Deps: 1)
-- [ ] ModSounds.java (Deps: 1)
-- [ ] OverwriteCommand.java (Deps: 1)
-- [ ] PlayerAnimatorAssetManager.java (Deps: 1)
-- [ ] PlayerEnterWorld.java (Deps: 1)
-- [ ] PlayGunSoundEvent.java (Deps: 1)
-- [ ] PreLoadConfig.java (Deps: 1)
-- [ ] PreventGunClick.java (Deps: 1)
-- [ ] ReloadResourceEvent.java (Deps: 1)
-- [ ] RenderConfig.java (Deps: 1)
-- [ ] RenderDistance.java (Deps: 1)
-- [ ] RenderItemInHandBobEvent.java (Deps: 1)
-- [ ] RenderLevelBobEvent.java (Deps: 1)
-- [ ] ResourceManager.java (Deps: 1)
-- [ ] ResourceScanner.java (Deps: 1)
-- [ ] ResultButton.java (Deps: 1)
-- [ ] ServerGamePacketListenerImplMixin.java (Deps: 1)
-- [ ] ServerMessageCraft.java (Deps: 1)
-- [ ] ServerMessageGunDraw.java (Deps: 1)
-- [ ] ServerMessageGunFire.java (Deps: 1)
-- [ ] ServerMessageGunFireSelect.java (Deps: 1)
-- [ ] ServerMessageGunHurt.java (Deps: 1)
-- [ ] ServerMessageGunKill.java (Deps: 1)
-- [ ] ServerMessageGunMelee.java (Deps: 1)
-- [ ] ServerMessageGunReload.java (Deps: 1)
-- [ ] ServerMessageGunShoot.java (Deps: 1)
-- [ ] ServerMessageSwapItem.java (Deps: 1)
-- [ ] ServerPlayerMixin.java (Deps: 1)
-- [ ] SoundAssetsManager.java (Deps: 1)
-- [ ] StatueBlockEntity.java (Deps: 1)
-- [ ] SwapItemWithOffHand.java (Deps: 1)
-- [ ] TargetMinecartItem.java (Deps: 1)
-- [ ] ThrowableAnimationStateContext.java (Deps: 1)
-- [ ] TimelessItemType.java (Deps: 1)
-- [ ] TimelessKubeJSEventRegister.java (Deps: 1)
-- [ ] TypeButton.java (Deps: 1)
-- [ ] AbstractAccessorData.java (Deps: 2)
+> [!WARNING]
+> ### ARQUIVOS MOVIDOS PARA OUTRAS FASES
+> **Para Fase 1:** ModAttributes.java, ModSounds.java, ModPainting.java (problemas com RegistryObject)  
+> **Para Fase 3:** Arquivos de rede (network/message) - dependem de gameplay  
+> **Para Fase 4:** Compatibilidade KubeJS - depende de mods externos
+
+#### **SUBFASE 2.1: APIs de Base do Cliente** (1ª prioridade)
+- [ ] KubeJSGunEventPoster.java (API base para eventos KubeJS)
+- [ ] BedrockVersion.java (validação de versão de modelos)
+
+#### **SUBFASE 2.2: Dependências Externas Missing** (2ª prioridade)
+- [ ] SoundAssetsManager.java (OggAudioStream → precisa migração)
+- [ ] ReloadResourceEvent.java (TextureStitchEvent → precisa migração)
+
+#### **SUBFASE 2.3: Eventos de Cliente** (3ª prioridade)  
+- [ ] BeforeRenderHandEvent.java
+- [ ] RenderItemInHandBobEvent.java  
+- [ ] RenderLevelBobEvent.java
+- [ ] SwapItemWithOffHand.java
+- [ ] CameraSetupEvent.java
+- [ ] PlayerEnterWorld.java
+- [ ] PlayGunSoundEvent.java
+
+#### **SUBFASE 2.4: Input/Controles** (4ª prioridade)
+- [ ] InspectKey.java 
+- [ ] MeleeKey.java
+
+#### **SUBFASE 2.5: Mixins de Cliente** (5ª prioridade)
+- [ ] AbstractButtonMixin.java
+- [ ] HumanoidModelMixin.java  
+
+#### **SUBFASE 2.6: Anotações EventBusSubscriber** (6ª prioridade)
+- [ ] ReloadResourceEvent.java (correção de anotação)
+- [ ] CommonLoadPack.java (correção de anotação)
+
+#### **SUBFASE 2.7: Comandos Base** (7ª prioridade)
+- [ ] AttachmentLockCommand.java
+- [ ] ConvertCommand.java  
+- [ ] DummyAmmoCommand.java
+
+#### **SUBFASE 2.8: Utils e DataFixers** (8ª prioridade)
+- [ ] AllowAttachmentTagMatcher.java
+- [ ] AttachmentIdFix.java
+
+---
+
+### **FASE 3: GAMEPLAY E REDE (REESTRUTURADA v3)** (287 arquivos)
+*Arquivos com dependências moderadas. Inclui arquivos movidos da Fase 2 e outros movimentos.*
+
+> [!NOTE]
+> ### ARQUIVOS MOVIDOS DA FASE 2
+> **Rede e Gameplay (61 arquivos):** Todos os arquivos de network/message, eventos de gameplay, mixins de servidor, e arquivos que dependem de IGunOperator, IGun, etc.  
+> **Registros (3 arquivos):** ModAttributes.java, ModSounds.java, ModPainting.java - movidos para resolver problemas de RegistryObject primeiro.
+
+**Arquivos Movidos da Fase 2 (64 arquivos):**
+- [ ] ModAttributes.java (Deps: 1) ← Movido: problemas com RegistryObject
+- [ ] ModSounds.java (Deps: 1) ← Movido: problemas com RegistryObject  
+- [ ] ModPainting.java (Deps: 1) ← Movido: problemas com RegistryObject
+- [ ] BellRing.java (Deps: 1) ← Movido: depende de AmmoHitBlockEvent
+- [ ] ClientMessageCraft.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerAim.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerBoltGun.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerCancelReload.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerDrawGun.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerFireSelect.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerMelee.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerReloadGun.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerShoot.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessagePlayerZoom.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] CommandRegistry.java (Deps: 1) ← Movido: depende de RootCommand
+- [ ] GunDrawEvent.java (Deps: 1) ← Movido: evento de gameplay
+- [ ] GunFinishReloadEvent.java (Deps: 1) ← Movido: evento de gameplay
+- [ ] GunFireSelectEvent.java (Deps: 1) ← Movido: evento de gameplay
+- [ ] GunMeleeEvent.java (Deps: 1) ← Movido: evento de gameplay
+- [ ] GunReloadEvent.java (Deps: 1) ← Movido: evento de gameplay
+- [ ] PreventGunClick.java (Deps: 1) ← Movido: depende de IGun
+- [ ] ServerGamePacketListenerImplMixin.java (Deps: 1) ← Movido: depende de IGunOperator
+- [ ] ServerMessageCraft.java (Deps: 1) ← Movido: rede
+- [ ] ServerMessageGunDraw.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunFire.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunFireSelect.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunHurt.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunKill.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunMelee.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunReload.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageGunShoot.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ServerMessageSwapItem.java (Deps: 1) ← Movido: rede
+- [ ] ServerPlayerMixin.java (Deps: 1) ← Movido: depende de IGunOperator
+- [ ] TargetMinecartItem.java (Deps: 1) ← Movido: depende de TargetMinecart
+- [ ] Accessor.java (Deps: 1) ← Movido: infraestrutura complexa
+- [ ] BlockIndexPOJO.java (Deps: 1) ← Movido: infraestrutura
+- [ ] BonesItem.java (Deps: 1) ← Movido: infraestrutura de modelo
+- [ ] ControllableCompat.java (Deps: 1) ← Movido: compatibilidade
+- [ ] CrosshairDropdown.java (Deps: 1) ← Movido: UI complexa
+- [ ] CrosshairType.java (Deps: 1) ← Movido: UI
+- [ ] CubesItem.java (Deps: 1) ← Movido: infraestrutura de modelo
+- [ ] DefaultAssets.java (Deps: 1) ← Movido: constantes de recursos
+- [ ] GeometryModelLegacy.java (Deps: 1) ← Movido: depende de BonesItem
+- [ ] KubeJSCustomGunItem.java (Deps: 1) ← Movido: compatibilidade KubeJS
+- [ ] ModDamageTypes.java (Deps: 1) ← Movido: tipos de dano
+- [ ] PlayerAnimatorAssetManager.java (Deps: 1) ← Movido: compatibilidade
+- [ ] RenderConfig.java (Deps: 1) ← Movido: configuração complexa
+- [ ] RenderDistance.java (Deps: 1) ← Movido: configuração de render
+- [ ] ResourceManager.java (Deps: 1) ← Movido: gerenciamento de recursos
+- [ ] ResultButton.java (Deps: 1) ← Movido: UI
+- [ ] TimelessItemType.java (Deps: 1) ← Movido: compatibilidade KubeJS
+- [ ] TimelessKubeJSEventRegister.java (Deps: 1) ← Movido: compatibilidade KubeJS
+- [ ] TypeButton.java (Deps: 1) ← Movido: UI
+- [ ] VersionChecker.java (Deps: 2) ← Movido: funcionalidade avançada
+
+**Arquivos Originais da Fase 3:**
+- [ ] AbstractGunSmithTableBlock.java (Deps: 4)
+- [ ] AccessorByteData.java (Deps: 3)
+- [ ] AccessorFloatData.java (Deps: 3)
+- [ ] AccessorIntData.java (Deps: 3)
+- [ ] AccessorModel.java (Deps: 5)
+- [ ] AccessorShortData.java (Deps: 3)
 - [ ] Accessors.java (Deps: 2)
 - [ ] AccessorSparse.java (Deps: 2)
 - [ ] AccessorSparseUtils.java (Deps: 2)
+- [ ] Acknowledge.java (Deps: 3)
 - [ ] AdjustmentYRotModifier.java (Deps: 2)
+- [ ] AimKey.java (Deps: 3)
+- [ ] AmmoBoxItemDataAccessor.java (Deps: 5)
+- [ ] AmmoCountPapi.java (Deps: 4)
+- [ ] AmmoDisplay.java (Deps: 5)
+- [ ] AmmoItemDataAccessor.java (Deps: 5)
+- [ ] AmmoItemRenderer.java (Deps: 6)
+- [ ] AmmoNbtFactory.java (Deps: 4)
 - [ ] AmmoParticleSpawner.java (Deps: 2)
+- [ ] AnimateGeoItemRenderer.java (Deps: 8)
 - [ ] Animation.java (Deps: 2)
+- [ ] AnimationChannel.java (Deps: 1)
+- [ ] AnimationController.java (Deps: 4)
 - [ ] AnimationDataRegisterFactory.java (Deps: 2)
 - [ ] AnimationKeyframesSerializer.java (Deps: 2)
+- [ ] AnimationListener.java (Deps: 1)
 - [ ] AnimationListenerSupplier.java (Deps: 2)
 - [ ] AnimationModel.java (Deps: 2)
+- [ ] AnimationPlan.java (Deps: 1)
 - [ ] AnimationState.java (Deps: 2)
+- [ ] AnimationStateContext.java (Deps: 7)
+- [ ] AnimationStateMachine.java (Deps: 3)
+- [ ] AttachmentCacheProperty.java (Deps: 5)
+- [ ] AttachmentDataManager.java (Deps: 6)
+- [ ] AttachmentDisplay.java (Deps: 4)
+- [ ] AttachmentItemDataAccessor.java (Deps: 3)
+- [ ] AttachmentItemRenderer.java (Deps: 6)
+- [ ] AttachmentNbtFactory.java (Deps: 4)
 - [ ] AttachmentPropertyEvent.java (Deps: 2)
+- [ ] AttachmentsTagManager.java (Deps: 5)
+- [ ] BedrockCubePerFace.java (Deps: 5)
 - [ ] BedrockModelPOJO.java (Deps: 2)
 - [ ] BlockData.java (Deps: 2)
 - [ ] BlockItemBuilder.java (Deps: 2)
 - [ ] BlockRayTrace.java (Deps: 2)
 - [ ] BufferViewModel.java (Deps: 2)
 - [ ] BulletHoleOption.java (Deps: 2)
+- [ ] BulletHoleParticle.java (Deps: 4)
+- [ ] CameraAnimationObject.java (Deps: 5)
+- [ ] CameraRotateListener.java (Deps: 4)
+- [ ] CapabilityRegistry.java (Deps: 3)
+- [ ] ChangeGunPropertyEvent.java (Deps: 3)
 - [ ] ClientAmmoBoxTooltip.java (Deps: 2)
+- [ ] ClientAttachmentSkinIndex.java (Deps: 3)
+- [ ] ClientBlockItemTooltip.java (Deps: 4)
+- [ ] ClientConfig.java (Deps: 3)
+- [ ] ClientMessageLaserColor.java (Deps: 3)
 - [ ] ClientMessagePlayerCrawl.java (Deps: 2)
+- [ ] ClientMessageRefitGun.java (Deps: 5)
+- [ ] ClientMessageSyncBaseTimestamp.java (Deps: 3)
+- [ ] ClientMessageUnloadAttachment.java (Deps: 5)
+- [ ] ClientPreventGunClick.java (Deps: 3)
+- [ ] ClothConfigScreen.java (Deps: 1)
 - [ ] CommonAmmoIndexSerializer.java (Deps: 2)
+- [ ] CommonAttachmentIndex.java (Deps: 4)
 - [ ] CommonAttachmentIndexSerializer.java (Deps: 2)
+- [ ] CommonBlockIndex.java (Deps: 4)
 - [ ] CommonBlockIndexSerializer.java (Deps: 2)
+- [ ] CommonDataManager.java (Deps: 3)
+- [ ] CommonGunIndex.java (Deps: 4)
 - [ ] CommonGunIndexSerializer.java (Deps: 2)
+- [ ] CommonRegistry.java (Deps: 4)
+- [ ] CompatRegistry.java (Deps: 4)
+- [ ] ConfigKey.java (Deps: 3)
+- [ ] ConstraintObject.java (Deps: 7)
+- [ ] ConstraintRotateListener.java (Deps: 4)
+- [ ] ConstraintTranslateListener.java (Deps: 3)
+- [ ] ControllableInner.java (Deps: 4)
+- [ ] CrawlKey.java (Deps: 4)
 - [ ] CustomGunItemBuilder.java (Deps: 2)
+- [ ] CustomInterpolator.java (Deps: 3)
 - [ ] DataEntry.java (Deps: 2)
 - [ ] DataHolder.java (Deps: 2)
 - [ ] DefaultTableItem.java (Deps: 2)
 - [ ] DestroyGlassBlock.java (Deps: 2)
+- [ ] DisplayManager.java (Deps: 3)
 - [ ] EntityDamageEvent.java (Deps: 2)
+- [ ] EntityHurtByGunEvent.java (Deps: 3)
 - [ ] EntityKillByGunEvent.java (Deps: 2)
-- [ ] EntityUtil.java (Deps: 2)
 - [ ] ExplodeUtil.java (Deps: 2)
 - [ ] FireSelectKey.java (Deps: 2)
+- [ ] FirstPersonRenderEvent.java (Deps: 5)
 - [ ] FunctionalBedrockPart.java (Deps: 2)
+- [ ] GameRendererMixin.java (Deps: 3)
 - [ ] GeometryModelNew.java (Deps: 2)
 - [ ] GetJarResources.java (Deps: 2)
+- [ ] GltfManager.java (Deps: 4)
+- [ ] GunAttachmentSlot.java (Deps: 4)
 - [ ] GunFireEvent.java (Deps: 2)
+- [ ] GunKubeJSEvents.java (Deps: 7)
+- [ ] GunModelTypeManager.java (Deps: 3)
+- [ ] GunModSubtype.java (Deps: 0)
+- [ ] GunPackList.java (Deps: 3)
 - [ ] GunShootEvent.java (Deps: 2)
+- [ ] GunSmithTableBlockA.java (Deps: 1)
+- [ ] GunSmithTableBlockB.java (Deps: 1)
+- [ ] GunSmithTableBlockC.java (Deps: 1)
 - [ ] GunSmithTableCategory.java (Deps: 2)
+- [ ] GunSmithTableItem.java (Deps: 6)
+- [ ] GunSmithTableItemRenderer.java (Deps: 3)
+- [ ] GunSmithTableMenu.java (Deps: 9)
+- [ ] GunSmithTableRecipe.java (Deps: 4)
+- [ ] GunSmithTableRenderer.java (Deps: 7)
 - [ ] GunSmithTableResult.java (Deps: 2)
 - [ ] GunSmithTableResultComponents.java (Deps: 2)
 - [ ] GunSmithTableResultInfo.java (Deps: 2)
+- [ ] GunSmithTableSerializer.java (Deps: 5)
 - [ ] GunSoundInstance.java (Deps: 2)
 - [ ] GunTooltip.java (Deps: 2)
 - [ ] HideTooltipPartCommand.java (Deps: 2)
 - [ ] HitboxHelperEvent.java (Deps: 2)
+- [ ] HSVSliderGroup.java (Deps: 4)
+- [ ] HumanoidOffhandRender.java (Deps: 4)
+- [ ] IAttachmentModifier.java (Deps: 4)
 - [ ] IClientPlayerGunOperator.java (Deps: 2)
+- [ ] ICommonResourceProvider.java (Deps: 8)
+- [ ] IGun.java (Deps: 4)
+- [ ] IGunOperator.java (Deps: 4)
 - [ ] InaccuracyType.java (Deps: 2)
+- [ ] InnerThirdPersonManager.java (Deps: 6)
 - [ ] InteractKey.java (Deps: 2)
 - [ ] InteractKeyConfigRead.java (Deps: 2)
+- [ ] InteractKeyTextOverlay.java (Deps: 4)
+- [ ] InternalAssetLoader.java (Deps: 8)
+- [ ] InterpolatorUtil.java (Deps: 5)
 - [ ] InventoryAttachmentSlot.java (Deps: 2)
+- [ ] InventoryEvent.java (Deps: 5)
+- [ ] ItemAnimationStateContext.java (Deps: 1)
+- [ ] ItemInHandLayerMixin.java (Deps: 4)
+- [ ] ItemInHandRendererMixin.java (Deps: 3)
 - [ ] JsonDataManager.java (Deps: 2)
 - [ ] JsonResourceLoader.java (Deps: 2)
 - [ ] KeyClothConfig.java (Deps: 2)
+- [ ] KillAmountOverlay.java (Deps: 3)
+- [ ] KubeJSGunEventPoster.java (Deps: 3)
+- [ ] LaserColorUtil.java (Deps: 6)
+- [ ] LeftHandRender.java (Deps: 3)
 - [ ] Linear.java (Deps: 2)
+- [ ] LivingEntityCrawl.java (Deps: 3)
+- [ ] LivingEntityFireSelect.java (Deps: 7)
 - [ ] LivingEntityHeat.java (Deps: 2)
+- [ ] LivingEntityMixin.java (Deps: 7)
+- [ ] LivingEntitySprint.java (Deps: 3)
 - [ ] LoadingConfigEvent.java (Deps: 2)
+- [ ] LocalPlayerCrawl.java (Deps: 4)
 - [ ] LocalPlayerDataHolder.java (Deps: 2)
-- [ ] LocalPlayerMixin.java (Deps: 2)
-- [ ] ModCapabilities.java (Deps: 2)
-- [ ] ModContainer.java (Deps: 2)
+- [ ] LocalPlayerSprint.java (Deps: 3)
+- [ ] LuaAnimationConstant.java (Deps: 3)
+- [ ] LuaAnimationState.java (Deps: 3)
+- [ ] LuaAnimationStateMachine.java (Deps: 4)
+- [ ] LuaGunAnimationConstant.java (Deps: 5)
+- [ ] LuaGunLogicConstant.java (Deps: 3)
+- [ ] LuaStateMachineFactory.java (Deps: 5)
+- [ ] MenuIntegration.java (Deps: 6)
+- [ ] ModBlocks.java (Deps: 4)
 - [ ] ModContainerScreen.java (Deps: 2)
-- [ ] ModDataComponents.java (Deps: 2)
 - [ ] ModEntities.java (Deps: 2)
+- [ ] ModItems.java (Deps: 3)
 - [ ] ModParticles.java (Deps: 2)
+- [ ] ModRecipe.java (Deps: 3)
 - [ ] ModSerializers.java (Deps: 2)
+- [ ] ModSyncedEntityData.java (Deps: 7)
+- [ ] ModelAdditionalMagazineListener.java (Deps: 3)
+- [ ] ModelRotateListener.java (Deps: 4)
+- [ ] ModelScaleListener.java (Deps: 3)
+- [ ] ModelTranslateListener.java (Deps: 5)
+- [ ] MouseHandlerMixin.java (Deps: 10)
+- [ ] NetworkHandler.java (Deps: 5)
+- [ ] ObjectAnimation.java (Deps: 5)
+- [ ] ObjectAnimationChannel.java (Deps: 3)
+- [ ] ObjectAnimationRunner.java (Deps: 5)
 - [ ] ObjectAnimationSoundChannel.java (Deps: 2)
+- [ ] OculusCompat.java (Deps: 3)
 - [ ] OtherClothConfig.java (Deps: 2)
+- [ ] PackConvertor.java (Deps: 3)
+- [ ] PackInfoManager.java (Deps: 3)
 - [ ] PapiManager.java (Deps: 2)
 - [ ] ParameterizedCache.java (Deps: 2)
 - [ ] ParameterizedCachePair.java (Deps: 2)
+- [ ] ParticleFactoryRegistry.java (Deps: 3)
+- [ ] PlayerAnimatorCompat.java (Deps: 6)
+- [ ] PlayerAnimatorLoader.java (Deps: 3)
+- [ ] PlayerHurtByGunEvent.java (Deps: 3)
 - [ ] PlayerModelMixin.java (Deps: 2)
-- [ ] PreventsHotbarEvent.java (Deps: 2)
-- [ ] RefitKey.java (Deps: 2)
+- [ ] PlayerRespawnEvent.java (Deps: 4)
+- [ ] ProjectileExplosion.java (Deps: 3)
+- [ ] RawAnimationStructure.java (Deps: 5)
+- [ ] RecipeFilter.java (Deps: 4)
+- [ ] RecipeFilterManager.java (Deps: 6)
+- [ ] RefitTransform.java (Deps: 3)
 - [ ] RefitTurnPageButton.java (Deps: 2)
 - [ ] RefitUnloadButton.java (Deps: 2)
+- [ ] RefreshClonePlayerDataEvent.java (Deps: 3)
 - [ ] ReloadCommand.java (Deps: 2)
+- [ ] ReloadKey.java (Deps: 5)
+- [ ] RenderClothConfig.java (Deps: 3)
 - [ ] RenderHeadShotAABB.java (Deps: 2)
+- [ ] RightHandRender.java (Deps: 3)
+- [ ] RootCommand.java (Deps: 0)
 - [ ] ScriptManager.java (Deps: 2)
 - [ ] Serializers.java (Deps: 2)
 - [ ] ServerMessageRefreshRefitScreen.java (Deps: 2)
 - [ ] ServerMessageSound.java (Deps: 2)
+- [ ] ServerMessageSyncBaseTimestamp.java (Deps: 5)
+- [ ] ServerMessageSyncGunPack.java (Deps: 3)
+- [ ] ServerMessageSyncedEntityDataMapping.java (Deps: 7)
 - [ ] ServerMessageUpdateEntityData.java (Deps: 2)
 - [ ] ServerPlayNetHandlerMixin.java (Deps: 2)
 - [ ] ShooterDataHolder.java (Deps: 2)
+- [ ] ShootKey.java (Deps: 7)
 - [ ] SLerp.java (Deps: 2)
+- [ ] SlotModel.java (Deps: 3)
 - [ ] SoundManager.java (Deps: 2)
+- [ ] SoundPlayManager.java (Deps: 9)
 - [ ] Spline.java (Deps: 2)
+- [ ] StatueRenderer.java (Deps: 5)
 - [ ] Step.java (Deps: 2)
 - [ ] SyncBaseTimestamp.java (Deps: 2)
-- [ ] TableRecipe.java (Deps: 2)
-- [ ] TargetBlock.java (Deps: 2)
-- [ ] TimelessCommonEvents.java (Deps: 2)
-- [ ] TravelToDimensionEvent.java (Deps: 2)
-- [ ] VersionChecker.java (Deps: 2)
-- [ ] AccessorByteData.java (Deps: 3)
-- [ ] AccessorFloatData.java (Deps: 3)
-- [ ] AccessorIntData.java (Deps: 3)
-- [ ] AccessorShortData.java (Deps: 3)
-- [ ] Acknowledge.java (Deps: 3)
-- [ ] AimKey.java (Deps: 3)
-- [ ] AmmoItemBuilder.java (Deps: 3)
-- [ ] AnimationStateMachine.java (Deps: 3)
-- [ ] AttachmentItemBuilder.java (Deps: 3)
-- [ ] AttachmentItemDataAccessor.java (Deps: 3)
-- [ ] AttachmentQueryCategory.java (Deps: 3)
-- [ ] BedrockCubeBox.java (Deps: 3)
-- [ ] BlockItemDataAccessor.java (Deps: 3)
-- [ ] CapabilityRegistry.java (Deps: 3)
-- [ ] ChangeGunPropertyEvent.java (Deps: 3)
-- [ ] ClientAttachmentSkinIndex.java (Deps: 3)
-- [ ] ClientConfig.java (Deps: 3)
-- [ ] ClientMessageLaserColor.java (Deps: 3)
-- [ ] ClientMessageSyncBaseTimestamp.java (Deps: 3)
-- [ ] ClientPreventGunClick.java (Deps: 3)
-- [ ] CommonDataManager.java (Deps: 3)
-- [ ] ConfigKey.java (Deps: 3)
-- [ ] ConstraintTranslateListener.java (Deps: 3)
-- [ ] CustomInterpolator.java (Deps: 3)
-- [ ] DisplayManager.java (Deps: 3)
-- [ ] EntityHurtByGunEvent.java (Deps: 3)
-- [ ] GameRendererMixin.java (Deps: 3)
-- [ ] GunModelTypeManager.java (Deps: 3)
-- [ ] GunPackList.java (Deps: 3)
-- [ ] GunProperties.java (Deps: 3)
-- [ ] GunSmithTableBlockEntity.java (Deps: 3)
-- [ ] GunSmithTableItemRenderer.java (Deps: 3)
-- [ ] ItemInHandRendererMixin.java (Deps: 3)
-- [ ] KillAmountOverlay.java (Deps: 3)
-- [ ] KubeJSGunEventPoster.java (Deps: 3)
-- [ ] LeftHandRender.java (Deps: 3)
-- [ ] LivingEntityCrawl.java (Deps: 3)
-- [ ] LivingEntitySprint.java (Deps: 3)
-- [ ] LocalPlayerSprint.java (Deps: 3)
-- [ ] LuaAnimationConstant.java (Deps: 3)
-- [ ] LuaAnimationState.java (Deps: 3)
-- [ ] LuaGunLogicConstant.java (Deps: 3)
-- [ ] ModelAdditionalMagazineListener.java (Deps: 3)
-- [ ] ModelScaleListener.java (Deps: 3)
-- [ ] ModItems.java (Deps: 3)
-- [ ] ModRecipe.java (Deps: 3)
-- [ ] ObjectAnimationChannel.java (Deps: 3)
-- [ ] OculusCompat.java (Deps: 3)
-- [ ] PackConvertor.java (Deps: 3)
-- [ ] PackInfoManager.java (Deps: 3)
-- [ ] ParticleFactoryRegistry.java (Deps: 3)
-- [ ] PlayerAnimatorLoader.java (Deps: 3)
-- [ ] PlayerHurtByGunEvent.java (Deps: 3)
-- [ ] ProjectileExplosion.java (Deps: 3)
-- [ ] RefitTransform.java (Deps: 3)
-- [ ] RefreshClonePlayerDataEvent.java (Deps: 3)
-- [ ] RenderClothConfig.java (Deps: 3)
-- [ ] RightHandRender.java (Deps: 3)
-- [ ] ServerMessageSyncGunPack.java (Deps: 3)
-- [ ] SlotModel.java (Deps: 3)
-- [ ] StatueBlock.java (Deps: 3)
 - [ ] SyncedDataKey.java (Deps: 3)
-- [ ] TimelessForgeEventWrappers.java (Deps: 3)
-- [ ] TimelessGunSmithTableRecipeSchema.java (Deps: 3)
-- [ ] ZoomKey.java (Deps: 3)
----
-
-### **FASE 3: DEPENDENCIAS MEDIAS (4-10)** (137 arquivos)
-*Arquivos com dependencias moderadas*
-
-**Arquivos movidos da Fase 1 (dependem de outras classes do mod):**
-- [ ] RootCommand.java (Deps: 0 - mas depende de sub-comandos como `AttachmentLockCommand`, `DummyAmmoCommand`, etc.)
-- [ ] GunModSubtype.java (Deps: 0 - mas depende da interface `IGun`)
-
-- [ ] AbstractGunSmithTableBlock.java (Deps: 4)
-- [ ] AmmoCountPapi.java (Deps: 4)
-- [ ] AmmoNbtFactory.java (Deps: 4)
-- [ ] AnimationController.java (Deps: 4)
-- [ ] AttachmentDisplay.java (Deps: 4)
-- [ ] AttachmentNbtFactory.java (Deps: 4)
-- [ ] BedrockAmmoModel.java (Deps: 4)
-- [ ] BulletHoleParticle.java (Deps: 4)
-- [ ] CameraRotateListener.java (Deps: 4)
-- [ ] ClientBlockItemTooltip.java (Deps: 4)
-- [ ] CommonAttachmentIndex.java (Deps: 4)
-- [ ] CommonBlockIndex.java (Deps: 4)
-- [ ] CommonGunIndex.java (Deps: 4)
-- [ ] CommonRegistry.java (Deps: 4)
-- [ ] CompatRegistry.java (Deps: 4)
-- [ ] ConstraintRotateListener.java (Deps: 4)
-- [ ] ControllableInner.java (Deps: 4)
-- [ ] CrawlKey.java (Deps: 4)
-- [ ] GltfManager.java (Deps: 4)
-- [ ] GunAttachmentSlot.java (Deps: 4)
-- [ ] GunSmithTableRecipe.java (Deps: 4)
-- [ ] HSVSliderGroup.java (Deps: 4)
-- [ ] HumanoidOffhandRender.java (Deps: 4)
-- [ ] IAttachmentModifier.java (Deps: 4)
-- [ ] IGun.java (Deps: 4)
-- [ ] IGunOperator.java (Deps: 4)
-- [ ] InteractKeyTextOverlay.java (Deps: 4)
-- [ ] ItemInHandLayerMixin.java (Deps: 4)
-- [ ] LocalPlayerCrawl.java (Deps: 4)
-- [ ] LuaAnimationStateMachine.java (Deps: 4)
-- [ ] ModBlocks.java (Deps: 4)
-- [ ] ModelRotateListener.java (Deps: 4)
-- [ ] PlayerRespawnEvent.java (Deps: 4)
-- [ ] RecipeFilter.java (Deps: 4)
+- [ ] SyncedEntityData.java (Deps: 6)
 - [ ] SyncedEntityDataEvent.java (Deps: 4)
+- [ ] TabConfig.java (Deps: 6)
+- [ ] TableRecipe.java (Deps: 2)
 - [ ] TargetBlockEntity.java (Deps: 4)
 - [ ] TargetMinecartRenderer.java (Deps: 4)
-- [ ] TextShowRender.java (Deps: 4)
-- [ ] TickAnimationEvent.java (Deps: 4)
-- [ ] TimelessServerEvents.java (Deps: 4)
-- [ ] AccessorModel.java (Deps: 5)
-- [ ] AmmoBoxItemDataAccessor.java (Deps: 5)
-- [ ] AmmoDisplay.java (Deps: 5)
-- [ ] AmmoItemDataAccessor.java (Deps: 5)
-- [ ] AttachmentCacheProperty.java (Deps: 5)
-- [ ] AttachmentsTagManager.java (Deps: 5)
-- [ ] BedrockCubePerFace.java (Deps: 5)
-- [ ] CameraAnimationObject.java (Deps: 5)
-- [ ] ClientMessageRefitGun.java (Deps: 5)
-- [ ] ClientMessageUnloadAttachment.java (Deps: 5)
-- [ ] FirstPersonRenderEvent.java (Deps: 5)
-- [ ] GunSmithTableSerializer.java (Deps: 5)
-- [ ] InterpolatorUtil.java (Deps: 5)
-- [ ] InventoryEvent.java (Deps: 5)
-- [ ] LuaGunAnimationConstant.java (Deps: 5)
-- [ ] LuaStateMachineFactory.java (Deps: 5)
-- [ ] ModelTranslateListener.java (Deps: 5)
-- [ ] NetworkHandler.java (Deps: 5)
-- [ ] ObjectAnimation.java (Deps: 5)
-- [ ] ObjectAnimationRunner.java (Deps: 5)
-- [ ] RawAnimationStructure.java (Deps: 5)
-- [ ] ReloadKey.java (Deps: 5)
-- [ ] ServerMessageSyncBaseTimestamp.java (Deps: 5)
-- [ ] StatueRenderer.java (Deps: 5)
-- [ ] TooltipEvent.java (Deps: 5)
-- [ ] AccessorDatas.java (Deps: 6)
-- [ ] AmmoItemRenderer.java (Deps: 6)
-- [ ] AttachmentDataManager.java (Deps: 6)
-- [ ] AttachmentItemRenderer.java (Deps: 6)
-- [ ] AttachmentQueryEntry.java (Deps: 6)
-- [ ] BedrockModel.java (Deps: 6)
-- [ ] ClientAmmoIndex.java (Deps: 6)
-- [ ] ClientBlockIndex.java (Deps: 6)
-- [ ] ClientGunIndex.java (Deps: 6)
-- [ ] GunPackLoader.java (Deps: 6)
-- [ ] GunSmithTableItem.java (Deps: 6)
-- [ ] GunSmithTableResultSerializer.java (Deps: 6)
-- [ ] InnerThirdPersonManager.java (Deps: 6)
-- [ ] LaserColorUtil.java (Deps: 6)
-- [ ] MenuIntegration.java (Deps: 6)
-- [ ] PlayerAnimatorCompat.java (Deps: 6)
-- [ ] RecipeFilterManager.java (Deps: 6)
-- [ ] SyncedEntityData.java (Deps: 6)
-- [ ] TabConfig.java (Deps: 6)
 - [ ] TargetRenderer.java (Deps: 6)
+- [ ] TextShowRender.java (Deps: 4)
+- [ ] ThrowableAnimationStateContext.java (Deps: 1)
+- [ ] TickAnimationEvent.java (Deps: 4)
 - [ ] TimelessClientEvents.java (Deps: 6)
-- [ ] AnimationStateContext.java (Deps: 7)
-- [ ] ConstraintObject.java (Deps: 7)
-- [ ] EntityBulletRenderer.java (Deps: 7)
-- [ ] ExtraMovementModifier.java (Deps: 7)
-- [ ] GunKubeJSEvents.java (Deps: 7)
-- [ ] GunMod.java (Deps: 7)
-- [ ] GunSmithTableRenderer.java (Deps: 7)
-- [ ] LivingEntityFireSelect.java (Deps: 7)
-- [ ] LivingEntityMixin.java (Deps: 7)
-- [ ] ModSyncedEntityData.java (Deps: 7)
-- [ ] ServerMessageSyncedEntityDataMapping.java (Deps: 7)
-- [ ] ShootKey.java (Deps: 7)
-- [ ] AnimateGeoItemRenderer.java (Deps: 8)
-- [ ] AttachmentRender.java (Deps: 8)
-- [ ] ClientHitMark.java (Deps: 8)
-- [ ] GunItemBuilder.java (Deps: 8)
-- [ ] GunNbtFactory.java (Deps: 8)
-- [ ] ICommonResourceProvider.java (Deps: 8)
-- [ ] IgniteModifier.java (Deps: 8)
-- [ ] InternalAssetLoader.java (Deps: 8)
-- [ ] LivingEntityBolt.java (Deps: 8)
-- [ ] LivingEntityDrawGun.java (Deps: 8)
-- [ ] LivingEntitySpeedModifier.java (Deps: 8)
-- [ ] LocalPlayerAim.java (Deps: 8)
+- [ ] TimelessForgeEventWrappers.java (Deps: 3)
+- [ ] TimelessGunSmithTableRecipeSchema.java (Deps: 3)
+- [ ] TimelessServerEvents.java (Deps: 4)
+- [ ] TooltipEvent.java (Deps: 5)
+- [ ] TravelToDimensionEvent.java (Deps: 2)
+- [ ] ZoomKey.java (Deps: 3)
+
+---
+
+### **FASE 4: NÚCLEO COMPLEXO (v3)** (140 arquivos)
+*Arquivos complexos do núcleo do mod. Inalterado da versão anterior.*
+
+- [ ] AbstractGunItem.java (Deps: 16)
+- [ ] AccessorDatas.java (Deps: 6)
 - [ ] AdsModifier.java (Deps: 9)
 - [ ] AimInaccuracyModifier.java (Deps: 9)
 - [ ] AmmoBoxItem.java (Deps: 9)
+- [ ] AmmoHitBlockEvent.java (Deps: 1)
 - [ ] AmmoItem.java (Deps: 9)
-- [ ] AttachmentItem.java (Deps: 9)
-- [ ] AttachmentPropertyManager.java (Deps: 9)
-- [ ] EffectiveRangeModifier.java (Deps: 9)
-- [ ] ExplosionModifier.java (Deps: 9)
-- [ ] GunPropertyDiagrams.java (Deps: 9)
-- [ ] GunSmithTableMenu.java (Deps: 9)
-- [ ] HeatBarOverlay.java (Deps: 9)
-- [ ] LocalPlayerDraw.java (Deps: 9)
-- [ ] LocalPlayerInspect.java (Deps: 9)
-- [ ] ModEntitiesRender.java (Deps: 9)
-- [ ] PierceModifier.java (Deps: 9)
-- [ ] RawGunTableResult.java (Deps: 9)
-- [ ] SilenceModifier.java (Deps: 9)
-- [ ] SoundPlayManager.java (Deps: 9)
-- [ ] WeightModifier.java (Deps: 9)
-- [ ] AnimationStructure.java (Deps: 10)
-- [ ] BeamRenderer.java (Deps: 10)
-- [ ] ClientAttachmentItemTooltip.java (Deps: 10)
-- [ ] MouseHandlerMixin.java (Deps: 10)
-- [ ] ShellRender.java (Deps: 10)
-- [ ] TargetMinecart.java (Deps: 10)
-- [ ] TimelessItemWrapper.java (Deps: 10)
-- [ ] TimelessRecipeJS.java (Deps: 10)
----
-
-### **FASE 4: DEPENDENCIAS ALTAS (11+)** (51 arquivos)
-*Arquivos complexos do nucleo do mod*
-
-- [ ] AnimationManager.java (Deps: 11)
-- [ ] BedrockAttachmentModel.java (Deps: 11)
-- [ ] GunModPlugin.java (Deps: 11)
-- [ ] LivingEntityAim.java (Deps: 11)
-- [ ] LivingEntityReload.java (Deps: 11)
-- [ ] LocalPlayerFireSelect.java (Deps: 11)
-- [ ] MuzzleFlashRender.java (Deps: 11)
-- [ ] RpmModifier.java (Deps: 11)
+- [ ] AmmoItemBuilder.java (Deps: 3)
 - [ ] AmmoSpeedModifier.java (Deps: 12)
-- [ ] GunItemDataAccessor.java (Deps: 12)
-- [ ] LocalPlayerBolt.java (Deps: 12)
-- [ ] RecoilModifier.java (Deps: 12)
-- [ ] RenderCrosshairEvent.java (Deps: 12)
+- [ ] AnimationManager.java (Deps: 11)
+- [ ] Animations.java (Deps: 16)
+- [ ] AnimationStructure.java (Deps: 10)
+- [ ] ArmorIgnoreModifier.java (Deps: 15)
+- [ ] AttachmentDataUtils.java (Deps: 16)
+- [ ] AttachmentItem.java (Deps: 9)
+- [ ] AttachmentItemBuilder.java (Deps: 3)
+- [ ] AttachmentPropertyManager.java (Deps: 9)
+- [ ] AttachmentQueryCategory.java (Deps: 3)
+- [ ] AttachmentQueryEntry.java (Deps: 6)
+- [ ] AttachmentRender.java (Deps: 8)
+- [ ] BeamRenderer.java (Deps: 10)
+- [ ] BedrockAnimatedModel.java (Deps: 17)
+- [ ] BedrockAttachmentModel.java (Deps: 11)
+- [ ] BedrockCubeBox.java (Deps: 3)
+- [ ] BedrockGunModel.java (Deps: 17)
+- [ ] BedrockModel.java (Deps: 6)
+- [ ] CameraSetupEvent.java (Deps: 22)
+- [ ] ClientAssetsManager.java (Deps: 27)
 - [ ] ClientAttachmentIndex.java (Deps: 13)
+- [ ] ClientAttachmentItemTooltip.java (Deps: 10)
+- [ ] ClientGunTooltip.java (Deps: 18)
+- [ ] ClientHitMark.java (Deps: 8)
+- [ ] ClientIndexManager.java (Deps: 15)
+- [ ] CommonAssetsManager.java (Deps: 22)
+- [ ] CommonNetworkCache.java (Deps: 14)
+- [ ] DamageModifier.java (Deps: 15)
+- [ ] EffectiveRangeModifier.java (Deps: 9)
+- [ ] EntityBulletRenderer.java (Deps: 7)
+- [ ] EntityKineticBullet.java (Deps: 25)
+- [ ] EntityUtil.java (Deps: 2)
+- [ ] ExplosionModifier.java (Deps: 9)
+- [ ] ExtraMovementModifier.java (Deps: 7)
+- [ ] FirstPersonRenderGunEvent.java (Deps: 21)
+- [ ] GunAnimationStateContext.java (Deps: 19)
+- [ ] GunData.java (Deps: 18)
+- [ ] GunDisplay.java (Deps: 14)
+- [ ] GunDisplayInstance.java (Deps: 20)
+- [ ] GunHudOverlay.java (Deps: 15)
+- [ ] GunItemBuilder.java (Deps: 8)
+- [ ] GunItemDataAccessor.java (Deps: 12)
+- [ ] GunItemManager.java (Deps: 1)
+- [ ] GunItemRendererWrapper.java (Deps: 21)
+- [ ] GunMod.java (Deps: 7)
+- [ ] GunModPlugin.java (Deps: 11)
+- [ ] GunNbtFactory.java (Deps: 8)
+- [ ] GunPackLoader.java (Deps: 6)
+- [ ] GunProperties.java (Deps: 3)
+- [ ] GunPropertyDiagrams.java (Deps: 9)
+- [ ] GunRefitScreen.java (Deps: 16)
+- [ ] GunSmithTableBlock.java (Deps: 4)
+- [ ] GunSmithTableScreen.java (Deps: 22)
+- [ ] HeadShotModifier.java (Deps: 15)
 - [ ] InaccuracyModifier.java (Deps: 13)
 - [ ] KnockbackModifier.java (Deps: 13)
-- [ ] ModCreativeTabs.java (Deps: 13)
-- [ ] TimelessKubeJSPlugin.java (Deps: 13)
-- [ ] CommonNetworkCache.java (Deps: 14)
-- [ ] GunDisplay.java (Deps: 14)
+- [ ] LivingEntityAim.java (Deps: 11)
+- [ ] LivingEntityBolt.java (Deps: 8)
+- [ ] LivingEntityDrawGun.java (Deps: 8)
 - [ ] LivingEntityMelee.java (Deps: 14)
-- [ ] LocalPlayerMelee.java (Deps: 14)
-- [ ] ModernKineticGunItem.java (Deps: 14)
-- [ ] ArmorIgnoreModifier.java (Deps: 15)
-- [ ] ClientIndexManager.java (Deps: 15)
-- [ ] DamageModifier.java (Deps: 15)
-- [ ] GunHudOverlay.java (Deps: 15)
-- [ ] HeadShotModifier.java (Deps: 15)
+- [ ] LivingEntityReload.java (Deps: 11)
 - [ ] LivingEntityShoot.java (Deps: 15)
-- [ ] AbstractGunItem.java (Deps: 16)
-- [ ] Animations.java (Deps: 16)
-- [ ] AttachmentDataUtils.java (Deps: 16)
-- [ ] GunRefitScreen.java (Deps: 16)
+- [ ] LivingEntitySpeedModifier.java (Deps: 8)
+- [ ] LocalPlayerAim.java (Deps: 8)
+- [ ] LocalPlayerBolt.java (Deps: 12)
+- [ ] LocalPlayerDraw.java (Deps: 9)
+- [ ] LocalPlayerFireSelect.java (Deps: 11)
+- [ ] LocalPlayerInspect.java (Deps: 9)
+- [ ] LocalPlayerMelee.java (Deps: 14)
 - [ ] LocalPlayerReload.java (Deps: 16)
+- [ ] LocalPlayerShoot.java (Deps: 22)
+- [ ] ModCreativeTabs.java (Deps: 13)
+- [ ] ModernKineticGunItem.java (Deps: 14)
+- [ ] ModernKineticGunScriptAPI.java (Deps: 24)
+- [ ] MuzzleFlashRender.java (Deps: 11)
+- [ ] PierceModifier.java (Deps: 9)
+- [ ] RecoilModifier.java (Deps: 12)
+- [ ] RenderCrosshairEvent.java (Deps: 12)
+- [ ] RpmModifier.java (Deps: 11)
+- [ ] ShellRender.java (Deps: 10)
+- [ ] SilenceModifier.java (Deps: 9)
+- [ ] StatueBlock.java (Deps: 3)
+- [ ] TacHitResult.java (Deps: 1)
+- [ ] TargetBlock.java (Deps: 2)
+- [ ] TargetMinecart.java (Deps: 10)
 - [ ] TimelessAPI.java (Deps: 16)
-- [ ] BedrockAnimatedModel.java (Deps: 17)
-- [ ] BedrockGunModel.java (Deps: 17)
-- [ ] ClientGunTooltip.java (Deps: 18)
-- [ ] GunData.java (Deps: 18)
-- [ ] GunAnimationStateContext.java (Deps: 19)
+- [ ] TimelessItemWrapper.java (Deps: 10)
+- [ ] TimelessKubeJSPlugin.java (Deps: 13)
+- [ ] TimelessRecipeJS.java (Deps: 10)
+- [ ] WeightModifier.java (Deps: 9)
 - [ ] ClientSetupEvent.java (Deps: 20)
 - [ ] GunDisplayInstance.java (Deps: 20)
 - [ ] FirstPersonRenderGunEvent.java (Deps: 21)
@@ -749,6 +699,7 @@ Esta fase consiste em corrigir as classes que dependem apenas da "Fundação" (F
 - [ ] ModernKineticGunScriptAPI.java (Deps: 24)
 - [ ] EntityKineticBullet.java (Deps: 25)
 - [ ] ClientAssetsManager.java (Deps: 27)
+
 ---
 
 ## WORKFLOW DE EXECUCAO
@@ -769,4 +720,35 @@ Para cada arquivo na ordem das fases:
 
 ---
 
+## LOG DE ANÁLISES
+
+### **2025-07-06 19:15:00 - Análise da Fase 2**
+
+**Situação:** Análise do log de erros `build_errors_phase2.txt` após tentativa de habilitação da Fase 2.
+
+**Descobertas Principais:**
+1. **✅ Checklist Atualizado:** Todos os 10 arquivos mencionados como "não encontrados" já estavam habilitados
+2. **🔄 Reorganização Estratégica:** Fase 2 foi drasticamente reduzida de 81 para 20 arquivos
+3. **📋 Categorização por Subfases:** Nova estrutura com 8 subfases priorizadas por tipo de erro
+4. **🚀 Movimento Estratégico:** 64 arquivos movidos para Fase 3 (rede, gameplay, compatibilidade)
+
+**Principais Problemas Identificados:**
+- `KubeJSGunEventPoster` missing (API base)
+- `OggAudioStream` e `TextureStitchEvent` (APIs externas mudaram)
+- Dependências de `RegistryObject` (movidas para Fase 1/3)
+- Eventos de rede e gameplay (movidos para Fase 3)
+
+**Estratégia Atualizada:**
+- Fase 2 agora foca **exclusivamente** em cliente e renderização
+- Resolução por subfases para identificar bloqueios específicos
+- Movimentação baseada em análise real de dependências (não automática)
+
+**Próximos Passos:**
+1. Executar Subfase 2.1 (APIs de Base)
+2. Resolver dependências externas (Subfase 2.2)
+3. Proceder incrementalmente pelas subfases
+
+---
+
 *Plano gerado automaticamente em 2025-07-02 18:01:20 pelo Generate-Plan.ps1 v3.0*
+*Atualizado manualmente em 2025-07-06 19:15:00 com análise da Fase 2*
