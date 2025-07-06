@@ -13,10 +13,10 @@
 |------|-----------|----------|--------|
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
-| **Fase 2** | Cliente e Renderização (v3 - Refinada) | 20 | ⏳ 0/20 |
+| **Fase 2** | Cliente e Renderização (v4 - Topológica) | 20 | ✅ **10/20** |
 | **Fase 3** | Gameplay e Rede (v3 - Expandida) | 287 | ⏳ 0/287 |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ 0/140 |
-| **TOTAL** | **Todos os arquivos** | **623** | **176/623** |
+| **TOTAL** | **Todos os arquivos** | **623** | **186/623** |
 
 ---
 
@@ -210,66 +210,76 @@
 
 ---
 
-### **FASE 2: CLIENTE E RENDERIZAÇÃO (REESTRUTURADA v3)** (20 arquivos)
-*Próxima a ser executada. Focada exclusivamente em cliente, renderização e APIs base.*
+### **FASE 2: CLIENTE E RENDERIZAÇÃO (v4 - Resolução Topológica)** (20 arquivos)
+*Implementando estratégia de resolução ordenada de dependências.*
 
-> [!IMPORTANT]
-> ### ✅ ARQUIVOS JÁ HABILITADOS (Verificado em 2025-07-06)
-> Os seguintes 10 arquivos mencionados como "não encontrados" no log de erros **JÁ ESTÃO HABILITADOS**:
-> - ✅ AmmoTransform.java 
-> - ✅ BedrockPolygon.java 
-> - ✅ BlockDisplay.java 
-> - ✅ BufferModel.java 
-> - ✅ FaceUVsItem.java 
-> - ✅ GunAmmo.java 
-> - ✅ GunRecoil.java 
-> - ✅ GunTransform.java 
-> - ✅ ModelRendererWrapper.java 
-> - ✅ OverwriteCommand.java
+> [!SUCCESS]
+> ### ✅ ARQUIVOS HABILITADOS NA FASE 2 (2025-07-06)
+> **Eventos de Cliente (4 arquivos):**
+> - ✅ BeforeRenderHandEvent.java (removido KubeJS temporariamente)
+> - ✅ RenderItemInHandBobEvent.java (removido KubeJS temporariamente)
+> - ✅ RenderLevelBobEvent.java (removido KubeJS temporariamente)
+> - ✅ SwapItemWithOffHand.java (removido KubeJS temporariamente)
 
-> [!WARNING]
-> ### ARQUIVOS MOVIDOS PARA OUTRAS FASES
-> **Para Fase 1:** ModAttributes.java, ModSounds.java, ModPainting.java (problemas com RegistryObject)  
-> **Para Fase 3:** Arquivos de rede (network/message) - dependem de gameplay  
-> **Para Fase 4:** Compatibilidade KubeJS - depende de mods externos
+> [!STRATEGY]
+> ### 🎯 NOVA ESTRATÉGIA: RESOLUÇÃO TOPOLÓGICA DE DEPENDÊNCIAS
+> 
+> **Princípio:** Para habilitar arquivo X que depende de Y, primeiro habilitamos Y.
+> **Para dependências circulares:** Implementação mínima → arquivo dependente → implementação completa.
+> 
+> **Exemplo:**
+> ```
+> InspectKey.java depende de:
+>   ↳ IClientPlayerGunOperator.java depende de:
+>     ↳ LocalPlayerDataHolder.java depende de:
+>       ↳ IGunOperator.java (tem dependências complexas)
+> ```
+> 
+> **Ordem de implementação:**
+> 1. IGunOperator.java (implementação mínima)
+> 2. LocalPlayerDataHolder.java  
+> 3. IClientPlayerGunOperator.java
+> 4. InspectKey.java
+> 5. IGunOperator.java (implementação completa)
 
-#### **SUBFASE 2.1: APIs de Base do Cliente** (1ª prioridade)
-- [ ] KubeJSGunEventPoster.java (API base para eventos KubeJS)
-- [ ] BedrockVersion.java (validação de versão de modelos)
+#### **🔗 CADEIA DE DEPENDÊNCIAS MAPEADA**
 
-#### **SUBFASE 2.2: Dependências Externas Missing** (2ª prioridade)
-- [ ] SoundAssetsManager.java (OggAudioStream → precisa migração)
-- [ ] ReloadResourceEvent.java (TextureStitchEvent → precisa migração)
+**BLOCO 1: Core APIs (dependências base)** ✅ **CONCLUÍDO**
+- ✅ IGunOperator.java (implementação mínima - sem AttachmentCacheProperty)
+- ✅ LocalPlayerDataHolder.java
+- ✅ IClientPlayerGunOperator.java
 
-#### **SUBFASE 2.3: Eventos de Cliente** (3ª prioridade)  
-- [ ] BeforeRenderHandEvent.java
-- [ ] RenderItemInHandBobEvent.java  
-- [ ] RenderLevelBobEvent.java
-- [ ] SwapItemWithOffHand.java
-- [ ] CameraSetupEvent.java
-- [ ] PlayerEnterWorld.java
-- [ ] PlayGunSoundEvent.java
+**BLOCO 2: Input/Controles (dependem do Bloco 1)** ✅ **CONCLUÍDO**
+- ✅ InspectKey.java
+- ✅ MeleeKey.java
 
-#### **SUBFASE 2.4: Input/Controles** (4ª prioridade)
-- [ ] InspectKey.java 
-- [ ] MeleeKey.java
+**BLOCO 3: Mixins de Cliente (dependem do Bloco 1)** ⏳ **PARCIAL**
+- ✅ AbstractButtonMixin.java (depende de LocalPlayerDataHolder)
+- [ ] HumanoidModelMixin.java (depende de InnerThirdPersonManager - mover para Fase 3)
 
-#### **SUBFASE 2.5: Mixins de Cliente** (5ª prioridade)
-- [ ] AbstractButtonMixin.java
-- [ ] HumanoidModelMixin.java  
+**BLOCO 4: APIs de Modelo/Versão (independentes)**
+- [ ] BedrockVersion.java (depende de BedrockModelPOJO - mover para Fase 3)
 
-#### **SUBFASE 2.6: Anotações EventBusSubscriber** (6ª prioridade)
-- [ ] ReloadResourceEvent.java (correção de anotação)
-- [ ] CommonLoadPack.java (correção de anotação)
-
-#### **SUBFASE 2.7: Comandos Base** (7ª prioridade)
+**BLOCO 5: Comandos simples (aguardando IGun completo)**
 - [ ] AttachmentLockCommand.java
-- [ ] ConvertCommand.java  
+- [ ] ConvertCommand.java (depende de PackConvertor - mover para Fase 3)
 - [ ] DummyAmmoCommand.java
 
-#### **SUBFASE 2.8: Utils e DataFixers** (8ª prioridade)
-- [ ] AllowAttachmentTagMatcher.java
-- [ ] AttachmentIdFix.java
+**BLOCO 6: Utils independentes**
+- [ ] AllowAttachmentTagMatcher.java (mover para Fase 3 - depende de CommonAssetsManager)
+- [ ] AttachmentIdFix.java (mover para Fase 3 - depende de DefaultAssets)
+
+**BLOCO 7: APIs Externas (pesquisa necessária)**
+- [ ] SoundAssetsManager.java (OggAudioStream → precisa pesquisa)
+- [ ] ReloadResourceEvent.java (TextureStitchEvent → precisa pesquisa)
+
+**BLOCO 8: Eventos Complexos (mover para Fase 3/4)**
+- [ ] CameraSetupEvent.java (muitas dependências)
+- [ ] PlayerEnterWorld.java (PackConvertor)
+- [ ] PlayGunSoundEvent.java (GunSoundInstance)
+- [ ] KubeJSGunEventPoster.java (TimelessEvents)
+
+**PROGRESSO FASE 2:** 10/20 (50%) ✅ → **Meta alcançada!**
 
 ---
 
@@ -722,33 +732,40 @@ Para cada arquivo na ordem das fases:
 
 ## LOG DE ANÁLISES
 
-### **2025-07-06 19:15:00 - Análise da Fase 2**
+### **2025-07-06 20:30:00 - Implementação da Fase 2 Iniciada**
 
-**Situação:** Análise do log de erros `build_errors_phase2.txt` após tentativa de habilitação da Fase 2.
+**Situação:** Implementação prática da Fase 2 começada após análise teórica.
 
-**Descobertas Principais:**
-1. **✅ Checklist Atualizado:** Todos os 10 arquivos mencionados como "não encontrados" já estavam habilitados
-2. **🔄 Reorganização Estratégica:** Fase 2 foi drasticamente reduzida de 81 para 20 arquivos
-3. **📋 Categorização por Subfases:** Nova estrutura com 8 subfases priorizadas por tipo de erro
-4. **🚀 Movimento Estratégico:** 64 arquivos movidos para Fase 3 (rede, gameplay, compatibilidade)
+**Progresso Realizado:**
+1. **✅ Eventos de Cliente Base (4/4):** Habilitados com sucesso
+   - BeforeRenderHandEvent.java
+   - RenderItemInHandBobEvent.java 
+   - RenderLevelBobEvent.java
+   - SwapItemWithOffHand.java
+   - **Adaptação:** Removido temporariamente KubeJSGunEventPoster para evitar dependências circulares
 
-**Principais Problemas Identificados:**
-- `KubeJSGunEventPoster` missing (API base)
-- `OggAudioStream` e `TextureStitchEvent` (APIs externas mudaram)
-- Dependências de `RegistryObject` (movidas para Fase 1/3)
-- Eventos de rede e gameplay (movidos para Fase 3)
+2. **� Estratégia de Adaptação:** 
+   - Implementado padrão de "TODO" para funcionalidades que dependem de classes não habilitadas
+   - Usado `ICancellableEvent` em lugar da anotação `@Cancelable` removida no NeoForge
+   - Compilação passou com sucesso após adaptações
 
-**Estratégia Atualizada:**
-- Fase 2 agora foca **exclusivamente** em cliente e renderização
-- Resolução por subfases para identificar bloqueios específicos
-- Movimentação baseada em análise real de dependências (não automática)
+**Problemas Identificados:**
+- **Dependências Circulares:** Muitos arquivos da Fase 2 dependem de classes que estão na Fase 3/4
+- **APIs Missing:** OggAudioStream, TextureStitchEvent podem ter mudado no NeoForge 1.21.1
+- **ResourceLocation Constructor:** Mudou de `new ResourceLocation(string)` para `ResourceLocation.fromNamespaceAndPath(namespace, path)`
 
 **Próximos Passos:**
-1. Executar Subfase 2.1 (APIs de Base)
-2. Resolver dependências externas (Subfase 2.2)
-3. Proceder incrementalmente pelas subfases
+1. **Concluir Fase 2 Parcialmente:** 4 eventos básicos habilitados (20% da Fase 2)
+2. **Mover para Fase 3:** Começar habilitação de dependências core (IGun, IClientPlayerGunOperator, etc.)
+3. **Retomar Fase 2:** Após Fase 3 parcial, retornar aos arquivos pendentes da Fase 2
+4. **Pesquisar APIs:** Investigar mudanças em OggAudioStream e TextureStitchEvent quando necessário
+
+**Estimativa Revisada:** Fase 2 será concluída de forma incremental junto com Fase 3, não sequencialmente.
+
+**Decisão Estratégica:** Migração híbrida Fase 2 ↔ Fase 3 devido às dependências circulares.
 
 ---
 
 *Plano gerado automaticamente em 2025-07-02 18:01:20 pelo Generate-Plan.ps1 v3.0*
 *Atualizado manualmente em 2025-07-06 19:15:00 com análise da Fase 2*
+*Implementação da Fase 2 com estratégia topológica em 2025-07-06 21:00:00*
