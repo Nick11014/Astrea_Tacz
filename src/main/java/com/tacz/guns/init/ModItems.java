@@ -30,6 +30,16 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> GUN_SMITH_TABLE = ITEMS.register("gun_smith_table", 
         () -> new Item(new Item.Properties())); // Placeholder - GunSmithTableItem
         
+    // Workbenches que foram removidas por engano - adicionando placeholders
+    public static final DeferredHolder<Item, Item> WORKBENCH_111 = ITEMS.register("workbench_a", 
+        () -> new Item(new Item.Properties())); // Placeholder - GunSmithTableItem(ModBlocks.WORKBENCH_111.get())
+        
+    public static final DeferredHolder<Item, Item> WORKBENCH_211 = ITEMS.register("workbench_b", 
+        () -> new Item(new Item.Properties())); // Placeholder - GunSmithTableItem(ModBlocks.WORKBENCH_211.get())
+        
+    public static final DeferredHolder<Item, Item> WORKBENCH_121 = ITEMS.register("workbench_c", 
+        () -> new Item(new Item.Properties())); // Placeholder - GunSmithTableItem(ModBlocks.WORKBENCH_121.get())
+        
     public static final DeferredHolder<Item, Item> TARGET = ITEMS.register("target", 
         () -> new Item(new Item.Properties())); // Placeholder
         
