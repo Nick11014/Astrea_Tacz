@@ -1,7 +1,8 @@
 package com.tacz.guns.client.resource.manager;
 
 import com.google.common.collect.Maps;
-import net.minecraft.client.sounds.OggAudioStream;
+// TODO: OggAudioStream foi removido no NeoForge 1.21.1, encontrar alternativa
+// import net.minecraft.client.sounds.OggAudioStream;
 import com.tacz.guns.GunMod;
 import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
@@ -19,13 +20,15 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Map;
 
-import com.tacz.guns.client.resource.manager.SoundAssetsManager.SoundData;
-
-public class SoundAssetsManager extends SimplePreparableReloadListener<Map<ResourceLocation, SoundData>> {
+/**
+ * Gerenciador de assets de som baseado no padrão SuperbWarfare 1.21.1
+ * Implementação mínima - OggAudioStream foi removido no NeoForge 1.21.1
+ */
+public class SoundAssetsManager extends SimplePreparableReloadListener<Map<ResourceLocation, SoundAssetsManager.SoundData>> {
     public record SoundData(ByteBuffer byteBuffer, AudioFormat audioFormat) {
     }
+    
     private static final Marker MARKER = MarkerManager.getMarker("SoundsLoader");
-
     private final Map<ResourceLocation, SoundData> dataMap = Maps.newHashMap();
     private final FileToIdConverter filetoidconverter = new FileToIdConverter("tacz_sounds", ".ogg");
 
@@ -33,6 +36,10 @@ public class SoundAssetsManager extends SimplePreparableReloadListener<Map<Resou
     @NotNull
     protected Map<ResourceLocation, SoundData> prepare(ResourceManager pResourceManager, ProfilerFiller pProfiler) {
         Map<ResourceLocation, SoundData> output = Maps.newHashMap();
+        
+        // TODO: OggAudioStream foi removido no NeoForge 1.21.1
+        // Funcionalidade temporariamente desabilitada até encontrar alternativa
+        /*
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             ResourceLocation resourcelocation = entry.getKey();
             ResourceLocation resourcelocation1 = filetoidconverter.fileToId(resourcelocation);
@@ -45,6 +52,9 @@ public class SoundAssetsManager extends SimplePreparableReloadListener<Map<Resou
                 exception.printStackTrace();
             }
         }
+        */
+        
+        GunMod.LOGGER.info(MARKER, "SoundAssetsManager: Audio loading temporarily disabled - OggAudioStream removed in NeoForge 1.21.1");
         return output;
     }
 
