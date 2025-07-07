@@ -47,6 +47,30 @@ repositories {
     maven {
         name = "CurseMaven"
         url = "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    
+    // === Repositórios adicionais do SuperbWarfare ===
+    // GeckoLib
+    maven {
+        name = 'GeckoLib'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+    
+    // JEI and Patchouli Maven (atualizado)
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+        content {
+            includeGroup "mezz.jei"
+            includeGroup "vazkii.patchouli"
+        }
     }
     // Add here additional repositories if required by some of the dependencies below.
 }
@@ -122,7 +146,10 @@ dependencies {
     // Use the latest version of Neo
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    // === Dependências necessárias para TacZ ===
+    // === Dependências atualizadas baseadas no SuperbWarfare 1.21.1 ===
+    
+    // GeckoLib - Biblioteca de animação (usado no SuperbWarfare)
+    implementation "software.bernie.geckolib:geckolib-neoforge-1.21.1:4.7.5"
     
     // LuaJ - Para sistema de animação e scripting
     implementation 'org.luaj:luaj-jse:3.0.1'
@@ -130,30 +157,28 @@ dependencies {
     // Apache Commons Math - Para sistema de recuo e interpolação
     implementation 'org.apache.commons:commons-math3:3.6.1'
     
-    // Cloth Config API - Para telas de configuração (opcional)
-    compileOnly "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
-    localRuntime "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
+    // Cloth Config API - Versão confirmada no SuperbWarfare
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
     
-    // Controllable - Para suporte a controles/joysticks (opcional) - v0.23.3 para NeoForge 1.21.1
+    // JEI - Usando versões do SuperbWarfare para compatibilidade
+    compileOnly "mezz.jei:jei-1.21.1-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    
+    // Player Animator - Versão confirmada no SuperbWarfare
+    implementation "curse.maven:playeranimator-658587:6024462"
+    
+    // Controllable - Para suporte a controles/joysticks (opcional)
     compileOnly "curse.maven:controllable-317269:6277379"
     localRuntime "curse.maven:controllable-317269:6277379"
-
-    // Example optional mod dependency with JEI
-    // JEI - Using CurseMaven as alternative to direct Maven dependency
-    compileOnly "curse.maven:jei-238222:${jei_file_id}"
-    localRuntime "curse.maven:jei-238222:${jei_file_id}"
     
-    // KubeJS - Para integração de scripts (opcional) - usando CurseMaven
+    // KubeJS - Para integração de scripts (opcional)
     compileOnly "curse.maven:kubejs-238086:${kubejs_file_id}"
     localRuntime "curse.maven:kubejs-238086:${kubejs_file_id}"
     
     // Rhino - Dependência do KubeJS para execução de scripts JavaScript
     compileOnly "curse.maven:rhino-416294:6184623"
     localRuntime "curse.maven:rhino-416294:6184623"
-    
-    // Player Animator - Para animações customizadas (opcional)
-    compileOnly "curse.maven:player-animator-658587:${player_animator_file_id}"
-    localRuntime "curse.maven:player-animator-658587:${player_animator_file_id}"
     
     // Shoulder Surfing Reloaded - Compatibilidade de camera (opcional)
     compileOnly "curse.maven:shoulder-surfing-reloaded-243190:${shoulder_surfing_file_id}"
@@ -163,7 +188,17 @@ dependencies {
     compileOnly "curse.maven:carry-on-274259:${carry_on_file_id}"
     localRuntime "curse.maven:carry-on-274259:${carry_on_file_id}"
     
-    // Iris - Para compatibilidade com shaders (opcional) - NeoForge 1.21.1
+    // === Mods opcionais adicionais do SuperbWarfare para teste ===
+    // Jade - Tooltip avançado (do SuperbWarfare)
+    implementation "curse.maven:jade-324717:6291517"
+    
+    // Cold Sweat - Sistema de temperatura (do SuperbWarfare) 
+    implementation "curse.maven:cold-sweat-506194:6176789"
+    
+    // Better Combat - Sistema de combate aprimorado (do SuperbWarfare)
+    implementation "curse.maven:better-combat-by-daedelus-639842:6532547"
+    
+    // Iris - Para compatibilidade com shaders (opcional)
     compileOnly "curse.maven:irisshaders-455508:${iris_file_id}"
     localRuntime "curse.maven:irisshaders-455508:${iris_file_id}"
 

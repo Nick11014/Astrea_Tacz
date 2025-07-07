@@ -3,6 +3,7 @@ package com.tacz.guns.particles;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.tacz.guns.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -77,7 +78,6 @@ public class BulletHoleOption implements ParticleOptions {
 
     @Override
     public @NotNull ParticleType<?> getType() {
-        // TODO: Re-enable when ModParticles is habilitado
-        return null; // ModParticles.BULLET_HOLE.get();
+        return ModParticles.BULLET_HOLE.get();
     }
 }

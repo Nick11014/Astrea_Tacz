@@ -2,8 +2,8 @@
 
 **Projeto:** Migração TacZ de Forge 1.20.1 para NeoForge 1.21.1  
 **Estratégia:** Habilitação incremental baseada em análise topológica de dependências  
-**Data de Atualização:** 2025-07-06 22:00:00  
-**Última Análise:** Fase 3 - Aplicação Avançada dos Padrões SuperbWarfare 1.21.1 (+4 migrações)  
+**Data de Atualização:** 2025-07-06 22:30:00  
+**Última Análise:** Dependências atualizadas + SuperbWarfare patterns aplicados (+8 migrações totais)  
 
 ---
 
@@ -14,9 +14,9 @@
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v4 - Topológica) | 18 | ✅ **16/18** |
-| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **27/289** |
+| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **29/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **1/140** |
-| **TOTAL** | **Todos os arquivos** | **625** | **220/625** |
+| **TOTAL** | **Todos os arquivos** | **625** | **222/625** |
 
 ---
 
@@ -567,8 +567,8 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ModBlocks.java (Deps: 4)
 - [ ] ModContainerScreen.java (Deps: 2)
 - [ ] ModEntities.java (Deps: 2)
-- [ ] ModItems.java (Deps: 3)
-- [ ] ModParticles.java (Deps: 2)
+- [x] ModItems.java (Deps: 3) ← HABILITADO com implementação mínima baseada no SuperbWarfare
+- [x] ModParticles.java (Deps: 2) ← HABILITADO usando padrão SuperbWarfare 1.21.1 (MapCodec + StreamCodec)
 - [ ] ModRecipe.java (Deps: 3)
 - [ ] ModSerializers.java (Deps: 2)
 - [ ] ModSyncedEntityData.java (Deps: 7)

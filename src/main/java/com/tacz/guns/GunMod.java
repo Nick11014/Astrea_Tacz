@@ -36,17 +36,21 @@ public class GunMod {
         // Registrar DataComponents (prioridade máxima - Nova funcionalidade 1.21.1)
         ModDataComponents.COMPONENTS.register(modEventBus);
         
+        // Registrar partículas (baseado no padrão SuperbWarfare)
+        ModParticles.PARTICLE_TYPES.register(modEventBus);
+        
+        // Registrar itens com implementação mínima (baseado no padrão SuperbWarfare)
+        ModItems.ITEMS.register(modEventBus);
+        
         // TODO: Habilitar gradualmente os outros registros conforme as classes ficarem disponíveis
         // ModBlocks.BLOCKS.register(modEventBus);
         // ModBlocks.TILE_ENTITIES.register(modEventBus);
         // ModCreativeTabs.TABS.register(modEventBus);
-        // ModItems.ITEMS.register(modEventBus);
         // ModEntities.ENTITY_TYPES.register(modEventBus);
         // ModRecipe.RECIPE_SERIALIZERS.register(modEventBus);
         // ModRecipe.RECIPE_TYPES.register(modEventBus);
         // ModContainer.CONTAINER_TYPE.register(modEventBus);
         // ModSounds.SOUNDS.register(modEventBus);
-        // ModParticles.PARTICLE_TYPES.register(modEventBus);
         // ModAttributes.ATTRIBUTES.register(modEventBus);
         // ModPainting.PAINTINGS.register(modEventBus);
         
