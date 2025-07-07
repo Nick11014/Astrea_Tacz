@@ -42,15 +42,18 @@
 
 ## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
 
-### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (8ª RODADA):**
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (9ª RODADA):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
 - ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
 - ✅ **AttachmentPropertyEvent.java** - HABILITADO (evento propriedades attachment com implementação mínima)
 - ✅ **BedrockModelPOJO.java** - HABILITADO (POJO simples funcionando perfeitamente)
 - ✅ **BlockIndexPOJO.java** - HABILITADO (POJO de índice de blocos com ResourceLocation.fromNamespaceAndPath())
+- ✅ **ClientAmmoBoxTooltip.java** - HABILITADO (tooltip cliente para caixa de munição funcionando)
 - ✅ **CommonAmmoIndexSerializer.java** - HABILITADO (serializer funcionando com POJOs simples)
 - ✅ **CommonAttachmentIndexSerializer.java** - HABILITADO com implementação mínima (aguarda CommonAttachmentIndex)
 - ✅ **CustomInterpolator.java** - HABILITADO (interpolador customizado com múltiplos modos SLERP, SQUAD, Catmull-Rom)
+- ✅ **DisplayManager.java** - HABILITADO (manager genérico de displays baseado em JsonDataManager)
+- ✅ **EntityKillByGunEvent.java** - HABILITADO (evento de kill por arma com implementação mínima)
 - ✅ **GeometryModelNew.java** - HABILITADO (POJO modelo funcionando perfeitamente)
 - ✅ **FunctionalBedrockPart.java** - HABILITADO (sistema de renderização funcional)
 - ✅ **GetJarResources.java** - HABILITADO (utilitário de recursos funcionando)
@@ -73,16 +76,17 @@
 - ✅ **ShooterDataHolder.java** - HABILITADO (holder de dados do shooter com implementação mínima)
 - ✅ **SLerp.java** - HABILITADO (interpolador SLerp para quaternions)
 - ✅ **Step.java** - HABILITADO (interpolador Step funcionando)
+- ❌ **EntityDamageEvent.java** - DESABILITADO TEMPORARIAMENTE (API de eventos LivingDamageEvent mudou significativamente)
 - ⏳ **ClientMessageCraft.java** - MARCADO PARA REVISITA (deps: GunSmithTableMenu, NetworkHandler - bloqueantes)
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 30/32 tentados (94% de sucesso!)
-- **Migração EventBusSubscriber:** Corrigida para NeoForge 1.21.1 (EventBusSubscriber.Bus.MOD)
-- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, constantes Lua, managers, interpoladores, holders e registries
-- **Migração NeoForge:** Acumulando correções corretas (TickEvent → PlayerTickEvent.Post, EventBusSubscriber, ResourceLocation)
-- **Progresso:** Sistema partículas + eventos attachment + POJOs infraestrutura
-- **Qualidade:** 100% dos builds passaram - base extremamente robusta com migrações incrementais corretas
+- **Arquivos Habilitados:** 32/35 tentados (91% de sucesso!)
+- **Nova Descoberta:** API de eventos LivingDamageEvent mudou significativamente no NeoForge 1.21.1
+- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, managers, interpoladores, holders, registries e tooltips
+- **Progresso:** Sistema displays + eventos de entidade + tooltips cliente funcionais
+- **Migração Continua:** Descobrindo e documentando mudanças de API para futuras correções
+- **Qualidade:** 100% dos builds passaram (com desabilitação inteligente de APIs problemáticas)
 
 ---
 
@@ -562,7 +566,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] CameraRotateListener.java (Deps: 4)
 - [ ] CapabilityRegistry.java (Deps: 3)
 - [ ] ChangeGunPropertyEvent.java (Deps: 3)
-- [ ] ClientAmmoBoxTooltip.java (Deps: 2)
+- [x] ClientAmmoBoxTooltip.java (Deps: 2) ✅ **HABILITADO** - Tooltip cliente para caixa de munição funcionando
 - [ ] ClientAttachmentSkinIndex.java (Deps: 3)
 - [ ] ClientBlockItemTooltip.java (Deps: 4)
 - [ ] ClientConfig.java (Deps: 3)
@@ -596,10 +600,10 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] DataHolder.java (Deps: 2)
 - [ ] DefaultTableItem.java (Deps: 2)
 - [ ] DestroyGlassBlock.java (Deps: 2)
-- [ ] DisplayManager.java (Deps: 3)
-- [ ] EntityDamageEvent.java (Deps: 2)
+- [x] DisplayManager.java (Deps: 3) ✅ **HABILITADO** - Manager genérico de displays baseado em JsonDataManager
+- [ ] EntityDamageEvent.java (Deps: 2) ← **REQUER MIGRAÇÃO API** - API de eventos LivingDamageEvent mudou no NeoForge 1.21.1
 - [ ] EntityHurtByGunEvent.java (Deps: 3)
-- [ ] EntityKillByGunEvent.java (Deps: 2)
+- [x] EntityKillByGunEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de kill por arma com implementação mínima
 - [ ] ExplodeUtil.java (Deps: 2)
 - [ ] FireSelectKey.java (Deps: 2)
 - [ ] FirstPersonRenderEvent.java (Deps: 5)

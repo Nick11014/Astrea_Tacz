@@ -13,8 +13,10 @@ import java.util.Optional;
 
 /**
  * 生物被枪械子弹击杀时触发的事件
+ * 
+ * TODO: Implementação mínima até KubeJSGunEventPoster ser habilitado
  */
-public class EntityKillByGunEvent extends Event implements KubeJSGunEventPoster<EntityKillByGunEvent>{
+public class EntityKillByGunEvent extends Event /* implements KubeJSGunEventPoster<EntityKillByGunEvent> */ {
     private final Entity bullet;
     private final @Nullable LivingEntity killedEntity;
     private final @Nullable LivingEntity attacker;
@@ -41,7 +43,8 @@ public class EntityKillByGunEvent extends Event implements KubeJSGunEventPoster<
         this.isHeadShot = isHeadShot;
         this.headshotMultiplier = headshotMultiplier;
         this.logicalSide = logicalSide;
-        postEventToKubeJS(this);
+        // TODO: Re-habilitar quando KubeJSGunEventPoster for habilitado
+        // postEventToKubeJS(this);
     }
 
     /**
