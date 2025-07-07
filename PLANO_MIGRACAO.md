@@ -2,8 +2,8 @@
 
 **Projeto:** Migração TacZ de Forge 1.20.1 para NeoForge 1.21.1  
 **Estratégia:** Habilitação incremental baseada em análise topológica de dependências  
-**Data de Atualização:** 2025-07-06 19:15:00  
-**Última Análise:** Fase 2 - Log de Erros Analisado e Plano Refinado  
+**Data de Atualização:** 2025-07-06 20:30:00  
+**Última Análise:** Fase 3 - Resolução Topológica Aplicada (11 arquivos habilitados)  
 
 ---
 
@@ -14,9 +14,9 @@
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v4 - Topológica) | 18 | ✅ **16/18** |
-| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ 0/289 |
+| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **11/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ 0/140 |
-| **TOTAL** | **Todos os arquivos** | **625** | **192/625** |
+| **TOTAL** | **Todos os arquivos** | **625** | **203/625** |
 
 ---
 
@@ -325,8 +325,8 @@
 > **Complexidade Alta (2 arquivos - NOVO):** HumanoidModelMixin.java, InnerThirdPersonManager.java - movidos após análise topológica revelou 35 dependências transitivas.
 
 **Arquivos Movidos da Fase 2 (66 arquivos):**
-- [ ] ModAttributes.java (Deps: 1) ← Movido: problemas com RegistryObject
-- [ ] ModSounds.java (Deps: 1) ← Movido: problemas com RegistryObject  
+- [x] ModAttributes.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1
+- [x] ModSounds.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1  
 - [ ] ModPainting.java (Deps: 1) ← Movido: problemas com RegistryObject
 - [ ] BellRing.java (Deps: 1) ← Movido: depende de AmmoHitBlockEvent
 - [ ] ClientMessageCraft.java (Deps: 1) ← Movido: rede/gameplay
@@ -339,7 +339,7 @@
 - [ ] ClientMessagePlayerReloadGun.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerShoot.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerZoom.java (Deps: 1) ← Movido: rede/gameplay
-- [ ] CommandRegistry.java (Deps: 1) ← Movido: depende de RootCommand
+- [x] CommandRegistry.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [ ] GunDrawEvent.java (Deps: 1) ← Movido: evento de gameplay
 - [ ] GunFinishReloadEvent.java (Deps: 1) ← Movido: evento de gameplay
 - [ ] GunFireSelectEvent.java (Deps: 1) ← Movido: evento de gameplay
@@ -403,15 +403,15 @@
 - [ ] AmmoNbtFactory.java (Deps: 4)
 - [ ] AmmoParticleSpawner.java (Deps: 2)
 - [ ] AnimateGeoItemRenderer.java (Deps: 8)
-- [ ] Animation.java (Deps: 2)
+- [x] Animation.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [ ] AnimationChannel.java (Deps: 1)
 - [ ] AnimationController.java (Deps: 4)
 - [ ] AnimationDataRegisterFactory.java (Deps: 2)
 - [ ] AnimationKeyframesSerializer.java (Deps: 2)
 - [ ] AnimationListener.java (Deps: 1)
 - [ ] AnimationListenerSupplier.java (Deps: 2)
-- [ ] AnimationModel.java (Deps: 2)
-- [ ] AnimationPlan.java (Deps: 1)
+- [x] AnimationModel.java (Deps: 2) ← HABILITADO via Resolução Topológica
+- [x] AnimationPlan.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [ ] AnimationState.java (Deps: 2)
 - [ ] AnimationStateContext.java (Deps: 7)
 - [ ] AnimationStateMachine.java (Deps: 3)
@@ -445,7 +445,7 @@
 - [ ] ClientMessageSyncBaseTimestamp.java (Deps: 3)
 - [ ] ClientMessageUnloadAttachment.java (Deps: 5)
 - [ ] ClientPreventGunClick.java (Deps: 3)
-- [ ] ClothConfigScreen.java (Deps: 1)
+- [x] ClothConfigScreen.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [ ] CommonAmmoIndexSerializer.java (Deps: 2)
 - [ ] CommonAttachmentIndex.java (Deps: 4)
 - [ ] CommonAttachmentIndexSerializer.java (Deps: 2)
@@ -484,7 +484,7 @@
 - [ ] GunFireEvent.java (Deps: 2)
 - [ ] GunKubeJSEvents.java (Deps: 7)
 - [ ] GunModelTypeManager.java (Deps: 3)
-- [ ] GunModSubtype.java (Deps: 0)
+- [x] GunModSubtype.java (Deps: 0) ← HABILITADO via Resolução Topológica
 - [ ] GunPackList.java (Deps: 3)
 - [ ] GunShootEvent.java (Deps: 2)
 - [ ] GunSmithTableBlockA.java (Deps: 1)
@@ -520,7 +520,7 @@
 - [ ] InterpolatorUtil.java (Deps: 5)
 - [ ] InventoryAttachmentSlot.java (Deps: 2)
 - [ ] InventoryEvent.java (Deps: 5)
-- [ ] ItemAnimationStateContext.java (Deps: 1)
+- [x] ItemAnimationStateContext.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [ ] ItemInHandLayerMixin.java (Deps: 4)
 - [ ] ItemInHandRendererMixin.java (Deps: 3)
 - [ ] JsonDataManager.java (Deps: 2)
@@ -591,7 +591,7 @@
 - [ ] RenderClothConfig.java (Deps: 3)
 - [ ] RenderHeadShotAABB.java (Deps: 2)
 - [ ] RightHandRender.java (Deps: 3)
-- [ ] RootCommand.java (Deps: 0)
+- [x] RootCommand.java (Deps: 0) ← HABILITADO via Resolução Topológica
 - [ ] ScriptManager.java (Deps: 2)
 - [ ] Serializers.java (Deps: 2)
 - [ ] ServerMessageRefreshRefitScreen.java (Deps: 2)
@@ -620,7 +620,7 @@
 - [ ] TargetMinecartRenderer.java (Deps: 4)
 - [ ] TargetRenderer.java (Deps: 6)
 - [ ] TextShowRender.java (Deps: 4)
-- [ ] ThrowableAnimationStateContext.java (Deps: 1)
+- [x] ThrowableAnimationStateContext.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [ ] TickAnimationEvent.java (Deps: 4)
 - [ ] TimelessClientEvents.java (Deps: 6)
 - [ ] TimelessForgeEventWrappers.java (Deps: 3)

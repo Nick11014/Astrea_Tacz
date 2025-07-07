@@ -58,7 +58,7 @@ public class AnimationModel {
      * @param interpolation The interpolation method
      * @param output        The output data
      */
-    public record Sampler(AccessorModel input, Interpolation interpolation, AccessorModel output) {
+    public record Sampler(Object input, Interpolation interpolation, Object output) {
         /**
          * Default constructor
          *
@@ -67,9 +67,9 @@ public class AnimationModel {
          * @param output        The output
          */
         public Sampler(
-                AccessorModel input,
+                Object input, // TODO: Re-enable AccessorModel when AccessorModel is habilitado
                 Interpolation interpolation,
-                AccessorModel output) {
+                Object output) { // TODO: Re-enable AccessorModel when AccessorModel is habilitado
             this.input = Objects.requireNonNull(
                     input, "The input may not be null");
             this.interpolation = Objects.requireNonNull(

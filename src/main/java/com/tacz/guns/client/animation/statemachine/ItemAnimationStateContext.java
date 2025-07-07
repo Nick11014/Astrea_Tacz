@@ -1,8 +1,8 @@
 package com.tacz.guns.client.animation.statemachine;
 
-import com.tacz.guns.api.client.animation.statemachine.AnimationStateContext;
+// import com.tacz.guns.api.client.animation.statemachine.AnimationStateContext; // TODO: Re-enable when AnimationStateContext is habilitado
 
-public class ItemAnimationStateContext extends AnimationStateContext {
+public class ItemAnimationStateContext /* extends AnimationStateContext */ {
     private float putAwayTime = 0f;
     protected float partialTicks = 0f;
 

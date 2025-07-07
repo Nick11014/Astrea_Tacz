@@ -16,9 +16,12 @@ public class GunModSubtype {
 
     public static IIngredientSubtypeInterpreter<ItemStack> getGunSubtype() {
         return (stack, context) -> {
+            // TODO: Re-enable when IGun interface is habilitada
+            /*
             if (stack.getItem() instanceof IGun iGun) {
                 return iGun.getGunId(stack).toString();
             }
+            */
             return IIngredientSubtypeInterpreter.NONE;
         };
     }

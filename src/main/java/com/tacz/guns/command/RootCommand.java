@@ -12,14 +12,17 @@ public class RootCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         LiteralArgumentBuilder<CommandSourceStack> root = Commands.literal(ROOT_NAME)
                 .requires((source -> source.hasPermission(2)));
-        root.then(AttachmentLockCommand.get());
+        
+        // TODO: Re-enable sub-commands when their dependencies are habilitadas
+        // root.then(AttachmentLockCommand.get());
         root.then(DebugCommand.get());
-        root.then(DummyAmmoCommand.get());
-        root.then(OverwriteCommand.get());
-        root.then(ReloadCommand.get());
-        root.then(HideTooltipPartCommand.get());
-        root.then(ConvertCommand.get());
+        // root.then(DummyAmmoCommand.get());
+        // root.then(OverwriteCommand.get());
+        // root.then(ReloadCommand.get());
+        // root.then(HideTooltipPartCommand.get());
+        // root.then(ConvertCommand.get());
         root.then(ConfigCommand.get());
+        
         dispatcher.register(root);
     }
 }

@@ -1,6 +1,6 @@
 package com.tacz.guns.client.gui.compat;
 
-import com.tacz.guns.init.CompatRegistry;
+// import com.tacz.guns.init.CompatRegistry; // TODO: Re-enable when CompatRegistry is habilitado
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screens.ConfirmLinkScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.neoforged.neoforge.client.ConfigScreenHandler;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.ModLoadingContext;
 import org.apache.commons.lang3.StringUtils;
@@ -27,10 +27,13 @@ public class ClothConfigScreen extends Screen {
     }
 
     public static void registerNoClothConfigPage() {
+        // TODO: Re-enable when CompatRegistry is habilitado
+        /*
         if (!ModList.get().isLoaded(CompatRegistry.CLOTH_CONFIG)) {
-            ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class, () ->
-                    new ConfigScreenHandler.ConfigScreenFactory((client, parent) -> new ClothConfigScreen(parent)));
+            ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () ->
+                    (client, parent) -> new ClothConfigScreen(parent));
         }
+        */
     }
 
     @Override
@@ -50,7 +53,7 @@ public class ClothConfigScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics gui, int pMouseX, int pMouseY, float pPartialTick) {
-        this.renderBackground(gui);
+        this.renderBackground(gui, pMouseX, pMouseY, pPartialTick);
         this.message.renderCentered(gui, this.width / 2, 80);
         super.render(gui, pMouseX, pMouseY, pPartialTick);
     }
