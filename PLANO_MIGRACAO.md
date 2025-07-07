@@ -55,7 +55,7 @@
 - ✅ **DefaultAssets.java** - HABILITADO (constantes de recursos com ResourceLocation.fromNamespaceAndPath())
 - ✅ **DisplayManager.java** - HABILITADO (manager genérico de displays baseado em JsonDataManager)
 - ✅ **EntityKillByGunEvent.java** - HABILITADO (evento de kill por arma com implementação mínima)
-- ✅ **ExplodeUtil.java** - HABILITADO (utilitário de explosão funcionando com ProjectileExplosion)
+- ✅ **ExplodeUtil.java** - HABILITADO (utilitário de explosão com implementação vanilla Level.ExplosionInteraction)
 - ✅ **GeometryModelNew.java** - HABILITADO (POJO modelo funcionando perfeitamente)
 - ✅ **FunctionalBedrockPart.java** - HABILITADO (sistema de renderização funcional)
 - ✅ **GetJarResources.java** - HABILITADO (utilitário de recursos funcionando)
@@ -81,16 +81,17 @@
 - ✅ **SLerp.java** - HABILITADO (interpolador SLerp para quaternions)
 - ✅ **Step.java** - HABILITADO (interpolador Step funcionando)
 - ❌ **EntityDamageEvent.java** - DESABILITADO TEMPORARIAMENTE (API de eventos LivingDamageEvent mudou significativamente)
+- ❌ **ProjectileExplosion.java** - DESABILITADO TEMPORARIAMENTE (APIs Explosion, ProtectionEnchantment mudaram significativamente)
 - ⏳ **ClientMessageCraft.java** - MARCADO PARA REVISITA (deps: GunSmithTableMenu, NetworkHandler - bloqueantes)
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 37/40 tentados (92% de sucesso!)
-- **Novas Migrações:** ForgeRegistries → BuiltInRegistries, EventBusSubscriber.Bus corrigido
-- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, managers, interpoladores, constantes, configs e explosões
-- **Progresso:** Sistema configuração + constantes fundamentais + utilitários explosão
-- **Descoberta Importante:** `DefaultAssets` já estava migrado e funcionando (marcação corrigida)
-- **Qualidade:** 100% dos builds passaram - base sólida com migrações corretas acumuladas
+- **Arquivos Habilitados:** 35/40 tentados (87% de sucesso!)
+- **Descoberta Crítica:** APIs de Explosion mudaram profundamente (ProtectionEnchantment, ignoreExplosion, constructors)
+- **Estratégia Adaptativa:** Implementações mínimas vanilla quando APIs complexas mudaram
+- **Novas Migrações:** ForgeRegistries → BuiltInRegistries, Level.ExplosionInteraction API
+- **Qualidade:** 100% dos builds passaram - adaptação inteligente a mudanças de API
+- **Lição Aprendida:** Desabilitação temporária é melhor que implementações quebradas
 
 ---
 
@@ -608,7 +609,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] EntityDamageEvent.java (Deps: 2) ← **REQUER MIGRAÇÃO API** - API de eventos LivingDamageEvent mudou no NeoForge 1.21.1
 - [ ] EntityHurtByGunEvent.java (Deps: 3)
 - [x] EntityKillByGunEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de kill por arma com implementação mínima
-- [x] ExplodeUtil.java (Deps: 2) ✅ **HABILITADO** - Utilitário de explosão funcionando com ProjectileExplosion
+- [x] ExplodeUtil.java (Deps: 2) ✅ **HABILITADO** - Utilitário de explosão com implementação mínima vanilla (ProjectileExplosion aguarda migração de APIs)
 - [ ] FireSelectKey.java (Deps: 2)
 - [ ] FirstPersonRenderEvent.java (Deps: 5)
 - [x] FunctionalBedrockPart.java (Deps: 2) ✅ **HABILITADO** - Sistema de renderização funcional com dependências existentes
@@ -714,7 +715,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] PlayerHurtByGunEvent.java (Deps: 3)
 - [ ] PlayerModelMixin.java (Deps: 2)
 - [ ] PlayerRespawnEvent.java (Deps: 4)
-- [x] ProjectileExplosion.java (Deps: 3) ✅ **HABILITADO** - Sistema de explosão de projéteis funcionando perfeitamente
+- [ ] ProjectileExplosion.java (Deps: 3) ← **REQUER MIGRAÇÃO PROFUNDA** - APIs Explosion, ProtectionEnchantment, ignoreExplosion mudaram no NeoForge 1.21.1
 - [ ] RawAnimationStructure.java (Deps: 5)
 - [ ] RecipeFilter.java (Deps: 4)
 - [ ] RecipeFilterManager.java (Deps: 6)
