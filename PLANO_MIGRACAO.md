@@ -401,7 +401,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] ModAttributes.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1
 - [x] ModSounds.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1  
 - [x] ModPainting.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1
-- [ ] BellRing.java (Deps: 1) ← Movido: depende de AmmoHitBlockEvent
+- [x] BellRing.java (Deps: 1) ✅ **HABILITADO** - Depende de AmmoHitBlockEvent (implementação simplificada)
 - [ ] ClientMessageCraft.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerAim.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerBoltGun.java (Deps: 1) ← Movido: rede/gameplay
@@ -477,7 +477,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] AmmoParticleSpawner.java (Deps: 2)
 - [ ] AnimateGeoItemRenderer.java (Deps: 8)
 - [x] Animation.java (Deps: 2) ← HABILITADO via Resolução Topológica
-- [ ] AnimationChannel.java (Deps: 1)
+- [x] AnimationChannel.java (Deps: 1) ✅ **JÁ HABILITADO**
 - [ ] AnimationController.java (Deps: 4)
 - [x] AnimationDataRegisterFactory.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [ ] AnimationKeyframesSerializer.java (Deps: 2)
@@ -499,8 +499,8 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] BedrockCubePerFace.java (Deps: 5)
 - [ ] BedrockModelPOJO.java (Deps: 2)
 - [x] BlockData.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
-- [ ] BlockItemBuilder.java (Deps: 2)
-- [ ] BlockRayTrace.java (Deps: 2)
+- [x] BlockItemBuilder.java (Deps: 2) ✅ **JÁ HABILITADO**
+- [x] BlockRayTrace.java (Deps: 2) ✅ **JÁ HABILITADO**
 - [x] BufferViewModel.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
 - [x] BulletHoleOption.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
 - [ ] BulletHoleParticle.java (Deps: 4)
@@ -713,7 +713,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] AdsModifier.java (Deps: 9)
 - [ ] AimInaccuracyModifier.java (Deps: 9)
 - [ ] AmmoBoxItem.java (Deps: 9)
-- [ ] AmmoHitBlockEvent.java (Deps: 1)
+- [x] AmmoHitBlockEvent.java (Deps: 1) ✅ **HABILITADO (REQUER REVISITA)** - Implementação simplificada sem EntityKineticBullet e KubeJS
 - [ ] AmmoItem.java (Deps: 9)
 - [ ] AmmoItemBuilder.java (Deps: 3)
 - [ ] AmmoSpeedModifier.java (Deps: 12)
@@ -981,3 +981,25 @@ Para cada arquivo na ordem das fases:
 *Plano gerado automaticamente em 2025-07-02 18:01:20 pelo Generate-Plan.ps1 v3.0*
 *Atualizado manualmente em 2025-07-06 19:15:00 com análise da Fase 2*
 *Implementação da Fase 2 com estratégia topológica em 2025-07-06 21:00:00*
+
+## 📊 Resumo da Sessão Atual - Resolução Topológica
+
+### ✅ Arquivos Recém Habilitados
+- [x] **BellRing.java** - Habilitado com dependência AmmoHitBlockEvent simplificada
+- [x] **AmmoHitBlockEvent.java** - Implementação simplificada (REQUER REVISITA quando EntityKineticBullet estiver disponível)
+- [x] **AnimationChannel.java** - Verificado como já habilitado
+- [x] **BlockRayTrace.java** - Verificado como já habilitado  
+- [x] **BlockItemBuilder.java** - Verificado como já habilitado
+
+### 🔧 Estratégia Aplicada
+- **Resolução Topológica:** Habilitação sequencial por ordem de dependências (0 → 1 → 2...)
+- **Implementações Mínimas:** Arquivos complexos recebem implementação simplificada marcada para revisita
+- **Build Contínuo:** Verificação constante da integridade do projeto
+
+### 🎯 Próximos Passos
+1. Continuar habilitando arquivos com **Deps: 0-2** seguindo a ordem topológica
+2. Focar em POJOs, utilitários simples e interfaces básicas
+3. Deixar arquivos de renderização, rede e gameplay para fases posteriores
+4. Revisitar implementações simplificadas quando dependências estiverem disponíveis
+
+### ✅ Status do Build: **PASSING** ✅
