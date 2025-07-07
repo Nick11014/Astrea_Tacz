@@ -1,7 +1,8 @@
 package com.tacz.guns.entity.shooter;
 
 import com.tacz.guns.api.entity.ReloadState;
-import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
+// TODO: Re-habilitar quando AttachmentCacheProperty for habilitado
+// import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import net.minecraft.world.item.ItemStack;
 import org.luaj.vm2.LuaValue;
 
@@ -102,9 +103,11 @@ public class ShooterDataHolder {
     public long heatTimestamp = -1;
     /**
      * 配件修改过的各种属性缓存
+     * TODO: Re-habilitar quando AttachmentCacheProperty for habilitado
      */
     @Nullable
-    public AttachmentCacheProperty cacheProperty = null;
+    // public AttachmentCacheProperty cacheProperty = null;
+    public Object cacheProperty = null; // Placeholder até AttachmentCacheProperty ser habilitado
 
     public void initialData() {
         // 重置各个状态
