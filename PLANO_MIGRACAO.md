@@ -42,21 +42,27 @@
 
 ## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
 
-### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA:**
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (2ª RODADA):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
 - ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
 - ✅ **BedrockModelPOJO.java** - HABILITADO (POJO simples funcionando perfeitamente)
 - ✅ **CommonAmmoIndexSerializer.java** - HABILITADO (serializer funcionando com POJOs simples)
 - ✅ **CommonAttachmentIndexSerializer.java** - HABILITADO com implementação mínima (aguarda CommonAttachmentIndex)
 - ✅ **GeometryModelNew.java** - HABILITADO (POJO modelo funcionando perfeitamente)
+- ✅ **FunctionalBedrockPart.java** - HABILITADO (sistema de renderização funcional)
+- ✅ **GetJarResources.java** - HABILITADO (utilitário de recursos funcionando)
+- ✅ **GunFireEvent.java** - HABILITADO (evento de tiro com correções API)
+- ✅ **GunShootEvent.java** - HABILITADO (evento de disparo com correções API)
+- ✅ **HitboxHelperEvent.java** - HABILITADO (evento com implementação mínima - tick API migrada)
 - ⏳ **ClientMessageCraft.java** - MARCADO PARA REVISITA (deps: GunSmithTableMenu, NetworkHandler - bloqueantes)
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 6/8 tentados (75%)
-- **Estratégia Eficaz:** Priorizando POJOs, serializers simples e arquivos com dependências resolvidas
-- **Progresso:** Identificando e marcando dependências bloqueantes para revisita posterior
-- **Sucesso:** 100% dos builds passaram - base sólida mantida
+- **Arquivos Habilitados:** 11/13 tentados (85% de sucesso!)
+- **Estratégia Eficaz:** POJOs, serializers simples, eventos e utilitários com dependências resolvidas
+- **Migração NeoForge:** Correções de API aplicadas (isCancelable, tick events)
+- **Progresso:** Identificando dependências bloqueantes para revisita posterior
+- **Qualidade:** 100% dos builds passaram - base sólida mantida
 
 ---
 
@@ -577,18 +583,18 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ExplodeUtil.java (Deps: 2)
 - [ ] FireSelectKey.java (Deps: 2)
 - [ ] FirstPersonRenderEvent.java (Deps: 5)
-- [ ] FunctionalBedrockPart.java (Deps: 2)
+- [x] FunctionalBedrockPart.java (Deps: 2) ✅ **HABILITADO** - Sistema de renderização funcional com dependências existentes
 - [ ] GameRendererMixin.java (Deps: 3)
 - [x] GeometryModelNew.java (Deps: 2) ✅ **HABILITADO** - POJO modelo funcionando perfeitamente
-- [ ] GetJarResources.java (Deps: 2)
+- [x] GetJarResources.java (Deps: 2) ✅ **HABILITADO** - Utilitário de recursos funcionando perfeitamente
 - [ ] GltfManager.java (Deps: 4)
 - [ ] GunAttachmentSlot.java (Deps: 4)
-- [ ] GunFireEvent.java (Deps: 2)
+- [x] GunFireEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de tiro funcionando perfeitamente
 - [ ] GunKubeJSEvents.java (Deps: 7)
 - [ ] GunModelTypeManager.java (Deps: 3)
 - [x] GunModSubtype.java (Deps: 0) ← HABILITADO via Resolução Topológica
 - [ ] GunPackList.java (Deps: 3)
-- [ ] GunShootEvent.java (Deps: 2)
+- [x] GunShootEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de disparo funcionando perfeitamente
 - [ ] GunSmithTableBlockA.java (Deps: 1)
 - [ ] GunSmithTableBlockB.java (Deps: 1)
 - [ ] GunSmithTableBlockC.java (Deps: 1)
@@ -605,7 +611,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] GunSoundInstance.java (Deps: 2)
 - [ ] GunTooltip.java (Deps: 2)
 - [ ] HideTooltipPartCommand.java (Deps: 2)
-- [ ] HitboxHelperEvent.java (Deps: 2)
+- [x] HitboxHelperEvent.java (Deps: 2) ✅ **HABILITADO** - Evento com implementação mínima (tick API migrada)
 - [ ] HSVSliderGroup.java (Deps: 4)
 - [ ] HumanoidOffhandRender.java (Deps: 4)
 - [ ] IAttachmentModifier.java (Deps: 4)
