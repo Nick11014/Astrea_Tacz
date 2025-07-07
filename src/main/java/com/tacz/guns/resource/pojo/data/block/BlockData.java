@@ -11,10 +11,11 @@ import java.util.List;
 public class BlockData {
     @NotNull
     @SerializedName("filter")
-    private ResourceLocation filter = new ResourceLocation(GunMod.MOD_ID, "default");
+    private ResourceLocation filter = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "default");
 
     @SerializedName("tabs")
-    private List<TabConfig> tabs = new ArrayList<>();
+    // TODO: Re-enable when TabConfig is habilitado
+    private List<Object> tabs = new ArrayList<>(); // private List<TabConfig> tabs = new ArrayList<>();
 
     @NotNull
     public ResourceLocation getFilter() {
@@ -22,7 +23,8 @@ public class BlockData {
     }
 
     @NotNull
-    public List<TabConfig> getTabs() {
-        return tabs.isEmpty() ? TabConfig.DEFAULT_TABS : tabs;
+    public List<Object> getTabs() {
+        // TODO: Re-enable when TabConfig is habilitado
+        return tabs.isEmpty() ? new ArrayList<>() : tabs; // return tabs.isEmpty() ? TabConfig.DEFAULT_TABS : tabs;
     }
 }

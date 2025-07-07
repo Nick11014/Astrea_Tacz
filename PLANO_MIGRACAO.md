@@ -14,9 +14,9 @@
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v4 - Topológica) | 18 | ✅ **16/18** |
-| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **11/289** |
+| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **17/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ 0/140 |
-| **TOTAL** | **Todos os arquivos** | **625** | **203/625** |
+| **TOTAL** | **Todos os arquivos** | **625** | **209/625** |
 
 ---
 

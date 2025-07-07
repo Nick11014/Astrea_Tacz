@@ -1,6 +1,7 @@
 package com.tacz.guns.api.client.animation.statemachine;
 
-public interface AnimationState<T extends AnimationStateContext> {
+// TODO: Re-enable when AnimationStateContext and AnimationStateMachine are habilitado
+public interface AnimationState<T /* extends AnimationStateContext */> {
     /**
      * 每一帧渲染模型前都会调用。
      *
