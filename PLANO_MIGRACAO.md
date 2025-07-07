@@ -42,10 +42,12 @@
 
 ## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
 
-### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (7ª RODADA):**
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (8ª RODADA):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
 - ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
+- ✅ **AttachmentPropertyEvent.java** - HABILITADO (evento propriedades attachment com implementação mínima)
 - ✅ **BedrockModelPOJO.java** - HABILITADO (POJO simples funcionando perfeitamente)
+- ✅ **BlockIndexPOJO.java** - HABILITADO (POJO de índice de blocos com ResourceLocation.fromNamespaceAndPath())
 - ✅ **CommonAmmoIndexSerializer.java** - HABILITADO (serializer funcionando com POJOs simples)
 - ✅ **CommonAttachmentIndexSerializer.java** - HABILITADO com implementação mínima (aguarda CommonAttachmentIndex)
 - ✅ **CustomInterpolator.java** - HABILITADO (interpolador customizado com múltiplos modos SLERP, SQUAD, Catmull-Rom)
@@ -65,6 +67,7 @@
 - ✅ **ModelRotateListener.java** - HABILITADO (listener de rotação de modelo)
 - ✅ **OtherClothConfig.java** - HABILITADO (configuração Cloth outras opções)
 - ✅ **PapiManager.java** - HABILITADO (manager PAPI com implementação mínima - I18n migrado)
+- ✅ **ParticleFactoryRegistry.java** - HABILITADO (registry de factories de partículas com migração EventBusSubscriber)
 - ✅ **ScriptManager.java** - HABILITADO (manager de scripts Lua funcionando)
 - ✅ **Serializers.java** - HABILITADO (serializers de dados funcionando)
 - ✅ **ShooterDataHolder.java** - HABILITADO (holder de dados do shooter com implementação mínima)
@@ -74,12 +77,12 @@
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 27/29 tentados (93% de sucesso!)
-- **Migração TickEvent:** PlayerTickEvent.Post aplicado corretamente no HitboxHelperEvent
-- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, constantes Lua, managers, interpoladores e holders
-- **Migração NeoForge:** Aplicando migrações corretas em vez de comentários (TickEvent → PlayerTickEvent.Post)
-- **Progresso:** Sistema de animação matemática avançada + dados de entidade shooter
-- **Qualidade:** 100% dos builds passaram - base extremamente robusta com migrações corretas
+- **Arquivos Habilitados:** 30/32 tentados (94% de sucesso!)
+- **Migração EventBusSubscriber:** Corrigida para NeoForge 1.21.1 (EventBusSubscriber.Bus.MOD)
+- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, constantes Lua, managers, interpoladores, holders e registries
+- **Migração NeoForge:** Acumulando correções corretas (TickEvent → PlayerTickEvent.Post, EventBusSubscriber, ResourceLocation)
+- **Progresso:** Sistema partículas + eventos attachment + POJOs infraestrutura
+- **Qualidade:** 100% dos builds passaram - base extremamente robusta com migrações incrementais corretas
 
 ---
 
@@ -480,7 +483,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ServerPlayerMixin.java (Deps: 1) ← Movido: depende de IGunOperator
 - [ ] TargetMinecartItem.java (Deps: 1) ← Movido: depende de TargetMinecart
 - [ ] Accessor.java (Deps: 1) ← Movido: infraestrutura complexa
-- [ ] BlockIndexPOJO.java (Deps: 1) ← Movido: infraestrutura
+- [x] BlockIndexPOJO.java (Deps: 1) ✅ **HABILITADO** - POJO de índice de blocos com ResourceLocation.fromNamespaceAndPath()
 - [ ] BonesItem.java (Deps: 1) ← Movido: infraestrutura de modelo
 - [ ] ControllableCompat.java (Deps: 1) ← Movido: compatibilidade
 - [ ] CrosshairDropdown.java (Deps: 1) ← Movido: UI complexa
@@ -545,7 +548,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] AttachmentItemDataAccessor.java (Deps: 3)
 - [ ] AttachmentItemRenderer.java (Deps: 6)
 - [ ] AttachmentNbtFactory.java (Deps: 4)
-- [ ] AttachmentPropertyEvent.java (Deps: 2)
+- [x] AttachmentPropertyEvent.java (Deps: 2) ✅ **HABILITADO** - Evento propriedades attachment com implementação mínima
 - [ ] AttachmentsTagManager.java (Deps: 5)
 - [ ] BedrockCubePerFace.java (Deps: 5)
 - [x] BedrockModelPOJO.java (Deps: 2) ✅ **HABILITADO** - POJO simples funcionando perfeitamente
@@ -697,7 +700,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] PapiManager.java (Deps: 2) ✅ **HABILITADO** - Manager PAPI com implementação mínima (PlayerNamePapi habilitado)
 - [ ] ParameterizedCache.java (Deps: 2)
 - [ ] ParameterizedCachePair.java (Deps: 2)
-- [ ] ParticleFactoryRegistry.java (Deps: 3)
+- [x] ParticleFactoryRegistry.java (Deps: 3) ✅ **HABILITADO** - Registry de factories de partículas com implementação mínima
 - [ ] PlayerAnimatorCompat.java (Deps: 6)
 - [ ] PlayerAnimatorLoader.java (Deps: 3)
 - [ ] PlayerHurtByGunEvent.java (Deps: 3)
