@@ -1,39 +1,51 @@
 package com.tacz.guns.particles;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import org.jetbrains.annotations.NotNull;
 
-// TODO: Major refactor needed - Particle APIs changed significantly in 1.21.1
+/**
+ * Implementação baseada no padrão do SuperbWarfare 1.21.1 para partículas customizadas.
+ * As APIs de partículas mudaram significativamente - agora usam MapCodec e StreamCodec.
+ */
 public class BulletHoleOption implements ParticleOptions {
-    public static final Codec<BulletHoleOption> CODEC = RecordCodecBuilder.create(builder ->
-            builder.group(Codec.INT.fieldOf("dir").forGetter(option -> option.direction.ordinal()),
-                    Codec.LONG.fieldOf("pos").forGetter(option -> option.pos.asLong()),
-                    Codec.STRING.fieldOf("ammo_id").forGetter(option -> option.ammoId),
-                    Codec.STRING.fieldOf("gun_id").forGetter(option -> option.gunId),
-                    Codec.STRING.optionalFieldOf("gun_display_id", "default").forGetter(option -> option.gunDisplayId)
+    
+    public static final MapCodec<BulletHoleOption> CODEC = RecordCodecBuilder.mapCodec(builder ->
+            builder.group(
+                    Direction.CODEC.fieldOf("dir").forGetter(BulletHoleOption::getDirection),
+                    BlockPos.CODEC.fieldOf("pos").forGetter(BulletHoleOption::getPos),
+                    Codec.STRING.fieldOf("ammo_id").forGetter(BulletHoleOption::getAmmoId),
+                    Codec.STRING.fieldOf("gun_id").forGetter(BulletHoleOption::getGunId),
+                    Codec.STRING.optionalFieldOf("gun_display_id", "default").forGetter(BulletHoleOption::getGunDisplayId)
             ).apply(builder, BulletHoleOption::new));
 
-    // TODO: Re-enable when particle APIs are understood in 1.21.1
-    // ParticleOptions.Deserializer interface seems to have been removed/changed
+    public static final StreamCodec<RegistryFriendlyByteBuf, BulletHoleOption> STREAM_CODEC = StreamCodec.composite(
+            Direction.STREAM_CODEC,
+            BulletHoleOption::getDirection,
+            BlockPos.STREAM_CODEC,
+            BulletHoleOption::getPos,
+            ByteBufCodecs.STRING_UTF8,
+            BulletHoleOption::getAmmoId,
+            ByteBufCodecs.STRING_UTF8,
+            BulletHoleOption::getGunId,
+            ByteBufCodecs.STRING_UTF8,
+            BulletHoleOption::getGunDisplayId,
+            BulletHoleOption::new
+    );
 
     private final Direction direction;
     private final BlockPos pos;
     private final String ammoId;
     private final String gunId;
     private final String gunDisplayId;
-
-    public BulletHoleOption(int dir, long pos, String ammoId, String gunId, String gunDisplayId) {
-        this.direction = Direction.values()[dir];
-        this.pos = BlockPos.of(pos);
-        this.ammoId = ammoId;
-        this.gunId = gunId;
-        this.gunDisplayId = gunDisplayId;
-    }
 
     public BulletHoleOption(Direction dir, BlockPos pos, String ammoId, String gunId, String gunDisplayId) {
         this.direction = dir;
@@ -64,22 +76,8 @@ public class BulletHoleOption implements ParticleOptions {
     }
 
     @Override
-    public ParticleType<?> getType() {
+    public @NotNull ParticleType<?> getType() {
         // TODO: Re-enable when ModParticles is habilitado
         return null; // ModParticles.BULLET_HOLE.get();
-    }
-
-    // TODO: Check if these methods still exist in ParticleOptions in 1.21.1
-    public void writeToNetwork(FriendlyByteBuf buffer) {
-        buffer.writeEnum(this.direction);
-        buffer.writeBlockPos(this.pos);
-        buffer.writeUtf(this.ammoId);
-        buffer.writeUtf(this.gunId);
-        buffer.writeUtf(this.gunDisplayId);
-    }    
-    
-    public String writeToString() {
-        // TODO: Fix this when getType() returns valid ParticleType
-        return "bullet_hole " + this.direction.getName();
     }
 }

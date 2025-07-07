@@ -3,6 +3,7 @@ package com.tacz.guns;
 import com.tacz.guns.config.CommonConfig;
 import com.tacz.guns.config.ServerConfig;
 import com.tacz.guns.init.*;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -18,6 +19,14 @@ public class GunMod {
      * 默认模型包文件夹
      */
     public static final String DEFAULT_GUN_PACK_NAME = "tacz_default_gun";
+
+    /**
+     * Método utilitário para criar ResourceLocation do mod.
+     * Baseado no padrão do SuperbWarfare 1.21.1
+     */
+    public static ResourceLocation loc(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    }
 
     public GunMod(IEventBus modEventBus, ModContainer modContainer) {
         // Registrar configurações usando a API correta do NeoForge 1.21.1

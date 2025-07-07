@@ -33,7 +33,7 @@ public class ModPainting {
             PAINTING_VARIANTS.register("blood_strike_1", () -> new PaintingVariant(
                     2, // Largura em blocos (width in blocks)
                     2, // Altura em blocos (height in blocks)
-                    ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "painting/blood_strike_1")
+                    GunMod.loc("painting/blood_strike_1")
             ));
 
     // Exemplo para uma pintura de 32x32 pixels que ocupa 2x2 blocos:

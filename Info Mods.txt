@@ -1,0 +1,8 @@
+Player Animator:
+
+https://www.curseforge.com/minecraft/mc-mods/playeranimator/files/6024462
+player-animation-lib-forge-2.0.1+1.21.1.jar
+Project ID:
+658587
+
+Temos diversas no Reference_Repositories\SuperbWarfare-1.21\build.gradle
