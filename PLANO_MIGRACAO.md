@@ -2,8 +2,8 @@
 
 **Projeto:** Migração TacZ de Forge 1.20.1 para NeoForge 1.21.1  
 **Estratégia:** Habilitação incremental baseada em análise topológica de dependências  
-**Data de Atualização:** 2025-07-06 20:30:00  
-**Última Análise:** Fase 3 - Resolução Topológica Aplicada (11 arquivos habilitados)  
+**Data de Atualização:** 2025-07-06 20:45:00  
+**Última Análise:** Fase 3 - Correções no Plano e Documentação da Estratégia Topológica  
 
 ---
 
@@ -17,6 +17,23 @@
 | **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **17/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ 0/140 |
 | **TOTAL** | **Todos os arquivos** | **625** | **209/625** |
+
+---
+
+## ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO
+
+### **Implementação Mínima e Revisitas**
+
+Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topológica** que inclui:
+
+1. **Implementação Mínima:** Arquivos com dependências circulares são habilitados com placeholders/comentários para quebrar os ciclos
+2. **Habilitação Sequencial:** Arquivos são habilitados na ordem de suas dependências (0 → 1 → 2 → 3...)
+3. **Marcação para Revisita:** Arquivos com implementação mínima são marcados como **(REQUER REVISITA)**
+
+### **Legenda de Status:**
+- `← HABILITADO via Resolução Topológica` = Arquivo totalmente funcional
+- `← HABILITADO via implementação mínima (REQUER REVISITA)` = Arquivo com placeholders, funciona mas precisa ser completado
+- `← HABILITADO e MIGRADO para NeoForge 1.21.1` = Arquivo migrado e totalmente funcional
 
 ---
 
@@ -389,7 +406,7 @@
 - [ ] AccessorIntData.java (Deps: 3)
 - [ ] AccessorModel.java (Deps: 5)
 - [ ] AccessorShortData.java (Deps: 3)
-- [ ] Accessors.java (Deps: 2)
+- [x] Accessors.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [ ] AccessorSparse.java (Deps: 2)
 - [ ] AccessorSparseUtils.java (Deps: 2)
 - [ ] Acknowledge.java (Deps: 3)
@@ -406,13 +423,13 @@
 - [x] Animation.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [ ] AnimationChannel.java (Deps: 1)
 - [ ] AnimationController.java (Deps: 4)
-- [ ] AnimationDataRegisterFactory.java (Deps: 2)
+- [x] AnimationDataRegisterFactory.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [ ] AnimationKeyframesSerializer.java (Deps: 2)
-- [ ] AnimationListener.java (Deps: 1)
-- [ ] AnimationListenerSupplier.java (Deps: 2)
+- [x] AnimationListener.java (Deps: 1) ← HABILITADO via Resolução Topológica
+- [x] AnimationListenerSupplier.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [x] AnimationModel.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [x] AnimationPlan.java (Deps: 1) ← HABILITADO via Resolução Topológica
-- [ ] AnimationState.java (Deps: 2)
+- [x] AnimationState.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [ ] AnimationStateContext.java (Deps: 7)
 - [ ] AnimationStateMachine.java (Deps: 3)
 - [ ] AttachmentCacheProperty.java (Deps: 5)
@@ -425,7 +442,7 @@
 - [ ] AttachmentsTagManager.java (Deps: 5)
 - [ ] BedrockCubePerFace.java (Deps: 5)
 - [ ] BedrockModelPOJO.java (Deps: 2)
-- [ ] BlockData.java (Deps: 2)
+- [x] BlockData.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [ ] BlockItemBuilder.java (Deps: 2)
 - [ ] BlockRayTrace.java (Deps: 2)
 - [ ] BufferViewModel.java (Deps: 2)
@@ -562,7 +579,7 @@
 - [ ] MouseHandlerMixin.java (Deps: 10)
 - [ ] NetworkHandler.java (Deps: 5)
 - [ ] ObjectAnimation.java (Deps: 5)
-- [ ] ObjectAnimationChannel.java (Deps: 3)
+- [x] ObjectAnimationChannel.java (Deps: 3) ← HABILITADO via Resolução Topológica
 - [ ] ObjectAnimationRunner.java (Deps: 5)
 - [ ] ObjectAnimationSoundChannel.java (Deps: 2)
 - [ ] OculusCompat.java (Deps: 3)
