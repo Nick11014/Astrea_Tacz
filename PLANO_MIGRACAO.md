@@ -42,7 +42,7 @@
 
 ## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
 
-### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (2ª RODADA):**
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (3ª RODADA):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
 - ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
 - ✅ **BedrockModelPOJO.java** - HABILITADO (POJO simples funcionando perfeitamente)
@@ -54,14 +54,20 @@
 - ✅ **GunFireEvent.java** - HABILITADO (evento de tiro com correções API)
 - ✅ **GunShootEvent.java** - HABILITADO (evento de disparo com correções API)
 - ✅ **HitboxHelperEvent.java** - HABILITADO (evento com implementação mínima - tick API migrada)
+- ✅ **InaccuracyType.java** - HABILITADO (enum de precisão funcionando)
+- ✅ **JsonDataManager.java** - HABILITADO (gerenciador de dados JSON)
+- ✅ **JsonResourceLoader.java** - HABILITADO (loader recursos JSON - ResourceLocation migrado)
+- ✅ **KeyClothConfig.java** - HABILITADO (configuração teclas Cloth)
+- ✅ **Linear.java** - HABILITADO (interpolador linear funcionando)
 - ⏳ **ClientMessageCraft.java** - MARCADO PARA REVISITA (deps: GunSmithTableMenu, NetworkHandler - bloqueantes)
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 11/13 tentados (85% de sucesso!)
-- **Estratégia Eficaz:** POJOs, serializers simples, eventos e utilitários com dependências resolvidas
-- **Migração NeoForge:** Correções de API aplicadas (isCancelable, tick events)
-- **Progresso:** Identificando dependências bloqueantes para revisita posterior
+- **Arquivos Habilitados:** 16/18 tentados (89% de sucesso!)
+- **Correções NeoForge:** ResourceLocation.fromNamespaceAndPath() aplicado com sucesso
+- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários e interpoladores simples
+- **Migração NeoForge:** Correções de API aplicadas (ResourceLocation, isCancelable, tick events)
+- **Progresso:** Identificando dependências bloqueantes para revisita posterior  
 - **Qualidade:** 100% dos builds passaram - base sólida mantida
 
 ---
@@ -619,7 +625,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ICommonResourceProvider.java (Deps: 8)
 - [ ] IGun.java (Deps: 4)
 - [ ] IGunOperator.java (Deps: 4)
-- [ ] InaccuracyType.java (Deps: 2)
+- [x] InaccuracyType.java (Deps: 2) ✅ **HABILITADO** - Enum de precisão funcionando perfeitamente
 - [ ] InnerThirdPersonManager.java (Deps: 6)
 - [ ] InteractKey.java (Deps: 2)
 - [ ] InteractKeyConfigRead.java (Deps: 2)
@@ -631,14 +637,14 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] ItemAnimationStateContext.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [ ] ItemInHandLayerMixin.java (Deps: 4)
 - [ ] ItemInHandRendererMixin.java (Deps: 3)
-- [ ] JsonDataManager.java (Deps: 2)
-- [ ] JsonResourceLoader.java (Deps: 2)
-- [ ] KeyClothConfig.java (Deps: 2)
+- [x] JsonDataManager.java (Deps: 2) ✅ **HABILITADO** - Gerenciador de dados JSON funcionando perfeitamente
+- [x] JsonResourceLoader.java (Deps: 2) ✅ **HABILITADO** - Loader de recursos JSON funcionando perfeitamente
+- [x] KeyClothConfig.java (Deps: 2) ✅ **HABILITADO** - Configuração de teclas Cloth funcionando perfeitamente
 - [ ] KillAmountOverlay.java (Deps: 3)
 - [ ] KubeJSGunEventPoster.java (Deps: 3)
 - [ ] LaserColorUtil.java (Deps: 6)
 - [ ] LeftHandRender.java (Deps: 3)
-- [ ] Linear.java (Deps: 2)
+- [x] Linear.java (Deps: 2) ✅ **HABILITADO** - Interpolador linear funcionando perfeitamente
 - [ ] LivingEntityCrawl.java (Deps: 3)
 - [ ] LivingEntityFireSelect.java (Deps: 7)
 - [ ] LivingEntityHeat.java (Deps: 2)
@@ -646,7 +652,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] LivingEntitySprint.java (Deps: 3)
 - [ ] LoadingConfigEvent.java (Deps: 2)
 - [ ] LocalPlayerCrawl.java (Deps: 4)
-- [ ] LocalPlayerDataHolder.java (Deps: 2)
+- [x] LocalPlayerDataHolder.java (Deps: 2) ✅ **JÁ HABILITADO** - Na Fase 1
 - [ ] LocalPlayerSprint.java (Deps: 3)
 - [ ] LuaAnimationConstant.java (Deps: 3)
 - [ ] LuaAnimationState.java (Deps: 3)
