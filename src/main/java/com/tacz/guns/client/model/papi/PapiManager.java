@@ -13,10 +13,11 @@ import java.util.function.Function;
 public final class PapiManager {
     private static final Map<String, Function<ItemStack, String>> PAPI = Maps.newHashMap();
 
-    // 注册，不知道放哪里，先放这
+    // 注册，não sei onde colocar, colocando aqui primeiro
     static {
         addPapi(PlayerNamePapi.NAME, new PlayerNamePapi());
-        addPapi(AmmoCountPapi.NAME, new AmmoCountPapi());
+        // TODO: Re-ativar quando AmmoCountPapi for habilitado
+        // addPapi(AmmoCountPapi.NAME, new AmmoCountPapi());
     }
 
     public static void addPapi(String textKey, Function<ItemStack, String> function) {
@@ -25,7 +26,7 @@ public final class PapiManager {
     }
 
     public static String getTextShow(String textKey, ItemStack stack) {
-        String text = I18n.language.getOrDefault(textKey);
+        String text = I18n.get(textKey);
         for (var entry : PAPI.entrySet()) {
             String placeholder = entry.getKey();
             String data = entry.getValue().apply(stack);

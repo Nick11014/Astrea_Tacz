@@ -42,7 +42,7 @@
 
 ## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
 
-### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (3ª RODADA):**
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (4ª RODADA):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
 - ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
 - ✅ **BedrockModelPOJO.java** - HABILITADO (POJO simples funcionando perfeitamente)
@@ -59,16 +59,21 @@
 - ✅ **JsonResourceLoader.java** - HABILITADO (loader recursos JSON - ResourceLocation migrado)
 - ✅ **KeyClothConfig.java** - HABILITADO (configuração teclas Cloth)
 - ✅ **Linear.java** - HABILITADO (interpolador linear funcionando)
+- ✅ **LuaGunLogicConstant.java** - HABILITADO (constantes Lua para lógica de armas)
+- ✅ **ModelScaleListener.java** - HABILITADO (listener de escala de modelo)
+- ✅ **ModelRotateListener.java** - HABILITADO (listener de rotação de modelo)
+- ✅ **OtherClothConfig.java** - HABILITADO (configuração Cloth outras opções)
+- ✅ **PapiManager.java** - HABILITADO (manager PAPI com implementação mínima - I18n migrado)
 - ⏳ **ClientMessageCraft.java** - MARCADO PARA REVISITA (deps: GunSmithTableMenu, NetworkHandler - bloqueantes)
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 16/18 tentados (89% de sucesso!)
-- **Correções NeoForge:** ResourceLocation.fromNamespaceAndPath() aplicado com sucesso
-- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários e interpoladores simples
-- **Migração NeoForge:** Correções de API aplicadas (ResourceLocation, isCancelable, tick events)
-- **Progresso:** Identificando dependências bloqueantes para revisita posterior  
-- **Qualidade:** 100% dos builds passaram - base sólida mantida
+- **Arquivos Habilitados:** 21/23 tentados (91% de sucesso!)
+- **Correções NeoForge:** I18n.get() aplicado com sucesso (I18n.language removido)
+- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, constantes Lua e configurações
+- **Migração NeoForge:** Correções cumulativas (ResourceLocation, isCancelable, tick events, I18n)
+- **Progresso:** Ampliando tipos cobertos - animação, Lua, interfaces PAPI
+- **Qualidade:** 100% dos builds passaram - base extremamente sólida
 
 ---
 
@@ -658,7 +663,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] LuaAnimationState.java (Deps: 3)
 - [ ] LuaAnimationStateMachine.java (Deps: 4)
 - [ ] LuaGunAnimationConstant.java (Deps: 5)
-- [ ] LuaGunLogicConstant.java (Deps: 3)
+- [x] LuaGunLogicConstant.java (Deps: 3) ✅ **HABILITADO** - Constantes Lua para lógica de armas funcionando perfeitamente
 - [ ] LuaStateMachineFactory.java (Deps: 5)
 - [ ] MenuIntegration.java (Deps: 6)
 - [x] ModBlocks.java (Deps: 4) ← HABILITADO com implementação mínima baseada no SuperbWarfare 1.21.1
@@ -670,8 +675,8 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] ModSerializers.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
 - [ ] ModSyncedEntityData.java (Deps: 7)
 - [ ] ModelAdditionalMagazineListener.java (Deps: 3)
-- [ ] ModelRotateListener.java (Deps: 4)
-- [ ] ModelScaleListener.java (Deps: 3)
+- [x] ModelRotateListener.java (Deps: 4) ✅ **HABILITADO** - Listener de rotação de modelo funcionando perfeitamente
+- [x] ModelScaleListener.java (Deps: 3) ✅ **HABILITADO** - Listener de escala de modelo funcionando perfeitamente
 - [ ] ModelTranslateListener.java (Deps: 5)
 - [ ] MouseHandlerMixin.java (Deps: 10)
 - [ ] NetworkHandler.java (Deps: 5)
@@ -680,10 +685,10 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ObjectAnimationRunner.java (Deps: 5)
 - [ ] ObjectAnimationSoundChannel.java (Deps: 2)
 - [ ] OculusCompat.java (Deps: 3)
-- [ ] OtherClothConfig.java (Deps: 2)
+- [x] OtherClothConfig.java (Deps: 2) ✅ **HABILITADO** - Configuração Cloth outras opções funcionando perfeitamente
 - [ ] PackConvertor.java (Deps: 3)
 - [ ] PackInfoManager.java (Deps: 3)
-- [ ] PapiManager.java (Deps: 2)
+- [x] PapiManager.java (Deps: 2) ✅ **HABILITADO** - Manager PAPI com implementação mínima (PlayerNamePapi habilitado)
 - [ ] ParameterizedCache.java (Deps: 2)
 - [ ] ParameterizedCachePair.java (Deps: 2)
 - [ ] ParticleFactoryRegistry.java (Deps: 3)
