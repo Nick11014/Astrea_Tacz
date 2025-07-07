@@ -2,18 +2,21 @@ package com.tacz.guns.client.animation.screen;
 
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.item.attachment.AttachmentType;
-import com.tacz.guns.client.gui.GunRefitScreen;
+// TODO: Re-enable when GunRefitScreen is available
+// import com.tacz.guns.client.gui.GunRefitScreen;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.neoforge.event.tick.TickEvent;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.common.EventBusSubscriber;
+// TODO: Migrate to new tick event API in NeoForge 1.21.1
+// import net.neoforged.neoforge.event.tick.TickEvent;
+// import net.neoforged.bus.api.SubscribeEvent;
+// import net.neoforged.fml.common.Mod;
+// import net.neoforged.fml.common.EventBusSubscriber;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-@EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
+// TODO: Re-enable event subscription when tick events are migrated
+// @EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class RefitTransform {
     // 以下参数、变量用于改装窗口动画插值
     private static final float REFIT_SCREEN_TRANSFORM_TIMES = 0.25f;
@@ -60,6 +63,8 @@ public class RefitTransform {
         return true;
     }
 
+    // TODO: Re-enable when tick events are migrated and GunRefitScreen is available
+    /*
     @SubscribeEvent
     public static void tickInterpolation(TickEvent.RenderTickEvent event) {
         // tick opening progress
@@ -88,4 +93,5 @@ public class RefitTransform {
         }
         refitScreenTransformTimestamp = System.currentTimeMillis();
     }
+    */
 }

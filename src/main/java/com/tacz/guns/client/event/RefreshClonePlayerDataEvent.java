@@ -6,11 +6,11 @@ import com.tacz.guns.util.DelayedTask;
 import net.minecraft.client.player.LocalPlayer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.event.tick.TickEvent;
+// TODO: Migrate to new tick event API in NeoForge 1.21.1
+// import net.neoforged.neoforge.event.tick.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-
 import net.neoforged.fml.common.EventBusSubscriber;
+
 import java.util.function.BooleanSupplier;
 
 /**
@@ -28,7 +28,9 @@ public class RefreshClonePlayerDataEvent {
 
     /**
      * 延迟执行是通过这个方法执行的
+     * TODO: Re-enable when tick events are migrated to NeoForge 1.21.1
      */
+    /*
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
@@ -40,4 +42,5 @@ public class RefreshClonePlayerDataEvent {
             }
         }
     }
+    */
 }

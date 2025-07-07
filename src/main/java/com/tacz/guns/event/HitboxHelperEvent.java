@@ -2,27 +2,25 @@ package com.tacz.guns.event;
 
 import com.tacz.guns.config.common.OtherConfig;
 import com.tacz.guns.util.HitboxHelper;
-// TODO: Migrar para nova API de tick do NeoForge 1.21.1
-// import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 @EventBusSubscriber
 public class HitboxHelperEvent {
-    // TODO: Re-enable when tick events are properly migrated to NeoForge 1.21.1
-    /*
     @SubscribeEvent(receiveCanceled = true)
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+    public static void onPlayerTick(PlayerTickEvent.Post event) {
         if (!OtherConfig.SERVER_HITBOX_LATENCY_FIX.get()) {
             return;
         }
-        if (event.side == LogicalSide.SERVER && event.phase == TickEvent.Phase.END) {
-            HitboxHelper.onPlayerTick(event.player);
+        // Migrado para NeoForge 1.21.1: PlayerTickEvent.Post apenas no servidor
+        if (FMLEnvironment.dist == Dist.DEDICATED_SERVER) {
+            HitboxHelper.onPlayerTick(event.getEntity());
         }
     }
-    */
 
     @SubscribeEvent(receiveCanceled = true)
     public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
