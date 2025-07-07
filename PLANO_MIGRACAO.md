@@ -40,6 +40,26 @@
 - 🔄 **Comentários TODO** - Facilitam revisita posterior
 - 🔄 **Estrutura preservada** - Migração gradual sem quebrar arquitetura
 
+## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
+
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA:**
+- ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
+- ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
+- ✅ **BedrockModelPOJO.java** - HABILITADO (POJO simples funcionando perfeitamente)
+- ✅ **CommonAmmoIndexSerializer.java** - HABILITADO (serializer funcionando com POJOs simples)
+- ✅ **CommonAttachmentIndexSerializer.java** - HABILITADO com implementação mínima (aguarda CommonAttachmentIndex)
+- ✅ **GeometryModelNew.java** - HABILITADO (POJO modelo funcionando perfeitamente)
+- ⏳ **ClientMessageCraft.java** - MARCADO PARA REVISITA (deps: GunSmithTableMenu, NetworkHandler - bloqueantes)
+- ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
+
+### **📋 Resultado da Resolução Topológica:**
+- **Arquivos Habilitados:** 6/8 tentados (75%)
+- **Estratégia Eficaz:** Priorizando POJOs, serializers simples e arquivos com dependências resolvidas
+- **Progresso:** Identificando e marcando dependências bloqueantes para revisita posterior
+- **Sucesso:** 100% dos builds passaram - base sólida mantida
+
+---
+
 ## 🎯 **FASE 2 CONCLUÍDA** - DOIS ARQUIVOS FINAIS HABILITADOS
 
 ### **📋 APIs Removidas Solucionadas (2/2 ✅):**
@@ -402,7 +422,11 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] ModSounds.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1  
 - [x] ModPainting.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1
 - [x] BellRing.java (Deps: 1) ✅ **HABILITADO** - Depende de AmmoHitBlockEvent (implementação simplificada)
-- [ ] ClientMessageCraft.java (Deps: 1) ← Movido: rede/gameplay
+- [ ] ClientMessageCraft.java (Deps: 3) ← **MARCADO PARA REVISITA** - Análise de Dependências Topológica:
+    [ ] GunSmithTableMenu.java (Deps: 4 - BLOQUEANTE)
+    [ ] NetworkHandler.java (Deps: 8 - BLOQUEANTE) 
+    [ ] Migração NetworkEvent.Context → IPayloadContext (NeoForge 1.21.1)
+    **STATUS:** DEPENDÊNCIAS BLOQUEANTES - Aguardando resolução das dependências
 - [ ] ClientMessagePlayerAim.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerBoltGun.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerCancelReload.java (Deps: 1) ← Movido: rede/gameplay
@@ -474,20 +498,24 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] AmmoItemDataAccessor.java (Deps: 5)
 - [ ] AmmoItemRenderer.java (Deps: 6)
 - [ ] AmmoNbtFactory.java (Deps: 4)
-- [ ] AmmoParticleSpawner.java (Deps: 2)
+- [x] AmmoParticleSpawner.java (Deps: 2) ← HABILITADO com implementação mínima (REQUER REVISITA)
+    Dependências: TimelessAPI, EntityKineticBullet
 - [ ] AnimateGeoItemRenderer.java (Deps: 8)
 - [x] Animation.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [x] AnimationChannel.java (Deps: 1) ✅ **JÁ HABILITADO**
 - [ ] AnimationController.java (Deps: 4)
 - [x] AnimationDataRegisterFactory.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
-- [ ] AnimationKeyframesSerializer.java (Deps: 2)
+- [x] AnimationKeyframesSerializer.java (Deps: 2) ✅ **HABILITADO** - Funcionando perfeitamente
 - [x] AnimationListener.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [x] AnimationListenerSupplier.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [x] AnimationModel.java (Deps: 2) ← HABILITADO via Resolução Topológica
 - [x] AnimationPlan.java (Deps: 1) ← HABILITADO via Resolução Topológica
 - [x] AnimationState.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [ ] AnimationStateContext.java (Deps: 7)
-- [ ] AnimationStateMachine.java (Deps: 3)
+- [ ] AnimationStateMachine.java (Deps: 3) ← **MARCADO PARA REVISITA** - Análise de Dependências:
+    [x] AnimationState.java (✅ HABILITADO - implementação mínima)
+    [ ] AnimationController.java (Deps: 4 - BLOQUEANTE)
+    [ ] AnimationStateContext.java (Deps: 7 - BLOQUEANTE)
 - [ ] AttachmentCacheProperty.java (Deps: 5)
 - [ ] AttachmentDataManager.java (Deps: 6)
 - [ ] AttachmentDisplay.java (Deps: 4)
@@ -497,7 +525,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] AttachmentPropertyEvent.java (Deps: 2)
 - [ ] AttachmentsTagManager.java (Deps: 5)
 - [ ] BedrockCubePerFace.java (Deps: 5)
-- [ ] BedrockModelPOJO.java (Deps: 2)
+- [x] BedrockModelPOJO.java (Deps: 2) ✅ **HABILITADO** - POJO simples funcionando perfeitamente
 - [x] BlockData.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [x] BlockItemBuilder.java (Deps: 2) ✅ **JÁ HABILITADO**
 - [x] BlockRayTrace.java (Deps: 2) ✅ **JÁ HABILITADO**
@@ -519,9 +547,10 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ClientMessageUnloadAttachment.java (Deps: 5)
 - [ ] ClientPreventGunClick.java (Deps: 3)
 - [x] ClothConfigScreen.java (Deps: 1) ← HABILITADO via Resolução Topológica
-- [ ] CommonAmmoIndexSerializer.java (Deps: 2)
+- [x] CommonAmmoIndexSerializer.java (Deps: 2) ✅ **HABILITADO** - Serializer funcionando com POJOs simples
 - [ ] CommonAttachmentIndex.java (Deps: 4)
-- [ ] CommonAttachmentIndexSerializer.java (Deps: 2)
+- [x] CommonAttachmentIndexSerializer.java (Deps: 2) ← HABILITADO com implementação mínima (REQUER REVISITA)
+    Aguardando: CommonAttachmentIndex.java (Deps: 4)
 - [ ] CommonBlockIndex.java (Deps: 4)
 - [ ] CommonBlockIndexSerializer.java (Deps: 2)
 - [ ] CommonDataManager.java (Deps: 3)
@@ -550,7 +579,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] FirstPersonRenderEvent.java (Deps: 5)
 - [ ] FunctionalBedrockPart.java (Deps: 2)
 - [ ] GameRendererMixin.java (Deps: 3)
-- [ ] GeometryModelNew.java (Deps: 2)
+- [x] GeometryModelNew.java (Deps: 2) ✅ **HABILITADO** - POJO modelo funcionando perfeitamente
 - [ ] GetJarResources.java (Deps: 2)
 - [ ] GltfManager.java (Deps: 4)
 - [ ] GunAttachmentSlot.java (Deps: 4)
