@@ -1,9 +1,9 @@
 package com.tacz.guns.client.particle;
 
-
-import com.tacz.guns.api.TimelessAPI;
+// TODO: Re-enable when TimelessAPI and EntityKineticBullet are habilitado
+// import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.client.resource.pojo.display.ammo.AmmoParticle;
-import com.tacz.guns.entity.EntityKineticBullet;
+// import com.tacz.guns.entity.EntityKineticBullet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleEngine;
@@ -17,7 +17,10 @@ import org.joml.Vector3f;
 
 @OnlyIn(Dist.CLIENT)
 public class AmmoParticleSpawner {
-    public static void addParticle(EntityKineticBullet bullet) {
+    // TODO: Re-enable when EntityKineticBullet is habilitado
+    public static void addParticle(Object bullet /* EntityKineticBullet bullet */) {
+        // TODO: Re-enable when TimelessAPI is habilitado
+        /*
         TimelessAPI.getGunDisplay(bullet.getGunDisplayId(), bullet.getGunId()).ifPresent(gunIndex -> {
             AmmoParticle gunParticle = gunIndex.getParticle();
             if (gunParticle == null) {
@@ -34,9 +37,12 @@ public class AmmoParticleSpawner {
                 spawnParticle(bullet, gunParticle);
             }
         });
+        */
     }
 
-    private static void spawnParticle(EntityKineticBullet bullet, AmmoParticle particle) {
+    // TODO: Re-enable when EntityKineticBullet is habilitado
+    private static void spawnParticle(Object bullet /* EntityKineticBullet bullet */, AmmoParticle particle) {
+        /*
         ParticleOptions particleOptions = particle.getParticleOptions();
         if (particleOptions == null) {
             return;
@@ -60,9 +66,12 @@ public class AmmoParticleSpawner {
                 createParticle(bullet, particle, random, delta, particleSpeed, owner, particleEngine, particleOptions);
             }
         }
+        */
     }
 
-    private static void createParticle(EntityKineticBullet bullet, AmmoParticle particle, RandomSource random, Vector3f delta, float particleSpeed, Entity owner, ParticleEngine particleEngine, ParticleOptions particleOptions) {
+    // TODO: Re-enable when EntityKineticBullet is habilitado
+    private static void createParticle(Object bullet /* EntityKineticBullet bullet */, AmmoParticle particle, RandomSource random, Vector3f delta, float particleSpeed, Entity owner, ParticleEngine particleEngine, ParticleOptions particleOptions) {
+        /*
         Vec3 deltaMovement = bullet.getDeltaMovement();
         double deltaMovementRandom = random.nextDouble();
         double offsetX = random.nextGaussian() * delta.x() + deltaMovementRandom * deltaMovement.x;
@@ -83,5 +92,6 @@ public class AmmoParticleSpawner {
                 result.setLifetime(particle.getLifeTime());
             }
         }
+        */
     }
 }

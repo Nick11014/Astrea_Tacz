@@ -1,6 +1,7 @@
 package com.tacz.guns.resource;
 
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
@@ -32,6 +33,8 @@ public final class VersionChecker {
     private static final Marker MARKER = MarkerManager.getMarker("VersionChecker");
     private static final Pattern PACK_INFO_PATTERN = Pattern.compile("^\\w+/pack\\.json$");
     private static final Map<Path, Boolean> VERSION_CHECK_CACHE = Maps.newHashMap();
+    // TODO: Re-enable when CommonAssetsManager is habilitado
+    private static final Gson GSON = new Gson(); // CommonAssetsManager.GSON;
 
     public static boolean match(File dir) {
         return VERSION_CHECK_CACHE.computeIfAbsent(dir.toPath(), path -> checkDirVersion(dir));
@@ -55,7 +58,7 @@ public final class VersionChecker {
             return true;
         }
         try (InputStream stream = Files.newInputStream(packInfoFilePath)) {
-            Info info = CommonAssetsManager.GSON.fromJson(new InputStreamReader(stream, StandardCharsets.UTF_8), Info.class);
+            Info info = GSON.fromJson(new InputStreamReader(stream, StandardCharsets.UTF_8), Info.class);
             return modVersionAllMatch(info);
         } catch (IOException | JsonSyntaxException | JsonIOException | InvalidVersionSpecificationException exception) {
             GunMod.LOGGER.warn(MARKER, "Failed to read info json: {}", packInfoFilePath);
@@ -78,7 +81,7 @@ public final class VersionChecker {
                 return true;
             }
             try (InputStream stream = zipFile.getInputStream(entry)) {
-                Info info = CommonAssetsManager.GSON.fromJson(new InputStreamReader(stream, StandardCharsets.UTF_8), Info.class);
+                Info info = GSON.fromJson(new InputStreamReader(stream, StandardCharsets.UTF_8), Info.class);
                 // 只要有一个不符，那么就不加载
                 if (!modVersionAllMatch(info)) {
                     return false;
