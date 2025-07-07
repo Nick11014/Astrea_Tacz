@@ -6,21 +6,21 @@ import net.neoforged.bus.api.Event;
 import net.neoforged.fml.LogicalSide;
 
 /**
- * 生物切换枪械开火模式时触发的事件
+ * 用枪近战时触发
  */
-public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<GunFireSelectEvent>{
+public class GunMeleeEvent extends Event implements KubeJSGunEventPoster<GunMeleeEvent>{
     private final LivingEntity shooter;
     private final ItemStack gunItemStack;
     private final LogicalSide logicalSide;
 
-    public GunFireSelectEvent(LivingEntity shooter, ItemStack gunItemStack, LogicalSide side) {
+    public GunMeleeEvent(LivingEntity shooter, ItemStack gunItemStack, LogicalSide side) {
         this.shooter = shooter;
         this.gunItemStack = gunItemStack;
         this.logicalSide = side;
         postEventToKubeJS(this);
     }
 
-    @Override
+    // Cancelable event - método isCancelable() não é mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
     }

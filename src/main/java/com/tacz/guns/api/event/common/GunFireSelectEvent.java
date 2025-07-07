@@ -1,25 +1,32 @@
 package com.tacz.guns.api.event.common;
 
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.Event;
 import net.neoforged.fml.LogicalSide;
 
 /**
- * 生物结束更换枪械弹药时触发的事件。
+ * 生物切换枪械开火模式时触发的事件
  */
-public class GunFinishReloadEvent extends Event implements KubeJSGunEventPoster<GunFinishReloadEvent>{
+public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<GunFireSelectEvent>{
+    private final LivingEntity shooter;
     private final ItemStack gunItemStack;
     private final LogicalSide logicalSide;
 
-    public GunFinishReloadEvent(ItemStack gunItemStack, LogicalSide side) {
+    public GunFireSelectEvent(LivingEntity shooter, ItemStack gunItemStack, LogicalSide side) {
+        this.shooter = shooter;
         this.gunItemStack = gunItemStack;
         this.logicalSide = side;
         postEventToKubeJS(this);
     }
 
-    @Override
+    // Cancelable event - método isCancelable() não é mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
+    }
+
+    public LivingEntity getShooter() {
+        return shooter;
     }
 
     public ItemStack getGunItemStack() {

@@ -1,32 +1,25 @@
 package com.tacz.guns.api.event.common;
 
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.Event;
 import net.neoforged.fml.LogicalSide;
 
 /**
- * 用枪近战时触发
+ * 生物结束更换枪械弹药时触发的事件。
  */
-public class GunMeleeEvent extends Event implements KubeJSGunEventPoster<GunMeleeEvent>{
-    private final LivingEntity shooter;
+public class GunFinishReloadEvent extends Event implements KubeJSGunEventPoster<GunFinishReloadEvent>{
     private final ItemStack gunItemStack;
     private final LogicalSide logicalSide;
 
-    public GunMeleeEvent(LivingEntity shooter, ItemStack gunItemStack, LogicalSide side) {
-        this.shooter = shooter;
+    public GunFinishReloadEvent(ItemStack gunItemStack, LogicalSide side) {
         this.gunItemStack = gunItemStack;
         this.logicalSide = side;
         postEventToKubeJS(this);
     }
 
-    @Override
+    // Cancelable event - método isCancelable() não é mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
-    }
-
-    public LivingEntity getShooter() {
-        return shooter;
     }
 
     public ItemStack getGunItemStack() {
