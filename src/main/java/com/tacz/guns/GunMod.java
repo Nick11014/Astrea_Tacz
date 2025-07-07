@@ -42,13 +42,19 @@ public class GunMod {
         // Registrar itens com implementação mínima (baseado no padrão SuperbWarfare)
         ModItems.ITEMS.register(modEventBus);
         
+        // Registrar blocos com implementação mínima (baseado no padrão SuperbWarfare)
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModBlocks.TILE_ENTITIES.register(modEventBus);
+        
+        // Registrar entidades e receitas com implementação mínima
+        ModEntities.ENTITY_TYPES.register(modEventBus);
+        ModRecipe.RECIPE_SERIALIZERS.register(modEventBus);
+        ModRecipe.RECIPE_TYPES.register(modEventBus);
+        
+        // Registrar Creative Tabs com implementação mínima
+        ModCreativeTabs.TABS.register(modEventBus);
+        
         // TODO: Habilitar gradualmente os outros registros conforme as classes ficarem disponíveis
-        // ModBlocks.BLOCKS.register(modEventBus);
-        // ModBlocks.TILE_ENTITIES.register(modEventBus);
-        // ModCreativeTabs.TABS.register(modEventBus);
-        // ModEntities.ENTITY_TYPES.register(modEventBus);
-        // ModRecipe.RECIPE_SERIALIZERS.register(modEventBus);
-        // ModRecipe.RECIPE_TYPES.register(modEventBus);
         // ModContainer.CONTAINER_TYPE.register(modEventBus);
         // ModSounds.SOUNDS.register(modEventBus);
         // ModAttributes.ATTRIBUTES.register(modEventBus);

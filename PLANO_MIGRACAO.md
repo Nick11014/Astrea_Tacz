@@ -2,21 +2,43 @@
 
 **Projeto:** Migração TacZ de Forge 1.20.1 para NeoForge 1.21.1  
 **Estratégia:** Habilitação incremental baseada em análise topológica de dependências  
-**Data de Atualização:** 2025-07-06 22:30:00  
-**Última Análise:** Dependências atualizadas + SuperbWarfare patterns aplicados (+8 migrações totais)  
+**Data de Atualização:** 2025-07-07 (Sessão: Registros Principais)  
+**Última Análise:** Registros principais habilitados - Base sólida estabelecida (+5 registros críticos)  
 
 ---
 
-## RESUMO ESTATÍSTICO (ATUALIZADO v3)
+## RESUMO ESTATÍSTICO (ATUALIZADO v4 - Registros Principais)
 
 | Fase | Descrição | Arquivos | Status |
 |------|-----------|----------|--------|
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v4 - Topológica) | 18 | ✅ **16/18** |
-| **Fase 3** | Gameplay e Rede (v3 - Expandida) | 289 | ⏳ **29/289** |
+| **Fase 3** | Gameplay e Rede (v4 - Registros + Core) | 289 | ⏳ **34/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **1/140** |
-| **TOTAL** | **Todos os arquivos** | **625** | **222/625** |
+| **TOTAL** | **Todos os arquivos** | **625** | **227/625** |
+
+---
+
+## 🎯 CONQUISTAS DESTA SESSÃO - REGISTROS PRINCIPAIS HABILITADOS
+
+### **📋 Status dos Registros Críticos (5/5 ✅):**
+- ✅ **ModItems.java** - Sistema de itens funcional
+- ✅ **ModBlocks.java** - Sistema de blocos funcional  
+- ✅ **ModEntities.java** - Sistema de entidades (placeholders)
+- ✅ **ModRecipe.java** - Sistema de receitas (placeholders)
+- ✅ **ModCreativeTabs.java** - Creative Tabs completas
+
+### **📋 Padrões NeoForge 1.21.1 Aplicados:**
+- ✅ **DeferredRegister.create(BuiltInRegistries.X, MOD_ID)** - API modernizada
+- ✅ **DeferredHolder<Type, Type>** - Substituição dos RegistryObject deprecated
+- ✅ **GunMod.loc(path)** - ResourceLocation modernizado
+- ✅ **Compilação 100% funcional** - Base sólida estabelecida
+
+### **📋 Estratégia de Implementação Mínima:**
+- 🔄 **Placeholders funcionais** - Quebram dependências circulares
+- 🔄 **Comentários TODO** - Facilitam revisita posterior
+- 🔄 **Estrutura preservada** - Migração gradual sem quebrar arquitetura
 
 ---
 
@@ -407,7 +429,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] AccessorModel.java (Deps: 5)
 - [ ] AccessorShortData.java (Deps: 3)
 - [x] Accessors.java (Deps: 2) ← HABILITADO via Resolução Topológica
-- [ ] AccessorSparse.java (Deps: 2)
+- [x] AccessorSparse.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
 - [ ] AccessorSparseUtils.java (Deps: 2)
 - [ ] Acknowledge.java (Deps: 3)
 - [ ] AdjustmentYRotModifier.java (Deps: 2)
@@ -445,8 +467,8 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] BlockData.java (Deps: 2) ← HABILITADO via implementação mínima (REQUER REVISITA)
 - [ ] BlockItemBuilder.java (Deps: 2)
 - [ ] BlockRayTrace.java (Deps: 2)
-- [ ] BufferViewModel.java (Deps: 2)
-- [ ] BulletHoleOption.java (Deps: 2)
+- [x] BufferViewModel.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
+- [x] BulletHoleOption.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
 - [ ] BulletHoleParticle.java (Deps: 4)
 - [ ] CameraAnimationObject.java (Deps: 5)
 - [ ] CameraRotateListener.java (Deps: 4)
@@ -564,13 +586,13 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] LuaGunLogicConstant.java (Deps: 3)
 - [ ] LuaStateMachineFactory.java (Deps: 5)
 - [ ] MenuIntegration.java (Deps: 6)
-- [ ] ModBlocks.java (Deps: 4)
+- [x] ModBlocks.java (Deps: 4) ← HABILITADO com implementação mínima baseada no SuperbWarfare 1.21.1
 - [ ] ModContainerScreen.java (Deps: 2)
-- [ ] ModEntities.java (Deps: 2)
+- [x] ModEntities.java (Deps: 2) ← HABILITADO com implementação mínima (placeholders para revisita)
 - [x] ModItems.java (Deps: 3) ← HABILITADO com implementação mínima baseada no SuperbWarfare
 - [x] ModParticles.java (Deps: 2) ← HABILITADO usando padrão SuperbWarfare 1.21.1 (MapCodec + StreamCodec)
-- [ ] ModRecipe.java (Deps: 3)
-- [ ] ModSerializers.java (Deps: 2)
+- [x] ModRecipe.java (Deps: 3) ← HABILITADO com implementação mínima baseada no SuperbWarfare 1.21.1
+- [x] ModSerializers.java (Deps: 2) ← HABILITADO via Resolução Topológica (já estava funcionando)
 - [ ] ModSyncedEntityData.java (Deps: 7)
 - [ ] ModelAdditionalMagazineListener.java (Deps: 3)
 - [ ] ModelRotateListener.java (Deps: 4)
@@ -815,6 +837,45 @@ Para cada arquivo na ordem das fases:
 **Estimativa Revisada:** Fase 2 será concluída de forma incremental junto com Fase 3, não sequencialmente.
 
 **Decisão Estratégica:** Migração híbrida Fase 2 ↔ Fase 3 devido às dependências circulares.
+
+### **2025-07-07 - Resolução Topológica - Registros Principais Habilitados**
+
+**Situação:** Implementação bem-sucedida da estratégia de Resolução Topológica para habilitar os registros principais do mod.
+
+**Progresso Realizado:**
+1. **✅ Registros Principais (5/5):** Todos habilitados com sucesso
+   - **ModBlocks.java** - Implementação mínima baseada no SuperbWarfare 1.21.1
+   - **ModEntities.java** - Placeholders funcionais para revisita posterior
+   - **ModRecipe.java** - Implementação mínima com APIs corretas do NeoForge
+   - **ModCreativeTabs.java** - Creative Tabs completas com placeholders
+   - **ModSerializers.java** - Identificado como já funcional
+
+2. **✅ Arquivos Complementares (4/4):** Identificados como já habilitados
+   - **BufferViewModel.java** - Já estava funcionando com dependências resolvidas
+   - **AccessorSparse.java** - Já estava funcionando
+   - **BulletHoleOption.java** - Já estava funcionando
+   - **ModParticles.java** - Já funcionando com APIs 1.21.1
+
+**APIs Migradas com Sucesso:**
+- **DeferredRegister.create(BuiltInRegistries.X, MOD_ID)** - Padrão NeoForge aplicado
+- **DeferredHolder<Type, Type>** - Substituição dos RegistryObject deprecated
+- **BlockBehaviour.Properties.of()** - APIs de propriedades atualizadas
+- **GunMod.loc(path)** - Método utilitário para ResourceLocation modernizado
+
+**Estratégia de Implementação Mínima:**
+- **Placeholders simples** para quebrar dependências circulares
+- **Comentários TODO** detalhados para revisita futura
+- **Preservação da estrutura** original para facilitar migração completa
+
+**Status da Compilação:** ✅ 100% bem-sucedida com todos os registros habilitados
+
+**Próximos Passos Identificados:**
+1. **Migrar classes de bloco** (AbstractGunSmithTableBlock, GunSmithTableBlockA/B/C)
+2. **Implementar Block Entities** básicos
+3. **Habilitar DefaultAssets.java** - Classe fundamental para muitas outras
+4. **Continuar resolução topológica** com arquivos de 1-2 dependências
+
+**Resultado:** Base sólida estabelecida - todos os registros principais funcionando, permitindo evolução gradual do resto do mod.
 
 ---
 
