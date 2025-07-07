@@ -261,4 +261,17 @@ public class ModDataComponents {
             .networkSynchronized(ResourceLocation.STREAM_CODEC)
             .build()
     );
+
+    // === DADOS DE TOOLTIP ===
+
+    /**
+     * Flags para ocultar partes do tooltip (int)
+     * Para GunTooltipPart
+     */
+    public static final Supplier<DataComponentType<Integer>> HIDE_FLAGS = COMPONENTS.register("hide_flags",
+        () -> DataComponentType.<Integer>builder()
+            .persistent(Codec.INT)
+            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
+            .build()
+    );
 }

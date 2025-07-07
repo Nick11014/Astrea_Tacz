@@ -2,7 +2,6 @@ package com.tacz.guns.api.item;
 
 import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.item.attachment.AttachmentType;
-import com.tacz.guns.api.item.gun.AbstractGunItem;
 import com.tacz.guns.api.item.gun.FireMode;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -15,8 +14,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
- * 这里不包含枪械的逻辑，只包含枪械的各种 nbt 访问。<br>
- * 你可以在 {@link AbstractGunItem} 看到枪械逻辑
+ * Interface para itens de arma. Contém apenas accessors de dados NBT/DataComponents.
+ * As implementações de lógica de armas estão em classes específicas.
+ * 
+ * MIGRAÇÃO 1.21.1: Esta interface foi adaptada para usar DataComponents ao invés de NBT direto.
  */
 public interface IGun {
     /**
