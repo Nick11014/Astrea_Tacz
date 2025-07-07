@@ -3,11 +3,11 @@ package com.tacz.guns.event;
 import com.tacz.guns.config.util.HeadShotAABBConfigRead;
 import com.tacz.guns.config.util.InteractKeyConfigRead;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 
-@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+// Migração NeoForge 1.21.1: EventBusSubscriber.Bus.MOD
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class LoadingConfigEvent {
     private static final String CONFIG_NAME = "tacz-server.toml";
 

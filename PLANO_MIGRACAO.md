@@ -42,7 +42,7 @@
 
 ## 🔄 **ESTRATÉGIA DE RESOLUÇÃO TOPOLÓGICA EM AÇÃO**
 
-### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (9ª RODADA):**
+### **📊 Análise da Sessão Atual - ESTRATÉGIA TOPOLÓGICA (10ª RODADA):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
 - ✅ **AmmoParticleSpawner.java** - HABILITADO com implementação mínima (aguarda TimelessAPI, EntityKineticBullet)
 - ✅ **AttachmentPropertyEvent.java** - HABILITADO (evento propriedades attachment com implementação mínima)
@@ -52,8 +52,10 @@
 - ✅ **CommonAmmoIndexSerializer.java** - HABILITADO (serializer funcionando com POJOs simples)
 - ✅ **CommonAttachmentIndexSerializer.java** - HABILITADO com implementação mínima (aguarda CommonAttachmentIndex)
 - ✅ **CustomInterpolator.java** - HABILITADO (interpolador customizado com múltiplos modos SLERP, SQUAD, Catmull-Rom)
+- ✅ **DefaultAssets.java** - HABILITADO (constantes de recursos com ResourceLocation.fromNamespaceAndPath())
 - ✅ **DisplayManager.java** - HABILITADO (manager genérico de displays baseado em JsonDataManager)
 - ✅ **EntityKillByGunEvent.java** - HABILITADO (evento de kill por arma com implementação mínima)
+- ✅ **ExplodeUtil.java** - HABILITADO (utilitário de explosão funcionando com ProjectileExplosion)
 - ✅ **GeometryModelNew.java** - HABILITADO (POJO modelo funcionando perfeitamente)
 - ✅ **FunctionalBedrockPart.java** - HABILITADO (sistema de renderização funcional)
 - ✅ **GetJarResources.java** - HABILITADO (utilitário de recursos funcionando)
@@ -61,10 +63,12 @@
 - ✅ **GunShootEvent.java** - HABILITADO (evento de disparo com correções API)
 - ✅ **HitboxHelperEvent.java** - HABILITADO (PlayerTickEvent.Post - migração NeoForge 1.21.1)
 - ✅ **InaccuracyType.java** - HABILITADO (enum de precisão funcionando)
+- ✅ **InteractKeyConfigRead.java** - HABILITADO (config de tecla interação migrado - ForgeRegistries → BuiltInRegistries)
 - ✅ **JsonDataManager.java** - HABILITADO (gerenciador de dados JSON)
 - ✅ **JsonResourceLoader.java** - HABILITADO (loader recursos JSON - ResourceLocation migrado)
 - ✅ **KeyClothConfig.java** - HABILITADO (configuração teclas Cloth)
 - ✅ **Linear.java** - HABILITADO (interpolador linear funcionando)
+- ✅ **LoadingConfigEvent.java** - HABILITADO (evento de carregamento de configuração funcionando)
 - ✅ **LuaGunLogicConstant.java** - HABILITADO (constantes Lua para lógica de armas)
 - ✅ **ModelScaleListener.java** - HABILITADO (listener de escala de modelo)
 - ✅ **ModelRotateListener.java** - HABILITADO (listener de rotação de modelo)
@@ -81,12 +85,12 @@
 - ⏳ **AnimationStateMachine.java** - MARCADO PARA REVISITA (deps: AnimationController, AnimationStateContext - bloqueantes)
 
 ### **📋 Resultado da Resolução Topológica:**
-- **Arquivos Habilitados:** 32/35 tentados (91% de sucesso!)
-- **Nova Descoberta:** API de eventos LivingDamageEvent mudou significativamente no NeoForge 1.21.1
-- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, managers, interpoladores, holders, registries e tooltips
-- **Progresso:** Sistema displays + eventos de entidade + tooltips cliente funcionais
-- **Migração Continua:** Descobrindo e documentando mudanças de API para futuras correções
-- **Qualidade:** 100% dos builds passaram (com desabilitação inteligente de APIs problemáticas)
+- **Arquivos Habilitados:** 37/40 tentados (92% de sucesso!)
+- **Novas Migrações:** ForgeRegistries → BuiltInRegistries, EventBusSubscriber.Bus corrigido
+- **Estratégia Eficaz:** POJOs, serializers, eventos, utilitários, listeners, managers, interpoladores, constantes, configs e explosões
+- **Progresso:** Sistema configuração + constantes fundamentais + utilitários explosão
+- **Descoberta Importante:** `DefaultAssets` já estava migrado e funcionando (marcação corrigida)
+- **Qualidade:** 100% dos builds passaram - base sólida com migrações corretas acumuladas
 
 ---
 
@@ -493,7 +497,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] CrosshairDropdown.java (Deps: 1) ← Movido: UI complexa
 - [ ] CrosshairType.java (Deps: 1) ← Movido: UI
 - [ ] CubesItem.java (Deps: 1) ← Movido: infraestrutura de modelo
-- [ ] DefaultAssets.java (Deps: 1) ← Movido: constantes de recursos
+- [x] DefaultAssets.java (Deps: 1) ✅ **HABILITADO** - Constantes de recursos com ResourceLocation.fromNamespaceAndPath()
 - [ ] GeometryModelLegacy.java (Deps: 1) ← Movido: depende de BonesItem
 - [ ] KubeJSCustomGunItem.java (Deps: 1) ← Movido: compatibilidade KubeJS
 - [x] ModDamageTypes.java (Deps: 1) ← HABILITADO e MIGRADO para NeoForge 1.21.1
@@ -604,7 +608,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] EntityDamageEvent.java (Deps: 2) ← **REQUER MIGRAÇÃO API** - API de eventos LivingDamageEvent mudou no NeoForge 1.21.1
 - [ ] EntityHurtByGunEvent.java (Deps: 3)
 - [x] EntityKillByGunEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de kill por arma com implementação mínima
-- [ ] ExplodeUtil.java (Deps: 2)
+- [x] ExplodeUtil.java (Deps: 2) ✅ **HABILITADO** - Utilitário de explosão funcionando com ProjectileExplosion
 - [ ] FireSelectKey.java (Deps: 2)
 - [ ] FirstPersonRenderEvent.java (Deps: 5)
 - [x] FunctionalBedrockPart.java (Deps: 2) ✅ **HABILITADO** - Sistema de renderização funcional com dependências existentes
@@ -646,7 +650,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] InaccuracyType.java (Deps: 2) ✅ **HABILITADO** - Enum de precisão funcionando perfeitamente
 - [ ] InnerThirdPersonManager.java (Deps: 6)
 - [ ] InteractKey.java (Deps: 2)
-- [ ] InteractKeyConfigRead.java (Deps: 2)
+- [x] InteractKeyConfigRead.java (Deps: 2) ✅ **HABILITADO** - Config de tecla interação migrado (ForgeRegistries → BuiltInRegistries)
 - [ ] InteractKeyTextOverlay.java (Deps: 4)
 - [ ] InternalAssetLoader.java (Deps: 8)
 - [ ] InterpolatorUtil.java (Deps: 5)
@@ -668,7 +672,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] LivingEntityHeat.java (Deps: 2)
 - [ ] LivingEntityMixin.java (Deps: 7)
 - [ ] LivingEntitySprint.java (Deps: 3)
-- [ ] LoadingConfigEvent.java (Deps: 2)
+- [x] LoadingConfigEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de carregamento de configuração funcionando
 - [ ] LocalPlayerCrawl.java (Deps: 4)
 - [x] LocalPlayerDataHolder.java (Deps: 2) ✅ **JÁ HABILITADO** - Na Fase 1
 - [ ] LocalPlayerSprint.java (Deps: 3)
