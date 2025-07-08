@@ -66,7 +66,11 @@
 - ✅ **RawAnimationStructure.java** - HABILITADO (POJO GLTF estrutura de animação - todas dependências disponíveis)
 - ✅ **GunDisplay.java** - HABILITADO (POJO complexo de display de arma com FireMode, LaserConfig, etc. já disponíveis)
 
-**SESSÃO 17 - RESOLUÇÃO TOPOLÓGICA CONTINUADA (CONCLUÍDA):**
+**SESSÃO 18 - ANÁLISE DE DEPENDÊNCIAS COMPLEXAS (NOVA):**
+- 🔍 **Investigação Topológica** - Analisados 10+ arquivos candidatos
+- ⚠️ **Barreira de Dependências** - Arquivos restantes têm dependências complexas não satisfeitas
+- ✅ **Compilação Mantida** - 100% de sucesso na compilação
+- 📊 **Status:** 317/634 (50%) - marco mantido
 - ✅ **TravelToDimensionEvent.java** - HABILITADO (evento de viagem entre dimensões + migração NeoForge 1.21.1)
 - ✅ **AttachmentIdFix.java** - HABILITADO (data fixer de IDs de attachment + ResourceLocation.fromNamespaceAndPath())
 - ✅ **BlackList.java** - HABILITADO (compatibilidade Carry On + migração BuiltInRegistries)
