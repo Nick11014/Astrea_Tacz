@@ -5,8 +5,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ServerMessageSwapItem {
     public ServerMessageSwapItem() {
     }
@@ -18,11 +16,10 @@ public class ServerMessageSwapItem {
         return new ServerMessageSwapItem();
     }
 
-    public static void handle(ServerMessageSwapItem message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
-            MinecraftForge.EVENT_BUS.post(new SwapItemWithOffHand());
+    public static void handle(ServerMessageSwapItem message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isClientbound()) {
+            NeoForge.EVENT_BUS.post(new SwapItemWithOffHand());
         }
-        context.setPacketHandled(true);
     }
 }

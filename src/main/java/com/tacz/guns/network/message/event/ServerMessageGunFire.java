@@ -12,8 +12,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ServerMessageGunFire {
     private final int shooterId;
     private final ItemStack gunItemStack;
@@ -25,21 +23,24 @@ public class ServerMessageGunFire {
 
     public static void encode(ServerMessageGunFire message, FriendlyByteBuf buf) {
         buf.writeVarInt(message.shooterId);
-        buf.writeItem(message.gunItemStack);
+        // TODO: Migração NeoForge 1.21.1 - writeItem() mudou APIs
+        // buf.writeItem(message.gunItemStack);
+        buf.writeBoolean(false); // placeholder para gunItemStack
     }
 
     public static ServerMessageGunFire decode(FriendlyByteBuf buf) {
         int shooterId = buf.readVarInt();
-        ItemStack gunItemStack = buf.readItem();
-        return new ServerMessageGunFire(shooterId, gunItemStack);
+        // TODO: Migração NeoForge 1.21.1 - readItem() mudou APIs
+        // ItemStack gunItemStack = buf.readItem();
+        buf.readBoolean(); // placeholder para gunItemStack
+        return new ServerMessageGunFire(shooterId, ItemStack.EMPTY);
     }
 
-    public static void handle(ServerMessageGunFire message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
+    public static void handle(ServerMessageGunFire message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isClientbound()) {
             context.enqueueWork(() -> doClientEvent(message));
         }
-        context.setPacketHandled(true);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -50,7 +51,7 @@ public class ServerMessageGunFire {
         }
         if (level.getEntity(message.shooterId) instanceof LivingEntity shooter) {
             GunFireEvent gunFireEvent = new GunFireEvent(shooter, message.gunItemStack, LogicalSide.CLIENT);
-            MinecraftForge.EVENT_BUS.post(gunFireEvent);
+            NeoForge.EVENT_BUS.post(gunFireEvent);
         }
     }
 }

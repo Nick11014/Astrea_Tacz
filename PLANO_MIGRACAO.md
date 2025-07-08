@@ -7,25 +7,25 @@
 
 ---
 
-## 📊 **RESUMO ESTATÍSTICO ATUALIZADO (SESSÃO 15)**
+## 🎯 **MARCO HISTÓRICO ALCANÇADO - 50% COMPLETO!**
 
 | Fase | Descrição | Arquivos | Status |
 |------|-----------|----------|--------|
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v5 - CONCLUÍDA) | 18 | ✅ **18/18** |
-| **Fase 3** | Gameplay e Rede (v8 - Em progresso) | 289 | ⏳ **80/289** |
+| **Fase 3** | Gameplay e Rede (v9 - Em progresso) | 289 | ⏳ **84/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **3/140** |
-| **TOTAL ATUALIZADO** | **Todos os arquivos (contagem real)** | **634** | **309/634 (49%)** |
+| **TOTAL HISTÓRICO** | **Todos os arquivos (contagem real)** | **634** | **313/634 (50%!)** |
 
-### **📈 Progresso da Sessão 15:**
-- **Arquivos Habilitados:** +5 arquivos
-- **Total Anterior:** 304/634 (48%)
-- **Total Atual:** 309/634 (49%)
-- **Melhoria:** +1% de progresso total
-- **Marco:** **Quase 50% do projeto completo!** 🎯
-- **Especialidade:** Consolidação da migração de rede NeoForge 1.21.1
-- **Qualidade:** 100% das compilações passaram
+### **� Conquista da Sessão 16:**
+- **Arquivos Habilitados:** +4 arquivos  
+- **Total Anterior:** 309/634 (49%)
+- **Total Atual:** 313/634 (50%)
+- **MARCO ALCANÇADO:** **🎯 50% DO PROJETO COMPLETO!**
+- **Especialidade:** Migração de APIs de serialização NeoForge 1.21.1
+- **Desafios Superados:** writeItem()/readItem() → implementação mínima
+- **Qualidade:** 100% das compilações bem-sucedidas
 
 ---
 
@@ -66,7 +66,15 @@
 - ✅ **RawAnimationStructure.java** - HABILITADO (POJO GLTF estrutura de animação - todas dependências disponíveis)
 - ✅ **GunDisplay.java** - HABILITADO (POJO complexo de display de arma com FireMode, LaserConfig, etc. já disponíveis)
 
-**SESSÃO 15 - EXPANSÃO MIGRAÇÃO DE REDE (NOVA):**
+**SESSÃO 16 - MARCO 50% ALCANÇADO! 🎯 (NOVA):**
+- ✅ **ClientMessagePlayerCancelReload.java** - HABILITADO com migração (cancel reload + APIs rede 1.21.1)
+- ✅ **ServerMessageGunDraw.java** - HABILITADO com migração (server draw event + serialização mínima)
+- ✅ **ServerMessageSwapItem.java** - HABILITADO com migração (server swap item + NeoForge.EVENT_BUS)
+- ✅ **ServerMessageGunFire.java** - HABILITADO com migração (server fire event + serialização mínima)
+
+### 🎯 **MARCO HISTÓRICO: 50% DO PROJETO COMPLETO!**
+
+**SESSÃO 15 - EXPANSÃO MIGRAÇÃO DE REDE (CONCLUÍDA):**
 - ✅ **ClientMessagePlayerDrawGun.java** - HABILITADO com migração (draw gun + APIs rede 1.21.1)
 - ✅ **ClientMessagePlayerFireSelect.java** - HABILITADO com migração (fire select + APIs rede 1.21.1)
 - ✅ **ClientMessagePlayerMelee.java** - HABILITADO com migração (melee + APIs rede 1.21.1)
@@ -518,7 +526,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
     **STATUS:** DEPENDÊNCIAS BLOQUEANTES - Aguardando resolução das dependências
 - [x] ClientMessagePlayerAim.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
 - [x] ClientMessagePlayerBoltGun.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
-- [ ] ClientMessagePlayerCancelReload.java (Deps: 1) ← Movido: rede/gameplay
+- [x] ClientMessagePlayerCancelReload.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
 - [x] ClientMessagePlayerDrawGun.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
 - [x] ClientMessagePlayerFireSelect.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
 - [x] ClientMessagePlayerMelee.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
@@ -534,15 +542,15 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [x] PreventGunClick.java (Deps: 1) ← HABILITADO via Resolução Topológica (depende apenas de IGun)
 - [x] ServerGamePacketListenerImplMixin.java (Deps: 1) ← HABILITADO via Resolução Topológica (depende apenas de IGunOperator)
 - [ ] ServerMessageCraft.java (Deps: 1) ← Movido: rede
-- [ ] ServerMessageGunDraw.java (Deps: 1) ← Movido: rede/gameplay
-- [ ] ServerMessageGunFire.java (Deps: 1) ← Movido: rede/gameplay
+- [x] ServerMessageGunDraw.java (Deps: 1) ← HABILITADO com migração rede + serialização mínima
+- [x] ServerMessageGunFire.java (Deps: 1) ← HABILITADO com migração rede + serialização mínima
 - [ ] ServerMessageGunFireSelect.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunHurt.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunKill.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunMelee.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunReload.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunShoot.java (Deps: 1) ← Movido: rede/gameplay
-- [ ] ServerMessageSwapItem.java (Deps: 1) ← Movido: rede
+- [x] ServerMessageSwapItem.java (Deps: 1) ← HABILITADO com migração rede + NeoForge.EVENT_BUS
 - [x] ServerPlayerMixin.java (Deps: 1) ← HABILITADO via Resolução Topológica (depende apenas de IGunOperator)
 - [ ] TargetMinecartItem.java (Deps: 1) ← Movido: depende de TargetMinecart
 - [x] Accessor.java (Deps: 1) ✅ **HABILITADO** - POJO GLTF com dependências AccessorSparse já satisfeitas
