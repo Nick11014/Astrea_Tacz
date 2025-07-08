@@ -7,22 +7,23 @@
 
 ---
 
-## 📊 **RESUMO ESTATÍSTICO ATUALIZADO (SESSÃO 13)**
+## 📊 **RESUMO ESTATÍSTICO ATUALIZADO (SESSÃO 14)**
 
 | Fase | Descrição | Arquivos | Status |
 |------|-----------|----------|--------|
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v5 - CONCLUÍDA) | 18 | ✅ **18/18** |
-| **Fase 3** | Gameplay e Rede (v6 - Em progresso) | 289 | ⏳ **70/289** |
+| **Fase 3** | Gameplay e Rede (v7 - Em progresso) | 289 | ⏳ **75/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **3/140** |
-| **TOTAL ATUALIZADO** | **Todos os arquivos (contagem real)** | **634** | **299/634 (47%)** |
+| **TOTAL ATUALIZADO** | **Todos os arquivos (contagem real)** | **634** | **304/634 (48%)** |
 
-### **📈 Progresso da Sessão 13:**
+### **📈 Progresso da Sessão 14:**
 - **Arquivos Habilitados:** +5 arquivos
-- **Total Anterior:** 294/634 (46%)
-- **Total Atual:** 299/634 (47%)
+- **Total Anterior:** 299/634 (47%)
+- **Total Atual:** 304/634 (48%)
 - **Melhoria:** +1% de progresso total
+- **Especialidade:** Migração de APIs de rede NeoForge 1.21.1
 - **Qualidade:** 100% das compilações passaram
 
 ---
@@ -64,7 +65,14 @@
 - ✅ **RawAnimationStructure.java** - HABILITADO (POJO GLTF estrutura de animação - todas dependências disponíveis)
 - ✅ **GunDisplay.java** - HABILITADO (POJO complexo de display de arma com FireMode, LaserConfig, etc. já disponíveis)
 
-**SESSÃO 13 - CONTINUAÇÃO RESOLUÇÃO TOPOLÓGICA (NOVA):**
+**SESSÃO 14 - MIGRAÇÃO DE REDE NEOFORGE 1.21.1 (NOVA):**
+- ✅ **FireSelectKey.java** - HABILITADO (tecla de seleção de modo de tiro)
+- ✅ **ClientMessagePlayerCrawl.java** - HABILITADO com migração (crawl player + APIs rede 1.21.1)
+- ✅ **ClientMessagePlayerAim.java** - HABILITADO com migração (aim player + APIs rede 1.21.1)
+- ✅ **ClientMessagePlayerBoltGun.java** - HABILITADO com migração (bolt gun + APIs rede 1.21.1)
+- ✅ **ClientMessagePlayerReloadGun.java** - HABILITADO com migração (reload gun + APIs rede 1.21.1)
+
+**SESSÃO 13 - CONTINUAÇÃO RESOLUÇÃO TOPOLÓGICA (CONCLUÍDA):**
 - ✅ **PreventGunClick.java** - HABILITADO (evento prevenção de clique em armas - depende apenas de IGun)
 - ✅ **ServerGamePacketListenerImplMixin.java** - HABILITADO (mixin servidor para controle de sprint - depende de IGunOperator)
 - ✅ **ServerPlayerMixin.java** - HABILITADO (mixin de respawn de player - depende de IGunOperator)
@@ -500,13 +508,13 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
     [ ] NetworkHandler.java (Deps: 8 - BLOQUEANTE) 
     [ ] Migração NetworkEvent.Context → IPayloadContext (NeoForge 1.21.1)
     **STATUS:** DEPENDÊNCIAS BLOQUEANTES - Aguardando resolução das dependências
-- [ ] ClientMessagePlayerAim.java (Deps: 1) ← Movido: rede/gameplay
-- [ ] ClientMessagePlayerBoltGun.java (Deps: 1) ← Movido: rede/gameplay
+- [x] ClientMessagePlayerAim.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
+- [x] ClientMessagePlayerBoltGun.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
 - [ ] ClientMessagePlayerCancelReload.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerDrawGun.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerFireSelect.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerMelee.java (Deps: 1) ← Movido: rede/gameplay
-- [ ] ClientMessagePlayerReloadGun.java (Deps: 1) ← Movido: rede/gameplay
+- [x] ClientMessagePlayerReloadGun.java (Deps: 1) ← HABILITADO com migração rede NeoForge 1.21.1
 - [ ] ClientMessagePlayerShoot.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ClientMessagePlayerZoom.java (Deps: 1) ← Movido: rede/gameplay
 - [x] CommandRegistry.java (Deps: 1) ← HABILITADO via Resolução Topológica
@@ -614,7 +622,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ClientBlockItemTooltip.java (Deps: 4)
 - [ ] ClientConfig.java (Deps: 3)
 - [ ] ClientMessageLaserColor.java (Deps: 3)
-- [ ] ClientMessagePlayerCrawl.java (Deps: 2)
+- [x] ClientMessagePlayerCrawl.java (Deps: 2) ← HABILITADO com migração rede NeoForge 1.21.1 (NetworkEvent.Context → IPayloadContext)
 - [ ] ClientMessageRefitGun.java (Deps: 5)
 - [ ] ClientMessageSyncBaseTimestamp.java (Deps: 3)
 - [ ] ClientMessageUnloadAttachment.java (Deps: 5)
@@ -648,7 +656,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] EntityHurtByGunEvent.java (Deps: 3)
 - [x] EntityKillByGunEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de kill por arma com implementação mínima
 - [x] ExplodeUtil.java (Deps: 2) ✅ **HABILITADO** - Utilitário de explosão com implementação mínima vanilla (ProjectileExplosion aguarda migração de APIs)
-- [ ] FireSelectKey.java (Deps: 2)
+- [x] FireSelectKey.java (Deps: 2) ← HABILITADO via Resolução Topológica (tecla seleção modo de tiro)
 - [ ] FirstPersonRenderEvent.java (Deps: 5)
 - [x] FunctionalBedrockPart.java (Deps: 2) ✅ **HABILITADO** - Sistema de renderização funcional com dependências existentes
 - [ ] GameRendererMixin.java (Deps: 3)

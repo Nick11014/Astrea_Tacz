@@ -3,10 +3,7 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.api.entity.IGunOperator;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-// TODO: Migrar para novo sistema de rede do NeoForge 1.21.1 (IPayload/IPayloadHandler)
-// import net.neoforged.neoforge.network.handling.IPayloadContext;
-
-import java.util.function.Supplier;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class ClientMessagePlayerBoltGun {
     public ClientMessagePlayerBoltGun() {
@@ -19,17 +16,16 @@ public class ClientMessagePlayerBoltGun {
         return new ClientMessagePlayerBoltGun();
     }
 
-    public static void handle(ClientMessagePlayerBoltGun message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isServer()) {
+    public static void handle(ClientMessagePlayerBoltGun message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isServerbound()) {
             context.enqueueWork(() -> {
-                ServerPlayer entity = context.getSender();
+                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
                 if (entity == null) {
                     return;
                 }
                 IGunOperator.fromLivingEntity(entity).bolt();
             });
         }
-        context.setPacketHandled(true);
     }
 }
