@@ -16,7 +16,7 @@
 | **Fase 2** | Cliente e Renderização (v5 - CONCLUÍDA) | 18 | ✅ **18/18** |
 | **Fase 3** | Gameplay e Rede (v5 - Em progresso) | 289 | ⏳ **65/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **3/140** |
-| **TOTAL CORRIGIDO** | **Todos os arquivos (contagem real)** | **634** | **292/634 (46%)** |
+| **TOTAL CORRIGIDO** | **Todos os arquivos (contagem real)** | **634** | **294/634 (46%)** |
 
 ---
 
@@ -63,6 +63,8 @@
 - ✅ **AttachmentItemDataAccessor.java** - HABILITADO (migração parcial com fallbacks seguros)
 - ✅ **AmmoBoxItemDataAccessor.java** - HABILITADO (migração completa NBT→DataComponents)
 - ✅ **BlockItemDataAccessor.java** - HABILITADO (migração completa NBT→DataComponents)
+- ✅ **AmmoItemBuilder.java** - HABILITADO (construtor de itens de munição usando DataAccessors)
+- ✅ **AttachmentItemBuilder.java** - HABILITADO (construtor de itens de acessório usando DataAccessors)
 
 **SESSÕES ANTERIORES (RODADAS 1-10):**
 - ✅ **AnimationKeyframesSerializer.java** - HABILITADO (serializer funcional, sem dependências complexas)
