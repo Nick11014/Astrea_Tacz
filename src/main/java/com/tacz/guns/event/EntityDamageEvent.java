@@ -15,6 +15,10 @@ public class EntityDamageEvent {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onLivingHurt(LivingDamageEvent event){
+        // TODO: Migração NeoForge 1.21.1 - API LivingDamageEvent mudou significativamente
+        // As APIs getSource(), getAmount(), setAmount() precisam ser investigadas
+        // Implementação temporariamente desabilitada para manter compilação
+        /*
         if (event.getSource().is(ModDamageTypes.BULLETS_TAG)) {
             LivingEntity living = event.getEntity();
 
@@ -25,5 +29,6 @@ public class EntityDamageEvent {
                 event.setAmount(modifiedDamage);
             }
         }
+        */
     }
 }

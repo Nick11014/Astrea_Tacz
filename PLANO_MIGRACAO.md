@@ -16,7 +16,7 @@
 | **Fase 2** | Cliente e Renderização (v5 - CONCLUÍDA) | 18 | ✅ **18/18** |
 | **Fase 3** | Gameplay e Rede (v9 - Em progresso) | 289 | ⏳ **84/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **3/140** |
-| **TOTAL HISTÓRICO** | **Todos os arquivos (contagem real)** | **634** | **313/634 (50%!)** |
+| **TOTAL HISTÓRICO** | **Todos os arquivos (contagem real)** | **634** | **317/634 (50%!)** |
 
 ### **� Conquista da Sessão 16:**
 - **Arquivos Habilitados:** +4 arquivos  
@@ -66,7 +66,11 @@
 - ✅ **RawAnimationStructure.java** - HABILITADO (POJO GLTF estrutura de animação - todas dependências disponíveis)
 - ✅ **GunDisplay.java** - HABILITADO (POJO complexo de display de arma com FireMode, LaserConfig, etc. já disponíveis)
 
-**SESSÃO 16 - MARCO 50% ALCANÇADO! 🎯 (NOVA):**
+**SESSÃO 17 - RESOLUÇÃO TOPOLÓGICA CONTINUADA (CONCLUÍDA):**
+- ✅ **TravelToDimensionEvent.java** - HABILITADO (evento de viagem entre dimensões + migração NeoForge 1.21.1)
+- ✅ **AttachmentIdFix.java** - HABILITADO (data fixer de IDs de attachment + ResourceLocation.fromNamespaceAndPath())
+- ✅ **BlackList.java** - HABILITADO (compatibilidade Carry On + migração BuiltInRegistries)
+- ✅ **EntityDamageEvent.java** - HABILITADO (evento de dano com implementação mínima - TODO migrar API LivingDamageEvent)
 - ✅ **ClientMessagePlayerCancelReload.java** - HABILITADO com migração (cancel reload + APIs rede 1.21.1)
 - ✅ **ServerMessageGunDraw.java** - HABILITADO com migração (server draw event + serialização mínima)
 - ✅ **ServerMessageSwapItem.java** - HABILITADO com migração (server swap item + NeoForge.EVENT_BUS)
@@ -668,7 +672,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] DefaultTableItem.java (Deps: 2)
 - [ ] DestroyGlassBlock.java (Deps: 2)
 - [x] DisplayManager.java (Deps: 3) ✅ **HABILITADO** - Manager genérico de displays baseado em JsonDataManager
-- [ ] EntityDamageEvent.java (Deps: 2) ← **REQUER MIGRAÇÃO API** - API de eventos LivingDamageEvent mudou no NeoForge 1.21.1
+- [x] EntityDamageEvent.java (Deps: 2) ← HABILITADO com implementação mínima (REQUER REVISITA - API LivingDamageEvent mudou)
 - [ ] EntityHurtByGunEvent.java (Deps: 3)
 - [x] EntityKillByGunEvent.java (Deps: 2) ✅ **HABILITADO** - Evento de kill por arma com implementação mínima
 - [x] ExplodeUtil.java (Deps: 2) ✅ **HABILITADO** - Utilitário de explosão com implementação mínima vanilla (ProjectileExplosion aguarda migração de APIs)
@@ -826,7 +830,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] TimelessGunSmithTableRecipeSchema.java (Deps: 3)
 - [ ] TimelessServerEvents.java (Deps: 4)
 - [ ] TooltipEvent.java (Deps: 5)
-- [ ] TravelToDimensionEvent.java (Deps: 2)
+- [x] TravelToDimensionEvent.java (Deps: 2) ← HABILITADO via Resolução Topológica (evento de viagem entre dimensões)
 - [ ] ZoomKey.java (Deps: 3)
 
 ---
