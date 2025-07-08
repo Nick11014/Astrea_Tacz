@@ -6,8 +6,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ClientMessagePlayerDrawGun {
     public ClientMessagePlayerDrawGun() {
     }
@@ -19,11 +17,11 @@ public class ClientMessagePlayerDrawGun {
         return new ClientMessagePlayerDrawGun();
     }
 
-    public static void handle(ClientMessagePlayerDrawGun message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isServer()) {
+    public static void handle(ClientMessagePlayerDrawGun message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isServerbound()) {
             context.enqueueWork(() -> {
-                ServerPlayer entity = context.getSender();
+                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
                 if (entity == null) {
                     return;
                 }
@@ -32,6 +30,5 @@ public class ClientMessagePlayerDrawGun {
                 IGunOperator.fromLivingEntity(entity).draw(() -> inventory.getItem(selected));
             });
         }
-        context.setPacketHandled(true);
     }
 }

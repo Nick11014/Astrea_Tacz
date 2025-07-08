@@ -5,8 +5,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ClientMessagePlayerShoot {
     /**
      * 这里的 timestamp 应该是基于 base timestamp 的相对值
@@ -28,17 +26,16 @@ public class ClientMessagePlayerShoot {
         return new ClientMessagePlayerShoot(buf.readLong());
     }
 
-    public static void handle(ClientMessagePlayerShoot message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isServer()) {
+    public static void handle(ClientMessagePlayerShoot message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isServerbound()) {
             context.enqueueWork(() -> {
-                ServerPlayer entity = context.getSender();
+                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
                 if (entity == null) {
                     return;
                 }
                 IGunOperator.fromLivingEntity(entity).shoot(entity::getXRot, entity::getYRot, message.timestamp);
             });
         }
-        context.setPacketHandled(true);
     }
 }

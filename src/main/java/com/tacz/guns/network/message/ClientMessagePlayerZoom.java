@@ -5,8 +5,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ClientMessagePlayerZoom {
     public static void encode(ClientMessagePlayerZoom message, FriendlyByteBuf buf) {
     }
@@ -15,17 +13,16 @@ public class ClientMessagePlayerZoom {
         return new ClientMessagePlayerZoom();
     }
 
-    public static void handle(ClientMessagePlayerZoom message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isServer()) {
+    public static void handle(ClientMessagePlayerZoom message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isServerbound()) {
             context.enqueueWork(() -> {
-                ServerPlayer entity = context.getSender();
+                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
                 if (entity == null) {
                     return;
                 }
                 IGunOperator.fromLivingEntity(entity).zoom();
             });
         }
-        context.setPacketHandled(true);
     }
 }
