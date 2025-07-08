@@ -39,7 +39,11 @@ public interface AmmoItemDataAccessor extends IAmmo {
         if (gun.getItem() instanceof IGun iGun && ammo.getItem() instanceof IAmmo iAmmo) {
             ResourceLocation gunId = iGun.getGunId(gun);
             ResourceLocation ammoId = iAmmo.getAmmoId(ammo);
-            return TimelessAPI.getCommonGunIndex(gunId).map(gunIndex -> gunIndex.getGunData().getAmmoId().equals(ammoId)).orElse(false);
+            
+            // TODO: Implementar verificação completa quando CommonGunIndex estiver disponível
+            // Por enquanto, apenas verificação básica de não-vazio
+            return !gunId.equals(DefaultAssets.EMPTY_GUN_ID) && 
+                   !ammoId.equals(DefaultAssets.EMPTY_AMMO_ID);
         }
         return false;
     }

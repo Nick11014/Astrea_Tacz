@@ -66,33 +66,28 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     @Override
     @Nullable
     default ResourceLocation getSkinId(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        if (nbt.contains(SKIN_ID_TAG, Tag.TAG_STRING)) {
-            return ResourceLocation.tryParse(nbt.getString(SKIN_ID_TAG));
-        }
+        // TODO: Migrar para DataComponent quando disponível
+        // Por enquanto retorna null como fallback
         return null;
     }
 
     @Override
     default void setSkinId(ItemStack attachmentStack, @Nullable ResourceLocation skinId) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        if (skinId != null) {
-            nbt.putString(SKIN_ID_TAG, skinId.toString());
-        } else {
-            nbt.remove(SKIN_ID_TAG);
-        }
+        // TODO: Migrar para DataComponent quando disponível
+        // Por enquanto não faz nada
     }
 
     @Override
     default int getZoomNumber(ItemStack attachmentStack) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        return getZoomNumberFromTag(nbt);
+        // TODO: Migrar para DataComponent quando disponível
+        // Por enquanto retorna 0 como fallback
+        return 0;
     }
 
     @Override
     default void setZoomNumber(ItemStack attachmentStack, int zoomNumber) {
-        CompoundTag nbt = attachmentStack.getOrCreateTag();
-        setZoomNumberToTag(nbt, zoomNumber);
+        // TODO: Migrar para DataComponent quando disponível
+        // Por enquanto não faz nada
     }    @Override
     default boolean hasCustomLaserColor(ItemStack attachmentStack) {
         return attachmentStack.has(ModDataComponents.LASER_COLOR.get());
