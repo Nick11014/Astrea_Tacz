@@ -7,16 +7,23 @@
 
 ---
 
-## RESUMO ESTATÍSTICO (ATUALIZADO v4 - Registros Principais)
+## 📊 **RESUMO ESTATÍSTICO ATUALIZADO (SESSÃO 13)**
 
 | Fase | Descrição | Arquivos | Status |
 |------|-----------|----------|--------|
 | **Fase 0** | Fundação (já habilitada) | 95 | ✅ 95/95 |
 | **Fase 1** | Primeira Camada (já habilitada) | 81 | ✅ **81/81** |
 | **Fase 2** | Cliente e Renderização (v5 - CONCLUÍDA) | 18 | ✅ **18/18** |
-| **Fase 3** | Gameplay e Rede (v5 - Em progresso) | 289 | ⏳ **65/289** |
+| **Fase 3** | Gameplay e Rede (v6 - Em progresso) | 289 | ⏳ **70/289** |
 | **Fase 4** | Dependências Altas (v3 - Núcleo Complexo) | 140 | ⏳ **3/140** |
-| **TOTAL CORRIGIDO** | **Todos os arquivos (contagem real)** | **634** | **294/634 (46%)** |
+| **TOTAL ATUALIZADO** | **Todos os arquivos (contagem real)** | **634** | **299/634 (47%)** |
+
+### **📈 Progresso da Sessão 13:**
+- **Arquivos Habilitados:** +5 arquivos
+- **Total Anterior:** 294/634 (46%)
+- **Total Atual:** 299/634 (47%)
+- **Melhoria:** +1% de progresso total
+- **Qualidade:** 100% das compilações passaram
 
 ---
 
@@ -57,7 +64,14 @@
 - ✅ **RawAnimationStructure.java** - HABILITADO (POJO GLTF estrutura de animação - todas dependências disponíveis)
 - ✅ **GunDisplay.java** - HABILITADO (POJO complexo de display de arma com FireMode, LaserConfig, etc. já disponíveis)
 
-**SESSÃO 12 - SISTEMA DATACOMPONENTS (ATUAL):**
+**SESSÃO 13 - CONTINUAÇÃO RESOLUÇÃO TOPOLÓGICA (NOVA):**
+- ✅ **PreventGunClick.java** - HABILITADO (evento prevenção de clique em armas - depende apenas de IGun)
+- ✅ **ServerGamePacketListenerImplMixin.java** - HABILITADO (mixin servidor para controle de sprint - depende de IGunOperator)
+- ✅ **ServerPlayerMixin.java** - HABILITADO (mixin de respawn de player - depende de IGunOperator)
+- ✅ **HideTooltipPartCommand.java** - HABILITADO (comando para ocultar partes de tooltip - depende de IGun e GunTooltipPart)
+- ✅ **InteractKey.java** - HABILITADO com migração (tecla de interação com migração para APIs 1.21.1 - startUseItem() comentado)
+
+**SESSÃO 12 - SISTEMA DATACOMPONENTS (CONCLUÍDA):**
 - ✅ **LuaNbtAccessor.java** - HABILITADO (migração NBT→DataComponents com mapeamento completo)
 - ✅ **AmmoItemDataAccessor.java** - HABILITADO (migração completa NBT→DataComponents)
 - ✅ **AttachmentItemDataAccessor.java** - HABILITADO (migração parcial com fallbacks seguros)
@@ -501,8 +515,8 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] GunFireSelectEvent.java (Deps: 1) ← Movido: evento de gameplay
 - [ ] GunMeleeEvent.java (Deps: 1) ← Movido: evento de gameplay
 - [ ] GunReloadEvent.java (Deps: 1) ← Movido: evento de gameplay
-- [ ] PreventGunClick.java (Deps: 1) ← Movido: depende de IGun
-- [ ] ServerGamePacketListenerImplMixin.java (Deps: 1) ← Movido: depende de IGunOperator
+- [x] PreventGunClick.java (Deps: 1) ← HABILITADO via Resolução Topológica (depende apenas de IGun)
+- [x] ServerGamePacketListenerImplMixin.java (Deps: 1) ← HABILITADO via Resolução Topológica (depende apenas de IGunOperator)
 - [ ] ServerMessageCraft.java (Deps: 1) ← Movido: rede
 - [ ] ServerMessageGunDraw.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunFire.java (Deps: 1) ← Movido: rede/gameplay
@@ -513,7 +527,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] ServerMessageGunReload.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageGunShoot.java (Deps: 1) ← Movido: rede/gameplay
 - [ ] ServerMessageSwapItem.java (Deps: 1) ← Movido: rede
-- [ ] ServerPlayerMixin.java (Deps: 1) ← Movido: depende de IGunOperator
+- [x] ServerPlayerMixin.java (Deps: 1) ← HABILITADO via Resolução Topológica (depende apenas de IGunOperator)
 - [ ] TargetMinecartItem.java (Deps: 1) ← Movido: depende de TargetMinecart
 - [x] Accessor.java (Deps: 1) ✅ **HABILITADO** - POJO GLTF com dependências AccessorSparse já satisfeitas
 - [x] BlockIndexPOJO.java (Deps: 1) ✅ **HABILITADO** - POJO de índice de blocos com ResourceLocation.fromNamespaceAndPath()
@@ -663,7 +677,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] GunSmithTableSerializer.java (Deps: 5)
 - [ ] GunSoundInstance.java (Deps: 2)
 - [ ] GunTooltip.java (Deps: 2)
-- [ ] HideTooltipPartCommand.java (Deps: 2)
+- [x] HideTooltipPartCommand.java (Deps: 2) ← HABILITADO via Resolução Topológica (depende de IGun e GunTooltipPart)
 - [x] HitboxHelperEvent.java (Deps: 2) ✅ **HABILITADO** - Evento migrado para PlayerTickEvent.Post (NeoForge 1.21.1)
 - [ ] HSVSliderGroup.java (Deps: 4)
 - [ ] HumanoidOffhandRender.java (Deps: 4)
@@ -674,7 +688,7 @@ Durante a **Fase 3**, estamos aplicando uma estratégia de **Resolução Topoló
 - [ ] IGunOperator.java (Deps: 4)
 - [x] InaccuracyType.java (Deps: 2) ✅ **HABILITADO** - Enum de precisão funcionando perfeitamente
 - [ ] InnerThirdPersonManager.java (Deps: 6)
-- [ ] InteractKey.java (Deps: 2)
+- [x] InteractKey.java (Deps: 2) ← HABILITADO com migração NeoForge 1.21.1 (startUseItem() comentado temporariamente)
 - [x] InteractKeyConfigRead.java (Deps: 2) ✅ **HABILITADO** - Config de tecla interação migrado (ForgeRegistries → BuiltInRegistries)
 - [ ] InteractKeyTextOverlay.java (Deps: 4)
 - [ ] InternalAssetLoader.java (Deps: 8)
