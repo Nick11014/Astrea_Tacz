@@ -16,7 +16,8 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 |-----------|-------------------|------------|--------------|
 | **Sistema GSON** | 5 arquivos | 🔴 **Alta** | 🟡 Média |
 | **Sistema de Modificadores** | 4 arquivos | 🟠 **Média-Alta** | 🔴 Alta |
-| **Camada de Cliente - Assets** | 6 arquivos | 🟡 **Média** | 🔴 Alta |
+| **Camada de Cliente - Assets** | 7 arquivos | 🟡 **Média** | 🔴 Alta |
+| **APIs de Renderização NeoForge** | 3 arquivos | 🔴 **Crítica** | 🔴 Extrema |
 | **Sistema de Crafting** | 2 arquivos | 🟢 **Baixa** | 🟠 Média |
 | **Sistema de Rede** | 1 arquivo | 🟠 **Média-Alta** | 🟠 Média |
 
@@ -113,9 +114,21 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 - **Status:** Totalmente funcional
 - **Dependência:** Nenhuma - já funcional
 
-**6. `ClientIndexManager.java.disabled`**
-- **Status:** Ainda desabilitado por dependências complexas
-- **Dependência:** `ClientAssetsManager` totalmente funcional, `GunDisplayInstance`
+**6. `ClientIndexManager.java`**
+- **Linhas 6-8:** Imports de dependências complexas comentados (`IClientPlayerGunOperator`, `IGun`, etc.)
+- **Linhas 11-14:** Imports de índices específicos comentados (`ClientAmmoIndex`, `ClientAttachmentIndex`, etc.)
+- **Linhas 31-34:** Mapas de AMMO, ATTACHMENT e BLOCK comentados
+- **Linhas 43-48:** Carregamento de displays e outros índices desabilitado
+- **Linhas 52-62:** Lógica de player e estado de arma comentada
+- **Linhas 68-78:** Método `loadGunDisplay()` comentado completamente
+- **Linhas 84:** Método `loadGunIndex()` com implementação mínima (apenas log)
+- **Linhas 93-130:** Métodos `loadAmmoIndex()`, `loadAttachmentIndex()` e `loadBlockIndex()` comentados
+- **Linhas 135-147:** Getters de ammo, attachment e block comentados
+- **Dependência:** APIs complexas de gameplay, sistema de display completo, índices específicos
+
+**7. `ClientIndexManager.java.disabled` → `ClientIndexManager.java`**
+- **Status:** ✅ HABILITADO com implementação mínima estratégica
+- **Funcionalidade:** Apenas estrutura básica e `GUN_INDEX` operacional
 
 ---
 
@@ -146,7 +159,38 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 
 ---
 
-## 🟢 **CATEGORIA 4: SISTEMA DE CRAFTING (Prioridade Baixa)**
+## � **CATEGORIA 4: APIs DE RENDERIZAÇÃO NEOFORGE (Prioridade Crítica)**
+
+### **Problema:** APIs de renderização de baixo nível mudaram completamente no NeoForge 1.21.1
+**Impacto:** Sistema de modelos Bedrock completamente quebrado  
+**Quando Restaurar:** Requer especialista em renderização NeoForge 1.21.1
+
+#### **📁 Arquivos Afetados:**
+
+**1. `BedrockCubeBox.java.disabled`**
+- **Linha 94:** `consumer.vertex(x, y, z, red, green, blue, alpha, u, v, overlay, light, nx, ny, nz)` → API não existe
+- **Problema:** Assinatura do método `VertexConsumer.vertex()` mudou completamente
+- **Dependência:** Nova API de renderização do NeoForge 1.21.1
+
+**2. `BedrockCubePerFace.java.disabled`**
+- **Linha 91:** `consumer.vertex(x, y, z, red, green, blue, alpha, u, v, overlay, light, nx, ny, nz)` → API não existe
+- **Problema:** Mesma incompatibilidade de API que `BedrockCubeBox`
+- **Dependência:** Nova API de renderização do NeoForge 1.21.1
+
+**3. `BedrockModel.java.disabled`**
+- **Linhas 153, 158, 170, 175, 259:** Dependências de `BedrockCubeBox` e `BedrockCubePerFace`
+- **Problema:** Não pode ser habilitado enquanto dependências estão quebradas
+- **Dependência:** `BedrockCubeBox`, `BedrockCubePerFace` funcionais
+
+#### **🚨 BLOQUEIO TÉCNICO CRÍTICO:**
+Este não é um problema de implementação mínima, mas uma **incompatibilidade fundamental de API**. Requer:
+- Conhecimento específico das novas APIs de renderização do NeoForge 1.21.1
+- Migração manual de cada método de renderização
+- Testes específicos de renderização visual
+
+---
+
+## �🟢 **CATEGORIA 5: SISTEMA DE CRAFTING (Prioridade Baixa)**
 
 ### **Problema:** Sistema de crafting customizado comentado
 **Impacto:** Receitas customizadas de armas não funcionam  
@@ -162,7 +206,7 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 
 ---
 
-## 🟠 **CATEGORIA 5: SISTEMA DE REDE (Prioridade Média-Alta)**
+## 🟠 **CATEGORIA 6: SISTEMA DE REDE (Prioridade Média-Alta)**
 
 ### **Problema:** Sincronização servidor-cliente comentada
 **Impacto:** Dados não sincronizam entre servidor e cliente  
@@ -179,7 +223,7 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 
 ## 🛠️ **PLANO DE RESTAURAÇÃO POR FASES**
 
-### **Fase A: Consolidação do GSON (Próxima Sessão)**
+### **Fase A: Consolidação do GSON (Próxima Prioridade)**
 1. Verificar se todos os serializers customizados estão funcionando
 2. Testar `CommonAssetsManager.GSON` completamente
 3. Restaurar uso de `CommonAssetsManager.GSON` em todos os gerenciadores
@@ -187,19 +231,26 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 
 ### **Fase B: Expansão da Camada de Cliente (Em Andamento - ONDA 3)**
 1. ✅ Habilitar `ClientAssetsManager` com implementação mínima (CONCLUÍDO)
-2. 🔄 Habilitar `ClientIndexManager` (PRÓXIMO)
-3. 🔄 Implementar funcionalidades básicas de display
-4. ⏳ Restaurar sistema de animação GLTF quando necessário
-5. ⏳ Restaurar sistema de scripts Lua quando necessário
-6. **Resultado:** Base de cliente funcional
+2. ✅ Habilitar `ClientIndexManager` com implementação mínima (CONCLUÍDO)
+3. 🔄 Buscar POJOs e utilitários não-renderização (ATUAL)
+4. ❌ **BLOQUEIO:** Modelos de renderização requerem migração de APIs
+5. ⏳ Preparar base para renderização quando APIs estiverem prontas
+6. **Resultado:** Base de cliente funcional (sem renderização avançada)
 
-### **Fase C: Sistema de Modificadores (Sessão Futura)**
+### **Fase C: Migração de APIs de Renderização (NOVA FASE CRÍTICA)**
+1. **Estudar APIs NeoForge 1.21.1** - `VertexConsumer`, renderização de baixo nível
+2. **Migrar `BedrockCubeBox`** - Corrigir assinatura de métodos vertex()
+3. **Migrar `BedrockCubePerFace`** - Aplicar mesmas correções
+4. **Habilitar `BedrockModel`** - Após dependências funcionais
+5. **Resultado:** Sistema de modelos Bedrock funcional
+
+### **Fase D: Sistema de Modificadores (Sessão Futura)**
 1. Habilitar `AttachmentPropertyManager` e `JsonProperty`
 2. Restaurar lógica de modificadores em `GunData`
 3. Restaurar aplicação de modificadores em `AttachmentDataManager`
 4. **Resultado:** Sistema de modificações dinâmicas funcional
 
-### **Fase D: Sistemas Avançados (Sessões Finais)**
+### **Fase E: Sistemas Avançados (Sessões Finais)**
 1. Migrar sistema de networking
 2. Migrar sistema de crafting customizado
 3. Restaurar sincronização servidor-cliente
@@ -209,11 +260,11 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 
 ## 📈 **MÉTRICAS DE PROGRESSO**
 
-### **Status Atual (Pós ONDA 2):**
-- **✅ Funcionalidade Básica:** 98% (compilação, estrutura, assets managers)
-- **🔄 Funcionalidade Intermediária:** 75% (dados básicos + assets básicos funcionam)
-- **❌ Funcionalidade Avançada:** 25% (alguns displays, modificadores pendentes)
-- **❌ Funcionalidade Completa:** 10% (incremento devido aos assets managers)
+### **Status Atual (Pós ONDA 2 + ClientIndexManager):**
+- **✅ Funcionalidade Básica:** 99% (compilação, estrutura, assets + index managers)
+- **🔄 Funcionalidade Intermediária:** 80% (dados básicos + assets + índice básico funcionam)
+- **❌ Funcionalidade Avançada:** 30% (alguns displays, modificadores pendentes)
+- **❌ Funcionalidade Completa:** 15% (incremento devido ao ClientIndexManager)
 
 ### **Meta por Fase:**
 - **Fase A:** 80% funcionalidade intermediária
@@ -221,9 +272,10 @@ Durante a migração do núcleo comum, aplicamos **implementação mínima estra
 - **Fase C:** 90% funcionalidade avançada
 - **Fase D:** 95% funcionalidade completa
 
-### **🎯 Marcos Atingidos (ONDA 2):**
+### **🎯 Marcos Atingidos (ONDA 2 + ONDA 3 Inicial):**
 - ✅ `ClientAssetsManager` habilitado e funcional
 - ✅ Sistema de gerenciamento de assets estabelecido
+- ✅ `ClientIndexManager` habilitado com implementação mínima
 - ✅ Base sólida para renderização preparada
 - ✅ Implementações mínimas estratégicas documentadas
 

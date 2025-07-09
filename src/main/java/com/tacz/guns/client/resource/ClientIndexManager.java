@@ -3,16 +3,17 @@ package com.tacz.guns.client.resource;
 import com.google.common.collect.Maps;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.TimelessAPI;
-import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
-import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.client.resource.index.ClientAmmoIndex;
-import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
-import com.tacz.guns.client.resource.index.ClientBlockIndex;
+// TODO: Implementação mínima - dependências complexas desabilitadas temporariamente
+// import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
+// import com.tacz.guns.api.item.IGun;
+// import com.tacz.guns.client.resource.index.ClientAmmoIndex;
+// import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
+// import com.tacz.guns.client.resource.index.ClientBlockIndex;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
-import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
-import com.tacz.guns.resource.pojo.AmmoIndexPOJO;
-import com.tacz.guns.resource.pojo.AttachmentIndexPOJO;
-import com.tacz.guns.resource.pojo.BlockIndexPOJO;
+// import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+// import com.tacz.guns.resource.pojo.AmmoIndexPOJO;
+// import com.tacz.guns.resource.pojo.AttachmentIndexPOJO;
+// import com.tacz.guns.resource.pojo.BlockIndexPOJO;
 import com.tacz.guns.resource.pojo.GunIndexPOJO;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -26,25 +27,29 @@ import java.util.Set;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientIndexManager {
-    public static final Map<ResourceLocation, GunDisplayInstance> GUN_DISPLAY = Maps.newHashMap();
+    // TODO: Implementação mínima - mapas simplificados temporariamente
+    // public static final Map<ResourceLocation, GunDisplayInstance> GUN_DISPLAY = Maps.newHashMap();
     public static final Map<ResourceLocation, ClientGunIndex> GUN_INDEX = Maps.newHashMap();
-    public static final Map<ResourceLocation, ClientAmmoIndex> AMMO_INDEX = Maps.newHashMap();
-    public static final Map<ResourceLocation, ClientAttachmentIndex> ATTACHMENT_INDEX = Maps.newHashMap();
-    public static final Map<ResourceLocation, ClientBlockIndex> BLOCK_INDEX = Maps.newHashMap();
+    // public static final Map<ResourceLocation, ClientAmmoIndex> AMMO_INDEX = Maps.newHashMap();
+    // public static final Map<ResourceLocation, ClientAttachmentIndex> ATTACHMENT_INDEX = Maps.newHashMap();
+    // public static final Map<ResourceLocation, ClientBlockIndex> BLOCK_INDEX = Maps.newHashMap();
 
     public static void reload() {
-        GUN_DISPLAY.clear();
+        // TODO: Implementação mínima - apenas GUN_INDEX habilitado
+        // GUN_DISPLAY.clear();
         GUN_INDEX.clear();
-        AMMO_INDEX.clear();
-        ATTACHMENT_INDEX.clear();
-        BLOCK_INDEX.clear();
+        // AMMO_INDEX.clear();
+        // ATTACHMENT_INDEX.clear();
+        // BLOCK_INDEX.clear();
 
-        loadGunDisplay();
+        // loadGunDisplay();
         loadGunIndex();
-        loadAmmoIndex();
-        loadAttachmentIndex();
-        loadBlockIndex();
+        // loadAmmoIndex();
+        // loadAttachmentIndex();
+        // loadBlockIndex();
 
+        // TODO: Implementação mínima - lógica de player desabilitada temporariamente
+        /*
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && IGun.mainHandHoldGun(player)) {
             AttachmentPropertyManager.postChangeEvent(player, player.getMainHandItem());
@@ -52,8 +57,11 @@ public class ClientIndexManager {
             // 自动切一次枪，以便刷新状态机
             IClientPlayerGunOperator.fromLocalPlayer(player).draw(ItemStack.EMPTY);
         }
+        */
     }
 
+    // TODO: Implementação mínima - método de gun display desabilitado temporariamente
+    /*
     public static void loadGunDisplay() {
         ClientAssetsManager.INSTANCE.getGunDisplays().forEach(entry -> {
             try {
@@ -63,8 +71,11 @@ public class ClientIndexManager {
             }
         });
     }
+    */
 
     public static void loadGunIndex() {
+        // TODO: Implementação mínima - carregamento simplificado temporariamente
+        /*
         TimelessAPI.getAllCommonGunIndex().forEach(index -> {
             ResourceLocation id = index.getKey();
             GunIndexPOJO pojo = index.getValue().getPojo();
@@ -74,8 +85,12 @@ public class ClientIndexManager {
                 GunMod.LOGGER.warn("{} index file read fail!", id, exception);
             }
         });
+        */
+        GunMod.LOGGER.info("ClientIndexManager: loadGunIndex() - implementação mínima");
     }
 
+    // TODO: Implementação mínima - métodos de ammo, attachment e block desabilitados temporariamente
+    /*
     public static void loadAmmoIndex() {
         TimelessAPI.getAllCommonAmmoIndex().forEach(index -> {
             ResourceLocation id = index.getKey();
@@ -111,11 +126,14 @@ public class ClientIndexManager {
             }
         });
     }
+    */
 
     public static Set<Map.Entry<ResourceLocation, ClientGunIndex>> getAllGuns() {
         return GUN_INDEX.entrySet();
     }
 
+    // TODO: Implementação mínima - getters de ammo, attachment e block desabilitados temporariamente
+    /*
     public static Set<Map.Entry<ResourceLocation, ClientAmmoIndex>> getAllAmmo() {
         return AMMO_INDEX.entrySet();
     }
@@ -127,4 +145,5 @@ public class ClientIndexManager {
     public static Set<Map.Entry<ResourceLocation, ClientBlockIndex>> getAllBlocks() {
         return BLOCK_INDEX.entrySet();
     }
+    */
 }
