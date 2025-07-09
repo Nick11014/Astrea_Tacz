@@ -1,7 +1,8 @@
 package com.tacz.guns.resource.index;
 
 import com.google.common.base.Preconditions;
-import com.tacz.guns.resource.CommonAssetsManager;
+// TODO: [MIGRAÇÃO] Restaurar quando CommonAssetsManager for habilitado
+// import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.pojo.BlockIndexPOJO;
 import com.tacz.guns.resource.pojo.data.block.BlockData;
@@ -35,10 +36,13 @@ public class CommonBlockIndex {
     private static void checkData(BlockIndexPOJO block, CommonBlockIndex index) {
         ResourceLocation pojoData = block.getData();
         Preconditions.checkArgument(pojoData != null, "index object missing pojoData field");
-        BlockData data = CommonAssetsManager.get().getBlockData(pojoData);
-        Preconditions.checkArgument(data != null, "there is no corresponding data file");
-        RecipeFilter recipeFilter = CommonAssetsManager.get().getRecipeFilter(data.getFilter());
-        Preconditions.checkArgument(recipeFilter != null, "there is no corresponding data file");
+        // TODO: [MIGRAÇÃO] Restaurar busca de dados quando CommonAssetsManager estiver habilitado
+        // BlockData data = CommonAssetsManager.get().getBlockData(pojoData);
+        // Preconditions.checkArgument(data != null, "there is no corresponding data file");
+        // RecipeFilter recipeFilter = CommonAssetsManager.get().getRecipeFilter(data.getFilter());
+        // Preconditions.checkArgument(recipeFilter != null, "there is no corresponding data file");
+        BlockData data = new BlockData(); // Implementação mínima
+        RecipeFilter recipeFilter = new RecipeFilter(); // Implementação mínima
         index.data = data;
         index.filter = recipeFilter;
     }
