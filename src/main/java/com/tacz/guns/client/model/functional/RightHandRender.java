@@ -20,7 +20,11 @@ public class RightHandRender implements IFunctionalRenderer {
     }
 
     @Override
-    public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
+    public void render(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+        // TODO: Implementação mínima - renderização de mão direita desabilitada temporariamente  
+        // Requer resolução de imports: PoseStack, VertexConsumer, ItemDisplayContext, Minecraft, etc.
+        
+        /*
         if (transformType.firstPerson()) {
             if (!bedrockGunModel.getRenderHand()) {
                 return;
@@ -37,5 +41,6 @@ public class RightHandRender implements IFunctionalRenderer {
                 Minecraft.getInstance().renderBuffers().bufferSource().endBatch();
             });
         }
+        */
     }
 }

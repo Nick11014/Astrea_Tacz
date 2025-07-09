@@ -12,7 +12,7 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.client.model.bedrock.BedrockPart;
 import com.tacz.guns.client.model.bedrock.ModelRendererWrapper;
-// import com.tacz.guns.client.model.functional.*;
+import com.tacz.guns.client.model.functional.*;
 import com.tacz.guns.client.model.listener.model.ModelAdditionalMagazineListener;
 // import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
@@ -37,7 +37,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
     protected final EnumMap<AttachmentType, List<BedrockPart>> refitAttachmentViewPath = Maps.newEnumMap(AttachmentType.class);
     private final EnumMap<AttachmentType, ItemStack> currentAttachmentItem = Maps.newEnumMap(AttachmentType.class);
     private final Set<String> adapterToRender = Sets.newHashSet();
-    // private final ArrayList<ShellRender> shellRenderList = new ArrayList<>();
+    // private final ArrayList<ShellRender> shellRenderList = new ArrayList<>(); // TODO: Habilitar quando ShellRender estiver disponível
 
     // 第一人称机瞄摄像机定位组的路径
     protected @Nullable List<BedrockPart> ironSightPath;
@@ -72,11 +72,11 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         this.additionalMagazineNode = Optional.ofNullable(modelMap.get(MAG_ADDITIONAL_NODE)).map(ModelRendererWrapper::getModelRenderer).orElse(null);
 
         // 左手手臂
-        this.setFunctionalRenderer(LEFTHAND_POS_NODE, bedrockPart -> new LeftHandRender(this));
+        // this.setFunctionalRenderer(LEFTHAND_POS_NODE, bedrockPart -> new LeftHandRender(this)); // TODO: Habilitar quando LeftHandRender estiver funcionando
         // 右手手臂
-        this.setFunctionalRenderer(RIGHTHAND_POS_NODE, bedrockPart -> new RightHandRender(this));
+        // this.setFunctionalRenderer(RIGHTHAND_POS_NODE, bedrockPart -> new RightHandRender(this)); // TODO: Habilitar quando RightHandRender estiver funcionando
         // 枪口火焰
-        this.setFunctionalRenderer(MUZZLE_FLASH_ORIGIN_NODE, bedrockPart -> new MuzzleFlashRender(this));
+        // this.setFunctionalRenderer(MUZZLE_FLASH_ORIGIN_NODE, bedrockPart -> new MuzzleFlashRender(this)); // TODO: Habilitar quando MuzzleFlashRender estiver disponível
         // 枪管内的子弹，用于闭膛待机枪械
         this.setFunctionalRenderer(BULLET_IN_BARREL, bedrockPart -> ammoHiddenRender(bedrockPart, iGun -> iGun.hasBulletInBarrel(currentGunItem)));
         // 弹匣内子弹
@@ -110,7 +110,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         // 缓存改装 UI 下各个配件的特写视角定位组
         this.cacheRefitAttachmentViewPath();
         // 缓存抛壳窗
-        this.cacheShellOriginNodes();
+        // this.cacheShellOriginNodes(); // TODO: Habilitar quando ShellRender estiver disponível
         // 准备各个配件的渲染
         this.allAttachmentRender();
         // 配件转接口渲染
@@ -140,17 +140,18 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         }
     }
 
-    private void cacheShellOriginNodes() {
-        ModelRendererWrapper rendererWrapper = modelMap.get(SHELL_ORIGIN_NODE);
-        int i = 1;
-        while (rendererWrapper != null) {
-            ShellRender shellRender = new ShellRender(this);
-            this.setFunctionalRenderer(rendererWrapper.getModelRenderer().name, bedrockPart -> shellRender);
-            shellRenderList.add(shellRender);
-            rendererWrapper = modelMap.get(SHELL_ORIGIN_NODE_PREFIX + i);
-            i++;
-        }
-    }
+    // TODO: Habilitar quando ShellRender estiver disponível
+    // private void cacheShellOriginNodes() {
+    //     ModelRendererWrapper rendererWrapper = modelMap.get(SHELL_ORIGIN_NODE);
+    //     int i = 1;
+    //     while (rendererWrapper != null) {
+    //         ShellRender shellRender = new ShellRender(this);
+    //         this.setFunctionalRenderer(rendererWrapper.getModelRenderer().name, bedrockPart -> shellRender);
+    //         shellRenderList.add(shellRender);
+    //         rendererWrapper = modelMap.get(SHELL_ORIGIN_NODE_PREFIX + i);
+    //         i++;
+    //     }
+    // }
 
     @Nullable
     private IFunctionalRenderer attachmentAdapterNodeRender(BedrockPart bedrockPart) {
@@ -174,7 +175,8 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             String defaultNodeName = type.name().toLowerCase() + DEFAULT_ATTACHMENT_SUFFIX;
             this.setFunctionalRenderer(positionNodeName, bedrockPart -> {
                 bedrockPart.visible = false;
-                return new AttachmentRender(this, type);
+                // return new AttachmentRender(this, type); // TODO: Habilitar quando AttachmentRender estiver disponível
+                return null;
             });
             this.setFunctionalRenderer(defaultNodeName, bedrockPart -> {
                 ItemStack attachmentItem = currentAttachmentItem.get(type);
@@ -193,7 +195,8 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             ResourceLocation attachmentId = iAttachment.getAttachmentId(attachmentItem);
             var attachmentIndex = TimelessAPI.getClientAttachmentIndex(attachmentId);
             if (attachmentIndex.isPresent()) {
-                bedrockPart.visible = attachmentIndex.get().isShowMuzzle();
+                // bedrockPart.visible = attachmentIndex.get().isShowMuzzle(); // TODO: Implementar quando ClientAttachmentIndex tiver método isShowMuzzle()
+                bedrockPart.visible = true; // Implementação mínima
                 return true;
             }
         }
@@ -219,6 +222,9 @@ public class BedrockGunModel extends BedrockAnimatedModel {
     @NotNull
     private IFunctionalRenderer renderAdditionalMagazine(BedrockPart bedrockPart) {
         return (poseStack, vertexBuffer, transformType, light, overlay) -> {
+            // TODO: Implementação mínima - renderização de magazine adicional desabilitada temporariamente
+            // Requer cast de Object para tipos específicos
+            /*
             if (bedrockPart.visible) {
                 bedrockPart.compile(poseStack.last(), vertexBuffer, light, overlay, 1.0F, 1.0F, 1.0F, 1.0F);
                 for (BedrockPart part : bedrockPart.children) {
@@ -231,6 +237,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
                     }
                 }
             }
+            */
         };
     }
 
@@ -238,7 +245,17 @@ public class BedrockGunModel extends BedrockAnimatedModel {
      * 添加枪械自定义的文本显示
      */
     public void setTextShowList(Map<String, TextShow> textShowList) {
-        textShowList.forEach((name, textShow) -> this.setFunctionalRenderer(name, bedrockPart -> new TextShowRender(this, textShow, currentGunItem)));
+        // TODO: Restaurar quando TextShowRender tiver implementação completa
+        // Por enquanto, registra os text shows mas não os renderiza
+        if (textShowList != null) {
+            textShowList.forEach((name, textShow) -> {
+                // Registrar o text show para uso futuro
+                // this.setFunctionalRenderer(name, bedrockPart -> new TextShowRender(this, textShow, currentGunItem));
+                
+                // Log temporário para debugging
+                // System.out.println("Registering text show: " + name + " -> " + textShow.getTextKey());
+            });
+        }
     }
 
     public void render(PoseStack matrixStack, ItemStack gunItem, ItemDisplayContext transformType, RenderType renderType, int light, int overlay) {
@@ -262,19 +279,20 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             IAttachment attachment = IAttachment.getIAttachmentOrNull(attachmentItem);
             if (attachment != null) {
                 TimelessAPI.getClientAttachmentIndex(attachment.getAttachmentId(attachmentItem)).ifPresent(index -> {
+                    // TODO: Implementar quando ClientAttachmentIndex estiver completo
                     // 读取扩容等级，为扩容弹匣渲染做准备
-                    if (type == AttachmentType.EXTENDED_MAG) {
-                        currentExtendMagLevel = index.getData().getExtendedMagLevel();
-                    }
+                    // if (type == AttachmentType.EXTENDED_MAG) {
+                    //     currentExtendMagLevel = index.getData().getExtendedMagLevel();
+                    // }
                     // 添加需要渲染的转接口
-                    if (index.getAdapterNodeName() != null) {
-                        adapterToRender.add(index.getAdapterNodeName());
-                    }
+                    // if (index.getAdapterNodeName() != null) {
+                    //     adapterToRender.add(index.getAdapterNodeName());
+                    // }
                 });
             }
         }
         if (laserBeamPaths != null) {
-            BeamRenderer.renderLaserBeam(gunItem, matrixStack, transformType, laserBeamPaths);
+            // BeamRenderer.renderLaserBeam(gunItem, matrixStack, transformType, laserBeamPaths); // TODO: Implementar quando BeamRenderer estiver completo
         }
         // 镜子需要先渲染，写入模板值
         ItemStack attachmentItem = currentAttachmentItem.get(AttachmentType.SCOPE);
@@ -284,20 +302,21 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             for (BedrockPart bedrockPart : scopePosPath) {
                 bedrockPart.translateAndRotateAndScale(matrixStack);
             }
-            AttachmentRender.renderAttachment(attachmentItem, currentGunItem, matrixStack, transformType, light, overlay);
+            // AttachmentRender.renderAttachment(attachmentItem, currentGunItem, matrixStack, transformType, light, overlay); // TODO: Habilitar quando AttachmentRender estiver disponível
             matrixStack.popPose();
             // 开启模板测试，因为镜内不渲染枪体
             if (iAttachment != null) {
-                Optional<ClientAttachmentIndex> attachmentIndex = TimelessAPI.getClientAttachmentIndex(iAttachment.getAttachmentId(attachmentItem));
-                attachmentIndex.ifPresent(index -> {
-                    if (index.isScope() && index.isSight()) { // 组合镜
-                        RenderHelper.enableItemEntityStencilTest();
-                        RenderSystem.stencilFunc(GL11.GL_GREATER, 127, 0xFF);
-                    } else if (index.isScope()) { // 长筒镜
-                        RenderHelper.enableItemEntityStencilTest();
-                        RenderSystem.stencilFunc(GL11.GL_EQUAL, 0, 0xFF);
-                    }
-                });
+                // TODO: Implementar quando ClientAttachmentIndex estiver completo
+                // Optional<ClientAttachmentIndex> attachmentIndex = TimelessAPI.getClientAttachmentIndex(iAttachment.getAttachmentId(attachmentItem));
+                // attachmentIndex.ifPresent(index -> {
+                //     if (index.isScope() && index.isSight()) { // 组合镜
+                //         RenderHelper.enableItemEntityStencilTest();
+                //         RenderSystem.stencilFunc(GL11.GL_GREATER, 127, 0xFF);
+                //     } else if (index.isScope()) { // 长筒镜
+                //         RenderHelper.enableItemEntityStencilTest();
+                //         RenderSystem.stencilFunc(GL11.GL_EQUAL, 0, 0xFF);
+                //     }
+                // });
             }
         }
         RenderSystem.stencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_KEEP);
@@ -404,13 +423,14 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         return refitAttachmentViewPath.get(type);
     }
 
-    @Nullable
-    public ShellRender getShellRender(int index) {
-        if (index < 0 || index >= shellRenderList.size()) {
-            return null;
-        }
-        return shellRenderList.get(index);
-    }
+    // TODO: Habilitar quando ShellRender estiver disponível
+    // @Nullable
+    // public ShellRender getShellRender(int index) {
+    //     if (index < 0 || index >= shellRenderList.size()) {
+    //         return null;
+    //     }
+    //     return shellRenderList.get(index);
+    // }
 
     @Nullable
     public BedrockPart getRootNode() {

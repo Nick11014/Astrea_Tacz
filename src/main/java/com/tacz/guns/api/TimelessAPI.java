@@ -49,8 +49,8 @@ public final class TimelessAPI {
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<Object> getClientAttachmentIndex(ResourceLocation attachmentId) {
-        // TODO: Retornar ClientAttachmentIndex quando disponível
-        return Optional.empty();
+        // TODO: Implementação mínima - usar ClientIndexManager quando estiver operacional
+        return Optional.empty(); // Retorna empty por enquanto
     }
 
     @OnlyIn(Dist.CLIENT)
