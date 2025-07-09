@@ -70,10 +70,38 @@ Com os POJOs estabelecidos, podemos atacar o `ClientAssetsManager` - o equivalen
 
 ---
 
-## 🌊 **ONDA 3: MODELOS BÁSICOS (Sessão Futura)**
+## 🧪 **MARCO DE INTEGRIDADE: TESTE DE INICIALIZAÇÃO (Pós-Onda 2)**
 
 ### **Justificativa:**
-Com dados e gerenciadores, podemos atacar as classes de modelo que NÃO fazem renderização direta.
+Após habilitar o `ClientAssetsManager` (Onda 2), é crucial validar que toda a fiação dos gerenciadores (Blocos 2-7) está conectada corretamente antes de partir para renderização.
+
+### **📋 Procedimento do Teste:**
+1. **Iniciar o jogo** após completar Onda 2
+2. **Objetivo:** Cliente não deve crashar na inicialização
+3. **Expectativa:** Renderização pode estar quebrada, mas sem crashes
+4. **Resultado:** Validação que todos os gerenciadores estão bem conectados
+
+### **� Critérios de Sucesso:**
+- ✅ Jogo inicia sem crash
+- ✅ Menu principal carrega (mesmo que broken)
+- ✅ Logs não mostram erros fatais de inicialização
+- ✅ Assets managers inicializam corretamente
+
+### **🔧 Se Falhar:**
+1. **Analisar logs** para identificar problemas de inicialização
+2. **Revisar conexões** entre gerenciadores
+3. **Implementar stubs** para métodos problemáticos
+4. **Repetir teste** até sucesso
+
+### **💡 Benefício:**
+Este "smoke test" dará **confiança imensa** antes de partir para modelos e renderização, validando que a base está sólida.
+
+---
+
+## �🌊 **ONDA 3: MODELOS BÁSICOS (Sessão Futura)**
+
+### **Justificativa:**
+Com dados, gerenciadores **E teste de integridade validado**, podemos atacar as classes de modelo que NÃO fazem renderização direta.
 
 ### **📋 Arquivos Alvo:**
 1. **`BedrockModel.java`** (classe base)
@@ -111,10 +139,34 @@ Apenas após toda a base estar sólida, atacamos as APIs de renderização do Ne
 - **Justificativa:** Cliente é mais complexo, precisamos de mais flexibilidade
 - **Exemplo:** Renderizadores podem retornar stubs inicialmente
 
-### **4. Testes de Compilação Frequentes**
+### **4. Testes de Integridade Estratégicos**
+- **Momento:** Após completar gerenciadores (Onda 2)
+- **Objetivo:** Validar conexões antes de renderização
+- **Benefício:** Confiança para atacar partes mais complexas
+- **Critério:** Jogo deve iniciar sem crashes fatais
+
+### **5. Testes de Compilação Frequentes**
 - **Frequência:** A cada 2-3 arquivos habilitados
 - **Objetivo:** Detectar problemas cedo
 - **Estratégia:** Reverter rapidamente se necessário
+
+### **📈 MÉTRICAS DE SUCESSO PARA ONDA 2**
+
+### **Objetivo Mínimo (Sucesso Básico):**
+- ✅ `ClientAssetsManager` habilitado e compilando
+- ✅ Gerenciadores específicos conectados
+- ✅ Sem erros de compilação
+
+### **Objetivo Ideal (Sucesso Completo):**
+- ✅ `ClientAssetsManager` funcional
+- ✅ **🧪 TESTE DE INTEGRIDADE APROVADO**
+- ✅ Jogo inicia sem crash
+- ✅ Base validada para renderização
+
+### **Objetivo Stretch (Sucesso Épico):**
+- ✅ Todos os gerenciadores funcionais
+- ✅ Interface com núcleo comum perfeita
+- ✅ Primeiros modelos básicos habilitados
 
 ---
 
@@ -151,6 +203,7 @@ Apenas após toda a base estar sólida, atacamos as APIs de renderização do Ne
 2. **Foco em POJOs primeiro** (dados são mais estáveis)
 3. **Evitar APIs de renderização** até ter base sólida
 4. **Documentação ainda mais detalhada** (cliente é mais intrincado)
+5. **🧪 Teste de integridade estratégico** (validar conexões antes de renderização)
 
 ---
 
@@ -167,6 +220,13 @@ Apenas após toda a base estar sólida, atacamos as APIs de renderização do Ne
 2. Habilitar 5-10 arquivos por vez
 3. Testar compilação frequentemente
 4. Aplicar implementação mínima conforme necessário
+
+### **Sessão Seguinte (Onda 2 + Teste de Integridade):**
+1. Atacar `ClientAssetsManager` com implementação mínima
+2. Conectar gerenciadores específicos
+3. **🧪 EXECUTAR TESTE DE INTEGRIDADE**
+4. Validar que jogo inicia sem crash
+5. Documentar resultados para Onda 3
 
 ---
 
