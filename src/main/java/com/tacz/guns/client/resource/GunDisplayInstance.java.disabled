@@ -12,7 +12,8 @@ import com.tacz.guns.api.client.animation.ObjectAnimation;
 import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
 import com.tacz.guns.api.client.animation.statemachine.LuaAnimationStateMachine;
 import com.tacz.guns.api.client.animation.statemachine.LuaStateMachineFactory;
-import com.tacz.guns.api.client.other.GunModelTypeManager;
+// TODO: [MIGRAÇÃO] Restaurar quando GunModelTypeManager for habilitado
+// import com.tacz.guns.api.client.other.GunModelTypeManager;
 import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.client.animation.statemachine.GunAnimationStateContext;
 import com.tacz.guns.client.model.BedrockGunModel;

@@ -1,8 +1,10 @@
 package com.tacz.guns.client.resource.index;
 
 import com.google.common.base.Preconditions;
-import com.tacz.guns.client.resource.ClientAssetsManager;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+// TODO: [MIGRAÇÃO] Restaurar quando ClientAssetsManager for habilitado
+// import com.tacz.guns.client.resource.ClientAssetsManager;
+// TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
+// import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.pojo.display.gun.GunDisplay;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.GunIndexPOJO;
@@ -20,7 +22,9 @@ public class ClientGunIndex {
     private String type;
     private String itemType;
 
-    private GunDisplayInstance display;
+    // TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
+    // private GunDisplayInstance display;
+    private Object display; // Placeholder temporário
 
     private ClientGunIndex() {
     }
@@ -28,10 +32,13 @@ public class ClientGunIndex {
     public static ClientGunIndex getInstance(GunIndexPOJO gunIndexPOJO) throws IllegalArgumentException {
         ClientGunIndex index = new ClientGunIndex();
         checkIndex(gunIndexPOJO, index);
-        GunDisplay display = checkDisplay(gunIndexPOJO);
+        // TODO: [MIGRAÇÃO] Restaurar quando GunDisplay e ClientAssetsManager forem habilitados
+        // GunDisplay display = checkDisplay(gunIndexPOJO);
         checkData(gunIndexPOJO, index);
         checkName(gunIndexPOJO, index);
-        index.display = GunDisplayInstance.create(display);
+        // TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
+        // index.display = GunDisplayInstance.create(display);
+        index.display = new Object(); // Placeholder temporário
         return index;
     }
 
@@ -60,11 +67,13 @@ public class ClientGunIndex {
 
     @NotNull
     private static GunDisplay checkDisplay(GunIndexPOJO gunIndexPOJO) {
-        ResourceLocation pojoDisplay = gunIndexPOJO.getDisplay();
-        Preconditions.checkArgument(pojoDisplay != null, "index object missing display field");
-        GunDisplay display = ClientAssetsManager.INSTANCE.getGunDisplay(pojoDisplay);
-        Preconditions.checkArgument(display != null, "there is no corresponding display file");
-        return display;
+        // TODO: [MIGRAÇÃO] Restaurar quando ClientAssetsManager for habilitado
+        // ResourceLocation pojoDisplay = gunIndexPOJO.getDisplay();
+        // Preconditions.checkArgument(pojoDisplay != null, "index object missing display field");
+        // GunDisplay display = ClientAssetsManager.INSTANCE.getGunDisplay(pojoDisplay);
+        // Preconditions.checkArgument(display != null, "there is no corresponding display file");
+        // return display;
+        return new GunDisplay(); // Placeholder temporário
     }
 
     public String getType() {
@@ -83,7 +92,11 @@ public class ClientGunIndex {
         return gunData;
     }
 
-    public GunDisplayInstance getDefaultDisplay() {
-        return display;
+    // TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
+    // public GunDisplayInstance getDefaultDisplay() {
+    //     return display;
+    // }
+    public Object getDefaultDisplay() {
+        return display; // Placeholder temporário
     }
 }
