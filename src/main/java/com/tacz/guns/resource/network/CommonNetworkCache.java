@@ -1,19 +1,22 @@
 package com.tacz.guns.resource.network;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.tacz.guns.GunMod;
-import com.tacz.guns.api.modifier.JsonProperty;
-import com.tacz.guns.resource.CommonAssetsManager;
+// TODO: [MIGRAÇÃO] Restaurar quando sistema de modificadores for habilitado
+// import com.tacz.guns.api.modifier.JsonProperty;
+// import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.ICommonResourceProvider;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonAttachmentIndex;
 import com.tacz.guns.resource.index.CommonBlockIndex;
 import com.tacz.guns.resource.index.CommonGunIndex;
-import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+// TODO: [MIGRAÇÃO] Restaurar quando sistema de modificadores for habilitado
+// import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.block.BlockData;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
@@ -152,37 +155,41 @@ public enum CommonNetworkCache implements ICommonResourceProvider {
     }
 
     private <T> T parse(String json, Class<T> dataClass) {
-        return CommonAssetsManager.GSON.fromJson(json, dataClass);
+        // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
+        return new Gson().fromJson(json, dataClass);
     }
 
     private AttachmentData parseAttachmentData(String json) {
-        AttachmentData data = CommonAssetsManager.GSON.fromJson(json, AttachmentData.class);
-        JsonElement element = CommonAssetsManager.GSON.fromJson(json, JsonElement.class);
+        // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
+        AttachmentData data = new Gson().fromJson(json, AttachmentData.class);
+        JsonElement element = new Gson().fromJson(json, JsonElement.class);
         if (data != null) {
+            // TODO: [MIGRAÇÃO] Restaurar lógica de modificadores quando AttachmentPropertyManager for habilitado
             // 序列化注册的配件属性修改
-            AttachmentPropertyManager.getModifiers().forEach((key, value) -> {
-                if (!element.isJsonObject()) {
-                    return;
-                }
-                JsonObject jsonObject = element.getAsJsonObject();
-                if (jsonObject.has(key)) {
-                    JsonProperty<?> property = value.readJson(json);
-                    property.initComponents();
-                    data.addModifier(key, property);
-                } else if (jsonObject.has(value.getOptionalFields())) {
-                    // 为了兼容旧版本，读取可选字段名
-                    JsonProperty<?> property = value.readJson(json);
-                    property.initComponents();
-                    data.addModifier(key, property);
-                }
-            });
+            // AttachmentPropertyManager.getModifiers().forEach((key, value) -> {
+            //     if (!element.isJsonObject()) {
+            //         return;
+            //     }
+            //     JsonObject jsonObject = element.getAsJsonObject();
+            //     if (jsonObject.has(key)) {
+            //         JsonProperty<?> property = value.readJson(json);
+            //         property.initComponents();
+            //         data.addModifier(key, property);
+            //     } else if (jsonObject.has(value.getOptionalFields())) {
+            //         // 为了兼容旧版本，读取可选字段名
+            //         JsonProperty<?> property = value.readJson(json);
+            //         property.initComponents();
+            //         data.addModifier(key, property);
+            //     }
+            // });
         }
         return data;
     }
 
     private void resolveAttachmentTags(Map<ResourceLocation, String> data) {
         for (Map.Entry<ResourceLocation, String> entry : data.entrySet()) {
-            List<String> tags = CommonAssetsManager.GSON.fromJson(entry.getValue(), new TypeToken<>(){});
+            // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
+            List<String> tags = new Gson().fromJson(entry.getValue(), new TypeToken<>(){});
             if (entry.getKey().getPath().startsWith("allow_attachments/") && entry.getKey().getPath().length()>18) {
                 ResourceLocation gunId = entry.getKey().withPath(entry.getKey().getPath().substring(18));
                 allowAttachmentTags.computeIfAbsent(gunId, (v) -> new HashSet<>()).addAll(tags);
