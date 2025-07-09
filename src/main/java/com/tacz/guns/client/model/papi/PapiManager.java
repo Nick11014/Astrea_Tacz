@@ -18,6 +18,9 @@ public final class PapiManager {
         addPapi(PlayerNamePapi.NAME, new PlayerNamePapi());
         // TODO: ✅ AmmoCountPapi habilitado com implementação mínima
         addPapi(AmmoCountPapi.NAME, new AmmoCountPapi());
+        // TODO: ✅ FASE B - RestCountPapi e GunNamePapi habilitados com implementação mínima
+        addPapi(RestCountPapi.NAME, new RestCountPapi());
+        addPapi(GunNamePapi.NAME, new GunNamePapi());
     }
 
     public static void addPapi(String textKey, Function<ItemStack, String> function) {
