@@ -131,11 +131,11 @@ public class ClientAttachmentIndex {
         return laserConfig;
     }
 
-    // Métodos adicionais requeridos pelo AttachmentRender (implementação mínima com Object strategy)
+    // Métodos adicionais requeridos pelo AttachmentItemRenderer (implementação mínima com Object strategy)
     
     /**
-     * Retorna o modelo de acessório como Object
-     * TODO: Retornar BedrockAttachmentModel quando disponível
+     * Retorna o modelo de acessório - agora compatível com BedrockAttachmentModel
+     * TODO: Retornar BedrockAttachmentModel tipado quando imports estiverem estáveis
      */
     public Object getAttachmentModel() {
         return model; // Retorna como Object por enquanto
@@ -147,6 +147,14 @@ public class ClientAttachmentIndex {
      */
     public Object getModelTexture() {
         return texture; // Retorna como Object por enquanto
+    }
+    
+    /**
+     * Retorna a textura do slot como Object
+     * TODO: Retornar ResourceLocation quando disponível  
+     */
+    public Object getSlotTexture() {
+        return slotTextureLocation; // Retorna como Object por enquanto
     }
     
     /**
