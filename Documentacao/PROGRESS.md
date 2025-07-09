@@ -1,0 +1,668 @@
+# RELATORIO DE PROGRESSO - TacZ NeoForge 1.21.1
+
+**Data:** 2025-07-09 18:31:48
+**Total:** 609 arquivos
+**Habilitados:** 381 (62.6%)
+
+---
+
+## 🎯 **RESUMO EXECUTIVO**
+
+### **📊 Estatísticas Gerais:**
+- **Total de arquivos analisados:** 609
+- **Arquivos habilitados:** 381 (**62.6%**)
+- **Implementação completa:** 350 (**91.9%** dos habilitados)
+- **Implementação mínima:** 31 (**8.1%** dos habilitados)
+
+### **🔍 Análise de Qualidade:**
+- **Object Strategy:** 4 arquivos (resolvem dependências quebradas)
+- **Placeholders:** 16 arquivos (dados temporários)
+- **TODO/Restaurar:** 15 arquivos (aguardando dependências)
+
+### **🎯 Status de Progresso:**
+🟠 **PROGRESSO INTERMEDIÁRIO** - Boa base com algumas implementações a expandir
+
+---
+
+## 🛠️ **IMPLEMENTAÇÕES CRÍTICAS PARA EXPANDIR**
+
+### **⚡ Alta Prioridade (Object Strategy → Real):**
+- **AttachmentItemRenderer.java** - [Object Strategy + Placeholder + TODO]
+- **BedrockAttachmentModel.java** - [Object Strategy + TODO]
+- **AttachmentRender.java** - [Object Strategy + Placeholder]  
+- **ClientAttachmentIndex.java** - [Object Strategy]
+
+### **🔧 Média Prioridade (Mínima → Completa):**
+- **CommonGunIndex.java** - [TODO] Aguardando CommonAssetsManager
+- **GunData.java** - [TODO] Aguardando dependências de modificadores
+- **CommonAssetsManager.java** - [TODO] Sistema de assets principal
+- **SoundManager.java** - [Placeholder] Sistema de som
+
+---
+
+## CHECKLIST ATUALIZADO
+
+### 
+**Progresso:** 381/609
+
+- [x] **AccessorData.java** - HABILITADO
+- [x] **Align.java** - HABILITADO
+- [x] **AmmoConfig.java** - HABILITADO
+- [x] **AmmoCountStyle.java** - HABILITADO
+- [x] **AmmoEntityDisplay.java** - HABILITADO
+- [x] **AmmoIndexPOJO.java** - HABILITADO
+- [x] **AnimationBone.java** - HABILITADO
+- [x] **AnimationChannelContent.java** - HABILITADO
+- [x] **AnimationConstant.java** - HABILITADO
+- [x] **AnimationKeyframes.java** - HABILITADO
+- [x] **AnimationName.java** - HABILITADO
+- [x] **AnimationSoundChannelContent.java** - HABILITADO
+- [x] **AttachmentLod.java** - HABILITADO
+- [x] **AttachmentSkin.java** - HABILITADO
+- [x] **AttachmentType.java** - HABILITADO
+- [x] **BedrockAnimation.java** - HABILITADO
+- [x] **BedrockAnimationFile.java** - HABILITADO
+- [x] **BedrockCube.java** - HABILITADO
+- [x] **Bolt.java** - HABILITADO
+- [x] **BurstData.java** - HABILITADO
+- [x] **CacheValue.java** - HABILITADO
+- [x] **ColorHex.java** - HABILITADO
+- [x] **ControllableData.java** - HABILITADO
+- [x] **CycleTaskHelper.java** - HABILITADO
+- [x] **DamageStyle.java** - HABILITADO
+- [x] **DataType.java** - HABILITADO
+- [x] **DebugCommand.java** - HABILITADO
+- [x] **DefaultAnimationType.java** - HABILITADO
+- [x] **DelayedTask.java** - HABILITADO
+- [x] **Description.java** - HABILITADO
+- [x] **Easing.java** - HABILITADO
+- [x] **EffectData.java** - HABILITADO
+- [x] **ElementType.java** - HABILITADO
+- [x] **ExplosionData.java** - HABILITADO
+- [x] **ExtraDamage.java** - HABILITADO
+- [x] **FeedType.java** - HABILITADO
+- [x] **FireSound.java** - HABILITADO
+- [x] **GltfConstants.java** - HABILITADO
+- [x] **GunAnimationConstant.java** - HABILITADO
+- [x] **GunConfig.java** - HABILITADO
+- [x] **GunDamageSourcePart.java** - HABILITADO
+- [x] **GunDefaultMeleeData.java** - HABILITADO
+- [x] **GunFireModeAdjustData.java** - HABILITADO
+- [x] **GunHeatData.java** - HABILITADO
+- [x] **GunHurtBobTweak.java** - HABILITADO
+- [x] **GunIndexPOJO.java** - HABILITADO
+- [x] **GunLod.java** - HABILITADO
+- [x] **GunMeleeData.java** - HABILITADO
+- [x] **GunMeleeDebug.java** - HABILITADO
+- [x] **GunModelConstant.java** - HABILITADO
+- [x] **GunProperty.java** - HABILITADO
+- [x] **GunReloadTime.java** - HABILITADO
+- [x] **GunSmithTableIngredient.java** - HABILITADO
+- [x] **GunTabType.java** - HABILITADO
+- [x] **IAmmo.java** - HABILITADO
+- [x] **IAmmoBox.java** - HABILITADO
+- [x] **IBlock.java** - HABILITADO
+- [x] **IDataSerializer.java** - HABILITADO
+- [x] **IFilter.java** - HABILITADO
+- [x] **IFunctionalRenderer.java** - HABILITADO (MINIMA: TODO)
+- [x] **Ignite.java** - HABILITADO
+- [x] **InputExtraCheck.java** - HABILITADO
+- [x] **IStackTooltip.java** - HABILITADO
+- [x] **ITargetEntity.java** - HABILITADO
+- [x] **IThirdPersonAnimation.java** - HABILITADO
+- [x] **JsonProperty.java** - HABILITADO
+- [x] **KeepingItemRenderer.java** - HABILITADO
+- [x] **KeyConfig.java** - HABILITADO
+- [x] **KnockBackModifier.java** - HABILITADO
+- [x] **LanguageMixin.java** - HABILITADO
+- [x] **LaserConfig.java** - HABILITADO
+- [x] **ListPackCommand.java** - HABILITADO
+- [x] **LuaEntityAccessor.java** - HABILITADO
+- [x] **LuaLibrary.java** - HABILITADO
+- [x] **MeleeData.java** - HABILITADO
+- [x] **Modifier.java** - HABILITADO
+- [x] **MuzzleFlash.java** - HABILITADO
+- [x] **NumberArrays.java** - HABILITADO
+- [x] **OculusCompatLegacy.java** - HABILITADO
+- [x] **OculusCompatNewly.java** - HABILITADO
+- [x] **OptifineCompat.java** - HABILITADO
+- [x] **OtherConfig.java** - HABILITADO
+- [x] **PackInfo.java** - HABILITADO
+- [x] **PackMeta.java** - HABILITADO
+- [x] **PathHandler.java** - HABILITADO
+- [x] **SecondOrderDynamics.java** - HABILITADO
+- [x] **ShellDisplay.java** - HABILITADO
+- [x] **ShootResult.java** - HABILITADO
+- [x] **ShoulderSurfingCompat.java** - HABILITADO
+- [x] **ShoulderSurfingCompatInner.java** - HABILITADO
+- [x] **SoundEffectKeyframes.java** - HABILITADO
+- [x] **StairBlockAccessor.java** - HABILITADO
+- [x] **SyncConfig.java** - HABILITADO
+- [x] **TrackArrayMismatchException.java** - HABILITADO
+- [x] **ZoomConfig.java** - HABILITADO
+- [x] **AccessorSparseIndices.java** - HABILITADO
+- [x] **AccessorSparseValues.java** - HABILITADO
+- [x] **AmmoBoxTooltip.java** - HABILITADO
+- [x] **AmmoClothConfig.java** - HABILITADO
+- [x] **AmmoParticle.java** - HABILITADO
+- [x] **AnimationChannelTarget.java** - HABILITADO
+- [x] **AnimationSampler.java** - HABILITADO
+- [x] **AttachmentData.java** - HABILITADO
+- [x] **AttachmentIndexPOJO.java** - HABILITADO
+- [x] **AttachmentItemTooltip.java** - HABILITADO
+- [x] **BedrockPart.java** - HABILITADO
+- [x] **BedrockVertex.java** - HABILITADO
+- [x] **BlockItemTooltip.java** - HABILITADO
+- [x] **Buffer.java** - HABILITADO
+- [x] **Buffers.java** - HABILITADO
+- [x] **BufferView.java** - HABILITADO
+- [x] **BulletData.java** - HABILITADO
+- [x] **CommonAmmoIndex.java** - HABILITADO
+- [x] **CommonConfig.java** - HABILITADO
+- [x] **CommonTransformObject.java** - HABILITADO
+- [x] **ConfigCommand.java** - HABILITADO
+- [x] **DiscreteTrackArray.java** - HABILITADO
+- [x] **DistanceDamagePairSerializer.java** - HABILITADO
+- [x] **FaceItem.java** - HABILITADO
+- [x] **FireMode.java** - HABILITADO
+- [x] **FlatColorButton.java** - HABILITADO
+- [x] **GunClothConfig.java** - HABILITADO
+- [x] **GunLevelUpToast.java** - HABILITADO
+- [x] **GunRecoilKeyFrame.java** - HABILITADO
+- [x] **GunReloadData.java** - HABILITADO
+- [x] **GunResult.java** - HABILITADO
+- [x] **GunSmithTableIngredientSerializer.java** - HABILITADO
+- [x] **GunTooltipPart.java** - HABILITADO
+- [x] **HeadShotAABBConfigRead.java** - HABILITADO
+- [x] **HitboxHelper.java** - HABILITADO
+- [x] **IAnimationItem.java** - HABILITADO
+- [x] **IAttachment.java** - HABILITADO
+- [x] **IComponentTooltip.java** - HABILITADO
+- [x] **IDisplay.java** - HABILITADO
+- [x] **IgniteSerializer.java** - HABILITADO
+- [x] **IMessage.java** - HABILITADO
+- [x] **INetworkCacheReloadListener.java** - HABILITADO
+- [x] **Interpolator.java** - HABILITADO
+- [x] **ItemStackSerializer.java** - HABILITADO
+- [x] **KnockbackChange.java** - HABILITADO
+- [x] **LayerGunShow.java** - HABILITADO
+- [x] **LiteralFilter.java** - HABILITADO
+- [x] **LivingEntityAmmoCheck.java** - HABILITADO
+- [x] **LoginIndexHolder.java** - HABILITADO
+- [x] **LuaNbtAccessor.java** - HABILITADO
+- [x] **MathUtil.java** - HABILITADO
+- [x] **Md5Utils.java** - HABILITADO
+- [x] **ModDataComponents.java** - HABILITADO
+- [x] **MoveSpeed.java** - HABILITADO
+- [x] **Node.java** - HABILITADO
+- [x] **NodeModel.java** - HABILITADO
+- [x] **OpenGunPackDirEntry.java** - HABILITADO
+- [x] **PairSerializer.java** - HABILITADO
+- [x] **PerlinNoise.java** - HABILITADO
+- [x] **PlayerNamePapi.java** - HABILITADO
+- [x] **PreLoadConfig.java** - HABILITADO
+- [x] **PreLoadModConfig.java** - HABILITADO
+- [x] **RegexFilter.java** - HABILITADO
+- [x] **ReloadState.java** - HABILITADO
+- [x] **RenderHelper.java** - HABILITADO
+- [x] **ResourceScanner.java** - HABILITADO
+- [x] **ServerConfig.java** - HABILITADO
+- [x] **ServerMessageLevelUp.java** - HABILITADO
+- [x] **ServerTickHandler.java** - HABILITADO
+- [x] **ShellEjection.java** - HABILITADO
+- [x] **SoundEffectKeyframesSerializer.java** - HABILITADO
+- [x] **SyncedClassKey.java** - HABILITADO
+- [x] **TacPathVisitor.java** - HABILITADO
+- [x] **TextShow.java** - HABILITADO
+- [x] **ThirdPersonManager.java** - HABILITADO
+- [x] **TimelessItemNbtFactory.java** - HABILITADO
+- [x] **TransformScale.java** - HABILITADO
+- [x] **Vec3Serializer.java** - HABILITADO
+- [x] **Vector3fSerializer.java** - HABILITADO
+- [x] **ZoomClothConfig.java** - HABILITADO
+- [x] **IGunOperator.java** - HABILITADO
+- [x] **LocalPlayerDataHolder.java** - HABILITADO
+- [x] **IClientPlayerGunOperator.java** - HABILITADO
+- [x] **InspectKey.java** - HABILITADO
+- [x] **MeleeKey.java** - HABILITADO
+- [x] **BeforeRenderHandEvent.java** - HABILITADO
+- [x] **RenderItemInHandBobEvent.java** - HABILITADO
+- [x] **RenderLevelBobEvent.java** - HABILITADO
+- [x] **SwapItemWithOffHand.java** - HABILITADO
+- [x] **AbstractButtonMixin.java** - HABILITADO
+- [x] **BonesItem.java** - HABILITADO
+- [x] **CubesItem.java** - HABILITADO
+- [x] **GeometryModelLegacy.java** - HABILITADO
+- [x] **GeometryModelNew.java** - HABILITADO
+- [x] **BedrockModelPOJO.java** - HABILITADO
+- [x] **BedrockVersion.java** - HABILITADO
+- [x] **SoundAssetsManager.java** - HABILITADO
+- [x] **ReloadResourceEvent.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **ModAttributes.java** - HABILITADO
+- [x] **ModSounds.java** - HABILITADO
+- [x] **ModPainting.java** - HABILITADO
+- [x] **BellRing.java** - HABILITADO
+- [ ] **ClientMessageCraft.java** - DESABILITADO
+- [x] **ClientMessagePlayerAim.java** - HABILITADO
+- [x] **ClientMessagePlayerBoltGun.java** - HABILITADO
+- [x] **ClientMessagePlayerCancelReload.java** - HABILITADO
+- [x] **ClientMessagePlayerDrawGun.java** - HABILITADO
+- [x] **ClientMessagePlayerFireSelect.java** - HABILITADO
+- [x] **ClientMessagePlayerMelee.java** - HABILITADO
+- [x] **ClientMessagePlayerReloadGun.java** - HABILITADO
+- [x] **ClientMessagePlayerShoot.java** - HABILITADO
+- [x] **ClientMessagePlayerZoom.java** - HABILITADO
+- [x] **CommandRegistry.java** - HABILITADO
+- [x] **GunDrawEvent.java** - HABILITADO
+- [x] **GunFinishReloadEvent.java** - HABILITADO
+- [x] **GunFireSelectEvent.java** - HABILITADO
+- [x] **GunMeleeEvent.java** - HABILITADO
+- [x] **GunReloadEvent.java** - HABILITADO
+- [x] **PreventGunClick.java** - HABILITADO
+- [x] **ServerGamePacketListenerImplMixin.java** - HABILITADO
+- [ ] **ServerMessageCraft.java** - DESABILITADO
+- [x] **ServerMessageGunDraw.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **ServerMessageGunFire.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [ ] **ServerMessageGunFireSelect.java** - DESABILITADO
+- [ ] **ServerMessageGunHurt.java** - DESABILITADO
+- [ ] **ServerMessageGunKill.java** - DESABILITADO
+- [ ] **ServerMessageGunMelee.java** - DESABILITADO
+- [ ] **ServerMessageGunReload.java** - DESABILITADO
+- [ ] **ServerMessageGunShoot.java** - DESABILITADO
+- [x] **ServerMessageSwapItem.java** - HABILITADO
+- [x] **ServerPlayerMixin.java** - HABILITADO
+- [ ] **TargetMinecartItem.java** - DESABILITADO
+- [x] **Accessor.java** - HABILITADO
+- [x] **BlockIndexPOJO.java** - HABILITADO
+- [x] **BonesItem.java** - HABILITADO
+- [ ] **ControllableCompat.java** - DESABILITADO
+- [ ] **CrosshairDropdown.java** - DESABILITADO
+- [x] **CrosshairType.java** - HABILITADO
+- [x] **CubesItem.java** - HABILITADO
+- [x] **DefaultAssets.java** - HABILITADO
+- [x] **GeometryModelLegacy.java** - HABILITADO
+- [ ] **KubeJSCustomGunItem.java** - DESABILITADO
+- [x] **ModDamageTypes.java** - HABILITADO
+- [ ] **PlayerAnimatorAssetManager.java** - DESABILITADO
+- [x] **RenderConfig.java** - HABILITADO
+- [x] **RenderDistance.java** - HABILITADO (MINIMA: TODO)
+- [x] **ResourceManager.java** - HABILITADO
+- [ ] **ResultButton.java** - DESABILITADO
+- [ ] **TimelessItemType.java** - DESABILITADO
+- [ ] **TimelessKubeJSEventRegister.java** - DESABILITADO
+- [ ] **TypeButton.java** - DESABILITADO
+- [x] **VersionChecker.java** - HABILITADO
+- [ ] **HumanoidModelMixin.java** - DESABILITADO
+- [ ] **InnerThirdPersonManager.java** - DESABILITADO
+- [ ] **AbstractGunSmithTableBlock.java** - DESABILITADO
+- [x] **AccessorByteData.java** - HABILITADO
+- [x] **AccessorFloatData.java** - HABILITADO
+- [x] **AccessorIntData.java** - HABILITADO
+- [x] **AccessorModel.java** - HABILITADO
+- [x] **AccessorShortData.java** - HABILITADO
+- [x] **Accessors.java** - HABILITADO
+- [x] **AccessorSparse.java** - HABILITADO
+- [x] **AccessorSparseUtils.java** - HABILITADO
+- [ ] **Acknowledge.java** - DESABILITADO
+- [ ] **AdjustmentYRotModifier.java** - DESABILITADO
+- [ ] **AimKey.java** - DESABILITADO
+- [x] **AmmoBoxItemDataAccessor.java** - HABILITADO
+- [x] **AmmoCountPapi.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **AmmoDisplay.java** - HABILITADO
+- [x] **AmmoItemDataAccessor.java** - HABILITADO
+- [ ] **AmmoItemRenderer.java** - DESABILITADO
+- [ ] **AmmoNbtFactory.java** - DESABILITADO
+- [x] **AmmoParticleSpawner.java** - HABILITADO
+- [ ] **AnimateGeoItemRenderer.java** - DESABILITADO
+- [x] **Animation.java** - HABILITADO
+- [x] **AnimationChannel.java** - HABILITADO
+- [ ] **AnimationController.java** - DESABILITADO
+- [x] **AnimationDataRegisterFactory.java** - HABILITADO
+- [x] **AnimationKeyframesSerializer.java** - HABILITADO
+- [x] **AnimationListener.java** - HABILITADO
+- [x] **AnimationListenerSupplier.java** - HABILITADO
+- [x] **AnimationModel.java** - HABILITADO
+- [x] **AnimationPlan.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **AnimationState.java** - HABILITADO
+- [ ] **AnimationStateContext.java** - DESABILITADO
+- [ ] **AnimationStateMachine.java** - DESABILITADO
+- [ ] **AttachmentCacheProperty.java** - DESABILITADO
+- [x] **AttachmentDataManager.java** - HABILITADO (MINIMA: TODO)
+- [x] **AttachmentDisplay.java** - HABILITADO
+- [x] **AttachmentItemDataAccessor.java** - HABILITADO
+- [x] **AttachmentItemRenderer.java** - HABILITADO (MINIMA: OBJECT+TODO)
+- [ ] **AttachmentNbtFactory.java** - DESABILITADO
+- [x] **AttachmentPropertyEvent.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **AttachmentsTagManager.java** - HABILITADO
+- [x] **BedrockCubePerFace.java** - HABILITADO
+- [x] **BedrockModelPOJO.java** - HABILITADO
+- [x] **BlockData.java** - HABILITADO
+- [x] **BlockItemBuilder.java** - HABILITADO
+- [x] **BlockRayTrace.java** - HABILITADO
+- [x] **BufferViewModel.java** - HABILITADO
+- [x] **BulletHoleOption.java** - HABILITADO
+- [ ] **BulletHoleParticle.java** - DESABILITADO
+- [x] **CameraAnimationObject.java** - HABILITADO
+- [x] **CameraRotateListener.java** - HABILITADO
+- [ ] **CapabilityRegistry.java** - DESABILITADO
+- [x] **ChangeGunPropertyEvent.java** - HABILITADO
+- [x] **ClientAmmoBoxTooltip.java** - HABILITADO
+- [ ] **ClientAttachmentSkinIndex.java** - DESABILITADO
+- [ ] **ClientBlockItemTooltip.java** - DESABILITADO
+- [x] **ClientConfig.java** - HABILITADO
+- [ ] **ClientMessageLaserColor.java** - DESABILITADO
+- [x] **ClientMessagePlayerCrawl.java** - HABILITADO
+- [ ] **ClientMessageRefitGun.java** - DESABILITADO
+- [ ] **ClientMessageSyncBaseTimestamp.java** - DESABILITADO
+- [ ] **ClientMessageUnloadAttachment.java** - DESABILITADO
+- [ ] **ClientPreventGunClick.java** - DESABILITADO
+- [x] **ClothConfigScreen.java** - HABILITADO
+- [x] **CommonAmmoIndexSerializer.java** - HABILITADO
+- [x] **CommonAttachmentIndex.java** - HABILITADO (MINIMA: TODO)
+- [x] **CommonAttachmentIndexSerializer.java** - HABILITADO
+- [x] **CommonBlockIndex.java** - HABILITADO (MINIMA: TODO)
+- [x] **CommonBlockIndexSerializer.java** - HABILITADO
+- [x] **CommonDataManager.java** - HABILITADO
+- [x] **CommonGunIndex.java** - HABILITADO (MINIMA: TODO)
+- [x] **CommonGunIndexSerializer.java** - HABILITADO
+- [ ] **CommonRegistry.java** - DESABILITADO
+- [x] **CompatRegistry.java** - HABILITADO
+- [ ] **ConfigKey.java** - DESABILITADO
+- [x] **ConstraintObject.java** - HABILITADO
+- [x] **ConstraintRotateListener.java** - HABILITADO
+- [x] **ConstraintTranslateListener.java** - HABILITADO
+- [ ] **ControllableInner.java** - DESABILITADO
+- [ ] **CrawlKey.java** - DESABILITADO
+- [ ] **CustomGunItemBuilder.java** - DESABILITADO
+- [x] **CustomInterpolator.java** - HABILITADO
+- [ ] **DataEntry.java** - DESABILITADO
+- [ ] **DataHolder.java** - DESABILITADO
+- [ ] **DefaultTableItem.java** - DESABILITADO
+- [ ] **DestroyGlassBlock.java** - DESABILITADO
+- [x] **DisplayManager.java** - HABILITADO
+- [x] **EntityDamageEvent.java** - HABILITADO
+- [ ] **EntityHurtByGunEvent.java** - DESABILITADO
+- [x] **EntityKillByGunEvent.java** - HABILITADO
+- [x] **ExplodeUtil.java** - HABILITADO (MINIMA: TODO)
+- [x] **FireSelectKey.java** - HABILITADO
+- [ ] **FirstPersonRenderEvent.java** - DESABILITADO
+- [x] **FunctionalBedrockPart.java** - HABILITADO
+- [ ] **GameRendererMixin.java** - DESABILITADO
+- [x] **GeometryModelNew.java** - HABILITADO
+- [x] **GetJarResources.java** - HABILITADO
+- [x] **GltfManager.java** - HABILITADO
+- [ ] **GunAttachmentSlot.java** - DESABILITADO
+- [x] **GunFireEvent.java** - HABILITADO
+- [ ] **GunKubeJSEvents.java** - DESABILITADO
+- [ ] **GunModelTypeManager.java** - DESABILITADO
+- [x] **GunModSubtype.java** - HABILITADO
+- [ ] **GunPackList.java** - DESABILITADO
+- [x] **GunShootEvent.java** - HABILITADO
+- [ ] **GunSmithTableBlockA.java** - DESABILITADO
+- [ ] **GunSmithTableBlockB.java** - DESABILITADO
+- [ ] **GunSmithTableBlockC.java** - DESABILITADO
+- [ ] **GunSmithTableCategory.java** - DESABILITADO
+- [ ] **GunSmithTableItem.java** - DESABILITADO
+- [ ] **GunSmithTableItemRenderer.java** - DESABILITADO
+- [ ] **GunSmithTableMenu.java** - DESABILITADO
+- [ ] **GunSmithTableRecipe.java** - DESABILITADO
+- [ ] **GunSmithTableRenderer.java** - DESABILITADO
+- [ ] **GunSmithTableResult.java** - DESABILITADO
+- [ ] **GunSmithTableResultComponents.java** - DESABILITADO
+- [ ] **GunSmithTableResultInfo.java** - DESABILITADO
+- [ ] **GunSmithTableSerializer.java** - DESABILITADO
+- [ ] **GunSoundInstance.java** - DESABILITADO
+- [ ] **GunTooltip.java** - DESABILITADO
+- [x] **HideTooltipPartCommand.java** - HABILITADO
+- [x] **HitboxHelperEvent.java** - HABILITADO
+- [ ] **HSVSliderGroup.java** - DESABILITADO
+- [ ] **HumanoidOffhandRender.java** - DESABILITADO
+- [ ] **IAttachmentModifier.java** - DESABILITADO
+- [x] **IClientPlayerGunOperator.java** - HABILITADO
+- [x] **ICommonResourceProvider.java** - HABILITADO
+- [x] **IGun.java** - HABILITADO
+- [x] **IGunOperator.java** - HABILITADO
+- [x] **InaccuracyType.java** - HABILITADO
+- [ ] **InnerThirdPersonManager.java** - DESABILITADO
+- [x] **InteractKey.java** - HABILITADO
+- [x] **InteractKeyConfigRead.java** - HABILITADO
+- [ ] **InteractKeyTextOverlay.java** - DESABILITADO
+- [ ] **InternalAssetLoader.java** - DESABILITADO
+- [x] **InterpolatorUtil.java** - HABILITADO
+- [ ] **InventoryAttachmentSlot.java** - DESABILITADO
+- [ ] **InventoryEvent.java** - DESABILITADO
+- [x] **ItemAnimationStateContext.java** - HABILITADO
+- [ ] **ItemInHandLayerMixin.java** - DESABILITADO
+- [ ] **ItemInHandRendererMixin.java** - DESABILITADO
+- [x] **JsonDataManager.java** - HABILITADO
+- [x] **JsonResourceLoader.java** - HABILITADO
+- [x] **KeyClothConfig.java** - HABILITADO
+- [ ] **KillAmountOverlay.java** - DESABILITADO
+- [x] **KubeJSGunEventPoster.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **LaserColorUtil.java** - HABILITADO
+- [x] **LeftHandRender.java** - HABILITADO
+- [x] **Linear.java** - HABILITADO
+- [ ] **LivingEntityCrawl.java** - DESABILITADO
+- [ ] **LivingEntityFireSelect.java** - DESABILITADO
+- [ ] **LivingEntityHeat.java** - DESABILITADO
+- [ ] **LivingEntityMixin.java** - DESABILITADO
+- [ ] **LivingEntitySprint.java** - DESABILITADO
+- [x] **LoadingConfigEvent.java** - HABILITADO
+- [ ] **LocalPlayerCrawl.java** - DESABILITADO
+- [x] **LocalPlayerDataHolder.java** - HABILITADO
+- [ ] **LocalPlayerSprint.java** - DESABILITADO
+- [ ] **LuaAnimationConstant.java** - DESABILITADO
+- [ ] **LuaAnimationState.java** - DESABILITADO
+- [ ] **LuaAnimationStateMachine.java** - DESABILITADO
+- [ ] **LuaGunAnimationConstant.java** - DESABILITADO
+- [x] **LuaGunLogicConstant.java** - HABILITADO
+- [ ] **LuaStateMachineFactory.java** - DESABILITADO
+- [ ] **MenuIntegration.java** - DESABILITADO
+- [x] **ModBlocks.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [ ] **ModContainerScreen.java** - DESABILITADO
+- [x] **ModEntities.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **ModItems.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [x] **ModParticles.java** - HABILITADO
+- [x] **ModRecipe.java** - HABILITADO
+- [x] **ModSerializers.java** - HABILITADO
+- [ ] **ModSyncedEntityData.java** - DESABILITADO
+- [x] **ModelAdditionalMagazineListener.java** - HABILITADO
+- [x] **ModelRotateListener.java** - HABILITADO
+- [x] **ModelScaleListener.java** - HABILITADO
+- [x] **ModelTranslateListener.java** - HABILITADO
+- [ ] **MouseHandlerMixin.java** - DESABILITADO
+- [ ] **NetworkHandler.java** - DESABILITADO
+- [ ] **ObjectAnimation.java** - DESABILITADO
+- [x] **ObjectAnimationChannel.java** - HABILITADO
+- [ ] **ObjectAnimationRunner.java** - DESABILITADO
+- [ ] **ObjectAnimationSoundChannel.java** - DESABILITADO
+- [x] **OculusCompat.java** - HABILITADO
+- [x] **OtherClothConfig.java** - HABILITADO
+- [ ] **PackConvertor.java** - DESABILITADO
+- [x] **PackInfoManager.java** - HABILITADO
+- [x] **PapiManager.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [ ] **ParameterizedCache.java** - DESABILITADO
+- [ ] **ParameterizedCachePair.java** - DESABILITADO
+- [x] **ParticleFactoryRegistry.java** - HABILITADO
+- [ ] **PlayerAnimatorCompat.java** - DESABILITADO
+- [ ] **PlayerAnimatorLoader.java** - DESABILITADO
+- [ ] **PlayerHurtByGunEvent.java** - DESABILITADO
+- [ ] **PlayerModelMixin.java** - DESABILITADO
+- [ ] **PlayerRespawnEvent.java** - DESABILITADO
+- [ ] **ProjectileExplosion.java** - DESABILITADO
+- [x] **RawAnimationStructure.java** - HABILITADO
+- [x] **RecipeFilter.java** - HABILITADO
+- [x] **RecipeFilterManager.java** - HABILITADO
+- [x] **RefitTransform.java** - HABILITADO
+- [ ] **RefitTurnPageButton.java** - DESABILITADO
+- [ ] **RefitUnloadButton.java** - DESABILITADO
+- [x] **RefreshClonePlayerDataEvent.java** - HABILITADO
+- [ ] **ReloadCommand.java** - DESABILITADO
+- [ ] **ReloadKey.java** - DESABILITADO
+- [ ] **RenderClothConfig.java** - DESABILITADO
+- [ ] **RenderHeadShotAABB.java** - DESABILITADO
+- [x] **RightHandRender.java** - HABILITADO
+- [x] **RootCommand.java** - HABILITADO
+- [x] **ScriptManager.java** - HABILITADO
+- [x] **Serializers.java** - HABILITADO
+- [ ] **ServerMessageRefreshRefitScreen.java** - DESABILITADO
+- [ ] **ServerMessageSound.java** - DESABILITADO
+- [ ] **ServerMessageSyncBaseTimestamp.java** - DESABILITADO
+- [ ] **ServerMessageSyncGunPack.java** - DESABILITADO
+- [ ] **ServerMessageSyncedEntityDataMapping.java** - DESABILITADO
+- [ ] **ServerMessageUpdateEntityData.java** - DESABILITADO
+- [ ] **ServerPlayNetHandlerMixin.java** - DESABILITADO
+- [x] **ShooterDataHolder.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [ ] **ShootKey.java** - DESABILITADO
+- [x] **SLerp.java** - HABILITADO
+- [x] **SlotModel.java** - HABILITADO
+- [x] **SoundManager.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [ ] **SoundPlayManager.java** - DESABILITADO
+- [x] **Spline.java** - HABILITADO
+- [ ] **StatueRenderer.java** - DESABILITADO
+- [x] **Step.java** - HABILITADO
+- [ ] **SyncBaseTimestamp.java** - DESABILITADO
+- [ ] **SyncedDataKey.java** - DESABILITADO
+- [ ] **SyncedEntityData.java** - DESABILITADO
+- [ ] **SyncedEntityDataEvent.java** - DESABILITADO
+- [ ] **TabConfig.java** - DESABILITADO
+- [ ] **TableRecipe.java** - DESABILITADO
+- [ ] **TargetBlockEntity.java** - DESABILITADO
+- [ ] **TargetMinecartRenderer.java** - DESABILITADO
+- [ ] **TargetRenderer.java** - DESABILITADO
+- [x] **TextShowRender.java** - HABILITADO (MINIMA: TODO)
+- [x] **ThrowableAnimationStateContext.java** - HABILITADO
+- [ ] **TickAnimationEvent.java** - DESABILITADO
+- [ ] **TimelessClientEvents.java** - DESABILITADO
+- [ ] **TimelessForgeEventWrappers.java** - DESABILITADO
+- [ ] **TimelessGunSmithTableRecipeSchema.java** - DESABILITADO
+- [ ] **TimelessServerEvents.java** - DESABILITADO
+- [ ] **TooltipEvent.java** - DESABILITADO
+- [x] **TravelToDimensionEvent.java** - HABILITADO
+- [ ] **ZoomKey.java** - DESABILITADO
+- [ ] **AbstractGunItem.java** - DESABILITADO
+- [x] **AccessorDatas.java** - HABILITADO
+- [ ] **AdsModifier.java** - DESABILITADO
+- [ ] **AimInaccuracyModifier.java** - DESABILITADO
+- [ ] **AmmoBoxItem.java** - DESABILITADO
+- [x] **AmmoHitBlockEvent.java** - HABILITADO
+- [ ] **AmmoItem.java** - DESABILITADO
+- [x] **AmmoItemBuilder.java** - HABILITADO
+- [ ] **AmmoSpeedModifier.java** - DESABILITADO
+- [ ] **AnimationManager.java** - DESABILITADO
+- [ ] **Animations.java** - DESABILITADO
+- [ ] **AnimationStructure.java** - DESABILITADO
+- [ ] **ArmorIgnoreModifier.java** - DESABILITADO
+- [ ] **AttachmentDataUtils.java** - DESABILITADO
+- [ ] **AttachmentItem.java** - DESABILITADO
+- [x] **AttachmentItemBuilder.java** - HABILITADO
+- [ ] **AttachmentPropertyManager.java** - DESABILITADO
+- [ ] **AttachmentQueryCategory.java** - DESABILITADO
+- [ ] **AttachmentQueryEntry.java** - DESABILITADO
+- [x] **AttachmentRender.java** - HABILITADO (MINIMA: OBJECT+PLACEHOLDER)
+- [x] **BeamRenderer.java** - HABILITADO
+- [x] **BedrockAnimatedModel.java** - HABILITADO
+- [x] **BedrockAttachmentModel.java** - HABILITADO (MINIMA: OBJECT+TODO)
+- [x] **BedrockCubeBox.java** - HABILITADO
+- [x] **BedrockGunModel.java** - HABILITADO (MINIMA: TODO)
+- [x] **BedrockModel.java** - HABILITADO
+- [ ] **CameraSetupEvent.java** - DESABILITADO
+- [x] **ClientAssetsManager.java** - HABILITADO
+- [x] **ClientAttachmentIndex.java** - HABILITADO (MINIMA: OBJECT)
+- [ ] **ClientAttachmentItemTooltip.java** - DESABILITADO
+- [ ] **ClientGunTooltip.java** - DESABILITADO
+- [ ] **ClientHitMark.java** - DESABILITADO
+- [x] **ClientIndexManager.java** - HABILITADO
+- [x] **CommonAssetsManager.java** - HABILITADO (MINIMA: TODO)
+- [x] **CommonNetworkCache.java** - HABILITADO (MINIMA: TODO)
+- [ ] **DamageModifier.java** - DESABILITADO
+- [ ] **EffectiveRangeModifier.java** - DESABILITADO
+- [ ] **EntityBulletRenderer.java** - DESABILITADO
+- [ ] **EntityKineticBullet.java** - DESABILITADO
+- [ ] **EntityUtil.java** - DESABILITADO
+- [ ] **ExplosionModifier.java** - DESABILITADO
+- [ ] **ExtraMovementModifier.java** - DESABILITADO
+- [ ] **FirstPersonRenderGunEvent.java** - DESABILITADO
+- [ ] **GunAnimationStateContext.java** - DESABILITADO
+- [x] **GunData.java** - HABILITADO (MINIMA: TODO)
+- [x] **GunDisplay.java** - HABILITADO
+- [ ] **GunDisplayInstance.java** - DESABILITADO
+- [ ] **GunHudOverlay.java** - DESABILITADO
+- [ ] **GunItemBuilder.java** - DESABILITADO
+- [ ] **GunItemDataAccessor.java** - DESABILITADO
+- [ ] **GunItemManager.java** - DESABILITADO
+- [ ] **GunItemRendererWrapper.java** - DESABILITADO
+- [x] **GunMod.java** - HABILITADO
+- [ ] **GunModPlugin.java** - DESABILITADO
+- [ ] **GunNbtFactory.java** - DESABILITADO
+- [ ] **GunPackLoader.java** - DESABILITADO
+- [ ] **GunProperties.java** - DESABILITADO
+- [ ] **GunPropertyDiagrams.java** - DESABILITADO
+- [ ] **GunRefitScreen.java** - DESABILITADO
+- [ ] **GunSmithTableBlock.java** - DESABILITADO
+- [ ] **GunSmithTableScreen.java** - DESABILITADO
+- [ ] **HeadShotModifier.java** - DESABILITADO
+- [ ] **InaccuracyModifier.java** - DESABILITADO
+- [x] **KnockbackModifier.java** - HABILITADO
+- [ ] **LivingEntityAim.java** - DESABILITADO
+- [ ] **LivingEntityBolt.java** - DESABILITADO
+- [ ] **LivingEntityDrawGun.java** - DESABILITADO
+- [ ] **LivingEntityMelee.java** - DESABILITADO
+- [ ] **LivingEntityReload.java** - DESABILITADO
+- [ ] **LivingEntityShoot.java** - DESABILITADO
+- [ ] **LivingEntitySpeedModifier.java** - DESABILITADO
+- [ ] **LocalPlayerAim.java** - DESABILITADO
+- [ ] **LocalPlayerBolt.java** - DESABILITADO
+- [ ] **LocalPlayerDraw.java** - DESABILITADO
+- [ ] **LocalPlayerFireSelect.java** - DESABILITADO
+- [ ] **LocalPlayerInspect.java** - DESABILITADO
+- [ ] **LocalPlayerMelee.java** - DESABILITADO
+- [ ] **LocalPlayerReload.java** - DESABILITADO
+- [ ] **LocalPlayerShoot.java** - DESABILITADO
+- [x] **ModCreativeTabs.java** - HABILITADO (MINIMA: PLACEHOLDER)
+- [ ] **ModernKineticGunItem.java** - DESABILITADO
+- [ ] **ModernKineticGunScriptAPI.java** - DESABILITADO
+- [ ] **MuzzleFlashRender.java** - DESABILITADO
+- [ ] **PierceModifier.java** - DESABILITADO
+- [ ] **RecoilModifier.java** - DESABILITADO
+- [ ] **RenderCrosshairEvent.java** - DESABILITADO
+- [ ] **RpmModifier.java** - DESABILITADO
+- [ ] **ShellRender.java** - DESABILITADO
+- [ ] **SilenceModifier.java** - DESABILITADO
+- [ ] **StatueBlock.java** - DESABILITADO
+- [ ] **TacHitResult.java** - DESABILITADO
+- [ ] **TargetBlock.java** - DESABILITADO
+- [ ] **TargetMinecart.java** - DESABILITADO
+- [x] **TimelessAPI.java** - HABILITADO
+- [ ] **TimelessItemWrapper.java** - DESABILITADO
+- [ ] **TimelessKubeJSPlugin.java** - DESABILITADO
+- [ ] **TimelessRecipeJS.java** - DESABILITADO
+- [ ] **WeightModifier.java** - DESABILITADO
+- [ ] **ClientSetupEvent.java** - DESABILITADO
+- [ ] **GunDisplayInstance.java** - DESABILITADO
+- [ ] **FirstPersonRenderGunEvent.java** - DESABILITADO
+- [ ] **GunItemRendererWrapper.java** - DESABILITADO
+- [ ] **CameraSetupEvent.java** - DESABILITADO
+- [x] **CommonAssetsManager.java** - HABILITADO (MINIMA: TODO)
+- [ ] **GunSmithTableScreen.java** - DESABILITADO
+- [ ] **LocalPlayerShoot.java** - DESABILITADO
+- [ ] **ModernKineticGunScriptAPI.java** - DESABILITADO
+- [ ] **EntityKineticBullet.java** - DESABILITADO
+- [x] **ClientAssetsManager.java** - HABILITADO
+.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **ClientAssetsManager.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **ClientAttachmentIndex.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **ClientIndexManager.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **CommonAssetsManager.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **CommonNetworkCache.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **GunData.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **GunMod.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **KnockbackModifier.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **TimelessAPI.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **CommonAssetsManager.java** - MARCADO como pendente, mas REALMENTE habilitado
+- **ClientAssetsManager.java** - MARCADO como pendente, mas REALMENTE habilitado
+
+---
+
+Gerado automaticamente
+
