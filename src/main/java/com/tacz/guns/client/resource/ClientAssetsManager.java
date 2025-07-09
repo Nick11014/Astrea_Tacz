@@ -2,10 +2,11 @@ package com.tacz.guns.client.resource;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
-import com.tacz.guns.api.vmlib.LuaAnimationConstant;
-import com.tacz.guns.api.vmlib.LuaGunAnimationConstant;
-import com.tacz.guns.api.vmlib.LuaLibrary;
+// TODO: Implementação mínima - APIs de animação desabilitadas temporariamente
+// import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
+// import com.tacz.guns.api.vmlib.LuaAnimationConstant;
+// import com.tacz.guns.api.vmlib.LuaGunAnimationConstant;
+// import com.tacz.guns.api.vmlib.LuaLibrary;
 import com.tacz.guns.client.resource.manager.DisplayManager;
 import com.tacz.guns.client.resource.manager.GltfManager;
 import com.tacz.guns.client.resource.manager.PackInfoManager;
@@ -80,9 +81,9 @@ public enum ClientAssetsManager {
     private JsonDataManager<BedrockAnimationFile> bedrockAnimation;
     // gltf 动画
     private GltfManager gltfAnimation;
-    // 客户端脚本
-    private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
-    private ScriptManager scriptManager;
+    // TODO: Implementação mínima - sistema de animação desabilitado temporariamente
+    // private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
+    // private ScriptManager scriptManager;
     // 音效
     private SoundAssetsManager soundAssetsManager;
     // 枪包元数据
@@ -100,7 +101,8 @@ public enum ClientAssetsManager {
             bedrockModel = register(new JsonDataManager<>(BedrockModelPOJO.class, GSON, "geo_models", "BedrockModelLoader"));
             bedrockAnimation = register(new JsonDataManager<>(BedrockAnimationFile.class, GSON, new FileToIdConverter("animations", ".animation.json"), "BedrockAnimationLoader"));
             gltfAnimation = register(new GltfManager());
-            scriptManager = register(new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList));
+            // TODO: Implementação mínima - sistema de scripts desabilitado temporariamente
+            // scriptManager = register(new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList));
             soundAssetsManager = register(new SoundAssetsManager());
             packInfo = register(new PackInfoManager());
         }
@@ -148,12 +150,16 @@ public enum ClientAssetsManager {
 
     @Nullable
     public LuaTable getScript(ResourceLocation id) {
-        return scriptManager.getScript(id);
+        // TODO: Implementação mínima - sistema de scripts desabilitado temporariamente
+        // return scriptManager.getScript(id);
+        return null;
     }
 
     @Nullable
-    public AnimationStructure getGltfAnimation(ResourceLocation id) {
-        return gltfAnimation.getGltfAnimation(id);
+    public Object getGltfAnimation(ResourceLocation id) {
+        // TODO: Implementação mínima - sistema de animação GLTF desabilitado temporariamente
+        // return gltfAnimation.getGltfAnimation(id);
+        return null;
     }
 
     @Nullable
@@ -176,6 +182,8 @@ public enum ClientAssetsManager {
 
     @OnlyIn(Dist.CLIENT)
     public static void reloadAllPack() {
+        // TODO: Implementação mínima - sistema de reload desabilitado temporariamente
+        /*
         try {
             Minecraft.getInstance().reloadResourcePacks().get();
             // 如果连接到多人游戏
@@ -189,5 +197,6 @@ public enum ClientAssetsManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        */
     }
 }
