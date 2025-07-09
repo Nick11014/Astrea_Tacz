@@ -8,7 +8,8 @@ import com.google.gson.reflect.TypeToken;
 import com.tacz.guns.GunMod;
 // TODO: [MIGRAÇÃO] Restaurar quando sistema de modificadores for habilitado
 // import com.tacz.guns.api.modifier.JsonProperty;
-// import com.tacz.guns.resource.CommonAssetsManager;
+// TODO: [MIGRAÇÃO] ✅ CommonAssetsManager habilitado - serializers customizados funcionais
+import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.ICommonResourceProvider;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.index.CommonAmmoIndex;
@@ -155,14 +156,14 @@ public enum CommonNetworkCache implements ICommonResourceProvider {
     }
 
     private <T> T parse(String json, Class<T> dataClass) {
-        // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
-        return new Gson().fromJson(json, dataClass);
+        // TODO: [MIGRAÇÃO] ✅ CommonAssetsManager.GSON restaurado - serializers customizados funcionais
+        return CommonAssetsManager.GSON.fromJson(json, dataClass);
     }
 
     private AttachmentData parseAttachmentData(String json) {
-        // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
-        AttachmentData data = new Gson().fromJson(json, AttachmentData.class);
-        JsonElement element = new Gson().fromJson(json, JsonElement.class);
+        // TODO: [MIGRAÇÃO] ✅ CommonAssetsManager.GSON restaurado - serializers customizados funcionais
+        AttachmentData data = CommonAssetsManager.GSON.fromJson(json, AttachmentData.class);
+        JsonElement element = CommonAssetsManager.GSON.fromJson(json, JsonElement.class);
         if (data != null) {
             // TODO: [MIGRAÇÃO] Restaurar lógica de modificadores quando AttachmentPropertyManager for habilitado
             // 序列化注册的配件属性修改

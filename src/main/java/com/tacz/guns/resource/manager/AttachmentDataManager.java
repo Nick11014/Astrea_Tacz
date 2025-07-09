@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 // TODO: [MIGRAÇÃO] Restaurar quando sistema de modificadores for habilitado
 // import com.tacz.guns.api.modifier.JsonProperty;
-// import com.tacz.guns.resource.CommonAssetsManager;
+import com.tacz.guns.resource.CommonAssetsManager;
 // import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import com.tacz.guns.resource.network.DataType;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
@@ -13,8 +13,8 @@ import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 public class AttachmentDataManager extends CommonDataManager<AttachmentData> {
 
     public AttachmentDataManager() {
-        // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
-        super(DataType.ATTACHMENT_DATA, AttachmentData.class, new Gson(), "data/attachments", "AttachmentDataLoader");
+        // TODO: [MIGRAÇÃO] ✅ CommonAssetsManager.GSON restaurado - serializers customizados funcionais
+        super(DataType.ATTACHMENT_DATA, AttachmentData.class, CommonAssetsManager.GSON, "data/attachments", "AttachmentDataLoader");
     }
 
     @Override
