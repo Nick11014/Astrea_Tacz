@@ -5,12 +5,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tacz.guns.api.vmlib.LuaGunLogicConstant;
 import com.tacz.guns.api.vmlib.LuaLibrary;
-import com.tacz.guns.crafting.GunSmithTableIngredient;
-import com.tacz.guns.crafting.GunSmithTableRecipe;
-import com.tacz.guns.crafting.result.GunSmithTableResult;
-import com.tacz.guns.init.ModRecipe;
-import com.tacz.guns.network.NetworkHandler;
-import com.tacz.guns.network.message.ServerMessageSyncGunPack;
+// TODO: [MIGRAÇÃO] Restaurar quando sistema de crafting for habilitado
+// import com.tacz.guns.crafting.GunSmithTableIngredient;
+// import com.tacz.guns.crafting.GunSmithTableRecipe;
+// import com.tacz.guns.crafting.result.GunSmithTableResult;
+// import com.tacz.guns.init.ModRecipe;
+// import com.tacz.guns.network.NetworkHandler;
+// import com.tacz.guns.network.message.ServerMessageSyncGunPack;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonAttachmentIndex;
@@ -21,7 +22,8 @@ import com.tacz.guns.resource.network.CommonNetworkCache;
 import com.tacz.guns.resource.network.DataType;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.block.BlockData;
-import com.tacz.guns.resource.pojo.data.block.TabConfig;
+// TODO: [MIGRAÇÃO] Restaurar quando TabConfig for habilitado
+// import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.gun.ExtraDamage;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.resource.pojo.data.gun.Ignite;
@@ -54,8 +56,9 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer())
             .registerTypeAdapter(Pair.class, new PairSerializer())
-            .registerTypeAdapter(GunSmithTableIngredient.class, new GunSmithTableIngredientSerializer())
-            .registerTypeAdapter(GunSmithTableResult.class, new GunSmithTableResultSerializer())
+            // TODO: [MIGRAÇÃO] Restaurar quando sistema de crafting for habilitado
+            // .registerTypeAdapter(GunSmithTableIngredient.class, new GunSmithTableIngredientSerializer())
+            // .registerTypeAdapter(GunSmithTableResult.class, new GunSmithTableResultSerializer())
             .registerTypeAdapter(ExtraDamage.DistanceDamagePair.class, new DistanceDamagePairSerializer())
             .registerTypeAdapter(Vec3.class, new Vec3Serializer())
             .registerTypeAdapter(Ignite.class, new IgniteSerializer())
@@ -64,7 +67,8 @@ public class CommonAssetsManager implements ICommonResourceProvider {
             .registerTypeAdapter(CommonAmmoIndex.class, new CommonAmmoIndexSerializer())
             .registerTypeAdapter(CommonAttachmentIndex.class, new CommonAttachmentIndexSerializer())
             .registerTypeAdapter(CommonBlockIndex.class, new CommonBlockIndexSerializer())
-            .registerTypeAdapter(TabConfig.class, new TabConfig.Deserializer())
+            // TODO: [MIGRAÇÃO] Restaurar quando TabConfig for habilitado
+            // .registerTypeAdapter(TabConfig.class, new TabConfig.Deserializer())
             .create();
 
     private final List<INetworkCacheReloadListener> listeners = new ArrayList<>();
@@ -234,10 +238,11 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     public static void onReload(TagsUpdatedEvent event) {
         if (event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD){
             if (getInstance() !=null && getInstance().recipeManager != null) {
-                List<GunSmithTableRecipe> recipes = getInstance().recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
-                for (GunSmithTableRecipe recipe : recipes) {
-                    recipe.init();
-                }
+                // TODO: [MIGRAÇÃO] Restaurar quando sistema de crafting for habilitado
+                // List<GunSmithTableRecipe> recipes = getInstance().recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+                // for (GunSmithTableRecipe recipe : recipes) {
+                //     recipe.init();
+                // }
             }
         }
     }
@@ -253,12 +258,13 @@ public class CommonAssetsManager implements ICommonResourceProvider {
         if (getInstance() == null) {
             return;
         }
-        ServerMessageSyncGunPack message = new ServerMessageSyncGunPack(getInstance().getNetworkCache());
-        if (event.getPlayer() != null) {
-            NetworkHandler.sendToClientPlayer(message, event.getPlayer());
-        } else {
-            event.getPlayerList().getPlayers().forEach(player -> NetworkHandler.sendToClientPlayer(message, player));
-        }
+        // TODO: [MIGRAÇÃO] Restaurar quando sistema de rede for habilitado
+        // ServerMessageSyncGunPack message = new ServerMessageSyncGunPack(getInstance().getNetworkCache());
+        // if (event.getPlayer() != null) {
+        //     NetworkHandler.sendToClientPlayer(message, event.getPlayer());
+        // } else {
+        //     event.getPlayerList().getPlayers().forEach(player -> NetworkHandler.sendToClientPlayer(message, player));
+        // }
     }
 
     public static void reloadAllPack() {
