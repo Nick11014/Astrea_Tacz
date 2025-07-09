@@ -6,7 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.tacz.guns.GunMod;
-import com.tacz.guns.resource.CommonAssetsManager;
+// TODO: [MIGRAÇÃO] Restaurar quando CommonAssetsManager for habilitado
+// import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.network.DataType;
 import com.tacz.guns.util.ResourceScanner;
@@ -33,7 +34,8 @@ public class RecipeFilterManager extends SimplePreparableReloadListener<Map<Reso
     protected Map<ResourceLocation, String> networkCache;
 
     public RecipeFilterManager() {
-        this.gson = CommonAssetsManager.GSON;
+        // TODO: [MIGRAÇÃO] Restaurar CommonAssetsManager.GSON quando habilitado
+        this.gson = new Gson();
         this.marker = MarkerManager.getMarker("RecipeFilter");
         this.fileToIdConverter = FileToIdConverter.json("recipe_filters");
     }
