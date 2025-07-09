@@ -1,10 +1,10 @@
 package com.tacz.guns.client.model.papi;
 
-import com.tacz.guns.api.TimelessAPI;
-import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.client.resource.index.ClientGunIndex;
-import com.tacz.guns.resource.pojo.data.gun.Bolt;
-import net.minecraft.resources.ResourceLocation;
+// TODO: Implementação mínima - dependências complexas comentadas temporariamente
+// import com.tacz.guns.api.TimelessAPI;
+// import com.tacz.guns.api.item.IGun;
+// import com.tacz.guns.client.resource.index.ClientGunIndex;
+// import com.tacz.guns.resource.pojo.data.gun.Bolt;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Function;
@@ -14,6 +14,8 @@ public class AmmoCountPapi implements Function<ItemStack, String> {
 
     @Override
     public String apply(ItemStack stack) {
+        // TODO: Implementação mínima - retorna placeholder temporariamente
+        /*
         IGun iGun = IGun.getIGunOrNull(stack);
         if (iGun != null) {
             ResourceLocation gunId = iGun.getGunId(stack);
@@ -24,6 +26,7 @@ public class AmmoCountPapi implements Function<ItemStack, String> {
             int ammoCount = iGun.getCurrentAmmoCount(stack) + (iGun.hasBulletInBarrel(stack) && gunIndex.getGunData().getBolt() != Bolt.OPEN_BOLT ? 1 : 0);
             return "" + ammoCount;
         }
-        return "";
+        */
+        return "N/A"; // Placeholder para implementação mínima
     }
 }

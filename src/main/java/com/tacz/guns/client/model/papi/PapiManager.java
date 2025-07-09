@@ -16,8 +16,8 @@ public final class PapiManager {
     // 注册，não sei onde colocar, colocando aqui primeiro
     static {
         addPapi(PlayerNamePapi.NAME, new PlayerNamePapi());
-        // TODO: Re-ativar quando AmmoCountPapi for habilitado
-        // addPapi(AmmoCountPapi.NAME, new AmmoCountPapi());
+        // TODO: ✅ AmmoCountPapi habilitado com implementação mínima
+        addPapi(AmmoCountPapi.NAME, new AmmoCountPapi());
     }
 
     public static void addPapi(String textKey, Function<ItemStack, String> function) {
