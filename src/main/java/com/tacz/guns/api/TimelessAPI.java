@@ -1,7 +1,7 @@
 package com.tacz.guns.api;
 
-import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.item.IGun;
+import com.tacz.guns.client.resource.index.ClientGunIndex;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -15,16 +15,16 @@ import java.util.Set;
 
 /**
  * API principal do TacZ para acesso a dados de armas, munições e acessórios.
- * 
+ * <p>
  * MIGRAÇÃO 1.21.1: Implementação mínima funcional que mantém todas as assinaturas
  * originais mas retorna valores padrão seguros até que os managers sejam habilitados.
  */
 public final class TimelessAPI {
-    
+
     // ===== MÉTODOS DE DISPLAY CLIENT-SIDE =====
-    
+
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Object> getGunDisplay(ItemStack stack) {
+    public static Optional<ClientGunIndex> getGunDisplay(ItemStack stack) {
         // TODO: Retornar GunDisplayInstance quando disponível
         return Optional.empty();
     }
@@ -60,7 +60,7 @@ public final class TimelessAPI {
     }
 
     // ===== MÉTODOS COMMON-SIDE =====
-    
+
     public static Optional<Object> getCommonGunIndex(ResourceLocation gunId) {
         // TODO: Retornar CommonGunIndex quando CommonAssetsManager estiver disponível
         return Optional.empty();
@@ -82,7 +82,7 @@ public final class TimelessAPI {
     }
 
     // ===== MÉTODOS DE COLEÇÕES =====
-    
+
     public static Set<Map.Entry<ResourceLocation, Object>> getAllGuns() {
         // TODO: Retornar todos os guns quando disponível
         return Collections.emptySet();
@@ -104,28 +104,28 @@ public final class TimelessAPI {
     }
 
     // ===== MÉTODOS DE RECIPE =====
-    
+
     public static RecipeType<?> getGunSmithTableRecipeType() {
         // TODO: Retornar tipo de receita quando disponível
         return null;
     }
 
     // ===== MÉTODOS DE TERCEIRA PESSOA =====
-    
+
     @OnlyIn(Dist.CLIENT)
     public static void registerThirdPersonAnimation(ResourceLocation gunId, Object animationLister) {
         // TODO: Implementar quando ThirdPersonManager estiver disponível
     }
 
     // ===== MÉTODOS UTILITÁRIOS QUE FUNCIONAM IMEDIATAMENTE =====
-    
+
     /**
      * Verifica se um ItemStack é uma arma válida
      */
     public static boolean isGun(ItemStack stack) {
         return stack.getItem() instanceof IGun;
     }
-    
+
     /**
      * Obtém o ID da arma de um ItemStack, se for uma arma
      */

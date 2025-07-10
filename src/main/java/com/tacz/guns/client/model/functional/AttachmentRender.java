@@ -1,12 +1,18 @@
 package com.tacz.guns.client.model.functional;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.attachment.AttachmentType;
-// import com.tacz.guns.client.model.BedrockAttachmentModel; // TODO: Habilitar quando BedrockAnimatedModel estiver funcionando
+import com.tacz.guns.client.model.BedrockAttachmentModel;
 import com.tacz.guns.client.model.BedrockGunModel;
 import com.tacz.guns.client.model.IFunctionalRenderer;
-import com.tacz.guns.util.RenderDistance; // Agora disponível!
+import com.tacz.guns.util.RenderDistance;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 import java.util.EnumMap;
 
@@ -23,7 +29,7 @@ public class AttachmentRender implements IFunctionalRenderer {
         this.type = type;
     }
 
-    public static void renderAttachment(Object attachmentItem, Object gunItem, Object poseStack, Object transformType, int light, int overlay) {
+    public static void renderAttachment(ItemStack attachmentItem, ItemStack gunItem, PoseStack poseStack, ItemDisplayContext transformType, int light, int overlay) {
         // TODO: Implementação expandida - usando RenderDistance e validações
         if (attachmentItem == null || gunItem == null || poseStack == null) {
             return;
@@ -31,7 +37,7 @@ public class AttachmentRender implements IFunctionalRenderer {
 
         // Verificar distância de renderização
         boolean highPoly = RenderDistance.inRenderHighPolyModelDistance(poseStack);
-        
+
         // TODO: Implementar renderização completa quando tipos estiverem disponíveis
         // poseStack.translate(0, -1.5, 0);
         // if (attachmentItem.getItem() instanceof IAttachment iAttachment) {
@@ -65,31 +71,31 @@ public class AttachmentRender implements IFunctionalRenderer {
     }
 
     @Override
-    public void render(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+    public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
         // TODO: Implementação expandida usando bedrockGunModel e type
         if (bedrockGunModel == null || type == null) {
             return;
         }
 
         // TODO: Implementar quando EnumMap e outros tipos estiverem disponíveis
-        // EnumMap<AttachmentType, ItemStack> currentAttachmentItem = bedrockGunModel.getCurrentAttachmentItem();
-        // ItemStack attachmentItem = currentAttachmentItem.get(type);
-        // if (attachmentItem != null && !attachmentItem.isEmpty()) {
-        //     Matrix3f normal = new Matrix3f(poseStack.last().normal());
-        //     Matrix4f pose = new Matrix4f(poseStack.last().pose());
-        //     bedrockGunModel.delegateRender((poseStack1, vertexBuffer1, transformType1, light1, overlay1) -> {
-        //         PoseStack poseStack2 = new PoseStack();
-        //         poseStack2.last().normal().mul(normal);
-        //         poseStack2.last().pose().mul(pose);
-        //         renderAttachment(attachmentItem, bedrockGunModel.getCurrentGunItem(), poseStack2, transformType, light, overlay);
-        //     });
-        // }
+        EnumMap<AttachmentType, ItemStack> currentAttachmentItem = bedrockGunModel.getCurrentAttachmentItem();
+        ItemStack attachmentItem = currentAttachmentItem.get(type);
+        if (attachmentItem != null && !attachmentItem.isEmpty()) {
+            Matrix3f normal = new Matrix3f(poseStack.last().normal());
+            Matrix4f pose = new Matrix4f(poseStack.last().pose());
+            bedrockGunModel.delegateRender((poseStack1, vertexBuffer1, transformType1, light1, overlay1) -> {
+                PoseStack poseStack2 = new PoseStack();
+                poseStack2.last().normal().mul(normal);
+                poseStack2.last().pose().mul(pose);
+                renderAttachment(attachmentItem, bedrockGunModel.getCurrentGunItem(), poseStack2, transformType, light, overlay);
+            });
+        }
 
         // Implementação mínima atual
         renderBasic(poseStack, vertexBuffer, transformType, light, overlay);
     }
 
-    private void renderBasic(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+    private void renderBasic(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
         // Renderização básica que funciona com Object strategy
         if (RenderDistance.inRenderHighPolyModelDistance(poseStack)) {
             // Renderização de alta qualidade

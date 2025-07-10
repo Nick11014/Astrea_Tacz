@@ -1,7 +1,10 @@
 package com.tacz.guns.client.model.functional;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.tacz.guns.client.model.BedrockGunModel;
 import com.tacz.guns.client.model.IFunctionalRenderer;
+import net.minecraft.world.item.ItemDisplayContext;
 
 /**
  * Renderizador funcional de exemplo demonstrando Object Strategy
@@ -16,7 +19,7 @@ public class ExampleRender implements IFunctionalRenderer {
     }
 
     @Override
-    public void render(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+    public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
         if (!isEnabled) {
             return;
         }

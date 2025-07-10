@@ -1,10 +1,13 @@
 package com.tacz.guns.client.model.functional;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.tacz.guns.client.model.BedrockGunModel;
 import com.tacz.guns.client.model.IFunctionalRenderer;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.pojo.display.LaserConfig;
 import com.tacz.guns.util.LaserColorUtil;
+import net.minecraft.world.item.ItemDisplayContext;
 
 /**
  * Renderizador funcional para sistema de laser
@@ -32,7 +35,7 @@ public class LaserRender implements IFunctionalRenderer {
     }
 
     @Override
-    public void render(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+    public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
         if (!isEnabled || !isLaserActive || attachmentIndex == null) {
             return;
         }

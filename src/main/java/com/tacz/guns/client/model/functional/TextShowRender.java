@@ -29,7 +29,7 @@ public class TextShowRender implements IFunctionalRenderer {
     }
 
     @Override
-    public void render(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+    public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
         // TODO: Implementação mínima - renderização de texto desabilitada temporariamente
         // Requer resolução de imports: ItemDisplayContext, PoseStack, VertexConsumer, Minecraft, etc.
         

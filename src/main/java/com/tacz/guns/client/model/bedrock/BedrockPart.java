@@ -68,7 +68,7 @@ public class BedrockPart {
             if (!this.cubes.isEmpty() || !this.children.isEmpty()) {
                 poseStack.pushPose();
                 this.translateAndRotateAndScale(poseStack);
-                this.compile(poseStack.last(), consumer, cubePackedLight, overlay, red, green, blue, alpha);
+                this.compile(poseStack.last(), transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
 
                 for (BedrockPart part : this.children) {
                     part.render(poseStack, transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
@@ -95,9 +95,9 @@ public class BedrockPart {
         poseStack.scale(xScale, yScale, zScale);
     }
 
-    public void compile(PoseStack.Pose pose, VertexConsumer consumer, int light, int overlay, float red, float green, float blue, float alpha) {
+    public void compile(PoseStack.Pose pose, ItemDisplayContext transformType, VertexConsumer consumer, int light, int overlay, float red, float green, float blue, float alpha) {
         for (BedrockCube bedrockCube : this.cubes) {
-            bedrockCube.compile(pose, consumer, light, overlay, red, green, blue, alpha);
+            bedrockCube.compile(pose, consumer, transformType, light, overlay, red, green, blue, alpha);
         }
     }
 

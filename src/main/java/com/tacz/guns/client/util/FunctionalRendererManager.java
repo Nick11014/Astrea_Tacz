@@ -1,9 +1,12 @@
 package com.tacz.guns.client.util;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.tacz.guns.client.model.IFunctionalRenderer;
 import com.tacz.guns.client.model.functional.*;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.model.BedrockGunModel;
+import net.minecraft.world.item.ItemDisplayContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,7 +100,7 @@ public class FunctionalRendererManager {
     /**
      * Renderiza todos os renderizadores registrados
      */
-    public static void renderAll(Object poseStack, Object vertexBuffer, Object transformType, int light, int overlay) {
+    public static void renderAll(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
         if (!isEnabled) {
             return;
         }

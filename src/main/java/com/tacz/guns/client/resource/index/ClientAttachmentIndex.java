@@ -1,5 +1,6 @@
 package com.tacz.guns.client.resource.index;
 
+import com.tacz.guns.client.resource.pojo.display.attachment.AttachmentDisplay;
 import com.tacz.guns.client.resource.pojo.display.attachment.AttachmentLod;
 import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import com.tacz.guns.client.resource.pojo.display.LaserConfig;
@@ -8,6 +9,7 @@ import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 
 import javax.annotation.Nullable;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Implementação mínima estratégica para ClientAttachmentIndex
@@ -19,7 +21,7 @@ public class ClientAttachmentIndex {
     private Object texture; // TODO: ResourceLocation quando import estiver funcionando
     private String name;
     private AttachmentData data;
-    private Object display; // TODO: AttachmentDisplay quando necessário
+    private AttachmentDisplay display; // TODO: AttachmentDisplay quando necessário
     private Object slotTextureLocation; // TODO: ResourceLocation quando import estiver funcionando
     private String adapterNodeName;
     private boolean showMuzzle = false;
@@ -74,6 +76,10 @@ public class ClientAttachmentIndex {
         return data;
     }
 
+    public Optional<AttachmentDisplay> getDisplay() {
+        return Optional.ofNullable(display);
+    }
+
     public Object getSlotTextureLocation() { // TODO: retornar ResourceLocation quando import estiver funcionando
         return slotTextureLocation;
     }
@@ -123,6 +129,10 @@ public class ClientAttachmentIndex {
         return attachmentLod;
     }
 
+    public Optional<AttachmentLod> getLodModel() {
+        return Optional.ofNullable(attachmentLod);
+    }
+
     public Map<String, Object> getSounds() { // TODO: retornar Map<String, ResourceLocation> quando import estiver funcionando
         return sounds;
     }
@@ -161,11 +171,13 @@ public class ClientAttachmentIndex {
      * Retorna o modelo LOD (Level of Detail) como Object
      * TODO: Retornar Pair<BedrockAttachmentModel, ResourceLocation> quando disponível
      */
+    /*
     public Object getLodModel() {
         // TODO: Implementar sistema LOD quando BedrockAttachmentModel estiver disponível
         // Retorna null por enquanto (sem modelo LOD)
-        return null;
+        return Optional.empty();
     }
+    */
 
     /**
      * Cria uma instância de BedrockAttachmentModel básica se necessário
@@ -234,5 +246,16 @@ public class ClientAttachmentIndex {
      */
     public boolean shouldRender() {
         return hasModel() && hasTexture();
+    }
+
+    /**
+     * Método estático placeholder para carregar modelo de acessório
+     * TODO: Implementar corretamente quando BedrockAttachmentModel estiver disponível
+     */
+    public static Object getOrLoadAttachmentModel(Object modelLocation) {
+        // TODO: Implementação mínima - retorna null temporariamente
+        // Quando BedrockAttachmentModel estiver disponível, implementar:
+        // return ClientAssetsManager.INSTANCE.getBedrockModelPOJO(modelLocation);
+        return null;
     }
 }

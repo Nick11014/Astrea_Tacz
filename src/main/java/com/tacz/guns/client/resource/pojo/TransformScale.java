@@ -1,6 +1,8 @@
 package com.tacz.guns.client.resource.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.world.item.ItemDisplayContext;
 import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
@@ -15,6 +17,22 @@ public class TransformScale {
     @SerializedName("fixed")
     @Nullable
     private Vector3f fixed;
+
+    public void apply(ItemDisplayContext transformType, PoseStack poseStack) {
+        Vector3f scale = null;
+        if (transformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND || transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+            scale = thirdPerson;
+        }
+        if (transformType == ItemDisplayContext.GROUND) {
+            scale = ground;
+        }
+        if (transformType == ItemDisplayContext.FIXED) {
+            scale = fixed;
+        }
+        if (scale != null) {
+            poseStack.scale(scale.x, scale.y, scale.z);
+        }
+    }
 
     public static TransformScale getAmmoDefault() {
         TransformScale transformScale = new TransformScale();

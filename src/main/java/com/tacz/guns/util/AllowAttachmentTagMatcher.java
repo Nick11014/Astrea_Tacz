@@ -42,7 +42,7 @@ public final class AllowAttachmentTagMatcher {
             }
             // 如果是配件 id，直接对比
             else {
-                ResourceLocation matchAttachmentId = new ResourceLocation(tag);
+                ResourceLocation matchAttachmentId = ResourceLocation.parse(tag);
                 if (attachmentId.equals(matchAttachmentId)) {
                     searchSignal.set(true);
                     return;

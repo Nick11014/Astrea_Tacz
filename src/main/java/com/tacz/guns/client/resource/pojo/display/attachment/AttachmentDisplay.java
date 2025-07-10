@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.client.resource.pojo.display.IDisplay;
 import com.tacz.guns.client.resource.pojo.display.LaserConfig;
+import com.tacz.guns.client.resource.pojo.display.gun.GunTransform;
 import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import net.minecraft.resources.ResourceLocation;
 
@@ -60,6 +61,13 @@ public class AttachmentDisplay implements IDisplay {
 
     @SerializedName("sounds")
     private Map<String, ResourceLocation> sounds = Maps.newHashMap();
+
+    @SerializedName("transform")
+    private GunTransform transform;
+
+    public GunTransform getTransform() {
+        return transform;
+    }
 
     public ResourceLocation getSlotTextureLocation() {
         return slotTextureLocation;

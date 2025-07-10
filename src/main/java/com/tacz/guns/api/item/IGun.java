@@ -7,7 +7,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.capabilities.ItemCapability;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -16,10 +18,12 @@ import javax.annotation.Nullable;
 /**
  * Interface para itens de arma. Contém apenas accessors de dados NBT/DataComponents.
  * As implementações de lógica de armas estão em classes específicas.
- * 
+ * <p>
  * MIGRAÇÃO 1.21.1: Esta interface foi adaptada para usar DataComponents ao invés de NBT direto.
  */
 public interface IGun {
+    ItemCapability<IGun, Void> ITEM_CAPABILITY = ItemCapability.createVoid(ResourceLocation.fromNamespaceAndPath("tacz", "gun"), IGun.class);
+
     /**
      * @return 如果物品类型为 IGun 则返回显式转换后的实例，否则返回 null。
      */

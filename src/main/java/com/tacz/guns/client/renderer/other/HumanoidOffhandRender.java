@@ -28,7 +28,7 @@ public class HumanoidOffhandRender {
         if (itemStack.isEmpty()) {
             return;
         }
-        IGun iGun = IGun.getIGunOrNull(itemStack);
+        IGun iGun = itemStack.getCapability(IGun.ITEM_CAPABILITY);
         if (iGun == null) {
             return;
         }
@@ -56,7 +56,7 @@ public class HumanoidOffhandRender {
         if (itemStack.isEmpty()) {
             return;
         }
-        IGun iGun = IGun.getIGunOrNull(itemStack);
+        IGun iGun = itemStack.getCapability(IGun.ITEM_CAPABILITY);
         if (iGun == null) {
             return;
         }
@@ -81,9 +81,7 @@ public class HumanoidOffhandRender {
         matrixStack.pushPose();
         matrixStack.translate(-pos.x() / 16f, 1.5 - pos.y() / 16f, pos.z() / 16f);
         matrixStack.scale(-scale.x(), -scale.y(), scale.z());
-        Quaternionf rotation = new Quaternionf();
-        MathUtil.toQuaternion((float) Math.toRadians(rotate.x), (float) Math.toRadians(rotate.y), (float) Math.toRadians(rotate.z), rotation);
-        matrixStack.mulPose(rotation);
+        matrixStack.mulPose(new Quaternionf().rotateXYZ((float) Math.toRadians(rotate.x), (float) Math.toRadians(rotate.y), (float) Math.toRadians(rotate.z)));
         renderer.renderStatic(itemStack, ItemDisplayContext.FIXED, packedLight, OverlayTexture.NO_OVERLAY, matrixStack, buffer, entity.level(), entity.getId());
         matrixStack.popPose();
     }

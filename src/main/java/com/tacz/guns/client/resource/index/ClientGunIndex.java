@@ -1,11 +1,9 @@
 package com.tacz.guns.client.resource.index;
 
 import com.google.common.base.Preconditions;
-// TODO: [MIGRAÇÃO] Restaurar quando ClientAssetsManager for habilitado
-// import com.tacz.guns.client.resource.ClientAssetsManager;
-// TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
-// import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.google.common.collect.Maps;
 import com.tacz.guns.client.resource.pojo.display.gun.GunDisplay;
+import com.tacz.guns.client.resource.pojo.display.gun.LayerGunShow;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.GunIndexPOJO;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
@@ -14,6 +12,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientGunIndex {
@@ -24,7 +24,7 @@ public class ClientGunIndex {
 
     // TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
     // private GunDisplayInstance display;
-    private Object display; // Placeholder temporário
+    private GunDisplay display; // Placeholder temporário
 
     private ClientGunIndex() {
     }
@@ -33,12 +33,12 @@ public class ClientGunIndex {
         ClientGunIndex index = new ClientGunIndex();
         checkIndex(gunIndexPOJO, index);
         // TODO: [MIGRAÇÃO] Restaurar quando GunDisplay e ClientAssetsManager forem habilitados
-        // GunDisplay display = checkDisplay(gunIndexPOJO);
+        GunDisplay display = checkDisplay(gunIndexPOJO);
         checkData(gunIndexPOJO, index);
         checkName(gunIndexPOJO, index);
         // TODO: [MIGRAÇÃO] Restaurar quando GunDisplayInstance for habilitado
         // index.display = GunDisplayInstance.create(display);
-        index.display = new Object(); // Placeholder temporário
+        index.display = display; // Placeholder temporário
         return index;
     }
 
@@ -96,7 +96,25 @@ public class ClientGunIndex {
     // public GunDisplayInstance getDefaultDisplay() {
     //     return display;
     // }
-    public Object getDefaultDisplay() {
+    public GunDisplay getDefaultDisplay() {
         return display; // Placeholder temporário
+    }
+
+    public LayerGunShow getOffhandShow() {
+        return display.getOffhandShow();
+    }
+
+    public Map<Integer, LayerGunShow> getHotbarShow() {
+        Map<Integer, LayerGunShow> result = Maps.newHashMap();
+        if (display.getHotbarShow() != null) {
+            for (Map.Entry<String, LayerGunShow> entry : display.getHotbarShow().entrySet()) {
+                try {
+                    result.put(Integer.parseInt(entry.getKey()), entry.getValue());
+                } catch (NumberFormatException e) {
+                    // Ignore invalid keys
+                }
+            }
+        }
+        return result;
     }
 }

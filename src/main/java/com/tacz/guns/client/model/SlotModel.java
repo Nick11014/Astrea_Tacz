@@ -30,6 +30,10 @@ public class SlotModel extends EntityModel<Entity> {
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-        bone.render(poseStack, ItemDisplayContext.GUI, buffer, packedLight, packedOverlay);
+        float r = (float) (color >> 16 & 255) / 255.0F;
+        float g = (float) (color >> 8 & 255) / 255.0F;
+        float b = (float) (color & 255) / 255.0F;
+        float a = (float) (color >> 24 & 255) / 255.0F;
+        bone.render(poseStack, ItemDisplayContext.GUI, buffer, packedLight, packedOverlay, r, g, b, a);
     }
 }

@@ -669,4 +669,6 @@
 Gerado automaticamente
 
 [2025-07-09 21:45] - SlotModel.java - HABILITADO - Estratégia: Migração de API EntityModel (8→5 params)
+[2025-07-09 21:50] - BeamRenderer.java - HABILITADO - Estratégia: Implementação Completa
+[2025-07-09 21:55] - AllowAttachmentTagMatcher.java - HABILITADO - Estratégia: Migração ResourceLocation API
 

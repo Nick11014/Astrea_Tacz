@@ -60,7 +60,7 @@ public class FunctionalBedrockPart extends BedrockPart {
                 renderer.render(poseStack, consumer, transformType, cubePackedLight, overlay);
             } else {
                 if (this.visible) {
-                    super.compile(poseStack.last(), consumer, cubePackedLight, overlay, red, green, blue, alpha);
+                    super.compile(poseStack.last(), transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
                     for (BedrockPart part : this.children) {
                         part.render(poseStack, transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
                     }
@@ -68,7 +68,7 @@ public class FunctionalBedrockPart extends BedrockPart {
             }
         } else {
             if (this.visible) {
-                super.compile(poseStack.last(), consumer, cubePackedLight, overlay, red, green, blue, alpha);
+                super.compile(poseStack.last(), transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
                 for (BedrockPart part : this.children) {
                     part.render(poseStack, transformType, consumer, cubePackedLight, overlay, red, green, blue, alpha);
                 }
