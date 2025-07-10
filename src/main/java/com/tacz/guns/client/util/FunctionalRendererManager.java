@@ -83,18 +83,15 @@ public class FunctionalRendererManager {
 
     /**
      * Cria AttachmentRender para tipo específico
-     * TODO: Usar quando AttachmentType estiver disponível
+     * HABILITADO: AttachmentRender agora está funcional
      */
     public static IFunctionalRenderer createAttachmentRenderForType(BedrockGunModel gunModel, Object attachmentType) {
         if (gunModel == null || attachmentType == null) {
             return null;
         }
 
-        // TODO: Criar AttachmentRender quando AttachmentType estiver funcionando
-        // return new AttachmentRender(gunModel, (AttachmentType) attachmentType);
-        
-        // Por enquanto, retorna renderizador genérico
-        return new ExampleRender(gunModel);
+        // AttachmentRender agora está disponível e funcional
+        return new AttachmentRender(gunModel, (com.tacz.guns.api.item.attachment.AttachmentType) attachmentType);
     }
 
     /**

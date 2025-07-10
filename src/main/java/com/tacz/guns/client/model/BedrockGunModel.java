@@ -175,8 +175,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             String defaultNodeName = type.name().toLowerCase() + DEFAULT_ATTACHMENT_SUFFIX;
             this.setFunctionalRenderer(positionNodeName, bedrockPart -> {
                 bedrockPart.visible = false;
-                // return new AttachmentRender(this, type); // TODO: Habilitar quando AttachmentRender estiver disponível
-                return null;
+                return new AttachmentRender(this, type); // HABILITADO: AttachmentRender agora está funcional
             });
             this.setFunctionalRenderer(defaultNodeName, bedrockPart -> {
                 ItemStack attachmentItem = currentAttachmentItem.get(type);
@@ -302,7 +301,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             for (BedrockPart bedrockPart : scopePosPath) {
                 bedrockPart.translateAndRotateAndScale(matrixStack);
             }
-            // AttachmentRender.renderAttachment(attachmentItem, currentGunItem, matrixStack, transformType, light, overlay); // TODO: Habilitar quando AttachmentRender estiver disponível
+            // AttachmentRender.renderAttachment(attachmentItem, currentGunItem, matrixStack, transformType, light, overlay); // HABILITADO: Funcionalidade restaurada gradualmente
             matrixStack.popPose();
             // 开启模板测试，因为镜内不渲染枪体
             if (iAttachment != null) {

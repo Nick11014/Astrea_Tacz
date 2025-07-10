@@ -3,6 +3,7 @@ package com.tacz.guns;
 import com.tacz.guns.config.CommonConfig;
 import com.tacz.guns.config.ServerConfig;
 import com.tacz.guns.init.*;
+import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -67,7 +68,7 @@ public class GunMod {
 
         // TODO: Habilitar resource e attachment manager quando estiverem funcionando  
         // registerDefaultExtraGunPack();
-        // AttachmentPropertyManager.registerModifier();
+        AttachmentPropertyManager.registerModifier(); // HABILITADO: Sistema de modificadores funcionando com implementação mínima
     }
 
     // TODO: Reativar quando ResourceManager estiver funcionando
