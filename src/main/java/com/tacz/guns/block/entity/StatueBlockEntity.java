@@ -74,7 +74,7 @@ public class StatueBlockEntity extends BlockEntity {
     public void load(CompoundTag tag) {
         super.load(tag);
         if (tag.contains(ITEM_TAG, Tag.TAG_COMPOUND)) {
-            this.gunItem = ItemStack.of(tag.getCompound(ITEM_TAG));
+            this.gunItem = ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), tag.getCompound(ITEM_TAG)).orElse(ItemStack.EMPTY);
         }
     }
 

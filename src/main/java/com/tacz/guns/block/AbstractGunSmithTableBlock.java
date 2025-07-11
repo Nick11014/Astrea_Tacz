@@ -91,16 +91,18 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, Player player) {
         BlockPos blockPos = getRootPos(pos, state);
-        BlockEntity blockentity = level.getBlockEntity(blockPos);
-        if (blockentity instanceof GunSmithTableBlockEntity e) {
-            if (e.getId() != null) {
-                return BlockItemBuilder.create(this).setId(e.getId()).build();
+        if (level instanceof BlockGetter blockGetter) {
+            BlockEntity blockentity = blockGetter.getBlockEntity(blockPos);
+            if (blockentity instanceof GunSmithTableBlockEntity e) {
+                if (e.getId() != null) {
+                    return BlockItemBuilder.create(this).setId(e.getId()).build();
+                }
+                return new ItemStack(this);
             }
-            return new ItemStack(this);
         }
-        return super.getCloneItemStack(state, target, level, pos, player);
+        return super.getCloneItemStack(level, pos, state, player);
     }
 
     public abstract boolean isRoot(BlockState blockState);

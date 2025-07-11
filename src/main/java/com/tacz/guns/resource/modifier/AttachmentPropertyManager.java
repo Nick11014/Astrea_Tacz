@@ -88,6 +88,23 @@ public class AttachmentPropertyManager {
     }
 
     /**
+     * Avalia uma função com valor e input
+     * Implementação mínima - retorna valor original
+     * 
+     * TODO: Implementar quando engine LuaJ estiver disponível para scripts customizados
+     */
+    public static double functionEval(double value, double input, String function) {
+        // TODO: Implementar avaliação de função quando LuaJ estiver funcional
+        // if (StringUtils.isEmpty(function)) {
+        //     return value;
+        // }
+        // return luaEngine.eval(function, value, input);
+        
+        // Implementação mínima - apenas retorna valor original
+        return value;
+    }
+
+    /**
      * Posta evento de mudança de propriedade
      * Implementação mínima - apenas estrutura
      */

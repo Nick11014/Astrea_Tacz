@@ -235,7 +235,7 @@ public interface GunItemDataAccessor extends IGun {
         }
         String key = GUN_ATTACHMENT_BASE + type.name();
         if (attachments.contains(key, Tag.TAG_COMPOUND)) {
-            return ItemStack.of(attachments.getCompound(key));
+            return ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), attachments.getCompound(key)).orElse(ItemStack.EMPTY);
         }
         return ItemStack.EMPTY;
     }
@@ -276,8 +276,7 @@ public interface GunItemDataAccessor extends IGun {
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
         String key = GUN_ATTACHMENT_BASE + iAttachment.getType(attachment).name();
-        CompoundTag attachmentTag = new CompoundTag();
-        attachment.save(attachmentTag);
+        CompoundTag attachmentTag = (CompoundTag) attachment.save(BuiltInRegistries.ITEM.asLookup());
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
@@ -289,8 +288,7 @@ public interface GunItemDataAccessor extends IGun {
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
         String key = GUN_ATTACHMENT_BASE + type.name();
-        CompoundTag attachmentTag = new CompoundTag();
-        ItemStack.EMPTY.save(attachmentTag);
+        CompoundTag attachmentTag = (CompoundTag) ItemStack.EMPTY.save(BuiltInRegistries.ITEM.asLookup());
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
