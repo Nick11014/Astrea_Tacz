@@ -12,19 +12,19 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class ModSyncedEntityData {
     public static final SyncedDataKey<LivingEntity, Long> SHOOT_COOL_DOWN_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.LONG)
-            .id(new ResourceLocation(GunMod.MOD_ID, "shoot_cool_down"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "shoot_cool_down"))
             .defaultValueSupplier(() -> -1L)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, Long> MELEE_COOL_DOWN_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.LONG)
-            .id(new ResourceLocation(GunMod.MOD_ID, "melee_cool_down"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "melee_cool_down"))
             .defaultValueSupplier(() -> -1L)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, ReloadState> RELOAD_STATE_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, ModSerializers.RELOAD_STATE)
-            .id(new ResourceLocation(GunMod.MOD_ID, "reload_state"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "reload_state"))
             .defaultValueSupplier(ReloadState::new)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();

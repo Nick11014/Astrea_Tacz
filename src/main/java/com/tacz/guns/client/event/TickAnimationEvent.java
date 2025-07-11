@@ -9,7 +9,8 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RenderFrameEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
@@ -17,7 +18,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 @EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class TickAnimationEvent {
     @SubscribeEvent
-    public static void tickAnimation(TickEvent.ClientTickEvent event) {
+    public static void tickAnimation(ClientTickEvent.Pre event) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null) {
             return;
@@ -42,10 +43,7 @@ public class TickAnimationEvent {
     }
 
     @SubscribeEvent
-    public static void tickAnimation(TickEvent.RenderTickEvent event) {
-        if (event.phase == TickEvent.Phase.END) {
-            return;
-        }
+    public static void tickAnimation(RenderFrameEvent.Pre event) {
         if (Minecraft.getInstance().options.getCameraType().isFirstPerson()) {
             return;
         }
@@ -56,9 +54,9 @@ public class TickAnimationEvent {
         ItemStack mainHandItem = player.getMainHandItem();
         // 渲染相关内容整理到物品的IClientItemExtensions了，这个接口有待进一步抽象
         if (IClientItemExtensions.of(mainHandItem.getItem()).getCustomRenderer() instanceof AnimateGeoItemRenderer<?, ?> renderer) {
-            // 如果物品不一样了，先尝试初始化状态机
+            // Se o item for diferente, primeiro tenta inicializar a máquina de estado
             if (renderer.needReInit(mainHandItem)) {
-                renderer.tryInit(mainHandItem, player, event.renderTickTime);
+                renderer.tryInit(mainHandItem, player, event.getPartialTick());
             }
             renderer.visualUpdate(mainHandItem);
         }

@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.neoforge.network.handling.NetworkHooks;
+
 import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
@@ -45,7 +45,7 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
         } else {
             BlockEntity blockEntity = level.getBlockEntity(getRootPos(pos, pState));
             if (blockEntity instanceof GunSmithTableBlockEntity gunSmithTable && player instanceof ServerPlayer serverPlayer) {
-                NetworkHooks.openScreen(serverPlayer, gunSmithTable, (buf) -> {
+                serverPlayer.openMenu(gunSmithTable, (buf) -> {
                     ResourceLocation rl = gunSmithTable.getId() == null ? DefaultAssets.DEFAULT_BLOCK_ID : gunSmithTable.getId();
                     buf.writeResourceLocation(rl);
                 });

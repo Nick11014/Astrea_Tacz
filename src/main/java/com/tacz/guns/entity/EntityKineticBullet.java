@@ -62,7 +62,7 @@ import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 // Corrected import for PartEntity
 import net.neoforged.neoforge.entity.PartEntity;
 import net.neoforged.fml.LogicalSide;
-import net.neoforged.neoforge.network.handling.NetworkHooks;
+import net.neoforged.neoforge.entity.IEntityWithComplexSpawn;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2d;
@@ -542,7 +542,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
 
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        return ClientboundAddEntityPacket.createAddEntityPacket(this);
     }
 
     @Override

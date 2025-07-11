@@ -15,7 +15,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyModifier;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.fml.common.Mod;
@@ -67,7 +67,7 @@ public class ReloadKey {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void autoReload(TickEvent.PlayerTickEvent event) {
+    public static void autoReload(PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.START || event.side != LogicalSide.CLIENT) {
             return;
         }

@@ -95,7 +95,7 @@ public final class GunItemBuilder {
             return ItemStack.EMPTY;
         }
 
-        DeferredHolder<? extends AbstractGunItem> gunItemRegistryObject = GunItemManager.getGunItemRegistryObject(itemType);
+        DeferredHolder<Item, ? extends AbstractGunItem> gunItemRegistryObject = GunItemManager.getGunItemRegistryObject(itemType);
         if (gunItemRegistryObject == null) {
             return ItemStack.EMPTY;
         }

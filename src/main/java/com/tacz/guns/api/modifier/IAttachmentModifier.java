@@ -1,5 +1,8 @@
 package com.tacz.guns.api.modifier;
 
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -116,5 +119,48 @@ public interface IAttachmentModifier<T, K> {
      */
     default String getStats() {
         return String.format("IAttachmentModifier{id=%s}", getId());
+    }
+
+    /**
+     * Obtém dados de diagrama para interface de refit
+     * Implementação mínima - lista vazia
+     * 
+     * @param gunItem ItemStack da arma
+     * @param gunData Dados da arma
+     * @param cacheProperty Propriedades de cache do acessório
+     * @return Lista de dados de diagrama
+     */
+    @OnlyIn(Dist.CLIENT)
+    default List<DiagramsData> getPropertyDiagramsData(Object gunItem, Object gunData, Object cacheProperty) {
+        return Collections.emptyList();
+    }
+
+    /**
+     * Obtém o tamanho dos dados de diagrama para cálculo de offset de botões
+     * 
+     * @return Número de diagramas
+     */
+    @OnlyIn(Dist.CLIENT)
+    default int getDiagramsDataSize() {
+        return 0;
+    }
+
+    /**
+     * Dados de diagrama para interface de propriedades
+     * 
+     * @param defaultPercent   Porcentagem do valor padrão da arma
+     * @param modifierPercent  Porcentagem do valor modificado
+     * @param modifier         Valor modificado, usado para comparação com valor padrão
+     * @param titleKey         Chave do arquivo de idioma para nome da propriedade
+     * @param positivelyString Texto exibido quando maior que valor padrão
+     * @param negativeString   Texto exibido quando menor que valor padrão
+     * @param defaultString    Texto exibido quando igual ao valor padrão
+     * @param positivelyBetter true se maior que padrão é melhor (verde), false se pior (vermelho)
+     */
+    @OnlyIn(Dist.CLIENT)
+    record DiagramsData(double defaultPercent, double modifierPercent, Number modifier,
+                        String titleKey, String positivelyString,
+                        String negativeString, String defaultString,
+                        boolean positivelyBetter) {
     }
 }

@@ -12,7 +12,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyModifier;
-import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.event.tick.ClientTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -85,7 +85,7 @@ public class AimKey {
     }
 
     @SubscribeEvent
-    public static void cancelAim(TickEvent.ClientTickEvent event) {
+    public static void cancelAim(ClientTickEvent.Pre event) {
         if (event.phase != TickEvent.Phase.END) {
             return;
         }
