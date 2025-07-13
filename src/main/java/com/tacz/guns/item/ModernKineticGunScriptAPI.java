@@ -76,6 +76,11 @@ public class ModernKineticGunScriptAPI {
      * @param consumeAmmo 本次射击是否消耗弹药
      */
     public void shootOnce(boolean consumeAmmo){
+        // TODO: [OBJECT STRATEGY] Verificação de null para suportar Object Strategy
+        if (gunIndex == null) {
+            return; // Object Strategy: retorna early se index não disponível
+        }
+        
         GunData gunData = gunIndex.getGunData();
         BulletData bulletData = gunIndex.getBulletData();
         IGunOperator gunOperator = IGunOperator.fromLivingEntity(shooter);
@@ -280,6 +285,11 @@ public class ModernKineticGunScriptAPI {
      * @return 射击间隔
      */
     public long getShootInterval() {
+        // TODO: [OBJECT STRATEGY] Verificação de null para suportar Object Strategy
+        if (gunIndex == null) {
+            return 1000L; // Object Strategy: retorna valor padrão se index não disponível
+        }
+        
         FireMode fireMode = abstractGunItem.getFireMode(itemStack);
         if (fireMode == FireMode.BURST) {
             long coolDown = (long) (gunIndex.getGunData().getBurstData().getMinInterval() * 1000f);
@@ -382,6 +392,11 @@ public class ModernKineticGunScriptAPI {
      * @return 当前枪械需要的弹药数量
      */
     public int getNeededAmmoAmount() {
+        // TODO: [OBJECT STRATEGY] Verificação de null para suportar Object Strategy
+        if (gunIndex == null) {
+            return 0; // Object Strategy: retorna 0 se index não disponível
+        }
+        
         int maxAmmoCount = AttachmentDataUtils.getAmmoCountWithAttachment(itemStack, gunIndex.getGunData());
         int currentAmmoCount = abstractGunItem.getCurrentAmmoCount(itemStack);
         return maxAmmoCount - currentAmmoCount;
@@ -402,6 +417,11 @@ public class ModernKineticGunScriptAPI {
      * @return 返回枪械弹匣的最大备弹数，不计算已在枪管中的弹药。
      */
     public int getMaxAmmoCount() {
+        // TODO: [OBJECT STRATEGY] Verificação de null para suportar Object Strategy
+        if (gunIndex == null) {
+            return 0; // Object Strategy: retorna 0 se index não disponível
+        }
+        
         return AttachmentDataUtils.getAmmoCountWithAttachment(itemStack, gunIndex.getGunData());
     }
 
@@ -656,6 +676,10 @@ public class ModernKineticGunScriptAPI {
     }
 
     public boolean hasHeatData() {
+        // TODO: [OBJECT STRATEGY] Verificação de null para suportar Object Strategy
+        if (gunIndex == null) {
+            return false; // Object Strategy: retorna false se index não disponível
+        }
         return gunIndex.getGunData().getHeatData() != null;
     }
 

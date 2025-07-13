@@ -12,7 +12,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyModifier;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+// import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -84,18 +85,20 @@ public class AimKey {
         return false;
     }
 
-    @SubscribeEvent
-    public static void cancelAim(ClientTickEvent.Pre event) {
-        if (event.phase != TickEvent.Phase.END) {
-            return;
-        }
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        if (!(player instanceof IClientPlayerGunOperator operator)) {
-            return;
-        }
-        if (operator.isAim() && (!isInGame() || player.isSpectator())) {
-            IClientPlayerGunOperator.fromLocalPlayer(player).aim(false);
-        }
-    }
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+    // @SubscribeEvent
+    // public static void cancelAim(TickEvent.ClientTickEvent event) {
+    //     // TODO: [MIGRAÇÃO NeoForge 1.21.1] Usando API correta de eventos
+    //     if (event.phase != TickEvent.Phase.END) {
+    //         return;
+    //     }
+    //     Minecraft mc = Minecraft.getInstance();
+    //     LocalPlayer player = mc.player;
+    //     if (!(player instanceof IClientPlayerGunOperator operator)) {
+    //         return;
+    //     }
+    //     if (operator.isAim() && (!isInGame() || player.isSpectator())) {
+    //         IClientPlayerGunOperator.fromLocalPlayer(player).aim(false);
+    //     }
+    // }
 }

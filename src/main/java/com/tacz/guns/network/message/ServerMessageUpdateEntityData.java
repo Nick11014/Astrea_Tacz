@@ -12,7 +12,6 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ServerMessageUpdateEntityData {
     private final int entityId;
@@ -39,12 +38,11 @@ public class ServerMessageUpdateEntityData {
         return new ServerMessageUpdateEntityData(entityId, entries);
     }
 
-    public static void handle(ServerMessageUpdateEntityData message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
+    public static void handle(ServerMessageUpdateEntityData message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isClientbound()) {
             context.enqueueWork(() -> onHandle(message));
         }
-        context.setPacketHandled(true);
     }
 
     @OnlyIn(Dist.CLIENT)

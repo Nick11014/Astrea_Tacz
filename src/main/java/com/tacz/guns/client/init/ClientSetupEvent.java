@@ -36,7 +36,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static net.neoforged.neoforge.client.gui.VanillaGuiLayers.CROSSHAIR;
 
-@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class ClientSetupEvent {
     @SubscribeEvent
     public static void onClientSetup(RegisterKeyMappingsEvent event) {

@@ -5,7 +5,8 @@ import com.tacz.guns.config.common.AmmoConfig;
 import com.tacz.guns.entity.EntityKineticBullet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AbstractGlassBlock;
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] AbstractGlassBlock foi removido, usar verificação diferente
+// import net.minecraft.world.level.block.AbstractGlassBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.StainedGlassPaneBlock;
@@ -25,7 +26,8 @@ public class DestroyGlassBlock {
         EntityKineticBullet ammo = event.getAmmo();
         Block stateBlock = state.getBlock();
         NoteBlockInstrument instrument = state.instrument();
-        if (AmmoConfig.DESTROY_GLASS.get() && (stateBlock instanceof AbstractGlassBlock ||
+        // TODO: [MIGRAÇÃO NeoForge 1.21.1] AbstractGlassBlock removido, usar verificação por instrument
+        if (AmmoConfig.DESTROY_GLASS.get() && (instrument.equals(NoteBlockInstrument.HAT) || // Glass blocks
                 stateBlock instanceof StainedGlassPaneBlock ||
                 (stateBlock instanceof IronBarsBlock && instrument.equals(NoteBlockInstrument.HAT)))) {
             level.destroyBlock(pos, false, ammo.getOwner());

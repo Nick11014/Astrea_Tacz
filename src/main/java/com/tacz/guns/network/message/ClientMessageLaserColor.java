@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 public class ClientMessageLaserColor {
     private final Map<AttachmentType, Integer> colorMap = new HashMap<>();
@@ -58,11 +57,11 @@ public class ClientMessageLaserColor {
         return message;
     }
 
-    public static void handle(ClientMessageLaserColor message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isServer()) {
+    public static void handle(ClientMessageLaserColor message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isServerbound()) {
             context.enqueueWork(() -> {
-                ServerPlayer player = context.getSender();
+                ServerPlayer player = context.player() instanceof ServerPlayer serverPlayer ? serverPlayer : null;
                 if (player == null || message.gunSlotIndex == -1) {
                     return;
                 }
@@ -84,7 +83,6 @@ public class ClientMessageLaserColor {
                 }
             });
         }
-        context.setPacketHandled(true);
     }
 
 }

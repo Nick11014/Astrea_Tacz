@@ -34,7 +34,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class AmmoBoxItem extends Item implements DyeableLeatherItem, AmmoBoxItemDataAccessor {
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] DyeableLeatherItem foi removido, criar implementação equivalente
+public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoBoxItemDataAccessor {
     public static final ResourceLocation PROPERTY_NAME = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ammo_statue");
 
     public static final int IRON_LEVEL = 0;

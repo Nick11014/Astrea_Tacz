@@ -10,7 +10,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.ProtectionEnchantment;
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] ProtectionEnchantment foi removido
+// import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.ExplosionDamageCalculator;
@@ -181,7 +182,10 @@ public class ProjectileExplosion extends Explosion {
             entity.hurt(this.getDamageSource(), (float) damage * this.power);
 
             if (entity instanceof LivingEntity) {
-                damage = (float) ProtectionEnchantment.getExplosionKnockbackAfterDampener((LivingEntity) entity, damage);
+                // TODO: [MIGRAÇÃO NeoForge 1.21.1] ProtectionEnchantment.getExplosionKnockbackAfterDampener foi removido
+                // damage = (float) ProtectionEnchantment.getExplosionKnockbackAfterDampener((LivingEntity) entity, damage);
+                // Usar valor base por enquanto
+                damage = (float) damage;
             }
 
             float multiplier = this.power * radius / 500;

@@ -10,8 +10,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ClientMessageRefitGun {
     private final int attachmentSlotIndex;
     private final int gunSlotIndex;
@@ -33,11 +31,11 @@ public class ClientMessageRefitGun {
         return new ClientMessageRefitGun(buf.readInt(), buf.readInt(), buf.readEnum(AttachmentType.class));
     }
 
-    public static void handle(ClientMessageRefitGun message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isServer()) {
+    public static void handle(ClientMessageRefitGun message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isServerbound()) {
             context.enqueueWork(() -> {
-                ServerPlayer player = context.getSender();
+                ServerPlayer player = context.player() instanceof ServerPlayer serverPlayer ? serverPlayer : null;
                 if (player == null) {
                     return;
                 }
@@ -62,7 +60,6 @@ public class ClientMessageRefitGun {
                 }
             });
         }
-        context.setPacketHandled(true);
     }
 
 }

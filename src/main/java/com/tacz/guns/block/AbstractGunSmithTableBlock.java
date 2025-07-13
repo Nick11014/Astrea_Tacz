@@ -91,7 +91,7 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, Player player) {
+    public ItemStack getCloneItemStack(Level level, BlockPos pos, BlockState state, Player player) {
         BlockPos blockPos = getRootPos(pos, state);
         if (level instanceof BlockGetter blockGetter) {
             BlockEntity blockentity = blockGetter.getBlockEntity(blockPos);

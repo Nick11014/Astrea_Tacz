@@ -12,8 +12,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
-
 public class ServerMessageGunReload {
     private final int shooterId;
     private final ItemStack gunItemStack;
@@ -34,12 +32,11 @@ public class ServerMessageGunReload {
         return new ServerMessageGunReload(shooterId, gunItemStack);
     }
 
-    public static void handle(ServerMessageGunReload message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
+    public static void handle(ServerMessageGunReload message, IPayloadContext context) {
+        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
+        if (context.flow().isClientbound()) {
             context.enqueueWork(() -> doClientEvent(message));
         }
-        context.setPacketHandled(true);
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -3,7 +3,9 @@ package com.tacz.guns.block.entity;
 import com.tacz.guns.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
@@ -71,29 +73,29 @@ public class StatueBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
         if (tag.contains(ITEM_TAG, Tag.TAG_COMPOUND)) {
-            this.gunItem = ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), tag.getCompound(ITEM_TAG)).orElse(ItemStack.EMPTY);
+            this.gunItem = ItemStack.parseOptional(registries, tag.getCompound(ITEM_TAG)).orElse(ItemStack.EMPTY);
         }
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        tag.put(ITEM_TAG, gunItem.save(new CompoundTag()));
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        tag.put(ITEM_TAG, gunItem.save(registries, new CompoundTag()));
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag tag = super.getUpdateTag();
-        tag.put(ITEM_TAG, gunItem.save(new CompoundTag()));
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        CompoundTag tag = super.getUpdateTag(registries);
+        tag.put(ITEM_TAG, gunItem.save(registries, new CompoundTag()));
         return tag;
     }
 
     @Override
     public AABB getRenderBoundingBox() {
-        return new AABB(worldPosition.offset(-2, 0, -2), worldPosition.offset(2, 2, 2));
+        return new AABB(worldPosition.offset(-2, 0, -2).getCenter(), worldPosition.offset(2, 2, 2).getCenter());
     }
 
     @Override

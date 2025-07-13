@@ -3,6 +3,7 @@ package com.tacz.guns.block;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.block.entity.StatueBlockEntity;
 import com.tacz.guns.init.ModBlocks;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -38,6 +39,11 @@ public class StatueBlock extends BaseEntityBlock {
                 .setValue(HALF, DoubleBlockHalf.LOWER)
                 .setValue(FACING, Direction.NORTH)
         );
+    }
+
+    @Override
+    public MapCodec<StatueBlock> codec() {
+        return simpleCodec(StatueBlock::new);
     }
 
     @Nullable

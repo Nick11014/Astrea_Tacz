@@ -7,7 +7,8 @@ import com.tacz.guns.util.LaserColorUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.client.gui.components.Slider;
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] Slider API mudou, precisa ser adaptado
+// import net.minecraft.client.gui.components.Slider;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -18,49 +19,51 @@ public class HSVSliderGroup {
 
     private final AttachmentType type;
 
-    private final LaserColorSlider hueSlider;
-    private final LaserColorSlider saturationSlider;
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] LaserColorSlider comentado por dependências
+    // private final LaserColorSlider hueSlider;
+    // private final LaserColorSlider saturationSlider;
 
     public HSVSliderGroup(int x, int y, int width, int height, Inventory inventory, int gunItemIndex, @NotNull AttachmentType type) {
         this.inventory = inventory;
         this.gunItemIndex = gunItemIndex;
         this.type = type;
 
-        int color = getColor(type);
-        float[] hsb = Color.RGBtoHSB((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, null);
-
-        hueSlider = new LaserColorSlider(x, y, width, height, this, hsb[0]);
-        saturationSlider = new LaserColorSlider(x, y + 2 + height, width, height, this, hsb[1]);
+        // TODO: [MIGRAÇÃO NeoForge 1.21.1] Implementação comentada por dependências
+        // int color = getColor(type);
+        // float[] hsb = Color.RGBtoHSB((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, null);
+        // hueSlider = new LaserColorSlider(x, y, width, height, this, hsb[0]);
+        // saturationSlider = new LaserColorSlider(x, y + 2 + height, width, height, this, hsb[1]);
     }
 
-    public LaserColorSlider getHueSlider() {
-        return hueSlider;
-    }
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] Método comentado por dependências
+    // public LaserColorSlider getHueSlider() {
+    //     return hueSlider;
+    // }
 
-    public LaserColorSlider getSaturationSlider() {
-        return saturationSlider;
-    }
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] Método comentado por dependências  
+    // public LaserColorSlider getSaturationSlider() {
+    //     return saturationSlider;
+    // }
 
 
     public void apply() {
+        // TODO: [MIGRAÇÃO NeoForge 1.21.1] Implementação comentada por dependências
         // 需要检查的实现
         // 这里写往客户端写nbt其实是脏写，只为了确保能实时预览染色效果
         // 需要在合适的时机向服务器发包通知改动
         // 不在此直接向服务器发包是因为这个组件在滑动时会被非常频繁的调用，不希望频繁向服务器发包
-        ItemStack gun = inventory.getItem(gunItemIndex);
-        if (gun.getItem() instanceof IGun iGun) {
-            int rgb_new = Color.HSBtoRGB((float) hueSlider.getValue(), (float) saturationSlider.getValue(), 1f);
-
-            if (type == AttachmentType.NONE) {
-                iGun.setLaserColor(gun, rgb_new);
-                return;
-            }
-
-            ItemStack laser = iGun.getAttachment(gun, type);
-            if (laser.getItem() instanceof IAttachment iAttachment) {
-                iAttachment.setLaserColor(laser, rgb_new);
-            }
-        }
+        // ItemStack gun = inventory.getItem(gunItemIndex);
+        // if (gun.getItem() instanceof IGun iGun) {
+        //     int rgb_new = Color.HSBtoRGB((float) hueSlider.getValue(), (float) saturationSlider.getValue(), 1f);
+        //     if (type == AttachmentType.NONE) {
+        //         iGun.setLaserColor(gun, rgb_new);
+        //         return;
+        //     }
+        //     ItemStack laser = iGun.getAttachment(gun, type);
+        //     if (laser.getItem() instanceof IAttachment iAttachment) {
+        //         iAttachment.setLaserColor(laser, rgb_new);
+        //     }
+        // }
     }
 
 
@@ -83,17 +86,16 @@ public class HSVSliderGroup {
         return 0XFF0000;
     }
 
-    public static class LaserColorSlider extends ForgeSlider {
-        private final HSVSliderGroup parent;
-
-        public LaserColorSlider(int x, int y, int width, int height, HSVSliderGroup parent, double current) {
-            super(x, y, width, height, Component.empty(), Component.empty(), 0, 1, current, 0.01, 0, true);
-            this.parent = parent;
-        }
-
-        @Override
-        protected void applyValue() {
-            parent.apply();
-        }
-    }
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] ForgeSlider não existe mais, precisa ser adaptado
+    // public static class LaserColorSlider extends ForgeSlider {
+    //     private final HSVSliderGroup parent;
+    //     public LaserColorSlider(int x, int y, int width, int height, HSVSliderGroup parent, double current) {
+    //         super(x, y, width, height, Component.empty(), Component.empty(), 0, 1, current, 0.01, 0, true);
+    //         this.parent = parent;
+    //     }
+    //     @Override
+    //     protected void applyValue() {
+    //         parent.apply();
+    //     }
+    // }
 }

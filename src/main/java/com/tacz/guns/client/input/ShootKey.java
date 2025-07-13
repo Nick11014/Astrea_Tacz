@@ -18,7 +18,8 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyModifier;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+// import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -37,41 +38,41 @@ public class ShootKey {
             "key.category.tacz");
     private static boolean lastTimeShootSuccess = false;
 
-    @SubscribeEvent
-    public static void autoShoot(ClientTickEvent.Pre event) {
-        if (event.phase != TickEvent.Phase.END && !isInGame()) {
-            return;
-        }
-        LocalPlayerSprint.stopSprint = false;
-
-        Minecraft mc = Minecraft.getInstance();
-        LocalPlayer player = mc.player;
-        if (player == null || player.isSpectator()) {
-            return;
-        }
-        ItemStack mainHandItem = player.getMainHandItem();
-        if (mainHandItem.getItem() instanceof IGun iGun) {
-            FireMode fireMode = iGun.getFireMode(mainHandItem);
-            boolean isBurstAuto = fireMode == FireMode.BURST && TimelessAPI.getCommonGunIndex(iGun.getGunId(mainHandItem))
-                    .map(index -> index.getGunData().getBurstData().isContinuousShoot())
-                    .orElse(false);
-            IClientPlayerGunOperator operator = IClientPlayerGunOperator.fromLocalPlayer(player);
-            if (SHOOT_KEY.isDown()) {
-                // 能开火时禁止冲刺
-                LocalPlayerSprint.stopSprint = true;
-
-                if (fireMode != FireMode.AUTO && !isBurstAuto && lastTimeShootSuccess) {
-                    // 非全自动情况，禁止连续开火
-                    return;
-                }
-                if (operator.shoot() == ShootResult.SUCCESS) {
-                    lastTimeShootSuccess = true;
-                }
-            } else {
-                lastTimeShootSuccess = false;
-            }
-        }
-    }
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+    // @SubscribeEvent
+    // public static void autoShoot(TickEvent.ClientTickEvent event) {
+    //     // TODO: [MIGRAÇÃO NeoForge 1.21.1] Usando API correta de eventos
+    //     if (event.phase != TickEvent.Phase.END && !isInGame()) {
+    //         return;
+    //     }
+    //     LocalPlayerSprint.stopSprint = false;
+    //     Minecraft mc = Minecraft.getInstance();
+    //     LocalPlayer player = mc.player;
+    //     if (player == null || player.isSpectator()) {
+    //         return;
+    //     }
+    //     ItemStack mainHandItem = player.getMainHandItem();
+    //     if (mainHandItem.getItem() instanceof IGun iGun) {
+    //         FireMode fireMode = iGun.getFireMode(mainHandItem);
+    //         boolean isBurstAuto = fireMode == FireMode.BURST && TimelessAPI.getCommonGunIndex(iGun.getGunId(mainHandItem))
+    //                 .map(index -> index.getGunData().getBurstData().isContinuousShoot())
+    //                 .orElse(false);
+    //         IClientPlayerGunOperator operator = IClientPlayerGunOperator.fromLocalPlayer(player);
+    //         if (SHOOT_KEY.isDown()) {
+    //             // 能开火时禁止冲刺
+    //             LocalPlayerSprint.stopSprint = true;
+    //             if (fireMode != FireMode.AUTO && !isBurstAuto && lastTimeShootSuccess) {
+    //                 // 非全自动情况，禁止连续开火
+    //                 return;
+    //             }
+    //             if (operator.shoot() == ShootResult.SUCCESS) {
+    //                 lastTimeShootSuccess = true;
+    //             }
+    //         } else {
+    //             lastTimeShootSuccess = false;
+    //         }
+    //     }
+    // }
 
     public static boolean autoShootController() {
         if (!isInGame()) {

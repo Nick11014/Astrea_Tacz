@@ -11,7 +11,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.event.tick.ClientTickEvent;
+// TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+// import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
@@ -22,40 +23,44 @@ public class InventoryEvent {
     private static int oldHotbarSelected = -1;
     private static ItemStack oldHotbarSelectItem = ItemStack.EMPTY;
 
-    @SubscribeEvent
-    public static void onPlayerChangeSelect(ClientTickEvent.Pre event) {
-        LocalPlayer player = Minecraft.getInstance().player;
-        if (player == null) {
-            return;
-        }
-        Inventory inventory = player.getInventory();
-        // 玩家切换选中框的情况
-        if (oldHotbarSelected != inventory.selected) {
-            if (oldHotbarSelected == -1) {
-                IClientPlayerGunOperator.fromLocalPlayer(player).draw(ItemStack.EMPTY);
-            } else {
-                IClientPlayerGunOperator.fromLocalPlayer(player).draw(inventory.getItem(oldHotbarSelected));
-            }
-            oldHotbarSelected = inventory.selected;
-            oldHotbarSelectItem = inventory.getItem(inventory.selected).copy();
-            return;
-        }
-        // 玩家选中的物品改变的情况
-        ItemStack currentItem = inventory.getItem(inventory.selected);
-        if (currentItem.getItem() instanceof IAnimationItem item ) {
-            if (!item.isSame(oldHotbarSelectItem, currentItem)) {
-                IClientPlayerGunOperator.fromLocalPlayer(player).draw(oldHotbarSelectItem);
-            }
-        } else {
-            if (!ItemStack.matches(oldHotbarSelectItem, currentItem)) {
-                IClientPlayerGunOperator.fromLocalPlayer(player).draw(oldHotbarSelectItem);
-            }
-        }
-
-        if (!ItemStack.matches(oldHotbarSelectItem, currentItem)) {
-            oldHotbarSelectItem = currentItem.copy();
-        }
-    }
+    // TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda  
+    // @SubscribeEvent
+    // public static void onPlayerChangeSelect(TickEvent.ClientTickEvent event) {
+    //     // TODO: [MIGRAÇÃO NeoForge 1.21.1] Usando API correta de eventos
+    //     if (event.phase != TickEvent.Phase.START) {
+    //         return;
+    //     }
+    //     LocalPlayer player = Minecraft.getInstance().player;
+    //     if (player == null) {
+    //         return;
+    //     }
+    //     Inventory inventory = player.getInventory();
+    //     // 玩家切换选中框的情况
+    //     if (oldHotbarSelected != inventory.selected) {
+    //         if (oldHotbarSelected == -1) {
+    //             IClientPlayerGunOperator.fromLocalPlayer(player).draw(ItemStack.EMPTY);
+    //         } else {
+    //             IClientPlayerGunOperator.fromLocalPlayer(player).draw(inventory.getItem(oldHotbarSelected));
+    //         }
+    //         oldHotbarSelected = inventory.selected;
+    //         oldHotbarSelectItem = inventory.getItem(inventory.selected).copy();
+    //         return;
+    //     }
+    //     // 玩家选中的物品改变的情况
+    //     ItemStack currentItem = inventory.getItem(inventory.selected);
+    //     if (currentItem.getItem() instanceof IAnimationItem item ) {
+    //         if (!item.isSame(oldHotbarSelectItem, currentItem)) {
+    //             IClientPlayerGunOperator.fromLocalPlayer(player).draw(oldHotbarSelectItem);
+    //         }
+    //     } else {
+    //         if (!ItemStack.matches(oldHotbarSelectItem, currentItem)) {
+    //             IClientPlayerGunOperator.fromLocalPlayer(player).draw(oldHotbarSelectItem);
+    //         }
+    //     }
+    //     if (!ItemStack.matches(oldHotbarSelectItem, currentItem)) {
+    //         oldHotbarSelectItem = currentItem.copy();
+    //     }
+    // }
 
     @SubscribeEvent
     public static void onPlayerSwapMainHand(SwapItemWithOffHand event) {

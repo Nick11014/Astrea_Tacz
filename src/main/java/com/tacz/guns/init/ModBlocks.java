@@ -1,11 +1,11 @@
 package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
+import com.tacz.guns.block.entity.GunSmithTableBlockEntity;
+import com.tacz.guns.block.entity.StatueBlockEntity;
+// import com.tacz.guns.block.entity.TargetBlockEntity; // TODO: Migrar APIs
 // TODO: Re-enable when all block classes are available
 // import com.tacz.guns.block.*;
-// import com.tacz.guns.block.entity.GunSmithTableBlockEntity;
-// import com.tacz.guns.block.entity.StatueBlockEntity;
-// import com.tacz.guns.block.entity.TargetBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -44,18 +44,16 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> STATUE = BLOCKS.register("statue", 
         () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(2.0F, 3.0F))); // Placeholder - StatueBlock::new
 
-    // TODO: Re-enable when block entity classes are available
-    // Block entities também precisam de placeholders temporários
-    /*
+    // Block entities - apenas os que estão funcionando
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GunSmithTableBlockEntity>> GUN_SMITH_TABLE_BE = TILE_ENTITIES.register("gun_smith_table", 
         () -> BlockEntityType.Builder.of(GunSmithTableBlockEntity::new, GUN_SMITH_TABLE.get()).build(null));
         
-    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", 
-        () -> BlockEntityType.Builder.of(TargetBlockEntity::new, TARGET.get()).build(null));
+    // TODO: [MIGRAÇÃO] TargetBlockEntity precisa migração de APIs save/load
+    // public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", 
+    //     () -> BlockEntityType.Builder.of(TargetBlockEntity::new, TARGET.get()).build(null));
         
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<StatueBlockEntity>> STATUE_BE = TILE_ENTITIES.register("statue", 
         () -> BlockEntityType.Builder.of(StatueBlockEntity::new, STATUE.get()).build(null));
-    */
 
     // Tags using the modernized ResourceLocation API
     public static final TagKey<Block> BULLET_IGNORE_BLOCKS = BlockTags.create(GunMod.loc("bullet_ignore"));

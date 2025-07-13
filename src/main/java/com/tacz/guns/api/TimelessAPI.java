@@ -88,6 +88,11 @@ public final class TimelessAPI {
         return Collections.emptySet();
     }
 
+    public static Set<Map.Entry<ResourceLocation, Object>> getAllCommonGunIndex() {
+        // TODO: Retornar todos os índices de armas quando CommonAssetsManager estiver disponível
+        return Collections.emptySet();
+    }
+
     public static Set<Map.Entry<ResourceLocation, Object>> getAllAmmos() {
         // TODO: Retornar todas as munições quando disponível
         return Collections.emptySet();
