@@ -7,7 +7,8 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.item.builder.AttachmentItemBuilder;
 import com.tacz.guns.api.item.gun.FireMode;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+// TODO: [MIGRAÇÃO] GunDisplayInstance desabilitado temporariamente
+// import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.init.ModDataComponents;
 import com.tacz.guns.resource.index.CommonGunIndex;
@@ -216,8 +217,9 @@ public interface GunItemDataAccessor extends IGun {
         if (iGun == null) {
             return ItemStack.EMPTY;
         }
-        CommonGunIndex index = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
-        if (index != null){
+        Object indexObj = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
+        if (indexObj instanceof CommonGunIndex){
+            CommonGunIndex index = (CommonGunIndex) indexObj;
             var builtin = index.getGunData().getBuiltInAttachments();
             if (builtin.containsKey(type)) {
                 return AttachmentItemBuilder.create().setId(builtin.get(type)).build();
@@ -236,7 +238,9 @@ public interface GunItemDataAccessor extends IGun {
         }
         String key = GUN_ATTACHMENT_BASE + type.name();
         if (attachments.contains(key, Tag.TAG_COMPOUND)) {
-            return ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), attachments.getCompound(key)).orElse(ItemStack.EMPTY);
+            // TODO: [MIGRAÇÃO NeoForge 1.21.1] BuiltInRegistries API mudou, precisa ser adaptado
+            // return ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), attachments.getCompound(key)).orElse(ItemStack.EMPTY);
+            return ItemStack.EMPTY; // Placeholder temporário
         }
         return ItemStack.EMPTY;
     }
@@ -248,8 +252,9 @@ public interface GunItemDataAccessor extends IGun {
         if (iGun == null) {
             return DefaultAssets.EMPTY_ATTACHMENT_ID;
         }
-        CommonGunIndex index = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
-        if (index != null){
+        Object indexObj = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
+        if (indexObj instanceof CommonGunIndex){
+            CommonGunIndex index = (CommonGunIndex) indexObj;
             var builtin = index.getGunData().getBuiltInAttachments();
             if (builtin.containsKey(type)) {
                 return builtin.get(type);
@@ -277,7 +282,9 @@ public interface GunItemDataAccessor extends IGun {
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
         String key = GUN_ATTACHMENT_BASE + iAttachment.getType(attachment).name();
-        CompoundTag attachmentTag = (CompoundTag) attachment.save(BuiltInRegistries.ITEM.asLookup());
+        // TODO: [MIGRAÇÃO NeoForge 1.21.1] ItemStack.save API mudou, precisa ser adaptado
+        // CompoundTag attachmentTag = (CompoundTag) attachment.save(BuiltInRegistries.ITEM.asLookup());
+        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporário
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
@@ -289,7 +296,9 @@ public interface GunItemDataAccessor extends IGun {
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
         String key = GUN_ATTACHMENT_BASE + type.name();
-        CompoundTag attachmentTag = (CompoundTag) ItemStack.EMPTY.save(BuiltInRegistries.ITEM.asLookup());
+        // TODO: [MIGRAÇÃO NeoForge 1.21.1] ItemStack.save API mudou, precisa ser adaptado
+        // CompoundTag attachmentTag = (CompoundTag) ItemStack.EMPTY.save(BuiltInRegistries.ITEM.asLookup());
+        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporário
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
@@ -306,12 +315,26 @@ public interface GunItemDataAccessor extends IGun {
         if (!DefaultAssets.isEmptyAttachmentId(scopeId)) {
             CompoundTag attachmentTag = this.getAttachmentTag(gunItem, AttachmentType.SCOPE);
             int zoomNumber = builtin ? 0 : AttachmentItemDataAccessor.getZoomNumberFromTag(attachmentTag);
-            float[] zooms = TimelessAPI.getClientAttachmentIndex(scopeId).map(ClientAttachmentIndex::getZoom).orElse(null);
+            Object attachmentIndexObj = TimelessAPI.getClientAttachmentIndex(scopeId).orElse(null);
+            float[] zooms = null;
+            if (attachmentIndexObj != null) {
+                // TODO: [MIGRAÇÃO] Implementar acesso a getZoom quando Object Strategy for resolvida
+                // ClientAttachmentIndex attachmentIndex = (ClientAttachmentIndex) attachmentIndexObj;
+                // zooms = attachmentIndex.getZoom();
+            }
             if (zooms != null) {
                 zoom = zooms[zoomNumber % zooms.length];
             }
         } else {
-            zoom = TimelessAPI.getGunDisplay(gunItem).map(GunDisplayInstance::getIronZoom).orElse(1f);
+            Object gunDisplayObj = TimelessAPI.getGunDisplay(gunItem).orElse(null);
+            if (gunDisplayObj != null) {
+                // TODO: [MIGRAÇÃO] Implementar acesso a getIronZoom quando Object Strategy for resolvida
+                // GunDisplayInstance gunDisplay = (GunDisplayInstance) gunDisplayObj;
+                // zoom = gunDisplay.getIronZoom();
+                zoom = 1f; // Placeholder temporário
+            } else {
+                zoom = 1f;
+            }
         }
         return zoom;
     }    @Override
@@ -373,21 +396,35 @@ public interface GunItemDataAccessor extends IGun {
 
     @Override
     default float lerpRPM(ItemStack gun) {
-        return TimelessAPI.getCommonGunIndex(getGunId(gun))
-                .map(index -> index.getGunData().getHeatData())
-                .map(heatData -> {
-                    float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
-                    return Mth.lerp(heatPercentage, heatData.getMinRpmMod(), heatData.getMaxRpmMod());
-                }).orElse(1f);
+        Object indexObj = TimelessAPI.getCommonGunIndex(getGunId(gun)).orElse(null);
+        if (indexObj instanceof CommonGunIndex) {
+            CommonGunIndex index = (CommonGunIndex) indexObj;
+            Object heatDataObj = index.getGunData().getHeatData();
+            if (heatDataObj != null) {
+                // TODO: [MIGRAÇÃO] Implementar acesso a métodos de HeatData quando Object Strategy for resolvida
+                // GunHeatData heatData = (GunHeatData) heatDataObj;
+                // float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
+                // return Mth.lerp(heatPercentage, heatData.getMinRpmMod(), heatData.getMaxRpmMod());
+                return 1f; // Placeholder temporário
+            }
+        }
+        return 1f;
     }
 
     @Override
     default float lerpInaccuracy(ItemStack gun) {
-        return TimelessAPI.getCommonGunIndex(getGunId(gun))
-                .map(index -> index.getGunData().getHeatData())
-                .map(heatData -> {
-                    float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
-                    return Mth.lerp(heatPercentage, heatData.getMinInaccuracy(), heatData.getMaxInaccuracy());
-                }).orElse(1f);
+        Object indexObj = TimelessAPI.getCommonGunIndex(getGunId(gun)).orElse(null);
+        if (indexObj instanceof CommonGunIndex) {
+            CommonGunIndex index = (CommonGunIndex) indexObj;
+            Object heatDataObj = index.getGunData().getHeatData();
+            if (heatDataObj != null) {
+                // TODO: [MIGRAÇÃO] Implementar acesso a métodos de HeatData quando Object Strategy for resolvida
+                // GunHeatData heatData = (GunHeatData) heatDataObj;
+                // float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
+                // return Mth.lerp(heatPercentage, heatData.getMinInaccuracy(), heatData.getMaxInaccuracy());
+                return 1f; // Placeholder temporário
+            }
+        }
+        return 1f;
     }
 }

@@ -27,14 +27,16 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public AbstractGunSmithTableBlock() {
-        super(Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F).noOcclusion());
+    public AbstractGunSmithTableBlock(Properties properties) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
@@ -91,18 +93,16 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(Level level, BlockPos pos, BlockState state, Player player) {
+    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
         BlockPos blockPos = getRootPos(pos, state);
-        if (level instanceof BlockGetter blockGetter) {
-            BlockEntity blockentity = blockGetter.getBlockEntity(blockPos);
-            if (blockentity instanceof GunSmithTableBlockEntity e) {
-                if (e.getId() != null) {
-                    return BlockItemBuilder.create(this).setId(e.getId()).build();
-                }
-                return new ItemStack(this);
+        BlockEntity blockentity = level.getBlockEntity(blockPos);
+        if (blockentity instanceof GunSmithTableBlockEntity e) {
+            if (e.getId() != null) {
+                return BlockItemBuilder.create(this).setId(e.getId()).build();
             }
+            return new ItemStack(this);
         }
-        return super.getCloneItemStack(level, pos, state, player);
+        return super.getCloneItemStack(level, pos, state);
     }
 
     public abstract boolean isRoot(BlockState blockState);

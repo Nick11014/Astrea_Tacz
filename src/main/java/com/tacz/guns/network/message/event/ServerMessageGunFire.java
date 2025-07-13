@@ -1,46 +1,40 @@
 package com.tacz.guns.network.message.event;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.GunFireEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public class ServerMessageGunFire {
-    private final int shooterId;
-    private final ItemStack gunItemStack;
+public record ServerMessageGunFire(int shooterId, ItemStack gunItemStack) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_fire");
 
-    public ServerMessageGunFire(int shooterId, ItemStack gunItemStack) {
-        this.shooterId = shooterId;
-        this.gunItemStack = gunItemStack;
+    public ServerMessageGunFire(FriendlyByteBuf buf) {
+        this(buf.readVarInt(), ItemStack.STREAM_CODEC.decode(buf));
     }
 
-    public static void encode(ServerMessageGunFire message, FriendlyByteBuf buf) {
-        buf.writeVarInt(message.shooterId);
-        // TODO: Migração NeoForge 1.21.1 - writeItem() mudou APIs
-        // buf.writeItem(message.gunItemStack);
-        buf.writeBoolean(false); // placeholder para gunItemStack
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeVarInt(shooterId);
+        ItemStack.STREAM_CODEC.encode(buf, gunItemStack);
     }
 
-    public static ServerMessageGunFire decode(FriendlyByteBuf buf) {
-        int shooterId = buf.readVarInt();
-        // TODO: Migração NeoForge 1.21.1 - readItem() mudou APIs
-        // ItemStack gunItemStack = buf.readItem();
-        buf.readBoolean(); // placeholder para gunItemStack
-        return new ServerMessageGunFire(shooterId, ItemStack.EMPTY);
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ServerMessageGunFire message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isClientbound()) {
-            context.enqueueWork(() -> doClientEvent(message));
-        }
+        context.enqueueWork(() -> doClientEvent(message));
     }
 
     @OnlyIn(Dist.CLIENT)

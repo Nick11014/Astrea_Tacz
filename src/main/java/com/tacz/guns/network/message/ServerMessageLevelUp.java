@@ -1,10 +1,8 @@
 package com.tacz.guns.network.message;
 
-import io.netty.buffer.ByteBuf;
+import com.tacz.guns.GunMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -12,25 +10,27 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import org.jetbrains.annotations.NotNull;
 
 public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPacketPayload {
-    
-    public static final Type<ServerMessageLevelUp> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("tacz", "server_message_level_up"));
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_level_up");
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageLevelUp> STREAM_CODEC = StreamCodec.composite(
-            ItemStack.STREAM_CODEC,
-            ServerMessageLevelUp::gun,
-            ByteBufCodecs.INT,
-            ServerMessageLevelUp::level,
-            ServerMessageLevelUp::new
-    );
+    public ServerMessageLevelUp(FriendlyByteBuf buf) {
+        this(ItemStack.STREAM_CODEC.decode(buf), buf.readInt());
+    }
+
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        ItemStack.STREAM_CODEC.encode(buf, gun);
+        buf.writeInt(level);
+    }
+
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
+    }
 
     public static void handle(ServerMessageLevelUp message, IPayloadContext context) {
-        // Verificar se estamos no lado cliente
-        if (context.flow().isClientbound()) {
-            context.enqueueWork(() -> onLevelUp(message));
-        }
+        context.enqueueWork(() -> onLevelUp(message));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -41,25 +41,6 @@ public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPa
         if (player == null) {
             return;
         }
-        // TODO 在完成了枪械升级逻辑后，解封下面的代码
-                /*
-                if (GunLevelManager.DAMAGE_UP_LEVELS.contains(level)) {
-                    Minecraft.getInstance().getToasts().addToast(new GunLevelUpToast(gun,
-                            Component.translatable("toast.tacz.level_up"),
-                            Component.translatable("toast.tacz.sub.damage_up")));
-                } else if (level >= GunLevelManager.MAX_LEVEL) {
-                    Minecraft.getInstance().getToasts().addToast(new GunLevelUpToast(gun,
-                            Component.translatable("toast.tacz.level_up"),
-                            Component.translatable("toast.tacz.sub.final_level")));
-                } else {
-                    Minecraft.getInstance().getToasts().addToast(new GunLevelUpToast(gun,
-                            Component.translatable("toast.tacz.level_up"),
-                            Component.translatable("toast.tacz.sub.level_up")));
-                }*/
-    }
-
-    @Override
-    public @NotNull Type<? extends CustomPacketPayload> type() {
-        return TYPE;
+        // TODO: Implementar a lógica de toast de level up quando o sistema de nível estiver pronto.
     }
 }

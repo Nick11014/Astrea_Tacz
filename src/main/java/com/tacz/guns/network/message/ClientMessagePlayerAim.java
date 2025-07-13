@@ -1,35 +1,37 @@
 package com.tacz.guns.network.message;
 
 import com.tacz.guns.api.entity.IGunOperator;
+import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public class ClientMessagePlayerAim {
-    private final boolean isAim;
+import static com.tacz.guns.GunMod.MOD_ID;
 
-    public ClientMessagePlayerAim(boolean isAim) {
-        this.isAim = isAim;
+public record ClientMessagePlayerAim(boolean isAim) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_aim");
+
+    public ClientMessagePlayerAim(FriendlyByteBuf buf) {
+        this(buf.readBoolean());
     }
 
-    public static void encode(ClientMessagePlayerAim message, FriendlyByteBuf buf) {
-        buf.writeBoolean(message.isAim);
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeBoolean(isAim);
     }
 
-    public static ClientMessagePlayerAim decode(FriendlyByteBuf buf) {
-        return new ClientMessagePlayerAim(buf.readBoolean());
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ClientMessagePlayerAim message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isServerbound()) {
-            context.enqueueWork(() -> {
-                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
-                if (entity == null) {
-                    return;
-                }
-                IGunOperator.fromLivingEntity(entity).aim(message.isAim);
-            });
+        ServerPlayer player = (ServerPlayer) NetworkHandler.getPlayer(context);
+        if (player == null) {
+            return;
         }
+        IGunOperator.fromLivingEntity(player).aim(message.isAim);
     }
 }

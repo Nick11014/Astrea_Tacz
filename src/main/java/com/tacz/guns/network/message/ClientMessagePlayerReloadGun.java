@@ -1,31 +1,37 @@
 package com.tacz.guns.network.message;
 
 import com.tacz.guns.api.entity.IGunOperator;
+import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public class ClientMessagePlayerReloadGun {
-    public ClientMessagePlayerReloadGun() {
+import static com.tacz.guns.GunMod.MOD_ID;
+
+public record ClientMessagePlayerReloadGun() implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_reload_gun");
+
+    public ClientMessagePlayerReloadGun(FriendlyByteBuf buf) {
+        this();
     }
 
-    public static void encode(ClientMessagePlayerReloadGun message, FriendlyByteBuf buf) {
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        // No data to write
     }
 
-    public static ClientMessagePlayerReloadGun decode(FriendlyByteBuf buf) {
-        return new ClientMessagePlayerReloadGun();
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ClientMessagePlayerReloadGun message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isServerbound()) {
-            context.enqueueWork(() -> {
-                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
-                if (entity == null) {
-                    return;
-                }
-                IGunOperator.fromLivingEntity(entity).reload();
-            });
+        ServerPlayer player = (ServerPlayer) NetworkHandler.getPlayer(context);
+        if (player == null) {
+            return;
         }
+        IGunOperator.fromLivingEntity(player).reload();
     }
 }

@@ -25,6 +25,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.joml.Vector3f;
 import org.luaj.vm2.LuaTable;
 
@@ -172,23 +173,23 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         if (iGun.useDummyAmmo(currentGunItem)) {
             return iGun.getDummyAmmoAmount(currentGunItem) > 0;
         }
-        return processCameraEntity(entity ->
-                    entity.getCapability(ForgeCapabilities.ITEM_HANDLER, null)
-                        .map(cap -> {
-                            // 背包检查
-                            for (int i = 0; i < cap.getSlots(); i++) {
-                                ItemStack checkAmmoStack = cap.getStackInSlot(i);
-                                if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(currentGunItem, checkAmmoStack)) {
-                                    return true;
-                                }
-                                if (checkAmmoStack.getItem() instanceof IAmmoBox iAmmoBox && iAmmoBox.isAmmoBoxOfGun(currentGunItem, checkAmmoStack)) {
-                                    return true;
-                                }
+        return processCameraEntity(entity -> {
+                    IItemHandler cap = entity.getCapability(Capabilities.ItemHandler.ENTITY);
+                    if (cap != null) {
+                        // 背包检查
+                        for (int i = 0; i < cap.getSlots(); i++) {
+                            ItemStack checkAmmoStack = cap.getStackInSlot(i);
+                            if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(currentGunItem, checkAmmoStack)) {
+                                return true;
                             }
-                            return false;
-                        })
-                        .orElse(false)
-                ).orElse(false);
+                            if (checkAmmoStack.getItem() instanceof IAmmoBox iAmmoBox && iAmmoBox.isAmmoBoxOfGun(currentGunItem, checkAmmoStack)) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+        ).orElse(false);
     }
 
     /**
@@ -350,18 +351,14 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         if (display.getShellEjection() != null) {
             BedrockGunModel gunModel = display.getGunModel();
             if (gunModel != null) {
-                ShellRender shellRender = gunModel.getShellRender(index);
+                Optional<ShellRender> shellRenderOptional = gunModel.getShellRender(index);
                 Vector3f velocity = display.getShellEjection().getRandomVelocity();
-                if (shellRender != null) {
-                    shellRender.addShell(velocity);
-                }
+                shellRenderOptional.ifPresent(shellRender -> shellRender.addShell(velocity));
 
                 var lod = display.getLodModel();
                 if (lod != null) {
-                    ShellRender lodShell = lod.getLeft().getShellRender(index);
-                    if (lodShell != null) {
-                        lodShell.addShell(velocity);
-                    }
+                    Optional<ShellRender> lodShellOptional = lod.getLeft().getShellRender(index);
+                    lodShellOptional.ifPresent(lodShell -> lodShell.addShell(velocity));
                 }
             }
         }
@@ -414,6 +411,8 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         }
         if (currentGunItem.hasTag()) {
             nbtUtil = new LuaNbtAccessor(currentGunItem.getTag());
+        } else {
+            nbtUtil = null;
         }
     }
 }

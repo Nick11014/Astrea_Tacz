@@ -1,46 +1,40 @@
 package com.tacz.guns.network.message.event;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.GunShootEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
-// TODO: Migrar para sistema de Payloads do NeoForge 1.21.1
-// import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
+public record ServerMessageGunShoot(int shooterId, ItemStack gunItemStack) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_shoot");
 
-public class ServerMessageGunShoot {
-    private final int shooterId;
-    private final ItemStack gunItemStack;
-
-    public ServerMessageGunShoot(int shooterId, ItemStack gunItemStack) {
-        this.shooterId = shooterId;
-        this.gunItemStack = gunItemStack;
+    public ServerMessageGunShoot(FriendlyByteBuf buf) {
+        this(buf.readVarInt(), ItemStack.STREAM_CODEC.decode(buf));
     }
 
-    public static void encode(ServerMessageGunShoot message, FriendlyByteBuf buf) {
-        buf.writeVarInt(message.shooterId);
-        buf.writeItem(message.gunItemStack);
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeVarInt(shooterId);
+        ItemStack.STREAM_CODEC.encode(buf, gunItemStack);
     }
 
-    public static ServerMessageGunShoot decode(FriendlyByteBuf buf) {
-        int shooterId = buf.readVarInt();
-        ItemStack gunItemStack = buf.readItem();
-        return new ServerMessageGunShoot(shooterId, gunItemStack);
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
-    public static void handle(ServerMessageGunShoot message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
-            context.enqueueWork(() -> doClientEvent(message));
-        }
-        context.setPacketHandled(true);
+    public static void handle(ServerMessageGunShoot message, IPayloadContext context) {
+        context.enqueueWork(() -> doClientEvent(message));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -48,7 +42,8 @@ public class ServerMessageGunShoot {
         ClientLevel level = Minecraft.getInstance().level;
         if (level == null) {
             return;
-        }        if (level.getEntity(message.shooterId) instanceof LivingEntity shooter) {
+        }
+        if (level.getEntity(message.shooterId) instanceof LivingEntity shooter) {
             GunShootEvent gunShootEvent = new GunShootEvent(shooter, message.gunItemStack, LogicalSide.CLIENT);
             NeoForge.EVENT_BUS.post(gunShootEvent);
         }

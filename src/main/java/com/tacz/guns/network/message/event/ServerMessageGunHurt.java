@@ -1,72 +1,51 @@
 package com.tacz.guns.network.message.event;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import javax.annotation.Nullable;
-import java.util.function.Supplier;
 
-public class ServerMessageGunHurt {
-    private final int bulletId;
-    private final int hurtEntityId;
-    private final int attackerId;
-    private final ResourceLocation gunId;
-    private final ResourceLocation gunDisplayId;
-    private final float amount;
-    private final boolean isHeadShot;
-    private final float headshotMultiplier;
+public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerId, ResourceLocation gunId,
+                                   ResourceLocation gunDisplayId,
+                                   float amount, boolean isHeadShot,
+                                   float headshotMultiplier) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_hurt");
 
-    public ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerId, ResourceLocation gunId, ResourceLocation gunDisplayId,
-                                float amount, boolean isHeadShot, float headshotMultiplier) {
-        this.bulletId = bulletId;
-        this.hurtEntityId = hurtEntityId;
-        this.attackerId = attackerId;
-        this.gunId = gunId;
-        this.gunDisplayId = gunDisplayId;
-        this.amount = amount;
-        this.isHeadShot = isHeadShot;
-        this.headshotMultiplier = headshotMultiplier;
+    public ServerMessageGunHurt(FriendlyByteBuf buf) {
+        this(buf.readInt(), buf.readInt(), buf.readInt(), buf.readResourceLocation(), buf.readResourceLocation(), buf.readFloat(), buf.readBoolean(), buf.readFloat());
     }
 
-    public static void encode(ServerMessageGunHurt message, FriendlyByteBuf buf) {
-        buf.writeInt(message.bulletId);
-        buf.writeInt(message.hurtEntityId);
-        buf.writeInt(message.attackerId);
-        buf.writeResourceLocation(message.gunId);
-        buf.writeResourceLocation(message.gunDisplayId);
-        buf.writeFloat(message.amount);
-        buf.writeBoolean(message.isHeadShot);
-        buf.writeFloat(message.headshotMultiplier);
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeInt(bulletId);
+        buf.writeInt(hurtEntityId);
+        buf.writeInt(attackerId);
+        buf.writeResourceLocation(gunId);
+        buf.writeResourceLocation(gunDisplayId);
+        buf.writeFloat(amount);
+        buf.writeBoolean(isHeadShot);
+        buf.writeFloat(headshotMultiplier);
     }
 
-    public static ServerMessageGunHurt decode(FriendlyByteBuf buf) {
-        int bulletId = buf.readInt();
-        int hurtEntityId = buf.readInt();
-        int attackerId = buf.readInt();
-        ResourceLocation gunId = buf.readResourceLocation();
-        ResourceLocation gunDisplayId = buf.readResourceLocation();
-        float amount = buf.readFloat();
-        boolean isHeadShot = buf.readBoolean();
-        float headshotMultiplier = buf.readFloat();
-        return new ServerMessageGunHurt(bulletId, hurtEntityId, attackerId, gunId, gunDisplayId, amount, isHeadShot, headshotMultiplier);
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
-    public static void handle(ServerMessageGunHurt message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
-            context.enqueueWork(() -> onHurt(message));
-        }
-        context.setPacketHandled(true);
+    public static void handle(ServerMessageGunHurt message, IPayloadContext context) {
+        context.enqueueWork(() -> onHurt(message));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -78,6 +57,6 @@ public class ServerMessageGunHurt {
         @Nullable Entity bullet = level.getEntity(message.bulletId);
         @Nullable Entity hurtEntity = level.getEntity(message.hurtEntityId);
         @Nullable LivingEntity attacker = level.getEntity(message.attackerId) instanceof LivingEntity livingEntity ? livingEntity : null;
-        MinecraftForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(bullet, hurtEntity, attacker, message.gunId, message.gunDisplayId, message.amount, null, message.isHeadShot, message.headshotMultiplier, LogicalSide.CLIENT));
+        NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(bullet, hurtEntity, attacker, message.gunId, message.gunDisplayId, message.amount, null, message.isHeadShot, message.headshotMultiplier, LogicalSide.CLIENT));
     }
 }

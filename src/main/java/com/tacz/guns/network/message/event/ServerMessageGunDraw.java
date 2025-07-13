@@ -1,52 +1,42 @@
 package com.tacz.guns.network.message.event;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.GunDrawEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public class ServerMessageGunDraw {
-    private final int entityId;
-    private final ItemStack previousGunItem;
-    private final ItemStack currentGunItem;
+public record ServerMessageGunDraw(int entityId, ItemStack previousGunItem,
+                                   ItemStack currentGunItem) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_draw");
 
-    public ServerMessageGunDraw(int entityId, ItemStack previousGunItem, ItemStack currentGunItem) {
-        this.entityId = entityId;
-        this.previousGunItem = previousGunItem;
-        this.currentGunItem = currentGunItem;
+    public ServerMessageGunDraw(FriendlyByteBuf buf) {
+        this(buf.readVarInt(), ItemStack.STREAM_CODEC.decode(buf), ItemStack.STREAM_CODEC.decode(buf));
     }
 
-    public static void encode(ServerMessageGunDraw message, FriendlyByteBuf buf) {
-        buf.writeVarInt(message.entityId);
-        // TODO: Migração NeoForge 1.21.1 - writeItem() mudou APIs
-        // buf.writeItem(message.previousGunItem);
-        // buf.writeItem(message.currentGunItem);
-        buf.writeBoolean(false); // placeholder para previousGunItem
-        buf.writeBoolean(false); // placeholder para currentGunItem
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeVarInt(entityId);
+        ItemStack.STREAM_CODEC.encode(buf, previousGunItem);
+        ItemStack.STREAM_CODEC.encode(buf, currentGunItem);
     }
 
-    public static ServerMessageGunDraw decode(FriendlyByteBuf buf) {
-        int entityId = buf.readVarInt();
-        // TODO: Migração NeoForge 1.21.1 - readItem() mudou APIs
-        // ItemStack previousGunItem = buf.readItem();
-        // ItemStack currentGunItem = buf.readItem();
-        buf.readBoolean(); // placeholder para previousGunItem
-        buf.readBoolean(); // placeholder para currentGunItem
-        return new ServerMessageGunDraw(entityId, ItemStack.EMPTY, ItemStack.EMPTY);
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ServerMessageGunDraw message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isClientbound()) {
-            context.enqueueWork(() -> doClientEvent(message));
-        }
+        context.enqueueWork(() -> doClientEvent(message));
     }
 
     @OnlyIn(Dist.CLIENT)

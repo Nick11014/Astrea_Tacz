@@ -4,33 +4,33 @@ import com.tacz.guns.client.gui.GunSmithTableScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-import java.util.function.Supplier;
+import static com.tacz.guns.GunMod.MOD_ID;
 
-public class ServerMessageCraft {
-    private final int menuId;
+public record ServerMessageCraft(int menuId) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "server_craft");
 
-    public ServerMessageCraft(int menuId) {
-        this.menuId = menuId;
+    public ServerMessageCraft(FriendlyByteBuf buf) {
+        this(buf.readVarInt());
     }
 
-    public static void encode(ServerMessageCraft message, FriendlyByteBuf buf) {
-        buf.writeVarInt(message.menuId);
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeVarInt(menuId);
     }
 
-    public static ServerMessageCraft decode(FriendlyByteBuf buf) {
-        return new ServerMessageCraft(buf.readVarInt());
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
-    public static void handle(ServerMessageCraft message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
-            context.enqueueWork(() -> updateScreen(message.menuId));
-        }
-        context.setPacketHandled(true);
+    public static void handle(ServerMessageCraft message, IPayloadContext context) {
+        context.enqueueWork(() -> updateScreen(message.menuId));
     }
 
     @OnlyIn(Dist.CLIENT)

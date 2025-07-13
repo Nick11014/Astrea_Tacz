@@ -1,41 +1,37 @@
 package com.tacz.guns.network.message;
 
 import com.tacz.guns.api.entity.IGunOperator;
+import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public class ClientMessagePlayerShoot {
-    /**
-     * 这里的 timestamp 应该是基于 base timestamp 的相对值
-     */
-    private long timestamp;
+import static com.tacz.guns.GunMod.MOD_ID;
 
-    public ClientMessagePlayerShoot() {
+public record ClientMessagePlayerShoot(long timestamp) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_shoot");
+
+    public ClientMessagePlayerShoot(FriendlyByteBuf buf) {
+        this(buf.readLong());
     }
 
-    public ClientMessagePlayerShoot(long timestamp) {
-        this.timestamp = timestamp;
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeLong(timestamp);
     }
 
-    public static void encode(ClientMessagePlayerShoot message, FriendlyByteBuf buf) {
-        buf.writeLong(message.timestamp);
-    }
-
-    public static ClientMessagePlayerShoot decode(FriendlyByteBuf buf) {
-        return new ClientMessagePlayerShoot(buf.readLong());
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ClientMessagePlayerShoot message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isServerbound()) {
-            context.enqueueWork(() -> {
-                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
-                if (entity == null) {
-                    return;
-                }
-                IGunOperator.fromLivingEntity(entity).shoot(entity::getXRot, entity::getYRot, message.timestamp);
-            });
+        ServerPlayer player = (ServerPlayer) NetworkHandler.getPlayer(context);
+        if (player == null) {
+            return;
         }
+        IGunOperator.fromLivingEntity(player).shoot(player::getXRot, player::getYRot, message.timestamp);
     }
 }

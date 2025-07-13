@@ -1,41 +1,40 @@
 package com.tacz.guns.network.message;
 
 import com.tacz.guns.inventory.GunSmithTableMenu;
+import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public class ClientMessageCraft {
-    private final ResourceLocation recipeId;
-    private final int menuId;
+import static com.tacz.guns.GunMod.MOD_ID;
 
-    public ClientMessageCraft(ResourceLocation recipeId, int menuId) {
-        this.recipeId = recipeId;
-        this.menuId = menuId;
+public record ClientMessageCraft(ResourceLocation recipeId, int menuId) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_craft");
+
+    public ClientMessageCraft(FriendlyByteBuf buf) {
+        this(buf.readResourceLocation(), buf.readVarInt());
     }
 
-    public static void encode(ClientMessageCraft message, FriendlyByteBuf buf) {
-        buf.writeResourceLocation(message.recipeId);
-        buf.writeVarInt(message.menuId);
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeResourceLocation(recipeId);
+        buf.writeVarInt(menuId);
     }
 
-    public static ClientMessageCraft decode(FriendlyByteBuf buf) {
-        return new ClientMessageCraft(buf.readResourceLocation(), buf.readVarInt());
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ClientMessageCraft message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isServerbound()) {
-            context.enqueueWork(() -> {
-                ServerPlayer entity = context.player() instanceof ServerPlayer player ? player : null;
-                if (entity == null) {
-                    return;
-                }
-                if (entity.containerMenu.containerId == message.menuId && entity.containerMenu instanceof GunSmithTableMenu menu) {
-                    menu.doCraft(message.recipeId, entity);
-                }
-            });
+        ServerPlayer player = (ServerPlayer) NetworkHandler.getPlayer(context);
+        if (player == null) {
+            return;
+        }
+        if (player.containerMenu.containerId == message.menuId && player.containerMenu instanceof GunSmithTableMenu menu) {
+            menu.doCraft(message.recipeId, player);
         }
     }
 }

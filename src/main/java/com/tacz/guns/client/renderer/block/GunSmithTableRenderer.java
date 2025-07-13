@@ -27,7 +27,7 @@ public class GunSmithTableRenderer implements BlockEntityRenderer<GunSmithTableB
 
     public Optional<ClientBlockIndex> getIndex(GunSmithTableBlockEntity blockEntity) {
         ResourceLocation id = blockEntity.getId();
-        if (id==null || id.equals(DefaultAssets.EMPTY_BLOCK_ID)) {
+        if (id == null || id.equals(DefaultAssets.DEFAULT_BLOCK_ID)) {
             return Optional.empty();
         }
         return TimelessAPI.getClientBlockIndex(id);
@@ -36,7 +36,7 @@ public class GunSmithTableRenderer implements BlockEntityRenderer<GunSmithTableB
     public static Optional<ClientBlockIndex> getIndex(ItemStack stack) {
         if (stack.getItem() instanceof IBlock iBlock) {
             ResourceLocation id = iBlock.getBlockId(stack);
-            if (id.equals(DefaultAssets.EMPTY_BLOCK_ID)) {
+            if (id.equals(DefaultAssets.DEFAULT_BLOCK_ID)) {
                 return Optional.empty();
             }
             return TimelessAPI.getClientBlockIndex(id);
@@ -60,8 +60,8 @@ public class GunSmithTableRenderer implements BlockEntityRenderer<GunSmithTableB
                 Direction facing = blockState.getValue(AbstractGunSmithTableBlock.FACING);
                 poseStack.pushPose();
                 poseStack.translate(0.5, 1.5, 0.5);
-                poseStack.mulPose(Axis.ZN.rotationDegrees(180));
-                poseStack.mulPose(Axis.YN.rotationDegrees(block.parseRotation(facing)));
+                poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+                poseStack.mulPose(Axis.YP.rotationDegrees(block.parseRotation(facing)));
                 RenderType renderType = RenderType.entityTranslucent(texture);
                 model.render(poseStack, ItemDisplayContext.NONE, renderType, combinedLightIn, combinedOverlayIn);
                 poseStack.popPose();

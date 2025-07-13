@@ -1,7 +1,11 @@
 package com.tacz.guns.api;
 
 import com.tacz.guns.api.item.IGun;
+import com.tacz.guns.client.resource.ClientAssetManager;
+import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
+import com.tacz.guns.resource.CommonAssetManager;
+import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -15,30 +19,25 @@ import java.util.Set;
 
 /**
  * API principal do TacZ para acesso a dados de armas, munições e acessórios.
- * <p>
- * MIGRAÇÃO 1.21.1: Implementação mínima funcional que mantém todas as assinaturas
- * originais mas retorna valores padrão seguros até que os managers sejam habilitados.
  */
 public final class TimelessAPI {
-
-    // ===== MÉTODOS DE DISPLAY CLIENT-SIDE =====
-
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientGunIndex> getGunDisplay(ItemStack stack) {
-        // TODO: Retornar GunDisplayInstance quando disponível
-        return Optional.empty();
+        return ClientAssetManager.INSTANCE.getGunIndex(getGunId(stack).orElse(DefaultAssets.DEFAULT_GUN_ID));
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Object> getGunDisplay(ResourceLocation displayId, ResourceLocation fallbackGunId) {
-        // TODO: Retornar GunDisplayInstance quando disponível
-        return Optional.empty();
+    public static Optional<ClientGunIndex> getGunDisplay(ResourceLocation displayId, ResourceLocation fallbackGunId) {
+        Optional<ClientGunIndex> gunIndex = ClientAssetManager.INSTANCE.getGunIndex(displayId);
+        if (gunIndex.isPresent()) {
+            return gunIndex;
+        }
+        return ClientAssetManager.INSTANCE.getGunIndex(fallbackGunId);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Object> getClientGunIndex(ResourceLocation gunId) {
-        // TODO: Retornar ClientGunIndex quando disponível
-        return Optional.empty();
+    public static Optional<ClientGunIndex> getClientGunIndex(ResourceLocation gunId) {
+        return ClientAssetManager.INSTANCE.getGunIndex(gunId);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -48,9 +47,8 @@ public final class TimelessAPI {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Object> getClientAttachmentIndex(ResourceLocation attachmentId) {
-        // TODO: Implementação mínima - usar ClientIndexManager quando estiver operacional
-        return Optional.empty(); // Retorna empty por enquanto
+    public static Optional<ClientAttachmentIndex> getClientAttachmentIndex(ResourceLocation attachmentId) {
+        return ClientAssetManager.INSTANCE.getAttachmentIndex(attachmentId);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -61,9 +59,8 @@ public final class TimelessAPI {
 
     // ===== MÉTODOS COMMON-SIDE =====
 
-    public static Optional<Object> getCommonGunIndex(ResourceLocation gunId) {
-        // TODO: Retornar CommonGunIndex quando CommonAssetsManager estiver disponível
-        return Optional.empty();
+    public static Optional<CommonGunIndex> getCommonGunIndex(ResourceLocation gunId) {
+        return CommonAssetManager.INSTANCE.getGunIndex(gunId);
     }
 
     public static Optional<Object> getCommonAmmoIndex(ResourceLocation ammoId) {
@@ -88,9 +85,8 @@ public final class TimelessAPI {
         return Collections.emptySet();
     }
 
-    public static Set<Map.Entry<ResourceLocation, Object>> getAllCommonGunIndex() {
-        // TODO: Retornar todos os índices de armas quando CommonAssetsManager estiver disponível
-        return Collections.emptySet();
+    public static Set<Map.Entry<ResourceLocation, CommonGunIndex>> getAllCommonGunIndex() {
+        return CommonAssetManager.INSTANCE.getAllGuns();
     }
 
     public static Set<Map.Entry<ResourceLocation, Object>> getAllAmmos() {

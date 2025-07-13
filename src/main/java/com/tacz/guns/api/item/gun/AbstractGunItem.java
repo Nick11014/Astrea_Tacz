@@ -11,6 +11,7 @@ import com.tacz.guns.client.renderer.item.GunItemRendererWrapper;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.entity.shooter.ShooterDataHolder;
 import com.tacz.guns.inventory.tooltip.GunTooltip;
+import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonGunIndex;
 import com.tacz.guns.resource.pojo.data.gun.FeedType;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
@@ -121,10 +122,11 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     public boolean canReload(LivingEntity shooter, ItemStack gunItem) {
         ResourceLocation gunId = this.getGunId(gunItem);
-        CommonGunIndex gunIndex = TimelessAPI.getCommonGunIndex(gunId).orElse(null);
-        if (gunIndex == null) {
+        Optional<CommonGunIndex> gunIndexOptional = TimelessAPI.getCommonGunIndex(gunId);
+        if (gunIndexOptional.isEmpty()) {
             return false;
         }
+        CommonGunIndex gunIndex = gunIndexOptional.get();
 
         int currentAmmoCount = getCurrentAmmoCount(gunItem);
         int maxAmmoCount = AttachmentDataUtils.getAmmoCountWithAttachment(gunItem, gunIndex.getGunData());
@@ -143,7 +145,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
             return getDummyAmmoAmount(gunItem) > 0;
         }
         // 检查背包内的弹药数量
-        return shooter.getCapability(Capabilities.ItemHandler.ENTITY, null).map(cap -> {
+        IItemHandler cap = shooter.getCapability(Capabilities.ItemHandler.ENTITY, null);
+        if (cap != null) {
             // 背包检查
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
@@ -155,7 +158,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                 }
             }
             return false;
-        }).orElse(false);
+        }
+        return false;
     }
 
     /**
@@ -176,7 +180,9 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
             return;
         }
         ResourceLocation gunId = getGunId(gunItem);
-        TimelessAPI.getCommonGunIndex(gunId).ifPresent(index -> {
+        Object gunIndexObj = TimelessAPI.getCommonGunIndex(gunId).orElse(null);
+        if (gunIndexObj != null && gunIndexObj instanceof CommonGunIndex) {
+            CommonGunIndex index = (CommonGunIndex) gunIndexObj;
             // 如果使用的是虚拟备弹，返还至虚拟备弹
             if (useDummyAmmo(gunItem)) {
                 setCurrentAmmoCount(gunItem, 0);
@@ -200,7 +206,9 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                 setCurrentAmmoCount(gunItem, 0);
                 return;
             }
-            TimelessAPI.getCommonAmmoIndex(ammoId).ifPresent(ammoIndex -> {
+            Object ammoIndexObj = TimelessAPI.getCommonAmmoIndex(ammoId).orElse(null);
+            if (ammoIndexObj != null && ammoIndexObj instanceof CommonAmmoIndex) {
+                CommonAmmoIndex ammoIndex = (CommonAmmoIndex) ammoIndexObj;
                 int stackSize = ammoIndex.getStackSize();
                 int tmpAmmoCount = ammoCount;
                 int roundCount = tmpAmmoCount / (stackSize + 1);
@@ -211,8 +219,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                     tmpAmmoCount -= stackSize;
                 }
                 setCurrentAmmoCount(gunItem, 0);
-            });
-        });
+            }
+        }
     }
 
     /**
@@ -298,13 +306,16 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
     public boolean allowAttachmentType(ItemStack gun, AttachmentType type) {
         IGun iGun = IGun.getIGunOrNull(gun);
         if (iGun != null) {
-            return TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).map(gunIndex -> {
+            Object gunIndexObj = TimelessAPI.getCommonGunIndex(iGun.getGunId(gun)).orElse(null);
+            if (gunIndexObj instanceof CommonGunIndex) {
+                CommonGunIndex gunIndex = (CommonGunIndex) gunIndexObj;
                 List<AttachmentType> allowAttachments = gunIndex.getGunData().getAllowAttachments();
                 if (allowAttachments == null) {
                     return false;
                 }
                 return allowAttachments.contains(type);
-            }).orElse(false);
+            }
+            return false;
         } else {
             return false;
         }
@@ -330,20 +341,30 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     public static NonNullList<ItemStack> fillItemCategory(GunTabType type) {
         NonNullList<ItemStack> stacks = NonNullList.create();
-        TimelessAPI.getAllCommonGunIndex().stream().sorted(idNameSort()).forEach(entry -> {
-            CommonGunIndex index = entry.getValue();
-            GunData gunData = index.getGunData();
-            String key = type.name().toLowerCase(Locale.US);
-            String indexType = index.getType();
-            if (key.equals(indexType)) {
-                ItemStack itemStack = GunItemBuilder.create()
-                        .setId(entry.getKey())
-                        .setFireMode(gunData.getFireModeSet().get(0))
-                        .setAmmoCount(gunData.getAmmoAmount())
-                        .setHeatData(gunData.hasHeatData())
-                        .setAmmoInBarrel(true)
-                        .build();
-                stacks.add(itemStack);
+        Comparator<Map.Entry<ResourceLocation, Object>> idNameSort = (o1, o2) -> {
+            if (o1.getValue() instanceof CommonGunIndex && o2.getValue() instanceof CommonGunIndex) {
+                CommonGunIndex index1 = (CommonGunIndex) o1.getValue();
+                CommonGunIndex index2 = (CommonGunIndex) o2.getValue();
+                return Integer.compare(index1.getSort(), index2.getSort());
+            }
+            return 0;
+        };
+        TimelessAPI.getAllCommonGunIndex().stream().sorted(idNameSort).forEach(entry -> {
+            if (entry.getValue() instanceof CommonGunIndex) {
+                CommonGunIndex index = (CommonGunIndex) entry.getValue();
+                GunData gunData = index.getGunData();
+                String key = type.name().toLowerCase(Locale.US);
+                String indexType = index.getType();
+                if (key.equals(indexType)) {
+                    ItemStack itemStack = GunItemBuilder.create()
+                            .setId(entry.getKey())
+                                .setFireMode(gunData.getFireModeSet().get(0))
+                            .setAmmoCount(gunData.getAmmoAmount())
+                            .setHeatData(gunData.hasHeatData())
+                            .setAmmoInBarrel(true)
+                            .build();
+                    stacks.add(itemStack);
+                }
             }
         });
         return stacks;
@@ -374,9 +395,9 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
     @Nonnull
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
         if (stack.getItem() instanceof IGun iGun) {
-            Optional<CommonGunIndex> optional = TimelessAPI.getCommonGunIndex(this.getGunId(stack));
-            if (optional.isPresent()) {
-                CommonGunIndex gunIndex = optional.get();
+            Object gunIndexObj = TimelessAPI.getCommonGunIndex(this.getGunId(stack)).orElse(null);
+            if (gunIndexObj instanceof CommonGunIndex) {
+                CommonGunIndex gunIndex = (CommonGunIndex) gunIndexObj;
                 ResourceLocation ammoId = gunIndex.getGunData().getAmmoId();
                 return Optional.of(new GunTooltip(stack, iGun, ammoId, gunIndex));
             }
@@ -392,11 +413,11 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
     @Override
     public boolean useInventoryAmmo(ItemStack gun) {
         if (gun.getItem() instanceof IGun) {
-            Optional<CommonGunIndex> gunIndexOptional = TimelessAPI.getCommonGunIndex(this.getGunId(gun));
-            if (gunIndexOptional.isEmpty()) {
+            Object gunIndexObj = TimelessAPI.getCommonGunIndex(this.getGunId(gun)).orElse(null);
+            if (!(gunIndexObj instanceof CommonGunIndex)) {
                 return false;
             }
-            CommonGunIndex gunIndex = gunIndexOptional.get();
+            CommonGunIndex gunIndex = (CommonGunIndex) gunIndexObj;
             // 是否为弹药直读
             return gunIndex.getGunData().getReloadData().getType().equals(FeedType.INVENTORY);
         }
@@ -422,7 +443,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
         if (useDummyAmmo(gun)) {
             return getDummyAmmoAmount(gun) > 0;
         }        // 检查背包内的弹药数量
-        return shooter.getCapability(Capabilities.ItemHandler.ENTITY, null).map(cap -> {
+        IItemHandler cap = shooter.getCapability(Capabilities.ItemHandler.ENTITY, null);
+        if (cap != null) {
             // 背包检查
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
@@ -434,7 +456,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                 }
             }
             return false;
-        }).orElse(false);
+        }
+        return false;
     }
 
     /**
@@ -444,16 +467,18 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     public int getRPM(ItemStack gun) {
         if (gun.getItem() instanceof IGun iGun) {
-            return TimelessAPI.getCommonGunIndex(this.getGunId(gun))
-                    .map(CommonGunIndex::getGunData)
-                    .map(gunData -> {
-                        FireMode fireMode = getFireMode(gun);
-                        int rpm = gunData.getRoundsPerMinute(fireMode);
-                        if (iGun.hasHeatData(gun)) {
-                            rpm *= (int) iGun.lerpRPM(gun);
-                        }
-                        return rpm;
-                    }).orElse(300);
+            Object gunIndexObj = TimelessAPI.getCommonGunIndex(this.getGunId(gun)).orElse(null);
+            if (gunIndexObj instanceof CommonGunIndex) {
+                CommonGunIndex gunIndex = (CommonGunIndex) gunIndexObj;
+                GunData gunData = gunIndex.getGunData();
+                FireMode fireMode = getFireMode(gun);
+                int rpm = gunData.getRoundsPerMinute(fireMode);
+                if (iGun.hasHeatData(gun)) {
+                    rpm *= (int) iGun.lerpRPM(gun);
+                }
+                return rpm;
+            }
+            return 300;
         }
         return 300;
     }
@@ -465,10 +490,12 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     public boolean isCanCrawl(ItemStack gun) {
         if (gun.getItem() instanceof IGun) {
-            return TimelessAPI.getCommonGunIndex(this.getGunId(gun))
-                    .map(CommonGunIndex::getGunData)
-                    .map(GunData::isCanCrawl)
-                    .orElse(false);
+            Optional<CommonGunIndex> gunIndexOptional = TimelessAPI.getCommonGunIndex(this.getGunId(gun));
+            if (gunIndexOptional.isPresent()) {
+                CommonGunIndex gunIndex = gunIndexOptional.get();
+                return gunIndex.getGunData().isCanCrawl();
+            }
+            return false;
         }
         return false;
     }

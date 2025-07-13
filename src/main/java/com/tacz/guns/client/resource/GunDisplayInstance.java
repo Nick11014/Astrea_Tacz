@@ -10,10 +10,10 @@ import com.tacz.guns.api.client.animation.AnimationController;
 import com.tacz.guns.api.client.animation.Animations;
 import com.tacz.guns.api.client.animation.ObjectAnimation;
 import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
+import com.tacz.guns.api.client.animation.statemachine.AnimationStateContext;
 import com.tacz.guns.api.client.animation.statemachine.LuaAnimationStateMachine;
 import com.tacz.guns.api.client.animation.statemachine.LuaStateMachineFactory;
-// TODO: [MIGRAÇÃO] Restaurar quando GunModelTypeManager for habilitado
-// import com.tacz.guns.api.client.other.GunModelTypeManager;
+import com.tacz.guns.api.client.other.GunModelTypeManager;
 import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.client.animation.statemachine.GunAnimationStateContext;
 import com.tacz.guns.client.model.BedrockGunModel;
@@ -28,7 +28,9 @@ import com.tacz.guns.util.ColorHex;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.commands.arguments.ParticleArgument;
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -52,9 +54,9 @@ public class GunDisplayInstance {
     private String thirdPersonAnimation = "empty";
     private BedrockGunModel gunModel;
     private @Nullable Pair<BedrockGunModel, ResourceLocation> lodModel;
-    private LuaAnimationStateMachine<GunAnimationStateContext> animationStateMachine;
+    private LuaAnimationStateMachine<? extends AnimationStateContext> animationStateMachine;
     private @Nullable LuaTable stateMachineParam;
-    private @Nullable ResourceLocation playerAnimator3rd = new ResourceLocation(GunMod.MOD_ID, "rifle_default.player_animation");
+    private @Nullable ResourceLocation playerAnimator3rd = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "rifle_default.player_animation");
     private boolean is3rdFixedHand = false;
     private Map<String, ResourceLocation> sounds;
     private GunTransform transform;
@@ -233,7 +235,7 @@ public class GunDisplayInstance {
         }
         LuaTable script = ClientAssetsManager.INSTANCE.getScript(stateMachineLocation);
         if (script != null) {
-            animationStateMachine = new LuaStateMachineFactory<GunAnimationStateContext>()
+            animationStateMachine = new LuaStateMachineFactory<>()
                     .setController(controller)
                     .setLuaScripts(script)
                     .build();
@@ -265,15 +267,15 @@ public class GunDisplayInstance {
         if (soundMaps == null || soundMaps.isEmpty()) {
             return;
         }
-        // 部分音效为默认音效，不存在则需要添加默认音效
-        soundMaps.putIfAbsent(SoundManager.DRY_FIRE_SOUND, new ResourceLocation(GunMod.MOD_ID, SoundManager.DRY_FIRE_SOUND));
-        soundMaps.putIfAbsent(SoundManager.FIRE_SELECT, new ResourceLocation(GunMod.MOD_ID, SoundManager.FIRE_SELECT));
-        soundMaps.putIfAbsent(SoundManager.HEAD_HIT_SOUND, new ResourceLocation(GunMod.MOD_ID, SoundManager.HEAD_HIT_SOUND));
-        soundMaps.putIfAbsent(SoundManager.FLESH_HIT_SOUND, new ResourceLocation(GunMod.MOD_ID, SoundManager.FLESH_HIT_SOUND));
-        soundMaps.putIfAbsent(SoundManager.KILL_SOUND, new ResourceLocation(GunMod.MOD_ID, SoundManager.KILL_SOUND));
-        soundMaps.putIfAbsent(SoundManager.MELEE_BAYONET, new ResourceLocation(GunMod.MOD_ID, "melee_bayonet/melee_bayonet_01"));
-        soundMaps.putIfAbsent(SoundManager.MELEE_STOCK, new ResourceLocation(GunMod.MOD_ID, "melee_stock/melee_stock_01"));
-        soundMaps.putIfAbsent(SoundManager.MELEE_PUSH, new ResourceLocation(GunMod.MOD_ID, "melee_stock/melee_stock_02"));
+        // Parte do som é o som padrão, se não existir, você precisa adicionar o som padrão
+        soundMaps.putIfAbsent(SoundManager.DRY_FIRE_SOUND, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, SoundManager.DRY_FIRE_SOUND));
+        soundMaps.putIfAbsent(SoundManager.FIRE_SELECT, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, SoundManager.FIRE_SELECT));
+        soundMaps.putIfAbsent(SoundManager.HEAD_HIT_SOUND, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, SoundManager.HEAD_HIT_SOUND));
+        soundMaps.putIfAbsent(SoundManager.FLESH_HIT_SOUND, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, SoundManager.FLESH_HIT_SOUND));
+        soundMaps.putIfAbsent(SoundManager.KILL_SOUND, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, SoundManager.KILL_SOUND));
+        soundMaps.putIfAbsent(SoundManager.MELEE_BAYONET, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "melee_bayonet/melee_bayonet_01"));
+        soundMaps.putIfAbsent(SoundManager.MELEE_STOCK, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "melee_stock/melee_stock_01"));
+        soundMaps.putIfAbsent(SoundManager.MELEE_PUSH, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "melee_stock/melee_stock_02"));
         sounds.putAll(soundMaps);
     }
 
@@ -313,14 +315,14 @@ public class GunDisplayInstance {
         if (particle != null) {
             try {
                 String name = particle.getName();
-                if (StringUtils.isNoneBlank()) {
+                if (StringUtils.isNoneBlank(name)) {
                     particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), BuiltInRegistries.PARTICLE_TYPE.asLookup()));
                     Preconditions.checkArgument(particle.getCount() > 0, "particle count must be greater than 0");
                     Preconditions.checkArgument(particle.getLifeTime() > 0, "particle life time must be greater than 0");
                     this.particle = particle;
                 }
             } catch (CommandSyntaxException e) {
-                e.fillInStackTrace();
+                throw new RuntimeException(e);
             }
         }
     }
@@ -360,7 +362,7 @@ public class GunDisplayInstance {
         return lodModel;
     }
 
-    public LuaAnimationStateMachine<GunAnimationStateContext> getAnimationStateMachine() {
+    public LuaAnimationStateMachine<? extends AnimationStateContext> getAnimationStateMachine() {
         return animationStateMachine;
     }
 

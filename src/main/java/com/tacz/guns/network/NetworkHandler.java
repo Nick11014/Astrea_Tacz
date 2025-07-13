@@ -5,164 +5,107 @@ import com.tacz.guns.network.message.*;
 import com.tacz.guns.network.message.event.*;
 import com.tacz.guns.network.message.handshake.Acknowledge;
 import com.tacz.guns.network.message.handshake.ServerMessageSyncedEntityDataMapping;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
-// TODO: Migrar para sistema de Payloads do NeoForge 1.21.1
-// import net.neoforged.neoforge.network.HandshakeHandler;
-// import net.neoforged.neoforge.network.NetworkDirection;
-// import net.neoforged.neoforge.network.NetworkRegistry;
 import net.neoforged.neoforge.network.PacketDistributor;
-// import net.neoforged.neoforge.network.simple.SimpleChannel;
-import org.apache.commons.lang3.tuple.Pair;
-
-import javax.annotation.Nullable;
-import java.lang.reflect.Constructor;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 
 public class NetworkHandler {
-    private static final String VERSION = "1.0.4";
+    private static final String VERSION = "1.0.5";
 
-    public static final SimpleChannel HANDSHAKE_CHANNEL = NetworkRegistry.newSimpleChannel(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "handshake"),
-            () -> VERSION, it -> it.equals(VERSION), it -> it.equals(VERSION));
-    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "network"),
-            () -> VERSION, it -> it.equals(VERSION), it -> it.equals(VERSION));
+    public static void register(final RegisterPayloadHandlersEvent event) {
+        final IPayloadRegistrar registrar = event.registrar(GunMod.MOD_ID).versioned(VERSION);
+        // Server-bound
+        registrar.play(ClientMessagePlayerShoot.TYPE, ClientMessagePlayerShoot::new, handler -> handler.server(ClientMessagePlayerShoot::handle));
+        registrar.play(ClientMessagePlayerReloadGun.TYPE, ClientMessagePlayerReloadGun::new, handler -> handler.server(ClientMessagePlayerReloadGun::handle));
+        registrar.play(ClientMessagePlayerCancelReload.TYPE, ClientMessagePlayerCancelReload::new, handler -> handler.server(ClientMessagePlayerCancelReload::handle));
+        registrar.play(ClientMessagePlayerFireSelect.TYPE, ClientMessagePlayerFireSelect::new, handler -> handler.server(ClientMessagePlayerFireSelect::handle));
+        registrar.play(ClientMessagePlayerAim.TYPE, ClientMessagePlayerAim::new, handler -> handler.server(ClientMessagePlayerAim::handle));
+        registrar.play(ClientMessagePlayerCrawl.TYPE, ClientMessagePlayerCrawl::new, handler -> handler.server(ClientMessagePlayerCrawl::handle));
+        registrar.play(ClientMessagePlayerDrawGun.TYPE, ClientMessagePlayerDrawGun::new, handler -> handler.server(ClientMessagePlayerDrawGun::handle));
+        registrar.play(ClientMessageCraft.TYPE, ClientMessageCraft::new, handler -> handler.server(ClientMessageCraft::handle));
+        registrar.play(ClientMessagePlayerZoom.TYPE, ClientMessagePlayerZoom::new, handler -> handler.server(ClientMessagePlayerZoom::handle));
+        registrar.play(ClientMessageRefitGun.TYPE, ClientMessageRefitGun::new, handler -> handler.server(ClientMessageRefitGun::handle));
+        registrar.play(ClientMessageUnloadAttachment.TYPE, ClientMessageUnloadAttachment::new, handler -> handler.server(ClientMessageUnloadAttachment::handle));
+        registrar.play(ClientMessagePlayerBoltGun.TYPE, ClientMessagePlayerBoltGun::new, handler -> handler.server(ClientMessagePlayerBoltGun::handle));
+        registrar.play(ClientMessagePlayerMelee.TYPE, ClientMessagePlayerMelee::new, handler -> handler.server(ClientMessagePlayerMelee::handle));
+        registrar.play(ClientMessageSyncBaseTimestamp.TYPE, ClientMessageSyncBaseTimestamp::new, handler -> handler.server(ClientMessageSyncBaseTimestamp::handle));
+        registrar.play(ClientMessageLaserColor.TYPE, ClientMessageLaserColor::new, handler -> handler.server(ClientMessageLaserColor::handle));
 
-    private static final AtomicInteger ID_COUNT = new AtomicInteger(1);
-    private static final AtomicInteger HANDSHAKE_ID_COUNT = new AtomicInteger(1);
+        // Client-bound
+        registrar.play(ServerMessageSound.TYPE, ServerMessageSound::new, handler -> handler.client(ServerMessageSound::handle));
+        registrar.play(ServerMessageCraft.TYPE, ServerMessageCraft::new, handler -> handler.client(ServerMessageCraft::handle));
+        registrar.play(ServerMessageRefreshRefitScreen.TYPE, ServerMessageRefreshRefitScreen::new, handler -> handler.client(ServerMessageRefreshRefitScreen::handle));
+        registrar.play(ServerMessageSwapItem.TYPE, ServerMessageSwapItem::new, handler -> handler.client(ServerMessageSwapItem::handle));
+        registrar.play(ServerMessageLevelUp.TYPE, ServerMessageLevelUp::new, handler -> handler.client(ServerMessageLevelUp::handle));
+        registrar.play(ServerMessageGunHurt.TYPE, ServerMessageGunHurt::new, handler -> handler.client(ServerMessageGunHurt::handle));
+        registrar.play(ServerMessageGunKill.TYPE, ServerMessageGunKill::new, handler -> handler.client(ServerMessageGunKill::handle));
+        registrar.play(ServerMessageUpdateEntityData.TYPE, ServerMessageUpdateEntityData::new, handler -> handler.client(ServerMessageUpdateEntityData::handle));
+        registrar.play(ServerMessageSyncGunPack.TYPE, ServerMessageSyncGunPack::new, handler -> handler.client(ServerMessageSyncGunPack::handle));
+        registrar.play(ServerMessageGunDraw.TYPE, ServerMessageGunDraw::new, handler -> handler.client(ServerMessageGunDraw::handle));
+        registrar.play(ServerMessageGunFire.TYPE, ServerMessageGunFire::new, handler -> handler.client(ServerMessageGunFire::handle));
+        registrar.play(ServerMessageGunFireSelect.TYPE, ServerMessageGunFireSelect::new, handler -> handler.client(ServerMessageGunFireSelect::handle));
+        registrar.play(ServerMessageGunMelee.TYPE, ServerMessageGunMelee::new, handler -> handler.client(ServerMessageGunMelee::handle));
+        registrar.play(ServerMessageGunReload.TYPE, ServerMessageGunReload::new, handler -> handler.client(ServerMessageGunReload::handle));
+        registrar.play(ServerMessageGunShoot.TYPE, ServerMessageGunShoot::new, handler -> handler.client(ServerMessageGunShoot::handle));
+        registrar.play(ServerMessageSyncBaseTimestamp.TYPE, ServerMessageSyncBaseTimestamp::new, handler -> handler.client(ServerMessageSyncBaseTimestamp::handle));
 
-    public static void init() {
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerShoot.class, ClientMessagePlayerShoot::encode, ClientMessagePlayerShoot::decode, ClientMessagePlayerShoot::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerReloadGun.class, ClientMessagePlayerReloadGun::encode, ClientMessagePlayerReloadGun::decode, ClientMessagePlayerReloadGun::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerCancelReload.class, ClientMessagePlayerCancelReload::encode, ClientMessagePlayerCancelReload::decode, ClientMessagePlayerCancelReload::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerFireSelect.class, ClientMessagePlayerFireSelect::encode, ClientMessagePlayerFireSelect::decode, ClientMessagePlayerFireSelect::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerAim.class, ClientMessagePlayerAim::encode, ClientMessagePlayerAim::decode, ClientMessagePlayerAim::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerCrawl.class, ClientMessagePlayerCrawl::encode, ClientMessagePlayerCrawl::decode, ClientMessagePlayerCrawl::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerDrawGun.class, ClientMessagePlayerDrawGun::encode, ClientMessagePlayerDrawGun::decode, ClientMessagePlayerDrawGun::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageSound.class, ServerMessageSound::encode, ServerMessageSound::decode, ServerMessageSound::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageCraft.class, ClientMessageCraft::encode, ClientMessageCraft::decode, ClientMessageCraft::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageCraft.class, ServerMessageCraft::encode, ServerMessageCraft::decode, ServerMessageCraft::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerZoom.class, ClientMessagePlayerZoom::encode, ClientMessagePlayerZoom::decode, ClientMessagePlayerZoom::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageRefitGun.class, ClientMessageRefitGun::encode, ClientMessageRefitGun::decode, ClientMessageRefitGun::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageRefreshRefitScreen.class, ServerMessageRefreshRefitScreen::encode, ServerMessageRefreshRefitScreen::decode, ServerMessageRefreshRefitScreen::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageUnloadAttachment.class, ClientMessageUnloadAttachment::encode, ClientMessageUnloadAttachment::decode, ClientMessageUnloadAttachment::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageSwapItem.class, ServerMessageSwapItem::encode, ServerMessageSwapItem::decode, ServerMessageSwapItem::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerBoltGun.class, ClientMessagePlayerBoltGun::encode, ClientMessagePlayerBoltGun::decode, ClientMessagePlayerBoltGun::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageLevelUp.class, ServerMessageLevelUp::encode, ServerMessageLevelUp::decode, ServerMessageLevelUp::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunHurt.class, ServerMessageGunHurt::encode, ServerMessageGunHurt::decode, ServerMessageGunHurt::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunKill.class, ServerMessageGunKill::encode, ServerMessageGunKill::decode, ServerMessageGunKill::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageUpdateEntityData.class, ServerMessageUpdateEntityData::encode, ServerMessageUpdateEntityData::decode, ServerMessageUpdateEntityData::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageSyncGunPack.class, ServerMessageSyncGunPack::encode, ServerMessageSyncGunPack::decode, ServerMessageSyncGunPack::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessagePlayerMelee.class, ClientMessagePlayerMelee::encode, ClientMessagePlayerMelee::decode, ClientMessagePlayerMelee::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunDraw.class, ServerMessageGunDraw::encode, ServerMessageGunDraw::decode, ServerMessageGunDraw::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunFire.class, ServerMessageGunFire::encode, ServerMessageGunFire::decode, ServerMessageGunFire::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunFireSelect.class, ServerMessageGunFireSelect::encode, ServerMessageGunFireSelect::decode, ServerMessageGunFireSelect::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunMelee.class, ServerMessageGunMelee::encode, ServerMessageGunMelee::decode, ServerMessageGunMelee::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunReload.class, ServerMessageGunReload::encode, ServerMessageGunReload::decode, ServerMessageGunReload::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageGunShoot.class, ServerMessageGunShoot::encode, ServerMessageGunShoot::decode, ServerMessageGunShoot::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ServerMessageSyncBaseTimestamp.class, ServerMessageSyncBaseTimestamp::encode, ServerMessageSyncBaseTimestamp::decode, ServerMessageSyncBaseTimestamp::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageSyncBaseTimestamp.class, ClientMessageSyncBaseTimestamp::encode, ClientMessageSyncBaseTimestamp::decode, ClientMessageSyncBaseTimestamp::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-
-        CHANNEL.registerMessage(ID_COUNT.getAndIncrement(), ClientMessageLaserColor.class, ClientMessageLaserColor::encode, ClientMessageLaserColor::decode, ClientMessageLaserColor::handle,
-                Optional.of(NetworkDirection.PLAY_TO_SERVER));
-
-        registerAcknowledge();
-        registerHandshakeMessage(ServerMessageSyncedEntityDataMapping.class, null);
-    }
-
-    public static void registerAcknowledge() {
-        Acknowledge acknowledge = new Acknowledge();
-        HANDSHAKE_CHANNEL.messageBuilder(Acknowledge.class, HANDSHAKE_ID_COUNT.getAndIncrement())
-                .loginIndex(Acknowledge::getLoginIndex, Acknowledge::setLoginIndex)
-                .decoder(acknowledge::decode)
-                .encoder(acknowledge::encode)
-                .consumerNetworkThread(HandshakeHandler.indexFirst((handler, msg, s) -> acknowledge.handle(msg, s)))
-                .add();
-    }
-
-    public static <T extends LoginIndexHolder & IMessage<T>> void registerHandshakeMessage(Class<T> messageClass, @Nullable Function<Boolean, List<Pair<String, T>>> messages) {
-        try {
-            Constructor<T> constructor = messageClass.getDeclaredConstructor();
-            T message = constructor.newInstance();
-            SimpleChannel.MessageBuilder<T> builder = HANDSHAKE_CHANNEL.messageBuilder(messageClass, HANDSHAKE_ID_COUNT.getAndIncrement())
-                    .loginIndex(LoginIndexHolder::getLoginIndex, LoginIndexHolder::setLoginIndex)
-                    .encoder(message::encode)
-                    .decoder(message::decode)
-                    .consumerNetworkThread(message::handle);
-            if (messages != null) {
-                builder.buildLoginPacketList(messages);
-            } else {
-                builder.markAsLoginPacket();
-            }
-            builder.add();
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(String.format("The message %s is missing an empty parameter constructor", messageClass.getName()), e);
-        } catch (IllegalAccessException e) {
-            throw new IllegalArgumentException(String.format("Unable to access the constructor of %s. Make sure the constructor is public.", messageClass.getName()), e);
-        } catch (Exception e) {
-            GunMod.LOGGER.error("Fail to register handshake message {}", messageClass.getName());
-            e.printStackTrace();
-        }
+        // Handshake
+        registrar.play(Acknowledge.TYPE, Acknowledge::new, handler -> handler.server(Acknowledge::handle));
+        registrar.play(ServerMessageSyncedEntityDataMapping.TYPE, ServerMessageSyncedEntityDataMapping::new, handler -> handler.client(ServerMessageSyncedEntityDataMapping::handle));
     }
 
     public static void sendToClientPlayer(Object message, Player player) {
-        CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), message);
+        if (player instanceof ServerPlayer sp) {
+            PacketDistributor.sendToPlayer(sp, message);
+        }
     }
 
-    /**
-     * 发送给所有监听此实体的玩家
-     */
     public static void sendToTrackingEntityAndSelf(Entity centerEntity, Object message) {
-        CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> centerEntity), message);
+        PacketDistributor.sendToPlayersTrackingEntity(centerEntity, message);
+        if (centerEntity instanceof ServerPlayer sp) {
+            PacketDistributor.sendToPlayer(sp, message);
+        }
     }
 
     public static void sendToAllPlayers(Object message) {
-        CHANNEL.send(PacketDistributor.ALL.noArg(), message);
+        PacketDistributor.sendToAllPlayers(message);
     }
 
     public static void sendToTrackingEntity(Object message, final Entity centerEntity) {
-        CHANNEL.send(PacketDistributor.TRACKING_ENTITY.with(() -> centerEntity), message);
+        PacketDistributor.sendToPlayersTrackingEntity(centerEntity, message);
     }
 
     public static void sendToDimension(Object message, final Entity centerEntity) {
         ResourceKey<Level> dimension = centerEntity.level().dimension();
-        CHANNEL.send(PacketDistributor.DIMENSION.with(() -> dimension), message);
+        PacketDistributor.sendToPlayersInDimension(centerEntity.getServer().getLevel(dimension), message);
+    }
+
+    public static void sendToAllNear(Object message, double x, double y, double z, double radius, ResourceKey<Level> dimension, Level world) {
+        PacketDistributor.sendToPlayersNear(world.getServer().getLevel(dimension), x, y, z, radius, message);
+    }
+
+    public static void sendToChunk(Object message, ChunkPos chunkPos, ResourceKey<Level> dimension, Level world) {
+        PacketDistributor.sendToPlayersInChunk(world.getServer().getLevel(dimension), chunkPos, message);
+    }
+
+    public static void sendToBlock(Object message, BlockPos pos, ResourceKey<Level> dimension, Level world) {
+        PacketDistributor.sendToPlayersNear(world.getServer().getLevel(dimension), pos.getX(), pos.getY(), pos.getZ(), 64, message);
+    }
+
+    public static void sendToServer(Object message) {
+        PacketDistributor.sendToServer(message);
+    }
+
+    public static Player getPlayer(IPayloadContext context) {
+        return context.player().orElse(null);
     }
 }

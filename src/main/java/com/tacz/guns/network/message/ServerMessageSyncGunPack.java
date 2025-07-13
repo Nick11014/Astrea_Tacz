@@ -1,49 +1,40 @@
 package com.tacz.guns.network.message;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.client.resource.ClientIndexManager;
 import com.tacz.guns.resource.network.CommonNetworkCache;
 import com.tacz.guns.resource.network.DataType;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.Map;
-import java.util.function.Supplier;
 
+public record ServerMessageSyncGunPack(
+        Map<DataType, Map<ResourceLocation, String>> cache) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_sync_gun_pack");
 
-public class ServerMessageSyncGunPack {
-    private final Map<DataType, Map<ResourceLocation, String>> cache;
-
-    public ServerMessageSyncGunPack(Map<DataType, Map<ResourceLocation, String>> cache) {
-        this.cache = cache;
+    public ServerMessageSyncGunPack(FriendlyByteBuf buf) {
+        this(buf.readMap(b -> b.readEnum(DataType.class), b -> b.readMap(FriendlyByteBuf::readResourceLocation, FriendlyByteBuf::readUtf)));
     }
 
-    public static void encode(ServerMessageSyncGunPack message, FriendlyByteBuf buf) {
-        buf.writeMap(message.getCache(), FriendlyByteBuf::writeEnum, (buf1, map) -> {
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeMap(cache, (b, t) -> b.writeEnum(t), (buf1, map) -> {
             buf1.writeMap(map, FriendlyByteBuf::writeResourceLocation, FriendlyByteBuf::writeUtf);
         });
     }
 
-    public static ServerMessageSyncGunPack decode(FriendlyByteBuf buf) {
-        var map = buf.readMap(buf1 -> buf1.readEnum(DataType.class), buf2 -> {
-            return buf2.readMap(FriendlyByteBuf::readResourceLocation, FriendlyByteBuf::readUtf);
-        });
-        return new ServerMessageSyncGunPack(map);
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
-    public static void handle(ServerMessageSyncGunPack message, Supplier<NetworkEvent.Context> contextSupplier) {
-        NetworkEvent.Context context = contextSupplier.get();
-        if (context.getDirection().getReceptionSide().isClient()) {
-            context.enqueueWork(() -> doSync(message));
-        }
-        context.setPacketHandled(true);
-    }
-
-
-    public Map<DataType, Map<ResourceLocation, String>> getCache() {
-        return cache;
+    public static void handle(ServerMessageSyncGunPack message, IPayloadContext context) {
+        context.enqueueWork(() -> doSync(message));
     }
 
     @OnlyIn(Dist.CLIENT)

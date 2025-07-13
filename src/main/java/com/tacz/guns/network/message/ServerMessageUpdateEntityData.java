@@ -1,9 +1,12 @@
 package com.tacz.guns.network.message;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.entity.sync.core.DataEntry;
 import com.tacz.guns.entity.sync.core.SyncedEntityData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -13,36 +16,37 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerMessageUpdateEntityData {
-    private final int entityId;
-    private final List<DataEntry<?, ?>> entries;
+public record ServerMessageUpdateEntityData(int entityId,
+                                            List<DataEntry<?, ?>> entries) implements CustomPacketPayload {
+    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_update_entity_data");
 
-    public ServerMessageUpdateEntityData(int entityId, List<DataEntry<?, ?>> entries) {
-        this.entityId = entityId;
-        this.entries = entries;
+    public ServerMessageUpdateEntityData(FriendlyByteBuf buf) {
+        this(buf.readVarInt(), readEntries(buf));
     }
 
-    public static void encode(ServerMessageUpdateEntityData message, FriendlyByteBuf buffer) {
-        buffer.writeVarInt(message.entityId);
-        buffer.writeVarInt(message.entries.size());
-        message.entries.forEach(entry -> entry.write(buffer));
-    }
-
-    public static ServerMessageUpdateEntityData decode(FriendlyByteBuf buffer) {
-        int entityId = buffer.readVarInt();
+    private static List<DataEntry<?, ?>> readEntries(FriendlyByteBuf buffer) {
         int size = buffer.readVarInt();
         List<DataEntry<?, ?>> entries = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             entries.add(DataEntry.read(buffer));
         }
-        return new ServerMessageUpdateEntityData(entityId, entries);
+        return entries;
+    }
+
+    @Override
+    public void write(FriendlyByteBuf buf) {
+        buf.writeVarInt(entityId);
+        buf.writeVarInt(entries.size());
+        entries.forEach(entry -> entry.write(buf));
+    }
+
+    @Override
+    public ResourceLocation type() {
+        return TYPE;
     }
 
     public static void handle(ServerMessageUpdateEntityData message, IPayloadContext context) {
-        // Migração NeoForge 1.21.1: NetworkEvent.Context → IPayloadContext
-        if (context.flow().isClientbound()) {
-            context.enqueueWork(() -> onHandle(message));
-        }
+        context.enqueueWork(() -> onHandle(message));
     }
 
     @OnlyIn(Dist.CLIENT)
