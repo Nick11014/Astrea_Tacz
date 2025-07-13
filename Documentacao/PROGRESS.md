@@ -1,8 +1,8 @@
 # RELATORIO DE PROGRESSO - TacZ NeoForge 1.21.1
 
-**Data:** 2025-07-09 (Atualizado após Fase D.5 Passo 3 + Expansão)
+**Data:** 2025-07-12 (Atualizado - NetworkEvent → IPayloadContext migração)
 **Total:** 609 arquivos
-**Habilitados:** 384 (63.1%)
+**Habilitados:** 392 (64.4%)
 
 ---
 
@@ -10,9 +10,9 @@
 
 ### **📊 Estatísticas Gerais:**
 - **Total de arquivos analisados:** 609
-- **Arquivos habilitados:** 384 (**63.1%**)
-- **Implementação completa:** 347 (**90.4%** dos habilitados)
-- **Implementação mínima:** 37 (**9.6%** dos habilitados)
+- **Arquivos habilitados:** 392 (**64.4%**)
+- **Implementação completa:** 354 (**90.3%** dos habilitados)
+- **Implementação mínima:** 38 (**9.7%** dos habilitados)
 
 ### **🔍 Análise de Qualidade:**
 - **Object Strategy:** 4 arquivos (resolvem dependências quebradas)
@@ -45,7 +45,7 @@
 ## CHECKLIST ATUALIZADO
 
 ### 
-**Progresso:** 384/609
+**Progresso:** 392/609
 
 - [x] **AccessorData.java** - HABILITADO
 - [x] **Align.java** - HABILITADO
@@ -244,7 +244,7 @@
 - [x] **ModSounds.java** - HABILITADO
 - [x] **ModPainting.java** - HABILITADO
 - [x] **BellRing.java** - HABILITADO
-- [ ] **ClientMessageCraft.java** - DESABILITADO
+- [x] **ClientMessageCraft.java** - HABILITADO
 - [x] **ClientMessagePlayerAim.java** - HABILITADO
 - [x] **ClientMessagePlayerBoltGun.java** - HABILITADO
 - [x] **ClientMessagePlayerCancelReload.java** - HABILITADO
@@ -269,7 +269,7 @@
 - [ ] **ServerMessageGunHurt.java** - DESABILITADO
 - [ ] **ServerMessageGunKill.java** - DESABILITADO
 - [ ] **ServerMessageGunMelee.java** - DESABILITADO
-- [ ] **ServerMessageGunReload.java** - DESABILITADO
+- [x] **ServerMessageGunReload.java** - HABILITADO
 - [ ] **ServerMessageGunShoot.java** - DESABILITADO
 - [x] **ServerMessageSwapItem.java** - HABILITADO
 - [x] **ServerPlayerMixin.java** - HABILITADO
@@ -277,7 +277,7 @@
 - [x] **Accessor.java** - HABILITADO
 - [x] **BlockIndexPOJO.java** - HABILITADO
 - [x] **BonesItem.java** - HABILITADO
-- [ ] **ControllableCompat.java** - DESABILITADO
+- [x] **ControllableCompat.java** - HABILITADO
 - [ ] **CrosshairDropdown.java** - DESABILITADO
 - [x] **CrosshairType.java** - HABILITADO
 - [x] **CubesItem.java** - HABILITADO
@@ -354,9 +354,9 @@
 - [x] **ClientConfig.java** - HABILITADO
 - [ ] **ClientMessageLaserColor.java** - DESABILITADO
 - [x] **ClientMessagePlayerCrawl.java** - HABILITADO
-- [ ] **ClientMessageRefitGun.java** - DESABILITADO
+- [x] **ClientMessageRefitGun.java** - HABILITADO
 - [ ] **ClientMessageSyncBaseTimestamp.java** - DESABILITADO
-- [ ] **ClientMessageUnloadAttachment.java** - DESABILITADO
+- [x] **ClientMessageUnloadAttachment.java** - HABILITADO
 - [ ] **ClientPreventGunClick.java** - DESABILITADO
 - [x] **ClothConfigScreen.java** - HABILITADO
 - [x] **CommonAmmoIndexSerializer.java** - HABILITADO
@@ -459,7 +459,7 @@
 - [ ] **LuaGunAnimationConstant.java** - DESABILITADO
 - [x] **LuaGunLogicConstant.java** - HABILITADO
 - [ ] **LuaStateMachineFactory.java** - DESABILITADO
-- [ ] **MenuIntegration.java** - DESABILITADO
+- [x] **MenuIntegration.java** - HABILITADO
 - [x] **ModBlocks.java** - HABILITADO (MINIMA: PLACEHOLDER)
 - [ ] **ModContainerScreen.java** - DESABILITADO
 - [x] **ModEntities.java** - HABILITADO (MINIMA: PLACEHOLDER)
@@ -486,7 +486,7 @@
 - [ ] **ParameterizedCache.java** - DESABILITADO
 - [ ] **ParameterizedCachePair.java** - DESABILITADO
 - [x] **ParticleFactoryRegistry.java** - HABILITADO
-- [ ] **PlayerAnimatorCompat.java** - DESABILITADO
+- [x] **PlayerAnimatorCompat.java** - HABILITADO
 - [ ] **PlayerAnimatorLoader.java** - DESABILITADO
 - [ ] **PlayerHurtByGunEvent.java** - DESABILITADO
 - [ ] **PlayerModelMixin.java** - DESABILITADO
@@ -512,7 +512,7 @@
 - [ ] **ServerMessageSyncBaseTimestamp.java** - DESABILITADO
 - [ ] **ServerMessageSyncGunPack.java** - DESABILITADO
 - [ ] **ServerMessageSyncedEntityDataMapping.java** - DESABILITADO
-- [ ] **ServerMessageUpdateEntityData.java** - DESABILITADO
+- [x] **ServerMessageUpdateEntityData.java** - HABILITADO
 - [ ] **ServerPlayNetHandlerMixin.java** - DESABILITADO
 - [x] **ShooterDataHolder.java** - HABILITADO (MINIMA: PLACEHOLDER)
 - [ ] **ShootKey.java** - DESABILITADO
