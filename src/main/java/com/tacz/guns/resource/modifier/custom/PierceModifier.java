@@ -2,6 +2,7 @@ package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
+import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.JsonProperty;
@@ -48,7 +49,7 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
         int pierce = gunData.getBulletData().getPierce();
         int modifiedValue = cacheProperty.<Integer>getCache(PierceModifier.ID);
         int pierceModifier = modifiedValue - pierce;

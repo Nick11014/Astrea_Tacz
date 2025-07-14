@@ -3,8 +3,12 @@ package com.tacz.guns.network.message.handshake;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.entity.sync.core.SyncedDataKey;
 import com.tacz.guns.entity.sync.core.SyncedEntityData;
-import net.minecraft.network.FriendlyByteBuf;
+import com.tacz.guns.GunMod;
+import com.tacz.guns.entity.sync.core.SyncedDataKey;
+import com.tacz.guns.entity.sync.core.SyncedEntityData;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -18,8 +22,20 @@ import java.util.concurrent.CountDownLatch;
 
 public record ServerMessageSyncedEntityDataMapping(
         Map<ResourceLocation, List<Pair<ResourceLocation, Integer>>> keyMap) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_synced_entity_data_mapping");
+    public static final CustomPacketPayload.Type<ServerMessageSyncedEntityDataMapping> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_synced_entity_data_mapping"));
     public static final Marker HANDSHAKE_MARKER = MarkerManager.getMarker("TACZ_HANDSHAKE");
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageSyncedEntityDataMapping> STREAM_CODEC = new StreamCodec<>() {
+        @Override
+        public ServerMessageSyncedEntityDataMapping decode(RegistryFriendlyByteBuf buf) {
+            return new ServerMessageSyncedEntityDataMapping(readKeyMap(buf));
+        }
+
+        @Override
+        public void encode(RegistryFriendlyByteBuf buf, ServerMessageSyncedEntityDataMapping message) {
+            message.write(buf);
+        }
+    };
 
     public ServerMessageSyncedEntityDataMapping() {
         this(new HashMap<>());
@@ -30,11 +46,7 @@ public record ServerMessageSyncedEntityDataMapping(
         });
     }
 
-    public ServerMessageSyncedEntityDataMapping(FriendlyByteBuf buf) {
-        this(readKeyMap(buf));
-    }
-
-    private static Map<ResourceLocation, List<Pair<ResourceLocation, Integer>>> readKeyMap(FriendlyByteBuf buffer) {
+    private static Map<ResourceLocation, List<Pair<ResourceLocation, Integer>>> readKeyMap(RegistryFriendlyByteBuf buffer) {
         int size = buffer.readInt();
         Map<ResourceLocation, List<Pair<ResourceLocation, Integer>>> map = new HashMap<>();
         for (int i = 0; i < size; i++) {
@@ -46,8 +58,7 @@ public record ServerMessageSyncedEntityDataMapping(
         return map;
     }
 
-    @Override
-    public void write(FriendlyByteBuf buf) {
+    public void write(RegistryFriendlyByteBuf buf) {
         buf.writeInt(keyMap.size());
         keyMap.forEach((classId, pairs) -> {
             pairs.forEach(pair -> {
@@ -59,7 +70,7 @@ public record ServerMessageSyncedEntityDataMapping(
     }
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

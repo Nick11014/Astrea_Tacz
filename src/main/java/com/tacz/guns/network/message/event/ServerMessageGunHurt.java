@@ -4,7 +4,12 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.network.FriendlyByteBuf;
+import com.tacz.guns.GunMod;
+import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -21,26 +26,22 @@ public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerI
                                    ResourceLocation gunDisplayId,
                                    float amount, boolean isHeadShot,
                                    float headshotMultiplier) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_hurt");
+    public static final CustomPacketPayload.Type<ServerMessageGunHurt> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_hurt"));
 
-    public ServerMessageGunHurt(FriendlyByteBuf buf) {
-        this(buf.readInt(), buf.readInt(), buf.readInt(), buf.readResourceLocation(), buf.readResourceLocation(), buf.readFloat(), buf.readBoolean(), buf.readFloat());
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeInt(bulletId);
-        buf.writeInt(hurtEntityId);
-        buf.writeInt(attackerId);
-        buf.writeResourceLocation(gunId);
-        buf.writeResourceLocation(gunDisplayId);
-        buf.writeFloat(amount);
-        buf.writeBoolean(isHeadShot);
-        buf.writeFloat(headshotMultiplier);
-    }
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunHurt> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.INT, ServerMessageGunHurt::bulletId,
+            ByteBufCodecs.INT, ServerMessageGunHurt::hurtEntityId,
+            ByteBufCodecs.INT, ServerMessageGunHurt::attackerId,
+            ResourceLocation.STREAM_CODEC, ServerMessageGunHurt::gunId,
+            ResourceLocation.STREAM_CODEC, ServerMessageGunHurt::gunDisplayId,
+            ByteBufCodecs.FLOAT, ServerMessageGunHurt::amount,
+            ByteBufCodecs.BOOL, ServerMessageGunHurt::isHeadShot,
+            ByteBufCodecs.FLOAT, ServerMessageGunHurt::headshotMultiplier,
+            ServerMessageGunHurt::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

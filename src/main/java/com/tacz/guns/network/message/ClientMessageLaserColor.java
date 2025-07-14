@@ -4,7 +4,12 @@ import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.network.NetworkHandler;
-import net.minecraft.network.FriendlyByteBuf;
+import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IGun;
+import com.tacz.guns.api.item.attachment.AttachmentType;
+import com.tacz.guns.network.NetworkHandler;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,7 +25,15 @@ import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boolean applyGunColor, int gunColor,
                                       int gunSlotIndex) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_laser_color");
+    public static final CustomPacketPayload.Type<ClientMessageLaserColor> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_laser_color"));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageLaserColor> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.map(HashMap::new, AttachmentType.STREAM_CODEC, ByteBufCodecs.INT), ClientMessageLaserColor::colorMap,
+            ByteBufCodecs.BOOL, ClientMessageLaserColor::applyGunColor,
+            ByteBufCodecs.INT, ClientMessageLaserColor::gunColor,
+            ByteBufCodecs.INT, ClientMessageLaserColor::gunSlotIndex,
+            ClientMessageLaserColor::new
+    );
 
     public ClientMessageLaserColor(@NotNull ItemStack gun, int gunSlotIndex) {
         this(new HashMap<>(), false, 0, -1);
@@ -41,21 +54,8 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
         }
     }
 
-    public ClientMessageLaserColor(FriendlyByteBuf buf) {
-        this(buf.readMap(HashMap::new, b -> b.readEnum(AttachmentType.class), FriendlyByteBuf::readInt),
-                buf.readBoolean(), buf.readInt(), buf.readInt());
-    }
-
     @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeMap(colorMap, (b, t) -> b.writeEnum(t), FriendlyByteBuf::writeInt);
-        buf.writeBoolean(applyGunColor);
-        buf.writeInt(gunColor);
-        buf.writeInt(gunSlotIndex);
-    }
-
-    @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

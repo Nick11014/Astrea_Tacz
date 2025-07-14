@@ -2,6 +2,8 @@ package com.tacz.guns.resource.modifier;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.tacz.guns.api.GunProperty;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
@@ -20,9 +22,8 @@ import static org.jetbrains.annotations.ApiStatus.*;
  */
 public class AttachmentCacheProperty {
     private final Map<String, CacheValue<?>> cacheValues = Maps.newHashMap();
-    private final Map<String, List<IAttachmentModifier<?, ?>>> cacheModifiers = Maps.newHashMap();
+    private final Map<String, List<Object>> cacheModifiers = Maps.newHashMap();
 
-    @SuppressWarnings("all")
     public void eval(ItemStack gunItem, GunData gunData) {
         var modifiers = AttachmentPropertyManager.getModifiers();
         modifiers.forEach((id, value) -> {
@@ -34,15 +35,12 @@ public class AttachmentCacheProperty {
 
         AttachmentDataUtils.getAllAttachmentData(gunItem, gunData, data -> {
             data.getModifier().forEach((id, value) -> {
-                List<IAttachmentModifier<?, ?>> objects = cacheModifiers.get(id);
-                if (value.getValue() instanceof IAttachmentModifier<?, ?> mod) {
-                    objects.add(mod);
-                }
+                cacheModifiers.computeIfAbsent(id, k -> Lists.newArrayList()).add(value.getValue());
             });
         });
 
         cacheValues.forEach((id, value) -> {
-            List<IAttachmentModifier<?, ?>> cacheModifier = cacheModifiers.get(id);
+            List<Object> cacheModifier = cacheModifiers.get(id);
             if (cacheModifier == null || cacheModifier.isEmpty()) {
                 return;
             }

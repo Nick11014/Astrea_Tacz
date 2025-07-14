@@ -3,6 +3,9 @@ package com.tacz.guns.api;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
+import com.tacz.guns.api.item.IGun;
+import com.tacz.guns.client.resource.ClientAssetsManager;
+import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.resource.index.ClientAmmoIndex;
 import com.tacz.guns.client.resource.index.ClientBlockIndex;
@@ -26,19 +29,6 @@ import java.util.Set;
  * API principal do TacZ para acesso a dados de armas, muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes e acessÃƒÆ’Ã‚Â³rios.
  */
 public final class TimelessAPI {
-    @OnlyIn(Dist.CLIENT)
-    public static Optional<ClientGunIndex> getGunDisplay(ItemStack stack) {
-        return ClientAssetsManager.INSTANCE.getGunIndex(getGunId(stack).orElse(DefaultAssets.DEFAULT_GUN_ID));
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static Optional<ClientGunIndex> getGunDisplay(ResourceLocation displayId, ResourceLocation fallbackGunId) {
-        Optional<ClientGunIndex> gunIndex = ClientAssetsManager.INSTANCE.getGunIndex(displayId);
-        if (gunIndex.isPresent()) {
-            return gunIndex;
-        }
-        return ClientAssetsManager.INSTANCE.getGunIndex(fallbackGunId);
-    }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientGunIndex> getClientGunIndex(ResourceLocation gunId) {

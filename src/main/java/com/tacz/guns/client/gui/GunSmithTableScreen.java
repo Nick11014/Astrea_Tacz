@@ -37,9 +37,52 @@ import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
+import com.tacz.guns.client.gui.components.smith.ResultButton;
+import com.tacz.guns.client.gui.components.smith.TypeButton;
+import com.tacz.guns.client.resource.ClientAssetsManager;
+import com.tacz.guns.client.resource.pojo.PackInfo;
+import com.tacz.guns.config.sync.SyncConfig;
+import com.tacz.guns.crafting.GunSmithTableIngredient;
+import com.tacz.guns.crafting.GunSmithTableRecipe;
+import com.tacz.guns.init.ModRecipe;
+import com.tacz.guns.inventory.GunSmithTableMenu;
+import com.tacz.guns.network.NetworkHandler;
+import com.tacz.guns.network.message.ClientMessageCraft;
+import com.tacz.guns.resource.filter.RecipeFilter;
+import com.tacz.guns.resource.pojo.data.block.TabConfig;
+import com.tacz.guns.util.RenderDistance;
+import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import com.tacz.guns.client.gui.components.smith.ResultButton;
+import com.tacz.guns.client.gui.components.smith.TypeButton;
+import com.tacz.guns.client.resource.ClientAssetsManager;
+import com.tacz.guns.client.resource.pojo.PackInfo;
+import com.tacz.guns.config.sync.SyncConfig;
+import com.tacz.guns.crafting.GunSmithTableIngredient;
+import com.tacz.guns.crafting.GunSmithTableRecipe;
+import com.tacz.guns.init.ModRecipe;
+import com.tacz.guns.inventory.GunSmithTableMenu;
+import com.tacz.guns.network.NetworkHandler;
+import com.tacz.guns.network.message.ClientMessageCraft;
+import com.tacz.guns.resource.filter.RecipeFilter;
+import com.tacz.guns.resource.pojo.data.block.TabConfig;
+import com.tacz.guns.util.RenderDistance;
+import it.unimi.dsi.fastutil.Pair;
+import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
+import net.minecraft.client.gui.components.WidgetSprites;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -295,7 +338,10 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     }
 
     private void addCraftButton() {
-        this.addRenderableWidget(new ImageButton(leftPos + 289, topPos + 162, 48, 18, 138, 164, 18, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 289, topPos + 162, 48, 18, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             if (this.selectedRecipe != null && playerIngredientCount != null) {
                 // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦
                 List<GunSmithTableIngredient> inputs = selectedRecipe.getInputs();
@@ -318,7 +364,10 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     }
 
     private void addUrlButton() {
-        this.addRenderableWidget(new ImageButton(leftPos + 112, topPos + 164, 18, 18, 149, 211, 18, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 112, topPos + 164, 18, 18, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             if (this.selectedRecipe != null) {
                 ItemStack output = selectedRecipe.getOutput();
                 Item item = output.getItem();
@@ -406,13 +455,19 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     }
 
     private void addIndexPageButtons() {
-        this.addRenderableWidget(new ImageButton(leftPos + 143, topPos + 56, 96, 6, 40, 166, 6, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 143, topPos + 56, 96, 6, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             if (this.indexPage > 0) {
                 this.indexPage--;
                 this.init();
             }
         }));
-        this.addRenderableWidget(new ImageButton(leftPos + 143, topPos + 171, 96, 6, 40, 186, 6, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 143, topPos + 171, 96, 6, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             if (selectedRecipeList != null && !selectedRecipeList.isEmpty()) {
                 int maxIndexPage = (selectedRecipeList.size() - 1) / 6;
                 if (this.indexPage < maxIndexPage) {
@@ -424,13 +479,19 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     }
 
     private void addTypePageButtons() {
-        this.addRenderableWidget(new ImageButton(leftPos + 136, topPos + 4, 18, 20, 0, 162, 20, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 136, topPos + 4, 18, 20, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             if (this.typePage > 0) {
                 this.typePage--;
                 this.init();
             }
         }));
-        this.addRenderableWidget(new ImageButton(leftPos + 327, topPos + 4, 18, 20, 20, 162, 20, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 327, topPos + 4, 18, 20, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             int maxIndexPage = (recipes.size() - 1) / 7;
             if (this.typePage < maxIndexPage) {
                 this.typePage++;
@@ -440,13 +501,22 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     }
 
     private void addScaleButtons() {
-        this.addRenderableWidget(new ImageButton(leftPos + 5, topPos + 5, 10, 10, 188, 173, 10, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 5, topPos + 5, 10, 10, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             this.scale = Math.min(this.scale + 20, 200);
         }));
-        this.addRenderableWidget(new ImageButton(leftPos + 17, topPos + 5, 10, 10, 200, 173, 10, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 17, topPos + 5, 10, 10, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             this.scale = Math.max(this.scale - 20, 10);
         }));
-        this.addRenderableWidget(new ImageButton(leftPos + 29, topPos + 5, 10, 10, 212, 173, 10, TEXTURE, b -> {
+        this.addRenderableWidget(new ImageButton(leftPos + 29, topPos + 5, 10, 10, new WidgetSprites(
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png"),
+                ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
+        ), b -> {
             this.scale = 70;
         }));
     }

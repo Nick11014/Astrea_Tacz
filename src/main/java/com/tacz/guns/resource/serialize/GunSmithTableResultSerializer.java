@@ -7,6 +7,14 @@ import com.tacz.guns.crafting.result.RawGunTableResult;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.recipe.GunResult;
+import com.google.gson.*;
+import com.tacz.guns.GunMod;
+import com.tacz.guns.crafting.result.GunSmithTableResult;
+import com.tacz.guns.crafting.result.RawGunTableResult;
+import com.tacz.guns.resource.CommonAssetsManager;
+import com.tacz.guns.resource.pojo.data.block.TabConfig;
+import com.tacz.guns.resource.pojo.data.recipe.GunResult;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -61,7 +69,7 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
                 case GunSmithTableResult.CUSTOM -> {
                     JsonObject resultObject = GsonHelper.getAsJsonObject(jsonObject, "item");
                     // TODO: [MIGRATION] CraftingHelper.getItemStack() signature changed in NeoForge 1.21.1
-                    ItemStack itemStack = CraftingHelper.getItemStack(resultObject, true, true);
+                    ItemStack itemStack = CraftingHelper.getItemStack(resultObject, true);
                     result = new GunSmithTableResult(itemStack, tabOverride);
                 }
                 default -> {
