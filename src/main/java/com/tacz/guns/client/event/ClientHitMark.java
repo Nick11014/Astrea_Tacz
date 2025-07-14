@@ -38,9 +38,19 @@ public class ClientHitMark {
             RenderCrosshairEvent.markHitTimestamp();
             if (event.isHeadShot()) {
                 RenderCrosshairEvent.markHeadShotTimestamp();
-                TimelessAPI.getGunDisplay(gunDisplayId, gunId).ifPresent(index -> SoundPlayManager.playHeadHitSound(player, index));
+                TimelessAPI.getGunDisplay(gunDisplayId, gunId).ifPresent(index -> {
+                    var displayInstance = index.getDisplayInstance();
+                    if (displayInstance != null) {
+                        SoundPlayManager.playHeadHitSound(player, displayInstance);
+                    }
+                });
             } else {
-                TimelessAPI.getGunDisplay(gunDisplayId, gunId).ifPresent(index -> SoundPlayManager.playFleshHitSound(player, index));
+                TimelessAPI.getGunDisplay(gunDisplayId, gunId).ifPresent(index -> {
+                    var displayInstance = index.getDisplayInstance();
+                    if (displayInstance != null) {
+                        SoundPlayManager.playFleshHitSound(player, displayInstance);
+                    }
+                });
             }
 
             if(hurtEntity instanceof TargetMinecart){
@@ -68,7 +78,12 @@ public class ClientHitMark {
         if (player != null && player.equals(attacker)) {
             RenderCrosshairEvent.markKillTimestamp();
             KillAmountOverlay.markTimestamp();
-            TimelessAPI.getGunDisplay(event.getGunDisplayId(), event.getGunId()).ifPresent(index -> SoundPlayManager.playKillSound(player, index));
+            TimelessAPI.getGunDisplay(event.getGunDisplayId(), event.getGunId()).ifPresent(index -> {
+                var displayInstance = index.getDisplayInstance();
+                if (displayInstance != null) {
+                    SoundPlayManager.playKillSound(player, displayInstance);
+                }
+            });
             if (event.isHeadShot()) {
                 RenderCrosshairEvent.markHeadShotTimestamp();
             }

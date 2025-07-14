@@ -3,7 +3,8 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.client.gui.GunSmithTableScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -13,19 +14,15 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ServerMessageCraft(int menuId) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "server_craft");
-
-    public ServerMessageCraft(FriendlyByteBuf buf) {
-        this(buf.readVarInt());
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeVarInt(menuId);
-    }
+    public static final CustomPacketPayload.Type<ServerMessageCraft> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "server_craft"));
+    
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageCraft> STREAM_CODEC = StreamCodec.composite(
+        StreamCodec.VAR_INT, ServerMessageCraft::menuId,
+        ServerMessageCraft::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

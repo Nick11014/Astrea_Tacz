@@ -62,7 +62,7 @@ public class TickAnimationEvent {
         if (IClientItemExtensions.of(mainHandItem.getItem()).getCustomRenderer() instanceof AnimateGeoItemRenderer<?, ?> renderer) {
             // Se o item for diferente, primeiro tenta inicializar a mÃƒÆ’Ã‚Â¡quina de estado
             if (renderer.needReInit(mainHandItem)) {
-                renderer.tryInit(mainHandItem, player, event.getPartialTick());
+                renderer.tryInit(mainHandItem, player, event.getPartialTick().getGameTimeDeltaPartialTick(false));
             }
             renderer.visualUpdate(mainHandItem);
         }

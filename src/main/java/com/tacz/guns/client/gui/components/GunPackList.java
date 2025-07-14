@@ -31,7 +31,7 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
 
     public GunPackList(Minecraft pMinecraft, int pWidth, int pHeight, int pY0, int pY1, int pItemHeight,
                        Map<ResourceLocation, List<ResourceLocation>> recipes, GunSmithTableScreen parent) {
-        super(pMinecraft, pWidth, pHeight, pY0, pY1, pItemHeight);
+        super(pMinecraft, pWidth, pHeight, pY0, pItemHeight);
         this.setRenderBackground(false);
         this.setRenderTopAndBottom(false);
         this.parent = parent;
@@ -174,7 +174,7 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
     }
 
     public static class Checkbox extends AbstractButton {
-        private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("textures/gui/checkbox.png");
+        private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/checkbox.png");
         protected boolean selected;
         protected final boolean showLabel;
         private String id;

@@ -16,43 +16,53 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Import removido - IPayloadRegistrar agora ÃƒÆ’Ã‚Â© obtido atravÃƒÆ’Ã‚Â©s do event
 // import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 
 public class NetworkHandler {
     private static final String VERSION = "1.0.5";
 
+    // Compatibility object to maintain existing CHANNEL.sendToServer() calls
+    public static final ChannelCompat CHANNEL = new ChannelCompat();
+
+    public static class ChannelCompat {
+        public void sendToServer(Object message) {
+            NetworkHandler.sendToServer(message);
+        }
+    }
+
     public static void register(final RegisterPayloadHandlersEvent event) {
         final IPayloadRegistrar registrar = event.registrar(GunMod.MOD_ID).versioned(VERSION);
         // Server-bound
-        registrar.play(ClientMessagePlayerShoot.TYPE, ClientMessagePlayerShoot::new, handler -> handler.server(ClientMessagePlayerShoot::handle));
-        registrar.play(ClientMessagePlayerReloadGun.TYPE, ClientMessagePlayerReloadGun::new, handler -> handler.server(ClientMessagePlayerReloadGun::handle));
-        registrar.play(ClientMessagePlayerCancelReload.TYPE, ClientMessagePlayerCancelReload::new, handler -> handler.server(ClientMessagePlayerCancelReload::handle));
-        registrar.play(ClientMessagePlayerFireSelect.TYPE, ClientMessagePlayerFireSelect::new, handler -> handler.server(ClientMessagePlayerFireSelect::handle));
-        registrar.play(ClientMessagePlayerAim.TYPE, ClientMessagePlayerAim::new, handler -> handler.server(ClientMessagePlayerAim::handle));
-        registrar.play(ClientMessagePlayerCrawl.TYPE, ClientMessagePlayerCrawl::new, handler -> handler.server(ClientMessagePlayerCrawl::handle));
-        registrar.play(ClientMessagePlayerDrawGun.TYPE, ClientMessagePlayerDrawGun::new, handler -> handler.server(ClientMessagePlayerDrawGun::handle));
-        registrar.play(ClientMessageCraft.TYPE, ClientMessageCraft::new, handler -> handler.server(ClientMessageCraft::handle));
-        registrar.play(ClientMessagePlayerZoom.TYPE, ClientMessagePlayerZoom::new, handler -> handler.server(ClientMessagePlayerZoom::handle));
-        registrar.play(ClientMessageRefitGun.TYPE, ClientMessageRefitGun::new, handler -> handler.server(ClientMessageRefitGun::handle));
+        registrar.play(ClientMessagePlayerShoot.TYPE, ClientMessagePlayerShoot.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerShoot::handle));
+        registrar.play(ClientMessagePlayerReloadGun.TYPE, ClientMessagePlayerReloadGun.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerReloadGun::handle));
+        registrar.play(ClientMessagePlayerCancelReload.TYPE, ClientMessagePlayerCancelReload.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerCancelReload::handle));
+        registrar.play(ClientMessagePlayerFireSelect.TYPE, ClientMessagePlayerFireSelect.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerFireSelect::handle));
+        registrar.play(ClientMessagePlayerAim.TYPE, ClientMessagePlayerAim.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerAim::handle));
+        registrar.play(ClientMessagePlayerCrawl.TYPE, ClientMessagePlayerCrawl.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerCrawl::handle));
+        registrar.play(ClientMessagePlayerDrawGun.TYPE, ClientMessagePlayerDrawGun.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerDrawGun::handle));
+        registrar.play(ClientMessageCraft.TYPE, ClientMessageCraft.STREAM_CODEC, handler -> handler.server(ClientMessageCraft::handle));
+        registrar.play(ClientMessagePlayerZoom.TYPE, ClientMessagePlayerZoom.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerZoom::handle));
+        registrar.play(ClientMessageRefitGun.TYPE, ClientMessageRefitGun.STREAM_CODEC, handler -> handler.server(ClientMessageRefitGun::handle));
         registrar.play(ClientMessageUnloadAttachment.TYPE, ClientMessageUnloadAttachment::new, handler -> handler.server(ClientMessageUnloadAttachment::handle));
-        registrar.play(ClientMessagePlayerBoltGun.TYPE, ClientMessagePlayerBoltGun::new, handler -> handler.server(ClientMessagePlayerBoltGun::handle));
-        registrar.play(ClientMessagePlayerMelee.TYPE, ClientMessagePlayerMelee::new, handler -> handler.server(ClientMessagePlayerMelee::handle));
+        registrar.play(ClientMessagePlayerBoltGun.TYPE, ClientMessagePlayerBoltGun.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerBoltGun::handle));
+        registrar.play(ClientMessagePlayerMelee.TYPE, ClientMessagePlayerMelee.STREAM_CODEC, handler -> handler.server(ClientMessagePlayerMelee::handle));
         registrar.play(ClientMessageSyncBaseTimestamp.TYPE, ClientMessageSyncBaseTimestamp::new, handler -> handler.server(ClientMessageSyncBaseTimestamp::handle));
         registrar.play(ClientMessageLaserColor.TYPE, ClientMessageLaserColor::new, handler -> handler.server(ClientMessageLaserColor::handle));
 
         // Client-bound
-        registrar.play(ServerMessageSound.TYPE, ServerMessageSound::new, handler -> handler.client(ServerMessageSound::handle));
-        registrar.play(ServerMessageCraft.TYPE, ServerMessageCraft::new, handler -> handler.client(ServerMessageCraft::handle));
-        registrar.play(ServerMessageRefreshRefitScreen.TYPE, ServerMessageRefreshRefitScreen::new, handler -> handler.client(ServerMessageRefreshRefitScreen::handle));
-        registrar.play(ServerMessageSwapItem.TYPE, ServerMessageSwapItem::new, handler -> handler.client(ServerMessageSwapItem::handle));
+        registrar.play(ServerMessageSound.TYPE, ServerMessageSound.STREAM_CODEC, handler -> handler.client(ServerMessageSound::handle));
+        registrar.play(ServerMessageCraft.TYPE, ServerMessageCraft.STREAM_CODEC, handler -> handler.client(ServerMessageCraft::handle));
+        registrar.play(ServerMessageRefreshRefitScreen.TYPE, ServerMessageRefreshRefitScreen.STREAM_CODEC, handler -> handler.client(ServerMessageRefreshRefitScreen::handle));
+        registrar.play(ServerMessageSwapItem.TYPE, ServerMessageSwapItem.STREAM_CODEC, handler -> handler.client(ServerMessageSwapItem::handle));
         registrar.play(ServerMessageLevelUp.TYPE, ServerMessageLevelUp::new, handler -> handler.client(ServerMessageLevelUp::handle));
         registrar.play(ServerMessageGunHurt.TYPE, ServerMessageGunHurt::new, handler -> handler.client(ServerMessageGunHurt::handle));
         registrar.play(ServerMessageGunKill.TYPE, ServerMessageGunKill::new, handler -> handler.client(ServerMessageGunKill::handle));
         registrar.play(ServerMessageUpdateEntityData.TYPE, ServerMessageUpdateEntityData::new, handler -> handler.client(ServerMessageUpdateEntityData::handle));
         registrar.play(ServerMessageSyncGunPack.TYPE, ServerMessageSyncGunPack::new, handler -> handler.client(ServerMessageSyncGunPack::handle));
-        registrar.play(ServerMessageGunDraw.TYPE, ServerMessageGunDraw::new, handler -> handler.client(ServerMessageGunDraw::handle));
-        registrar.play(ServerMessageGunFire.TYPE, ServerMessageGunFire::new, handler -> handler.client(ServerMessageGunFire::handle));
+        registrar.play(ServerMessageGunDraw.TYPE, ServerMessageGunDraw.STREAM_CODEC, handler -> handler.client(ServerMessageGunDraw::handle));
+        registrar.play(ServerMessageGunFire.TYPE, ServerMessageGunFire.STREAM_CODEC, handler -> handler.client(ServerMessageGunFire::handle));
         registrar.play(ServerMessageGunFireSelect.TYPE, ServerMessageGunFireSelect::new, handler -> handler.client(ServerMessageGunFireSelect::handle));
         registrar.play(ServerMessageGunMelee.TYPE, ServerMessageGunMelee::new, handler -> handler.client(ServerMessageGunMelee::handle));
         registrar.play(ServerMessageGunReload.TYPE, ServerMessageGunReload::new, handler -> handler.client(ServerMessageGunReload::handle));
@@ -107,7 +117,7 @@ public class NetworkHandler {
     }
 
     public static Player getPlayer(IPayloadContext context) {
-        return context.player().orElse(null);
+        return context.player();
     }
 }
 

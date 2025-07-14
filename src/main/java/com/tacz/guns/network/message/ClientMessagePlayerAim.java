@@ -2,7 +2,8 @@ package com.tacz.guns.network.message;
 
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.network.NetworkHandler;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,19 +12,15 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessagePlayerAim(boolean isAim) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_aim");
-
-    public ClientMessagePlayerAim(FriendlyByteBuf buf) {
-        this(buf.readBoolean());
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeBoolean(isAim);
-    }
+    public static final CustomPacketPayload.Type<ClientMessagePlayerAim> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_aim"));
+    
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessagePlayerAim> STREAM_CODEC = StreamCodec.composite(
+        StreamCodec.BOOL, ClientMessagePlayerAim::isAim,
+        ClientMessagePlayerAim::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

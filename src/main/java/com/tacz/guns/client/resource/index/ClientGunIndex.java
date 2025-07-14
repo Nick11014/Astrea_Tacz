@@ -117,6 +117,13 @@ public class ClientGunIndex {
         }
         return result;
     }
+
+    // Temporary method to get GunDisplayInstance for compatibility with existing sound system
+    public com.tacz.guns.client.resource.GunDisplayInstance getDisplayInstance() {
+        // This is a temporary workaround until the display system is fully migrated
+        // For now, we'll return null and update the calling code to handle this case
+        return null;
+    }
 }
 
 

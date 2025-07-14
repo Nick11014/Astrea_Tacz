@@ -4,7 +4,8 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,21 +17,17 @@ import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageRefitGun(int attachmentSlotIndex, int gunSlotIndex,
                                     AttachmentType attachmentType) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_refit_gun");
-
-    public ClientMessageRefitGun(FriendlyByteBuf buf) {
-        this(buf.readInt(), buf.readInt(), buf.readEnum(AttachmentType.class));
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeInt(attachmentSlotIndex);
-        buf.writeInt(gunSlotIndex);
-        buf.writeEnum(attachmentType);
-    }
+    public static final CustomPacketPayload.Type<ClientMessageRefitGun> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_refit_gun"));
+    
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageRefitGun> STREAM_CODEC = StreamCodec.composite(
+        StreamCodec.INT, ClientMessageRefitGun::attachmentSlotIndex,
+        StreamCodec.INT, ClientMessageRefitGun::gunSlotIndex,
+        StreamCodec.ofMember(RegistryFriendlyByteBuf::writeEnum, buf -> buf.readEnum(AttachmentType.class)), ClientMessageRefitGun::attachmentType,
+        ClientMessageRefitGun::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

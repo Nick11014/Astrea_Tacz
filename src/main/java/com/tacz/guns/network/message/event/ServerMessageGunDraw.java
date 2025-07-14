@@ -4,7 +4,8 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.GunDrawEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,21 +18,17 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record ServerMessageGunDraw(int entityId, ItemStack previousGunItem,
                                    ItemStack currentGunItem) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_draw");
-
-    public ServerMessageGunDraw(FriendlyByteBuf buf) {
-        this(buf.readVarInt(), ItemStack.STREAM_CODEC.decode(buf), ItemStack.STREAM_CODEC.decode(buf));
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeVarInt(entityId);
-        ItemStack.STREAM_CODEC.encode(buf, previousGunItem);
-        ItemStack.STREAM_CODEC.encode(buf, currentGunItem);
-    }
+    public static final CustomPacketPayload.Type<ServerMessageGunDraw> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_draw"));
+    
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunDraw> STREAM_CODEC = StreamCodec.composite(
+        StreamCodec.VAR_INT, ServerMessageGunDraw::entityId,
+        ItemStack.STREAM_CODEC, ServerMessageGunDraw::previousGunItem,
+        ItemStack.STREAM_CODEC, ServerMessageGunDraw::currentGunItem,
+        ServerMessageGunDraw::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

@@ -56,7 +56,7 @@ public class RenderCrosshairEvent {
             // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¨ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â¿ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â·Ã‚Â±ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             event.setCanceled(true);
             // ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚Âº
-            renderHitMarker(event.getGuiGraphics(), event.getWindow());
+            renderHitMarker(event.getGuiGraphics(), Minecraft.getInstance().getWindow());
             // ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¿Ã†â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
             ReloadState reloadState = IGunOperator.fromLivingEntity(player).getSynReloadState();
             if (reloadState.getStateType().isReloading()) {
@@ -75,7 +75,7 @@ public class RenderCrosshairEvent {
             IClientPlayerGunOperator playerGunOperator = IClientPlayerGunOperator.fromLocalPlayer(player);
             TimelessAPI.getGunDisplay(stack).ifPresent(gunIndex -> {
                 // ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¿Ã‚Â«ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¿Ã†â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
-                if (playerGunOperator.getClientAimingProgress(event.getPartialTick()) > 0.9) {
+                if (playerGunOperator.getClientAimingProgress(event.getPartialTick().getGameTimeDeltaPartialTick(false)) > 0.9) {
                     // ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã‚Â¼Ã‚ÂºÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚ÂºÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¦Ã‹Å“Ã…Â¸
                     boolean forceShow = gunIndex.isShowCrosshair();
                     // ÃƒÂ¨Ã‚Â¶Ã…Â ÃƒÂ¨Ã¢â‚¬Å¡Ã‚Â©ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã‚Â¼Ã‚ÂºÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚ÂºÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¦Ã‹Å“Ã…Â¸
@@ -89,7 +89,7 @@ public class RenderCrosshairEvent {
                 AnimationStateMachine<?> animationStateMachine = gunIndex.getAnimationStateMachine();
                 AnimationStateContext context = animationStateMachine.getContext();
                 if (context == null || !context.shouldHideCrossHair()) {
-                    renderCrosshair(event.getGuiGraphics(), event.getWindow());
+                    renderCrosshair(event.getGuiGraphics(), Minecraft.getInstance().getWindow());
                 }
             });
         }

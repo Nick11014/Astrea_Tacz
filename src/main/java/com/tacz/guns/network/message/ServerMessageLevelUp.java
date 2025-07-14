@@ -2,7 +2,8 @@ package com.tacz.guns.network.message;
 
 import com.tacz.guns.GunMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -12,20 +13,16 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_level_up");
-
-    public ServerMessageLevelUp(FriendlyByteBuf buf) {
-        this(ItemStack.STREAM_CODEC.decode(buf), buf.readInt());
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        ItemStack.STREAM_CODEC.encode(buf, gun);
-        buf.writeInt(level);
-    }
+    public static final CustomPacketPayload.Type<ServerMessageLevelUp> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_level_up"));
+    
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageLevelUp> STREAM_CODEC = StreamCodec.composite(
+        ItemStack.STREAM_CODEC, ServerMessageLevelUp::gun,
+        StreamCodec.INT, ServerMessageLevelUp::level,
+        ServerMessageLevelUp::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 

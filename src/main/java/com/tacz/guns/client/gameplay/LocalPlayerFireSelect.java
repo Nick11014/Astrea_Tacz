@@ -34,7 +34,8 @@ public class LocalPlayerFireSelect {
         if (!(mainHandItem.getItem() instanceof IGun iGun)) {
             return;
         }
-        if (NeoForge.EVENT_BUS.post(new GunFireSelectEvent(player, player.getMainHandItem(), LogicalSide.CLIENT))) {
+        GunFireSelectEvent event = new GunFireSelectEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
+        if (NeoForge.EVENT_BUS.post(event).isCanceled()) {
             return;
         }
 

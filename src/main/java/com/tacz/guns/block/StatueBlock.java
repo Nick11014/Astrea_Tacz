@@ -41,8 +41,7 @@ public class StatueBlock extends BaseEntityBlock {
         );
     }
 
-    @Override
-    public MapCodec<StatueBlock> codec() {
+    protected MapCodec<StatueBlock> codec() {
         return simpleCodec(properties -> new StatueBlock());
     }
 

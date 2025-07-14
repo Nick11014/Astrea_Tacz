@@ -20,6 +20,13 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.fml.LogicalSide;
 
 import javax.annotation.Nullable;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.fml.LogicalSide;
+
+import javax.annotation.Nullable;
 
 public class LocalPlayerMelee {
     public static final String MELEE_STOCK_ANIMATION = "melee_stock";
@@ -80,7 +87,7 @@ public class LocalPlayerMelee {
         data.lockState(operator -> operator.getSynMeleeCoolDown() > 0);
         // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
         GunMeleeEvent gunMeleeEvent = new GunMeleeEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
-        return !NeoForge.EVENT_BUS.post(gunMeleeEvent);
+        return !NeoForge.EVENT_BUS.post(gunMeleeEvent).isCanceled();
     }
 
     private void doMuzzleMelee(GunDisplayInstance display) {

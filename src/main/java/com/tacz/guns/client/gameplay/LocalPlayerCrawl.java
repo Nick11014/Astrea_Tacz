@@ -72,7 +72,7 @@ public class LocalPlayerCrawl {
             return;
         }
         // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¨Ã‚Â§Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â¯Ã…Â¸ÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã‚ÂªÃ¢â‚¬ËœÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¨Ã‚Â·Ã‚Â³ÃƒÂ¨Ã‚Â·Ã†â€™ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‚Â³Ã‚Â³ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¥Ã…â€œÃ‚Â°ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ 
-        if (player.isSpectator() || player.isPassenger() || player.jumping || player.isSwimming() || !player.onGround()) {
+        if (player.isSpectator() || player.isPassenger() || player.isJumping() || player.isSwimming() || !player.onGround()) {
             isCrawling = false;
             this.setCrawlPose();
             return;

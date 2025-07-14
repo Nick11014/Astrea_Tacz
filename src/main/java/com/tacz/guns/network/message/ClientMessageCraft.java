@@ -2,7 +2,8 @@ package com.tacz.guns.network.message;
 
 import com.tacz.guns.inventory.GunSmithTableMenu;
 import com.tacz.guns.network.NetworkHandler;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,20 +12,16 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageCraft(ResourceLocation recipeId, int menuId) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_craft");
-
-    public ClientMessageCraft(FriendlyByteBuf buf) {
-        this(buf.readResourceLocation(), buf.readVarInt());
-    }
-
-    @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeResourceLocation(recipeId);
-        buf.writeVarInt(menuId);
-    }
+    public static final CustomPacketPayload.Type<ClientMessageCraft> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_craft"));
+    
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageCraft> STREAM_CODEC = StreamCodec.composite(
+        ResourceLocation.STREAM_CODEC, ClientMessageCraft::recipeId,
+        StreamCodec.VAR_INT, ClientMessageCraft::menuId,
+        ClientMessageCraft::new
+    );
 
     @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 
