@@ -32,8 +32,9 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
     public GunPackList(Minecraft pMinecraft, int pWidth, int pHeight, int pY0, int pY1, int pItemHeight,
                        Map<ResourceLocation, List<ResourceLocation>> recipes, GunSmithTableScreen parent) {
         super(pMinecraft, pWidth, pHeight, pY0, pItemHeight);
-        this.setRenderBackground(false);
-        this.setRenderTopAndBottom(false);
+        // TODO: [MIGRATION] setRenderBackground/setRenderTopAndBottom removed in NeoForge 1.21.1
+        // this.setRenderBackground(false);
+        // this.setRenderTopAndBottom(false);
         this.parent = parent;
         Set<String> namespaces = new HashSet<>();
         for (List<ResourceLocation> entry : recipes.values()) {
