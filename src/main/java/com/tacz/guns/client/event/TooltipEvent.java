@@ -1,5 +1,7 @@
 package com.tacz.guns.client.event;
 
+import com.tacz.guns.init.ModDataComponents;
+
 import com.tacz.guns.api.item.nbt.AmmoItemDataAccessor;
 import com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor;
 import com.tacz.guns.api.item.nbt.BlockItemDataAccessor;
@@ -23,7 +25,7 @@ public class TooltipEvent {
             if (event.getItemStack().getItem() instanceof GunItemDataAccessor item) {
                 event.getToolTip().add(formatTooltip(GunItemDataAccessor.GUN_ID_TAG, item.getGunId(event.getItemStack())));
             } else if (event.getItemStack().getItem() instanceof AmmoItemDataAccessor item) {
-                event.getToolTip().add(formatTooltip(AmmoItemDataAccessor.AMMO_ID_TAG, item.getAmmoId(event.getItemStack())));
+                event.getToolTip().add(formatTooltip("AmmoId", item.getAmmoId(event.getItemStack())));
             } else if (event.getItemStack().getItem() instanceof AttachmentItemDataAccessor item) {
                 event.getToolTip().add(formatTooltip(AttachmentItemDataAccessor.ATTACHMENT_ID_TAG, item.getAttachmentId(event.getItemStack())));
             } else if (event.getItemStack().getItem() instanceof BlockItemDataAccessor item && !ModItems.GUN_SMITH_TABLE.get().equals(item)) {

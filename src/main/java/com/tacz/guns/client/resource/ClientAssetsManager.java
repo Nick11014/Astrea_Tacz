@@ -181,14 +181,20 @@ public enum ClientAssetsManager {
     }
     
     // MÃƒÆ’Ã‚Â©todos necessÃƒÆ’Ã‚Â¡rios para a TimelessAPI
-    public java.util.Optional<com.tacz.guns.client.resource.index.ClientGunIndex> getGunIndex(ResourceLocation gunId) {
-        // TODO: Implementar quando ClientGunIndex estiver disponÃƒÆ’Ã‚Â­vel
-        return java.util.Optional.empty();
+    public java.util.Optional<com.tacz.guns.client.resource.index.ClientAmmoIndex> getAmmoIndex(ResourceLocation ammoId) {
+        AmmoDisplay ammoDisplay = getAmmoDisplay(ammoId);
+        if (ammoDisplay == null) {
+            return java.util.Optional.empty();
+        }
+        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientAmmoIndex.getInstance(ammoDisplay.getAmmoIndexPOJO()));
     }
     
-    public java.util.Optional<com.tacz.guns.client.resource.index.ClientAttachmentIndex> getAttachmentIndex(ResourceLocation attachmentId) {
-        // TODO: Implementar quando ClientAttachmentIndex estiver disponÃƒÆ’Ã‚Â­vel
-        return java.util.Optional.empty();
+    public java.util.Optional<com.tacz.guns.client.resource.index.ClientBlockIndex> getBlockIndex(ResourceLocation blockId) {
+        BlockDisplay blockDisplay = getBlockDisplay(blockId);
+        if (blockDisplay == null) {
+            return java.util.Optional.empty();
+        }
+        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(blockDisplay.getBlockIndexPOJO()));
     }
 
     @OnlyIn(Dist.CLIENT)

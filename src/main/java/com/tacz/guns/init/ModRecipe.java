@@ -2,8 +2,8 @@ package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
 // TODO: Re-enable when all crafting classes are available
-// import com.tacz.guns.crafting.GunSmithTableRecipe;
-// import com.tacz.guns.crafting.GunSmithTableSerializer;
+import com.tacz.guns.crafting.GunSmithTableRecipe;
+import com.tacz.guns.crafting.GunSmithTableSerializer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -19,13 +19,11 @@ public class ModRecipe {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(BuiltInRegistries.RECIPE_TYPE, GunMod.MOD_ID);
 
     // TODO: Re-enable when crafting classes are available
-    /*
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<GunSmithTableRecipe>> GUN_SMITH_TABLE_RECIPE_SERIALIZER = 
         RECIPE_SERIALIZERS.register("gun_smith_table_crafting", GunSmithTableSerializer::new);
         
     public static final DeferredHolder<RecipeType<?>, RecipeType<GunSmithTableRecipe>> GUN_SMITH_TABLE_CRAFTING = 
         RECIPE_TYPES.register("gun_smith_table_crafting", () -> RecipeType.simple(GunMod.loc("gun_smith_table_crafting")));
-    */
     
     // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â¡ sendo postergada atÃƒÆ’Ã‚Â© que todas as classes de crafting estejam prontas
     // As receitas personalizadas requerem serializers especÃƒÆ’Ã‚Â­ficos

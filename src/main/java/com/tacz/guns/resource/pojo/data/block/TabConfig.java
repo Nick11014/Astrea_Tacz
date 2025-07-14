@@ -11,7 +11,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.crafting.CraftingHelper;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -67,7 +68,12 @@ public record TabConfig(ResourceLocation id, String name, ItemStack icon) {
                 throw new JsonParseException("TabConfig must have an id");
             }
             ResourceLocation id = context.deserialize(object.get("id"), ResourceLocation.class);
-            ItemStack icon = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(object, "icon"), true);
+            String[] parts = GsonHelper.getAsString(GsonHelper.getAsJsonObject(object, "icon"), "id").split(":");
+            ResourceLocation itemId = new ResourceLocation(parts[0], parts[1]);
+            int count = GsonHelper.getAsInt(GsonHelper.getAsJsonObject(object, "icon"), "count", 1);
+            ItemStack icon = net.minecraft.core.registries.BuiltInRegistries.ITEM.getOptional(itemId)
+                    .map(item -> new ItemStack(item, count))
+                    .orElse(ItemStack.EMPTY);
             String name = GsonHelper.getAsString(object, "name", "tacz.type.unknown.name");
             return new TabConfig(id, name, icon);
         }

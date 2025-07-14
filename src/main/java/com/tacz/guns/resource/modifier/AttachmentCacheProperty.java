@@ -6,6 +6,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.tacz.guns.api.GunProperty;
 import com.tacz.guns.api.modifier.CacheValue;
+import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.util.AttachmentDataUtils;
@@ -28,7 +30,7 @@ public class AttachmentCacheProperty {
         var modifiers = AttachmentPropertyManager.getModifiers();
         modifiers.forEach((id, value) -> {
             if (value instanceof IAttachmentModifier<?, ?> modifier) {
-                cacheValues.put(id, modifier.initCache(gunItem, gunData));
+                cacheValues.put(id, modifier.initCache(gunItem, gunData, (IAttachment.Slot<ItemStack>) null));
                 cacheModifiers.put(id, Lists.newArrayList());
             }
         });
@@ -73,7 +75,7 @@ public class AttachmentCacheProperty {
         if (!key.type().isInstance(value)) {
             throw new IllegalArgumentException("Gun cache type mismatch, needs %s, found %s".formatted(key.type().getSimpleName(), value.getClass().getSimpleName()));
         }
-        cacheValues.get(key.name()).setValue(value);
+        ((CacheValue<T>) cacheValues.get(key.name())).setValue(value);
     }
 }
 

@@ -69,6 +69,9 @@ public interface IAttachment {
     int getLaserColor(ItemStack attachmentStack);
 
     void setLaserColor(ItemStack attachmentStack, int color);
+
+    class Slot<T> {
+    }
 }
 
 

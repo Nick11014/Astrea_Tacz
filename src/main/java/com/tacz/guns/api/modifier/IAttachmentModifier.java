@@ -1,24 +1,20 @@
 package com.tacz.guns.api.modifier;
 
+import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.resource.pojo.data.gun.GunData;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Collections;
 import java.util.List;
 
-/**
- * IAttachmentModifier - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o MÃƒÆ’Ã‚Â­nima EstratÃƒÆ’Ã‚Â©gica
- * 
- * Interface para modificadores de propriedades de acessÃƒÆ’Ã‚Â³rios
- * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para desbloquear sistema completo de modificadores
- * 
- * TODO: Expandir funcionalidade quando sistemas dependentes estiverem habilitados:
- * - AttachmentCacheProperty
- * - GunData completo
- * - ItemStack processing
- * - Sistema de eventos
- */
 public interface IAttachmentModifier<T, K> {
+
+    CacheValue<K> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot);
+
+    void eval(List<T> modifiedValues, CacheValue<K> cache);
+
     /**
      * ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica de modificador, usado como ID no sistema JSON
      * 

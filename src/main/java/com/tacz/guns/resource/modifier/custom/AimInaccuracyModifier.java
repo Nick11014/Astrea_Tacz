@@ -8,6 +8,7 @@ import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import com.tacz.guns.resource.pojo.data.attachment.Modifier;
+import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.resource.pojo.data.gun.InaccuracyType;
 import net.minecraft.world.item.ItemStack;

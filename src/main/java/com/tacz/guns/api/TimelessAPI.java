@@ -2,13 +2,10 @@ package com.tacz.guns.api;
 
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.resource.ClientAssetsManager;
-import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
-import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.client.resource.ClientAssetsManager;
-import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.resource.index.ClientAmmoIndex;
 import com.tacz.guns.client.resource.index.ClientBlockIndex;
+import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonBlockIndex;
 import com.tacz.guns.resource.index.CommonAttachmentIndex;
@@ -32,7 +29,9 @@ public final class TimelessAPI {
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientGunIndex> getClientGunIndex(ResourceLocation gunId) {
-        return ClientAssetsManager.INSTANCE.getGunIndex(gunId);
+        return TimelessAPI.getCommonGunIndex(gunId)
+                .map(com.tacz.guns.resource.index.CommonGunIndex::getPojo)
+                .map(com.tacz.guns.client.resource.index.ClientGunIndex::getInstance);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -42,12 +41,22 @@ public final class TimelessAPI {
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientAttachmentIndex> getClientAttachmentIndex(ResourceLocation attachmentId) {
-        return ClientAssetsManager.INSTANCE.getAttachmentIndex(attachmentId);
+        return TimelessAPI.getCommonAttachmentIndex(attachmentId)
+                .map(com.tacz.guns.resource.index.CommonAttachmentIndex::getPojo)
+                .map(pojo -> ClientAttachmentIndex.getInstance(attachmentId, pojo));
     }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientBlockIndex> getClientBlockIndex(ResourceLocation blockId) {
         return ClientAssetsManager.INSTANCE.getBlockIndex(blockId);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static Optional<ClientGunIndex> getGunDisplay(ItemStack stack) {
+        if (stack.getItem() instanceof IGun iGun) {
+            return getClientGunIndex(iGun.getGunId(stack));
+        }
+        return Optional.empty();
     }
 
     // ===== MÉTODOS COMMON-SIDE =====
@@ -74,6 +83,14 @@ public final class TimelessAPI {
             return Optional.empty();
         }
         return Optional.ofNullable(instance.getBlockIndex(blockId));
+    }
+
+    public static Optional<CommonGunIndex> getCommonGunIndex(ResourceLocation gunId) {
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(instance.getGunIndex(gunId));
     }
 
     // ===== MÉTODOS DE COLEÇÃO =====

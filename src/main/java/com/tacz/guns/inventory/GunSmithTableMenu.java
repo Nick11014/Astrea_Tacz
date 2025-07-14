@@ -1,5 +1,7 @@
 package com.tacz.guns.inventory;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.config.sync.SyncConfig;
@@ -22,12 +24,12 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.minecraft.server.level.ServerPlayer;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 
 public class GunSmithTableMenu extends AbstractContainerMenu {
-    public static final MenuType<GunSmithTableMenu> TYPE = IForgeMenuType.create((windowId, inv, data) -> {
+    public static final MenuType<GunSmithTableMenu> TYPE = IMenuTypeExtension.create((windowId, inv, data) -> {
         ResourceLocation blockId = data.readResourceLocation();
         return new GunSmithTableMenu(windowId, inv, blockId);
     });
@@ -64,10 +66,10 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
             }
         }
 
-        Recipe<?> recipe = recipeManager.byKey(recipeId).orElse(null);
+        Recipe<?> recipe = recipeManager.byKey(recipeId).map(net.minecraft.world.item.crafting.RecipeHolder::value).orElse(null);
         if (recipe instanceof GunSmithTableRecipe gunSmithTableRecipe) {
             boolean flag = TimelessAPI.getCommonBlockIndex(getBlockId()).map(blockIndex -> {
-                return blockIndex.getData().getTabs().stream().noneMatch(tab -> tab.id().equals(gunSmithTableRecipe.getTab()));
+                return blockIndex.getData().getTabs().stream().noneMatch(tab -> ((TabConfig) tab).id().equals(gunSmithTableRecipe.getTab()));
             }).orElse(true);
             if (DefaultAssets.DEFAULT_BLOCK_ID.equals(getBlockId()) && !SyncConfig.ENABLE_TABLE_FILTER.get()) {
                 flag = false;
@@ -85,7 +87,7 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
         if (recipe == null) {
             return;
         }
-        player.getCapability(Capabilities.ITEM_HANDLER, null).ifPresent(handler -> {
+        player.getCapability(Capabilities.ItemHandler.ENTITY, null).ifPresent(handler -> {
             // ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ©Ã¢â€šÂ¬Ã‚Â ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â£ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¦Ã¢â‚¬â€œÃ¢â€žÂ¢
             if (!player.isCreative()) {
                 Int2IntArrayMap recordCount = new Int2IntArrayMap();
@@ -123,15 +125,13 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
             }
 
             // ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã¢â‚¬Å“Ã‚Â
-            Level level = player.level();
-            if (!level.isClientSide) {
-                ItemEntity itemEntity = new ItemEntity(level, player.getX(), player.getY() + 0.5, player.getZ(), recipe.getResultItem(player.level().registryAccess()).copy());
+            if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer) {
+                ItemEntity itemEntity = new ItemEntity(player.level(), player.getX(), player.getY() + 0.5, player.getZ(), recipe.getResultItem(player.level().registryAccess()).copy());
                 itemEntity.setPickUpDelay(0);
-                level.addFreshEntity(itemEntity);
+                player.level().addFreshEntity(itemEntity);
+                serverPlayer.inventoryMenu.broadcastFullState();
+                NetworkHandler.sendToClientPlayer(new ServerMessageCraft(this.containerId), serverPlayer);
             }
-            // ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ§Ã‚Â¡Ã‚Â®
-            player.inventoryMenu.broadcastFullState();
-            NetworkHandler.sendToClientPlayer(new ServerMessageCraft(this.containerId), player);
         });
     }
 }

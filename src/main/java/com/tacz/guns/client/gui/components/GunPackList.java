@@ -23,25 +23,24 @@ import net.minecraft.util.Mth;
 import java.util.*;
 
 public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry> {
-    private final GunSmithTableScreen parent;
+    private GunSmithTableScreen parent;
     private final List<Checkbox> gunPackList = new ArrayList<>();
     private final Set<String> selectedNamespaces = new HashSet<>();
-    private final Checkbox byHandCheckbox;
-    private final EditBox byName;
+    private Checkbox byHandCheckbox;
+    private EditBox byName;
 
-    public GunPackList(Minecraft pMinecraft, int pWidth, int pHeight, int pY0, int pY1, int pItemHeight,
-                       Map<ResourceLocation, List<ResourceLocation>> recipes, GunSmithTableScreen parent) {
+    public GunPackList(Minecraft pMinecraft, int pWidth, int pHeight, int pY0, int pItemHeight) {
         super(pMinecraft, pWidth, pHeight, pY0, pItemHeight);
-        // TODO: [MIGRATION] setRenderBackground/setRenderTopAndBottom removed in NeoForge 1.21.1
-        // this.setRenderBackground(false);
-        // this.setRenderTopAndBottom(false);
+    }
+
+    public void setup(Map<ResourceLocation, List<ResourceLocation>> recipes, GunSmithTableScreen parent) {
         this.parent = parent;
         Set<String> namespaces = new HashSet<>();
         for (List<ResourceLocation> entry : recipes.values()) {
             entry.forEach((resourceLocation) -> namespaces.add(resourceLocation.getNamespace()));
         }
 
-        this.byName = new EditBox(pMinecraft.font, 3, 0, 94, 10, Component.empty());
+        this.byName = new EditBox(minecraft.font, 3, 0, 94, 10, Component.empty());
         this.byName.setHint(Component.translatable("gui.tacz.gun_smith_table.filter.search"));
         this.byName.setResponder((pText) -> {
             parent.init();

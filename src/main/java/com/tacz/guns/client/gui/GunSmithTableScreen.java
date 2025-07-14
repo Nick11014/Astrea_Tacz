@@ -37,48 +37,6 @@ import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import com.tacz.guns.client.gui.components.smith.ResultButton;
-import com.tacz.guns.client.gui.components.smith.TypeButton;
-import com.tacz.guns.client.resource.ClientAssetsManager;
-import com.tacz.guns.client.resource.pojo.PackInfo;
-import com.tacz.guns.config.sync.SyncConfig;
-import com.tacz.guns.crafting.GunSmithTableIngredient;
-import com.tacz.guns.crafting.GunSmithTableRecipe;
-import com.tacz.guns.init.ModRecipe;
-import com.tacz.guns.inventory.GunSmithTableMenu;
-import com.tacz.guns.network.NetworkHandler;
-import com.tacz.guns.network.message.ClientMessageCraft;
-import com.tacz.guns.resource.filter.RecipeFilter;
-import com.tacz.guns.resource.pojo.data.block.TabConfig;
-import com.tacz.guns.util.RenderDistance;
-import it.unimi.dsi.fastutil.Pair;
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
-import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
-import com.tacz.guns.client.gui.components.smith.ResultButton;
-import com.tacz.guns.client.gui.components.smith.TypeButton;
-import com.tacz.guns.client.resource.ClientAssetsManager;
-import com.tacz.guns.client.resource.pojo.PackInfo;
-import com.tacz.guns.config.sync.SyncConfig;
-import com.tacz.guns.crafting.GunSmithTableIngredient;
-import com.tacz.guns.crafting.GunSmithTableRecipe;
-import com.tacz.guns.init.ModRecipe;
-import com.tacz.guns.inventory.GunSmithTableMenu;
-import com.tacz.guns.network.NetworkHandler;
-import com.tacz.guns.network.message.ClientMessageCraft;
-import com.tacz.guns.resource.filter.RecipeFilter;
-import com.tacz.guns.resource.pojo.data.block.TabConfig;
-import com.tacz.guns.util.RenderDistance;
-import it.unimi.dsi.fastutil.Pair;
-import it.unimi.dsi.fastutil.ints.Int2IntArrayMap;
-import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.ConfirmLinkScreen;
@@ -98,6 +56,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -150,7 +109,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
         Map<ResourceLocation, TabConfig> recipeKeys = Maps.newLinkedHashMap();
 
         TimelessAPI.getCommonBlockIndex(blockId).ifPresent(blockIndex -> {
-            var tabs = blockIndex.getData().getTabs();
+            List<TabConfig> tabs = (List<TabConfig>) (List<?>) blockIndex.getData().getTabs();
             if (DefaultAssets.DEFAULT_BLOCK_ID.equals(blockId) && !SyncConfig.ENABLE_TABLE_FILTER.get()) {
                 tabs = TabConfig.DEFAULT_TABS;
             }
@@ -164,7 +123,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
 
         if (Minecraft.getInstance().level != null) {
             RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-            List<GunSmithTableRecipe> recipeList = recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+            List<GunSmithTableRecipe> recipeList = recipeManager.getAllRecipesFor((RecipeType<GunSmithTableRecipe>) ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
             Set<String> namespaces = filterList != null ? filterList.namespaceList() : null;
             for (GunSmithTableRecipe recipe : recipeList) {
                 ResourceLocation id = recipe.getId();
@@ -270,9 +229,9 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
 
     @Nullable
     private GunSmithTableRecipe getSelectedRecipe(ResourceLocation recipeId) {
-        if (Minecraft.getInstance().level != null) {
+        if (Minecraft.getInstance().level != null && recipeId != null) {
             RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-            Recipe<?> recipe = recipeManager.byKey(recipeId).orElse(null);
+            Recipe<?> recipe = recipeManager.byKey(recipeId).map(net.minecraft.world.item.crafting.RecipeHolder::value).orElse(null);
             if (recipe instanceof GunSmithTableRecipe) {
                 return (GunSmithTableRecipe) recipe;
             }
@@ -312,10 +271,11 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     public void init() {
         super.init();
         if (this.filterList == null) {
-            this.filterList = new GunPackList(this.minecraft, 134, this.imageHeight, topPos, topPos+imageHeight+1, 15, recipes, this);
+            this.filterList = new GunPackList(this.minecraft, 134, this.imageHeight, topPos, 15);
+            this.filterList.setup(recipes, this);
         }
-        this.filterList.updateSize(134, this.imageHeight, topPos, topPos+imageHeight+1);
-        this.filterList.setLeftPos(leftPos);
+        
+        
 
         this.classifyRecipes();
         this.clearWidgets();
@@ -343,7 +303,6 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
                 ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png")
         ), b -> {
             if (this.selectedRecipe != null && playerIngredientCount != null) {
-                // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦
                 List<GunSmithTableIngredient> inputs = selectedRecipe.getInputs();
                 int size = inputs.size();
                 for (int i = 0; i < size; i++) {
@@ -353,7 +312,6 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
                     int hasCount = playerIngredientCount.get(i);
                     int needCount = inputs.get(i).getCount();
                     boolean isCreative = Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative();
-                    // ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â¥ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â°Ã‚ÂÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¦Ã‚Â±Ã¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦
                     if (hasCount < needCount && !isCreative) {
                         return;
                     }
@@ -522,7 +480,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     }
 
     @Override
-    public boolean mouseScrolled(double pMouseX, double pMouseY, double pDelta) {
+    public boolean mouseScrolled(double pMouseX, double pMouseY, double pDelta, double pDeltaY) {
         if (pMouseX > leftPos + 143 && pMouseX < leftPos + 143 + 94 && pMouseY > topPos + 66 && pMouseY < topPos + 66 + 85) {
             if (pDelta > 0) {
                 this.indexPage = Math.max(0, this.indexPage - 1);
@@ -533,7 +491,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
             this.init();
             return true;
         }
-        return super.mouseScrolled(pMouseX, pMouseY, pDelta);
+        return super.mouseScrolled(pMouseX, pMouseY, pDelta, pDeltaY);
     }
 
     @Override
@@ -549,7 +507,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
         graphics.drawString(font, Component.translatable("gui.tacz.gun_smith_table.ingredient"), leftPos + 254, topPos + 50, 0x555555, false);
         drawModCenteredString(graphics, font, Component.translatable("gui.tacz.gun_smith_table.craft"), leftPos + 312, topPos + 167, 0xFFFFFF);
         if (!this.filterEnabled && this.selectedRecipe != null) {
-            this.renderLeftModel(this.selectedRecipe);
+            this.renderLeftModel(graphics, this.selectedRecipe);
             this.renderPackInfo(graphics, this.selectedRecipe);
             graphics.drawString(font, Component.translatable("gui.tacz.gun_smith_table.count", this.selectedRecipe.getResult().getResult().getCount()), leftPos + 254, topPos + 140, 0x555555, false);
         }
@@ -664,7 +622,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
                 poseStack.scale(0.5f, 0.5f, 1);
                 int count = smithTableIngredient.getCount();
                 if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative()){
-                    gui.drawString(font, String.format("%d/ÃƒÂ¢Ã‹â€ Ã…Â¾", count), (offsetX + 17) * 2, (offsetY + 10) * 2, 0xFFFFFF, false);
+                    gui.drawString(font, String.format("%d/∞", count), (offsetX + 17) * 2, (offsetY + 10) * 2, 0xFFFFFF, false);
                 } else {
                     int hasCount = 0;
                     if (playerIngredientCount != null && index < playerIngredientCount.size()) {
@@ -680,9 +638,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
         }
     }
 
-    @SuppressWarnings("deprecation")
-    private void renderLeftModel(GunSmithTableRecipe recipe) {
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ©Ã‚Â«Ã‹Å“ÃƒÂ¦Ã‚Â¨Ã‚Â¡
+    private void renderLeftModel(GuiGraphics guiGraphics, GunSmithTableRecipe recipe) {
         RenderDistance.markGuiRenderTimestamp();
 
         float rotationPeriod = 8f;
@@ -702,43 +658,39 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
         int scissorH = (int) (height * windowGuiScale);
         RenderSystem.enableScissor(scissorX, scissorY, scissorW, scissorH);
 
-        Minecraft.getInstance().textureManager.getTexture(TextureAtlas.LOCATION_BLOCKS).setFilter(false, false);
+        Minecraft.getInstance().getTextureManager().getTexture(TextureAtlas.LOCATION_BLOCKS).setFilter(false, false);
         RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        PoseStack posestack = RenderSystem.getModelViewStack();
-        posestack.pushPose();
-        posestack.translate(xPos, yPos, 200);
-        posestack.translate(8.0D, 8.0D, 0.0D);
-        posestack.scale(1.0F, -1.0F, 1.0F);
-        posestack.scale(scale, scale, scale);
+
+        PoseStack poseStack = guiGraphics.pose();
+        poseStack.pushPose();
+        poseStack.translate(xPos, yPos, 200);
+        poseStack.translate(8.0D, 8.0D, 0.0D);
+        poseStack.scale(1.0F, -1.0F, 1.0F);
+        poseStack.scale(scale, scale, scale);
         float rot = (System.currentTimeMillis() % (int) (rotationPeriod * 1000)) * (360f / (rotationPeriod * 1000));
-        posestack.mulPose(Axis.XP.rotationDegrees(rotPitch));
-        posestack.mulPose(Axis.YP.rotationDegrees(rot));
-        RenderSystem.applyModelViewMatrix();
-        PoseStack tmpPose = new PoseStack();
-        MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
-        Lighting.setupForFlatItems();
+        poseStack.mulPose(Axis.XP.rotationDegrees(rotPitch));
+        poseStack.mulPose(Axis.YP.rotationDegrees(rot));
 
-        Minecraft.getInstance().getItemRenderer().renderStatic(recipe.getOutput(), ItemDisplayContext.FIXED, 0xf000f0, OverlayTexture.NO_OVERLAY, tmpPose, bufferSource, null, 0);
-
-        bufferSource.endBatch();
-        RenderSystem.enableDepthTest();
-        Lighting.setupFor3DItems();
-        posestack.popPose();
-        RenderSystem.applyModelViewMatrix();
-
+        MultiBufferSource.BufferSource bufferSource = guiGraphics.bufferSource();
+        
+        Minecraft.getInstance().getItemRenderer().renderStatic(recipe.getOutput(), ItemDisplayContext.FIXED, 0xf000f0, OverlayTexture.NO_OVERLAY, poseStack, bufferSource, minecraft.level, 0);
+        
+        // Let GuiGraphics handle buffer flushing
+        
+        poseStack.popPose();
         RenderSystem.disableScissor();
     }
 
-    @Override
     protected void renderLabels(@NotNull GuiGraphics gui, int mouseX, int mouseY) {
+        // We render labels in the main render method
     }
 
     @Override
     protected void renderBg(@NotNull GuiGraphics gui, float partialTick, int mouseX, int mouseY) {
-        this.renderBackground(gui);
+        this.renderBackground(gui, mouseX, mouseY, partialTick);
         gui.blit(SIDE, leftPos, topPos, 0, 0, 134, 187);
         gui.blit(TEXTURE, leftPos + 136, topPos + 27, 0, 0, 208, 160);
     }
@@ -748,66 +700,3 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
         return false;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
