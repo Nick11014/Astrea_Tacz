@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.tacz.guns.api.GunProperty;
 import com.tacz.guns.api.modifier.CacheValue;
+import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.util.AttachmentDataUtils;
 import net.minecraft.world.item.ItemStack;
@@ -18,44 +19,49 @@ import static org.jetbrains.annotations.ApiStatus.*;
  * ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã†â€™Ã‚Â½ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™
  */
 public class AttachmentCacheProperty {
-    @SuppressWarnings("rawtypes")
-    private final Map<String, CacheValue> cacheValues = Maps.newHashMap();
-    private final Map<String, List<?>> cacheModifiers = Maps.newHashMap();
+    private final Map<String, CacheValue<?>> cacheValues = Maps.newHashMap();
+    private final Map<String, List<IAttachmentModifier<?, ?>>> cacheModifiers = Maps.newHashMap();
 
     @SuppressWarnings("all")
     public void eval(ItemStack gunItem, GunData gunData) {
-        // ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ
         var modifiers = AttachmentPropertyManager.getModifiers();
         modifiers.forEach((id, value) -> {
-            cacheValues.put(id, value.initCache(gunItem, gunData));
-            cacheModifiers.put(id, Lists.newArrayList());
+            if (value instanceof IAttachmentModifier<?, ?> modifier) {
+                cacheValues.put(id, modifier.initCache(gunItem, gunData));
+                cacheModifiers.put(id, Lists.newArrayList());
+            }
         });
 
-        // ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â±Ã…Â¾ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ modifier
         AttachmentDataUtils.getAllAttachmentData(gunItem, gunData, data -> {
             data.getModifier().forEach((id, value) -> {
-                List objects = cacheModifiers.get(id);
-                objects.add(value.getValue());
+                List<IAttachmentModifier<?, ?>> objects = cacheModifiers.get(id);
+                if (value.getValue() instanceof IAttachmentModifier<?, ?> mod) {
+                    objects.add(mod);
+                }
             });
         });
 
-        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¹Ã‚Â¶ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“
         cacheValues.forEach((id, value) -> {
-            List cacheModifier = cacheModifiers.get(id);
-            // ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¨Ã‚Â¯Ã‚Â¥ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚Âª modifier ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ modifier ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
+            List<IAttachmentModifier<?, ?>> cacheModifier = cacheModifiers.get(id);
             if (cacheModifier == null || cacheModifier.isEmpty()) {
                 return;
             }
-            modifiers.get(id).eval(cacheModifier, value);
+            if (modifiers.get(id) instanceof IAttachmentModifier mod) {
+                mod.eval(cacheModifier, value);
+            }
         });
 
-        // ÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‹Å“Ã‚Â²ÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã‚ÂÃ‚Â ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨
         cacheModifiers.clear();
     }
 
-    @SuppressWarnings("unchecked")
     public <T> T getCache(String id) {
-        return (T) cacheValues.get(id).getValue();
+        CacheValue<?> cache = cacheValues.get(id);
+        if (cache != null) {
+            @SuppressWarnings("unchecked")
+            T value = (T) cache.getValue();
+            return value;
+        }
+        return null;
     }
 
     @Experimental

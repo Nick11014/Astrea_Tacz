@@ -4,6 +4,11 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
+import com.tacz.guns.client.resource.index.ClientAmmoIndex;
+import com.tacz.guns.client.resource.index.ClientBlockIndex;
+import com.tacz.guns.resource.index.CommonAmmoIndex;
+import com.tacz.guns.resource.index.CommonBlockIndex;
+import com.tacz.guns.resource.index.CommonAttachmentIndex;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.resources.ResourceLocation;
@@ -41,9 +46,8 @@ public final class TimelessAPI {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Object> getClientAmmoIndex(ResourceLocation ammoId) {
-        // TODO: Retornar ClientAmmoIndex quando disponÃƒÆ’Ã‚Â­vel
-        return Optional.empty();
+    public static Optional<ClientAmmoIndex> getClientAmmoIndex(ResourceLocation ammoId) {
+        return ClientAssetsManager.INSTANCE.getAmmoIndex(ammoId);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -52,42 +56,37 @@ public final class TimelessAPI {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static Optional<Object> getClientBlockIndex(ResourceLocation blockId) {
-        // TODO: Retornar ClientBlockIndex quando disponÃƒÆ’Ã‚Â­vel
-        return Optional.empty();
+    public static Optional<ClientBlockIndex> getClientBlockIndex(ResourceLocation blockId) {
+        return ClientAssetsManager.INSTANCE.getBlockIndex(blockId);
     }
 
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS COMMON-SIDE =====
+    // ===== MÉTODOS COMMON-SIDE =====
 
-    public static Optional<CommonGunIndex> getCommonGunIndex(ResourceLocation gunId) {
+    public static Optional<CommonAmmoIndex> getCommonAmmoIndex(ResourceLocation ammoId) {
         var instance = CommonAssetsManager.getInstance();
         if (instance == null) {
             return Optional.empty();
         }
-        return Optional.ofNullable(instance.getGunIndex(gunId));
+        return Optional.ofNullable(instance.getAmmoIndex(ammoId));
     }
 
-    public static Optional<Object> getCommonAmmoIndex(ResourceLocation ammoId) {
-        // TODO: Retornar CommonAmmoIndex quando CommonAssetsManager estiver disponÃƒÆ’Ã‚Â­vel
-        return Optional.empty();
+    public static Optional<CommonAttachmentIndex> getCommonAttachmentIndex(ResourceLocation attachmentId) {
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(instance.getAttachmentIndex(attachmentId));
     }
 
-    public static Optional<Object> getCommonAttachmentIndex(ResourceLocation attachmentId) {
-        // TODO: Retornar CommonAttachmentIndex quando CommonAssetsManager estiver disponÃƒÆ’Ã‚Â­vel
-        return Optional.empty();
+    public static Optional<CommonBlockIndex> getCommonBlockIndex(ResourceLocation blockId) {
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(instance.getBlockIndex(blockId));
     }
 
-    public static Optional<Object> getCommonBlockIndex(ResourceLocation blockId) {
-        // TODO: Retornar CommonBlockIndex quando CommonAssetsManager estiver disponÃƒÆ’Ã‚Â­vel
-        return Optional.empty();
-    }
-
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE COLEÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã¢â‚¬Â¢ES =====
-
-    public static Set<Map.Entry<ResourceLocation, Object>> getAllGuns() {
-        // TODO: Retornar todos os guns quando disponÃƒÆ’Ã‚Â­vel
-        return Collections.emptySet();
-    }
+    // ===== MÉTODOS DE COLEÇÃO =====
 
     public static Set<Map.Entry<ResourceLocation, CommonGunIndex>> getAllCommonGunIndex() {
         var instance = CommonAssetsManager.getInstance();
@@ -97,19 +96,28 @@ public final class TimelessAPI {
         return instance.getAllGuns();
     }
 
-    public static Set<Map.Entry<ResourceLocation, Object>> getAllAmmos() {
-        // TODO: Retornar todas as muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes quando disponÃƒÆ’Ã‚Â­vel
-        return Collections.emptySet();
+    public static Set<Map.Entry<ResourceLocation, CommonAmmoIndex>> getAllAmmos() {
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Collections.emptySet();
+        }
+        return instance.getAllAmmos();
     }
 
-    public static Set<Map.Entry<ResourceLocation, Object>> getAllAttachments() {
-        // TODO: Retornar todos os acessÃƒÆ’Ã‚Â³rios quando disponÃƒÆ’Ã‚Â­vel
-        return Collections.emptySet();
+    public static Set<Map.Entry<ResourceLocation, CommonAttachmentIndex>> getAllAttachments() {
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Collections.emptySet();
+        }
+        return instance.getAllAttachments();
     }
 
-    public static Set<Map.Entry<ResourceLocation, Object>> getAllBlocks() {
-        // TODO: Retornar todos os blocos quando disponÃƒÆ’Ã‚Â­vel
-        return Collections.emptySet();
+    public static Set<Map.Entry<ResourceLocation, CommonBlockIndex>> getAllBlocks() {
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Collections.emptySet();
+        }
+        return instance.getAllBlocks();
     }
 
     // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE RECIPE =====

@@ -1,106 +1,82 @@
-# **Plano de Migração \- TacZ para NeoForge 1.21.1**
+# **Plano de Migração \- TacZ para NeoForge 1.21.1 (v2)**
 
 Data: 14/07/2025  
-Versão do Documento: 1.0  
-Objetivo: Estruturar e priorizar as tarefas restantes para a migração completa do mod TacZ, resolvendo os 502 erros de compilação atuais, eliminando débitos técnicos e garantindo a funcionalidade na nova versão do NeoForge.
+Versão do Documento: 2.0  
+Objetivo: Priorizar e resolver os 355 erros de compilação restantes, com foco na refatoração da "Object Strategy" e na correção sistemática de APIs do NeoForge 1.21.1.
 
-## **1\. Análise da Situação Atual**
+## **1\. Análise da Situação Atual (355 Erros)**
 
-Com base nos documentos fornecidos (PROGRESS.md, DEBITO\_TECNICO.md, problems-report.html e diagram.md), a situação é a seguinte:
+O relatório de erros atual, embora numericamente menor que os 500 iniciais, revela problemas mais profundos e interconectados. A correção bem-sucedida do NetworkHandler desmascarou os seguintes blocos críticos de erros:
 
-* **Progresso:** 64.9% dos arquivos (395 de 609\) estão habilitados, mas muitos com implementação mínima.  
-* **Erros Críticos:** Existem **502 erros** de compilação que impedem o build do projeto. A maioria está concentrada em APIs que foram removidas ou drasticamente alteradas no NeoForge 1.21.1.  
-* **Débito Técnico:** Várias classes foram habilitadas usando a "Object Strategy" ou contêm placeholders e TODOs que precisam ser resolvidos.  
-* **Dependências:** O diagram.md mostra uma alta interconectividade, onde a falha em classes centrais (como NetworkHandler, TimelessAPI, e classes de renderização) causa um efeito cascata de erros.
+* **cannot find symbol (Causa Raiz):** A causa da maioria dos erros. O uso de Object em classes centrais como AttachmentCacheProperty e nos retornos da TimelessAPI impede o compilador de resolver métodos específicos (.getData(), .getGunModel(), .getFilter(), etc.), gerando centenas de falhas em cascata. **Este é o nosso principal débito técnico a ser pago.**  
+* **method does not override e is not abstract:** Um grande número de classes, especialmente nos pacotes network.message, crafting e resource.modifier, não estão mais em conformidade com as interfaces que implementam. Métodos como type(), streamCodec(), e outros precisam ser implementados ou ter suas assinaturas corrigidas.  
+* **incompatible types:** Erros de tipagem são comuns, principalmente devido à "Object Strategy" e a mudanças na API, como o RecipeManager agora retornando RecipeHolder\<?\> em vez de Recipe\<?\>.  
+* **no suitable constructor/method:** APIs de GUI (ImageButton) e de renderização (renderToBuffer) foram alteradas e precisam de uma correção sistemática.
 
-## **2\. Fases da Migração**
+## **2\. Fases da Migração (Revisadas)**
 
-O plano está dividido em quatro fases sequenciais para garantir uma abordagem estruturada.
+O plano foi reestruturado para focar primeiro nos problemas que desbloqueiam o maior número de outros erros.
 
-### **Fase 1: Resolução de Erros Críticos de Compilação (O Desafio dos 500 Erros)**
+### **Fase 1: Desmantelamento da "Object Strategy" e Correções de Contrato de API**
 
-O foco principal desta fase é tornar o projeto compilável novamente. A análise do problems-report.html revela padrões de erros que podem ser resolvidos em blocos.
+O objetivo desta fase é eliminar os erros em cascata, corrigindo a arquitetura central e garantindo que as classes cumpram seus contratos de interface.
 
-**Prioridade 1: Sistema de Networking (NetworkHandler)**
+**Prioridade 1: Refatoração da "Object Strategy" (O Maior Bloqueador)**
 
-* **Problema:** O erro mais recorrente é cannot find symbol: class NetworkHandler. O sistema de rede do Forge foi completamente substituído pelo sistema de Payloads e StreamCodec do NeoForge.  
+* **Problema:** TimelessAPI e outras classes de gerenciamento retornam Object ou Optional\<Object\>, o que quebra a checagem de tipos em tempo de compilação.  
 * **Solução:**  
-  1. Remover todas as chamadas ao antigo NetworkHandler.CHANNEL.send....  
-  2. Para cada mensagem (ex: ClientMessagePlayerAim), criar um CustomPacketPayload e registrá-lo no PayloadRegistrar.  
-  3. Utilizar StreamCodec para serializar e desserializar os dados dos pacotes, eliminando o uso de FriendlyByteBuf diretamente quando possível.  
-  4. Substituir PacketDistributor pelas novas implementações, como PacketDistributor.sendToPlayer(player, payload).  
-* **Arquivos-chave para corrigir:** GunMod.java, LocalPlayer classes, LivingEntity shooter classes, e todas as classes no pacote network.message.
+  1. Modificar os métodos em TimelessAPI para retornar os tipos específicos corretos (ex: Optional\<ClientGunIndex\>, Optional\<CommonAttachmentIndex\>).  
+  2. Refatorar AttachmentCacheProperty para que o Map\<ResourceLocation, Object\> modifiers e Map\<String, Object\> cacheValues usem os tipos de interface corretos (ex: IAttachmentModifier).  
+  3. Corrigir todas as chamadas a esses métodos, removendo a necessidade de casts e resolvendo os erros de cannot find symbol em cascata.  
+* **Arquivos-chave:** AttachmentCacheProperty.java, TimelessAPI.java, e todas as classes que consomem dados de índices (GunSmithTableScreen, GunItemRendererWrapper, etc.).
 
-**Prioridade 2: Construtores e Métodos de API Removidos/Alterados**
+**Prioridade 2: Implementação de Métodos Abstratos Obrigatórios**
 
-* **Problema:** Erros como no suitable constructor found for ImageButton, method does not override or implement a method from a supertype, e chamadas a métodos que não existem mais (getDeltaTracker, getFrameTime, setHoverName).  
+* **Problema:** Dezenas de classes não implementam métodos abstratos exigidos pelas novas interfaces do NeoForge.  
 * **Solução:**  
-  1. **ImageButton:** Atualizar os construtores para usar WidgetSprites em vez de ResourceLocation e coordenadas de textura separadas.  
-  2. **@Override:** Revisar todas as classes que implementam interfaces ou estendem classes do Minecraft/NeoForge. O problems-report.html lista exatamente quais métodos precisam ser implementados ou removidos. Por exemplo, RecipeSerializer agora requer streamCodec().  
-  3. **APIs de Renderização:** Substituir chamadas diretas a RenderSystem.getModelViewStack() por GuiGraphics. O método render em widgets agora é final e não pode ser sobrescrito; a lógica deve ser movida para outros métodos apropriados.  
-  4. **ResourceLocation:** O construtor new ResourceLocation("id") foi substituído por ResourceLocation.fromNamespaceAndPath("namespace", "path"). É crucial corrigir isso em todos os locais.
+  1. **CustomPacketPayload:** Adicionar a implementação do método type() a **TODOS** os records de mensagens de rede. Ex: public ResourceLocation type() { return TYPE; }.  
+  2. **RecipeSerializer:** Implementar o método streamCodec() em GunSmithTableSerializer e outros serializadores de receita.  
+  3. **Entity:** Implementar defineSynchedData(Builder) em EntityKineticBullet.  
+  4. **Recipe:** Implementar getResultItem(Provider) em GunSmithTableRecipe.
 
-**Prioridade 3: Sistema de Eventos**
+### **Fase 2: Correção Sistemática de APIs do NeoForge**
 
-* **Problema:** Os eventos e a forma como são postados e cancelados mudaram. Erros como bad operand type GunFireEvent for unary operator '\!' e isCanceled() não encontrado.  
+Com a arquitetura de dados corrigida, focaremos nos erros repetitivos de API.
+
+**Prioridade 1: Correção de Construtores e Métodos de GUI/Renderização**
+
+* **Problema:** Construtores e métodos de renderização foram alterados.  
 * **Solução:**  
-  1. A chamada NeoForge.EVENT\_BUS.post(event) agora retorna o próprio evento.  
-  2. A verificação de cancelamento deve ser feita em uma linha separada: if (event.isCancelable() && event.isCanceled()).  
-  3. Verificar se os eventos ainda existem ou se foram substituídos por equivalentes no NeoForge.
+  1. **ImageButton:** Substituir todas as instanciações do construtor antigo pelo novo que utiliza WidgetSprites.  
+  2. **renderToBuffer:** Atualizar todas as chamadas do método para a nova assinatura, que possui menos parâmetros.  
+  3. **PoseStack:** Substituir RenderSystem.getModelViewStack() por uma alternativa válida ou gerenciar a PoseStack corretamente dentro dos métodos de renderização.
 
-### **Fase 2: Quitação do Débito Técnico e Finalização do Núcleo**
+**Prioridade 2: Correção de Assinaturas de Métodos (@Override)**
 
-Com o projeto compilando, o foco muda para a correção das implementações mínimas e placeholders.
+* **Problema:** Erros de "method does not override" indicam que as assinaturas de métodos herdados mudaram.  
+* **Solução:**  
+  1. Revisar sistematicamente **todas** as classes com este erro.  
+  2. Consultar a classe-mãe no código do NeoForge 1.21.1 para encontrar a assinatura correta do método e atualizá-la.
 
-**Checklist de Débitos (baseado em DEBITO\_TECNICO.md):**
+### **Fase 3: Quitação do Débito Técnico e Testes**
 
-* \[ \] **Object Strategy:** Substituir todos os usos de Object por tipos concretos. O diagram.md ajudará a identificar as dependências corretas.  
-  * **Arquivos Críticos:** ClientGunIndex, CommonGunIndex, ClientAttachmentIndex. A funcionalidade completa desses índices é necessária para desbloquear a migração de renderizadores e modificadores.  
-* \[ \] **IAttachmentModifier e Modificadores:** Implementar a lógica completa para os modificadores (DamageModifier, AdsModifier, RecoilModifier, etc.), substituindo os placeholders.  
-* \[ \] **Renderizadores:**  
-  * **AttachmentItemRenderer:** Finalizar a implementação, conectando-a ao BedrockAttachmentModel.  
-  * **AnimateGeoItemRenderer:** Corrigir a lógica de animação e o gerenciamento de estado (AnimationStateMachine).  
-  * **GunItemRendererWrapper:** Garantir que todos os modos de renderização (primeira pessoa, terceira pessoa, inventário) funcionem corretamente.  
-* \[ \] **Placeholders e TODOs:** Realizar uma busca global por // TODO e // FIXME e resolver cada um deles, especialmente os relacionados a dados e lógica de jogo.
+* \[ \] **Finalizar Débitos:** Revisar o arquivo DEBITO\_TECNICO.md e implementar as lógicas que foram deixadas como // TODO.  
+* \[ \] **Testes Funcionais:** Compilar o mod com sucesso e iniciar testes completos em jogo para validar todas as funcionalidades.  
+* \[ \] **Revisão Final:** Realizar uma última passagem pelo código para limpeza e otimização.
 
-### **Fase 3: Migração de Funcionalidades Restantes**
-
-Com o núcleo estável, a migração dos arquivos desabilitados pode começar.
-
-**Ordem Sugerida (baseada em PROGRESS.md e dependências):**
-
-1. **Sistema de Entidades:**  
-   * \[ \] EntityKineticBullet.java: Corrigir a lógica de colisão, dano e sincronização de dados.  
-   * \[ \] TargetMinecart.java e StatueBlock.java: Atualizar a lógica de interação e renderização.  
-2. **Sistema de Crafting:**  
-   * \[ \] GunSmithTableRecipe.java e GunSmithTableSerializer.java: Migrar para o novo sistema de receitas e serializadores do NeoForge.  
-3. **GUI (Interface Gráfica):**  
-   * \[ \] GunSmithTableScreen.java e GunRefitScreen.java: Finalizar a migração de todos os widgets, botões e lógica de interação, garantindo que a comunicação com o servidor (via pacotes) esteja funcional.  
-4. **API de Scripting (Lua):**  
-   * \[ \] ModernKineticGunScriptAPI.java: Revisar e adaptar todos os bindings da API para garantir que funcionem com as novas classes e lógicas do mod.  
-5. **Compatibilidade com Outros Mods:**  
-   * \[ \] JEI e Controllable: Revisar e corrigir a integração com as versões mais recentes dessas dependências.
-
-### **Fase 4: Refinamento e Testes**
-
-* \[ \] **Testes Funcionais:** Executar testes completos em single-player e multiplayer para validar todas as funcionalidades: disparo, recarga, mira, modificadores, crafting, etc.  
-* \[ \] **Revisão de Código:** Realizar uma revisão final para garantir a consistência do código, remover soluções temporárias e otimizar o desempenho.  
-* \[ \] **Documentação:** Atualizar a documentação interna para refletir as mudanças da nova arquitetura.
-
-## **3\. Roadmap Kanban Priorizado**
+## **3\. Roadmap Kanban Priorizado (v2)**
 
 | Tarefa (To Do) | Em Progresso | Concluído |
 | :---- | :---- | :---- |
-| 1\. **\[Bloco 1\]** Refatorar todo o sistema de rede para usar Payloads e StreamCodec. |  |  |
-| 2\. **\[Bloco 2\]** Corrigir todos os construtores de ImageButton e ResourceLocation. |  |  |
-| 3\. **\[Bloco 3\]** Implementar os métodos de interface ausentes (@Override), como streamCodec() em serializadores. |  |  |
-| 4\. **\[Bloco 4\]** Atualizar todas as chamadas de eventos para o novo padrão do NeoForge. |  |  |
-| 5\. Refatorar ClientGunIndex e CommonGunIndex para remover a "Object Strategy". |  |  |
-| 6\. Implementar a lógica completa dos principais modificadores de armas (Damage, Ads, Recoil). |  |  |
-| 7\. Finalizar a migração dos renderizadores (GunItemRendererWrapper, AttachmentItemRenderer). |  |  |
-| 8\. Corrigir e habilitar EntityKineticBullet. |  |  |
-| 9\. Migrar o sistema de crafting da GunSmithTable. |  |  |
-| 10\. Finalizar as telas de GUI (GunSmithTableScreen, GunRefitScreen). |  |  |
-| 11\. Revisar e testar a API de Scripting (Lua). |  |  |
-| 12\. Teste de integração completo (Single-player e Multiplayer). |  |  |
+| 1\. **\[Bloco 1\]** Refatorar TimelessAPI e AttachmentCacheProperty para remover o uso de Object. |  |  |
+| 2\. **\[Bloco 2\]** Implementar o método type() em todas as classes de CustomPacketPayload. |  |  |
+| 3\. **\[Bloco 3\]** Implementar streamCodec() e outros métodos abstratos em Serializadores e Receitas. |  |  |
+| 4\. **\[Bloco 4\]** Corrigir todos os construtores de ImageButton e chamadas a renderToBuffer. |  |  |
+| 5\. Revisar e corrigir todos os erros de @Override em classes de modificadores e entidades. |  |  |
+| 6\. Corrigir erros de RecipeHolder e outros tipos incompatíveis. |  |  |
+| 7\. Resolver os cannot find symbol restantes em registros (ModRecipe, Capabilities, etc.). |  |  |
+| 8\. Habilitar e corrigir os arquivos restantes da lista PROGRESS.md. |  |  |
+| 9\. Implementar a lógica pendente do arquivo DEBITO\_TECNICO.md. |  |  |
+| 10\. Compilar o projeto com zero erros. |  |  |
+| 11\. Realizar testes funcionais completos em single-player e multiplayer. |  |  |
 
