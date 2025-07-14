@@ -30,7 +30,9 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
                 count = Math.max(GsonHelper.getAsInt(jsonObject, "count"), 1);
             }
             if (jsonObject.has("nbt")) {
-                extraTag = CraftingHelper.getNBT(jsonObject.get("nbt"));
+                // TODO: [MIGRATION] CraftingHelper.getNBT() removed in NeoForge 1.21.1 - use DataComponents
+                // extraTag = CraftingHelper.getNBT(jsonObject.get("nbt"));
+                extraTag = null; // Temporary placeholder
             }
             if (jsonObject.has("group")) {
                 String raw = GsonHelper.getAsString(jsonObject, "group");
@@ -58,7 +60,8 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
                 }
                 case GunSmithTableResult.CUSTOM -> {
                     JsonObject resultObject = GsonHelper.getAsJsonObject(jsonObject, "item");
-                    ItemStack itemStack = CraftingHelper.getItemStack(resultObject, true);
+                    // TODO: [MIGRATION] CraftingHelper.getItemStack() signature changed in NeoForge 1.21.1
+                    ItemStack itemStack = CraftingHelper.getItemStack(resultObject, true, true);
                     result = new GunSmithTableResult(itemStack, tabOverride);
                 }
                 default -> {
@@ -71,7 +74,7 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
     }
 
     private ResourceLocation getId(JsonObject jsonObject) {
-        return ResourceLocation.fromNamespaceAndPath(GsonHelper.getAsString(jsonObject, "id"));
+        return ResourceLocation.parse(GsonHelper.getAsString(jsonObject, "id"));
     }
 }
 

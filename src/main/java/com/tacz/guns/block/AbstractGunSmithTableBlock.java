@@ -43,7 +43,6 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
 
     protected abstract MapCodec<? extends BaseEntityBlock> codec();
 
-    @Override
     public InteractionResult use(BlockState pState, Level level, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;

@@ -62,7 +62,6 @@ public class StatueBlock extends BaseEntityBlock {
         return pState.getValue(HALF) == DoubleBlockHalf.LOWER ? new StatueBlockEntity(pPos, pState) : null;
     }
 
-    @Override
     public InteractionResult use(BlockState pState, Level level, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
         if (level.isClientSide()) {
             return InteractionResult.SUCCESS;

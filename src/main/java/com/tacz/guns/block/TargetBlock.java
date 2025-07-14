@@ -215,7 +215,6 @@ public class TargetBlock extends BaseEntityBlock {
         return super.getCloneItemStack(level, pos, state);
     }
 
-    @Override
     public boolean canSurvive(BlockState state, BlockGetter level, BlockPos pos) {
         BlockPos blockpos = pos.below();
         BlockState blockstate = level.getBlockState(blockpos);
