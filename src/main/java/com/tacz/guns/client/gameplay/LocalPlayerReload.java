@@ -7,7 +7,6 @@ import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.gun.AbstractGunItem;
 import com.tacz.guns.client.animation.statemachine.GunAnimationConstant;
-import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.network.NetworkHandler;
@@ -88,7 +87,7 @@ public class LocalPlayerReload {
         });
     }
 
-    private void doReload(IGun iGun, GunDisplayInstance display, GunData gunData, ItemStack mainHandItem) {
+    private void doReload(IGun iGun, ClientGunIndex display, GunData gunData, ItemStack mainHandItem) {
         var animationStateMachine = display.getAnimationStateMachine();
         if (animationStateMachine != null) {
             Bolt boltType = gunData.getBolt();
@@ -105,7 +104,7 @@ public class LocalPlayerReload {
         }
     }
 
-    private void cancelReload(GunDisplayInstance display) {
+    private void cancelReload(ClientGunIndex display) {
         var animationStateMachine = display.getAnimationStateMachine();
         if (animationStateMachine != null) {
             animationStateMachine.trigger(GunAnimationConstant.INPUT_CANCEL_RELOAD);

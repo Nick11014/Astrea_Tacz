@@ -10,7 +10,6 @@ import com.tacz.guns.api.event.common.GunShootEvent;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.client.animation.statemachine.GunAnimationConstant;
-import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.network.NetworkHandler;
@@ -68,7 +67,7 @@ public class LocalPlayerShoot {
         }
         ResourceLocation gunId = iGun.getGunId(mainHandItem);
         Optional<ClientGunIndex> gunIndexOptional = TimelessAPI.getClientGunIndex(gunId);
-        GunDisplayInstance display = TimelessAPI.getGunDisplay(mainHandItem).orElse(null);
+        ClientGunIndex display = TimelessAPI.getGunDisplay(mainHandItem).orElse(null);
         if (gunIndexOptional.isEmpty() || display == null) {
             return ShootResult.ID_NOT_EXIST;
         }
@@ -142,7 +141,7 @@ public class LocalPlayerShoot {
         return ShootResult.SUCCESS;
     }
 
-    private void doShoot(GunDisplayInstance display, IGun iGun, ItemStack mainHandItem, GunData gunData, long delay) {
+    private void doShoot(ClientGunIndex display, IGun iGun, ItemStack mainHandItem, GunData gunData, long delay) {
         FireMode fireMode = iGun.getFireMode(mainHandItem);
         Bolt boltType = gunData.getBolt();
         // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¤Ã‚Â½Ã¢â€žÂ¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
