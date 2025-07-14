@@ -188,12 +188,13 @@ public class TargetBlock extends BaseEntityBlock {
             world.setBlock(above, state.setValue(HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
             world.blockUpdated(pos, Blocks.AIR);
             state.updateNeighbourShapes(world, pos, Block.UPDATE_ALL);
-            if (stack.hasCustomName()) {
+            if (stack.has(net.minecraft.core.component.DataComponents.CUSTOM_NAME)) {
                 BlockEntity blockentity = world.getBlockEntity(pos);
                 if (blockentity instanceof TargetBlockEntity e) {
-                    GameProfile gameprofile = new GameProfile(null, stack.getCustomName().getString());
+                    net.minecraft.network.chat.Component customName = stack.get(net.minecraft.core.component.DataComponents.CUSTOM_NAME);
+                    GameProfile gameprofile = new GameProfile(null, customName.getString());
                     e.setOwner(gameprofile);
-                    e.setCustomName(stack.getCustomName());
+                    e.setCustomName(customName);
                     e.refresh();
                 }
             }

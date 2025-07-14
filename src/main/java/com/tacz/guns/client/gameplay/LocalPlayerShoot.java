@@ -1,7 +1,13 @@
 package com.tacz.guns.client.gameplay;
 
 import com.tacz.guns.api.TimelessAPI;
-import com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine;
+import com.tacz.guns.api.client.animation.statemac        // 触发开枪事件
+        GunShootEvent gunShootEvent = new GunSh                // 触发击发事件
+                GunFireEvent gunFireEvent = new GunFireEvent(player, mainHandItem, LogicalSide.CLIENT);
+                NeoForge.EVENT_BUS.post(gunFireEvent);
+                boolean fire = !(gunFireEvent.isCancelable() && gunFireEvent.isCanceled());tEvent(player, mainHandItem, LogicalSide.CLIENT);
+        NeoForge.EVENT_BUS.post(gunShootEvent);
+        if (gunShootEvent.isCancelable() && gunShootEvent.isCanceled()) {ne.AnimationStateMachine;
 import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.api.entity.ShootResult;

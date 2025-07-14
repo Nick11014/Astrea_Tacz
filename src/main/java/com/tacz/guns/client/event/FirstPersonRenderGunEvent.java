@@ -207,7 +207,7 @@ public class FirstPersonRenderGunEvent {
         MathUtil.applyMatrixLerp(transformMatrix, getPositioningNodeInverse(toNode), transformMatrix, refitScreenOpeningProgress * refitTransformProgress);
         // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‹â€ Ã‚Â° PoseStack
         poseStack.translate(0, 1.5f, 0);
-        poseStack.mulPoseMatrix(transformMatrix);
+        poseStack.mulPose(transformMatrix);
         poseStack.translate(0, -1.5f, 0);
     }
 

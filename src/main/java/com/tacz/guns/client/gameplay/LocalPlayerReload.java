@@ -1,7 +1,11 @@
 package com.tacz.guns.client.gameplay;
 
-import com.tacz.guns.api.TimelessAPI;
-import com.tacz.guns.api.entity.IGunOperator;
+import com.tacz.guns.api.TimelessAPI            // 触发换弹事件
+            GunReloadEvent gunReloadEvent = new GunReloadEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
+            NeoForge.EVENT_BUS.post(gunReloadEvent);
+            if (gunReloadEvent.isCancelable() && gunReloadEvent.isCanceled()) {
+                return;
+            }mport com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.api.entity.ReloadState;
 import com.tacz.guns.api.event.common.GunReloadEvent;
 import com.tacz.guns.api.item.IGun;

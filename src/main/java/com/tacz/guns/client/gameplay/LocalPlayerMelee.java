@@ -80,7 +80,8 @@ public class LocalPlayerMelee {
         data.lockState(operator -> operator.getSynMeleeCoolDown() > 0);
         // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
         GunMeleeEvent gunMeleeEvent = new GunMeleeEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
-        return !NeoForge.EVENT_BUS.post(gunMeleeEvent).isCanceled();
+        NeoForge.EVENT_BUS.post(gunMeleeEvent);
+        return !(gunMeleeEvent.isCancelable() && gunMeleeEvent.isCanceled());
     }
 
     private void doMuzzleMelee(ClientGunIndex display) {
