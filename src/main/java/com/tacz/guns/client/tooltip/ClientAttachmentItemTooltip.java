@@ -113,7 +113,7 @@ public class ClientAttachmentItemTooltip implements ClientTooltipComponent {
         } else {
             yOffset += (showGuns.size() - 1) / 16 * 18 + 32;
         }
-        // 枪包名
+        // ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã‚ÂÃ‚Â
         if (packInfo != null) {
             font.drawInBatch(this.packInfo, pX, yOffset + 8, 0xffffff, false, matrix4f, bufferSource, Font.DisplayMode.NORMAL, 0, 0xF000F0);
         }
@@ -205,3 +205,66 @@ public class ClientAttachmentItemTooltip implements ClientTooltipComponent {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

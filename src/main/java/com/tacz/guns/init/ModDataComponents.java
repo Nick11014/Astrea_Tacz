@@ -12,11 +12,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 /**
- * Registra todos os DataComponents necessários para substituir o sistema NBT
- * usado anteriormente para armazenar dados de armas, munições e acessórios.
+ * Registra todos os DataComponents necessÃƒÆ’Ã‚Â¡rios para substituir o sistema NBT
+ * usado anteriormente para armazenar dados de armas, muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes e acessÃƒÆ’Ã‚Â³rios.
  * 
- * Esta é a migração principal da versão 1.20.1 para 1.21.1 do Minecraft,
- * onde ItemStack.getOrCreateTag() foi substituído por DataComponents.
+ * Esta ÃƒÆ’Ã‚Â© a migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o principal da versÃƒÆ’Ã‚Â£o 1.20.1 para 1.21.1 do Minecraft,
+ * onde ItemStack.getOrCreateTag() foi substituÃƒÆ’Ã‚Â­do por DataComponents.
  */
 public class ModDataComponents {
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = 
@@ -47,7 +47,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Se há bala no cano (boolean)
+     * Se hÃƒÆ’Ã‚Â¡ bala no cano (boolean)
      * Substitui: GUN_HAS_BULLET_IN_BARREL
      */
     public static final Supplier<DataComponentType<Boolean>> GUN_HAS_BULLET_IN_BARREL = COMPONENTS.register("gun_has_bullet_in_barrel",
@@ -58,7 +58,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Quantidade atual de munição na arma (int)
+     * Quantidade atual de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na arma (int)
      * Substitui: GUN_CURRENT_AMMO_COUNT_TAG
      */
     public static final Supplier<DataComponentType<Integer>> GUN_CURRENT_AMMO_COUNT = COMPONENTS.register("gun_current_ammo_count",
@@ -69,9 +69,9 @@ public class ModDataComponents {
     );
 
     /**
-     * Dados de acessórios da arma (CompoundTag)
+     * Dados de acessÃƒÆ’Ã‚Â³rios da arma (CompoundTag)
      * Substitui: GUN_ATTACHMENT_BASE + sufixos
-     * Nota: Mantendo CompoundTag temporariamente para facilitar a migração
+     * Nota: Mantendo CompoundTag temporariamente para facilitar a migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
      */
     public static final Supplier<DataComponentType<CompoundTag>> GUN_ATTACHMENTS = COMPONENTS.register("gun_attachments",
         () -> DataComponentType.<CompoundTag>builder()
@@ -81,7 +81,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Experiência/nível da arma (int)
+     * ExperiÃƒÆ’Ã‚Âªncia/nÃƒÆ’Ã‚Â­vel da arma (int)
      * Substitui: GUN_EXP_TAG
      */
     public static final Supplier<DataComponentType<Integer>> GUN_EXP = COMPONENTS.register("gun_exp",
@@ -92,7 +92,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Munição dummy (int)
+     * MuniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o dummy (int)
      * Substitui: GUN_DUMMY_AMMO
      */
     public static final Supplier<DataComponentType<Integer>> GUN_DUMMY_AMMO = COMPONENTS.register("gun_dummy_ammo",
@@ -103,7 +103,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Máximo de munição dummy (int)
+     * MÃƒÆ’Ã‚Â¡ximo de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o dummy (int)
      * Substitui: GUN_MAX_DUMMY_AMMO
      */
     public static final Supplier<DataComponentType<Integer>> GUN_MAX_DUMMY_AMMO = COMPONENTS.register("gun_max_dummy_ammo",
@@ -114,7 +114,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Trava de acessórios (boolean)
+     * Trava de acessÃƒÆ’Ã‚Â³rios (boolean)
      * Substitui: GUN_ATTACHMENT_LOCK
      */
     public static final Supplier<DataComponentType<Boolean>> GUN_ATTACHMENT_LOCK = COMPONENTS.register("gun_attachment_lock",
@@ -158,7 +158,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Se a arma está travada por superaquecimento (boolean)
+     * Se a arma estÃƒÆ’Ã‚Â¡ travada por superaquecimento (boolean)
      * Substitui: GUN_OVERHEAT_LOCK_TAG
      */
     public static final Supplier<DataComponentType<Boolean>> GUN_OVERHEAT_LOCK = COMPONENTS.register("gun_overheat_lock",
@@ -168,10 +168,10 @@ public class ModDataComponents {
             .build()
     );
 
-    // === DADOS DE MUNIÇÃO ===
+    // === DADOS DE MUNIÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O ===
 
     /**
-     * ID da munição (ResourceLocation)
+     * ID da muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (ResourceLocation)
      * Substitui: AMMO_ID_TAG
      */
     public static final Supplier<DataComponentType<ResourceLocation>> AMMO_ID = COMPONENTS.register("ammo_id",
@@ -181,10 +181,10 @@ public class ModDataComponents {
             .build()
     );
 
-    // === DADOS DE ACESSÓRIOS ===
+    // === DADOS DE ACESSÃƒÆ’Ã¢â‚¬Å“RIOS ===
 
     /**
-     * ID do acessório (ResourceLocation)
+     * ID do acessÃƒÆ’Ã‚Â³rio (ResourceLocation)
      * Para AttachmentItemDataAccessor
      */
     public static final Supplier<DataComponentType<ResourceLocation>> ATTACHMENT_ID = COMPONENTS.register("attachment_id",
@@ -194,10 +194,10 @@ public class ModDataComponents {
             .build()
     );
 
-    // === DADOS DE CAIXA DE MUNIÇÃO ===
+    // === DADOS DE CAIXA DE MUNIÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O ===
 
     /**
-     * ID da munição na caixa (ResourceLocation)
+     * ID da muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na caixa (ResourceLocation)
      * Para AmmoBoxItemDataAccessor
      */
     public static final Supplier<DataComponentType<ResourceLocation>> AMMO_BOX_AMMO_ID = COMPONENTS.register("ammo_box_ammo_id",
@@ -206,7 +206,7 @@ public class ModDataComponents {
             .networkSynchronized(ResourceLocation.STREAM_CODEC)
             .build()
     );    /**
-     * Quantidade de munição na caixa (int)
+     * Quantidade de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na caixa (int)
      * Para AmmoBoxItemDataAccessor
      */
     public static final Supplier<DataComponentType<Integer>> AMMO_BOX_AMOUNT = COMPONENTS.register("ammo_box_amount",
@@ -217,7 +217,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Nível da caixa de munição (int)
+     * NÃƒÆ’Ã‚Â­vel da caixa de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (int)
      * Para AmmoBoxItemDataAccessor
      */
     public static final Supplier<DataComponentType<Integer>> AMMO_BOX_LEVEL = COMPONENTS.register("ammo_box_level",
@@ -228,7 +228,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Modo criativo da caixa de munição (boolean)
+     * Modo criativo da caixa de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (boolean)
      * Para AmmoBoxItemDataAccessor
      */
     public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_CREATIVE = COMPONENTS.register("ammo_box_creative",
@@ -239,7 +239,7 @@ public class ModDataComponents {
     );
 
     /**
-     * Modo criativo universal da caixa de munição (boolean)
+     * Modo criativo universal da caixa de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (boolean)
      * Para AmmoBoxItemDataAccessor
      */
     public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_ALL_TYPE_CREATIVE = COMPONENTS.register("ammo_box_all_type_creative",
@@ -275,3 +275,66 @@ public class ModDataComponents {
             .build()
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

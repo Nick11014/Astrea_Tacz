@@ -11,7 +11,7 @@ import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ServerMessageSound(int entityId, ResourceLocation gunId, ResourceLocation gunDisplayId, String soundName,
                                  float volume, float pitch, int distance) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "server_sound");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "server_sound");
 
     public ServerMessageSound(int entityId, ResourceLocation gunId, String soundName, float volume, float pitch, int distance) {
         this(entityId, gunId, DefaultAssets.DEFAULT_GUN_DISPLAY_ID, soundName, volume, pitch, distance);
@@ -41,3 +41,66 @@ public record ServerMessageSound(int entityId, ResourceLocation gunId, ResourceL
         SoundPlayManager.playClientSound(message);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

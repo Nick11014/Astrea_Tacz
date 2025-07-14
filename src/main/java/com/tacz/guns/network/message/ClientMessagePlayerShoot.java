@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessagePlayerShoot(long timestamp) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_shoot");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_shoot");
 
     public ClientMessagePlayerShoot(FriendlyByteBuf buf) {
         this(buf.readLong());
@@ -35,3 +35,66 @@ public record ClientMessagePlayerShoot(long timestamp) implements CustomPacketPa
         IGunOperator.fromLivingEntity(player).shoot(player::getXRot, player::getYRot, message.timestamp);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

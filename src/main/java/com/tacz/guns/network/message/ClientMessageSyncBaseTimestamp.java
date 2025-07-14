@@ -15,7 +15,7 @@ import org.apache.logging.log4j.MarkerManager;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageSyncBaseTimestamp() implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_sync_base_timestamp");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_sync_base_timestamp");
     private static final Marker MARKER = MarkerManager.getMarker("SYNC_BASE_TIMESTAMP");
 
     public ClientMessageSyncBaseTimestamp(FriendlyByteBuf buf) {
@@ -43,3 +43,66 @@ public record ClientMessageSyncBaseTimestamp() implements CustomPacketPayload {
         GunMod.LOGGER.debug(MARKER, "Update server base timestamp: {}", dataHolder.baseTimestamp);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

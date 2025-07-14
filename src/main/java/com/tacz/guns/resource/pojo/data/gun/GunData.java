@@ -4,11 +4,11 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.entity.IGunOperator;
-// TODO: [MIGRAÇÃO] Restaurar quando IGun for habilitado
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando IGun for habilitado
 // import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.item.gun.FireMode;
-// TODO: [MIGRAÇÃO] Restaurar quando sistema de modificadores for habilitado
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando sistema de modificadores for habilitado
 // import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 // import com.tacz.guns.resource.modifier.custom.RpmModifier;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
@@ -157,7 +157,7 @@ public class GunData {
         if (fireModeAdjustData != null) {
             rpm += fireModeAdjustData.getRoundsPerMinute();
         }
-        // 为避免非法运算，随意返回一个默认值。
+        // ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ©Ã‚ÂÃ‚Â¿ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ©Ã‚ÂÃ…Â¾ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…Â¡Ã‚ÂÃƒÂ¦Ã¢â‚¬Å¾Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         if (rpm <= 0) {
             return 300;
         }
@@ -289,11 +289,11 @@ public class GunData {
     }
 
     /**
-     * @return 枪械开火的间隔，单位为 ms 。
+     * @return ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ©Ã…Â¡Ã¢â‚¬ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚Âº ms ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
      */
     public long getShootInterval(LivingEntity shooter, FireMode fireMode, ItemStack gunStack) {
         int rpm = this.getRoundsPerMinute(fireMode);
-        // TODO: [MIGRAÇÃO] Restaurar lógica com sistema de modificadores quando habilitado
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar lÃƒÆ’Ã‚Â³gica com sistema de modificadores quando habilitado
         // AttachmentCacheProperty cacheProperty = IGunOperator.fromLivingEntity(shooter).getCacheProperty();
         // if (cacheProperty != null) {
         //     rpm = Mth.clamp(cacheProperty.<Integer>getCache(RpmModifier.ID), 1, 1200);
@@ -306,13 +306,76 @@ public class GunData {
     }
 
     /**
-     * @return 枪械开火的间隔，单位为 ms 。
+     * @return ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ©Ã…Â¡Ã¢â‚¬ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚Âº ms ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
      */
     public long getBurstShootInterval() {
-        // 为避免非法运算，随意返回一个默认值。
+        // ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ©Ã‚ÂÃ‚Â¿ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ©Ã‚ÂÃ…Â¾ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…Â¡Ã‚ÂÃƒÂ¦Ã¢â‚¬Å¾Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         if (burstData == null || burstData.getBpm() <= 0) {
             return 300;
         }
         return 60_000L / burstData.getBpm();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

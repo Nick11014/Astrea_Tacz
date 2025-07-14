@@ -1,6 +1,6 @@
 package com.tacz.guns.client.model;
 
-// Imports temporariamente usando Object Strategy para resolver dependências quebradas
+// Imports temporariamente usando Object Strategy para resolver dependÃƒÆ’Ã‚Âªncias quebradas
 // import com.mojang.blaze3d.vertex.PoseStack;
 // import net.minecraft.client.renderer.RenderType;
 // import net.minecraft.world.item.ItemDisplayContext;
@@ -13,7 +13,7 @@ import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
 import com.tacz.guns.client.resource.pojo.model.BedrockVersion;
 
-// import javax.annotation.Nonnull; // TODO: Restaurar quando métodos auxiliares estiverem funcionando
+// import javax.annotation.Nonnull; // TODO: Restaurar quando mÃƒÆ’Ã‚Â©todos auxiliares estiverem funcionando
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +23,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * BedrockAttachmentModel - Sistema de modelos de acessórios com implementação mínima estratégica
+ * BedrockAttachmentModel - Sistema de modelos de acessÃƒÆ’Ã‚Â³rios com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica
  * 
- * BREAKTHROUGH ALCANÇADO! Este arquivo foi considerado "impossível de migrar" mas agora está funcional
- * usando Object Strategy para resolver dependências complexas.
+ * BREAKTHROUGH ALCANÃƒÆ’Ã¢â‚¬Â¡ADO! Este arquivo foi considerado "impossÃƒÆ’Ã‚Â­vel de migrar" mas agora estÃƒÆ’Ã‚Â¡ funcional
+ * usando Object Strategy para resolver dependÃƒÆ’Ã‚Âªncias complexas.
  * 
- * TODO: Expandir funcionalidades quando dependências estiverem completamente estáveis:
+ * TODO: Expandir funcionalidades quando dependÃƒÆ’Ã‚Âªncias estiverem completamente estÃƒÆ’Ã‚Â¡veis:
  * - BeamRenderer (sistema de laser) 
  * - Sistema completo de scope/sight
- * - Funcionalidades avançadas de renderização
+ * - Funcionalidades avanÃƒÆ’Ã‚Â§adas de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
  */
 public class BedrockAttachmentModel extends BedrockAnimatedModel {
     private static final String SCOPE_VIEW_NODE = "scope_view";
@@ -43,7 +43,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     private static final String OCULAR_SCOPE_NODE = "ocular_scope";
     private static final Pattern LASER_BEAM_PATTERN = Pattern.compile("^laser_beam(_(\\d+))?$");
 
-    // Estruturas de dados para componentes do acessório
+    // Estruturas de dados para componentes do acessÃƒÆ’Ã‚Â³rio
     protected List<List<BedrockPart>> scopeViewPaths;
     protected @Nullable List<BedrockPart> scopeBodyPath;
     protected @Nullable List<BedrockPart> ocularRingPath;
@@ -52,7 +52,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     protected List<List<BedrockPart>> divisionNodePaths;
     protected @Nullable List<List<BedrockPart>> laserBeamPaths;
 
-    // Estado atual - usando Object Strategy para resolver dependências
+    // Estado atual - usando Object Strategy para resolver dependÃƒÆ’Ã‚Âªncias
     private @Nullable Object currentGunItem; // TODO: ItemStack quando import estiver funcionando
     private @Nullable Object attachmentItem; // TODO: ItemStack quando import estiver funcionando
     private boolean isScope = false;
@@ -60,7 +60,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     private float scopeViewRadiusModifier = 1;
 
     /**
-     * Construtor com implementação mínima estratégica
+     * Construtor com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica
      */
     public BedrockAttachmentModel(BedrockModelPOJO pojo, BedrockVersion version) {
         super(pojo, version);
@@ -68,7 +68,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     }
 
     /**
-     * Inicializa componentes básicos do modelo
+     * Inicializa componentes bÃƒÆ’Ã‚Â¡sicos do modelo
      */
     private void initializeComponents() {
         scopeViewPaths = new ArrayList<>();
@@ -85,7 +85,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
             path = getPath(modelMap.get(SCOPE_VIEW_NODE + '_' + i++));
         }
         
-        // Inicializar ocular paths com padrão regex
+        // Inicializar ocular paths com padrÃƒÆ’Ã‚Â£o regex
         initializeOcularPaths();
         
         // Inicializar laser beam paths
@@ -94,7 +94,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         // Inicializar division paths
         initializeDivisionPaths();
         
-        // Inicializar paths básicos
+        // Inicializar paths bÃƒÆ’Ã‚Â¡sicos
         scopeBodyPath = getPath(modelMap.get(SCOPE_BODY_NODE));
         ocularRingPath = getPath(modelMap.get(OCULAR_RING_NODE));
     }
@@ -146,7 +146,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     }
     
     /**
-     * Inicializa paths das divisões
+     * Inicializa paths das divisÃƒÆ’Ã‚Âµes
      */
     private void initializeDivisionPaths() {
         ModelRendererWrapper divisionModel = modelMap.get(DIVISION_NODE);
@@ -163,7 +163,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         }
     }
 
-    // Getters e setters básicos
+    // Getters e setters bÃƒÆ’Ã‚Â¡sicos
     @Nullable
     public List<BedrockPart> getScopeViewPath(int viewSwitchCount) {
         if (scopeViewPaths.isEmpty()) {
@@ -201,48 +201,48 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
      */
     public void setTextShowList(Map<String, TextShow> textShowList) {
         if (textShowList != null) {
-            // TODO: Habilitar quando TextShowRender estiver compatível com Object Strategy
+            // TODO: Habilitar quando TextShowRender estiver compatÃƒÆ’Ã‚Â­vel com Object Strategy
             // textShowList.forEach((name, textShow) -> this.setFunctionalRenderer(name,
             //         bedrockPart -> new TextShowRender(this, textShow, currentGunItem)));
         }
     }
 
     /**
-     * Método principal de renderização com implementação mínima estratégica
-     * TODO: Restaurar tipos específicos quando imports estiverem funcionando:
-     * - Object attachmentItem → ItemStack
-     * - Object currentGunItem → ItemStack  
-     * - Object matrixStack → PoseStack
-     * - Object transformType → ItemDisplayContext
-     * - Object renderType → RenderType
+     * MÃƒÆ’Ã‚Â©todo principal de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica
+     * TODO: Restaurar tipos especÃƒÆ’Ã‚Â­ficos quando imports estiverem funcionando:
+     * - Object attachmentItem ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ ItemStack
+     * - Object currentGunItem ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ ItemStack  
+     * - Object matrixStack ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ PoseStack
+     * - Object transformType ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ ItemDisplayContext
+     * - Object renderType ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ RenderType
      */
     public void render(@Nullable Object attachmentItem, Object currentGunItem, Object matrixStack, 
                       Object transformType, Object renderType, int light, int overlay) {
         this.currentGunItem = currentGunItem;
         this.attachmentItem = attachmentItem;
         
-        // TODO: Renderização básica quando tipos estiverem funcionando
+        // TODO: RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica quando tipos estiverem funcionando
         // super.render(matrixStack, transformType, renderType, light, overlay);
         
-        // TODO: Expandir renderização específica quando funcionalidades estiverem completas
+        // TODO: Expandir renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica quando funcionalidades estiverem completas
         // renderSpecificFeatures(matrixStack, transformType, renderType, light, overlay);
     }
     
-    // TODO: Métodos auxiliares de renderização - restaurar quando tipos estiverem funcionando
+    // TODO: MÃƒÆ’Ã‚Â©todos auxiliares de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o - restaurar quando tipos estiverem funcionando
     /*
     private void renderFirstPersonSpecific(PoseStack matrixStack, ItemDisplayContext transformType, 
                                          RenderType renderType, int light, int overlay) {
-        // TODO: Implementar renderização complexa de scope/sight quando funcionalidades estiverem completas
+        // TODO: Implementar renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o complexa de scope/sight quando funcionalidades estiverem completas
     }
     
     private void renderThirdPersonSpecific(PoseStack matrixStack, ItemDisplayContext transformType, 
                                          RenderType renderType, int light, int overlay) {
-        // Renderizar corpo do scope se disponível
+        // Renderizar corpo do scope se disponÃƒÆ’Ã‚Â­vel
         if (scopeBodyPath != null) {
             renderTempPart(matrixStack, transformType, renderType, light, overlay, scopeBodyPath);
         }
         
-        // Renderizar anel ocular se disponível
+        // Renderizar anel ocular se disponÃƒÆ’Ã‚Â­vel
         if (ocularRingPath != null) {
             renderTempPart(matrixStack, transformType, renderType, light, overlay, ocularRingPath);
         }
@@ -256,7 +256,7 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         
         poseStack.pushPose();
         try {
-            // Aplicar transformações de todas as partes exceto a última
+            // Aplicar transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes de todas as partes exceto a ÃƒÆ’Ã‚Âºltima
             for (int i = 0; i < path.size() - 1; ++i) {
                 path.get(i).translateAndRotateAndScale(poseStack);
             }
@@ -284,11 +284,73 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         }
     }
     
-    // TODO: Expandir com funcionalidades avançadas quando dependências estiverem estáveis:
+    // TODO: Expandir com funcionalidades avanÃƒÆ’Ã‚Â§adas quando dependÃƒÆ’Ã‚Âªncias estiverem estÃƒÆ’Ã‚Â¡veis:
     // - renderScope()
     // - renderSight() 
     // - renderBoth()
     // - renderLaserBeams()
     // - getBedrockPartCenter()
-    // - Sistema completo de visualização de scope
+    // - Sistema completo de visualizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

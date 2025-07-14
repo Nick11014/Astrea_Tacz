@@ -10,8 +10,8 @@ import net.neoforged.fml.loading.FMLEnvironment;
 /**
  * Registro de compatibilidade com outros mods.
  * 
- * MIGRAÇÃO 1.21.1: Implementação mínima que mantém as constantes
- * e funcionalidade básica de verificação de mod.
+ * MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O 1.21.1: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima que mantÃƒÆ’Ã‚Â©m as constantes
+ * e funcionalidade bÃƒÆ’Ã‚Â¡sica de verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de mod.
  */
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class CompatRegistry {
@@ -21,23 +21,23 @@ public class CompatRegistry {
 
     @SubscribeEvent
     public static void onEnqueue(final InterModEnqueueEvent event) {
-        // Implementação mínima: registra compatibilidades básicas
+        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima: registra compatibilidades bÃƒÆ’Ã‚Â¡sicas
         event.enqueueWork(() -> {
             if (FMLEnvironment.dist == Dist.CLIENT) {
-                // TODO: Implementar quando ClothConfigScreen e MenuIntegration estiverem disponíveis
+                // TODO: Implementar quando ClothConfigScreen e MenuIntegration estiverem disponÃƒÆ’Ã‚Â­veis
                 // checkModLoad(CLOTH_CONFIG, MenuIntegration::registerModsPage);
                 // ClothConfigScreen.registerNoClothConfigPage();
             }
         });
-        // TODO: Implementar quando OculusCompat estiver disponível
+        // TODO: Implementar quando OculusCompat estiver disponÃƒÆ’Ã‚Â­vel
         // event.enqueueWork(() -> checkModLoad(OCULUS, OculusCompat::initCompat));
         
-        // TODO: Implementar quando BlackList estiver disponível  
+        // TODO: Implementar quando BlackList estiver disponÃƒÆ’Ã‚Â­vel  
         // event.enqueueWork(() -> checkModLoad(CARRY_ON_ID, BlackList::addBlackList));
     }
 
     /**
-     * Verifica se um mod está carregado e executa um Runnable se estiver
+     * Verifica se um mod estÃƒÆ’Ã‚Â¡ carregado e executa um Runnable se estiver
      */
     public static void checkModLoad(String modId, Runnable runnable) {
         if (ModList.get().isLoaded(modId)) {
@@ -45,3 +45,66 @@ public class CompatRegistry {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

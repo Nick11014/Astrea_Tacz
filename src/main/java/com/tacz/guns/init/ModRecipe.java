@@ -11,8 +11,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Registro de receitas baseado no padrão do SuperbWarfare 1.21.1
- * Usando implementação mínima até as classes de crafting estarem disponíveis
+ * Registro de receitas baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
+ * Usando implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© as classes de crafting estarem disponÃƒÆ’Ã‚Â­veis
  */
 public class ModRecipe {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(BuiltInRegistries.RECIPE_SERIALIZER, GunMod.MOD_ID);
@@ -27,6 +27,69 @@ public class ModRecipe {
         RECIPE_TYPES.register("gun_smith_table_crafting", () -> RecipeType.simple(GunMod.loc("gun_smith_table_crafting")));
     */
     
-    // Implementação está sendo postergada até que todas as classes de crafting estejam prontas
-    // As receitas personalizadas requerem serializers específicos
+    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â¡ sendo postergada atÃƒÆ’Ã‚Â© que todas as classes de crafting estejam prontas
+    // As receitas personalizadas requerem serializers especÃƒÆ’Ã‚Â­ficos
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

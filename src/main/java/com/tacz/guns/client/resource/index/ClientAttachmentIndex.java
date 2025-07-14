@@ -12,16 +12,16 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Implementação mínima estratégica para ClientAttachmentIndex
- * TODO: Expandir quando BedrockAttachmentModel estiver disponível
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica para ClientAttachmentIndex
+ * TODO: Expandir quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
  */
 public class ClientAttachmentIndex {
-    // Implementação mínima - usando Object para evitar dependências quebradas
-    private Object model; // TODO: BedrockAttachmentModel quando disponível
+    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - usando Object para evitar dependÃƒÆ’Ã‚Âªncias quebradas
+    private Object model; // TODO: BedrockAttachmentModel quando disponÃƒÆ’Ã‚Â­vel
     private Object texture; // TODO: ResourceLocation quando import estiver funcionando
     private String name;
     private AttachmentData data;
-    private AttachmentDisplay display; // TODO: AttachmentDisplay quando necessário
+    private AttachmentDisplay display; // TODO: AttachmentDisplay quando necessÃƒÆ’Ã‚Â¡rio
     private Object slotTextureLocation; // TODO: ResourceLocation quando import estiver funcionando
     private String adapterNodeName;
     private boolean showMuzzle = false;
@@ -34,24 +34,24 @@ public class ClientAttachmentIndex {
     private float[] viewsFov;
     private AttachmentLod attachmentLod;
     private Map<String, Object> sounds; // TODO: Map<String, ResourceLocation> quando import estiver funcionando
-    private LaserConfig laserConfig; // Configuração do laser
+    private LaserConfig laserConfig; // ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do laser
 
     private ClientAttachmentIndex() {
     }
 
     /**
-     * Implementação mínima - apenas estrutura básica
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas estrutura bÃƒÆ’Ã‚Â¡sica
      */
     public static ClientAttachmentIndex getInstance(Object attachmentId, AttachmentIndexPOJO indexPojo) {
         ClientAttachmentIndex index = new ClientAttachmentIndex();
         
-        // Implementação mínima - dados básicos
+        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - dados bÃƒÆ’Ã‚Â¡sicos
         index.name = indexPojo.getName();
         if (index.name == null || index.name.trim().isEmpty()) {
             index.name = "custom.tacz.error.no_name";
         }
         
-        // TODO: Carregar dados completos quando disponível
+        // TODO: Carregar dados completos quando disponÃƒÆ’Ã‚Â­vel
         // index.data = loadAttachmentData(indexPojo.getData());
         // index.display = loadAttachmentDisplay(indexPojo.getDisplay());
         // index.model = loadAttachmentModel(...);
@@ -59,12 +59,12 @@ public class ClientAttachmentIndex {
         return index;
     }
 
-    // Getters básicos para compatibilidade
+    // Getters bÃƒÆ’Ã‚Â¡sicos para compatibilidade
     public String getName() {
         return name;
     }
 
-    public Object getModel() { // TODO: retornar BedrockAttachmentModel quando disponível
+    public Object getModel() { // TODO: retornar BedrockAttachmentModel quando disponÃƒÆ’Ã‚Â­vel
         return model;
     }
 
@@ -141,11 +141,11 @@ public class ClientAttachmentIndex {
         return laserConfig;
     }
 
-    // Métodos adicionais requeridos pelo AttachmentItemRenderer (implementação mínima com Object strategy)
+    // MÃƒÆ’Ã‚Â©todos adicionais requeridos pelo AttachmentItemRenderer (implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com Object strategy)
     
     /**
-     * Retorna o modelo de acessório - agora compatível com BedrockAttachmentModel
-     * TODO: Retornar BedrockAttachmentModel tipado quando imports estiverem estáveis
+     * Retorna o modelo de acessÃƒÆ’Ã‚Â³rio - agora compatÃƒÆ’Ã‚Â­vel com BedrockAttachmentModel
+     * TODO: Retornar BedrockAttachmentModel tipado quando imports estiverem estÃƒÆ’Ã‚Â¡veis
      */
     public Object getAttachmentModel() {
         return model; // Retorna como Object por enquanto
@@ -153,7 +153,7 @@ public class ClientAttachmentIndex {
     
     /**
      * Retorna a textura do modelo como Object  
-     * TODO: Retornar ResourceLocation quando disponível
+     * TODO: Retornar ResourceLocation quando disponÃƒÆ’Ã‚Â­vel
      */
     public Object getModelTexture() {
         return texture; // Retorna como Object por enquanto
@@ -161,7 +161,7 @@ public class ClientAttachmentIndex {
     
     /**
      * Retorna a textura do slot como Object
-     * TODO: Retornar ResourceLocation quando disponível  
+     * TODO: Retornar ResourceLocation quando disponÃƒÆ’Ã‚Â­vel  
      */
     public Object getSlotTexture() {
         return slotTextureLocation; // Retorna como Object por enquanto
@@ -169,69 +169,69 @@ public class ClientAttachmentIndex {
     
     /**
      * Retorna o modelo LOD (Level of Detail) como Object
-     * TODO: Retornar Pair<BedrockAttachmentModel, ResourceLocation> quando disponível
+     * TODO: Retornar Pair<BedrockAttachmentModel, ResourceLocation> quando disponÃƒÆ’Ã‚Â­vel
      */
     /*
     public Object getLodModel() {
-        // TODO: Implementar sistema LOD quando BedrockAttachmentModel estiver disponível
+        // TODO: Implementar sistema LOD quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
         // Retorna null por enquanto (sem modelo LOD)
         return Optional.empty();
     }
     */
 
     /**
-     * Cria uma instância de BedrockAttachmentModel básica se necessário
-     * TODO: Expandir quando BedrockModelPOJO e dependências estiverem disponíveis
+     * Cria uma instÃƒÆ’Ã‚Â¢ncia de BedrockAttachmentModel bÃƒÆ’Ã‚Â¡sica se necessÃƒÆ’Ã‚Â¡rio
+     * TODO: Expandir quando BedrockModelPOJO e dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
      */
     public Object createAttachmentModel() {
         if (model == null) {
-            // TODO: Criar BedrockAttachmentModel quando POJO estiver disponível
+            // TODO: Criar BedrockAttachmentModel quando POJO estiver disponÃƒÆ’Ã‚Â­vel
             // model = new BedrockAttachmentModel(pojo, version);
             // configurar propriedades: isScope, isSight, etc.
         }
         return model;
     }
 
-    // Métodos utilitários adicionais para expansão de funcionalidades
+    // MÃƒÆ’Ã‚Â©todos utilitÃƒÆ’Ã‚Â¡rios adicionais para expansÃƒÆ’Ã‚Â£o de funcionalidades
 
     /**
-     * Verifica se este acessório tem modelo disponível
+     * Verifica se este acessÃƒÆ’Ã‚Â³rio tem modelo disponÃƒÆ’Ã‚Â­vel
      */
     public boolean hasModel() {
         return model != null;
     }
 
     /**
-     * Verifica se este acessório tem textura disponível
+     * Verifica se este acessÃƒÆ’Ã‚Â³rio tem textura disponÃƒÆ’Ã‚Â­vel
      */
     public boolean hasTexture() {
         return texture != null;
     }
 
     /**
-     * Verifica se este acessório suporta sistema LOD
+     * Verifica se este acessÃƒÆ’Ã‚Â³rio suporta sistema LOD
      */
     public boolean hasLodSupport() {
         return attachmentLod != null;
     }
 
     /**
-     * Verifica se este acessório é um laser
+     * Verifica se este acessÃƒÆ’Ã‚Â³rio ÃƒÆ’Ã‚Â© um laser
      */
     public boolean isLaser() {
         return laserConfig != null;
     }
 
     /**
-     * Verifica se este acessório tem configurações de som
+     * Verifica se este acessÃƒÆ’Ã‚Â³rio tem configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes de som
      */
     public boolean hasSounds() {
         return sounds != null && !sounds.isEmpty();
     }
 
     /**
-     * Retorna o tipo de acessório baseado nas configurações
-     * TODO: Expandir quando AttachmentType estiver disponível
+     * Retorna o tipo de acessÃƒÆ’Ã‚Â³rio baseado nas configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
+     * TODO: Expandir quando AttachmentType estiver disponÃƒÆ’Ã‚Â­vel
      */
     public String getAttachmentType() {
         if (isScope()) return "scope";
@@ -242,20 +242,82 @@ public class ClientAttachmentIndex {
     }
 
     /**
-     * Verifica se o acessório deve ser renderizado baseado nas configurações
+     * Verifica se o acessÃƒÆ’Ã‚Â³rio deve ser renderizado baseado nas configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
      */
     public boolean shouldRender() {
         return hasModel() && hasTexture();
     }
 
     /**
-     * Método estático placeholder para carregar modelo de acessório
-     * TODO: Implementar corretamente quando BedrockAttachmentModel estiver disponível
+     * MÃƒÆ’Ã‚Â©todo estÃƒÆ’Ã‚Â¡tico placeholder para carregar modelo de acessÃƒÆ’Ã‚Â³rio
+     * TODO: Implementar corretamente quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static Object getOrLoadAttachmentModel(Object modelLocation) {
-        // TODO: Implementação mínima - retorna null temporariamente
-        // Quando BedrockAttachmentModel estiver disponível, implementar:
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna null temporariamente
+        // Quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel, implementar:
         // return ClientAssetsManager.INSTANCE.getBedrockModelPOJO(modelLocation);
         return null;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

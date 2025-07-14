@@ -33,7 +33,7 @@ public class BedrockPart {
     public boolean illuminated = false;
     public boolean mirror;
     /**
-     * 通常用于动画旋转。
+     * ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ¥Ã‚Â¸Ã‚Â¸ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
      */
     public Quaternionf additionalQuaternion = new Quaternionf(0, 0, 0, 1);
     public float xScale = 1;
@@ -61,7 +61,7 @@ public class BedrockPart {
     public void render(PoseStack poseStack, ItemDisplayContext transformType, VertexConsumer consumer, int light, int overlay, float red, float green, float blue, float alpha) {
         int cubePackedLight = light;
         if (illuminated) {
-            // 最大亮度
+            // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¤Ã‚ÂºÃ‚Â®ÃƒÂ¥Ã‚ÂºÃ‚Â¦
             cubePackedLight = LightTexture.pack(15, 15);
         }
         if (this.visible) {
@@ -135,3 +135,66 @@ public class BedrockPart {
         return parent;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

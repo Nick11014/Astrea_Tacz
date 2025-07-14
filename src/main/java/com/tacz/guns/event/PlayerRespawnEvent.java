@@ -13,7 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 public class PlayerRespawnEvent {
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        // 重生自动换弹
+        // ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹
         if (!GunConfig.AUTO_RELOAD_WHEN_RESPAWN.get()) return;
 
         var player = event.getEntity();
@@ -25,14 +25,14 @@ public class PlayerRespawnEvent {
             api.setShooter(player);
 
 
-            // 针对背包直读特殊处理
+            // ÃƒÂ©Ã¢â‚¬â„¢Ã‹â€ ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ§Ã¢â‚¬Â°Ã‚Â¹ÃƒÂ¦Ã‚Â®Ã…Â ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â 
             var useInventoryAmmo = api.getGunIndex().getGunData().getReloadData().getType() == FeedType.INVENTORY;
-            // 如果为背包直读则不进行换弹
+            // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹
             if (useInventoryAmmo) {
                 return;
             }
 
-            // 针对燃料类型特殊处理
+            // ÃƒÂ©Ã¢â‚¬â„¢Ã‹â€ ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ§Ã¢â‚¬Â¡Ã†â€™ÃƒÂ¦Ã¢â‚¬â€œÃ¢â€žÂ¢ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ§Ã¢â‚¬Â°Ã‚Â¹ÃƒÂ¦Ã‚Â®Ã…Â ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â 
             var isFuel = api.getGunIndex().getGunData().getReloadData().getType() == FeedType.FUEL;
             int needAmmoCount = api.getNeededAmmoAmount();
 
@@ -45,3 +45,66 @@ public class PlayerRespawnEvent {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

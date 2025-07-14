@@ -7,7 +7,7 @@ import it.unimi.dsi.fastutil.Pair;
 import java.util.List;
 
 /**
- * 工具类
+ * ÃƒÂ¥Ã‚Â·Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â·ÃƒÂ§Ã‚Â±Ã‚Â»
  */
 public class ParameterizedCachePair<L, R> implements Pair<ParameterizedCache<L>, ParameterizedCache<R>>{
     private final Pair<ParameterizedCache<L>, ParameterizedCache<R>> value;
@@ -34,3 +34,66 @@ public class ParameterizedCachePair<L, R> implements Pair<ParameterizedCache<L>,
                 new ParameterizedCache<>(right, defaultRight)));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

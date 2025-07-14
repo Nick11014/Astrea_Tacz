@@ -16,7 +16,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record ServerMessageGunMelee(int shooterId, ItemStack gunItemStack) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_melee");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_melee");
 
     public ServerMessageGunMelee(FriendlyByteBuf buf) {
         this(buf.readVarInt(), ItemStack.STREAM_CODEC.decode(buf));
@@ -49,3 +49,66 @@ public record ServerMessageGunMelee(int shooterId, ItemStack gunItemStack) imple
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

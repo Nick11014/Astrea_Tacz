@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 /**
- * 这个字段使用modifier还是太奇怪了，姑且只用于缓存
+ * ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ¦Ã‚Â®Ã‚ÂµÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨modifierÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚Â¤Ã‚ÂªÃƒÂ¥Ã‚Â¥Ã¢â‚¬Â¡ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂªÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â§Ã¢â‚¬ËœÃƒÂ¤Ã‚Â¸Ã¢â‚¬ÂÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“
  */
 public class ExtraMovementModifier implements IAttachmentModifier<MoveSpeed, MoveSpeed> {
     public static final String ID = GunProperties.MOVE_SPEED.name();
@@ -78,3 +78,66 @@ public class ExtraMovementModifier implements IAttachmentModifier<MoveSpeed, Mov
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

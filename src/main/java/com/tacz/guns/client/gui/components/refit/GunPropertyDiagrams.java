@@ -64,7 +64,7 @@ public final class GunPropertyDiagrams {
 
             int[] yOffset = new int[]{y + 5};
 
-            // 射击模式
+            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚Â
             MutableComponent fireModeText = Component.translatable("gui.tacz.gun_refit.property_diagrams.fire_mode");
             if (fireMode == FireMode.AUTO) {
                 fireModeText.append(Component.translatable("gui.tacz.gun_refit.property_diagrams.auto"));
@@ -81,9 +81,9 @@ public final class GunPropertyDiagrams {
             yOffset[0] += 10;
 
 
-            // 弹匣容量
+            // ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã…â€™Ã‚Â£ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ©Ã¢â‚¬Â¡Ã‚Â
             if (iGun.useInventoryAmmo(gunItem)) {
-                // 如果使用背包直读，则直接显示满条和 INV 的标注
+                // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚ÂºÃƒÂ¦Ã‚Â»Ã‚Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ INV ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¦Ã‚Â³Ã‚Â¨
                 graphics.drawString(font, Component.translatable("gui.tacz.gun_refit.property_diagrams.ammo_capacity"), nameTextStartX, yOffset[0], fontColor, false);
                 graphics.fill(barStartX, yOffset[0] + 2, barEndX, yOffset[0] + 6, barBackgroundColor);
                 graphics.fill(barStartX, yOffset[0] + 2, barStartX + barMaxWidth, yOffset[0] + 6, barBaseColor);
@@ -103,7 +103,7 @@ public final class GunPropertyDiagrams {
                 if (addAmmoCount > 0) {
                     int barRight = Math.min(ammoLength + addAmmoCountLength, barEndX);
                     graphics.fill(ammoLength, yOffset[0] + 2, barRight, yOffset[0] + 6, barPositivelyColor);
-                    graphics.drawString(font, String.format("%d §a(+%d)", ammoAmount, addAmmoCount), valueTextStartX, yOffset[0], fontColor, false);
+                    graphics.drawString(font, String.format("%d Ãƒâ€šÃ‚Â§a(+%d)", ammoAmount, addAmmoCount), valueTextStartX, yOffset[0], fontColor, false);
                 } else {
                     graphics.drawString(font, String.format("%d", ammoAmount), valueTextStartX, yOffset[0], fontColor, false);
                 }
@@ -112,7 +112,7 @@ public final class GunPropertyDiagrams {
             yOffset[0] += 10;
 
 
-            // 跑射延迟
+            // ÃƒÂ¨Ã‚Â·Ã¢â‚¬ËœÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸
             float sprintTime = gunData.getSprintTime();
             double sprintTimePercent = Mth.clamp(sprintTime / 0.5, 0, 1);
             int sprintLength = (int) (barStartX + barMaxWidth * sprintTimePercent);
@@ -158,3 +158,66 @@ public final class GunPropertyDiagrams {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

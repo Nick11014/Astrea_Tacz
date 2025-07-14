@@ -10,14 +10,14 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Registro de itens baseado no padrão do SuperbWarfare 1.21.1
- * Usando implementação mínima até as classes de item estarem disponíveis
+ * Registro de itens baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
+ * Usando implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© as classes de item estarem disponÃƒÆ’Ã‚Â­veis
  */
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, GunMod.MOD_ID);
 
     // TODO: Re-enable when item classes are available
-    // Implementação mínima com placeholders
+    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com placeholders
     public static final DeferredHolder<Item, Item> MODERN_KINETIC_GUN = ITEMS.register("modern_kinetic_gun", 
         () -> new Item(new Item.Properties())); // Placeholder - ModernKineticGunItem::new
 
@@ -62,3 +62,66 @@ public class ModItems {
     }
     */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -34,7 +34,7 @@ public class ItemInHandRendererMixin implements KeepingItemRenderer {
 
     @Inject(method = "renderHandsWithItems", at = @At("HEAD"))
     public void beforeHandRender(float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource.BufferSource pBuffer, LocalPlayer pPlayerEntity, int pCombinedLight, CallbackInfo ci) {
-        MinecraftForge.EVENT_BUS.post(new BeforeRenderHandEvent(pMatrixStack));
+        NeoForge.EVENT_BUS.post(new BeforeRenderHandEvent(pMatrixStack));
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
@@ -89,3 +89,66 @@ public class ItemInHandRendererMixin implements KeepingItemRenderer {
         return mainHandItem;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -73,8 +73,8 @@ public class AmmoSpeedModifier implements IAttachmentModifier<Modifier, Float> {
         double ammoSpeedModifierPercent = Math.min(ammoSpeedModifier / 600.0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.ammo_speed";
-        String positivelyString = String.format("%dm/s §a(+%d)", Math.round(modifiedAmmoSpeed), Math.round(ammoSpeedModifier));
-        String negativelyString = String.format("%dm/s §c(%d)", Math.round(modifiedAmmoSpeed), Math.round(ammoSpeedModifier));
+        String positivelyString = String.format("%dm/s Ãƒâ€šÃ‚Â§a(+%d)", Math.round(modifiedAmmoSpeed), Math.round(ammoSpeedModifier));
+        String negativelyString = String.format("%dm/s Ãƒâ€šÃ‚Â§c(%d)", Math.round(modifiedAmmoSpeed), Math.round(ammoSpeedModifier));
         String defaultString = String.format("%dm/s", Math.round(modifiedAmmoSpeed));
         boolean positivelyBetter = true;
 
@@ -118,3 +118,66 @@ public class AmmoSpeedModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

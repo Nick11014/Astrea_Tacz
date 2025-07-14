@@ -20,10 +20,11 @@ import net.minecraft.server.packs.resources.IoSupplier;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.fml.loading.moddiscovery.IModInfo;
-import net.neoforged.fml.loading.moddiscovery.IModFile;
-import net.neoforged.neoforge.resource.DelegatingPackResources;
-import net.neoforged.neoforge.resource.PathPackResources;
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Imports comentados temporariamente - APIs mudaram no NeoForge 1.21.1
+// import net.neoforged.fml.loading.moddiscovery.IModInfo;
+// import net.neoforged.fml.loading.moddiscovery.IModFile;
+// import net.neoforged.neoforge.resource.DelegatingPackResources;
+// import net.neoforged.neoforge.resource.PathPackResources;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import org.apache.maven.artifact.versioning.ArtifactVersion;
@@ -64,6 +65,7 @@ public enum GunPackLoader implements RepositorySource {
     }
 
     public Pack discoverExtensions() {
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o temporariamente desabilitada - migrar para novas APIs do NeoForge 1.21.1
         Path resourcePacksPath = FMLPaths.GAMEDIR.get().resolve("tacz");
         File folder = resourcePacksPath.toFile();
         if (!folder.isDirectory()) {
@@ -75,10 +77,10 @@ public enum GunPackLoader implements RepositorySource {
             }
         }
 
-        // 确保配置文件加载，这个阶段将比标准的forge配置文件加载早
+        // ÃƒÂ§Ã‚Â¡Ã‚Â®ÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ©Ã‹Å“Ã‚Â¶ÃƒÂ¦Ã‚Â®Ã‚ÂµÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¦Ã‚Â¯Ã¢â‚¬ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾forgeÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¦Ã¢â‚¬â€Ã‚Â©
         PreLoadConfig.load(resourcePacksPath);
 
-        // 仅在第一次加载时复制默认资源包
+        // ÃƒÂ¤Ã‚Â»Ã¢â‚¬Â¦ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¨Ã‚ÂµÃ¢â‚¬Å¾ÃƒÂ¦Ã‚ÂºÃ‚ÂÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦
         if (firstLoad) {
             if (!PreLoadConfig.override.get()) {
                 for (ResourceManager.ExtraEntry entry : ResourceManager.EXTRA_ENTRIES) {
@@ -89,6 +91,13 @@ public enum GunPackLoader implements RepositorySource {
         }
 
         GunMod.LOGGER.info(MARKER, "Start scanning for gun packs in {}", resourcePacksPath);
+        GunMod.LOGGER.warn(MARKER, "Gun pack loading temporarily disabled during migration to NeoForge 1.21.1");
+        
+        // Retorna null temporariamente atÃƒÆ’Ã‚Â© a migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o ser completa
+        return null;
+        
+        /*
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] CÃƒÆ’Ã‚Â³digo original comentado - requer migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o para novas APIs
         List<GunPack> gunPacks = scanExtensions(resourcePacksPath);
         GunMod.LOGGER.info(MARKER, "Found {} possible gunpack(s) and added them to resource set.", gunPacks.size());
         List<PathPackResources> extensionPacks = new ArrayList<>();
@@ -132,9 +141,12 @@ public enum GunPackLoader implements RepositorySource {
                 }
             };
         }, packType, Pack.Position.BOTTOM, PackSource.BUILT_IN);
+        */
     }
 
     public static @Nullable Path getModIcon(String modId) {
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o temporariamente desabilitada - migrar para novas APIs
+        /*
         Optional<? extends ModContainer> m = ModList.get().getModContainerById(modId);
         if (m.isPresent()) {
             IModInfo mod = m.get().getModInfo();
@@ -146,12 +158,12 @@ public enum GunPackLoader implements RepositorySource {
                 }
             }
         }
-
+        */
         return null;
     }
 
-    // 检查路径中的config.json
-    // 应该不会在用这个了，先保留
+    // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¨Ã‚Â·Ã‚Â¯ÃƒÂ¥Ã‚Â¾Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾config.json
+    // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â¯Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ§Ã¢â‚¬Â¢Ã¢â€žÂ¢
 //    private static RepositoryConfig checkConfig(Path resourcePacksPath) {
 //        Path configPath = resourcePacksPath.resolve("config.json");
 //        if (Files.exists(configPath)) {
@@ -161,9 +173,9 @@ public enum GunPackLoader implements RepositorySource {
 //                GunMod.LOGGER.warn(MARKER, "Failed to read config json: {}", configPath);
 //            }
 //        }
-//        // 不存在或者出问题了，新建一个
+//        // ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ©Ã¢â‚¬â€Ã‚Â®ÃƒÂ©Ã‚Â¢Ã‹Å“ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚Âª
 //        RepositoryConfig config = new RepositoryConfig(true);
-//        // 使用Gson写文件
+//        // ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨GsonÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶
 //        try (BufferedWriter writer = Files.newBufferedWriter(configPath, StandardCharsets.UTF_8)) {
 //            GSON.toJson(config, writer);
 //        } catch (IOException e) {
@@ -272,3 +284,66 @@ public enum GunPackLoader implements RepositorySource {
     public record GunPack(Path path, String name) {
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

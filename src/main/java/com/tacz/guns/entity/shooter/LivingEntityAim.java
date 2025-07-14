@@ -44,7 +44,7 @@ public class LivingEntityAim {
             TimelessAPI.getCommonAttachmentIndex(scopeId).ifPresent(index -> {
                 int zoomNumber = AttachmentItemDataAccessor.getZoomNumberFromTag(scopeTag);
                 ++zoomNumber;
-                // 避免上溢变成负的
+                // ÃƒÂ©Ã‚ÂÃ‚Â¿ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¦Ã‚ÂºÃ‚Â¢ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¨Ã‚Â´Ã…Â¸ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
                 zoomNumber = zoomNumber % (Integer.MAX_VALUE - 1);
                 AttachmentItemDataAccessor.setZoomNumberToTag(scopeTag, zoomNumber);
             });
@@ -52,14 +52,14 @@ public class LivingEntityAim {
     }
 
     public void tickAimingProgress() {
-        // currentGunItem 如果为 null，则取消瞄准状态并将 aimingProgress 归零。
+        // currentGunItem ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¤Ã‚Â¸Ã‚Âº nullÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‚Â¹Ã‚Â¶ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  aimingProgress ÃƒÂ¥Ã‚Â½Ã¢â‚¬â„¢ÃƒÂ©Ã¢â‚¬ÂºÃ‚Â¶ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         if (data.currentGunItem == null || !(data.currentGunItem.get().getItem() instanceof IGun iGun)) {
             data.aimingProgress = 0;
             data.aimingTimestamp = System.currentTimeMillis();
             return;
         }
         ItemStack currentGunItem = data.currentGunItem.get();
-        // 如果获取不到 gunIndex，则取消瞄准状态并将 aimingProgress 归零，返回。
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â° gunIndexÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‚Â¹Ã‚Â¶ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  aimingProgress ÃƒÂ¥Ã‚Â½Ã¢â‚¬â„¢ÃƒÂ©Ã¢â‚¬ÂºÃ‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         ResourceLocation gunId = iGun.getGunId(currentGunItem);
         Optional<CommonGunIndex> gunIndexOptional = TimelessAPI.getCommonGunIndex(gunId);
         if (gunIndexOptional.isEmpty()) {
@@ -74,13 +74,13 @@ public class LivingEntityAim {
         aimTime = Math.max(0, aimTime);
         float alphaProgress = (System.currentTimeMillis() - data.aimingTimestamp + 1) / (aimTime * 1000);
         if (data.isAiming) {
-            // 处于执行瞄准状态，增加 aimingProgress
+            // ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¢Ã…Â¾ÃƒÂ¥Ã…Â Ã‚Â  aimingProgress
             data.aimingProgress += alphaProgress;
             if (data.aimingProgress > 1) {
                 data.aimingProgress = 1;
             }
         } else {
-            // 处于取消瞄准状态，减小 aimingProgress
+            // ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â°Ã‚Â aimingProgress
             data.aimingProgress -= alphaProgress;
             if (data.aimingProgress < 0) {
                 data.aimingProgress = 0;
@@ -123,3 +123,66 @@ public class LivingEntityAim {
         data.sprintTimestamp = System.currentTimeMillis();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

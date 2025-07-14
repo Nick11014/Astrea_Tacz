@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * IAttachmentModifier - Implementação Mínima Estratégica
+ * IAttachmentModifier - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o MÃƒÆ’Ã‚Â­nima EstratÃƒÆ’Ã‚Â©gica
  * 
- * Interface para modificadores de propriedades de acessórios
- * Implementação mínima para desbloquear sistema completo de modificadores
+ * Interface para modificadores de propriedades de acessÃƒÆ’Ã‚Â³rios
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para desbloquear sistema completo de modificadores
  * 
  * TODO: Expandir funcionalidade quando sistemas dependentes estiverem habilitados:
  * - AttachmentCacheProperty
@@ -20,15 +20,15 @@ import java.util.List;
  */
 public interface IAttachmentModifier<T, K> {
     /**
-     * Configuração básica de modificador, usado como ID no sistema JSON
+     * ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica de modificador, usado como ID no sistema JSON
      * 
-     * @return ID do modificador para identificação no JSON
+     * @return ID do modificador para identificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o no JSON
      */
     String getId();
 
     /**
-     * Campo opcional para compatibilidade com versões antigas
-     * Implementação mínima - retorna string vazia
+     * Campo opcional para compatibilidade com versÃƒÆ’Ã‚Âµes antigas
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna string vazia
      * 
      * @return Nome do campo alternativo para JSON antigo
      */
@@ -37,8 +37,8 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Lê propriedade do JSON
-     * Implementação mínima - usando Object Strategy
+     * LÃƒÆ’Ã‚Âª propriedade do JSON
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - usando Object Strategy
      * 
      * @param json String JSON para processing
      * @return JsonProperty processada
@@ -50,8 +50,8 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Aplica modificação nas propriedades da arma
-     * Implementação mínima - apenas estrutura
+     * Aplica modificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o nas propriedades da arma
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas estrutura
      * 
      * @param gunData Dados da arma para modificar
      * @param property Propriedade do modificador
@@ -64,14 +64,14 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Obtém valor da propriedade cacheada
-     * Implementação mínima - Object Strategy
+     * ObtÃƒÆ’Ã‚Â©m valor da propriedade cacheada
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - Object Strategy
      * 
-     * @param attachmentItem ItemStack do acessório
+     * @param attachmentItem ItemStack do acessÃƒÆ’Ã‚Â³rio
      * @return Valor cacheado ou null
      */
     default Object getCache(Object attachmentItem) {
-        // TODO: Implementar quando AttachmentCacheProperty estiver disponível
+        // TODO: Implementar quando AttachmentCacheProperty estiver disponÃƒÆ’Ã‚Â­vel
         // ItemStack item = (ItemStack) attachmentItem;
         // return AttachmentCacheProperty.getCache(item, getId());
         return null;
@@ -79,55 +79,55 @@ public interface IAttachmentModifier<T, K> {
 
     /**
      * Define valor no cache
-     * Implementação mínima - Object Strategy
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - Object Strategy
      * 
-     * @param attachmentItem ItemStack do acessório  
+     * @param attachmentItem ItemStack do acessÃƒÆ’Ã‚Â³rio  
      * @param value Valor para cachear
      */
     default void setCache(Object attachmentItem, Object value) {
-        // TODO: Implementar quando AttachmentCacheProperty estiver disponível
+        // TODO: Implementar quando AttachmentCacheProperty estiver disponÃƒÆ’Ã‚Â­vel
         // ItemStack item = (ItemStack) attachmentItem;
         // AttachmentCacheProperty.setCache(item, getId(), value);
     }
 
     /**
-     * Obtém descrição do modificador para tooltips
-     * Implementação mínima - lista vazia
+     * ObtÃƒÆ’Ã‚Â©m descriÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do modificador para tooltips
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - lista vazia
      * 
      * @return Lista de componentes de texto para tooltip
      */
     default List<Object> getTooltip() {
-        // TODO: Implementar quando Component system estiver disponível
+        // TODO: Implementar quando Component system estiver disponÃƒÆ’Ã‚Â­vel
         // return List.of(Component.translatable("tooltip.tacz.modifier." + getId()));
         return Collections.emptyList();
     }
 
     /**
-     * Verifica se o modificador está ativo
-     * Implementação mínima - sempre true
+     * Verifica se o modificador estÃƒÆ’Ã‚Â¡ ativo
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - sempre true
      * 
      * @param property Propriedade para verificar
      * @return true se ativo
      */
     default boolean isActive(Object property) {
-        // TODO: Implementar validação quando tipos estiverem disponíveis
+        // TODO: Implementar validaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         return property != null;
     }
 
     /**
-     * Obtém estatísticas do modificador
+     * ObtÃƒÆ’Ã‚Â©m estatÃƒÆ’Ã‚Â­sticas do modificador
      */
     default String getStats() {
         return String.format("IAttachmentModifier{id=%s}", getId());
     }
 
     /**
-     * Obtém dados de diagrama para interface de refit
-     * Implementação mínima - lista vazia
+     * ObtÃƒÆ’Ã‚Â©m dados de diagrama para interface de refit
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - lista vazia
      * 
      * @param gunItem ItemStack da arma
      * @param gunData Dados da arma
-     * @param cacheProperty Propriedades de cache do acessório
+     * @param cacheProperty Propriedades de cache do acessÃƒÆ’Ã‚Â³rio
      * @return Lista de dados de diagrama
      */
     @OnlyIn(Dist.CLIENT)
@@ -136,9 +136,9 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Obtém o tamanho dos dados de diagrama para cálculo de offset de botões
+     * ObtÃƒÆ’Ã‚Â©m o tamanho dos dados de diagrama para cÃƒÆ’Ã‚Â¡lculo de offset de botÃƒÆ’Ã‚Âµes
      * 
-     * @return Número de diagramas
+     * @return NÃƒÆ’Ã‚Âºmero de diagramas
      */
     @OnlyIn(Dist.CLIENT)
     default int getDiagramsDataSize() {
@@ -148,14 +148,14 @@ public interface IAttachmentModifier<T, K> {
     /**
      * Dados de diagrama para interface de propriedades
      * 
-     * @param defaultPercent   Porcentagem do valor padrão da arma
+     * @param defaultPercent   Porcentagem do valor padrÃƒÆ’Ã‚Â£o da arma
      * @param modifierPercent  Porcentagem do valor modificado
-     * @param modifier         Valor modificado, usado para comparação com valor padrão
+     * @param modifier         Valor modificado, usado para comparaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o com valor padrÃƒÆ’Ã‚Â£o
      * @param titleKey         Chave do arquivo de idioma para nome da propriedade
-     * @param positivelyString Texto exibido quando maior que valor padrão
-     * @param negativeString   Texto exibido quando menor que valor padrão
-     * @param defaultString    Texto exibido quando igual ao valor padrão
-     * @param positivelyBetter true se maior que padrão é melhor (verde), false se pior (vermelho)
+     * @param positivelyString Texto exibido quando maior que valor padrÃƒÆ’Ã‚Â£o
+     * @param negativeString   Texto exibido quando menor que valor padrÃƒÆ’Ã‚Â£o
+     * @param defaultString    Texto exibido quando igual ao valor padrÃƒÆ’Ã‚Â£o
+     * @param positivelyBetter true se maior que padrÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© melhor (verde), false se pior (vermelho)
      */
     @OnlyIn(Dist.CLIENT)
     record DiagramsData(double defaultPercent, double modifierPercent, Number modifier,
@@ -164,3 +164,66 @@ public interface IAttachmentModifier<T, K> {
                         boolean positivelyBetter) {
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

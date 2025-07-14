@@ -43,7 +43,7 @@ public class StatueBlock extends BaseEntityBlock {
 
     @Override
     public MapCodec<StatueBlock> codec() {
-        return simpleCodec(StatueBlock::new);
+        return simpleCodec(properties -> new StatueBlock());
     }
 
     @Nullable
@@ -119,7 +119,7 @@ public class StatueBlock extends BaseEntityBlock {
 
         if (facing.getAxis() == Direction.Axis.Y) {
             if (half.equals(DoubleBlockHalf.LOWER) && facing == Direction.UP || half.equals(DoubleBlockHalf.UPPER) && facing == Direction.DOWN) {
-                // 拆一半另外一半跟着没
+                // ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ…Â ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ…Â ÃƒÂ¨Ã‚Â·Ã…Â¸ÃƒÂ§Ã‚ÂÃ¢â€šÂ¬ÃƒÂ¦Ã‚Â²Ã‚Â¡
                 if (!facingState.is(this)) {
                     return Blocks.AIR.defaultBlockState();
                 }
@@ -155,3 +155,66 @@ public class StatueBlock extends BaseEntityBlock {
         super.onBlockExploded(state, level, pos, explosion);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

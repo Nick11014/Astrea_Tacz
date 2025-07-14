@@ -49,11 +49,12 @@ public class GunSmithTableBlockEntity extends BlockEntity implements MenuProvide
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public AABB getRenderBoundingBox() {
-        return new AABB(worldPosition.offset(-2, 0, -2).getCenter(), worldPosition.offset(2, 1, 2).getCenter());
-    }
+    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] getRenderBoundingBox removido ou mudou no NeoForge 1.21.1
+    // @Override
+    // @OnlyIn(Dist.CLIENT)
+    // public AABB getRenderBoundingBox() {
+    //     return new AABB(worldPosition.offset(-2, 0, -2).getCenter(), worldPosition.offset(2, 1, 2).getCenter());
+    // }
 
     @Override
     public Component getDisplayName() {
@@ -89,3 +90,66 @@ public class GunSmithTableBlockEntity extends BlockEntity implements MenuProvide
         return saveWithoutMetadata(registries);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

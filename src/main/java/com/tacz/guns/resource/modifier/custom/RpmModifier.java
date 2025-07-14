@@ -65,8 +65,8 @@ public class RpmModifier implements IAttachmentModifier<Modifier, Integer> {
         double rpmModifierPercent = Math.min(rpmModifier / 1200.0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.rpm";
-        String positivelyString = String.format("%drpm §a(+%d)", modifiedValue, rpmModifier);
-        String negativelyString = String.format("%drpm §c(%d)", modifiedValue, rpmModifier);
+        String positivelyString = String.format("%drpm Ãƒâ€šÃ‚Â§a(+%d)", modifiedValue, rpmModifier);
+        String negativelyString = String.format("%drpm Ãƒâ€šÃ‚Â§c(%d)", modifiedValue, rpmModifier);
         String defaultString = String.format("%drpm", modifiedValue);
         boolean positivelyBetter = true;
 
@@ -111,3 +111,66 @@ public class RpmModifier implements IAttachmentModifier<Modifier, Integer> {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

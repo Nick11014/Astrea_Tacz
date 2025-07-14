@@ -29,16 +29,16 @@ public class Animations {
         for (AnimationModel animationModel : animationModels) {
             ObjectAnimation animation = new ObjectAnimation(animationModel.getName());
 
-            // 初始化动画轨道
+            // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“
             List<AnimationModel.Channel> channelModels = animationModel.getChannels();
             for (AnimationModel.Channel channelModel : channelModels) {
                 ObjectAnimationChannel channel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.valueOf(channelModel.path().toUpperCase(Locale.ENGLISH)));
                 AnimationModel.Sampler sampler = channelModel.sampler();
 
-                // 初始化轨道的节点名称和插值器
+                // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã…Â Ã¢â‚¬Å¡ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
                 AnimationModel.Interpolation interpolation = sampler.interpolation();
                 NodeModel nodeModel = channelModel.nodeModel();
-                // 四元数需要特殊的插值
+                // ÃƒÂ¥Ã¢â‚¬ÂºÃ¢â‚¬ÂºÃƒÂ¥Ã¢â‚¬Â¦Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã¢â‚¬Â°Ã‚Â¹ÃƒÂ¦Ã‚Â®Ã…Â ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                 if (channel.type.equals(ObjectAnimationChannel.ChannelType.ROTATION) && interpolation.equals(AnimationModel.Interpolation.LINEAR)) {
                     channel.interpolator = InterpolatorUtil.fromInterpolation(InterpolatorUtil.InterpolatorType.SLERP);
                 } else {
@@ -46,7 +46,7 @@ public class Animations {
                 }
                 channel.node = nodeModel.getName();
 
-                // 计算出各个初始值的逆
+                // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â 
                 AnimationListener animationListener = supplier.supplyListeners(channel.node, channel.type);
                 if (animationListener == null) {
                     continue;
@@ -63,15 +63,17 @@ public class Animations {
                     inverseValue[2] = -inverseValue[2];
                 }
 
-                // 初始化轨道的关键帧时间和关键帧数值
-                // 关键帧时间的访问器
-                AccessorModel input = sampler.input();
+                // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
+                // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â®Ã‚Â¿ÃƒÂ©Ã¢â‚¬â€Ã‚Â®ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
+                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Cast temporÃƒÆ’Ã‚Â¡rio enquanto sampler retorna Object
+                AccessorModel input = (AccessorModel) sampler.input();
                 AccessorData inputData = input.getAccessorData();
                 if (!(inputData instanceof AccessorFloatData inputFloatData)) {
                     throw new IllegalArgumentException("Input data is not an AccessorFloatData, but " + inputData.getClass());
                 }
-                // 关键帧时间的访问器
-                AccessorModel output = sampler.output();
+                // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â®Ã‚Â¿ÃƒÂ©Ã¢â‚¬â€Ã‚Â®ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
+                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Cast temporÃƒÆ’Ã‚Â¡rio enquanto sampler retorna Object
+                AccessorModel output = (AccessorModel) sampler.output();
                 AccessorData outputData = output.getAccessorData();
                 if (!(outputData instanceof AccessorFloatData outputFloatData)) {
                     throw new IllegalArgumentException("Output data is not an AccessorFloatData, but " + inputData.getClass());
@@ -98,14 +100,14 @@ public class Animations {
                 channel.content.keyframeTimeS = keyframeTimeS;
                 channel.content.values = values;
 
-                // 加载完所有内容后编译插值器
+                // ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã‚Â¼Ã¢â‚¬â€œÃƒÂ¨Ã‚Â¯Ã¢â‚¬ËœÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
                 channel.interpolator.compile(channel.content);
 
-                // 将轨道添加到动画
+                // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
                 animation.addChannel(channel);
             }
 
-            // 将动画添加到原型列表中
+            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¤Ã‚Â¸Ã‚Â­
             prototypes.add(animation);
         }
         return new AnimationController(prototypes, supplier);
@@ -130,7 +132,7 @@ public class Animations {
                         ObjectAnimationChannel translationChannel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.TRANSLATION);
                         translationChannel.node = boneEntry.getKey();
                         translationChannel.interpolator = new CustomInterpolator();
-                        // 将位移数据转移进 AnimationChannel
+                        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº AnimationChannel
                         writeBedrockTranslation(translationChannel, bone.getPosition());
                         translationChannel.interpolator.compile(translationChannel.content);
                         animation.addChannel(translationChannel);
@@ -139,7 +141,7 @@ public class Animations {
                         ObjectAnimationChannel rotationChannel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.ROTATION);
                         rotationChannel.node = boneEntry.getKey();
                         rotationChannel.interpolator = new CustomInterpolator();
-                        // 将旋转数据转移进 AnimationChannel
+                        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº AnimationChannel
                         writeBedrockRotation(rotationChannel, bone.getRotation());
                         rotationChannel.interpolator.compile(rotationChannel.content);
                         animation.addChannel(rotationChannel);
@@ -148,14 +150,14 @@ public class Animations {
                         ObjectAnimationChannel scaleChannel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.SCALE);
                         scaleChannel.node = boneEntry.getKey();
                         scaleChannel.interpolator = new CustomInterpolator();
-                        // 将缩放数据转移进 AnimationChannel
+                        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ§Ã‚Â¼Ã‚Â©ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº AnimationChannel
                         writeBedrockScale(scaleChannel, bone.getScale());
                         scaleChannel.interpolator.compile(scaleChannel.content);
                         animation.addChannel(scaleChannel);
                     }
                 }
             }
-            // 将声音数据转移到 ObjectAnimation 中
+            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã‹â€ Ã‚Â° ObjectAnimation ÃƒÂ¤Ã‚Â¸Ã‚Â­
             SoundEffectKeyframes soundEffectKeyframes = bedrockAnimation.getSoundEffects();
             if (soundEffectKeyframes != null) {
                 ObjectAnimationSoundChannel soundChannel = new ObjectAnimationSoundChannel();
@@ -177,17 +179,17 @@ public class Animations {
     }
 
     private static void writeBedrockTranslation(ObjectAnimationChannel animationChannel, AnimationKeyframes keyframes) {
-        // 基岩版动画中储存的动画数据为相对值，而 tac 的动画系统使用的是绝对值，所以需要叠加初始值。
-        // 此处就是在获取动画数据的初始值。
+        // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã¢â‚¬Å¡Ã‚Â¨ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã¢â€šÂ¬Ã…â€™ tac ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ§Ã‚Â»Ã…Â¸ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ‚Â ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
+        // ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         Double2ObjectRBTreeMap<AnimationKeyframes.Keyframe> keyframesMap = keyframes.getKeyframes();
         animationChannel.content.keyframeTimeS = new float[keyframesMap.size()];
         animationChannel.content.values = new float[keyframesMap.size()][];
         animationChannel.content.lerpModes = new AnimationChannelContent.LerpMode[keyframesMap.size()];
         int index = 0;
         for (Double2ObjectMap.Entry<AnimationKeyframes.Keyframe> entry : keyframesMap.double2ObjectEntrySet()) {
-            // 写入关键帧时间
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             animationChannel.content.keyframeTimeS[index] = (float) entry.getDoubleKey();
-            // 写入关键帧数值。
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             AnimationKeyframes.Keyframe keyframe = entry.getValue();
             if (keyframe.pre() != null || keyframe.post() != null) {
                 if (keyframe.pre() != null && keyframe.post() != null) {
@@ -215,7 +217,7 @@ public class Animations {
                 data.mul(1 / 16f, 1 / 16f, 1 / 16f);
                 readVector3fToArray(animationChannel.content.values[index], data, 0);
             }
-            // 写入关键帧插值类型
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
             String lerpModeName = keyframe.lerpMode();
             if (lerpModeName != null) {
                 try {
@@ -237,9 +239,9 @@ public class Animations {
         animationChannel.content.lerpModes = new AnimationChannelContent.LerpMode[keyframesMap.size()];
         int index = 0;
         for (Double2ObjectMap.Entry<AnimationKeyframes.Keyframe> entry : keyframesMap.double2ObjectEntrySet()) {
-            // 写入关键帧时间
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             animationChannel.content.keyframeTimeS[index] = (float) entry.getDoubleKey();
-            // 写入关键帧数值。
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             AnimationKeyframes.Keyframe keyframe = entry.getValue();
             if (keyframe.pre() != null || keyframe.post() != null) {
                 if (keyframe.pre() != null && keyframe.post() != null) {
@@ -298,9 +300,9 @@ public class Animations {
         animationChannel.content.lerpModes = new AnimationChannelContent.LerpMode[keyframesMap.size()];
         int index = 0;
         for (Double2ObjectMap.Entry<AnimationKeyframes.Keyframe> entry : keyframesMap.double2ObjectEntrySet()) {
-            // 写入关键帧时间
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             animationChannel.content.keyframeTimeS[index] = (float) entry.getDoubleKey();
-            // 写入关键帧数值。
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             AnimationKeyframes.Keyframe keyframe = entry.getValue();
             if (keyframe.pre() != null || keyframe.post() != null) {
                 if (keyframe.pre() != null && keyframe.post() != null) {
@@ -323,7 +325,7 @@ public class Animations {
                 Vector3f data = keyframe.data();
                 readVector3fToArray(animationChannel.content.values[index], data, 0);
             }
-            // 写入关键帧插值类型
+            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
             String lerpModeName = keyframe.lerpMode();
             if (lerpModeName != null) {
                 try {
@@ -348,3 +350,66 @@ public class Animations {
         array[offset + 2] = vector3f.z();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

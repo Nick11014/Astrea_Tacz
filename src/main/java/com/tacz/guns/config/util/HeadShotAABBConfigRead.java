@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 public class HeadShotAABBConfigRead {
     private static final Map<ResourceLocation, AABB> AABB_CHECK = Maps.newHashMap();
-    // 书写格式：touhou_little_maid:maid [-0.5, 1.0, -0.5, 0.5, 1.5, 0.5]
-    // 生物 ID + 碰撞箱
+    // ÃƒÂ¤Ã‚Â¹Ã‚Â¦ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…Â¡touhou_little_maid:maid [-0.5, 1.0, -0.5, 0.5, 1.5, 0.5]
+    // ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‚Â© ID + ÃƒÂ§Ã‚Â¢Ã‚Â°ÃƒÂ¦Ã¢â‚¬â„¢Ã…Â¾ÃƒÂ§Ã‚Â®Ã‚Â±
     private static final Pattern REG = Pattern.compile("^([a-z0-9_.-]+:[a-z0-9/._-]+)\s*?\\[([-+]?[0-9]*\\.?[0-9]+),\s*?([-+]?[0-9]*\\.?[0-9]+),\s*?([-+]?[0-9]*\\.?[0-9]+),\s*?([-+]?[0-9]*\\.?[0-9]+),\s*?([-+]?[0-9]*\\.?[0-9]+),\s*?([-+]?[0-9]*\\.?[0-9]+),*?\s*?]");
 
     public static void init() {
@@ -48,4 +48,67 @@ public class HeadShotAABBConfigRead {
         return AABB_CHECK.get(id);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -12,7 +12,7 @@ import org.jetbrains.annotations.ApiStatus;
 /**
  * Accessor para dados de items no NeoForge 1.21.1
  * Migrado do sistema NBT para DataComponents
- * Mantém compatibilidade com scripts Lua existentes
+ * MantÃƒÆ’Ã‚Â©m compatibilidade com scripts Lua existentes
  */
 @SuppressWarnings("unused")
 public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
@@ -114,10 +114,10 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
     }
 
     /**
-     *向当前的Compound中添加一个新的Compound
+     *ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾CompoundÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾Compound
      *
-     * @param key   键
-     * @param value 在脚本中请使用{@link LuaNbtAccessor#newCompoundTag()}创建一个新的LuaNbtAccessor对象
+     * @param key   ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®
+     * @param value ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¨Ã¢â‚¬Å¾Ã…Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¨Ã‚Â¯Ã‚Â·ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨{@link LuaNbtAccessor#newCompoundTag()}ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾LuaNbtAccessorÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
      */
     public void putCompound(String key, LuaNbtAccessor value) {
         if (value != null) {
@@ -126,7 +126,7 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
     }
 
     /**
-     * Obtém valor de DataComponent baseado na chave
+     * ObtÃƒÆ’Ã‚Â©m valor de DataComponent baseado na chave
      */
     private Object getDataComponentValue(String key) {
         if (stack.isEmpty()) return null;
@@ -178,7 +178,7 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
             }
             case "gun_fire_mode" -> {
                 if (value instanceof Integer intValue) {
-                    // FireMode é um enum, precisa converter
+                    // FireMode ÃƒÆ’Ã‚Â© um enum, precisa converter
                     var fireMode = FireMode.values()[intValue % FireMode.values().length];
                     stack.set(ModDataComponents.GUN_FIRE_MODE.get(), fireMode);
                 }
@@ -282,3 +282,66 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
         return fallbackNbt;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

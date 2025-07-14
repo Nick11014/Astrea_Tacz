@@ -30,37 +30,37 @@ public class ModSyncedEntityData {
             .build();
 
     public static final SyncedDataKey<LivingEntity, Float> AIMING_PROGRESS_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.FLOAT)
-            .id(new ResourceLocation(GunMod.MOD_ID, "aiming_progress"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "aiming_progress"))
             .defaultValueSupplier(() -> 0f)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, Long> DRAW_COOL_DOWN_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.LONG)
-            .id(new ResourceLocation(GunMod.MOD_ID, "draw_cool_down"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "draw_cool_down"))
             .defaultValueSupplier(() -> -1L)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, Boolean> IS_AIMING_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
-            .id(new ResourceLocation(GunMod.MOD_ID, "is_aiming"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "is_aiming"))
             .defaultValueSupplier(() -> false)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, Float> SPRINT_TIME_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.FLOAT)
-            .id(new ResourceLocation(GunMod.MOD_ID, "sprint_time"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "sprint_time"))
             .defaultValueSupplier(() -> 0f)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, Boolean> IS_BOLTING_KEY = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.BOOLEAN)
-            .id(new ResourceLocation(GunMod.MOD_ID, "is_bolting"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "is_bolting"))
             .defaultValueSupplier(() -> false)
             .syncMode(SyncedDataKey.SyncMode.ALL)
             .build();
 
     public static final SyncedDataKey<LivingEntity, Integer> THROWABLE_USE_TICK = SyncedDataKey.builder(SyncedClassKey.LIVING_ENTITY, Serializers.INTEGER)
-            .id(new ResourceLocation(GunMod.MOD_ID, "throwable_using"))
+            .id(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "throwable_using"))
             .defaultValueSupplier(() -> -1)
             .syncMode(SyncedDataKey.SyncMode.SELF_ONLY)
             .build();
@@ -81,3 +81,66 @@ public class ModSyncedEntityData {
         SyncedEntityData.instance().registerDataKey(dataKey);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

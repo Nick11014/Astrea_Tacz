@@ -8,7 +8,7 @@ import net.neoforged.fml.config.ModConfig;
 import java.nio.file.Path;
 
 /**
- * Configuração de pré-carregamento para o TacZ.
+ * ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de prÃƒÆ’Ã‚Â©-carregamento para o TacZ.
  * Migrado para NeoForge 1.21.1 - usando APIs oficiais simples.
  */
 public class PreLoadConfig {
@@ -45,7 +45,7 @@ public class PreLoadConfig {
         // Associar os dados 
         config.setConfigData(configData);
         
-        // Salvar para garantir que as correções sejam persistidas
+        // Salvar para garantir que as correÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes sejam persistidas
         config.save();
     }
 
@@ -53,3 +53,66 @@ public class PreLoadConfig {
         return spec;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

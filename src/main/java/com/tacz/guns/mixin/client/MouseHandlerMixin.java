@@ -41,7 +41,7 @@ public class MouseHandlerMixin {
         }
         float zoomLevel = 1;
         if (DefaultAssets.isEmptyAttachmentId(scopeId)) {
-            // 缩放倍率
+            // ÃƒÂ§Ã‚Â¼Ã‚Â©ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã…Â½Ã¢â‚¬Â¡
             zoomLevel = TimelessAPI.getGunDisplay(mainHandItem).map(GunDisplayInstance::getIronZoom).orElse(1f);
         } else {
             Optional<ClientAttachmentIndex> optional = TimelessAPI.getClientAttachmentIndex(scopeId);
@@ -55,16 +55,16 @@ public class MouseHandlerMixin {
         }
         Minecraft minecraft = Minecraft.getInstance();
         float progress = IGunOperator.fromLivingEntity(player).getSynAimingProgress();
-        // 开镜灵敏度系数
+        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ©Ã¢â‚¬Â¢Ã…â€œÃƒÂ§Ã‚ÂÃ‚ÂµÃƒÂ¦Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
         double sensitivityMultiplier = ZoomConfig.ZOOM_SENSITIVITY_BASE_MULTIPLIER.get();
         sensitivityMultiplier = 1 + (sensitivityMultiplier - 1) * progress;
-        // 两种状态下的 fov 计算
+        // ÃƒÂ¤Ã‚Â¸Ã‚Â¤ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ fov ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€
         double originalFov = minecraft.options.fov().get();
         double currentFov = MathUtil.magnificationToFov(1 + (zoomLevel - 1) * progress, originalFov);
-        // 荧幕距离系数，MC 和 COD 一样使用 MDV 标准，默认为 MDV133（系数为 1.33）
+        // ÃƒÂ¨Ã‚ÂÃ‚Â§ÃƒÂ¥Ã‚Â¹Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™MC ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ COD ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ MDV ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¤Ã‚Â¸Ã‚Âº MDV133ÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã‚Âº 1.33ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
         double coefficient = ZoomConfig.SCREEN_DISTANCE_COEFFICIENT.get();
         double denominator = MathUtil.zoomSensitivityRatio(currentFov, originalFov, coefficient) * sensitivityMultiplier;
-        // 最终结果
+        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œ
         double finalYaw = yaw * denominator;
         double finalPitch = getCrawlPitch(player, pitch, denominator);
         original.call(player, finalYaw, finalPitch);
@@ -73,15 +73,15 @@ public class MouseHandlerMixin {
     @Unique
     private static double getCrawlPitch(LocalPlayer player, double pitch, double denominator) {
         double finalPitch = pitch * denominator;
-        // 如果是趴下，那么还需要限制 pitch 范围
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¨Ã‚Â¶Ã‚Â´ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¤Ã‚Â¹Ã‹â€ ÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ pitch ÃƒÂ¨Ã…â€™Ã†â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â´
         if (!player.isSwimming() && player.getPose() == Pose.SWIMMING) {
-            // 仰角正负是反的
+            // ÃƒÂ¤Ã‚Â»Ã‚Â°ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ¨Ã‚Â´Ã…Â¸ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             float playerPitch = -player.getXRot();
-            // 如果玩家上仰超过 25 度，不允许上
+            // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â»Ã‚Â°ÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ 25 ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ¤Ã‚Â¸Ã…Â 
             if (playerPitch > 45) {
                 finalPitch = Math.max(finalPitch, 0);
             }
-            // 下俯超过 25 度，不允许下
+            // ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â¿Ã‚Â¯ÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ 25 ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹
             if (playerPitch < -30) {
                 finalPitch = Math.min(finalPitch, 0);
             }
@@ -89,3 +89,66 @@ public class MouseHandlerMixin {
         return finalPitch;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

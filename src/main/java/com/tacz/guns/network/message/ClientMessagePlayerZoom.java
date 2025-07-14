@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessagePlayerZoom() implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_zoom");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_zoom");
 
     public ClientMessagePlayerZoom(FriendlyByteBuf buf) {
         this();
@@ -35,3 +35,66 @@ public record ClientMessagePlayerZoom() implements CustomPacketPayload {
         IGunOperator.fromLivingEntity(player).zoom();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

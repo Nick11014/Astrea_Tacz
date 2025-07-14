@@ -21,8 +21,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 /**
- * Creative Tabs baseado no padrão do SuperbWarfare 1.21.1
- * Usando implementação mínima até as dependências estarem disponíveis
+ * Creative Tabs baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
+ * Usando implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© as dependÃƒÆ’Ã‚Âªncias estarem disponÃƒÆ’Ã‚Â­veis
  */
 @SuppressWarnings("all")
 public class ModCreativeTabs {
@@ -124,3 +124,66 @@ public class ModCreativeTabs {
             .icon(() -> Items.IRON_AXE.getDefaultInstance()) // Placeholder
             .displayItems((parameters, output) -> output.accept(Items.IRON_AXE)).build());
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

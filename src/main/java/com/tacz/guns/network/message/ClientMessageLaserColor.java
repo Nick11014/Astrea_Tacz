@@ -20,7 +20,7 @@ import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boolean applyGunColor, int gunColor,
                                       int gunSlotIndex) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_laser_color");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_laser_color");
 
     public ClientMessageLaserColor(@NotNull ItemStack gun, int gunSlotIndex) {
         this(new HashMap<>(), false, 0, -1);
@@ -82,3 +82,66 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

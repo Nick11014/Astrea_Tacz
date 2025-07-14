@@ -8,8 +8,8 @@ import net.neoforged.bus.api.Event;
 import net.neoforged.fml.ModList;
 
 /**
- * Interface para integração com KubeJS baseada no padrão SuperbWarfare 1.21.1
- * Implementação mínima - classes de integração KubeJS desabilitadas temporariamente
+ * Interface para integraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o com KubeJS baseada no padrÃƒÆ’Ã‚Â£o SuperbWarfare 1.21.1
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - classes de integraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o KubeJS desabilitadas temporariamente
  */
 public interface KubeJSGunEventPoster<E extends Event> {
     default void postEventToKubeJS(E event) {
@@ -21,7 +21,7 @@ public interface KubeJSGunEventPoster<E extends Event> {
         // Placeholder - funcionalidade KubeJS desabilitada temporariamente
     }
 
-    //客户端事件应调用此方法
+    //ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
     default void postClientEventToKubeJS(E event) {
         // TODO: Re-enable when KubeJS integration is available
         // if (ModList.get().isLoaded("kubejs")) {
@@ -31,7 +31,7 @@ public interface KubeJSGunEventPoster<E extends Event> {
         // Placeholder - funcionalidade KubeJS desabilitada temporariamente
     }
 
-    //服务端事件应调用此方法
+    //ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
     default void postServerEventToKubeJS(E event) {
         // TODO: Re-enable when KubeJS integration is available
         // if (ModList.get().isLoaded("kubejs")) {
@@ -41,3 +41,66 @@ public interface KubeJSGunEventPoster<E extends Event> {
         // Placeholder - funcionalidade KubeJS desabilitada temporariamente
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageCraft(ResourceLocation recipeId, int menuId) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_craft");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_craft");
 
     public ClientMessageCraft(FriendlyByteBuf buf) {
         this(buf.readResourceLocation(), buf.readVarInt());
@@ -38,3 +38,66 @@ public record ClientMessageCraft(ResourceLocation recipeId, int menuId) implemen
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

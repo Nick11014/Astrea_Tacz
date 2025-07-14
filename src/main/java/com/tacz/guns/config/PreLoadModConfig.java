@@ -9,8 +9,8 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import java.nio.file.Path;
 
 /**
- * Configuração customizada para carregamento antes do sistema normal de configs do mod.
- * Migrado para NeoForge 1.21.1 - simplificado baseado na documentação oficial.
+ * ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o customizada para carregamento antes do sistema normal de configs do mod.
+ * Migrado para NeoForge 1.21.1 - simplificado baseado na documentaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o oficial.
  */
 public class PreLoadModConfig {
     private CommentedConfig configData;
@@ -33,7 +33,7 @@ public class PreLoadModConfig {
     public void setConfigData(final CommentedConfig configData) {
         this.configData = configData;
         // Em NeoForge 1.21.1, apenas armazenamos os dados
-        // Os eventos de configuração são tratados pelo sistema padrão
+        // Os eventos de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o sÃƒÆ’Ã‚Â£o tratados pelo sistema padrÃƒÆ’Ã‚Â£o
     }
 
     public void save() {
@@ -65,3 +65,66 @@ public class PreLoadModConfig {
         return this.container;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,9 +12,9 @@ public class ModPainting {
 
     /**
      * Registro diferido para as variantes de pintura.
-     * Em vez de um registro específico, agora usamos o registro principal de 'PaintingVariant'.
-     * O primeiro argumento é a chave do registro, que para variantes de pintura é 'Registries.PAINTING_VARIANT'.
-     * O segundo argumento é o ID do seu mod.
+     * Em vez de um registro especÃƒÆ’Ã‚Â­fico, agora usamos o registro principal de 'PaintingVariant'.
+     * O primeiro argumento ÃƒÆ’Ã‚Â© a chave do registro, que para variantes de pintura ÃƒÆ’Ã‚Â© 'Registries.PAINTING_VARIANT'.
+     * O segundo argumento ÃƒÆ’Ã‚Â© o ID do seu mod.
      */
     public static final DeferredRegister<PaintingVariant> PAINTING_VARIANTS =
             DeferredRegister.create(Registries.PAINTING_VARIANT, GunMod.MOD_ID);
@@ -22,11 +22,11 @@ public class ModPainting {
     /**
      * Registro de uma nova variante de pintura chamada "blood_strike_1".
      * O construtor de PaintingVariant agora requer a largura, a altura e a ResourceLocation da textura do sprite.
-     * A largura e a altura são fornecidas em blocos (pixels / 16). Assumindo que a textura original
-     * era 32x32 pixels, isso se traduz em uma pintura de 2x2 blocos. Se a intenção era 32x32 blocos,
+     * A largura e a altura sÃƒÆ’Ã‚Â£o fornecidas em blocos (pixels / 16). Assumindo que a textura original
+     * era 32x32 pixels, isso se traduz em uma pintura de 2x2 blocos. Se a intenÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o era 32x32 blocos,
      * mantenha os valores como 32, 32.
      *
-     * A ResourceLocation agora deve apontar para o diretório de texturas de pinturas dentro dos assets do seu mod.
+     * A ResourceLocation agora deve apontar para o diretÃƒÆ’Ã‚Â³rio de texturas de pinturas dentro dos assets do seu mod.
      * Geralmente: "modid:painting/nome_da_pintura"
      */
     public static final DeferredHolder<PaintingVariant, PaintingVariant> BLOOD_STRIKE_1 =
@@ -40,7 +40,70 @@ public class ModPainting {
     // public static final DeferredHolder<PaintingVariant, PaintingVariant> BLOOD_STRIKE_1 = PAINTING_VARIANTS.register("blood_strike_1", 
     //      () -> new PaintingVariant(2, 2, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "painting/blood_strike_1")));
 
-    // Se a pintura realmente deve ter 32x32 BLOCOS (o que é enorme), o original estaria correto:
+    // Se a pintura realmente deve ter 32x32 BLOCOS (o que ÃƒÆ’Ã‚Â© enorme), o original estaria correto:
     // public static final DeferredHolder<PaintingVariant, PaintingVariant> BLOOD_STRIKE_1 = PAINTING_VARIANTS.register("blood_strike_1", 
     //      () -> new PaintingVariant(32, 32, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "painting/blood_strike_1")));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

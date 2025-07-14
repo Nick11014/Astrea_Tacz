@@ -12,11 +12,11 @@ public class LuaGunLogicConstant implements LuaLibrary{
     private final Map<String, Object> constantMap = Maps.newHashMap();
 
     public LuaGunLogicConstant() {
-        // 映射 ReloadState.StateType 枚举
+        // ÃƒÂ¦Ã‹Å“Ã‚Â ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ ReloadState.StateType ÃƒÂ¦Ã…Â¾Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Â¾
         for (ReloadState.StateType stateType : ReloadState.StateType.values()) {
             constantMap.put(stateType.name(), stateType.ordinal());
         }
-        // 映射 FireMode 枚举
+        // ÃƒÂ¦Ã‹Å“Ã‚Â ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ FireMode ÃƒÂ¦Ã…Â¾Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Â¾
         for (var fireMode : FireMode.values()) {
             constantMap.put(fireMode.name(), fireMode.ordinal());
         }
@@ -29,3 +29,66 @@ public class LuaGunLogicConstant implements LuaLibrary{
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

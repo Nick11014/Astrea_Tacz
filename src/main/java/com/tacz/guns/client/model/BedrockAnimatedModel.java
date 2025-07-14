@@ -29,24 +29,24 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
     public static final String CONSTRAINT_NODE = "constraint";
     private final CameraAnimationObject cameraAnimationObject = new CameraAnimationObject();
     /**
-     * 动画约束组的路径
+     * ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â·Ã‚Â¯ÃƒÂ¥Ã‚Â¾Ã¢â‚¬Å¾
      */
     protected @Nullable List<BedrockPart> constraintPath;
     private @Nullable ConstraintObject constraintObject;
 
-    // 根组
+    // ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾
     protected @Nullable BedrockPart root;
-    // 第一人称idle状态摄像机定位组的路径
+    // ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°idleÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬ËœÃ¢â‚¬Å¾ÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â·Ã‚Â¯ÃƒÂ¥Ã‚Â¾Ã¢â‚¬Å¾
     protected @Nullable List<BedrockPart> idleSightPath;
 
     public BedrockAnimatedModel(BedrockModelPOJO pojo, BedrockVersion version) {
         super(pojo, version);
-        // 初始化相机动画对象
+        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
         ModelRendererWrapper cameraRendererWrapper = modelMap.get(CAMERA_NODE_NAME);
         if (cameraRendererWrapper != null) {
             cameraAnimationObject.cameraRenderer = cameraRendererWrapper;
         }
-        // 初始化动画约束对象
+        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
         constraintPath = getPath(modelMap.get(CONSTRAINT_NODE));
         if (constraintPath != null) {
             constraintObject = new ConstraintObject();
@@ -89,8 +89,8 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
     }
 
     /**
-     * @param node     想要进行编程渲染流程的 node 名称
-     * @param function 输入为 BedrockPart，返回 IModelRenderer 以替换渲染
+     * @param node     ÃƒÂ¦Ã†â€™Ã‚Â³ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ§Ã‚Â¼Ã¢â‚¬â€œÃƒÂ§Ã‚Â¨Ã¢â‚¬Â¹ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂµÃ‚ÂÃƒÂ§Ã‚Â¨Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ node ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°
+     * @param function ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã‚Âº BedrockPartÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ IModelRenderer ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â¿ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
      */
     public void setFunctionalRenderer(String node, Function<BedrockPart, IFunctionalRenderer> function) {
         ModelRendererWrapper wrapper = modelMap.get(node);
@@ -120,7 +120,7 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
             return;
         }
         for (BonesItem bones : pojo.getGeometryModelNew().getBones()) {
-            // 将 FunctionalBedrockPart 先塞入 modelMap 中，以支持 functionalRender 操作
+            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  FunctionalBedrockPart ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ modelMap ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¯ÃƒÂ¦Ã…â€™Ã‚Â functionalRender ÃƒÂ¦Ã¢â‚¬Å“Ã‚ÂÃƒÂ¤Ã‚Â½Ã…â€œ
             FunctionalBedrockPart bedrockPart = new FunctionalBedrockPart(null, bones.getName());
             modelMap.putIfAbsent(bones.getName(), new ModelRendererWrapper(bedrockPart));
         }
@@ -135,7 +135,7 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
             return;
         }
         for (BonesItem bones : pojo.getGeometryModelLegacy().getBones()) {
-            // 将 FunctionalBedrockPart 先塞入 modelMap 中，以支持 functionalRender 操作
+            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  FunctionalBedrockPart ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ modelMap ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¯ÃƒÂ¦Ã…â€™Ã‚Â functionalRender ÃƒÂ¦Ã¢â‚¬Å“Ã‚ÂÃƒÂ¤Ã‚Â½Ã…â€œ
             FunctionalBedrockPart bedrockPart = new FunctionalBedrockPart(null, bones.getName());
             modelMap.putIfAbsent(bones.getName(), new ModelRendererWrapper(bedrockPart));
         }
@@ -182,3 +182,66 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
         return idleSightPath;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

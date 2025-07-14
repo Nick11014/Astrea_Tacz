@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessagePlayerAim(boolean isAim) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_aim");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_aim");
 
     public ClientMessagePlayerAim(FriendlyByteBuf buf) {
         this(buf.readBoolean());
@@ -35,3 +35,66 @@ public record ClientMessagePlayerAim(boolean isAim) implements CustomPacketPaylo
         IGunOperator.fromLivingEntity(player).aim(message.isAim);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

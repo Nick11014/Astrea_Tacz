@@ -44,16 +44,16 @@ public class ArmorIgnoreModifier implements IAttachmentModifier<Modifier, Float>
 
     @Override
     public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
-        // 必要数据获取
+        // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
 
-        // 额外伤害
+        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
-        // 开火模式调整
-        // 最终的 base
+        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
+        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base
         float finalBase = extraDamage != null ? extraDamage.getArmorIgnore() : 0;
         finalBase = fireModeAdjustData != null ? finalBase + fireModeAdjustData.getArmorIgnore() : finalBase;
         finalBase *= SyncConfig.ARMOR_IGNORE_BASE_MULTIPLIER.get();
@@ -69,16 +69,16 @@ public class ArmorIgnoreModifier implements IAttachmentModifier<Modifier, Float>
     @Override
     @OnlyIn(Dist.CLIENT)
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
-        // 必要数据获取
+        // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
 
-        // 额外伤害
+        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
-        // 开火模式调整
-        // 最终的 base
+        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
+        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base
         float finalBase = extraDamage != null ? extraDamage.getArmorIgnore() : 0;
         finalBase = fireModeAdjustData != null ? finalBase + fireModeAdjustData.getArmorIgnore() : finalBase;
         finalBase *= SyncConfig.ARMOR_IGNORE_BASE_MULTIPLIER.get();
@@ -90,8 +90,8 @@ public class ArmorIgnoreModifier implements IAttachmentModifier<Modifier, Float>
         double modifierPercent = Mth.clamp(modifier, 0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.armor_ignore";
-        String positivelyString = String.format("%.1f%% §a(+%.1f%%)", modifiedValue * 100, modifier * 100);
-        String negativelyString = String.format("%.1f%% §c(%.1f%%)", modifiedValue * 100, modifier * 100);
+        String positivelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§a(+%.1f%%)", modifiedValue * 100, modifier * 100);
+        String negativelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§c(%.1f%%)", modifiedValue * 100, modifier * 100);
         String defaultString = String.format("%.1f%%", modifiedValue * 100);
         boolean positivelyBetter = true;
 
@@ -135,3 +135,66 @@ public class ArmorIgnoreModifier implements IAttachmentModifier<Modifier, Float>
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

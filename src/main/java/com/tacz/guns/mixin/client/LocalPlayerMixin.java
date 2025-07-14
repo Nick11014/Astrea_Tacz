@@ -116,7 +116,7 @@ public abstract class LocalPlayerMixin implements IClientPlayerGunOperator {
 
     @WrapOperation(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;setSprinting(Z)V"))
     public void swapSprintStatus(LocalPlayer player, boolean sprinting, Operation<Void> original) {
-        if (sprinting) { // 用原始的输入尝试打断换弹
+        if (sprinting) { // ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã‚Â°Ã‚ÂÃƒÂ¨Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â­ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹
             tac$reload.cancelReload();
         }
         original.call(player, tac$sprint.getProcessedSprintStatus(sprinting));
@@ -143,3 +143,66 @@ public abstract class LocalPlayerMixin implements IClientPlayerGunOperator {
         return tac$draw.readyToDraw;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

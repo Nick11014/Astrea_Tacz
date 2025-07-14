@@ -18,7 +18,7 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     String ZOOM_NUMBER_TAG = "ZoomNumber";
     String LASER_COLOR_TAG = "LaserColor";
 
-    // 仅检查给定的 CompoundTag 是否具有配件 ID ，不校验其是否存在
+    // ÃƒÂ¤Ã‚Â»Ã¢â‚¬Â¦ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ CompoundTag ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â·ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ ID ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‚Â Ã‚Â¡ÃƒÂ©Ã‚ÂªÃ…â€™ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¶ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã…â€œÃ‚Â¨
     static boolean isAttachmentLike(CompoundTag tag) {
         return tag.contains(ATTACHMENT_ID_TAG, Tag.TAG_STRING);
     }
@@ -66,28 +66,28 @@ public interface AttachmentItemDataAccessor extends IAttachment {
     @Override
     @Nullable
     default ResourceLocation getSkinId(ItemStack attachmentStack) {
-        // TODO: Migrar para DataComponent quando disponível
+        // TODO: Migrar para DataComponent quando disponÃƒÆ’Ã‚Â­vel
         // Por enquanto retorna null como fallback
         return null;
     }
 
     @Override
     default void setSkinId(ItemStack attachmentStack, @Nullable ResourceLocation skinId) {
-        // TODO: Migrar para DataComponent quando disponível
-        // Por enquanto não faz nada
+        // TODO: Migrar para DataComponent quando disponÃƒÆ’Ã‚Â­vel
+        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada
     }
 
     @Override
     default int getZoomNumber(ItemStack attachmentStack) {
-        // TODO: Migrar para DataComponent quando disponível
+        // TODO: Migrar para DataComponent quando disponÃƒÆ’Ã‚Â­vel
         // Por enquanto retorna 0 como fallback
         return 0;
     }
 
     @Override
     default void setZoomNumber(ItemStack attachmentStack, int zoomNumber) {
-        // TODO: Migrar para DataComponent quando disponível
-        // Por enquanto não faz nada
+        // TODO: Migrar para DataComponent quando disponÃƒÆ’Ã‚Â­vel
+        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada
     }    @Override
     default boolean hasCustomLaserColor(ItemStack attachmentStack) {
         return attachmentStack.has(ModDataComponents.LASER_COLOR.get());
@@ -106,3 +106,66 @@ public interface AttachmentItemDataAccessor extends IAttachment {
         attachmentStack.set(ModDataComponents.LASER_COLOR.get(), color);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

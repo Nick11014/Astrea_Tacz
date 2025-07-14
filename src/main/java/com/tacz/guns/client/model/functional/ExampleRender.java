@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 
 /**
  * Renderizador funcional de exemplo demonstrando Object Strategy
- * Este é um exemplo de como criar novos renderizadores usando a interface estabilizada
+ * Este ÃƒÆ’Ã‚Â© um exemplo de como criar novos renderizadores usando a interface estabilizada
  */
 public class ExampleRender implements IFunctionalRenderer {
     private final BedrockGunModel bedrockGunModel;
@@ -24,23 +24,23 @@ public class ExampleRender implements IFunctionalRenderer {
             return;
         }
         
-        // TODO: Implementação de exemplo - demonstra que a interface está funcional
-        // Este renderizador pode ser expandido para qualquer funcionalidade específica
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de exemplo - demonstra que a interface estÃƒÆ’Ã‚Â¡ funcional
+        // Este renderizador pode ser expandido para qualquer funcionalidade especÃƒÆ’Ã‚Â­fica
         
-        // Exemplo de como seria usado quando os tipos estiverem disponíveis:
+        // Exemplo de como seria usado quando os tipos estiverem disponÃƒÆ’Ã‚Â­veis:
         /*
         if (transformType instanceof ItemDisplayContext displayContext) {
             if (displayContext.firstPerson()) {
-                // Renderização específica para primeira pessoa
+                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica para primeira pessoa
             } else {
-                // Renderização para terceira pessoa
+                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o para terceira pessoa
             }
         }
         
         if (poseStack instanceof PoseStack stack) {
-            // Manipular matriz de transformação
+            // Manipular matriz de transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
             stack.pushPose();
-            // ... renderização específica
+            // ... renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica
             stack.popPose();
         }
         */
@@ -54,3 +54,66 @@ public class ExampleRender implements IFunctionalRenderer {
         return isEnabled;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

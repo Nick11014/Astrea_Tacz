@@ -26,10 +26,73 @@ public class TacPathVisitor extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
         if (file.toFile().getName().endsWith(suffix)) {
             String path = PathHandler.getPath(root.toPath(), file, suffix);
-            // Migrado para NeoForge 1.21.1: new ResourceLocation(namespace, path) -> ResourceLocation.fromNamespaceAndPath
+            // Migrado para NeoForge 1.21.1: ResourceLocation.fromNamespaceAndPath(namespace, path) -> ResourceLocation.fromNamespaceAndPath
             ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, path);
             consumer.accept(id, file);
         }
         return FileVisitResult.CONTINUE;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Gerenciador de renderizadores funcionais
- * Centraliza a criação e gerenciamento de renderizadores usando Object Strategy
+ * Centraliza a criaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o e gerenciamento de renderizadores usando Object Strategy
  */
 public class FunctionalRendererManager {
     private static final Map<String, IFunctionalRenderer> REGISTERED_RENDERERS = new ConcurrentHashMap<>();
@@ -37,14 +37,14 @@ public class FunctionalRendererManager {
     }
 
     /**
-     * Obtém um renderizador registrado
+     * ObtÃƒÆ’Ã‚Â©m um renderizador registrado
      */
     public static IFunctionalRenderer getRenderer(String name) {
         return REGISTERED_RENDERERS.get(name);
     }
 
     /**
-     * Cria renderizador de laser para um acessório
+     * Cria renderizador de laser para um acessÃƒÆ’Ã‚Â³rio
      */
     public static LaserRender createLaserRenderer(BedrockGunModel gunModel, ClientAttachmentIndex attachmentIndex) {
         if (attachmentIndex != null && attachmentIndex.isLaser()) {
@@ -54,7 +54,7 @@ public class FunctionalRendererManager {
     }
 
     /**
-     * Cria renderizador de scope para um acessório
+     * Cria renderizador de scope para um acessÃƒÆ’Ã‚Â³rio
      */
     public static ScopeRender createScopeRenderer(BedrockGunModel gunModel, ClientAttachmentIndex attachmentIndex) {
         if (attachmentIndex != null && attachmentIndex.isScope()) {
@@ -64,14 +64,14 @@ public class FunctionalRendererManager {
     }
 
     /**
-     * Cria renderizador apropriado baseado no tipo de acessório
+     * Cria renderizador apropriado baseado no tipo de acessÃƒÆ’Ã‚Â³rio
      */
     public static IFunctionalRenderer createAttachmentRenderer(BedrockGunModel gunModel, ClientAttachmentIndex attachmentIndex) {
         if (attachmentIndex == null) {
             return null;
         }
 
-        // Criar renderizador específico baseado no tipo
+        // Criar renderizador especÃƒÆ’Ã‚Â­fico baseado no tipo
         if (attachmentIndex.isLaser()) {
             return createLaserRenderer(gunModel, attachmentIndex);
         }
@@ -80,20 +80,20 @@ public class FunctionalRendererManager {
             return createScopeRenderer(gunModel, attachmentIndex);
         }
 
-        // Renderizador genérico para outros tipos
+        // Renderizador genÃƒÆ’Ã‚Â©rico para outros tipos
         return new ExampleRender(gunModel);
     }
 
     /**
-     * Cria AttachmentRender para tipo específico
-     * HABILITADO: AttachmentRender agora está funcional
+     * Cria AttachmentRender para tipo especÃƒÆ’Ã‚Â­fico
+     * HABILITADO: AttachmentRender agora estÃƒÆ’Ã‚Â¡ funcional
      */
     public static IFunctionalRenderer createAttachmentRenderForType(BedrockGunModel gunModel, Object attachmentType) {
         if (gunModel == null || attachmentType == null) {
             return null;
         }
 
-        // AttachmentRender agora está disponível e funcional
+        // AttachmentRender agora estÃƒÆ’Ã‚Â¡ disponÃƒÆ’Ã‚Â­vel e funcional
         return new AttachmentRender(gunModel, (com.tacz.guns.api.item.attachment.AttachmentType) attachmentType);
     }
 
@@ -123,7 +123,7 @@ public class FunctionalRendererManager {
     }
 
     /**
-     * Obtém estatísticas dos renderizadores
+     * ObtÃƒÆ’Ã‚Â©m estatÃƒÆ’Ã‚Â­sticas dos renderizadores
      */
     public static Map<String, Object> getStats() {
         Map<String, Object> stats = new HashMap<>();
@@ -157,30 +157,93 @@ public class FunctionalRendererManager {
     }
 
     /**
-     * Habilita/desabilita o sistema de renderização funcional
+     * Habilita/desabilita o sistema de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o funcional
      */
     public static void setEnabled(boolean enabled) {
         isEnabled = enabled;
     }
 
     /**
-     * Verifica se o sistema está habilitado
+     * Verifica se o sistema estÃƒÆ’Ã‚Â¡ habilitado
      */
     public static boolean isEnabled() {
         return isEnabled;
     }
 
     /**
-     * Obtém lista de nomes dos renderizadores registrados
+     * ObtÃƒÆ’Ã‚Â©m lista de nomes dos renderizadores registrados
      */
     public static String[] getRegisteredRendererNames() {
         return REGISTERED_RENDERERS.keySet().toArray(new String[0]);
     }
 
     /**
-     * Verifica se um renderizador específico está registrado
+     * Verifica se um renderizador especÃƒÆ’Ã‚Â­fico estÃƒÆ’Ã‚Â¡ registrado
      */
     public static boolean hasRenderer(String name) {
         return REGISTERED_RENDERERS.containsKey(name);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

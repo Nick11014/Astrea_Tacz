@@ -17,15 +17,15 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Registro de blocos baseado no padrão do SuperbWarfare 1.21.1
- * Usando implementação mínima até as classes de bloco estarem disponíveis
+ * Registro de blocos baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
+ * Usando implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© as classes de bloco estarem disponÃƒÆ’Ã‚Â­veis
  */
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, GunMod.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, GunMod.MOD_ID);
 
     // TODO: Re-enable when block classes are available
-    // Implementação mínima com placeholders simples
+    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com placeholders simples
     public static final DeferredHolder<Block, Block> GUN_SMITH_TABLE = BLOCKS.register("gun_smith_table", 
         () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F))); // Placeholder - GunSmithTableBlockB::new
         
@@ -44,11 +44,11 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> STATUE = BLOCKS.register("statue", 
         () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(2.0F, 3.0F))); // Placeholder - StatueBlock::new
 
-    // Block entities - apenas os que estão funcionando
+    // Block entities - apenas os que estÃƒÆ’Ã‚Â£o funcionando
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GunSmithTableBlockEntity>> GUN_SMITH_TABLE_BE = TILE_ENTITIES.register("gun_smith_table", 
         () -> BlockEntityType.Builder.of(GunSmithTableBlockEntity::new, GUN_SMITH_TABLE.get()).build(null));
         
-    // TODO: [MIGRAÇÃO] TargetBlockEntity precisa migração de APIs save/load
+    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] TargetBlockEntity precisa migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de APIs save/load
     // public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", 
     //     () -> BlockEntityType.Builder.of(TargetBlockEntity::new, TARGET.get()).build(null));
         
@@ -58,3 +58,66 @@ public class ModBlocks {
     // Tags using the modernized ResourceLocation API
     public static final TagKey<Block> BULLET_IGNORE_BLOCKS = BlockTags.create(GunMod.loc("bullet_ignore"));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

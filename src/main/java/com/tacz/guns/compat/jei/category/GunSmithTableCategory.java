@@ -40,7 +40,7 @@ public class GunSmithTableCategory implements IRecipeCategory<GunSmithTableRecip
 
         List<GunSmithTableIngredient> inputs = recipe.getInputs();
         int size = inputs.size();
-        // 单行排布
+        // ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã…Â½Ã¢â‚¬â„¢ÃƒÂ¥Ã‚Â¸Ã†â€™
         if (size < 7) {
             for (int i = 0; i < size; i++) {
                 int xOffset = 35 + 20 * i;
@@ -48,7 +48,7 @@ public class GunSmithTableCategory implements IRecipeCategory<GunSmithTableRecip
                 builder.addSlot(RecipeIngredientRole.INPUT, xOffset, yOffset).addItemStacks(getInput(inputs, i)).setBackground(slotDraw, -1, -1);
             }
         }
-        // 双行排布
+        // ÃƒÂ¥Ã‚ÂÃ…â€™ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã…Â½Ã¢â‚¬â„¢ÃƒÂ¥Ã‚Â¸Ã†â€™
         else {
             for (int i = 0; i < 6; i++) {
                 int xOffset = 35 + 20 * i;
@@ -94,3 +94,66 @@ public class GunSmithTableCategory implements IRecipeCategory<GunSmithTableRecip
         return type;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

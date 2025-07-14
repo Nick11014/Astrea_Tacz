@@ -62,8 +62,8 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMenu> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(GunMod.MOD_ID, "textures/gui/gun_smith_table.png");
-    private static final ResourceLocation SIDE = new ResourceLocation(GunMod.MOD_ID, "textures/gui/gun_smith_table_side.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table.png");
+    private static final ResourceLocation SIDE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/gui/gun_smith_table_side.png");
 
     private final LinkedHashMap<ResourceLocation, TabConfig> recipeKeys = Maps.newLinkedHashMap();
     private final Map<ResourceLocation, List<ResourceLocation>> recipes = Maps.newLinkedHashMap();
@@ -297,7 +297,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
     private void addCraftButton() {
         this.addRenderableWidget(new ImageButton(leftPos + 289, topPos + 162, 48, 18, 138, 164, 18, TEXTURE, b -> {
             if (this.selectedRecipe != null && playerIngredientCount != null) {
-                // 检查是否能合成，不能就不发包
+                // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦
                 List<GunSmithTableIngredient> inputs = selectedRecipe.getInputs();
                 int size = inputs.size();
                 for (int i = 0; i < size; i++) {
@@ -307,7 +307,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
                     int hasCount = playerIngredientCount.get(i);
                     int needCount = inputs.get(i).getCount();
                     boolean isCreative = Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative();
-                    // 拥有数量小于需求数量，不发包
+                    // ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â¥ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â°Ã‚ÂÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¦Ã‚Â±Ã¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦
                     if (hasCount < needCount && !isCreative) {
                         return;
                     }
@@ -594,7 +594,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
                 poseStack.scale(0.5f, 0.5f, 1);
                 int count = smithTableIngredient.getCount();
                 if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.isCreative()){
-                    gui.drawString(font, String.format("%d/∞", count), (offsetX + 17) * 2, (offsetY + 10) * 2, 0xFFFFFF, false);
+                    gui.drawString(font, String.format("%d/ÃƒÂ¢Ã‹â€ Ã…Â¾", count), (offsetX + 17) * 2, (offsetY + 10) * 2, 0xFFFFFF, false);
                 } else {
                     int hasCount = 0;
                     if (playerIngredientCount != null && index < playerIngredientCount.size()) {
@@ -612,7 +612,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
 
     @SuppressWarnings("deprecation")
     private void renderLeftModel(GunSmithTableRecipe recipe) {
-        // 先标记一下，渲染高模
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ©Ã‚Â«Ã‹Å“ÃƒÂ¦Ã‚Â¨Ã‚Â¡
         RenderDistance.markGuiRenderTimestamp();
 
         float rotationPeriod = 8f;
@@ -678,3 +678,66 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

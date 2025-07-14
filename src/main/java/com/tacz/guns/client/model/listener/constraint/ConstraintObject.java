@@ -15,11 +15,11 @@ public class ConstraintObject implements AnimationListenerSupplier {
     public Vector3f translationConstraint = new Vector3f(0, 0, 0);
     public Vector3f rotationConstraint = new Vector3f(0, 0, 0);
     /**
-     * 当相机的节点为根时，node为空
+     * ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã…Â Ã¢â‚¬Å¡ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™nodeÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
      */
     public BedrockPart node;
     /**
-     * 当相机的节点不为根时，bonesItem为空
+     * ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã…Â Ã¢â‚¬Å¡ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™bonesItemÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
      */
     public BonesItem bonesItem;
 
@@ -38,3 +38,66 @@ public class ConstraintObject implements AnimationListenerSupplier {
         return null;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

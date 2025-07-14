@@ -18,7 +18,7 @@ import java.util.List;
 
 public record ServerMessageUpdateEntityData(int entityId,
                                             List<DataEntry<?, ?>> entries) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_update_entity_data");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_update_entity_data");
 
     public ServerMessageUpdateEntityData(FriendlyByteBuf buf) {
         this(buf.readVarInt(), readEntries(buf));
@@ -63,3 +63,66 @@ public record ServerMessageUpdateEntityData(int entityId,
         message.entries.forEach(entry -> instance.set(entity, entry.getKey(), entry.getValue()));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

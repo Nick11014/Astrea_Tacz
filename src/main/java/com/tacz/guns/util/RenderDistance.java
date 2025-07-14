@@ -8,7 +8,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
 /**
- * Utilitário para cálculo de distância de renderização
+ * UtilitÃƒÆ’Ã‚Â¡rio para cÃƒÆ’Ã‚Â¡lculo de distÃƒÆ’Ã‚Â¢ncia de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
  */
 @OnlyIn(Dist.CLIENT)
 public final class RenderDistance {
@@ -43,3 +43,66 @@ public final class RenderDistance {
         return System.currentTimeMillis() - GUI_RENDER_TIMESTAMP < 100;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

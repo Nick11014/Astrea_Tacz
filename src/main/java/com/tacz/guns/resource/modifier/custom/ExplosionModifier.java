@@ -65,7 +65,7 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
         });
 
         boolean explode = cacheValue.isExplode() || AttachmentPropertyManager.eval(explodeValues, false);
-        // 如果还是没有爆炸，那就没必要计算后面数值了
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â 
         if (!explode) {
             return;
         }
@@ -105,7 +105,7 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
 
     public static class ExplosionModifierValue {
         /**
-         * 需要显式开启爆炸！
+         * ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ¯Ã‚Â¼Ã‚Â
          */
         @SerializedName("explode")
         private boolean explode = false;
@@ -130,3 +130,66 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

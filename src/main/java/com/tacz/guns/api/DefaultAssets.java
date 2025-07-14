@@ -4,10 +4,11 @@ import com.tacz.guns.GunMod;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Assets padrão baseado no padrão SuperbWarfare 1.21.1
+ * Assets padrÃƒÆ’Ã‚Â£o baseado no padrÃƒÆ’Ã‚Â£o SuperbWarfare 1.21.1
  * Migrado para usar ResourceLocation.fromNamespaceAndPath()
  */
 public final class DefaultAssets {
+    public static ResourceLocation DEFAULT_GUN_ID = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ak47");
     public static ResourceLocation DEFAULT_GUN_DISPLAY_ID = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "default");
     public static ResourceLocation EMPTY_GUN_ID = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "empty");
 
@@ -27,3 +28,66 @@ public final class DefaultAssets {
         return EMPTY_ATTACHMENT_ID.equals(attachmentId);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Registro de partículas baseado no padrão do SuperbWarfare 1.21.1
+ * Registro de partÃƒÆ’Ã‚Â­culas baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
  * APIs modernizadas para usar MapCodec e StreamCodec
  */
 public class ModParticles {
@@ -23,8 +23,8 @@ public class ModParticles {
             () -> createOptions(BulletHoleOption.CODEC, BulletHoleOption.STREAM_CODEC));
 
     /**
-     * Método utilitário para criar ParticleType com MapCodec e StreamCodec
-     * Baseado no padrão do SuperbWarfare 1.21.1
+     * MÃƒÆ’Ã‚Â©todo utilitÃƒÆ’Ã‚Â¡rio para criar ParticleType com MapCodec e StreamCodec
+     * Baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
      */
     public static <T extends ParticleOptions> ParticleType<T> createOptions(MapCodec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec) {
         return new ParticleType<>(false) {
@@ -38,3 +38,66 @@ public class ModParticles {
         };
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

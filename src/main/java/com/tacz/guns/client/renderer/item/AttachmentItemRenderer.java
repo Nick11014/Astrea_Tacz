@@ -57,21 +57,84 @@ public class AttachmentItemRenderer extends BlockEntityWithoutLevelRenderer {
     }
 
     private void renderAttachment(ClientAttachmentIndex index, ItemDisplayContext transformType, PoseStack poseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        // Renderiza o modelo principal do acessório
+        // Renderiza o modelo principal do acessÃƒÆ’Ã‚Â³rio
         index.getDisplay().ifPresent(display -> {
             poseStack.pushPose();
             display.getTransform().apply(transformType, poseStack);
-            // TODO: A renderização do modelo será reimplementada
+            // TODO: A renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do modelo serÃƒÆ’Ã‚Â¡ reimplementada
             // display.getModel().render(poseStack, transformType, pBuffer, pPackedLight, pPackedOverlay);
             poseStack.popPose();
         });
     }
 
     private void renderMissingAttachment(ItemDisplayContext transformType, PoseStack poseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        // Renderiza um modelo de fallback se o acessório não for encontrado
+        // Renderiza um modelo de fallback se o acessÃƒÆ’Ã‚Â³rio nÃƒÆ’Ã‚Â£o for encontrado
         poseStack.pushPose();
-        // TODO: A renderização do modelo será reimplementada
+        // TODO: A renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do modelo serÃƒÆ’Ã‚Â¡ reimplementada
         // SLOT_ATTACHMENT_MODEL.render(poseStack, transformType, pBuffer, pPackedLight, pPackedOverlay);
         poseStack.popPose();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

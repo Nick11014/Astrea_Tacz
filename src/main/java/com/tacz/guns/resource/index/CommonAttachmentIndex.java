@@ -2,7 +2,7 @@ package com.tacz.guns.resource.index;
 
 import com.google.common.base.Preconditions;
 import com.tacz.guns.api.item.attachment.AttachmentType;
-// TODO: [MIGRAÇÃO] Restaurar quando CommonAssetsManager for habilitado
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando CommonAssetsManager for habilitado
 // import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.AttachmentIndexPOJO;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
@@ -36,10 +36,10 @@ public class CommonAttachmentIndex {
     private static void checkData(AttachmentIndexPOJO attachmentIndexPOJO, CommonAttachmentIndex index) {
         ResourceLocation pojoData = attachmentIndexPOJO.getData();
         Preconditions.checkArgument(pojoData != null, "index object missing pojoData field");
-        // TODO: [MIGRAÇÃO] Restaurar a busca de dados quando CommonAssetsManager estiver habilitado
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar a busca de dados quando CommonAssetsManager estiver habilitado
         // AttachmentData data = CommonAssetsManager.get().getAttachmentData(pojoData);
         // Preconditions.checkArgument(data != null, "there is no corresponding data file");
-        AttachmentData data = new AttachmentData(); // Implementação mínima
+        AttachmentData data = new AttachmentData(); // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
         index.data = data;
     }
 
@@ -59,3 +59,66 @@ public class CommonAttachmentIndex {
         return sort;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

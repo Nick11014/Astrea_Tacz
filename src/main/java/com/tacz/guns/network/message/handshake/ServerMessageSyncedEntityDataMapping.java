@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 
 public record ServerMessageSyncedEntityDataMapping(
         Map<ResourceLocation, List<Pair<ResourceLocation, Integer>>> keyMap) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_synced_entity_data_mapping");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_synced_entity_data_mapping");
     public static final Marker HANDSHAKE_MARKER = MarkerManager.getMarker("TACZ_HANDSHAKE");
 
     public ServerMessageSyncedEntityDataMapping() {
@@ -80,3 +80,66 @@ public record ServerMessageSyncedEntityDataMapping(
         PacketDistributor.sendToServer(new Acknowledge());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

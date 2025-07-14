@@ -1,10 +1,10 @@
 package com.tacz.guns.api;
 
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.client.resource.ClientAssetManager;
+import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
-import com.tacz.guns.resource.CommonAssetManager;
+import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.index.CommonGunIndex;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -18,117 +18,125 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * API principal do TacZ para acesso a dados de armas, munições e acessórios.
+ * API principal do TacZ para acesso a dados de armas, muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes e acessÃƒÆ’Ã‚Â³rios.
  */
 public final class TimelessAPI {
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientGunIndex> getGunDisplay(ItemStack stack) {
-        return ClientAssetManager.INSTANCE.getGunIndex(getGunId(stack).orElse(DefaultAssets.DEFAULT_GUN_ID));
+        return ClientAssetsManager.INSTANCE.getGunIndex(getGunId(stack).orElse(DefaultAssets.DEFAULT_GUN_ID));
     }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientGunIndex> getGunDisplay(ResourceLocation displayId, ResourceLocation fallbackGunId) {
-        Optional<ClientGunIndex> gunIndex = ClientAssetManager.INSTANCE.getGunIndex(displayId);
+        Optional<ClientGunIndex> gunIndex = ClientAssetsManager.INSTANCE.getGunIndex(displayId);
         if (gunIndex.isPresent()) {
             return gunIndex;
         }
-        return ClientAssetManager.INSTANCE.getGunIndex(fallbackGunId);
+        return ClientAssetsManager.INSTANCE.getGunIndex(fallbackGunId);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientGunIndex> getClientGunIndex(ResourceLocation gunId) {
-        return ClientAssetManager.INSTANCE.getGunIndex(gunId);
+        return ClientAssetsManager.INSTANCE.getGunIndex(gunId);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<Object> getClientAmmoIndex(ResourceLocation ammoId) {
-        // TODO: Retornar ClientAmmoIndex quando disponível
+        // TODO: Retornar ClientAmmoIndex quando disponÃƒÆ’Ã‚Â­vel
         return Optional.empty();
     }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<ClientAttachmentIndex> getClientAttachmentIndex(ResourceLocation attachmentId) {
-        return ClientAssetManager.INSTANCE.getAttachmentIndex(attachmentId);
+        return ClientAssetsManager.INSTANCE.getAttachmentIndex(attachmentId);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static Optional<Object> getClientBlockIndex(ResourceLocation blockId) {
-        // TODO: Retornar ClientBlockIndex quando disponível
+        // TODO: Retornar ClientBlockIndex quando disponÃƒÆ’Ã‚Â­vel
         return Optional.empty();
     }
 
-    // ===== MÉTODOS COMMON-SIDE =====
+    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS COMMON-SIDE =====
 
     public static Optional<CommonGunIndex> getCommonGunIndex(ResourceLocation gunId) {
-        return CommonAssetManager.INSTANCE.getGunIndex(gunId);
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(instance.getGunIndex(gunId));
     }
 
     public static Optional<Object> getCommonAmmoIndex(ResourceLocation ammoId) {
-        // TODO: Retornar CommonAmmoIndex quando CommonAssetsManager estiver disponível
+        // TODO: Retornar CommonAmmoIndex quando CommonAssetsManager estiver disponÃƒÆ’Ã‚Â­vel
         return Optional.empty();
     }
 
     public static Optional<Object> getCommonAttachmentIndex(ResourceLocation attachmentId) {
-        // TODO: Retornar CommonAttachmentIndex quando CommonAssetsManager estiver disponível
+        // TODO: Retornar CommonAttachmentIndex quando CommonAssetsManager estiver disponÃƒÆ’Ã‚Â­vel
         return Optional.empty();
     }
 
     public static Optional<Object> getCommonBlockIndex(ResourceLocation blockId) {
-        // TODO: Retornar CommonBlockIndex quando CommonAssetsManager estiver disponível
+        // TODO: Retornar CommonBlockIndex quando CommonAssetsManager estiver disponÃƒÆ’Ã‚Â­vel
         return Optional.empty();
     }
 
-    // ===== MÉTODOS DE COLEÇÕES =====
+    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE COLEÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã¢â‚¬Â¢ES =====
 
     public static Set<Map.Entry<ResourceLocation, Object>> getAllGuns() {
-        // TODO: Retornar todos os guns quando disponível
+        // TODO: Retornar todos os guns quando disponÃƒÆ’Ã‚Â­vel
         return Collections.emptySet();
     }
 
     public static Set<Map.Entry<ResourceLocation, CommonGunIndex>> getAllCommonGunIndex() {
-        return CommonAssetManager.INSTANCE.getAllGuns();
+        var instance = CommonAssetsManager.getInstance();
+        if (instance == null) {
+            return Collections.emptySet();
+        }
+        return instance.getAllGuns();
     }
 
     public static Set<Map.Entry<ResourceLocation, Object>> getAllAmmos() {
-        // TODO: Retornar todas as munições quando disponível
+        // TODO: Retornar todas as muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes quando disponÃƒÆ’Ã‚Â­vel
         return Collections.emptySet();
     }
 
     public static Set<Map.Entry<ResourceLocation, Object>> getAllAttachments() {
-        // TODO: Retornar todos os acessórios quando disponível
+        // TODO: Retornar todos os acessÃƒÆ’Ã‚Â³rios quando disponÃƒÆ’Ã‚Â­vel
         return Collections.emptySet();
     }
 
     public static Set<Map.Entry<ResourceLocation, Object>> getAllBlocks() {
-        // TODO: Retornar todos os blocos quando disponível
+        // TODO: Retornar todos os blocos quando disponÃƒÆ’Ã‚Â­vel
         return Collections.emptySet();
     }
 
-    // ===== MÉTODOS DE RECIPE =====
+    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE RECIPE =====
 
     public static RecipeType<?> getGunSmithTableRecipeType() {
-        // TODO: Retornar tipo de receita quando disponível
+        // TODO: Retornar tipo de receita quando disponÃƒÆ’Ã‚Â­vel
         return null;
     }
 
-    // ===== MÉTODOS DE TERCEIRA PESSOA =====
+    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE TERCEIRA PESSOA =====
 
     @OnlyIn(Dist.CLIENT)
     public static void registerThirdPersonAnimation(ResourceLocation gunId, Object animationLister) {
-        // TODO: Implementar quando ThirdPersonManager estiver disponível
+        // TODO: Implementar quando ThirdPersonManager estiver disponÃƒÆ’Ã‚Â­vel
     }
 
-    // ===== MÉTODOS UTILITÁRIOS QUE FUNCIONAM IMEDIATAMENTE =====
+    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS UTILITÃƒÆ’Ã‚ÂRIOS QUE FUNCIONAM IMEDIATAMENTE =====
 
     /**
-     * Verifica se um ItemStack é uma arma válida
+     * Verifica se um ItemStack ÃƒÆ’Ã‚Â© uma arma vÃƒÆ’Ã‚Â¡lida
      */
     public static boolean isGun(ItemStack stack) {
         return stack.getItem() instanceof IGun;
     }
 
     /**
-     * Obtém o ID da arma de um ItemStack, se for uma arma
+     * ObtÃƒÆ’Ã‚Â©m o ID da arma de um ItemStack, se for uma arma
      */
     public static Optional<ResourceLocation> getGunId(ItemStack stack) {
         if (stack.getItem() instanceof IGun iGun) {
@@ -138,7 +146,7 @@ public final class TimelessAPI {
     }
 
     /**
-     * Obtém o display ID da arma de um ItemStack, se for uma arma
+     * ObtÃƒÆ’Ã‚Â©m o display ID da arma de um ItemStack, se for uma arma
      */
     public static Optional<ResourceLocation> getGunDisplayId(ItemStack stack) {
         if (stack.getItem() instanceof IGun iGun) {
@@ -148,3 +156,66 @@ public final class TimelessAPI {
         return Optional.empty();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

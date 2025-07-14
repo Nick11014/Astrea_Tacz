@@ -53,7 +53,7 @@ public class SecondOrderDynamics {
     }
 
     public float get() {
-        // 修正罕见的 NAN 错误
+        // ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ§Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â§Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ NAN ÃƒÂ©Ã¢â‚¬ÂÃ¢â€žÂ¢ÃƒÂ¨Ã‚Â¯Ã‚Â¯
         if (Float.isNaN(py)) {
             py = 0;
         }
@@ -69,7 +69,7 @@ public class SecondOrderDynamics {
 
     private void update() {
         while (!stop) {
-            // 修正罕见的 NAN 错误
+            // ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ§Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â§Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ NAN ÃƒÂ©Ã¢â‚¬ÂÃ¢â€žÂ¢ÃƒÂ¨Ã‚Â¯Ã‚Â¯
             if (Float.isNaN(py)) {
                 py = 0;
             }
@@ -93,3 +93,66 @@ public class SecondOrderDynamics {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

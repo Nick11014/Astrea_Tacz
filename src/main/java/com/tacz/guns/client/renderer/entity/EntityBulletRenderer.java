@@ -65,7 +65,7 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
                 poseStack.popPose();
             }
 
-            // 曳光弹发光
+            // ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°
             if (bullet.isTracerAmmo()) {
                 float[] actualTracerColor = Objects.requireNonNullElse(tracerColor, ammoIndex.getTracerColor());
                 renderTracerAmmo(bullet, actualTracerColor, partialTicks, poseStack, packedLight);
@@ -92,7 +92,7 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
                 trailLength = Math.min(trailLength, disToEye * 0.8);
 
                 if (isFirstPerson) {
-                    // 第一人称渲染自己的曳光弹的时候需要应用偏移
+                    // ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â·Ã‚Â±ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¥Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
                     Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
                     Vector3f offset = bullet.getFirstPersonRenderOffset();
                     if (offset == null) {
@@ -101,26 +101,26 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
                         bullet.setCameraYRot(camera.getYRot());
                         bullet.setFirstPersonRenderOffset(offset);
                     }
-                    // 按照生存时间减少曳光弹的偏移，避免渲染位置距离落点太远
+                    // ÃƒÂ¦Ã…â€™Ã¢â‚¬Â°ÃƒÂ§Ã¢â‚¬Â¦Ã‚Â§ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â°Ã¢â‚¬ËœÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¿ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¨Ã‚ÂÃ‚Â½ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã‚Â¤Ã‚ÂªÃƒÂ¨Ã‚Â¿Ã…â€œ
                     double offsetReducer = Math.max(0, (50 - disToEye)) / 50;
-                    // 摄像机旋转
+                    // ÃƒÂ¦Ã¢â‚¬ËœÃ¢â‚¬Å¾ÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
                     poseStack.mulPose(Axis.YN.rotationDegrees(bullet.getCameraYRot() + 180f));
                     poseStack.mulPose(Axis.XN.rotationDegrees(bullet.getCameraXRot()));
-                    // 应用偏移
+                    // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
                     poseStack.translate(offset.x * offsetReducer, offset.y * offsetReducer, offset.z * offsetReducer);
-                    // 逆转摄像机旋转
+                    // ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã¢â‚¬ËœÃ¢â‚¬Å¾ÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
                     poseStack.mulPose(Axis.XP.rotationDegrees(bullet.getCameraXRot()));
                     poseStack.mulPose(Axis.YP.rotationDegrees(bullet.getCameraYRot() + 180f));
                 }
-                // 说是 override 其实默认值是 1
-                // 所以这里直接乘也没关系
+                // ÃƒÂ¨Ã‚Â¯Ã‚Â´ÃƒÂ¦Ã‹Å“Ã‚Â¯ override ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¶ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¦Ã‹Å“Ã‚Â¯ 1
+                // ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ¤Ã‚Â¹Ã…Â¸ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ§Ã‚Â³Ã‚Â»
                 width *= bullet.getTracerSizeOverride();
                 width *= (float) Math.max(1.0, disToEye / 3.5);
                 poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, bullet.yRotO, bullet.getYRot()) - 180.0F));
                 poseStack.mulPose(Axis.XP.rotationDegrees(Mth.lerp(partialTicks, bullet.xRotO, bullet.getXRot())));
                 poseStack.translate(0, isFirstPerson ? 0 : -0.2, trailLength / 2.0);
                 poseStack.scale(width, width, (float) trailLength);
-                // 距离两格外才渲染，只在前 5 tick 判定
+                // ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â¤ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¦Ã¢â‚¬Â°Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¥Ã¢â‚¬Â°Ã‚Â 5 tick ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡
                 double bulletDistance = bulletPosition.distanceTo(shooter.getEyePosition());
                 if (bullet.tickCount >= 5 || bulletDistance > 2) {
                     RenderType type = RenderType.energySwirl(InternalAssetLoader.DEFAULT_BULLET_TEXTURE, 15, 15);
@@ -151,3 +151,66 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
         return null;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

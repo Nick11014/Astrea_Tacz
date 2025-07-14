@@ -6,7 +6,7 @@ import net.neoforged.bus.api.Event;
 import net.neoforged.fml.LogicalSide;
 
 /**
- * 生物切换枪械开火模式时触发的事件
+ * ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
  */
 public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<GunFireSelectEvent>{
     private final LivingEntity shooter;
@@ -20,7 +20,7 @@ public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<Gu
         postEventToKubeJS(this);
     }
 
-    // Cancelable event - método isCancelable() não é mais @Override no NeoForge 1.21.1
+    // Cancelable event - mÃƒÆ’Ã‚Â©todo isCancelable() nÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
     }
@@ -37,3 +37,66 @@ public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<Gu
         return logicalSide;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

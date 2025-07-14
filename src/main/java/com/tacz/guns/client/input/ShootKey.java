@@ -18,7 +18,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyModifier;
-// TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] Tick events nÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â£o disponÃƒÆ’Ã‚Â­veis ainda
 // import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -38,10 +38,10 @@ public class ShootKey {
             "key.category.tacz");
     private static boolean lastTimeShootSuccess = false;
 
-    // TODO: [MIGRAÇÃO NeoForge 1.21.1] Tick events não estão disponíveis ainda
+    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] Tick events nÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â£o disponÃƒÆ’Ã‚Â­veis ainda
     // @SubscribeEvent
     // public static void autoShoot(TickEvent.ClientTickEvent event) {
-    //     // TODO: [MIGRAÇÃO NeoForge 1.21.1] Usando API correta de eventos
+    //     // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] Usando API correta de eventos
     //     if (event.phase != TickEvent.Phase.END && !isInGame()) {
     //         return;
     //     }
@@ -59,10 +59,10 @@ public class ShootKey {
     //                 .orElse(false);
     //         IClientPlayerGunOperator operator = IClientPlayerGunOperator.fromLocalPlayer(player);
     //         if (SHOOT_KEY.isDown()) {
-    //             // 能开火时禁止冲刺
+    //             // ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ§Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¥Ã¢â‚¬Â Ã‚Â²ÃƒÂ¥Ã‹â€ Ã‚Âº
     //             LocalPlayerSprint.stopSprint = true;
     //             if (fireMode != FireMode.AUTO && !isBurstAuto && lastTimeShootSuccess) {
-    //                 // 非全自动情况，禁止连续开火
+    //                 // ÃƒÂ©Ã‚ÂÃ…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¨ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¨Ã‚Â¿Ã…Â¾ÃƒÂ§Ã‚Â»Ã‚Â­ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«
     //                 return;
     //             }
     //             if (operator.shoot() == ShootResult.SUCCESS) {
@@ -100,7 +100,7 @@ public class ShootKey {
     @SubscribeEvent
     public static void semiShoot(InputEvent.MouseButton.Post event) {
         if (isInGame() && SHOOT_KEY.matchesMouse(event.getButton())) {
-            // 松开鼠标，重置 DryFire 状态
+            // ÃƒÂ¦Ã‚ÂÃ‚Â¾ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ©Ã‚Â¼Ã‚Â ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â® DryFire ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
             if (event.getAction() == GLFW.GLFW_RELEASE) {
                 SoundPlayManager.resetDryFireSound();
                 return;
@@ -130,7 +130,7 @@ public class ShootKey {
         if (!isInGame()) {
             return false;
         }
-        // 松开鼠标，重置 DryFire 状态
+        // ÃƒÂ¦Ã‚ÂÃ‚Â¾ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ©Ã‚Â¼Ã‚Â ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â® DryFire ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
         if (!isPress) {
             SoundPlayManager.resetDryFireSound();
             return false;
@@ -157,3 +157,66 @@ public class ShootKey {
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

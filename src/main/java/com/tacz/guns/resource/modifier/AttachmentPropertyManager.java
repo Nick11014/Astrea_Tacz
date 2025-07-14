@@ -6,37 +6,37 @@ import com.tacz.guns.resource.modifier.custom.DamageModifier;
 import java.util.Map;
 
 /**
- * AttachmentPropertyManager - Implementação Mínima Estratégica
+ * AttachmentPropertyManager - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o MÃƒÆ’Ã‚Â­nima EstratÃƒÆ’Ã‚Â©gica
  * 
- * Sistema de gerenciamento de propriedades de modificadores de acessórios
- * Implementação mínima para desbloquear dependências em AttachmentDataManager e CommonNetworkCache
+ * Sistema de gerenciamento de propriedades de modificadores de acessÃƒÆ’Ã‚Â³rios
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para desbloquear dependÃƒÆ’Ã‚Âªncias em AttachmentDataManager e CommonNetworkCache
  * 
  * TODO: Expandir funcionalidade quando modificadores customizados estiverem habilitados:
  * - AdsModifier, AmmoSpeedModifier, ArmorIgnoreModifier, etc.
  * - Sistema de eventos (AttachmentPropertyEvent, ChangeGunPropertyEvent)
  * - Engine LuaJ para scripts customizados
  * - Sistema completo de leitura de modifiers de JSON
- * - IAttachmentModifier quando interface estiver disponível
+ * - IAttachmentModifier quando interface estiver disponÃƒÆ’Ã‚Â­vel
  * - LivingEntity e ItemStack quando imports estiverem funcionando
  */
 public class AttachmentPropertyManager {
-    // Object Strategy para evitar dependências problemáticas
+    // Object Strategy para evitar dependÃƒÆ’Ã‚Âªncias problemÃƒÆ’Ã‚Â¡ticas
     private static final Map<String, Object> MODIFIERS = Maps.newLinkedHashMap();
     private static boolean isInitialized = false;
 
     /**
-     * Registra modificadores básicos
-     * Implementação mínima - DamageModifier agora funcional
+     * Registra modificadores bÃƒÆ’Ã‚Â¡sicos
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - DamageModifier agora funcional
      */
     public static void registerModifier() {
         if (isInitialized) {
             return;
         }
         
-        // DamageModifier agora está funcionando como exemplo
+        // DamageModifier agora estÃƒÆ’Ã‚Â¡ funcionando como exemplo
         MODIFIERS.put(DamageModifier.ID, new DamageModifier());
         
-        // TODO: Habilitar quando modificadores customizados estiverem disponíveis
+        // TODO: Habilitar quando modificadores customizados estiverem disponÃƒÆ’Ã‚Â­veis
         // MODIFIERS.put(AdsModifier.ID, new AdsModifier());
         // MODIFIERS.put(AmmoSpeedModifier.ID, new AmmoSpeedModifier());
         // MODIFIERS.put(ArmorIgnoreModifier.ID, new ArmorIgnoreModifier());
@@ -60,8 +60,8 @@ public class AttachmentPropertyManager {
     }
 
     /**
-     * Obtém mapa de modificadores registrados
-     * Implementação mínima - retorna mapa vazio mas funcional
+     * ObtÃƒÆ’Ã‚Â©m mapa de modificadores registrados
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna mapa vazio mas funcional
      */
     public static Map<String, Object> getModifiers() {
         if (!isInitialized) {
@@ -72,7 +72,7 @@ public class AttachmentPropertyManager {
 
     /**
      * Aplica modificadores a uma arma
-     * Implementação mínima - não faz nada mas não quebra o sistema
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - nÃƒÆ’Ã‚Â£o faz nada mas nÃƒÆ’Ã‚Â£o quebra o sistema
      */
     public static void applyModifiers(Object gunItem, Object attachmentData) {
         // TODO: Implementar quando modificadores estiverem funcionais
@@ -88,25 +88,25 @@ public class AttachmentPropertyManager {
     }
 
     /**
-     * Avalia uma função com valor e input
-     * Implementação mínima - retorna valor original
+     * Avalia uma funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o com valor e input
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna valor original
      * 
-     * TODO: Implementar quando engine LuaJ estiver disponível para scripts customizados
+     * TODO: Implementar quando engine LuaJ estiver disponÃƒÆ’Ã‚Â­vel para scripts customizados
      */
     public static double functionEval(double value, double input, String function) {
-        // TODO: Implementar avaliação de função quando LuaJ estiver funcional
+        // TODO: Implementar avaliaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o quando LuaJ estiver funcional
         // if (StringUtils.isEmpty(function)) {
         //     return value;
         // }
         // return luaEngine.eval(function, value, input);
         
-        // Implementação mínima - apenas retorna valor original
+        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas retorna valor original
         return value;
     }
 
     /**
-     * Posta evento de mudança de propriedade
-     * Implementação mínima - apenas estrutura
+     * Posta evento de mudanÃƒÆ’Ã‚Â§a de propriedade
+     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas estrutura
      */
     public static void postChangeEvent(Object entity, Object gunItem) {
         // TODO: Implementar quando sistema de eventos estiver funcional
@@ -115,21 +115,21 @@ public class AttachmentPropertyManager {
         // ChangeGunPropertyEvent event = new ChangeGunPropertyEvent(livingEntity, itemStack);
         // NeoForge.EVENT_BUS.post(event);
         
-        // Log temporário
+        // Log temporÃƒÆ’Ã‚Â¡rio
         if (entity != null && gunItem != null) {
             // System.out.println("Property change event for: " + gunItem.toString());
         }
     }
 
     /**
-     * Obtém número de modificadores registrados
+     * ObtÃƒÆ’Ã‚Â©m nÃƒÆ’Ã‚Âºmero de modificadores registrados
      */
     public static int getModifierCount() {
         return MODIFIERS.size();
     }
 
     /**
-     * Verifica se o sistema está inicializado
+     * Verifica se o sistema estÃƒÆ’Ã‚Â¡ inicializado
      */
     public static boolean isInitialized() {
         return isInitialized;
@@ -144,10 +144,105 @@ public class AttachmentPropertyManager {
     }
 
     /**
-     * Obtém estatísticas do sistema
+     * ObtÃƒÆ’Ã‚Â©m estatÃƒÆ’Ã‚Â­sticas do sistema
      */
     public static String getStats() {
         return String.format("AttachmentPropertyManager{modifiers=%d, initialized=%s}", 
                 MODIFIERS.size(), isInitialized);
     }
+    
+    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE AVALIAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O (EVAL) - IMPLEMENTAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O MÃƒÆ’Ã‚ÂNIMA =====
+    
+    /**
+     * Avalia modificadores de lista com valor base
+     * TODO: Implementar lÃƒÆ’Ã‚Â³gica completa quando modificadores estiverem prontos
+     */
+    public static double eval(java.util.List<?> modifiers, Object baseValue) {
+        if (baseValue instanceof Number) {
+            return ((Number) baseValue).doubleValue();
+        }
+        return 0.0;
+    }
+    
+    /**
+     * Avalia modificador ÃƒÆ’Ã‚Âºnico com valor base
+     * TODO: Implementar lÃƒÆ’Ã‚Â³gica completa quando modificadores estiverem prontos
+     */
+    public static double eval(Object modifier, Object baseValue) {
+        if (baseValue instanceof Number) {
+            return ((Number) baseValue).doubleValue();
+        }
+        return 0.0;
+    }
+    
+    /**
+     * Avalia modificadores booleanos
+     * TODO: Implementar lÃƒÆ’Ã‚Â³gica completa quando modificadores estiverem prontos
+     */
+    public static boolean eval(java.util.List<?> modifiers, boolean baseValue) {
+        return baseValue;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

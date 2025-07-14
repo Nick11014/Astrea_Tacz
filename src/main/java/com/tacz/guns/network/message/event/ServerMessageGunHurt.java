@@ -21,7 +21,7 @@ public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerI
                                    ResourceLocation gunDisplayId,
                                    float amount, boolean isHeadShot,
                                    float headshotMultiplier) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_hurt");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_hurt");
 
     public ServerMessageGunHurt(FriendlyByteBuf buf) {
         this(buf.readInt(), buf.readInt(), buf.readInt(), buf.readResourceLocation(), buf.readResourceLocation(), buf.readFloat(), buf.readBoolean(), buf.readFloat());
@@ -60,3 +60,66 @@ public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerI
         NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(bullet, hurtEntity, attacker, message.gunId, message.gunDisplayId, message.amount, null, message.isHeadShot, message.headshotMultiplier, LogicalSide.CLIENT));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

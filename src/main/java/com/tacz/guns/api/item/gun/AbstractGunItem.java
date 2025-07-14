@@ -341,18 +341,14 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     public static NonNullList<ItemStack> fillItemCategory(GunTabType type) {
         NonNullList<ItemStack> stacks = NonNullList.create();
-        Comparator<Map.Entry<ResourceLocation, Object>> idNameSort = (o1, o2) -> {
-            if (o1.getValue() instanceof CommonGunIndex && o2.getValue() instanceof CommonGunIndex) {
-                CommonGunIndex index1 = (CommonGunIndex) o1.getValue();
-                CommonGunIndex index2 = (CommonGunIndex) o2.getValue();
-                return Integer.compare(index1.getSort(), index2.getSort());
-            }
-            return 0;
+        Comparator<Map.Entry<ResourceLocation, CommonGunIndex>> idNameSort = (o1, o2) -> {
+            CommonGunIndex index1 = o1.getValue();
+            CommonGunIndex index2 = o2.getValue();
+            return Integer.compare(index1.getSort(), index2.getSort());
         };
         TimelessAPI.getAllCommonGunIndex().stream().sorted(idNameSort).forEach(entry -> {
-            if (entry.getValue() instanceof CommonGunIndex) {
-                CommonGunIndex index = (CommonGunIndex) entry.getValue();
-                GunData gunData = index.getGunData();
+            CommonGunIndex index = entry.getValue();
+            GunData gunData = index.getGunData();
                 String key = type.name().toLowerCase(Locale.US);
                 String indexType = index.getType();
                 if (key.equals(indexType)) {
@@ -365,7 +361,6 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                             .build();
                     stacks.add(itemStack);
                 }
-            }
         });
         return stacks;
     }

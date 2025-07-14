@@ -16,7 +16,7 @@ import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessageUnloadAttachment(int gunSlotIndex,
                                             AttachmentType attachmentType) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_unload_attachment");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_unload_attachment");
 
     public ClientMessageUnloadAttachment(FriendlyByteBuf buf) {
         this(buf.readInt(), buf.readEnum(AttachmentType.class));
@@ -45,9 +45,9 @@ public record ClientMessageUnloadAttachment(int gunSlotIndex,
             ItemStack attachmentItem = iGun.getAttachment(gunItem, message.attachmentType);
             if (!attachmentItem.isEmpty() && inventory.add(attachmentItem)) {
                 iGun.unloadAttachment(gunItem, message.attachmentType);
-                // 刷新配件数据
+                // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
                 AttachmentPropertyManager.postChangeEvent(player, gunItem);
-                // 如果卸载的是扩容弹匣，吐出所有子弹
+                // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚ÂÃ‚Â¸ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã…â€™Ã‚Â£ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹
                 if (message.attachmentType == AttachmentType.EXTENDED_MAG) {
                     iGun.dropAllAmmo(player, gunItem);
                 }
@@ -57,3 +57,66 @@ public record ClientMessageUnloadAttachment(int gunSlotIndex,
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,7 +15,7 @@ import java.util.Map;
 
 public record ServerMessageSyncGunPack(
         Map<DataType, Map<ResourceLocation, String>> cache) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_sync_gun_pack");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_sync_gun_pack");
 
     public ServerMessageSyncGunPack(FriendlyByteBuf buf) {
         this(buf.readMap(b -> b.readEnum(DataType.class), b -> b.readMap(FriendlyByteBuf::readResourceLocation, FriendlyByteBuf::readUtf)));
@@ -40,7 +40,70 @@ public record ServerMessageSyncGunPack(
     @OnlyIn(Dist.CLIENT)
     private static void doSync(ServerMessageSyncGunPack message) {
         CommonNetworkCache.INSTANCE.fromNetwork(message.cache);
-        // 通知客户端重新构建ClientIndex
+        // ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¦Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â»Ã‚ÂºClientIndex
         ClientIndexManager.reload();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

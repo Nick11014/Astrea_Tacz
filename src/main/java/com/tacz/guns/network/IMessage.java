@@ -13,12 +13,75 @@ public interface IMessage extends CustomPacketPayload {
     
     /**
      * Manipula a mensagem quando recebida
-     * @param context Contexto do payload contendo informações do remetente/receptor
+     * @param context Contexto do payload contendo informaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes do remetente/receptor
      */
     void handle(IPayloadContext context);
     
     /**
-     * Retorna o StreamCodec para serialização/deserialização da mensagem
+     * Retorna o StreamCodec para serializaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o/deserializaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o da mensagem
      */
     StreamCodec<ByteBuf, ? extends IMessage> getStreamCodec();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

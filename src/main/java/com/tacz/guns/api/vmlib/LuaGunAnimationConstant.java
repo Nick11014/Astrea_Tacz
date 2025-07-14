@@ -12,19 +12,19 @@ import java.lang.reflect.Modifier;
 import java.util.Map;
 
 /**
- * 功能和 {@link LuaAnimationConstant} 类似。
+ * ÃƒÂ¥Ã…Â Ã…Â¸ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ {@link LuaAnimationConstant} ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¤Ã‚Â¼Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
  */
 public class LuaGunAnimationConstant implements LuaLibrary {
     private final Map<String, Object> constantMap = Maps.newHashMap();
 
     public LuaGunAnimationConstant() {
-        // 获取 GunAnimationConstant 的所有 public 字段
+        // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ GunAnimationConstant ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â° public ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ¦Ã‚Â®Ã‚Âµ
         Field[] fields = GunAnimationConstant.class.getFields();
-        // 将 static final 的常量字段提取到 constantMap
+        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  static final ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¸Ã‚Â¸ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ¦Ã‚Â®Ã‚ÂµÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‹â€ Ã‚Â° constantMap
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
                 try {
-                    // 获取变量名和值
+                    // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                     String name = field.getName();
                     Object value = field.get(null);
                     constantMap.put(name, value);
@@ -34,12 +34,12 @@ public class LuaGunAnimationConstant implements LuaLibrary {
             }
         }
 
-        // 映射 ReloadState.StateType 枚举
+        // ÃƒÂ¦Ã‹Å“Ã‚Â ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ ReloadState.StateType ÃƒÂ¦Ã…Â¾Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Â¾
         for (ReloadState.StateType stateType : ReloadState.StateType.values()) {
             constantMap.put(stateType.name(), stateType.ordinal());
         }
 
-        // 映射 FireMode 枚举
+        // ÃƒÂ¦Ã‹Å“Ã‚Â ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ FireMode ÃƒÂ¦Ã…Â¾Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Â¾
         for (var fireMode : FireMode.values()) {
             constantMap.put(fireMode.name(), fireMode.ordinal());
         }
@@ -52,3 +52,66 @@ public class LuaGunAnimationConstant implements LuaLibrary {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

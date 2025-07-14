@@ -14,8 +14,8 @@ import net.minecraft.network.codec.StreamCodec;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Implementação baseada no padrão do SuperbWarfare 1.21.1 para partículas customizadas.
- * As APIs de partículas mudaram significativamente - agora usam MapCodec e StreamCodec.
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o baseada no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1 para partÃƒÆ’Ã‚Â­culas customizadas.
+ * As APIs de partÃƒÆ’Ã‚Â­culas mudaram significativamente - agora usam MapCodec e StreamCodec.
  */
 public class BulletHoleOption implements ParticleOptions {
     
@@ -81,3 +81,66 @@ public class BulletHoleOption implements ParticleOptions {
         return ModParticles.BULLET_HOLE.get();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -57,8 +57,8 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
         double pierceModifierPercent = Math.min(pierceModifier / 5.0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.pierce";
-        String positivelyString = String.format("%d §a(+%d)", modifiedValue, pierceModifier);
-        String negativelyString = String.format("%d §c(%d)", modifiedValue, pierceModifier);
+        String positivelyString = String.format("%d Ãƒâ€šÃ‚Â§a(+%d)", modifiedValue, pierceModifier);
+        String negativelyString = String.format("%d Ãƒâ€šÃ‚Â§c(%d)", modifiedValue, pierceModifier);
         String defaultString = String.format("%d", modifiedValue);
         boolean positivelyBetter = true;
 
@@ -103,3 +103,66 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

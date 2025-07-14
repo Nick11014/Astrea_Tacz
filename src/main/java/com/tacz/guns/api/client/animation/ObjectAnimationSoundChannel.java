@@ -19,7 +19,7 @@ public class ObjectAnimationSoundChannel {
     }
 
     /**
-     * 播放区间内的所有声音。时间区间左开右闭
+     * ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã…â€™Ã‚ÂºÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã…â€™Ã‚ÂºÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã‚Â·Ã‚Â¦ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ‚Â³ÃƒÂ©Ã¢â‚¬â€Ã‚Â­
      */
     public void playSound(double fromTimeS, double toTimeS, Entity entity, int distance, float volume, float pitch) {
         if (content == null) {
@@ -35,7 +35,7 @@ public class ObjectAnimationSoundChannel {
         int to = computeIndex(toTimeS, false);
         int from = computeIndex(fromTimeS, true);
         float mixVolume = volume;
-        // 根据实体位置计算音量
+        // ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ©Ã¢â‚¬Â¡Ã‚Â
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             mixVolume = mixVolume * (1.0F - Math.min(1.0F, (float) Math.sqrt(player.distanceToSqr(entity.getPosition(0))) / distance));
@@ -59,3 +59,66 @@ public class ObjectAnimationSoundChannel {
         return -index - 2;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

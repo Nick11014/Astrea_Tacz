@@ -8,19 +8,82 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Utilitário de explosão com implementação mínima temporária
+ * UtilitÃƒÆ’Ã‚Â¡rio de explosÃƒÆ’Ã‚Â£o com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima temporÃƒÆ’Ã‚Â¡ria
  * TODO: Implementar ProjectileExplosion quando APIs de Explosion forem migradas
  */
 public class ExplodeUtil {
     public static void createExplosion(Entity owner, Entity exploder, float damage, float radius, boolean knockback, boolean destroy, Vec3 hitPos) {
-        // Implementação mínima - usar explosion vanilla temporariamente
+        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - usar explosion vanilla temporariamente
         if (!(exploder.level() instanceof ServerLevel level)) {
             return;
         }
         
-        // Migração NeoForge 1.21.1: Usar API de explosão correta com ExplosionInteraction
+        // MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: Usar API de explosÃƒÆ’Ã‚Â£o correta com ExplosionInteraction
         // TODO: Restaurar ProjectileExplosion quando APIs forem migradas
         Level.ExplosionInteraction interaction = destroy ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE;
         level.explode(owner, hitPos.x(), hitPos.y(), hitPos.z(), radius, interaction);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -39,7 +39,7 @@ public class AdsModifier implements IAttachmentModifier<Modifier, Float> {
     public JsonProperty<Modifier> readJson(String json) {
         Data data = CommonAssetsManager.GSON.fromJson(json, Data.class);
         Modifier ads = data.getAds();
-        // 兼容旧版本写法
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
         if (ads == null) {
             ads = new Modifier();
             ads.setAddend(data.getAdsAddendTime());
@@ -47,18 +47,19 @@ public class AdsModifier implements IAttachmentModifier<Modifier, Float> {
         return new AdsJsonProperty(ads);
     }
 
-    @Override
+    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] MÃƒÆ’Ã‚Â©todos removidos da interface IAttachmentModifier
+    // @Override
     public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
         return new CacheValue<>(gunData.getAimTime());
     }
 
-    @Override
+    // @Override
     public void eval(List<Modifier> modifiers, CacheValue<Float> cache) {
         double eval = AttachmentPropertyManager.eval(modifiers, cache.getValue());
         cache.setValue((float) eval);
     }
 
-    @Override
+    // @Override
     @OnlyIn(Dist.CLIENT)
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
         float aimTime = gunData.getAimTime();
@@ -69,8 +70,8 @@ public class AdsModifier implements IAttachmentModifier<Modifier, Float> {
         double adsTimeModifierPercent = Math.min(adsTimeModifier / 0.5, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.ads";
-        String positivelyString = String.format("%.2fs §c(+%.2f)", modifiedAimTime, adsTimeModifier);
-        String negativelyString = String.format("%.2fs §a(%.2f)", modifiedAimTime, adsTimeModifier);
+        String positivelyString = String.format("%.2fs Ãƒâ€šÃ‚Â§c(+%.2f)", modifiedAimTime, adsTimeModifier);
+        String negativelyString = String.format("%.2fs Ãƒâ€šÃ‚Â§a(%.2f)", modifiedAimTime, adsTimeModifier);
         String defaultString = String.format("%.2fs", modifiedAimTime);
         boolean positivelyBetter = false;
 
@@ -94,11 +95,11 @@ public class AdsModifier implements IAttachmentModifier<Modifier, Float> {
             Modifier value = this.getValue();
             float adsAddendTime = 0;
             if (value != null) {
-                // 传入默认值 0.2 进行测试，看看最终结果差值
+                // ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ 0.2 ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‚ÂµÃ¢â‚¬Â¹ÃƒÂ¨Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚Â·Ã‚Â®ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                 double eval = AttachmentPropertyManager.eval(value, 0.2);
                 adsAddendTime = (float) (eval - 0.2);
             }
-            // 添加文本提示
+            // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â¤Ã‚Âº
             if (adsAddendTime > 0) {
                 components.add(Component.translatable("tooltip.tacz.attachment.ads.increase").withStyle(ChatFormatting.RED));
             } else if (adsAddendTime < 0) {
@@ -127,3 +128,66 @@ public class AdsModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

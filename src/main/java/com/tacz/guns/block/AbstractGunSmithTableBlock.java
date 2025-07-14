@@ -40,6 +40,8 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
+    protected abstract MapCodec<? extends BaseEntityBlock> codec();
+
     @Override
     public InteractionResult use(BlockState pState, Level level, BlockPos pos, Player player, InteractionHand pHand, BlockHitResult pHit) {
         if (level.isClientSide) {
@@ -93,7 +95,7 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         BlockPos blockPos = getRootPos(pos, state);
         BlockEntity blockentity = level.getBlockEntity(blockPos);
         if (blockentity instanceof GunSmithTableBlockEntity e) {
@@ -113,3 +115,66 @@ public abstract class AbstractGunSmithTableBlock extends BaseEntityBlock {
 
     public abstract BlockPos getRootPos(BlockPos pos, BlockState blockState);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

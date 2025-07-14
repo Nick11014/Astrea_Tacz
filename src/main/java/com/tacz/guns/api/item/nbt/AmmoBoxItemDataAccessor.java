@@ -11,13 +11,13 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Objects;
 
 /**
- * Accessor para dados de caixas de munição usando DataComponents (NeoForge 1.21.1+)
+ * Accessor para dados de caixas de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o usando DataComponents (NeoForge 1.21.1+)
  * 
  * Esta interface migra do sistema NBT legado para o novo sistema DataComponent.
- * Todos os métodos agora usam os DataComponents definidos em ModDataComponents
+ * Todos os mÃƒÆ’Ã‚Â©todos agora usam os DataComponents definidos em ModDataComponents
  * em vez de acessar diretamente as tags NBT.
  * 
- * @see ModDataComponents para as definições dos componentes
+ * @see ModDataComponents para as definiÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes dos componentes
  */
 
 public interface AmmoBoxItemDataAccessor extends IAmmoBox {
@@ -65,8 +65,8 @@ public interface AmmoBoxItemDataAccessor extends IAmmoBox {
             }
             ResourceLocation gunId = iGun.getGunId(gun);
             
-            // TODO: Implementar verificação completa quando CommonGunIndex estiver disponível
-            // Por enquanto, apenas verificação básica de não-vazio
+            // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando CommonGunIndex estiver disponÃƒÆ’Ã‚Â­vel
+            // Por enquanto, apenas verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica de nÃƒÆ’Ã‚Â£o-vazio
             return !gunId.equals(DefaultAssets.EMPTY_GUN_ID);
         }
         return false;
@@ -94,14 +94,77 @@ public interface AmmoBoxItemDataAccessor extends IAmmoBox {
     @Override
     default ItemStack setCreative(ItemStack ammoBox, boolean isAllType) {
         if (isAllType) {
-            // Remove possível flag criativo específico
+            // Remove possÃƒÆ’Ã‚Â­vel flag criativo especÃƒÆ’Ã‚Â­fico
             ammoBox.remove(ModDataComponents.AMMO_BOX_CREATIVE.get());
             ammoBox.set(ModDataComponents.AMMO_BOX_ALL_TYPE_CREATIVE.get(), true);
         } else {
-            // Remove possível flag criativo universal
+            // Remove possÃƒÆ’Ã‚Â­vel flag criativo universal
             ammoBox.remove(ModDataComponents.AMMO_BOX_ALL_TYPE_CREATIVE.get());
             ammoBox.set(ModDataComponents.AMMO_BOX_CREATIVE.get(), true);
         }
         return ammoBox;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

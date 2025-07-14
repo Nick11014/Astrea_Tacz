@@ -19,13 +19,13 @@ public class LaserRender implements IFunctionalRenderer {
     private static boolean isEnabled = true;
     private static boolean isLaserActive = false;
     private static float laserRange = 50.0f;
-    private static int laserColor = 0xFF0000; // Vermelho por padrão
+    private static int laserColor = 0xFF0000; // Vermelho por padrÃƒÆ’Ã‚Â£o
 
     public LaserRender(BedrockGunModel bedrockGunModel, ClientAttachmentIndex attachmentIndex) {
         this.bedrockGunModel = bedrockGunModel;
         this.attachmentIndex = attachmentIndex;
         
-        // Inicializar cor do laser se disponível
+        // Inicializar cor do laser se disponÃƒÆ’Ã‚Â­vel
         if (attachmentIndex != null && attachmentIndex.isLaser()) {
             LaserConfig config = attachmentIndex.getLaserConfig();
             if (config != null) {
@@ -40,19 +40,19 @@ public class LaserRender implements IFunctionalRenderer {
             return;
         }
 
-        // Só renderiza se for um laser
+        // SÃƒÆ’Ã‚Â³ renderiza se for um laser
         if (!attachmentIndex.isLaser()) {
             return;
         }
 
-        // TODO: Implementação de renderização de laser quando tipos estiverem disponíveis
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de laser quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         /*
         if (transformType instanceof ItemDisplayContext displayContext) {
             if (displayContext.firstPerson() || displayContext == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
                 // Renderizar feixe de laser
                 renderLaserBeam(poseStack, vertexBuffer, light, overlay);
                 
-                // Renderizar ponto de mira se necessário
+                // Renderizar ponto de mira se necessÃƒÆ’Ã‚Â¡rio
                 if (shouldRenderLaserDot()) {
                     renderLaserDot(poseStack, vertexBuffer, light, overlay);
                 }
@@ -60,7 +60,7 @@ public class LaserRender implements IFunctionalRenderer {
         }
         */
 
-        // Atualizar estatísticas do laser
+        // Atualizar estatÃƒÆ’Ã‚Â­sticas do laser
         updateLaserStats();
     }
 
@@ -85,7 +85,7 @@ public class LaserRender implements IFunctionalRenderer {
     }
 
     /**
-     * Verifica se o laser está ativo
+     * Verifica se o laser estÃƒÆ’Ã‚Â¡ ativo
      */
     public static boolean isLaserActive() {
         return isLaserActive;
@@ -99,7 +99,7 @@ public class LaserRender implements IFunctionalRenderer {
     }
 
     /**
-     * Obtém o alcance atual do laser
+     * ObtÃƒÆ’Ã‚Â©m o alcance atual do laser
      */
     public static float getLaserRange() {
         return laserRange;
@@ -115,7 +115,7 @@ public class LaserRender implements IFunctionalRenderer {
     }
 
     /**
-     * Obtém a cor atual do laser
+     * ObtÃƒÆ’Ã‚Â©m a cor atual do laser
      */
     public static int getLaserColor() {
         return laserColor;
@@ -129,21 +129,21 @@ public class LaserRender implements IFunctionalRenderer {
     }
 
     /**
-     * Obtém a intensidade do laser baseada na configuração
+     * ObtÃƒÆ’Ã‚Â©m a intensidade do laser baseada na configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
      */
     public float getLaserIntensity() {
         if (attachmentIndex != null && attachmentIndex.isLaser()) {
             LaserConfig config = attachmentIndex.getLaserConfig();
             if (config != null) {
-                // TODO: Obter intensidade da configuração quando disponível
+                // TODO: Obter intensidade da configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o quando disponÃƒÆ’Ã‚Â­vel
                 return 1.0f;
             }
         }
-        return 0.5f; // Intensidade padrão
+        return 0.5f; // Intensidade padrÃƒÆ’Ã‚Â£o
     }
 
     /**
-     * Verifica se o laser tem configuração válida
+     * Verifica se o laser tem configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o vÃƒÆ’Ã‚Â¡lida
      */
     public boolean hasValidLaserConfig() {
         return attachmentIndex != null && 
@@ -170,3 +170,66 @@ public class LaserRender implements IFunctionalRenderer {
         return attachmentIndex;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

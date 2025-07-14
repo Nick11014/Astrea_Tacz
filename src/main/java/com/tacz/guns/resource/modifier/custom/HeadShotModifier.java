@@ -44,16 +44,16 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
 
     @Override
     public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
-        // 必要数据获取
+        // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
 
-        // 额外伤害
+        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
-        // 开火模式调整
-        // 最终的 base
+        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
+        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base
         float finalBase = extraDamage != null ? extraDamage.getHeadShotMultiplier() : 0;
         finalBase = fireModeAdjustData != null ? finalBase + fireModeAdjustData.getHeadShotMultiplier() : finalBase;
         finalBase *= SyncConfig.HEAD_SHOT_BASE_MULTIPLIER.get();
@@ -69,16 +69,16 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
     @Override
     @OnlyIn(Dist.CLIENT)
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
-        // 必要数据获取
+        // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
 
-        // 额外伤害
+        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
-        // 开火模式调整
-        // 最终的 base
+        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
+        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base
         float finalBase = extraDamage != null ? extraDamage.getHeadShotMultiplier() : 0;
         finalBase = fireModeAdjustData != null ? finalBase + fireModeAdjustData.getHeadShotMultiplier() : finalBase;
         finalBase *= SyncConfig.HEAD_SHOT_BASE_MULTIPLIER.get();
@@ -90,8 +90,8 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
         double modifierPercent = Mth.clamp(modifier / 5.0, 0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.head_shot";
-        String positivelyString = String.format("x%.1f §a(+%.1f)", modifiedValue, modifier);
-        String negativelyString = String.format("x%.1f §c(%.1f)", modifiedValue, modifier);
+        String positivelyString = String.format("x%.1f Ãƒâ€šÃ‚Â§a(+%.1f)", modifiedValue, modifier);
+        String negativelyString = String.format("x%.1f Ãƒâ€šÃ‚Â§c(%.1f)", modifiedValue, modifier);
         String defaultString = String.format("x%.1f", modifiedValue);
         boolean positivelyBetter = true;
 
@@ -135,3 +135,66 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

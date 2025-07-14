@@ -15,7 +15,7 @@ public class AnimationKeyframesSerializer implements JsonDeserializer<AnimationK
     @Override
     public AnimationKeyframes deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
         Double2ObjectRBTreeMap<AnimationKeyframes.Keyframe> keyframes = new Double2ObjectRBTreeMap<>();
-        // 如果是数字
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€
         if (json.isJsonPrimitive()) {
             if (json.getAsJsonPrimitive().isString()) {
                 GunMod.LOGGER.debug("Molang is not supported: \"{}\"", json.getAsString());
@@ -28,14 +28,14 @@ public class AnimationKeyframesSerializer implements JsonDeserializer<AnimationK
                 return new AnimationKeyframes(keyframes);
             }
         }
-        // 如果是数组
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾
         if (json.isJsonArray()) {
             Vector3f data = this.readVector3f(json.getAsJsonArray());
             var keyframe = new AnimationKeyframes.Keyframe(null, null, data, null);
             keyframes.put(0, keyframe);
             return new AnimationKeyframes(keyframes);
         }
-        // 如果是对象
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
         if (json.isJsonObject()) {
             JsonObject jsonObject = json.getAsJsonObject();
             for (Map.Entry<String, JsonElement> entrySet : jsonObject.entrySet()) {
@@ -55,12 +55,12 @@ public class AnimationKeyframesSerializer implements JsonDeserializer<AnimationK
     }
 
     private AnimationKeyframes.Keyframe readKeyFrames(JsonElement element) {
-        // 如果是数组
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾
         if (element.isJsonArray()) {
             Vector3f data = this.readVector3f(element.getAsJsonArray());
             return new AnimationKeyframes.Keyframe(null, null, data, null);
         }
-        // 如果是对象
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
         if (element.isJsonObject()) {
             JsonObject jsonObject = element.getAsJsonObject();
             String lerpMode = null;
@@ -101,3 +101,66 @@ public class AnimationKeyframesSerializer implements JsonDeserializer<AnimationK
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

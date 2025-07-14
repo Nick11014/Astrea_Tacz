@@ -8,8 +8,8 @@ import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import net.minecraft.world.item.ItemDisplayContext;
 
 /**
- * Renderizador funcional para miras telescópicas (scopes)
- * Demonstra funcionalidades específicas usando Object Strategy
+ * Renderizador funcional para miras telescÃƒÆ’Ã‚Â³picas (scopes)
+ * Demonstra funcionalidades especÃƒÆ’Ã‚Â­ficas usando Object Strategy
  */
 public class ScopeRender implements IFunctionalRenderer {
     private final BedrockGunModel bedrockGunModel;
@@ -28,25 +28,25 @@ public class ScopeRender implements IFunctionalRenderer {
             return;
         }
 
-        // Só renderiza se for um scope
+        // SÃƒÆ’Ã‚Â³ renderiza se for um scope
         if (!attachmentIndex.isScope()) {
             return;
         }
 
-        // TODO: Implementação de renderização de scope quando tipos estiverem disponíveis
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         /*
         if (transformType instanceof ItemDisplayContext displayContext) {
             if (displayContext.firstPerson()) {
-                // Renderização de scope em primeira pessoa
+                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope em primeira pessoa
                 renderFirstPersonScope(poseStack, vertexBuffer, light, overlay);
             } else {
-                // Renderização de scope em terceira pessoa
+                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope em terceira pessoa
                 renderThirdPersonScope(poseStack, vertexBuffer, light, overlay);
             }
         }
         */
 
-        // Log para debugging (temporário)
+        // Log para debugging (temporÃƒÆ’Ã‚Â¡rio)
         logScopeInfo();
     }
 
@@ -59,38 +59,38 @@ public class ScopeRender implements IFunctionalRenderer {
     }
 
     /**
-     * Define o nível de zoom atual
+     * Define o nÃƒÆ’Ã‚Â­vel de zoom atual
      */
     public static void setZoomLevel(float zoom) {
         zoomLevel = Math.max(1.0f, Math.min(zoom, 10.0f)); // Limitado entre 1x e 10x
     }
 
     /**
-     * Obtém o nível de zoom atual
+     * ObtÃƒÆ’Ã‚Â©m o nÃƒÆ’Ã‚Â­vel de zoom atual
      */
     public static float getZoomLevel() {
         return zoomLevel;
     }
 
     /**
-     * Verifica se o scope está sendo usado (ativado)
+     * Verifica se o scope estÃƒÆ’Ã‚Â¡ sendo usado (ativado)
      */
     public boolean isScopeActive() {
         return attachmentIndex != null && attachmentIndex.isScope() && zoomLevel > 1.0f;
     }
 
     /**
-     * Obtém o FOV efetivo baseado no zoom
+     * ObtÃƒÆ’Ã‚Â©m o FOV efetivo baseado no zoom
      */
     public float getEffectiveFOV() {
         if (attachmentIndex != null && attachmentIndex.isScope()) {
             return attachmentIndex.getFov() / zoomLevel;
         }
-        return 70.0f; // FOV padrão
+        return 70.0f; // FOV padrÃƒÆ’Ã‚Â£o
     }
 
     /**
-     * Verifica se tem zoom múltiplo disponível
+     * Verifica se tem zoom mÃƒÆ’Ã‚Âºltiplo disponÃƒÆ’Ã‚Â­vel
      */
     public boolean hasMultipleZoom() {
         return attachmentIndex != null && 
@@ -99,7 +99,7 @@ public class ScopeRender implements IFunctionalRenderer {
     }
 
     /**
-     * Obtém próximo nível de zoom disponível
+     * ObtÃƒÆ’Ã‚Â©m prÃƒÆ’Ã‚Â³ximo nÃƒÆ’Ã‚Â­vel de zoom disponÃƒÆ’Ã‚Â­vel
      */
     public float getNextZoomLevel() {
         if (attachmentIndex != null && attachmentIndex.getZoom() != null) {
@@ -127,3 +127,66 @@ public class ScopeRender implements IFunctionalRenderer {
         return attachmentIndex;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

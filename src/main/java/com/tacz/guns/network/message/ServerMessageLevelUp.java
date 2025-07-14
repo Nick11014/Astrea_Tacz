@@ -12,7 +12,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_level_up");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_level_up");
 
     public ServerMessageLevelUp(FriendlyByteBuf buf) {
         this(ItemStack.STREAM_CODEC.decode(buf), buf.readInt());
@@ -41,6 +41,69 @@ public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPa
         if (player == null) {
             return;
         }
-        // TODO: Implementar a lógica de toast de level up quando o sistema de nível estiver pronto.
+        // TODO: Implementar a lÃƒÆ’Ã‚Â³gica de toast de level up quando o sistema de nÃƒÆ’Ã‚Â­vel estiver pronto.
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

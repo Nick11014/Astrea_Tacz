@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 
 /**
- * Acessor de dados para munição utilizando DataComponents.
+ * Acessor de dados para muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o utilizando DataComponents.
  * Migrado de NBT para DataComponents no NeoForge 1.21.1.
  */
 public interface AmmoItemDataAccessor extends IAmmo {
@@ -40,11 +40,74 @@ public interface AmmoItemDataAccessor extends IAmmo {
             ResourceLocation gunId = iGun.getGunId(gun);
             ResourceLocation ammoId = iAmmo.getAmmoId(ammo);
             
-            // TODO: Implementar verificação completa quando CommonGunIndex estiver disponível
-            // Por enquanto, apenas verificação básica de não-vazio
+            // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando CommonGunIndex estiver disponÃƒÆ’Ã‚Â­vel
+            // Por enquanto, apenas verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica de nÃƒÆ’Ã‚Â£o-vazio
             return !gunId.equals(DefaultAssets.EMPTY_GUN_ID) && 
                    !ammoId.equals(DefaultAssets.EMPTY_AMMO_ID);
         }
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

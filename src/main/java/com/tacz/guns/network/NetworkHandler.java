@@ -16,7 +16,8 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
-import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Import removido - IPayloadRegistrar agora ÃƒÆ’Ã‚Â© obtido atravÃƒÆ’Ã‚Â©s do event
+// import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
 
 public class NetworkHandler {
     private static final String VERSION = "1.0.5";
@@ -109,3 +110,66 @@ public class NetworkHandler {
         return context.player().orElse(null);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

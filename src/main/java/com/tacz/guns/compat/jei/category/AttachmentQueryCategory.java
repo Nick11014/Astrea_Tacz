@@ -50,10 +50,10 @@ public class AttachmentQueryCategory implements IRecipeCategory<AttachmentQueryE
         List<ItemStack> allowGunStacks = entry.getAllowGunStacks();
         List<ItemStack> extraAllowGunStacks = entry.getExtraAllowGunStacks();
 
-        // 先把配件放在正中央
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¦Ã…Â Ã…Â ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã‚Â¤Ã‚Â®
         builder.addSlot(RecipeIngredientRole.OUTPUT, 72, 0).addItemStack(attachmentStack).setBackground(slotDraw, -1, -1);
 
-        // 逐行画枪械，每行 9 个
+        // ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â¯Ã‚ÂÃƒÂ¨Ã‚Â¡Ã…â€™ 9 ÃƒÂ¤Ã‚Â¸Ã‚Âª
         int xOffset = 0;
         int yOffset = 20;
         for (int i = 0; i < allowGunStacks.size(); i++) {
@@ -65,7 +65,7 @@ public class AttachmentQueryCategory implements IRecipeCategory<AttachmentQueryE
             builder.addSlot(RecipeIngredientRole.INPUT, xOffset, yOffset).addItemStack(gun).setBackground(slotDraw, -1, -1);
         }
 
-        // 如果超出上限，那么最后一格则为来回跳变的物品
+        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¤Ã‚Â¹Ã‹â€ ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ¨Ã‚Â·Ã‚Â³ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã¢â‚¬Å“Ã‚Â
         if (!extraAllowGunStacks.isEmpty()) {
             builder.addSlot(RecipeIngredientRole.INPUT, xOffset + 18, yOffset).addItemStacks(extraAllowGunStacks).setBackground(slotDraw, -1, -1);
         }
@@ -92,3 +92,66 @@ public class AttachmentQueryCategory implements IRecipeCategory<AttachmentQueryE
         return iconDraw;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

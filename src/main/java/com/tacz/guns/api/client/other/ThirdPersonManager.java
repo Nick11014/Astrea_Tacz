@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.Map;
 
 /**
- * 简单的第三人称持枪动画 Manager
+ * ÃƒÂ§Ã‚Â®Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¦Ã…â€™Ã‚ÂÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â» Manager
  */
 public final class ThirdPersonManager {
     private static final Map<String, IThirdPersonAnimation> CACHE = Maps.newHashMap();
@@ -79,3 +79,66 @@ public final class ThirdPersonManager {
         return CACHE.getOrDefault(name, DEFAULT);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ClientMessagePlayerCrawl(boolean isCrawl) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "client_player_crawl");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_crawl");
 
     public ClientMessagePlayerCrawl(FriendlyByteBuf buf) {
         this(buf.readBoolean());
@@ -39,3 +39,66 @@ public record ClientMessagePlayerCrawl(boolean isCrawl) implements CustomPacketP
         IGunOperator.fromLivingEntity(player).crawl(message.isCrawl);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,7 +19,7 @@ public class ClientAmmoBoxTooltip implements ClientTooltipComponent {
         this.ammo = tooltip.getAmmo();
         ItemStack ammoBox = tooltip.getAmmoBox();
         if (ammoBox.getItem() instanceof IAmmoBox box && box.isCreative(ammoBox)) {
-            this.count = Component.literal("∞");
+            this.count = Component.literal("ÃƒÂ¢Ã‹â€ Ã…Â¾");
         } else {
             this.count = Component.translatable("tooltip.tacz.ammo_box.count", tooltip.getCount());
         }
@@ -47,3 +47,66 @@ public class ClientAmmoBoxTooltip implements ClientTooltipComponent {
         pGuiGraphics.renderItem(ammo, pX, pY + 5);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -92,7 +92,7 @@ public class BedrockCubeBox implements BedrockCube {
                 float z = vertex.pos.z() / 16.0F;
                 Vector4f vector4f = new Vector4f(x, y, z, 1.0F);
                 vector4f.mul(matrix4f);
-                // Nova API NeoForge 1.21.1 - método fluente em vez de vertex() com muitos parâmetros
+                // Nova API NeoForge 1.21.1 - mÃƒÆ’Ã‚Â©todo fluente em vez de vertex() com muitos parÃƒÆ’Ã‚Â¢metros
                 consumer.addVertex(vector4f.x(), vector4f.y(), vector4f.z())
                         .setColor(red, green, blue, alpha)
                         .setUv(vertex.u, vertex.v)
@@ -103,3 +103,66 @@ public class BedrockCubeBox implements BedrockCube {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

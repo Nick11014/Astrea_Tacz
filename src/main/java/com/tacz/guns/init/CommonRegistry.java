@@ -21,8 +21,8 @@ public final class CommonRegistry {
         
         // Registrar DataComponents
         event.enqueueWork(() -> {
-            // Os DataComponents são registrados automaticamente pelo DeferredRegister
-            // quando o registro é anexado ao event bus do mod
+            // Os DataComponents sÃƒÆ’Ã‚Â£o registrados automaticamente pelo DeferredRegister
+            // quando o registro ÃƒÆ’Ã‚Â© anexado ao event bus do mod
         });
     }
 
@@ -47,3 +47,66 @@ public final class CommonRegistry {
         event.addRepositorySource(GunPackLoader.INSTANCE);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

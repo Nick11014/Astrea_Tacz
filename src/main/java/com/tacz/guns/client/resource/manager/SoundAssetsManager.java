@@ -21,8 +21,8 @@ import java.nio.ByteBuffer;
 import java.util.Map;
 
 /**
- * Gerenciador de assets de som baseado no padrão SuperbWarfare 1.21.1
- * Implementação mínima - OggAudioStream foi removido no NeoForge 1.21.1
+ * Gerenciador de assets de som baseado no padrÃƒÆ’Ã‚Â£o SuperbWarfare 1.21.1
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - OggAudioStream foi removido no NeoForge 1.21.1
  */
 public class SoundAssetsManager extends SimplePreparableReloadListener<Map<ResourceLocation, SoundAssetsManager.SoundData>> {
     public record SoundData(ByteBuffer byteBuffer, AudioFormat audioFormat) {
@@ -38,7 +38,7 @@ public class SoundAssetsManager extends SimplePreparableReloadListener<Map<Resou
         Map<ResourceLocation, SoundData> output = Maps.newHashMap();
         
         // TODO: OggAudioStream foi removido no NeoForge 1.21.1
-        // Funcionalidade temporariamente desabilitada até encontrar alternativa
+        // Funcionalidade temporariamente desabilitada atÃƒÆ’Ã‚Â© encontrar alternativa
         /*
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             ResourceLocation resourcelocation = entry.getKey();
@@ -68,3 +68,66 @@ public class SoundAssetsManager extends SimplePreparableReloadListener<Map<Resou
         return dataMap.get(id);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

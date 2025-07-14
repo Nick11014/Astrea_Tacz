@@ -12,9 +12,9 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
- * 生物被枪械子弹击杀时触发的事件
+ * ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¨Ã‚Â¢Ã‚Â«ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¦Ã‚ÂÃ¢â€šÂ¬ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
  * 
- * TODO: Implementação mínima até KubeJSGunEventPoster ser habilitado
+ * TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© KubeJSGunEventPoster ser habilitado
  */
 public class EntityKillByGunEvent extends Event /* implements KubeJSGunEventPoster<EntityKillByGunEvent> */ {
     private final Entity bullet;
@@ -48,7 +48,7 @@ public class EntityKillByGunEvent extends Event /* implements KubeJSGunEventPost
     }
 
     /**
-     * 在逻辑客户端不保证能用
+     * ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬ËœÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ¨Ã‚Â¯Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨
      */
     public Entity getBullet() {
         return bullet;
@@ -95,3 +95,66 @@ public class EntityKillByGunEvent extends Event /* implements KubeJSGunEventPost
         return gunDisplayId;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

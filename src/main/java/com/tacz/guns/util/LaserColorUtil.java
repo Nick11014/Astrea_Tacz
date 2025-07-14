@@ -7,7 +7,7 @@ import com.tacz.guns.client.resource.pojo.display.LaserConfig;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Implementação mínima estratégica para LaserColorUtil
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica para LaserColorUtil
  * TODO: Expandir quando GunDisplayInstance e ClientAttachmentIndex estiverem completos
  */
 public class LaserColorUtil {
@@ -16,7 +16,7 @@ public class LaserColorUtil {
             return defaultConfig.getDefaultColor();
         }
 
-        // TODO: Implementar quando ItemStack estiver disponível
+        // TODO: Implementar quando ItemStack estiver disponÃƒÆ’Ã‚Â­vel
         // if (stack.getItem() instanceof IAttachment iAttachment) {
         //     if (iAttachment.hasCustomLaserColor(stack)) {
         //         return iAttachment.getLaserColor(stack);
@@ -41,7 +41,7 @@ public class LaserColorUtil {
             return 0xFF0000;
         }
 
-        // TODO: Implementar quando ItemStack e dependências estiverem disponíveis
+        // TODO: Implementar quando ItemStack e dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
         // if (stack.getItem() instanceof IAttachment iAttachment) {
         //     if (iAttachment.hasCustomLaserColor(stack)) {
         //         return iAttachment.getLaserColor(stack);
@@ -68,8 +68,8 @@ public class LaserColorUtil {
     }
 
     /**
-     * Método utilitário para obter cor padrão de laser
-     * @param defaultColor cor padrão em formato hex
+     * MÃƒÆ’Ã‚Â©todo utilitÃƒÆ’Ã‚Â¡rio para obter cor padrÃƒÆ’Ã‚Â£o de laser
+     * @param defaultColor cor padrÃƒÆ’Ã‚Â£o em formato hex
      * @return cor formatada
      */
     public static int getDefaultLaserColor(int defaultColor) {
@@ -77,11 +77,74 @@ public class LaserColorUtil {
     }
 
     /**
-     * Método utilitário para validar cor de laser
+     * MÃƒÆ’Ã‚Â©todo utilitÃƒÆ’Ã‚Â¡rio para validar cor de laser
      * @param color cor a ser validada
-     * @return true se a cor é válida
+     * @return true se a cor ÃƒÆ’Ã‚Â© vÃƒÆ’Ã‚Â¡lida
      */
     public static boolean isValidLaserColor(int color) {
         return color >= 0x000000 && color <= 0xFFFFFF;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

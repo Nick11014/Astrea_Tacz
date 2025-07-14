@@ -3,7 +3,7 @@ package com.tacz.guns.client.resource.manager;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonParseException;
 import com.tacz.guns.GunMod;
-// TODO: Implementação mínima - sistema de animação GLTF desabilitado temporariamente
+// TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - sistema de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o GLTF desabilitado temporariamente
 // import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
 import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.pojo.animation.gltf.RawAnimationStructure;
@@ -23,8 +23,8 @@ import java.util.Map;
 
 
 /**
- * Gerenciador de animações GLTF - Implementação mínima
- * TODO: Sistema de animação GLTF desabilitado temporariamente
+ * Gerenciador de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes GLTF - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
+ * TODO: Sistema de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o GLTF desabilitado temporariamente
  */
 public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLocation, Object>> {
     private static final Marker MARKER = MarkerManager.getMarker("GltfAnimationLoader");
@@ -37,7 +37,7 @@ public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLoca
     protected Map<ResourceLocation, Object> prepare(ResourceManager pResourceManager, ProfilerFiller pProfiler) {
         Map<ResourceLocation, Object> output = Maps.newHashMap();
         
-        // TODO: Implementação mínima - sistema de animação GLTF desabilitado temporariamente
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - sistema de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o GLTF desabilitado temporariamente
         /*
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             ResourceLocation resourcelocation = entry.getKey();
@@ -66,3 +66,66 @@ public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLoca
         return dataMap.get(id);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,7 +7,7 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.item.builder.AttachmentItemBuilder;
 import com.tacz.guns.api.item.gun.FireMode;
-// TODO: [MIGRAÇÃO] GunDisplayInstance desabilitado temporariamente
+// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] GunDisplayInstance desabilitado temporariamente
 // import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.init.ModDataComponents;
@@ -28,14 +28,14 @@ import java.util.Objects;
  * Accessor para dados de armas usando DataComponents (NeoForge 1.21.1+)
  * 
  * Esta interface migra do sistema NBT legado para o novo sistema DataComponent.
- * Todos os métodos agora usam os DataComponents definidos em ModDataComponents
+ * Todos os mÃƒÆ’Ã‚Â©todos agora usam os DataComponents definidos em ModDataComponents
  * em vez de acessar diretamente as tags NBT.
  * 
- * @see ModDataComponents para as definições dos componentes
+ * @see ModDataComponents para as definiÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes dos componentes
  */
 public interface GunItemDataAccessor extends IGun {
-    // NOTA: As constantes abaixo são mantidas para compatibilidade com sistemas 
-    // de acessórios que ainda usam CompoundTag temporariamente
+    // NOTA: As constantes abaixo sÃƒÆ’Ã‚Â£o mantidas para compatibilidade com sistemas 
+    // de acessÃƒÆ’Ã‚Â³rios que ainda usam CompoundTag temporariamente
     String GUN_ID_TAG = "GunId";
     String GUN_FIRE_MODE_TAG = "GunFireMode";
     String GUN_HAS_BULLET_IN_BARREL = "HasBulletInBarrel";
@@ -186,7 +186,7 @@ public interface GunItemDataAccessor extends IGun {
 
     @Override
     default void reduceCurrentAmmoCount(ItemStack gun) {
-        // 只在不使用背包直读的情况下减少 AmmoCount
+        // ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â°Ã¢â‚¬Ëœ AmmoCount
         if (!useInventoryAmmo(gun)) {
             setCurrentAmmoCount(gun, getCurrentAmmoCount(gun) - 1);
         }
@@ -238,9 +238,9 @@ public interface GunItemDataAccessor extends IGun {
         }
         String key = GUN_ATTACHMENT_BASE + type.name();
         if (attachments.contains(key, Tag.TAG_COMPOUND)) {
-            // TODO: [MIGRAÇÃO NeoForge 1.21.1] BuiltInRegistries API mudou, precisa ser adaptado
+            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] BuiltInRegistries API mudou, precisa ser adaptado
             // return ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), attachments.getCompound(key)).orElse(ItemStack.EMPTY);
-            return ItemStack.EMPTY; // Placeholder temporário
+            return ItemStack.EMPTY; // Placeholder temporÃƒÆ’Ã‚Â¡rio
         }
         return ItemStack.EMPTY;
     }
@@ -282,9 +282,9 @@ public interface GunItemDataAccessor extends IGun {
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
         String key = GUN_ATTACHMENT_BASE + iAttachment.getType(attachment).name();
-        // TODO: [MIGRAÇÃO NeoForge 1.21.1] ItemStack.save API mudou, precisa ser adaptado
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] ItemStack.save API mudou, precisa ser adaptado
         // CompoundTag attachmentTag = (CompoundTag) attachment.save(BuiltInRegistries.ITEM.asLookup());
-        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporário
+        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporÃƒÆ’Ã‚Â¡rio
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
@@ -296,9 +296,9 @@ public interface GunItemDataAccessor extends IGun {
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
         String key = GUN_ATTACHMENT_BASE + type.name();
-        // TODO: [MIGRAÇÃO NeoForge 1.21.1] ItemStack.save API mudou, precisa ser adaptado
+        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] ItemStack.save API mudou, precisa ser adaptado
         // CompoundTag attachmentTag = (CompoundTag) ItemStack.EMPTY.save(BuiltInRegistries.ITEM.asLookup());
-        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporário
+        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporÃƒÆ’Ã‚Â¡rio
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
@@ -318,7 +318,7 @@ public interface GunItemDataAccessor extends IGun {
             Object attachmentIndexObj = TimelessAPI.getClientAttachmentIndex(scopeId).orElse(null);
             float[] zooms = null;
             if (attachmentIndexObj != null) {
-                // TODO: [MIGRAÇÃO] Implementar acesso a getZoom quando Object Strategy for resolvida
+                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Implementar acesso a getZoom quando Object Strategy for resolvida
                 // ClientAttachmentIndex attachmentIndex = (ClientAttachmentIndex) attachmentIndexObj;
                 // zooms = attachmentIndex.getZoom();
             }
@@ -328,10 +328,10 @@ public interface GunItemDataAccessor extends IGun {
         } else {
             Object gunDisplayObj = TimelessAPI.getGunDisplay(gunItem).orElse(null);
             if (gunDisplayObj != null) {
-                // TODO: [MIGRAÇÃO] Implementar acesso a getIronZoom quando Object Strategy for resolvida
+                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Implementar acesso a getIronZoom quando Object Strategy for resolvida
                 // GunDisplayInstance gunDisplay = (GunDisplayInstance) gunDisplayObj;
                 // zoom = gunDisplay.getIronZoom();
-                zoom = 1f; // Placeholder temporário
+                zoom = 1f; // Placeholder temporÃƒÆ’Ã‚Â¡rio
             } else {
                 zoom = 1f;
             }
@@ -401,11 +401,11 @@ public interface GunItemDataAccessor extends IGun {
             CommonGunIndex index = (CommonGunIndex) indexObj;
             Object heatDataObj = index.getGunData().getHeatData();
             if (heatDataObj != null) {
-                // TODO: [MIGRAÇÃO] Implementar acesso a métodos de HeatData quando Object Strategy for resolvida
+                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Implementar acesso a mÃƒÆ’Ã‚Â©todos de HeatData quando Object Strategy for resolvida
                 // GunHeatData heatData = (GunHeatData) heatDataObj;
                 // float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
                 // return Mth.lerp(heatPercentage, heatData.getMinRpmMod(), heatData.getMaxRpmMod());
-                return 1f; // Placeholder temporário
+                return 1f; // Placeholder temporÃƒÆ’Ã‚Â¡rio
             }
         }
         return 1f;
@@ -418,13 +418,76 @@ public interface GunItemDataAccessor extends IGun {
             CommonGunIndex index = (CommonGunIndex) indexObj;
             Object heatDataObj = index.getGunData().getHeatData();
             if (heatDataObj != null) {
-                // TODO: [MIGRAÇÃO] Implementar acesso a métodos de HeatData quando Object Strategy for resolvida
+                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Implementar acesso a mÃƒÆ’Ã‚Â©todos de HeatData quando Object Strategy for resolvida
                 // GunHeatData heatData = (GunHeatData) heatDataObj;
                 // float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
                 // return Mth.lerp(heatPercentage, heatData.getMinInaccuracy(), heatData.getMaxInaccuracy());
-                return 1f; // Placeholder temporário
+                return 1f; // Placeholder temporÃƒÆ’Ã‚Â¡rio
             }
         }
         return 1f;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

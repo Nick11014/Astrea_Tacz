@@ -10,7 +10,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import static com.tacz.guns.GunMod.MOD_ID;
 
 public record ServerMessageSwapItem() implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(MOD_ID, "server_swap_item");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(MOD_ID, "server_swap_item");
 
     public ServerMessageSwapItem(FriendlyByteBuf buf) {
         this();
@@ -30,3 +30,66 @@ public record ServerMessageSwapItem() implements CustomPacketPayload {
         context.enqueueWork(() -> NeoForge.EVENT_BUS.post(new SwapItemWithOffHand()));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

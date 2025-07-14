@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 public record ServerMessageGunKill(int bulletId, int killEntityId, int attackerId, ResourceLocation gunId,
                                    ResourceLocation gunDisplayId, float baseDamage, boolean isHeadShot,
                                    float headshotMultiplier) implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "server_gun_kill");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_kill");
 
     public ServerMessageGunKill(FriendlyByteBuf buf) {
         this(buf.readInt(), buf.readInt(), buf.readInt(), buf.readResourceLocation(), buf.readResourceLocation(), buf.readFloat(), buf.readBoolean(), buf.readFloat());
@@ -59,3 +59,66 @@ public record ServerMessageGunKill(int bulletId, int killEntityId, int attackerI
         NeoForge.EVENT_BUS.post(new EntityKillByGunEvent(bullet, killedEntity, attacker, message.gunId, message.gunDisplayId, message.baseDamage, null, message.isHeadShot, message.headshotMultiplier, LogicalSide.CLIENT));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

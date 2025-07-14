@@ -33,7 +33,7 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
     public JsonProperty<Modifier> readJson(String json) {
         WeightModifier.Data data = CommonAssetsManager.GSON.fromJson(json, WeightModifier.Data.class);
         Modifier weightModifier = data.getWeightModifier();
-        // 兼容旧版本写法
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
         if (weightModifier == null) {
             weightModifier = new Modifier();
             weightModifier.setAddend(data.getWeightAddend());
@@ -68,8 +68,8 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
         double modifierPercent = Math.min(modifier / 20.0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.weight";
-        String positivelyString = String.format("%.2fkg §c(+%.2f)", modifiedValue, modifier);
-        String negativelyString = String.format("%.2fkg §a(%.2f)", modifiedValue, modifier);
+        String positivelyString = String.format("%.2fkg Ãƒâ€šÃ‚Â§c(+%.2f)", modifiedValue, modifier);
+        String negativelyString = String.format("%.2fkg Ãƒâ€šÃ‚Â§a(%.2f)", modifiedValue, modifier);
         String defaultString = String.format("%.2fkg", modifiedValue);
         boolean positivelyBetter = false;
 
@@ -93,11 +93,11 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
             Modifier value = this.getValue();
             float adsAddendTime = 0;
             if (value != null) {
-                // 传入默认值 0.2 进行测试，看看最终结果差值
+                // ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ 0.2 ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‚ÂµÃ¢â‚¬Â¹ÃƒÂ¨Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚Â·Ã‚Â®ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                 double eval = AttachmentPropertyManager.eval(value, 0.2);
                 adsAddendTime = (float) (eval - 0.2);
             }
-            // 添加文本提示
+            // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â¤Ã‚Âº
             if (adsAddendTime > 0) {
                 components.add(Component.translatable("tooltip.tacz.attachment.weight.increase").withStyle(ChatFormatting.RED));
             } else if (adsAddendTime < 0) {
@@ -126,3 +126,66 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

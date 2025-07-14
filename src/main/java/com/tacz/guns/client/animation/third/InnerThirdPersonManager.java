@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class InnerThirdPersonManager {
     public static void setRotationAnglesHead(LivingEntity entityIn, ModelPart rightArm, ModelPart leftArm, ModelPart body, ModelPart head, float limbSwingAmount) {
-        // 游戏暂停时不进行动画计算，否则会 StackOverflow
+        // ÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¦Ã…Â¡Ã¢â‚¬Å¡ÃƒÂ¥Ã‚ÂÃ…â€œÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¼Ã…Â¡ StackOverflow
         if (Minecraft.getInstance().isPaused()) {
             return;
         }
@@ -31,7 +31,7 @@ public class InnerThirdPersonManager {
                 PlayerAnimatorCompat.stopAllAnimation(entityIn);
                 return;
             }
-            // 睡觉、爬梯、游泳、鞘翅飞行不播放第三人称动画
+            // ÃƒÂ§Ã‚ÂÃ‚Â¡ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â°ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã‹â€ Ã‚Â¬ÃƒÂ¦Ã‚Â¢Ã‚Â¯ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‚Â³Ã‚Â³ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã…Â¾Ã‹Å“ÃƒÂ§Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ©Ã‚Â£Ã…Â¾ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
             if (entityIn.getPose() == Pose.SLEEPING || entityIn.onClimbable() || entityIn.isSwimming() || entityIn.getPose() == Pose.FALL_FLYING) {
                 PlayerAnimatorCompat.stopAllAnimation(entityIn);
                 return;
@@ -57,3 +57,66 @@ public class InnerThirdPersonManager {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

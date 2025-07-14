@@ -25,7 +25,7 @@ public class OtherConfig {
     }
 
     /**
-     * 这些配置不加入 cloth config api 中
+     * ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚ÂºÃ¢â‚¬ÂºÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ cloth config api ÃƒÂ¤Ã‚Â¸Ã‚Â­
      */
     private static void serverConfig(ModConfigSpec.Builder builder) {
         builder.comment("DEV: Server hitbox offset (If the hitbox is ahead, fill in a negative number)");
@@ -38,3 +38,66 @@ public class OtherConfig {
         SERVER_HITBOX_LATENCY_MAX_SAVE_MS = builder.defineInRange("ServerHitboxLatencyMaxSaveMs", 1000, 250, Double.MAX_VALUE);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

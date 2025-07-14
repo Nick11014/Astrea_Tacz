@@ -60,7 +60,7 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
     @Override
     @OnlyIn(Dist.CLIENT)
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
-        // 必要数据获取
+        // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         float modifiedDistance = cacheProperty.getCache(EffectiveRangeModifier.ID);
         LinkedList<DistanceDamagePair> damageAdjust = null;
         if (gunData.getBulletData().getExtraDamage() != null) {
@@ -82,8 +82,8 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         double modifierPercent = Math.min(modifier / 100.0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.effective_range";
-        String positivelyString = String.format("%.1fm §a(+%.1f)", effectiveRange, modifier);
-        String negativelyString = String.format("%.1fm §c(%.1f)", effectiveRange, modifier);
+        String positivelyString = String.format("%.1fm Ãƒâ€šÃ‚Â§a(+%.1f)", effectiveRange, modifier);
+        String negativelyString = String.format("%.1fm Ãƒâ€šÃ‚Â§c(%.1f)", effectiveRange, modifier);
         String defaultString = String.format("%.1fm", effectiveRange);
         boolean positivelyBetter = true;
 
@@ -127,3 +127,66 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

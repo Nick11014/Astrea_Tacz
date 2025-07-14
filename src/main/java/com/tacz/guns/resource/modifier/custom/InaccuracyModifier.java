@@ -51,13 +51,13 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         Modifier sneakInaccuracy = data.getSneakInaccuracy();
         Modifier lieInaccuracy = data.getLieInaccuracy();
 
-        // 兼容旧版本
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬
         if (inaccuracy == null) {
             float inaccuracyAddendTime = data.getInaccuracyAddendTime();
             inaccuracy = new Modifier();
             inaccuracy.setAddend(inaccuracyAddendTime);
         }
-        // inaccuracy会影响除了aim(开镜)和sneak(战术姿态)之外的所有类型
+        // inaccuracyÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¥Ã‚Â½Ã‚Â±ÃƒÂ¥Ã¢â‚¬Å“Ã‚ÂÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â aim(ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ©Ã¢â‚¬Â¢Ã…â€œ)ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™sneak(ÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¦Ã…â€œÃ‚Â¯ÃƒÂ¥Ã‚Â§Ã‚Â¿ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â)ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
         Map<InaccuracyType, Modifier> jsonProperties = Maps.newHashMap();
         for (InaccuracyType type : InaccuracyType.values()) {
             switch (type) {
@@ -101,7 +101,7 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
     public void eval(List<Map<InaccuracyType, Modifier>> modifiedValues, CacheValue<Map<InaccuracyType, Float>> cache) {
         Map<InaccuracyType, Float> result = Maps.newHashMap();
         Map<InaccuracyType, List<Modifier>> tmpModified = Maps.newHashMap();
-        // 先遍历，把配件的数据集中在一起
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã…Â Ã…Â ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ©Ã¢â‚¬ÂºÃ¢â‚¬Â ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¨Ã‚ÂµÃ‚Â·
         for (InaccuracyType type : InaccuracyType.values()) {
             List<Modifier> tmp = Lists.newArrayList();
             for (Map<InaccuracyType, Modifier> value : modifiedValues) {
@@ -112,12 +112,12 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
             }
             tmpModified.put(type, tmp);
         }
-        // 一次性把配件的数据计算完
+        // ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¦Ã…Â Ã…Â ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚Â®Ã…â€™
         cache.getValue().forEach((type, value) -> {
             double eval = AttachmentPropertyManager.eval(tmpModified.get(type), cache.getValue().get(type));
             result.put(type, (float) eval);
         });
-        // 写入缓存
+        // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“
         cache.setValue(result);
     }
 
@@ -138,22 +138,22 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
 
     private @NotNull DiagramsData buildNormal(GunData gunData, AttachmentCacheProperty cacheProperty, GunFireModeAdjustData fireModeAdjustData,
                                               InaccuracyType type, String titleKey, double referenceValue) {
-        // 腰射扩散
+        // ÃƒÂ¨Ã¢â‚¬Â¦Ã‚Â°ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â£
         float inaccuracy = gunData.getInaccuracy(type);
         if (fireModeAdjustData != null) {
             inaccuracy += fireModeAdjustData.getOtherInaccuracy();
         }
 
         float modifiedValue = cacheProperty.<Map<InaccuracyType, Float>>getCache(InaccuracyModifier.ID).get(type);
-        // 差值
+        // ÃƒÂ¥Ã‚Â·Ã‚Â®ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
         float inaccuracyModifier = modifiedValue - inaccuracy;
-        // 默认值百分比
+        // ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã¢â€žÂ¢Ã‚Â¾ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â ÃƒÂ¦Ã‚Â¯Ã¢â‚¬Â
         double standInaccuracyPercent = Math.min(inaccuracy / referenceValue, 1);
-        // 差值百分比
+        // ÃƒÂ¥Ã‚Â·Ã‚Â®ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã¢â€žÂ¢Ã‚Â¾ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â ÃƒÂ¦Ã‚Â¯Ã¢â‚¬Â
         double inaccuracyModifierPercent = Math.min(inaccuracyModifier / referenceValue, 1);
 
-        String positivelyString = String.format("%.2f §c(+%.2f)", modifiedValue, inaccuracyModifier);
-        String negativelyString = String.format("%.2f §a(%.2f)", modifiedValue, inaccuracyModifier);
+        String positivelyString = String.format("%.2f Ãƒâ€šÃ‚Â§c(+%.2f)", modifiedValue, inaccuracyModifier);
+        String negativelyString = String.format("%.2f Ãƒâ€šÃ‚Â§a(%.2f)", modifiedValue, inaccuracyModifier);
         String defaultString = String.format("%.2f", modifiedValue);
         boolean positivelyBetter = false;
 
@@ -179,8 +179,8 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         double inaccuracyModifierPercent = Mth.clamp(inaccuracyModifier, 0f, 1f);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.aim_inaccuracy";
-        String positivelyString = String.format("%.1f%% §a(+%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
-        String negativelyString = String.format("%.1f%% §c(%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
+        String positivelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§a(+%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
+        String negativelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§c(%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
         String defaultString = String.format("%.1f%%", modifiedValue * 100);
         boolean positivelyBetter = true;
 
@@ -211,11 +211,11 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
             var value = this.getValue();
             float inaccuracyAddend = 0;
             if (value != null && value.containsKey(type)) {
-                // 随便传入个默认值进行测试，看看最终结果差值
+                // ÃƒÂ©Ã…Â¡Ã‚ÂÃƒÂ¤Ã‚Â¾Ã‚Â¿ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‚ÂµÃ¢â‚¬Â¹ÃƒÂ¨Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚Â·Ã‚Â®ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                 double eval = AttachmentPropertyManager.eval(value.get(type), 5);
                 inaccuracyAddend = (float) (eval - 5);
             }
-            // 添加文本提示
+            // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â¤Ã‚Âº
             if (inaccuracyAddend > 0) {
                 components.add(Component.translatable(decreaseKey).withStyle(ChatFormatting.RED));
             } else if (inaccuracyAddend < 0) {
@@ -271,3 +271,66 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

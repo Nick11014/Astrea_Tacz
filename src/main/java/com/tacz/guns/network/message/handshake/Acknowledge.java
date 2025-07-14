@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
 public record Acknowledge() implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = new ResourceLocation(GunMod.MOD_ID, "acknowledge");
+    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "acknowledge");
     public static final Marker ACKNOWLEDGE_MARKER = MarkerManager.getMarker("HANDSHAKE_ACKNOWLEDGE");
 
     public Acknowledge(FriendlyByteBuf buf) {
@@ -30,3 +30,66 @@ public record Acknowledge() implements CustomPacketPayload {
         GunMod.LOGGER.debug(ACKNOWLEDGE_MARKER, "Received acknowledgement from client");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

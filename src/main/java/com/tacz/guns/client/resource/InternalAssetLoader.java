@@ -23,40 +23,40 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-// 这个理论上已经不需要了
+// ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¨Ã‚Â®Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¥Ã‚Â·Ã‚Â²ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â 
 public class InternalAssetLoader {
-    // 曳光弹模型
-    public static final ResourceLocation DEFAULT_BULLET_TEXTURE = new ResourceLocation(GunMod.MOD_ID, "textures/entity/basic_bullet.png");
-    public static final ResourceLocation DEFAULT_BULLET_MODEL = new ResourceLocation(GunMod.MOD_ID, "models/bedrock/basic_bullet.json");
-    // 射击标靶车
-    public static final ResourceLocation TARGET_MINECART_MODEL_LOCATION = new ResourceLocation(GunMod.MOD_ID, "models/bedrock/target_minecart.json");
-    public static final ResourceLocation TARGET_MINECART_TEXTURE_LOCATION = new ResourceLocation(GunMod.MOD_ID, "textures/entity/target_minecart.png");
-    public static final ResourceLocation ENTITY_EMPTY_TEXTURE = new ResourceLocation(GunMod.MOD_ID, "textures/entity/empty.png");
-    // 射击标靶
-    public static final ResourceLocation TARGET_MODEL_LOCATION = new ResourceLocation(GunMod.MOD_ID, "models/bedrock/target.json");
-    public static final ResourceLocation TARGET_TEXTURE_LOCATION = new ResourceLocation(GunMod.MOD_ID, "textures/block/target.png");
-    // 雕像
-    public static final ResourceLocation STATUE_MODEL_LOCATION = new ResourceLocation(GunMod.MOD_ID, "models/bedrock/statue.json");
-    public static final ResourceLocation STATUE_TEXTURE_LOCATION = new ResourceLocation(GunMod.MOD_ID, "textures/block/statue.png");
-    // 改装台
-    public static final ResourceLocation SMITH_TABLE_MODEL_LOCATION = new ResourceLocation(GunMod.MOD_ID, "models/bedrock/gun_smith_table.json");
-    public static final ResourceLocation SMITH_TABLE_TEXTURE_LOCATION = new ResourceLocation(GunMod.MOD_ID, "textures/block/gun_smith_table.png");
-    // 默认动画
-    private static final ResourceLocation DEFAULT_PISTOL_ANIMATIONS_LOC = new ResourceLocation(GunMod.MOD_ID, "animations/pistol_default.animation.json");
-    private static final ResourceLocation DEFAULT_RIFLE_ANIMATIONS_LOC = new ResourceLocation(GunMod.MOD_ID, "animations/rifle_default.animation.json");
-    // 内部资源缓存
+    // ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
+    public static final ResourceLocation DEFAULT_BULLET_TEXTURE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/entity/basic_bullet.png");
+    public static final ResourceLocation DEFAULT_BULLET_MODEL = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "models/bedrock/basic_bullet.json");
+    // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ©Ã‚ÂÃ‚Â¶ÃƒÂ¨Ã‚Â½Ã‚Â¦
+    public static final ResourceLocation TARGET_MINECART_MODEL_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "models/bedrock/target_minecart.json");
+    public static final ResourceLocation TARGET_MINECART_TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/entity/target_minecart.png");
+    public static final ResourceLocation ENTITY_EMPTY_TEXTURE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/entity/empty.png");
+    // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ©Ã‚ÂÃ‚Â¶
+    public static final ResourceLocation TARGET_MODEL_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "models/bedrock/target.json");
+    public static final ResourceLocation TARGET_TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/block/target.png");
+    // ÃƒÂ©Ã¢â‚¬ÂºÃ¢â‚¬Â¢ÃƒÂ¥Ã†â€™Ã‚Â
+    public static final ResourceLocation STATUE_MODEL_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "models/bedrock/statue.json");
+    public static final ResourceLocation STATUE_TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/block/statue.png");
+    // ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ¥Ã‚ÂÃ‚Â°
+    public static final ResourceLocation SMITH_TABLE_MODEL_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "models/bedrock/gun_smith_table.json");
+    public static final ResourceLocation SMITH_TABLE_TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "textures/block/gun_smith_table.png");
+    // ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
+    private static final ResourceLocation DEFAULT_PISTOL_ANIMATIONS_LOC = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "animations/pistol_default.animation.json");
+    private static final ResourceLocation DEFAULT_RIFLE_ANIMATIONS_LOC = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "animations/rifle_default.animation.json");
+    // ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ¨Ã‚ÂµÃ¢â‚¬Å¾ÃƒÂ¦Ã‚ÂºÃ‚ÂÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“
     private static final Map<ResourceLocation, BedrockModel> BEDROCK_MODELS = Maps.newHashMap();
     private static List<ObjectAnimation> defaultPistolAnimations;
     private static List<ObjectAnimation> defaultRifleAnimations;
 
     public static void onResourceReload() {
-        // 加载默认动画文件
+        // ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶
         BedrockAnimationFile pistolAnimationFile = loadAnimations(DEFAULT_PISTOL_ANIMATIONS_LOC);
         BedrockAnimationFile rifleAnimationFile = loadAnimations(DEFAULT_RIFLE_ANIMATIONS_LOC);
         defaultPistolAnimations = Animations.createAnimationFromBedrock(pistolAnimationFile);
         defaultRifleAnimations = Animations.createAnimationFromBedrock(rifleAnimationFile);
 
-        // 加载代码直接调用的基岩版模型
+        // ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¤Ã‚Â»Ã‚Â£ÃƒÂ§Ã‚Â Ã‚ÂÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
         BEDROCK_MODELS.clear();
         loadBedrockModels(InternalAssetLoader.SMITH_TABLE_MODEL_LOCATION);
         loadBedrockModels(InternalAssetLoader.TARGET_MODEL_LOCATION);
@@ -96,3 +96,66 @@ public class InternalAssetLoader {
         return Optional.ofNullable(BEDROCK_MODELS.get(location));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

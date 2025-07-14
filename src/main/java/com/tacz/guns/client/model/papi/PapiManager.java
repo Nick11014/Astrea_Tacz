@@ -13,12 +13,12 @@ import java.util.function.Function;
 public final class PapiManager {
     private static final Map<String, Function<ItemStack, String>> PAPI = Maps.newHashMap();
 
-    // 注册，não sei onde colocar, colocando aqui primeiro
+    // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ¯Ã‚Â¼Ã…â€™nÃƒÆ’Ã‚Â£o sei onde colocar, colocando aqui primeiro
     static {
         addPapi(PlayerNamePapi.NAME, new PlayerNamePapi());
-        // TODO: ✅ AmmoCountPapi habilitado com implementação mínima
+        // TODO: ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ AmmoCountPapi habilitado com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
         addPapi(AmmoCountPapi.NAME, new AmmoCountPapi());
-        // TODO: ✅ FASE B - RestCountPapi e GunNamePapi habilitados com implementação mínima
+        // TODO: ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ FASE B - RestCountPapi e GunNamePapi habilitados com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
         addPapi(RestCountPapi.NAME, new RestCountPapi());
         addPapi(GunNamePapi.NAME, new GunNamePapi());
     }
@@ -38,3 +38,66 @@ public final class PapiManager {
         return text;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

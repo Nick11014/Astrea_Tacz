@@ -17,8 +17,8 @@ import org.joml.Matrix4f;
 import java.util.EnumMap;
 
 /**
- * Implementação mínima estratégica para AttachmentRender
- * TODO: Expandir quando PoseStack, VertexConsumer, BedrockAttachmentModel e outras dependências estiverem disponíveis
+ * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica para AttachmentRender
+ * TODO: Expandir quando PoseStack, VertexConsumer, BedrockAttachmentModel e outras dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
  */
 public class AttachmentRender implements IFunctionalRenderer {
     private final BedrockGunModel bedrockGunModel;
@@ -30,15 +30,15 @@ public class AttachmentRender implements IFunctionalRenderer {
     }
 
     public static void renderAttachment(ItemStack attachmentItem, ItemStack gunItem, PoseStack poseStack, ItemDisplayContext transformType, int light, int overlay) {
-        // TODO: Implementação expandida - usando RenderDistance e validações
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o expandida - usando RenderDistance e validaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
         if (attachmentItem == null || gunItem == null || poseStack == null) {
             return;
         }
 
-        // Verificar distância de renderização
+        // Verificar distÃƒÆ’Ã‚Â¢ncia de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
         boolean highPoly = RenderDistance.inRenderHighPolyModelDistance(poseStack);
 
-        // TODO: Implementar renderização completa quando tipos estiverem disponíveis
+        // TODO: Implementar renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         // poseStack.translate(0, -1.5, 0);
         // if (attachmentItem.getItem() instanceof IAttachment iAttachment) {
         //     ResourceLocation attachmentId = iAttachment.getAttachmentId(attachmentItem);
@@ -47,7 +47,7 @@ public class AttachmentRender implements IFunctionalRenderer {
         //         Object texture = attachmentIndex.getModelTexture();
         //         
         //         if (model != null && texture != null) {
-        //             // Usar LOD se necessário
+        //             // Usar LOD se necessÃƒÆ’Ã‚Â¡rio
         //             if (!highPoly) {
         //                 Object lodModel = attachmentIndex.getLodModel();
         //                 if (lodModel != null) {
@@ -72,12 +72,12 @@ public class AttachmentRender implements IFunctionalRenderer {
 
     @Override
     public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        // TODO: Implementação expandida usando bedrockGunModel e type
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o expandida usando bedrockGunModel e type
         if (bedrockGunModel == null || type == null) {
             return;
         }
 
-        // TODO: Implementar quando EnumMap e outros tipos estiverem disponíveis
+        // TODO: Implementar quando EnumMap e outros tipos estiverem disponÃƒÆ’Ã‚Â­veis
         EnumMap<AttachmentType, ItemStack> currentAttachmentItem = bedrockGunModel.getCurrentAttachmentItem();
         ItemStack attachmentItem = currentAttachmentItem.get(type);
         if (attachmentItem != null && !attachmentItem.isEmpty()) {
@@ -91,49 +91,112 @@ public class AttachmentRender implements IFunctionalRenderer {
             });
         }
 
-        // Implementação mínima atual
+        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atual
         renderBasic(poseStack, vertexBuffer, transformType, light, overlay);
     }
 
     private void renderBasic(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        // Renderização básica que funciona com Object strategy
+        // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica que funciona com Object strategy
         if (RenderDistance.inRenderHighPolyModelDistance(poseStack)) {
-            // Renderização de alta qualidade
-            // TODO: Expandir quando mais dependências estiverem disponíveis
+            // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de alta qualidade
+            // TODO: Expandir quando mais dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
         } else {
-            // Renderização LOD
-            // TODO: Implementar quando sistema LOD estiver disponível
+            // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o LOD
+            // TODO: Implementar quando sistema LOD estiver disponÃƒÆ’Ã‚Â­vel
         }
     }
 
-    // Métodos utilitários adicionais
+    // MÃƒÆ’Ã‚Â©todos utilitÃƒÆ’Ã‚Â¡rios adicionais
 
     /**
-     * Obtém o modelo de arma associado
+     * ObtÃƒÆ’Ã‚Â©m o modelo de arma associado
      */
     public BedrockGunModel getGunModel() {
         return bedrockGunModel;
     }
 
     /**
-     * Obtém o tipo de attachment
+     * ObtÃƒÆ’Ã‚Â©m o tipo de attachment
      */
     public AttachmentType getAttachmentType() {
         return type;
     }
 
     /**
-     * Verifica se o renderizador está configurado corretamente
+     * Verifica se o renderizador estÃƒÆ’Ã‚Â¡ configurado corretamente
      */
     public boolean isValidConfiguration() {
         return bedrockGunModel != null && type != null;
     }
 
     /**
-     * Obtém estatísticas do renderizador
+     * ObtÃƒÆ’Ã‚Â©m estatÃƒÆ’Ã‚Â­sticas do renderizador
      */
     public String getStats() {
         return String.format("AttachmentRender{type=%s, gunModel=%s}", 
                 type, bedrockGunModel != null ? "present" : "null");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

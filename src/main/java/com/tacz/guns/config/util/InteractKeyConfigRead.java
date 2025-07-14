@@ -20,7 +20,7 @@ import java.util.List;
 public class InteractKeyConfigRead {
     private static final EnumMap<Type, List<ResourceLocation>> WHITELIST = new EnumMap<>(Type.class);
     private static final EnumMap<Type, List<ResourceLocation>> BLACKLIST = new EnumMap<>(Type.class);
-    // Migração NeoForge 1.21.1: ResourceLocation.fromNamespaceAndPath()
+    // MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: ResourceLocation.fromNamespaceAndPath()
     private static final TagKey<Block> WHITELIST_BLOCKS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "interact_key/whitelist"));
     private static final TagKey<Block> BLACKLIST_BLOCKS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "interact_key/blacklist"));
     private static final TagKey<EntityType<?>> WHITELIST_ENTITIES = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "interact_key/whitelist"));
@@ -36,19 +36,19 @@ public class InteractKeyConfigRead {
     }
 
     public static boolean canInteractBlock(BlockState block) {
-        // Migração NeoForge 1.21.1: BuiltInRegistries em vez de ForgeRegistries
+        // MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: BuiltInRegistries em vez de ForgeRegistries
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(block.getBlock());
         if (blockId == null) {
             return false;
         }
-        // 先检查黑名单
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢
         if (BLACKLIST.containsKey(Type.BLOCK) && BLACKLIST.get(Type.BLOCK).contains(blockId)) {
             return false;
         }
         if (block.is(BLACKLIST_BLOCKS)) {
             return false;
         }
-        // 再检查白名单
+        // ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢
         if (WHITELIST.containsKey(Type.BLOCK) && WHITELIST.get(Type.BLOCK).contains(blockId)) {
             return true;
         }
@@ -56,19 +56,19 @@ public class InteractKeyConfigRead {
     }
 
     public static boolean canInteractEntity(Entity entity) {
-        // Migração NeoForge 1.21.1: BuiltInRegistries em vez de ForgeRegistries
+        // MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: BuiltInRegistries em vez de ForgeRegistries
         ResourceLocation entityId = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
         if (entityId == null) {
             return false;
         }
-        // 先检查黑名单
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢
         if (BLACKLIST.containsKey(Type.ENTITY) && BLACKLIST.get(Type.ENTITY).contains(entityId)) {
             return false;
         }
         if (entity.getType().is(BLACKLIST_ENTITIES)) {
             return false;
         }
-        // 再检查白名单
+        // ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ§Ã¢â€žÂ¢Ã‚Â½ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢
         if (WHITELIST.containsKey(Type.ENTITY) && WHITELIST.get(Type.ENTITY).contains(entityId)) {
             return true;
         }
@@ -83,7 +83,7 @@ public class InteractKeyConfigRead {
             if (StringUtils.isBlank(data)) {
                 return;
             }
-            // Migração NeoForge 1.21.1: ResourceLocation.parse() ou new ResourceLocation() para parsing de string
+            // MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: ResourceLocation.parse() ou ResourceLocation.fromNamespaceAndPath() para parsing de string
             ResourceLocation id = ResourceLocation.parse(data);
             storeList.computeIfAbsent(type, t -> Lists.newArrayList()).add(id);
         });
@@ -93,3 +93,66 @@ public class InteractKeyConfigRead {
         BLOCK, ENTITY;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

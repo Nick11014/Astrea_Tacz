@@ -1,6 +1,6 @@
 package com.tacz.guns.client.model.papi;
 
-// TODO: Implementação mínima - dependências complexas comentadas temporariamente
+// TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - dependÃƒÆ’Ã‚Âªncias complexas comentadas temporariamente
 // import com.tacz.guns.api.TimelessAPI;
 // import com.tacz.guns.api.item.IGun;
 // import com.tacz.guns.client.resource.index.ClientGunIndex;
@@ -13,7 +13,7 @@ public class GunNamePapi implements Function<ItemStack, String> {
 
     @Override
     public String apply(ItemStack stack) {
-        // TODO: Implementação mínima - retorna placeholder temporariamente
+        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna placeholder temporariamente
         /*
         IGun iGun = IGun.getIGunOrNull(stack);
         if (iGun != null) {
@@ -25,6 +25,69 @@ public class GunNamePapi implements Function<ItemStack, String> {
             return gunIndex.getName();
         }
         */
-        return "N/A"; // Placeholder para implementação mínima
+        return "N/A"; // Placeholder para implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

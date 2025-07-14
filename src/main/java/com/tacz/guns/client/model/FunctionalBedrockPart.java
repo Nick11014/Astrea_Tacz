@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.function.Function;
 
 /**
- * visible的优先级低于FunctionalBedrockPart，当visible为false的时候，仍然会执行functionalRenderers
+ * visibleÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â¼Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ§Ã‚ÂºÃ‚Â§ÃƒÂ¤Ã‚Â½Ã…Â½ÃƒÂ¤Ã‚ÂºÃ…Â½FunctionalBedrockPartÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“visibleÃƒÂ¤Ã‚Â¸Ã‚ÂºfalseÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¥Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚ÂÃƒÂ§Ã¢â‚¬Å¾Ã‚Â¶ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™functionalRenderers
  */
 public class FunctionalBedrockPart extends BedrockPart {
     public @Nullable Function<BedrockPart, IFunctionalRenderer> functionalRenderer;
@@ -47,7 +47,7 @@ public class FunctionalBedrockPart extends BedrockPart {
     public void render(PoseStack poseStack, ItemDisplayContext transformType, VertexConsumer consumer, int light, int overlay, float red, float green, float blue, float alpha) {
         int cubePackedLight = light;
         if (illuminated) {
-            // 最大亮度
+            // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¤Ã‚ÂºÃ‚Â®ÃƒÂ¥Ã‚ÂºÃ‚Â¦
             cubePackedLight = LightTexture.pack(15, 15);
         }
 
@@ -77,3 +77,66 @@ public class FunctionalBedrockPart extends BedrockPart {
         poseStack.popPose();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

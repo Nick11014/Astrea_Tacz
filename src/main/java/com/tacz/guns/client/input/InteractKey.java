@@ -100,18 +100,81 @@ public class InteractKey {
         BlockPos blockPos = blockHitResult.getBlockPos();
         BlockState block = player.level().getBlockState(blockPos);
         if (InteractKeyConfigRead.canInteractBlock(block)) {
-            // TODO: Migração NeoForge 1.21.1 - startUseItem() virou privado
-            // Alternativa: simular interação diretamente ou usar outro método
-            // mc.startUseItem(); // Método removido no NeoForge 1.21.1
+            // TODO: MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1 - startUseItem() virou privado
+            // Alternativa: simular interaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o diretamente ou usar outro mÃƒÆ’Ã‚Â©todo
+            // mc.startUseItem(); // MÃƒÆ’Ã‚Â©todo removido no NeoForge 1.21.1
         }
     }
 
     private static void interactEntity(EntityHitResult entityHitResult, Minecraft mc) {
         Entity entity = entityHitResult.getEntity();
         if (InteractKeyConfigRead.canInteractEntity(entity)) {
-            // TODO: Migração NeoForge 1.21.1 - startUseItem() virou privado
-            // Alternativa: simular interação diretamente ou usar outro método
-            // mc.startUseItem(); // Método removido no NeoForge 1.21.1
+            // TODO: MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1 - startUseItem() virou privado
+            // Alternativa: simular interaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o diretamente ou usar outro mÃƒÆ’Ã‚Â©todo
+            // mc.startUseItem(); // MÃƒÆ’Ã‚Â©todo removido no NeoForge 1.21.1
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

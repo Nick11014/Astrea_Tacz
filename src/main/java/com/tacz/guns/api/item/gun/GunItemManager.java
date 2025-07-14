@@ -11,7 +11,7 @@ public class GunItemManager {
     private static final Map<String, DeferredHolder<Item, ? extends AbstractGunItem>> GUN_ITEM_MAP = Maps.newHashMap();
 
     /**
-     * 建议在 RegistryEvent.Register<Item> 事件时注册此枪械变种
+     * ÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¨Ã‚Â®Ã‚Â®ÃƒÂ¥Ã…â€œÃ‚Â¨ RegistryEvent.Register<Item> ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ§Ã‚Â§Ã‚Â
      */
     public static void registerGunItem(String name, DeferredHolder<Item, ? extends AbstractGunItem> registryObject) {
         GUN_ITEM_MAP.put(name, registryObject);
@@ -25,3 +25,66 @@ public class GunItemManager {
         return GUN_ITEM_MAP.values();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

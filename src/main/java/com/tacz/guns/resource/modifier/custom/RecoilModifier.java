@@ -25,8 +25,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
- * left 是 Pitch
- * right 是 Yaw
+ * left ÃƒÂ¦Ã‹Å“Ã‚Â¯ Pitch
+ * right ÃƒÂ¦Ã‹Å“Ã‚Â¯ Yaw
  */
 public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifier>, ParameterizedCachePair<Float, Float>> {
     public static final String ID = GunProperties.RECOIL.name();
@@ -47,7 +47,7 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
         RecoilModifier.Data data = CommonAssetsManager.GSON.fromJson(json, RecoilModifier.Data.class);
         NewRecoilData newRecoilData = data.newRecoilData;
         OldRecoilData oldRecoilData = data.oldRecoilData;
-        // 兼容旧版本写法
+        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
         if (newRecoilData == null && oldRecoilData != null) {
             Modifier pitch = new Modifier();
             Modifier yaw = new Modifier();
@@ -95,8 +95,8 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
         double pitchPercent = Math.min(pitch / 5.0, 1);
         double pitchModifierPercent = Math.min(pitchModifier / 5.0, 1);
         String pitchTitleKey = "gui.tacz.gun_refit.property_diagrams.pitch";
-        String pitchPositivelyString = String.format("%.2f §c(+%.2f)", modifiedPitch, pitchModifier);
-        String pitchNegativelyString = String.format("%.2f §a(%.2f)", modifiedPitch, pitchModifier);
+        String pitchPositivelyString = String.format("%.2f Ãƒâ€šÃ‚Â§c(+%.2f)", modifiedPitch, pitchModifier);
+        String pitchNegativelyString = String.format("%.2f Ãƒâ€šÃ‚Â§a(%.2f)", modifiedPitch, pitchModifier);
         String pitchDefaultString = String.format("%.2f", modifiedPitch);
 
         double yaw = propertyCache.right().getDefaultValue();
@@ -105,8 +105,8 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
         double yawPercent = Math.min(yaw / 5.0, 1);
         double yawModifierPercent = Math.min(yawModifier / 5.0, 1);
         String yawTitleKey = "gui.tacz.gun_refit.property_diagrams.yaw";
-        String yawPositivelyString = String.format("%.2f §c(+%.2f)", modifiedYaw, yawModifier);
-        String yawNegativelyString = String.format("%.2f §a(%.2f)", modifiedYaw, yawModifier);
+        String yawPositivelyString = String.format("%.2f Ãƒâ€šÃ‚Â§c(+%.2f)", modifiedYaw, yawModifier);
+        String yawNegativelyString = String.format("%.2f Ãƒâ€šÃ‚Â§a(%.2f)", modifiedYaw, yawModifier);
         String yawDefaultString = String.format("%.2f", modifiedYaw);
 
         boolean positivelyBetter = false;
@@ -205,3 +205,66 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
