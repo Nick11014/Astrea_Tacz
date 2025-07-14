@@ -43,7 +43,7 @@ public class LocalPlayerReload {
                 return;
             }
             // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-            NetworkHandler.CHANNEL.sendToServer(new ClientMessagePlayerCancelReload());
+            NetworkHandler.sendToServer(new ClientMessagePlayerCancelReload());
             // ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¥Ã…â€œÃ‚Â°ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Ëœ
             this.cancelReload(display);
         });
@@ -81,7 +81,7 @@ public class LocalPlayerReload {
                 return;
             }
             // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-            NetworkHandler.CHANNEL.sendToServer(new ClientMessagePlayerReloadGun());
+            NetworkHandler.sendToServer(new ClientMessagePlayerReloadGun());
             // ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ reload ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹
             this.doReload(gunItem, display, gunData, mainHandItem);
         });

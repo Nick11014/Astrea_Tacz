@@ -70,7 +70,7 @@ public class LivingEntityShoot {
             long alpha = System.currentTimeMillis() - data.baseTimestamp - timestamp;
             if (alpha < -300 || alpha > 300 + tickTime * 2) { // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ +- 300ms ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â½Ã¢â‚¬ËœÃƒÂ§Ã‚Â»Ã…â€œÃƒÂ¦Ã‚Â³Ã‚Â¢ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã‚ÂªÃ¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã‚Â¤Ã‚Â§ 2 ÃƒÂ¤Ã‚Â¸Ã‚Âª tick time ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´(ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸2ÃƒÂ¤Ã‚Â¸Ã‚Âª tick)
                 if (shooter instanceof ServerPlayer player) {
-                    NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new ServerMessageSyncBaseTimestamp());
+                    NetworkHandler.sendToClientPlayer($3, new ServerMessageSyncBaseTimestamp());
                 }
                 return ShootResult.NETWORK_FAIL;
             }

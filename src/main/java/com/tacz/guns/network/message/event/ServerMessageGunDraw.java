@@ -21,7 +21,7 @@ public record ServerMessageGunDraw(int entityId, ItemStack previousGunItem,
     public static final CustomPacketPayload.Type<ServerMessageGunDraw> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_draw"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunDraw> STREAM_CODEC = StreamCodec.composite(
-        StreamCodec.VAR_INT, ServerMessageGunDraw::entityId,
+        net.minecraft.network.codec.ByteBufCodecs.VAR_INT, ServerMessageGunDraw::entityId,
         ItemStack.STREAM_CODEC, ServerMessageGunDraw::previousGunItem,
         ItemStack.STREAM_CODEC, ServerMessageGunDraw::currentGunItem,
         ServerMessageGunDraw::new

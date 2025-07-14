@@ -20,7 +20,7 @@ public record ServerMessageGunFire(int shooterId, ItemStack gunItemStack) implem
     public static final CustomPacketPayload.Type<ServerMessageGunFire> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_fire"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunFire> STREAM_CODEC = StreamCodec.composite(
-        StreamCodec.VAR_INT, ServerMessageGunFire::shooterId,
+        net.minecraft.network.codec.ByteBufCodecs.VAR_INT, ServerMessageGunFire::shooterId,
         ItemStack.STREAM_CODEC, ServerMessageGunFire::gunItemStack,
         ServerMessageGunFire::new
     );
