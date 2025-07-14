@@ -73,7 +73,7 @@ public class LocalPlayerDraw {
             data.drawFuture = LocalPlayerDataHolder.SCHEDULED_EXECUTOR_SERVICE.schedule(() -> {
                 Minecraft.getInstance().submitAsync(() -> {
                     SoundPlayManager.stopPlayGunSound();
-                    SoundPlayManager.playDrawSound(player, display);
+                    SoundPlayManager.playDrawSound(player, display.getDisplayInstance());
                 });
             }, putAwayTime, TimeUnit.MILLISECONDS);
         });
@@ -87,7 +87,7 @@ public class LocalPlayerDraw {
             Minecraft.getInstance().submitAsync(() -> {
                 // ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¶ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ 
                 SoundPlayManager.stopPlayGunSound();
-                SoundPlayManager.playPutAwaySound(player, display);
+                SoundPlayManager.playPutAwaySound(player, display.getDisplayInstance());
             });
         });
     }

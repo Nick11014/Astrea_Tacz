@@ -143,7 +143,15 @@ public class CameraSetupEvent {
                     })
                     .orElse(
                         TimelessAPI.getGunDisplay(stack)
-                                .map(GunDisplayInstance::getZoomModelFov)
+                                .map(clientGunIndex -> {
+                                    // TODO: [MIGRAÇÃO] Implementar getZoomModelFov em ClientGunIndex
+                                    // Por enquanto, usamos um valor padrão
+                                    GunDisplayInstance display = clientGunIndex.getDisplayInstance();
+                                    if (display != null) {
+                                        return display.getZoomModelFov();
+                                    }
+                                    return (float) event.getFOV();
+                                })
                                 .orElse((float) event.getFOV())
                     );
             if (livingEntity instanceof LocalPlayer localPlayer) {

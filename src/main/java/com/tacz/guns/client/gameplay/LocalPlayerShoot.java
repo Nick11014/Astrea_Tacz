@@ -110,13 +110,13 @@ public class LocalPlayerShoot {
         boolean noAmmo = (useInventoryAmmo && !hasInventoryAmmo) || (!useInventoryAmmo && ammoCount < 1);
 
         if (noAmmo) {
-            SoundPlayManager.playDryFireSound(player, display);
+            SoundPlayManager.playDryFireSound(player, display.getDisplayInstance());
             return ShootResult.NO_AMMO;
         }
 
         // Verificação de superaquecimento
         if (gunData.hasHeatData() && iGun.isOverheatLocked(mainHandItem)) {
-            SoundPlayManager.playDryFireSound(player, display);
+            SoundPlayManager.playDryFireSound(player, display.getDisplayInstance());
             return ShootResult.OVERHEATED;
         }
 

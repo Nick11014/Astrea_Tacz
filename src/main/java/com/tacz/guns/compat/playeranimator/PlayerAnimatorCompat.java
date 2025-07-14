@@ -1,16 +1,42 @@
 package com.tacz.guns.compat.playeranimator;
 
+import com.tacz.guns.client.resource.GunDisplayInstance;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
+import java.util.function.Consumer;
+
 /**
- * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para compatibilidade com PlayerAnimator
- * TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Expandir quando PlayerAnimator for completamente integrado
+ * Implementação mínima para compatibilidade com PlayerAnimator
+ * TODO: [MIGRAÇÃO] Expandir quando PlayerAnimator for completamente integrado
  */
 public class PlayerAnimatorCompat {
     
     /**
-     * Verifica se o PlayerAnimator estÃƒÆ’Ã‚Â¡ carregado
+     * Inicializa o PlayerAnimator (se disponível)
+     */
+    public static void init() {
+        // TODO: Implementar inicialização real do PlayerAnimator
+    }
+    
+    /**
+     * Verifica se o PlayerAnimator está instalado
+     */
+    public static boolean isInstalled() {
+        // TODO: Implementar verificação real do mod PlayerAnimator
+        return false; // Retorna false por enquanto para evitar problemas
+    }
+    
+    /**
+     * Registra um reload listener para o PlayerAnimator
+     */
+    public static void registerReloadListener(Consumer<Object> registerFunction) {
+        // TODO: Implementar registro real quando PlayerAnimator estiver disponível
+    }
+    
+    /**
+     * Verifica se o PlayerAnimator está carregado
      * TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real quando mod estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static boolean isLoaded() {
@@ -39,6 +65,24 @@ public class PlayerAnimatorCompat {
     }
     
     /**
+     * Para todas as animações de um jogador (com parâmetro int)
+     */
+    public static void stopAllAnimation(LivingEntity entity, int parameter) {
+        // TODO: Implementar parada real de animações
+        // PlayerAnimatorAPI.stopAllAnimation(entity, parameter);
+        // Por enquanto não faz nada para evitar crashes
+    }
+    
+    /**
+     * Para todas as animações de um jogador
+     */
+    public static void stopAllAnimation(LivingEntity entity) {
+        // TODO: Implementar parada real de animações
+        // PlayerAnimatorAPI.stopAllAnimation(entity);
+        // Por enquanto não faz nada para evitar crashes
+    }
+    
+    /**
      * Verifica se uma animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â¡ sendo reproduzida
      * TODO: Implementar quando PlayerAnimator estiver disponÃƒÆ’Ã‚Â­vel
      */
@@ -46,6 +90,31 @@ public class PlayerAnimatorCompat {
         // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real
         // return PlayerAnimatorAPI.isAnimationPlaying(player, animationId);
         return false; // Retorna false por enquanto
+    }
+    
+    /**
+     * Verifica se o PlayerAnimator tem animação de terceira pessoa para uma entidade
+     */
+    public static boolean hasPlayerAnimator3rd(LivingEntity entity, GunDisplayInstance display) {
+        // TODO: Implementar verificação real
+        // Se GunDisplayInstance for null (durante migração), retorna false
+        if (display == null) {
+            return false;
+        }
+        return false; // Retorna false por enquanto
+    }
+    
+    /**
+     * Plays uma animação de terceira pessoa para a entidade
+     */
+    public static void playAnimation(LivingEntity entity, GunDisplayInstance display, float limbSwingAmount) {
+        // TODO: Implementar chamada real para PlayerAnimator
+        // Se GunDisplayInstance for null (durante migração), não faz nada
+        if (display == null) {
+            return;
+        }
+        // PlayerAnimatorAPI.playAnimation(entity, display, limbSwingAmount);
+        // Por enquanto não faz nada para evitar crashes
     }
     
     /**

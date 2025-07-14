@@ -72,7 +72,7 @@ public class LocalPlayerBolt {
             // ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ 
             AnimationStateMachine<?> animationStateMachine = display.getAnimationStateMachine();
             if (animationStateMachine != null) {
-                SoundPlayManager.playBoltSound(player, display);
+                SoundPlayManager.playBoltSound(player, display.getDisplayInstance());
                 animationStateMachine.trigger(GunAnimationConstant.INPUT_BOLT);
             }
         });
