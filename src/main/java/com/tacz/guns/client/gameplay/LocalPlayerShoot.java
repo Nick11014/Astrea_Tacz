@@ -134,7 +134,7 @@ public class LocalPlayerShoot {
         // Dispara o evento de disparo (GunShootEvent)
         GunShootEvent gunShootEvent = new GunShootEvent(player, mainHandItem, LogicalSide.CLIENT);
         NeoForge.EVENT_BUS.post(gunShootEvent);
-        if (gunShootEvent.isCancelable() && gunShootEvent.isCanceled()) {
+        if (gunShootEvent.isCancelable() && gunShootEvent.isCancelled()) {
             return ShootResult.FORGE_EVENT_CANCEL;
         }
 
@@ -189,7 +189,7 @@ public class LocalPlayerShoot {
                 // Dispara o evento de "tiro" (GunFireEvent)
                 GunFireEvent gunFireEvent = new GunFireEvent(player, mainHandItem, LogicalSide.CLIENT);
                 NeoForge.EVENT_BUS.post(gunFireEvent);
-                boolean fire = !(gunFireEvent.isCancelable() && gunFireEvent.isCanceled());
+                boolean fire = !(gunFireEvent.isCancelable() && gunFireEvent.isCancelled());
 
                 if (fire) {
                     // Aciona a animação de disparo

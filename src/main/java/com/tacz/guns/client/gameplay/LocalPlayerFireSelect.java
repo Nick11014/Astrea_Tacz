@@ -36,7 +36,7 @@ public class LocalPlayerFireSelect {
         }
         GunFireSelectEvent event = new GunFireSelectEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
         NeoForge.EVENT_BUS.post(event);
-        if (event.isCancelable() && event.isCanceled()) {
+        if (event.isCancelable() && event.isCancelled()) {
             return;
         }
 

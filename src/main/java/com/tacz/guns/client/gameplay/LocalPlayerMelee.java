@@ -81,7 +81,7 @@ public class LocalPlayerMelee {
         // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
         GunMeleeEvent gunMeleeEvent = new GunMeleeEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
         NeoForge.EVENT_BUS.post(gunMeleeEvent);
-        return !(gunMeleeEvent.isCancelable() && gunMeleeEvent.isCanceled());
+        return !(gunMeleeEvent.isCancelable() && gunMeleeEvent.isCancelled());
     }
 
     private void doMuzzleMelee(ClientGunIndex display) {

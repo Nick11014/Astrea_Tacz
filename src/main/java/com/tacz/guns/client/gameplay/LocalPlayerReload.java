@@ -89,7 +89,7 @@ public class LocalPlayerReload {
             // Dispara o evento de recarga e verifica se foi cancelado por outro mod
             GunReloadEvent gunReloadEvent = new GunReloadEvent(player, player.getMainHandItem(), LogicalSide.CLIENT);
             NeoForge.EVENT_BUS.post(gunReloadEvent);
-            if (gunReloadEvent.isCancelable() && gunReloadEvent.isCanceled()) {
+            if (gunReloadEvent.isCancelable() && gunReloadEvent.isCancelled()) {
                 return;
             }
 

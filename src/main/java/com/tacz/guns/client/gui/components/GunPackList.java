@@ -111,38 +111,14 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
     }
 
     protected int getScrollbarPosition() {
-        return this.x1 - 2;
+        // Usar getRowLeft() + getRowWidth() para calcular a posição do scrollbar
+        return this.getRowLeft() + this.getRowWidth() - 6; // 6 é a largura típica do scrollbar
     }
 
-    @Override
-    public void render(GuiGraphics pGuiGraphics, int pMouseX, int pMouseY, float pPartialTick) {
-        this.renderBackground(pGuiGraphics);
-        pGuiGraphics.fill(this.x0, this.y0, this.x1, this.y1, 0x80000000);
-        int i = this.getScrollbarPosition();
-        int j = i + 6;
-
-        this.enableScissor(pGuiGraphics);
-        this.renderList(pGuiGraphics, pMouseX, pMouseY, pPartialTick);
-        pGuiGraphics.disableScissor();
-
-        int i2 = this.getMaxScroll();
-        if (i2 > 0) {
-            int j2 = (int)((float)((this.y1 - this.y0) * (this.y1 - this.y0)) / (float)this.getMaxPosition());
-            j2 = Mth.clamp(j2, 32, this.y1 - this.y0 - 8);
-            int k1 = (int)this.getScrollAmount() * (this.y1 - this.y0 - j2) / i2 + this.y0;
-            if (k1 < this.y0) {
-                k1 = this.y0;
-            }
-            pGuiGraphics.fill(i, k1, j, k1 + j2, -8355712);
-            pGuiGraphics.fill(i, k1, j - 1, k1 + j2 - 1, -4144960);
-        }
-        this.renderDecorations(pGuiGraphics, pMouseX, pMouseY);
-
-        RenderSystem.disableBlend();
-    }
 
     public int getRowLeft() {
-        return this.x0 + 4;
+        // getRowLeft() já é fornecido pela superclasse, mas pode ser customizado
+        return super.getRowLeft();
     }
 
     public int getRowWidth() {

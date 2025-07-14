@@ -8,10 +8,12 @@ import net.neoforged.fml.LogicalSide;
 /**
  * ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
  */
-public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<GunFireSelectEvent>{
+
+public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<GunFireSelectEvent> {
     private final LivingEntity shooter;
     private final ItemStack gunItemStack;
     private final LogicalSide logicalSide;
+    private boolean cancelled = false;
 
     public GunFireSelectEvent(LivingEntity shooter, ItemStack gunItemStack, LogicalSide side) {
         this.shooter = shooter;
@@ -20,9 +22,16 @@ public class GunFireSelectEvent extends Event implements KubeJSGunEventPoster<Gu
         postEventToKubeJS(this);
     }
 
-    // Cancelable event - mÃƒÆ’Ã‚Â©todo isCancelable() nÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
     }
 
     public LivingEntity getShooter() {
