@@ -4,6 +4,7 @@ import com.tacz.guns.client.gui.GunSmithTableScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +18,7 @@ public record ServerMessageCraft(int menuId) implements CustomPacketPayload {
     public static final CustomPacketPayload.Type<ServerMessageCraft> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "server_craft"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageCraft> STREAM_CODEC = StreamCodec.composite(
-        StreamCodec.VAR_INT, ServerMessageCraft::menuId,
+        ByteBufCodecs.VAR_INT, ServerMessageCraft::menuId,
         ServerMessageCraft::new
     );
 

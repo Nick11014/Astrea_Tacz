@@ -7,19 +7,12 @@ import com.tacz.guns.api.event.common.GunMeleeEvent;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.client.animation.statemachine.GunAnimationConstant;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.network.message.ClientMessagePlayerMelee;
 import com.tacz.guns.resource.pojo.data.attachment.MeleeData;
 import com.tacz.guns.resource.pojo.data.gun.GunDefaultMeleeData;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.fml.LogicalSide;
-
-import javax.annotation.Nullable;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -48,7 +41,7 @@ public class LocalPlayerMelee {
         if (!(mainHandItem.getItem() instanceof IGun iGun)) {
             return;
         }
-        GunDisplayInstance display = TimelessAPI.getGunDisplay(mainHandItem).orElse(null);
+        ClientGunIndex display = TimelessAPI.getGunDisplay(mainHandItem).orElse(null);
         if (display == null) {
             return;
         }
@@ -90,7 +83,7 @@ public class LocalPlayerMelee {
         return !NeoForge.EVENT_BUS.post(gunMeleeEvent).isCanceled();
     }
 
-    private void doMuzzleMelee(GunDisplayInstance display) {
+    private void doMuzzleMelee(ClientGunIndex display) {
         if (prepareMelee()) {
             SoundPlayManager.playMeleeBayonetSound(player, display);
             // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
@@ -103,7 +96,7 @@ public class LocalPlayerMelee {
         }
     }
 
-    private void doStockMelee(GunDisplayInstance display) {
+    private void doStockMelee(ClientGunIndex display) {
         if (prepareMelee()) {
             SoundPlayManager.playMeleeStockSound(player, display);
             // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
@@ -116,7 +109,7 @@ public class LocalPlayerMelee {
         }
     }
 
-    private void doPushMelee(GunDisplayInstance display) {
+    private void doPushMelee(ClientGunIndex display) {
         if (prepareMelee()) {
             // ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ 
             SoundPlayManager.playMeleePushSound(player, display);

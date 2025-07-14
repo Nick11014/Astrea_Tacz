@@ -3,6 +3,7 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.GunMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +18,7 @@ public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPa
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageLevelUp> STREAM_CODEC = StreamCodec.composite(
         ItemStack.STREAM_CODEC, ServerMessageLevelUp::gun,
-        StreamCodec.INT, ServerMessageLevelUp::level,
+        ByteBufCodecs.INT, ServerMessageLevelUp::level,
         ServerMessageLevelUp::new
     );
 

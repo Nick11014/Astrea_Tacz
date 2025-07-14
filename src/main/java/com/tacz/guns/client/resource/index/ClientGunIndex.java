@@ -124,6 +124,19 @@ public class ClientGunIndex {
         // For now, we'll return null and update the calling code to handle this case
         return null;
     }
+
+    // Temporary method for AnimationStateMachine compatibility during migration
+    public com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine<?> getAnimationStateMachine() {
+        // TODO: [MIGRAÇÃO] Implementar quando GunDisplayInstance estiver completo
+        // Durante a migração, retornamos null e o código deve verificar essa condição
+        return null;
+    }
+
+    // Temporary method for sound compatibility during migration
+    public net.minecraft.resources.ResourceLocation getSounds(String name) {
+        // TODO: [MIGRAÇÃO] Implementar quando o sistema de som estiver migrado
+        return null;
+    }
 }
 
 

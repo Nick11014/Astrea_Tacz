@@ -5,7 +5,8 @@ import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
 import com.tacz.guns.client.gameplay.LocalPlayerDataHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -18,20 +19,14 @@ import org.apache.logging.log4j.MarkerManager;
 import java.util.Objects;
 
 public record ServerMessageSyncBaseTimestamp() implements CustomPacketPayload {
-    public static final ResourceLocation TYPE = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_sync_base_timestamp");
+    public static final CustomPacketPayload.Type<ServerMessageSyncBaseTimestamp> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_sync_base_timestamp"));
     private static final Marker MARKER = MarkerManager.getMarker("SYNC_BASE_TIMESTAMP");
 
-    public ServerMessageSyncBaseTimestamp(FriendlyByteBuf buf) {
-        this();
-    }
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageSyncBaseTimestamp> STREAM_CODEC = 
+        StreamCodec.unit(new ServerMessageSyncBaseTimestamp());
 
     @Override
-    public void write(FriendlyByteBuf buf) {
-        // No data to write
-    }
-
-    @Override
-    public ResourceLocation type() {
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 
