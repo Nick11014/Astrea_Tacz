@@ -36,7 +36,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static net.neoforged.neoforge.client.gui.VanillaGuiLayers.CROSSHAIR;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = net.neoforged.api.distmarker.Dist.CLIENT, modid = GunMod.MOD_ID)
 public class ClientSetupEvent {
     @SubscribeEvent
     public static void onClientSetup(RegisterKeyMappingsEvent event) {
@@ -88,22 +88,29 @@ public class ClientSetupEvent {
         // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â·Ã‚Â±ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
 //        event.enqueueWork(ClientGunPackDownloadManager::init);
 
-//        // ÃƒÂ¤Ã‚Â¸Ã…Â½ player animator ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹
-//        event.enqueueWork(PlayerAnimatorCompat::init);
+                if (ModList.get().isLoaded("playeranimator")) {
+            event.enqueueWork(PlayerAnimatorCompat::init);
+        }
 
         // ÃƒÂ¤Ã‚Â¸Ã…Â½ Shoulder Surfing Reloaded ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹
-        event.enqueueWork(ShoulderSurfingCompat::init);
+        if (ModList.get().getModContainerById("shouldersurfingreloaded").isPresent()) {
+            event.enqueueWork(ShoulderSurfingCompat::init);
+        }
 
         // ÃƒÂ¤Ã‚Â¸Ã…Â½ Controllable ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹
-        event.enqueueWork(ControllableCompat::init);
+        if (ModList.get().isLoaded("controllable")) {
+            event.enqueueWork(ControllableCompat::init);
+        }
     }
 
     @SubscribeEvent
     public static void onClientResourceReload(RegisterClientReloadListenersEvent event) {
-        PlayerAnimatorCompat.init();
-        ClientAssetsManager.INSTANCE.reloadAndRegister(event::registerReloadListener);
-        if (PlayerAnimatorCompat.isInstalled()) {
-            PlayerAnimatorCompat.registerReloadListener(event::registerReloadListener);
+        if (ModList.get().isLoaded("playeranimator")) {
+            PlayerAnimatorCompat.init();
+            ClientAssetsManager.INSTANCE.reloadAndRegister(event::registerReloadListener);
+            
+        } else {
+            ClientAssetsManager.INSTANCE.reloadAndRegister(event::registerReloadListener);
         }
     }
 }

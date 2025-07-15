@@ -70,7 +70,7 @@ public interface IAttachment {
 
     void setLaserColor(ItemStack attachmentStack, int color);
 
-    class Slot<T> {
+    public class Slot<T> {
     }
 }
 

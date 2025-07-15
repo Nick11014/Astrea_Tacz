@@ -46,7 +46,7 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
     public void render(EntityKineticBullet bullet, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         ResourceLocation gunId = bullet.getGunId();
         ResourceLocation gunDisplayId = bullet.getGunDisplayId();
-        Optional<GunDisplayInstance> display = TimelessAPI.getGunDisplay(gunDisplayId, gunId);
+        Optional<ClientGunIndex> display = TimelessAPI.getClientGunIndex(gunId);
         if (display.isEmpty()) {
             return;
         }

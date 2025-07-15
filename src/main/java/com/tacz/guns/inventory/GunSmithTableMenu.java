@@ -27,6 +27,7 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.minecraft.server.level.ServerPlayer;
 
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import java.util.List;
 
 public class GunSmithTableMenu extends AbstractContainerMenu {
     public static final MenuType<GunSmithTableMenu> TYPE = IMenuTypeExtension.create((windowId, inv, data) -> {
@@ -69,7 +70,7 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
         Recipe<?> recipe = recipeManager.byKey(recipeId).map(net.minecraft.world.item.crafting.RecipeHolder::value).orElse(null);
         if (recipe instanceof GunSmithTableRecipe gunSmithTableRecipe) {
             boolean flag = TimelessAPI.getCommonBlockIndex(getBlockId()).map(blockIndex -> {
-                return blockIndex.getData().getTabs().stream().noneMatch(tab -> ((TabConfig) tab).id().equals(gunSmithTableRecipe.getTab()));
+                return blockIndex.getData().getTabs().stream().map(TabConfig.class::cast).noneMatch(tab -> tab.id().equals(gunSmithTableRecipe.getTab()));
             }).orElse(true);
             if (DefaultAssets.DEFAULT_BLOCK_ID.equals(getBlockId()) && !SyncConfig.ENABLE_TABLE_FILTER.get()) {
                 flag = false;
@@ -87,7 +88,7 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
         if (recipe == null) {
             return;
         }
-        player.getCapability(Capabilities.ItemHandler.ENTITY, null).ifPresent(handler -> {
+        player.getCapability(Capabilities.ItemHandler.ENTITY).ifPresent(handler -> {
             // ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ©Ã¢â€šÂ¬Ã‚Â ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â£ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¦Ã¢â‚¬â€œÃ¢â€žÂ¢
             if (!player.isCreative()) {
                 Int2IntArrayMap recordCount = new Int2IntArrayMap();

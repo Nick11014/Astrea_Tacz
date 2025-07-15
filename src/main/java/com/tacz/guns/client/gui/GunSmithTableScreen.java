@@ -57,6 +57,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -123,9 +124,10 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
 
         if (Minecraft.getInstance().level != null) {
             RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-            List<GunSmithTableRecipe> recipeList = recipeManager.getAllRecipesFor((RecipeType<GunSmithTableRecipe>) ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+            List<RecipeHolder<GunSmithTableRecipe>> recipeList = recipeManager.getRecipesFor((RecipeType<GunSmithTableRecipe>) ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
             Set<String> namespaces = filterList != null ? filterList.namespaceList() : null;
-            for (GunSmithTableRecipe recipe : recipeList) {
+            for (RecipeHolder<GunSmithTableRecipe> recipeHolder : recipeList) {
+                GunSmithTableRecipe recipe = recipeHolder.value();
                 ResourceLocation id = recipe.getId();
                 if (namespaces != null && !namespaces.contains(id.getNamespace())) {
                     continue;

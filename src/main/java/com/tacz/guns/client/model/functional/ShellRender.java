@@ -45,7 +45,7 @@ public class ShellRender implements IFunctionalRenderer {
         SHELL_QUEUE.offerLast(new Data(System.currentTimeMillis(), vector3f));
     }
 
-    private void renderShell(GunDisplayInstance display, GunData gunData, PoseStack poseStack, BedrockGunModel gunModel) {
+    private void renderShell(ClientGunIndex display, GunData gunData, PoseStack poseStack, BedrockGunModel gunModel) {
         ShellEjection shellEjection = display.getShellEjection();
         if (shellEjection == null) {
             SHELL_QUEUE.clear();

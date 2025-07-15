@@ -5,10 +5,11 @@ import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import com.tacz.guns.resource.pojo.data.attachment.Modifier;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.resource.pojo.data.gun.InaccuracyType;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +30,6 @@ import java.util.Map;
 public class AimInaccuracyModifier implements IAttachmentModifier<Map<InaccuracyType, Modifier>, Map<InaccuracyType, Float>> {
     public static final String ID = GunProperties.AIM_INACCURACY.name();
 
-    @Override
     public String getId() {
         return ID;
     }
@@ -41,7 +41,7 @@ public class AimInaccuracyModifier implements IAttachmentModifier<Map<Inaccuracy
     }
 
     @Override
-    public CacheValue<Map<InaccuracyType, Float>> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Map<InaccuracyType, Float>> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
         Map<InaccuracyType, Float> tmp = Maps.newHashMap();
         return new CacheValue<>(tmp);
     }
@@ -50,13 +50,14 @@ public class AimInaccuracyModifier implements IAttachmentModifier<Map<Inaccuracy
     public void eval(List<Map<InaccuracyType, Modifier>> modifiedValues, CacheValue<Map<InaccuracyType, Float>> cache) {
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         return List.of();
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    @OnlyIn(Dist.CLIENT)
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 0;

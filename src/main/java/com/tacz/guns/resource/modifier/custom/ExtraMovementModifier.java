@@ -2,9 +2,13 @@ package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
@@ -27,7 +31,6 @@ public class ExtraMovementModifier implements IAttachmentModifier<MoveSpeed, Mov
         return ID;
     }
 
-    @Override
     @SuppressWarnings("deprecation")
     public JsonProperty<MoveSpeed> readJson(String json) {
         ExtraMovementModifier.Data data = CommonAssetsManager.GSON.fromJson(json, ExtraMovementModifier.Data.class);

@@ -7,6 +7,8 @@ import com.tacz.guns.client.resource.pojo.display.LaserConfig;
 import com.tacz.guns.resource.pojo.AttachmentIndexPOJO;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 
+import net.minecraft.resources.ResourceLocation;
+
 import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Optional;
@@ -33,7 +35,7 @@ public class ClientAttachmentIndex {
     private float fov = 70f;
     private float[] viewsFov;
     private AttachmentLod attachmentLod;
-    private Map<String, Object> sounds; // TODO: Map<String, ResourceLocation> quando import estiver funcionando
+    private Map<String, ResourceLocation> sounds; // TODO: Map<String, ResourceLocation> quando import estiver funcionando
     private LaserConfig laserConfig; // ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do laser
 
     private ClientAttachmentIndex() {
@@ -139,6 +141,11 @@ public class ClientAttachmentIndex {
 
     public LaserConfig getLaserConfig() {
         return laserConfig;
+    }
+
+    @Nullable
+    public String getTooltipKey() {
+        return null;
     }
 
     // MÃƒÆ’Ã‚Â©todos adicionais requeridos pelo AttachmentItemRenderer (implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com Object strategy)

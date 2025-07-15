@@ -58,14 +58,13 @@ public class AmmoItem extends Item implements AmmoItemDataAccessor {
 
     public static NonNullList<ItemStack> fillItemCategory() {
         NonNullList<ItemStack> stacks = NonNullList.create();
-        TimelessAPI.getAllCommonAmmoIndex().forEach(entry -> {
+        TimelessAPI.getAllAmmos().forEach(entry -> {
             ItemStack itemStack = AmmoItemBuilder.create().setId(entry.getKey()).build();
             stacks.add(itemStack);
         });
         return stacks;
     }
 
-    @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             @Override

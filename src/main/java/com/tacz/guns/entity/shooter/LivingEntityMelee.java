@@ -50,10 +50,10 @@ public class LivingEntityMelee {
         }
         ItemStack currentGunItem = data.currentGunItem.get();
         // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
-        if (NeoForge.EVENT_BUS.post(new GunMeleeEvent(shooter, currentGunItem, LogicalSide.SERVER).isCanceled())) {
+        if (NeoForge.EVENT_BUS.post(new GunMeleeEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
             return;
         }
-        NetworkHandler.sendToTrackingEntity(new ServerMessageGunMelee(shooter.getId(), currentGunItem), shooter);
+        NetworkHandler.sendToClientPlayer(new ServerMessageGunMelee(shooter.getId(), currentGunItem), (ServerPlayer) shooter);
         if (currentGunItem.getItem() instanceof AbstractGunItem logicGun) {
             data.meleeTimestamp = System.currentTimeMillis();
 

@@ -2,9 +2,11 @@ package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
@@ -31,7 +33,7 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         return ID;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
     public JsonProperty<Modifier> readJson(String json) {
         Data data = CommonAssetsManager.GSON.fromJson(json, Data.class);
         return new EffectiveRangeJsonProperty(data.getEffectiveRange());
@@ -60,7 +62,8 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
+    @Override
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         float modifiedDistance = cacheProperty.getCache(EffectiveRangeModifier.ID);
         LinkedList<DistanceDamagePair> damageAdjust = null;
@@ -93,6 +96,7 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;

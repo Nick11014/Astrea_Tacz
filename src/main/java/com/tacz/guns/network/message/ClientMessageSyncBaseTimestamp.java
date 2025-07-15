@@ -35,7 +35,7 @@ public record ClientMessageSyncBaseTimestamp() implements CustomPacketPayload {
         if (player == null) {
             return;
         }
-        ShooterDataHolder dataHolder = IGunOperator.fromLivingEntity(player).getDataHolder();
+        ShooterDataHolder dataHolder = ((LivingEntityMixin) player).tacz$data;
         dataHolder.baseTimestamp = timestamp;
         GunMod.LOGGER.debug(MARKER, "Update server base timestamp: {}", dataHolder.baseTimestamp);
     }

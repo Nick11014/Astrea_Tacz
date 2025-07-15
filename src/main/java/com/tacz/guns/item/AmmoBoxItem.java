@@ -91,11 +91,10 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
     }
 
     private static int getTagColor(ItemStack stack) {
-        CompoundTag compoundtag = stack.getTagElement(DISPLAY_TAG);
+        CompoundTag compoundtag = stack.getOrCreateTagElement(DISPLAY_TAG);
         return compoundtag != null && compoundtag.contains(COLOR_TAG, Tag.TAG_ANY_NUMERIC) ? compoundtag.getInt(COLOR_TAG) : 0x727d6b;
     }
 
-    @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack pOther, Slot slot, ClickAction action, Player player, SlotAccess access) {
         return super.overrideOtherStackedOnMe(stack, pOther, slot, action, player, access);
     }

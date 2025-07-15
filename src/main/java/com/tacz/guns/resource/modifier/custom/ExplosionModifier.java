@@ -3,9 +3,13 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
@@ -27,7 +31,7 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
         return ID;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
     public JsonProperty<ExplosionModifierValue> readJson(String json) {
         ExplosionModifier.Data data = CommonAssetsManager.GSON.fromJson(json, ExplosionModifier.Data.class);
         return new ExplosionModifier.ExplosionJsonProperty(data.getExplosion());

@@ -71,7 +71,7 @@ public class GunHudOverlay implements LayeredDraw.Layer {
         ResourceLocation gunId = iGun.getGunId(stack);
 
         GunData gunData = TimelessAPI.getClientGunIndex(gunId).map(ClientGunIndex::getGunData).orElse(null);
-        GunDisplayInstance display = TimelessAPI.getGunDisplay(stack).orElse(null);
+        ClientGunIndex display = TimelessAPI.getGunDisplay(stack).orElse(null);
         if (gunData == null || display == null) {
             return;
         }

@@ -54,7 +54,7 @@ public class AttachmentItem extends Item implements AttachmentItemDataAccessor {
 
     public static NonNullList<ItemStack> fillItemCategory(AttachmentType type) {
         NonNullList<ItemStack> stacks = NonNullList.create();
-        TimelessAPI.getAllCommonAttachmentIndex().stream().sorted(idNameSort()).forEach(entry -> {
+        TimelessAPI.getAllAttachments().stream().sorted(idNameSort()).forEach(entry -> {
             if (entry.getValue().getPojo().isHidden()) {
                 return;
             }
@@ -66,7 +66,6 @@ public class AttachmentItem extends Item implements AttachmentItemDataAccessor {
         return stacks;
     }
 
-    @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             @Override

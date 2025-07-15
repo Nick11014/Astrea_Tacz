@@ -68,7 +68,7 @@ public class ReloadKey {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void autoReload(PlayerTickEvent event) {
-        if (event.phase != TickEvent.Phase.START || event.side != LogicalSide.CLIENT) {
+        if (event.getPhase() != PlayerTickEvent.Phase.START || event.getSide() != LogicalSide.CLIENT) {
             return;
         }
 

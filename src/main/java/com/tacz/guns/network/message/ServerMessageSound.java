@@ -3,6 +3,7 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -15,13 +16,13 @@ public record ServerMessageSound(int entityId, ResourceLocation gunId, ResourceL
     public static final CustomPacketPayload.Type<ServerMessageSound> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "server_sound"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageSound> STREAM_CODEC = StreamCodec.composite(
-        StreamCodec.VAR_INT, ServerMessageSound::entityId,
+        ByteBufCodecs.VAR_INT, ServerMessageSound::entityId,
         ResourceLocation.STREAM_CODEC, ServerMessageSound::gunId,
         ResourceLocation.STREAM_CODEC, ServerMessageSound::gunDisplayId,
-        StreamCodec.STRING, ServerMessageSound::soundName,
-        StreamCodec.FLOAT, ServerMessageSound::volume,
-        StreamCodec.FLOAT, ServerMessageSound::pitch,
-        StreamCodec.INT, ServerMessageSound::distance,
+        ByteBufCodecs.STRING, ServerMessageSound::soundName,
+        ByteBufCodecs.FLOAT, ServerMessageSound::volume,
+        ByteBufCodecs.FLOAT, ServerMessageSound::pitch,
+        ByteBufCodecs.INT, ServerMessageSound::distance,
         ServerMessageSound::new
     );
 
@@ -35,7 +36,7 @@ public record ServerMessageSound(int entityId, ResourceLocation gunId, ResourceL
     }
 
     public static void handle(ServerMessageSound message, IPayloadContext context) {
-        SoundPlayManager.playClientSound(message);
+        SoundPlayManager.playMessageSound(message);
     }
 }
 

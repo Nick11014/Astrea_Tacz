@@ -69,7 +69,7 @@ public record TabConfig(ResourceLocation id, String name, ItemStack icon) {
             }
             ResourceLocation id = context.deserialize(object.get("id"), ResourceLocation.class);
             String[] parts = GsonHelper.getAsString(GsonHelper.getAsJsonObject(object, "icon"), "id").split(":");
-            ResourceLocation itemId = new ResourceLocation(parts[0], parts[1]);
+            ResourceLocation itemId = ResourceLocation.fromNamespaceAndPath(parts[0], parts[1]);
             int count = GsonHelper.getAsInt(GsonHelper.getAsJsonObject(object, "icon"), "count", 1);
             ItemStack icon = net.minecraft.core.registries.BuiltInRegistries.ITEM.getOptional(itemId)
                     .map(item -> new ItemStack(item, count))

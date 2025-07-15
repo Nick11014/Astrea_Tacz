@@ -2,11 +2,12 @@ package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
@@ -35,7 +36,7 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
         return ID;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
     public JsonProperty<Modifier> readJson(String json) {
         Data data = CommonAssetsManager.GSON.fromJson(json, Data.class);
         return new KnockbackJsonProperty(data.getKnockback());
@@ -62,9 +63,7 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
         cache.setValue((float) eval);
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
@@ -93,6 +92,9 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    @OnlyIn(Dist.CLIENT)
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;

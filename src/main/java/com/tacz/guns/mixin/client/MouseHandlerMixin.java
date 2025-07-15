@@ -42,7 +42,7 @@ public class MouseHandlerMixin {
         float zoomLevel = 1;
         if (DefaultAssets.isEmptyAttachmentId(scopeId)) {
             // ÃƒÂ§Ã‚Â¼Ã‚Â©ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã…Â½Ã¢â‚¬Â¡
-            zoomLevel = TimelessAPI.getGunDisplay(mainHandItem).map(GunDisplayInstance::getIronZoom).orElse(1f);
+            zoomLevel = TimelessAPI.getGunDisplay(mainHandItem).map(clientGunIndex -> clientGunIndex.getIronZoom()).orElse(1f);
         } else {
             Optional<ClientAttachmentIndex> optional = TimelessAPI.getClientAttachmentIndex(scopeId);
             if (optional.isPresent()) {

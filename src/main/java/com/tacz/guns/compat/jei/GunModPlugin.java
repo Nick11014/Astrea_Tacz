@@ -38,7 +38,7 @@ public class GunModPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         recipeTypeMap.clear();
-        var map = TimelessAPI.getAllCommonBlockIndex();
+        var map = TimelessAPI.getAllBlocks();
         for (var entry : map) {
             BlockItem item = entry.getValue().getBlock();
             ItemStack icon = BlockItemBuilder.create(item).setId(entry.getKey()).build();
@@ -53,13 +53,13 @@ public class GunModPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         if(Minecraft.getInstance().level==null) return;
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-        List<GunSmithTableRecipe> recipes = recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+        List<RecipeHolder<GunSmithTableRecipe>> recipes = recipeManager.getRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
 
         for (var entry : recipeTypeMap.entrySet()) {
             TimelessAPI.getCommonBlockIndex(entry.getKey()).ifPresent(blockIndex -> {
                 List<GunSmithTableRecipe> recipeList = blockIndex.getFilter().filter(recipes, GunSmithTableRecipe::getId);
                 recipeList.removeIf(recipe -> {
-                    return blockIndex.getData().getTabs().stream().noneMatch(tab -> Objects.equals(tab.id(), recipe.getResult().getGroup()));
+                    return blockIndex.getData().getTabs().stream().noneMatch(tab -> Objects.equals(((TabConfig) tab).id(), recipe.getResult().getGroup()));
                 });
                 registration.addRecipes(entry.getValue(), recipeList);
             });

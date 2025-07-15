@@ -79,7 +79,7 @@ public record ServerMessageSyncedEntityDataMapping(
         CountDownLatch block = new CountDownLatch(1);
         context.enqueueWork(() -> {
             if (!SyncedEntityData.instance().updateMappings(message)) {
-                context.player().connection.disconnect(Component.literal("Connection closed - [TacZ] Received unknown synced data keys."));
+                ((ServerPlayer) context.player()).connection.disconnect(Component.literal("Connection closed - [TacZ] Received unknown synced data keys."));
             }
             block.countDown();
         });

@@ -66,11 +66,10 @@ public class LivingEntityShoot {
         if (SyncConfig.SERVER_SHOOT_NETWORK_V.get()) {
             // ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã‚ÂÃ‚Â® tick time ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â½Ã¢â‚¬ËœÃƒÂ§Ã‚Â»Ã…â€œÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸ÃƒÂ¦Ã‚Â³Ã‚Â¢ÃƒÂ¥Ã…Â Ã‚Â¨ ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¦Ã‹â€ Ã‚Â³ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ§Ã‚ÂªÃ¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚Â£
             MinecraftServer server = Objects.requireNonNull(shooter.getServer());
-            double tickTime = Math.max(server.tickTimes[server.getTickCount() % 100] * 1.0E-6D, 50);
             long alpha = System.currentTimeMillis() - data.baseTimestamp - timestamp;
-            if (alpha < -300 || alpha > 300 + tickTime * 2) { // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ +- 300ms ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â½Ã¢â‚¬ËœÃƒÂ§Ã‚Â»Ã…â€œÃƒÂ¦Ã‚Â³Ã‚Â¢ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã‚ÂªÃ¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã‚Â¤Ã‚Â§ 2 ÃƒÂ¤Ã‚Â¸Ã‚Âª tick time ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´(ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸2ÃƒÂ¤Ã‚Â¸Ã‚Âª tick)
+            if (alpha < -300 || alpha > 300 + 50 * 2) { // Assuming a default tick time of 50ms
                 if (shooter instanceof ServerPlayer player) {
-                    NetworkHandler.sendToClientPlayer($3, new ServerMessageSyncBaseTimestamp());
+                    NetworkHandler.sendToClientPlayer(new ServerMessageSyncBaseTimestamp(), player);
                 }
                 return ShootResult.NETWORK_FAIL;
             }
@@ -128,11 +127,11 @@ public class LivingEntityShoot {
             iGun.setBulletInBarrel(currentGunItem, true);
         }
         // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
-        if (NeoForge.EVENT_BUS.post(new GunShootEvent(shooter, currentGunItem, LogicalSide.SERVER).isCanceled())) {
+        if (NeoForge.EVENT_BUS.post(new GunShootEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
             return ShootResult.FORGE_EVENT_CANCEL;
         }
 
-        NetworkHandler.sendToTrackingEntity(new ServerMessageGunShoot(shooter.getId(), currentGunItem), shooter);
+        NetworkHandler.sendToClientPlayer(new ServerMessageGunShoot(shooter.getId(), currentGunItem), (ServerPlayer) shooter);
         data.lastShootTimestamp = data.shootTimestamp;
         data.heatTimestamp = System.currentTimeMillis();
         data.shootTimestamp = timestamp;
@@ -198,7 +197,7 @@ public class LivingEntityShoot {
         if (abstractGunItem.useDummyAmmo(itemStack)) {
             abstractGunItem.findAndExtractDummyAmmo(itemStack, neededAmount);
         } else {
-            shooter.getCapability(ForgeCapabilities.ITEM_HANDLER, null)
+            shooter.getCapability(Capabilities.ItemHandler.ENTITY)
                     .map(cap -> abstractGunItem.findAndExtractInventoryAmmo(cap, itemStack, neededAmount));
         }
     }

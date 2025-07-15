@@ -3,9 +3,13 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
@@ -21,12 +25,11 @@ import java.util.List;
 public class IgniteModifier implements IAttachmentModifier<Ignite, Ignite> {
     public static final String ID = GunProperties.IGNITE.name();
 
-    @Override
     public String getId() {
         return ID;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
     public JsonProperty<Ignite> readJson(String json) {
         IgniteModifier.Data data = CommonAssetsManager.GSON.fromJson(json, IgniteModifier.Data.class);
         return new IgniteJsonProperty(data.getIgnite());

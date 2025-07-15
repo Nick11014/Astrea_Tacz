@@ -4,7 +4,7 @@ import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.client.input.RefitKey;
-import com.tacz.guns.client.resource.ClientAssetsManager;
+import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.pojo.PackInfo;
 import com.tacz.guns.client.resource.pojo.display.gun.AmmoCountStyle;

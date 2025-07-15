@@ -186,7 +186,7 @@ public enum ClientAssetsManager {
         if (ammoDisplay == null) {
             return java.util.Optional.empty();
         }
-        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientAmmoIndex.getInstance(ammoDisplay.getAmmoIndexPOJO()));
+        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientAmmoIndex.getInstance(ammoDisplay));
     }
     
     public java.util.Optional<com.tacz.guns.client.resource.index.ClientBlockIndex> getBlockIndex(ResourceLocation blockId) {
@@ -194,7 +194,7 @@ public enum ClientAssetsManager {
         if (blockDisplay == null) {
             return java.util.Optional.empty();
         }
-        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(blockDisplay.getBlockIndexPOJO()));
+        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(blockDisplay));
     }
 
     @OnlyIn(Dist.CLIENT)

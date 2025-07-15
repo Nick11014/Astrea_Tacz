@@ -4,9 +4,11 @@ import com.tacz.guns.crafting.result.GunSmithTableResult;
 import com.tacz.guns.init.ModRecipe;
 import com.tacz.guns.resource.pojo.data.recipe.TableRecipe;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -14,7 +16,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class GunSmithTableRecipe implements Recipe<CraftingContainer> {
+public class GunSmithTableRecipe implements Recipe<CraftingInput> {
     private final ResourceLocation id;
     private final GunSmithTableResult result;
     private final List<GunSmithTableIngredient> inputs;
@@ -30,23 +32,19 @@ public class GunSmithTableRecipe implements Recipe<CraftingContainer> {
     }
 
     @Override
-    @Deprecated
-    public boolean matches(CraftingContainer playerInventory, Level level) {
+    public boolean matches(CraftingInput pContainer, Level pLevel) {
         return false;
     }
 
     @Override
-    @Deprecated
-    public ItemStack assemble(CraftingContainer playerInventory, RegistryAccess registryAccess) {
+    public ItemStack assemble(CraftingInput pContainer, RegistryAccess pRegistryAccess) {
         return ItemStack.EMPTY;
     }
 
-    @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;
     }
 
-    @Override
     public ItemStack getResultItem(RegistryAccess registryAccess) {
         return this.result.getResult().copy();
     }
@@ -56,12 +54,10 @@ public class GunSmithTableRecipe implements Recipe<CraftingContainer> {
         return this.id;
     }
 
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return ModRecipe.GUN_SMITH_TABLE_RECIPE_SERIALIZER.get();
     }
 
-    @Override
     public RecipeType<?> getType() {
         return ModRecipe.GUN_SMITH_TABLE_CRAFTING.get();
     }

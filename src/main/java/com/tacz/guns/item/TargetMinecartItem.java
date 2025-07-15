@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.BaseRailBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.core.component.DataComponents;
 import org.jetbrains.annotations.NotNull;
 
 public class TargetMinecartItem extends Item {
@@ -36,7 +37,7 @@ public class TargetMinecartItem extends Item {
                     yOffset = 0.5;
                 }
                 TargetMinecart targetMinecart = new TargetMinecart(level, (double) blockpos.getX() + 0.5, (double) blockpos.getY() + 0.0625 + yOffset, (double) blockpos.getZ() + 0.5);
-                if (itemstack.hasCustomHoverName()) {
+                if (itemstack.has(DataComponents.CUSTOM_NAME)) {
                     targetMinecart.setCustomName(itemstack.getHoverName());
                 }
                 level.addFreshEntity(targetMinecart);

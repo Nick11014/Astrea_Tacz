@@ -131,7 +131,7 @@ public class ModernKineticGunScriptAPI {
                 return false;
             }
             // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
-            boolean fire = !NeoForge.EVENT_BUS.post(new GunFireEvent(shooter, itemStack, LogicalSide.SERVER));
+            boolean fire = NeoForge.EVENT_BUS.post(new GunFireEvent(shooter, itemStack, LogicalSide.SERVER));
             if (fire) {
                 NetworkHandler.sendToTrackingEntity(new ServerMessageGunFire(shooter.getId(), itemStack), shooter);
                 // ÃƒÂ¥Ã¢â‚¬Â°Ã…Â ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯
@@ -782,7 +782,7 @@ public class ModernKineticGunScriptAPI {
         Optional<CommonGunIndex> gunIndexOptional = TimelessAPI.getCommonGunIndex(gunId);
         gunIndex = gunIndexOptional.orElse(null);
         abstractGunItem = gunItem;
-        if (itemStack.hasTag()) {
+        if (itemStack.getTag() != null) {
             nbtUtil = new LuaNbtAccessor(itemStack.getTag());
         }
     }

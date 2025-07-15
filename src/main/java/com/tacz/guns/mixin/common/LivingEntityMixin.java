@@ -172,7 +172,6 @@ public abstract class LivingEntityMixin extends Entity implements IGunOperator, 
         this.tacz$crawl.crawl(isCrawl);
     }
 
-    @Override
     public void updateCacheProperty(AttachmentCacheProperty cacheProperty) {
         this.tacz$data.cacheProperty = cacheProperty;
     }
@@ -180,7 +179,7 @@ public abstract class LivingEntityMixin extends Entity implements IGunOperator, 
     @Override
     @Nullable
     public AttachmentCacheProperty getCacheProperty() {
-        return this.tacz$data.cacheProperty;
+        return (AttachmentCacheProperty) this.tacz$data.cacheProperty;
     }
 
     @Override

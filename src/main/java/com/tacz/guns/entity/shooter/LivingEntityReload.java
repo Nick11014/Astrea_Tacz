@@ -62,10 +62,10 @@ public class LivingEntityReload {
                 return;
             }
             // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
-            if (NeoForge.EVENT_BUS.post(new GunReloadEvent(shooter, currentGunItem, LogicalSide.SERVER).isCanceled())) {
+            if (NeoForge.EVENT_BUS.post(new GunReloadEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
                 return;
             }
-            NetworkHandler.sendToTrackingEntity(new ServerMessageGunReload(shooter.getId(), currentGunItem), shooter);
+            NetworkHandler.sendToClientPlayer(new ServerMessageGunReload(shooter.getId(), currentGunItem), (ServerPlayer) shooter);
             Bolt boltType = gunIndex.getGunData().getBolt();
             int ammoCount = gunItem.getCurrentAmmoCount(currentGunItem) + (gunItem.hasBulletInBarrel(currentGunItem) && boltType != Bolt.OPEN_BOLT ? 1 : 0);
             if (ammoCount <= 0) {

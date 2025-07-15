@@ -23,7 +23,7 @@ public final class GunPropertyDiagrams {
     public static int getHidePropertyButtonYOffset() {
         int[] startYOffset = new int[]{49};
         AttachmentPropertyManager.getModifiers().forEach((key, value) -> {
-            startYOffset[0] += value.getDiagramsDataSize() * 10;
+            startYOffset[0] += ((IAttachmentModifier<?, ?>) value).getDiagramsDataSize() * 10;
         });
         return startYOffset[0];
     }
@@ -125,7 +125,7 @@ public final class GunPropertyDiagrams {
 
             yOffset[0] += 10;
 
-            AttachmentPropertyManager.getModifiers().forEach((key, value) -> value.getPropertyDiagramsData(gunItem, gunData, cacheProperty).forEach(data -> {
+            AttachmentPropertyManager.getModifiers().forEach((key, value) -> ((IAttachmentModifier<?, ?>) value).getPropertyDiagramsData(gunItem, gunData, cacheProperty).forEach(data -> {
                 double defaultPercent = data.defaultPercent();
                 double modifierPercent = data.modifierPercent();
                 double modifier = data.modifier().doubleValue();

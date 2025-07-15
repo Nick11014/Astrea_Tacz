@@ -18,15 +18,15 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 
 import net.neoforged.fml.common.EventBusSubscriber;
-@EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(value = net.neoforged.api.distmarker.Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ModEntitiesRender {
     @SubscribeEvent
     public static void onEntityRenderers(EntityRenderersEvent.RegisterRenderers evt) {
         EntityRenderers.register(EntityKineticBullet.TYPE, EntityBulletRenderer::new);
         EntityRenderers.register(TargetMinecart.TYPE, TargetMinecartRenderer::new);
-        BlockEntityRenderers.register(GunSmithTableBlockEntity.TYPE, GunSmithTableRenderer::new);
-        BlockEntityRenderers.register(TargetBlockEntity.TYPE, TargetRenderer::new);
-        BlockEntityRenderers.register(StatueBlockEntity.TYPE, StatueRenderer::new);
+        BlockEntityRenderers.register(ModBlocks.GUN_SMITH_TABLE_BE.get(), GunSmithTableRenderer::new);
+        BlockEntityRenderers.register(ModBlocks.TARGET_BE.get(), TargetRenderer::new);
+        BlockEntityRenderers.register(ModBlocks.STATUE_BE.get(), StatueRenderer::new);
     }
 }
 

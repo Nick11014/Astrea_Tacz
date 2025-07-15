@@ -205,7 +205,7 @@ public class SyncedEntityData {
         this.syncedIdToKey.clear();
 
         List<Pair<ResourceLocation, ResourceLocation>> missingKeys = new ArrayList<>();
-        message.getKeyMap().forEach((classId, list) -> {
+        message.keyMap().forEach((classId, list) -> {
             SyncedClassKey<?> classKey = this.idToClassKey.get(classId);
             if (classKey == null || !this.classToKeys.containsKey(classKey)) {
                 list.forEach(pair -> missingKeys.add(Pair.of(classId, pair.getLeft())));

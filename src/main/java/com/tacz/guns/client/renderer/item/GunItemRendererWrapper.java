@@ -118,17 +118,17 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
     @Nullable
     @Override
     public LuaAnimationStateMachine<GunAnimationStateContext> getStateMachine(ItemStack stack) {
-        return TimelessAPI.getGunDisplay(stack).map(GunDisplayInstance::getAnimationStateMachine).orElse(null);
+        return TimelessAPI.getGunDisplay(stack).map(clientGunIndex -> clientGunIndex.getAnimationStateMachine()).orElse(null);
     }
 
     @Override
     public BedrockGunModel getModel(ItemStack stack) {
-        return TimelessAPI.getGunDisplay(stack).map(GunDisplayInstance::getGunModel).orElse(null);
+        return TimelessAPI.getGunDisplay(stack).map(clientGunIndex -> clientGunIndex.getGunModel()).orElse(null);
     }
 
     @Override
     public ResourceLocation getTextureLocation(ItemStack stack) {
-        return TimelessAPI.getGunDisplay(stack).map(GunDisplayInstance::getModelTexture).orElse(null);
+        return TimelessAPI.getGunDisplay(stack).map(clientGunIndex -> clientGunIndex.getModelTexture()).orElse(null);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
                 lastModel = model;
             }
             IClientPlayerGunOperator clientPlayerGunOperator = IClientPlayerGunOperator.fromLocalPlayer(player);
-            float partialTicks = Minecraft.getInstance().getFrameTime();
+            float partialTicks = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
             float aimingProgress = clientPlayerGunOperator.getClientAimingProgress(partialTicks);
             float zoom = iGun.getAimingZoom(stack);
             float multiplier = 1 - aimingProgress + aimingProgress / (float) Math.sqrt(zoom);
@@ -159,7 +159,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
         Optional.ofNullable(getModel(stack)).ifPresent(model -> {
             PoseStack poseStack = event.getPoseStack();
             IClientPlayerGunOperator clientPlayerGunOperator = IClientPlayerGunOperator.fromLocalPlayer(player);
-            float partialTicks = Minecraft.getInstance().getFrameTime();
+            float partialTicks = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
             float aimingProgress = clientPlayerGunOperator.getClientAimingProgress(partialTicks);
             float zoom = iGun.getAimingZoom(stack);
             float multiplier = 1 - aimingProgress + aimingProgress / (float) Math.sqrt(zoom);
@@ -279,7 +279,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
             if (transformType == GUI) {
                 poseStack.translate(0.5, 1.5, 0.5);
                 poseStack.mulPose(Axis.ZN.rotationDegrees(180));
-                VertexConsumer buffer = pBuffer.getBuffer(RenderType.entityTranslucent(gunIndex.getSlotTexture()));
+                VertexConsumer buffer = pBuffer.getBuffer(RenderType.entityTranslucent(gunIndex.getSlotTextureLocation()));
                 SLOT_GUN_MODEL.renderToBuffer(poseStack, buffer, pPackedLight, pPackedOverlay);
                 return;
             }

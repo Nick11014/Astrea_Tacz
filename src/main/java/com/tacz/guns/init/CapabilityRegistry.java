@@ -14,6 +14,7 @@ public class CapabilityRegistry {
         // Registra o provedor de capability para entidades que possuem dados sincronizados
         event.registerEntity(
             ModCapabilities.ENTITY_DATA_HOLDER,
+            null, // EntityType is now required, using null for wildcard
             (entity, context) -> {
                 if (SyncedEntityData.instance().hasSyncedDataKey(entity)) {
                     return new DataHolder();

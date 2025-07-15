@@ -2,9 +2,10 @@ package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
@@ -47,9 +48,7 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
         cache.setValue((int) Math.round(eval));
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         int pierce = gunData.getBulletData().getPierce();
         int modifiedValue = cacheProperty.<Integer>getCache(PierceModifier.ID);
         int pierceModifier = modifiedValue - pierce;
@@ -68,6 +67,9 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    @OnlyIn(Dist.CLIENT)
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;

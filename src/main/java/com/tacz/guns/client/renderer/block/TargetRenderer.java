@@ -25,6 +25,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Optional;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 public class TargetRenderer implements BlockEntityRenderer<TargetBlockEntity> {
     private static final String UPPER_NAME = "target_upper";
     private static final String HEAD_NAME = "head";
@@ -58,12 +61,11 @@ public class TargetRenderer implements BlockEntityRenderer<TargetBlockEntity> {
                 poseStack.translate(0, 1.25, 0);
                 poseStack.mulPose(Axis.XP.rotationDegrees(deg));
                 Minecraft minecraft = Minecraft.getInstance();
-                var map = minecraft.getSkinManager().getInsecureSkinInformation(blockEntity.getOwner());
                 ResourceLocation skin;
-                if (map.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-                    skin = minecraft.getSkinManager().registerTexture(map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-                } else {
-                    skin = DefaultPlayerSkin.getDefaultSkin(UUIDUtil.getOrCreatePlayerUUID(blockEntity.getOwner()));
+                try {
+                    skin = minecraft.getSkinManager().getSkin(blockEntity.getOwner()).get().texture();
+                } catch (InterruptedException | ExecutionException e) {
+                    skin = DefaultPlayerSkin.getDefaultSkin(blockEntity.getOwner().getId());
                 }
                 headModel.visible = true;
                 RenderType skullRenderType = RenderType.entityTranslucentCull(skin);

@@ -32,7 +32,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -403,7 +403,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         }
         // ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ§Ã¢â‚¬Â¡Ã†â€™
         if (this.igniteEntity && AmmoConfig.IGNITE_ENTITY.get()) {
-            entity.setSecondsOnFire(this.igniteEntityTime);
+            ((LivingEntity) entity).setSecondsOnFire(this.igniteEntityTime);
             // ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¤Ã‚ÂºÃ‹â€ ÃƒÂ§Ã‚Â²Ã¢â‚¬â„¢ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œ
             if (this.level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.LAVA, entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ(), 1, 0, 0, 0, 0);
@@ -442,11 +442,11 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
                 if (livingCore.isDeadOrDying()) {
                     // Updated event bus call
                     NeoForge.EVENT_BUS.post(new EntityKillByGunEvent(this, livingCore, attacker, newGunId, gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER));
-                    NetworkHandler.sendToDimension(new ServerMessageGunKill(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), livingCore);
+                    NetworkHandler.sendToClientPlayer(new ServerMessageGunKill(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), (ServerPlayer) livingCore);
                 } else {
                     // Updated event bus call
                     NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(this, livingCore, attacker, newGunId, gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER));
-                    NetworkHandler.sendToDimension(new ServerMessageGunHurt(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), livingCore);
+                    NetworkHandler.sendToClientPlayer(new ServerMessageGunHurt(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), (ServerPlayer) livingCore);
                 }
             }
         }
@@ -461,7 +461,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
         // ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¨Ã‚Â®Ã‚Â©ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â²ÃƒÂ©Ã¢â‚¬â„¢Ã…Â¸ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ©Ã‚ÂÃ‚Â¶ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ§Ã‚Â­Ã¢â‚¬Â°ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
         // Updated event bus call
-        if (NeoForge.EVENT_BUS.post(new AmmoHitBlockEvent(this.level(), result, this.level().getBlockState(pos), this)).isCanceled()) {
+        if (NeoForge.EVENT_BUS.post(new AmmoHitBlockEvent(this.level(), result, this.level().getBlockState(pos))).isCanceled()) {
             return;
         }
         super.onHitBlock(result);
@@ -542,13 +542,12 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         parts.hitPart().hurt(source2, damage * armorDamagePercent);
     }
 
-    @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return ClientboundAddEntityPacket.createAddEntityPacket(this);
+    public Packet<ClientGamePacketListener> getSpawnPacket() {
+        return IEntityWithComplexSpawn.super.getSpawnPacket();
     }
 
     @Override
-    public void writeSpawnData(FriendlyByteBuf buffer) {
+    public void writeSpawnData(RegistryFriendlyByteBuf buffer) {
         buffer.writeFloat(getXRot());
         buffer.writeFloat(getYRot());
         buffer.writeDouble(getDeltaMovement().x);
@@ -573,7 +572,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
     }
 
     @Override
-    public void readSpawnData(FriendlyByteBuf additionalData) {
+    public void readSpawnData(RegistryFriendlyByteBuf additionalData) {
         setXRot(additionalData.readFloat());
         setYRot(additionalData.readFloat());
         setDeltaMovement(additionalData.readDouble(), additionalData.readDouble(), additionalData.readDouble());

@@ -25,6 +25,9 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Optional;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 @OnlyIn(Dist.CLIENT)
 public class TargetMinecartRenderer extends MinecartRenderer<TargetMinecart> {
     private static final String HEAD_NAME = "head";
@@ -63,12 +66,11 @@ public class TargetMinecartRenderer extends MinecartRenderer<TargetMinecart> {
                 stack.translate(0, 1, -4.5 / 16d);
                 Minecraft minecraft = Minecraft.getInstance();
                 GameProfile gameProfile = targetMinecart.getGameProfile();
-                var map = minecraft.getSkinManager().getInsecureSkinInformation(gameProfile);
                 ResourceLocation skin;
-                if (map.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-                    skin = minecraft.getSkinManager().registerTexture(map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-                } else {
-                    skin = DefaultPlayerSkin.getDefaultSkin(UUIDUtil.getOrCreatePlayerUUID(gameProfile));
+                try {
+                    skin = minecraft.getSkinManager().getSkin(gameProfile).get().texture();
+                } catch (InterruptedException | ExecutionException e) {
+                    skin = DefaultPlayerSkin.getDefaultSkin(gameProfile.getId());
                 }
                 headModel.visible = true;
                 RenderType skullRenderType = RenderType.entityTranslucentCull(skin);

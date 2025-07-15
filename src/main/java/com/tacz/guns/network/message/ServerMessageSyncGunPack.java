@@ -25,13 +25,13 @@ public record ServerMessageSyncGunPack(
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageSyncGunPack> STREAM_CODEC = new StreamCodec<>() {
         @Override
         public ServerMessageSyncGunPack decode(RegistryFriendlyByteBuf buf) {
-            return new ServerMessageSyncGunPack(buf.readMap(b -> b.readEnum(DataType.class), b -> b.readMap(FriendlyByteBuf::readResourceLocation, FriendlyByteBuf::readUtf)));
+            return new ServerMessageSyncGunPack(buf.readMap(b -> b.readEnum(DataType.class), b -> b.readMap(RegistryFriendlyByteBuf::readResourceLocation, RegistryFriendlyByteBuf::readUtf)));
         }
 
         @Override
         public void encode(RegistryFriendlyByteBuf buf, ServerMessageSyncGunPack message) {
             buf.writeMap(message.cache, (b, t) -> b.writeEnum(t), (buf1, map) -> {
-                buf1.writeMap(map, FriendlyByteBuf::writeResourceLocation, FriendlyByteBuf::writeUtf);
+                buf1.writeMap(map, RegistryFriendlyByteBuf::writeResourceLocation, RegistryFriendlyByteBuf::writeUtf);
             });
         }
     };

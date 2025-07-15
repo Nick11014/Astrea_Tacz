@@ -23,13 +23,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.joml.Vector2d;
 import org.luaj.vm2.*;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
@@ -471,19 +472,19 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
             target.hurt(user.damageSources().mobAttack(user), damage);
         }
         // ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã‚Â¥Ã…Â¾ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã‚Â¯Ã‚ÂÃƒÂ¦Ã‚ÂÃ‚Â¡/ÃƒÂ¥Ã‚Â®Ã‚ÂÃƒÂ§Ã…Â¸Ã‚Â³ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾bug
-        user.doEnchantDamageEffects(user, target);
+        
 
         if (!target.isAlive()) {
             return;
         }
         for (EffectData data : effects) {
-            MobEffect mobEffect = ForgeRegistries.MOB_EFFECTS.getValue(data.getEffectId());
+            MobEffect mobEffect = BuiltInRegistries.MOB_EFFECT.get(data.getEffectId());
             if (mobEffect == null) {
                 continue;
             }
             int time = Math.max(0, data.getTime() * 20);
             int amplifier = Math.max(0, data.getAmplifier());
-            MobEffectInstance effectInstance = new MobEffectInstance(mobEffect, time, amplifier, false, data.isHideParticles());
+            MobEffectInstance effectInstance = new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.getHolderOrThrow(data.getEffectId()), time, amplifier, false, data.isHideParticles());
             target.addEffect(effectInstance);
         }
         if (user.level() instanceof ServerLevel serverLevel) {

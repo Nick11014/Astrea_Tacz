@@ -49,7 +49,7 @@ public class LivingEntityDrawGun {
         }
         ItemStack lastItem = data.currentGunItem == null ? ItemStack.EMPTY : data.currentGunItem.get();
         NeoForge.EVENT_BUS.post(new GunDrawEvent(shooter, lastItem, gunItemSupplier.get(), LogicalSide.SERVER));
-        NetworkHandler.sendToTrackingEntity(new ServerMessageGunDraw(shooter.getId(), lastItem, gunItemSupplier.get()), shooter);
+        NetworkHandler.sendToClientPlayer(new ServerMessageGunDraw(shooter.getId(), lastItem, gunItemSupplier.get()), (ServerPlayer) shooter);
         data.currentGunItem = gunItemSupplier;
         // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
         AttachmentPropertyManager.postChangeEvent(shooter, gunItemSupplier.get());

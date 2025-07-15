@@ -28,10 +28,10 @@ public class LivingEntityFireSelect {
         if (!(currentGunItem.getItem() instanceof IGun iGun)) {
             return;
         }
-        if (NeoForge.EVENT_BUS.post(new GunFireSelectEvent(shooter, currentGunItem, LogicalSide.SERVER).isCanceled())) {
+        if (NeoForge.EVENT_BUS.post(new GunFireSelectEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
             return;
         }
-        NetworkHandler.sendToTrackingEntity(new ServerMessageGunFireSelect(shooter.getId(), currentGunItem), shooter);
+        NetworkHandler.sendToClientPlayer(new ServerMessageGunFireSelect(shooter.getId(), currentGunItem), (ServerPlayer) shooter);
         if (iGun instanceof AbstractGunItem logicGun) {
             logicGun.fireSelect(data, currentGunItem);
             // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“

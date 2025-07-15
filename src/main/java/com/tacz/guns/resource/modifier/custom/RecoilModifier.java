@@ -3,9 +3,10 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.api.modifier.ParameterizedCachePair;
 import com.tacz.guns.resource.CommonAssetsManager;
@@ -86,7 +87,7 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         ParameterizedCachePair<Float, Float> propertyCache = cacheProperty.getCache(RecoilModifier.ID);
         GunRecoil recoil = gunData.getRecoil();
 
@@ -118,6 +119,9 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    @OnlyIn(Dist.CLIENT)
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 2;

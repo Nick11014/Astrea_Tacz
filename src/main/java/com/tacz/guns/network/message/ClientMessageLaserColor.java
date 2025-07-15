@@ -9,6 +9,7 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +29,7 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
     public static final CustomPacketPayload.Type<ClientMessageLaserColor> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_laser_color"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageLaserColor> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.map(HashMap::new, AttachmentType.STREAM_CODEC, ByteBufCodecs.INT), ClientMessageLaserColor::colorMap,
+            ByteBufCodecs.map(HashMap::new, ByteBufCodecs.fromEnum(AttachmentType.class), ByteBufCodecs.INT), ClientMessageLaserColor::colorMap,
             ByteBufCodecs.BOOL, ClientMessageLaserColor::applyGunColor,
             ByteBufCodecs.INT, ClientMessageLaserColor::gunColor,
             ByteBufCodecs.INT, ClientMessageLaserColor::gunSlotIndex,

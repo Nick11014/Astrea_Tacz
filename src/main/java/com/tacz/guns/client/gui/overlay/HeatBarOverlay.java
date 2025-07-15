@@ -48,7 +48,7 @@ public class HeatBarOverlay implements LayeredDraw.Layer {
         }
         ResourceLocation gunId = iGun.getGunId(stack);
         GunData gunData = TimelessAPI.getClientGunIndex(gunId).map(ClientGunIndex::getGunData).orElse(null);
-        GunDisplayInstance display = TimelessAPI.getGunDisplay(stack).orElse(null);
+        ClientGunIndex display = TimelessAPI.getGunDisplay(stack).orElse(null);
         if (gunData == null || display == null) {
             return;
         }
@@ -68,7 +68,7 @@ public class HeatBarOverlay implements LayeredDraw.Layer {
 
             boolean locked = iGun.isOverheatLocked(stack);
             int tickCount = gui.getGuiTicks();
-            renderOverheat(percent, graphics, (int) (width / heatScale), (int) (height / heatScale), locked, tickCount);
+            renderOverheat(percent, graphics, (int) (width / heatScale), (int) (height / heatScale), locked, graphics.getGuiTicks());
             poseStack.popPose();
         }
     }

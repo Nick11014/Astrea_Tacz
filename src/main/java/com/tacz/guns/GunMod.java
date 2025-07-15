@@ -15,11 +15,13 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.config.ModConfig;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import net.minecraft.resources.ResourceLocation;
 
 @Mod(GunMod.MOD_ID)
 public class GunMod {
@@ -34,9 +36,8 @@ public class GunMod {
         bus.addListener(this::setup);
         bus.addListener(this::registerPayloadHandler);
 
-        CommonRegistry.init(bus);
-        GunConfig.init();
-        SyncConfig.init();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GunConfig.init());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SyncConfig.init());
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Funcionalidades comentadas temporariamente - reabilitar quando disponÃƒÆ’Ã‚Â­veis
@@ -47,7 +48,7 @@ public class GunMod {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            CommonNetworkCache.init();
+            // CommonNetworkCache.init(); // Removed as it's not found
             // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Funcionalidade comentada temporariamente - reabilitar quando disponÃƒÆ’Ã‚Â­vel
             // ServerGunPackManager.init();
         });

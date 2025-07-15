@@ -5,6 +5,7 @@ import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +22,7 @@ public record ClientMessageUnloadAttachment(int gunSlotIndex,
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageUnloadAttachment> STREAM_CODEC = StreamCodec.composite(
         net.minecraft.network.codec.ByteBufCodecs.VAR_INT, ClientMessageUnloadAttachment::gunSlotIndex,
-        net.minecraft.network.codec.ByteBufCodecs.fromEnum(AttachmentType.class), ClientMessageUnloadAttachment::attachmentType,
+        ByteBufCodecs.fromEnum(AttachmentType.class), ClientMessageUnloadAttachment::attachmentType,
         ClientMessageUnloadAttachment::new
     );
 

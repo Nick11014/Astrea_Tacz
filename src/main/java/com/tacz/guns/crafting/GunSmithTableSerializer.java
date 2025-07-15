@@ -2,6 +2,7 @@ package com.tacz.guns.crafting;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.tacz.guns.crafting.result.GunSmithTableResult;
 import com.tacz.guns.resource.CommonAssetsManager;
@@ -24,15 +25,16 @@ import java.util.List;
  * ÃƒÂ¥Ã‚Â·Ã‚Â¥ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ¥Ã‚ÂÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
  */
 public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRecipe> {
-    private static final Codec<GunSmithTableRecipe> CODEC = RecordCodecBuilder.create(
+    private static final MapCodec<GunSmithTableRecipe> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
                     ResourceLocation.CODEC.fieldOf("id").forGetter(GunSmithTableRecipe::getId),
-                    TableRecipe.CODEC.fieldOf("recipe").forGetter(GunSmithTableRecipe::getRecipe)
+                    GunSmithTableResult.CODEC.fieldOf("result").forGetter(GunSmithTableRecipe::getResult),
+                    GunSmithTableIngredient.LIST_CODEC.fieldOf("materials").forGetter(GunSmithTableRecipe::getInputs)
             ).apply(instance, GunSmithTableRecipe::new)
     );
 
     @Override
-    public Codec<GunSmithTableRecipe> codec() {
+    public MapCodec<GunSmithTableRecipe> codec() {
         return CODEC;
     }
 

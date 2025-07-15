@@ -30,8 +30,8 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
         return "bullet_damage"; // Nome alternativo comum
     }
 
-    @Override
-    public Object readJson(String json) {
+    @SuppressWarnings("deprecation")
+    public JsonProperty<Modifier> readJson(String json) {
         // TODO: Implementar leitura JSON especÃƒÆ’Ã‚Â­fica quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         // Gson gson = CommonAssetsManager.GSON;
         // return gson.fromJson(json, Modifier.class);

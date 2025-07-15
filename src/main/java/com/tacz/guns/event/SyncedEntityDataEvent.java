@@ -58,12 +58,12 @@ public final class SyncedEntityDataEvent {
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
         Player original = event.getOriginal();
-        original.reviveCaps();
+        
         DataHolder oldHolder = SyncedEntityData.instance().getDataHolder(original);
         if (oldHolder == null) {
             return;
         }
-        original.invalidateCaps();
+        
         Player player = event.getEntity();
         DataHolder newHolder = SyncedEntityData.instance().getDataHolder(player);
         if (newHolder == null) {
@@ -79,10 +79,10 @@ public final class SyncedEntityDataEvent {
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent event) {
         SyncedEntityData instance = SyncedEntityData.instance();
-        if (event.side != LogicalSide.SERVER) {
+        if (event.getSide() != LogicalSide.SERVER) {
             return;
         }
-        if (event.phase != TickEvent.Phase.END) {
+        if (event.getPhase() != ServerTickEvent.Phase.END) {
             return;
         }
         if (!instance.isDirty()) {

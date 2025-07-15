@@ -202,13 +202,13 @@ public class GunRefitScreen extends Screen {
             if (type == AttachmentType.NONE) {
                 if (RefitTransform.getCurrentTransformType() == AttachmentType.NONE) {
                     TimelessAPI.getGunDisplay(player.getMainHandItem())
-                            .map(GunDisplayInstance::getLaserConfig)
+                            .map(gunDisplayInstance -> gunDisplayInstance.getLaserConfig())
                             .ifPresent(laserConfig -> {
                                 if (laserConfig.canEdit()) {
                                     // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â­ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â©ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-                                    HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, AttachmentType.NONE);
-                                    this.addRenderableWidget(hsvSliderGroup.getHueSlider());
-                                    this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
+                                    // HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, AttachmentType.NONE);
+                                    // this.addRenderableWidget(hsvSliderGroup.getHueSlider());
+                                    // this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
                                 }});
                 }
                 continue;
@@ -259,9 +259,9 @@ public class GunRefitScreen extends Screen {
                                 .ifPresent(laserConfig -> {
                                     if (laserConfig.canEdit()) {
                                         // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â­ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â©ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-                                        HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, type);
-                                        this.addRenderableWidget(hsvSliderGroup.getHueSlider());
-                                        this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
+                                        // HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, type);
+                                        // this.addRenderableWidget(hsvSliderGroup.getHueSlider());
+                                        // this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
                                     }});
                     }
                 }

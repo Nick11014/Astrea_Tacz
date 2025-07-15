@@ -37,7 +37,7 @@ public class AttachmentQueryEntry {
 
     public static List<AttachmentQueryEntry> getAllAttachmentQueryEntries() {
         List<AttachmentQueryEntry> entries = Lists.newArrayList();
-        TimelessAPI.getAllCommonAttachmentIndex().forEach(entry -> {
+        TimelessAPI.getAllAttachments().forEach(entry -> {
             if (entry.getValue().getPojo().isHidden()) {
                 return;
             }

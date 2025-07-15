@@ -3,9 +3,13 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
+import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.config.common.GunConfig;
 import com.tacz.guns.resource.CommonAssetsManager;
@@ -23,14 +27,12 @@ import java.util.List;
 public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boolean>, Pair<Integer, Boolean>> {
     public static final String ID = GunProperties.SILENCE.name();
 
-    @Override
     public String getId() {
         return ID;
     }
 
-    @Override
     @SuppressWarnings("deprecation")
-    public SilenceJsonProperty readJson(String json) {
+    public JsonProperty<Pair<Modifier, Boolean>> readJson(String json) {
         SilenceModifier.Data data = CommonAssetsManager.GSON.fromJson(json, SilenceModifier.Data.class);
         Silence silence = data.getSilence();
         if (silence == null) {

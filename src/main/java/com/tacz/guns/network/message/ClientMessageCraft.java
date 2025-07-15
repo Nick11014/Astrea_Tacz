@@ -3,6 +3,7 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.inventory.GunSmithTableMenu;
 import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +17,7 @@ public record ClientMessageCraft(ResourceLocation recipeId, int menuId) implemen
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageCraft> STREAM_CODEC = StreamCodec.composite(
         ResourceLocation.STREAM_CODEC, ClientMessageCraft::recipeId,
-        StreamCodec.VAR_INT, ClientMessageCraft::menuId,
+        ByteBufCodecs.VAR_INT, ClientMessageCraft::menuId,
         ClientMessageCraft::new
     );
 

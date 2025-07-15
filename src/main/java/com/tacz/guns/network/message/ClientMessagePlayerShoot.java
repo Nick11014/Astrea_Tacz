@@ -3,6 +3,7 @@ package com.tacz.guns.network.message;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +16,7 @@ public record ClientMessagePlayerShoot(long timestamp) implements CustomPacketPa
     public static final CustomPacketPayload.Type<ClientMessagePlayerShoot> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_shoot"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessagePlayerShoot> STREAM_CODEC = StreamCodec.composite(
-        StreamCodec.LONG, ClientMessagePlayerShoot::timestamp,
+        ByteBufCodecs.LONG, ClientMessagePlayerShoot::timestamp,
         ClientMessagePlayerShoot::new
     );
 

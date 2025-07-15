@@ -69,7 +69,7 @@ public class LivingEntityAim {
         GunData gunData = gunIndexOptional.get().getGunData();
         float aimTime = gunData.getAimTime();
         if (this.data.cacheProperty != null) {
-            aimTime = this.data.cacheProperty.<Float>getCache(AdsModifier.ID);
+            aimTime = (Float) this.data.cacheProperty.getCache(AdsModifier.ID);
         }
         aimTime = Math.max(0, aimTime);
         float alphaProgress = (System.currentTimeMillis() - data.aimingTimestamp + 1) / (aimTime * 1000);

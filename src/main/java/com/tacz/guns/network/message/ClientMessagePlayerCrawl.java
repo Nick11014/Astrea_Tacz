@@ -4,6 +4,7 @@ import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.config.sync.SyncConfig;
 import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +17,7 @@ public record ClientMessagePlayerCrawl(boolean isCrawl) implements CustomPacketP
     public static final CustomPacketPayload.Type<ClientMessagePlayerCrawl> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_crawl"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessagePlayerCrawl> STREAM_CODEC = StreamCodec.composite(
-        StreamCodec.BOOL, ClientMessagePlayerCrawl::isCrawl,
+        ByteBufCodecs.BOOL, ClientMessagePlayerCrawl::isCrawl,
         ClientMessagePlayerCrawl::new
     );
 

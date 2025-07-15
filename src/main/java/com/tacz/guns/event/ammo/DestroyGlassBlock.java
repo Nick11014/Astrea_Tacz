@@ -23,14 +23,10 @@ public class DestroyGlassBlock {
         Level level = event.getLevel();
         BlockState state = event.getState();
         BlockPos pos = event.getHitResult().getBlockPos();
-        EntityKineticBullet ammo = event.getAmmo();
-        Block stateBlock = state.getBlock();
-        NoteBlockInstrument instrument = state.instrument();
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] AbstractGlassBlock removido, usar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o por instrument
         if (AmmoConfig.DESTROY_GLASS.get() && (instrument.equals(NoteBlockInstrument.HAT) || // Glass blocks
                 stateBlock instanceof StainedGlassPaneBlock ||
                 (stateBlock instanceof IronBarsBlock && instrument.equals(NoteBlockInstrument.HAT)))) {
-            level.destroyBlock(pos, false, ammo.getOwner());
+            level.destroyBlock(pos, false, null);
         }
     }
 }
