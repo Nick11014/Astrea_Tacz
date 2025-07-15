@@ -46,10 +46,10 @@ public class ShellRender implements IFunctionalRenderer {
 
     private void renderShell(ClientGunIndex display, GunData gunData, PoseStack poseStack, BedrockGunModel gunModel) {
         // ShellEjection shellEjection = display.getShellEjection();
-        if (shellEjection == null) {
-            SHELL_QUEUE.clear();
-            return;
-        }
+        // if (shellEjection == null) {
+        //     SHELL_QUEUE.clear();
+        //     return;
+        // }
         TimelessAPI.getClientAmmoIndex(gunData.getAmmoId()).ifPresent(ammoIndex -> {
             BedrockAmmoModel model = ammoIndex.getShellModel();
             if (model == null) {
@@ -59,14 +59,17 @@ public class ShellRender implements IFunctionalRenderer {
             if (location == null) {
                 return;
             }
-            long lifeTime = (long) (shellEjection.getLivingTime() * 1000);
+            // long lifeTime = (long) (shellEjection.getLivingTime() * 1000);
 
-            checkShellQueue(lifeTime);
+            // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡
+            // checkShellQueue(lifeTime);
 
-            Vector3f initialVelocity = shellEjection.getInitialVelocity();
-            Vector3f acceleration = shellEjection.getAcceleration();
-            Vector3f angularVelocity = shellEjection.getAngularVelocity();
+            // ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
+            // Vector3f initialVelocity = shellEjection.getInitialVelocity();
+            // Vector3f acceleration = shellEjection.getAcceleration();
+            // Vector3f angularVelocity = shellEjection.getAngularVelocity();
 
+            // ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ PoseStack
             for (Data data : SHELL_QUEUE) {
                 if (data.normal == null && data.pose == null) {
                     data.normal = new Matrix3f(poseStack.last().normal());
@@ -74,8 +77,9 @@ public class ShellRender implements IFunctionalRenderer {
                 }
             }
 
+            // ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¦Ã…Â Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â£Ã‚Â³
             gunModel.delegateRender((poseStack1, vertexConsumer1, transformType1, light, overlay) ->{
-                SHELL_QUEUE.forEach(data -> renderSingleShell(transformType1, light, overlay, data, initialVelocity, acceleration, angularVelocity, model, location));
+                // SHELL_QUEUE.forEach(data -> renderSingleShell(transformType1, light, overlay, data, initialVelocity, acceleration, angularVelocity, model, location));
             });
         });
     }

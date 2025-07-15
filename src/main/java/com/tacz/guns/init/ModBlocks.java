@@ -2,6 +2,7 @@ package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
 import com.tacz.guns.block.entity.GunSmithTableBlockEntity;
+import com.tacz.guns.block.entity.TargetBlockEntity;
 import com.tacz.guns.block.entity.StatueBlockEntity;
 // import com.tacz.guns.block.entity.TargetBlockEntity; // TODO: Migrar APIs
 // TODO: Re-enable when all block classes are available
@@ -46,8 +47,8 @@ public class ModBlocks {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GunSmithTableBlockEntity>> GUN_SMITH_TABLE_BE = TILE_ENTITIES.register("gun_smith_table", 
         () -> BlockEntityType.Builder.of(GunSmithTableBlockEntity::new, GUN_SMITH_TABLE.get()).build(null));
         
-    // public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", 
-    //     () -> BlockEntityType.Builder.of(TargetBlockEntity::new, TARGET.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", 
+        () -> BlockEntityType.Builder.of(TargetBlockEntity::new, TARGET.get()).build(null));
         
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<StatueBlockEntity>> STATUE_BE = TILE_ENTITIES.register("statue", 
         () -> BlockEntityType.Builder.of(StatueBlockEntity::new, STATUE.get()).build(null));

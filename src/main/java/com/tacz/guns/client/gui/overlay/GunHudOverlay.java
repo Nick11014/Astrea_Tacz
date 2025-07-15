@@ -104,7 +104,7 @@ public class GunHudOverlay implements LayeredDraw.Layer {
         }
 
         // ...existing code...
-        String currentAmmoCountText;
+        String currentAmmoCountText = "";
         // if (display.getAmmoCountStyle() == AmmoCountStyle.PERCENT) {
         // ResourceLocation hudTexture = display.getHUDTexture();
         // @Nullable ResourceLocation hudEmptyTexture = display.getHudEmptyTexture();
@@ -156,15 +156,14 @@ public class GunHudOverlay implements LayeredDraw.Layer {
         // ResourceLocation hudTexture = display.getHUDTexture();
         // @Nullable ResourceLocation hudEmptyTexture = display.getHudEmptyTexture();
 
-        if (ammoCount <= 0 || overheatLocked) {
-            if (hudEmptyTexture == null) {
-                RenderSystem.setShaderColor(1, 0.3f, 0.3f, 1);
-            } else {
-                hudTexture = hudEmptyTexture;
-            }
-        }
-        // ...existing code...
-        graphics.blit(hudTexture, width - 117, height - 44, 0, 0, 39, 13, 39, 13);
+        // if (ammoCount <= 0 || overheatLocked) {
+        //     if (hudEmptyTexture == null) {
+        //         RenderSystem.setShaderColor(1, 0.3f, 0.3f, 1);
+        //     } else {
+        //         hudTexture = hudEmptyTexture;
+        //     }
+        // }
+        // graphics.blit(hudTexture, width - 117, height - 44, 0, 0, 39, 13, 39, 13);
 
         // ...existing code...
         FireMode fireMode = IGun.getMainHandFireMode(player);

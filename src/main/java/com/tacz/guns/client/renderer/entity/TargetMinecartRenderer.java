@@ -66,19 +66,14 @@ public class TargetMinecartRenderer extends MinecartRenderer<TargetMinecart> {
                 stack.translate(0, 1, -4.5 / 16d);
                 Minecraft minecraft = Minecraft.getInstance();
                 GameProfile gameProfile = targetMinecart.getGameProfile();
-                ResourceLocation skin;
-                try {
-                    skin = minecraft.getSkinManager().getSkin(gameProfile).get().texture();
-                } catch (InterruptedException | ExecutionException e) {
-                    skin = DefaultPlayerSkin.getDefaultSkin(gameProfile.getId());
-                }
-                headModel.visible = true;
-                RenderType skullRenderType = RenderType.entityTranslucentCull(skin);
-                headModel.render(stack, ItemDisplayContext.NONE, buffer.getBuffer(skullRenderType), pPackedLight, OverlayTexture.NO_OVERLAY);
+                // ResourceLocation skin = minecraft.getSkinManager().getSkin(gameProfile).texture();
+                // headModel.visible = true;
+                // RenderType skullRenderType = RenderType.entityTranslucentCull(skin);
+                // headModel.render(stack, ItemDisplayContext.NONE, buffer.getBuffer(skullRenderType), pPackedLight, OverlayTexture.NO_OVERLAY);
 
-                head2Model.visible = true;
-                stack.translate(0, 0, 0.01);
-                head2Model.render(stack, ItemDisplayContext.NONE, buffer.getBuffer(skullRenderType), pPackedLight, OverlayTexture.NO_OVERLAY);
+                // head2Model.visible = true;
+                // stack.translate(0, 0, 0.01);
+                // head2Model.render(stack, ItemDisplayContext.NONE, buffer.getBuffer(skullRenderType), pPackedLight, OverlayTexture.NO_OVERLAY);
             }
             stack.popPose();
         });

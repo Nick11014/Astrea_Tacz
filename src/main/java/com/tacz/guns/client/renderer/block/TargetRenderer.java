@@ -61,15 +61,10 @@ public class TargetRenderer implements BlockEntityRenderer<TargetBlockEntity> {
                 poseStack.translate(0, 1.25, 0);
                 poseStack.mulPose(Axis.XP.rotationDegrees(deg));
                 Minecraft minecraft = Minecraft.getInstance();
-                ResourceLocation skin;
-                try {
-                    skin = minecraft.getSkinManager().getSkin(blockEntity.getOwner()).get().texture();
-                } catch (InterruptedException | ExecutionException e) {
-                    skin = DefaultPlayerSkin.getDefaultSkin(blockEntity.getOwner().getId());
-                }
-                headModel.visible = true;
-                RenderType skullRenderType = RenderType.entityTranslucentCull(skin);
-                headModel.render(poseStack, ItemDisplayContext.NONE, bufferIn.getBuffer(skullRenderType), combinedLightIn, OverlayTexture.NO_OVERLAY);
+                // ResourceLocation skin = minecraft.getSkinManager().getSkin(blockEntity.getOwner()).texture();
+                // headModel.visible = true;
+                // RenderType skullRenderType = RenderType.entityTranslucentCull(skin);
+                // headModel.render(poseStack, ItemDisplayContext.NONE, bufferIn.getBuffer(skullRenderType), combinedLightIn, OverlayTexture.NO_OVERLAY);
             }
             poseStack.popPose();
         });

@@ -14,6 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -56,7 +57,7 @@ public class TargetMinecart extends AbstractMinecart implements ITargetEntity {
         if (this.level().isClientSide() || this.isRemoved()) {
             return;
         }
-        if (!source.isIndirect()) {
+        if (!source.isDirect()) {
             return;
         }
         Entity sourceEntity = source.getEntity();
@@ -75,7 +76,9 @@ public class TargetMinecart extends AbstractMinecart implements ITargetEntity {
                 boolean isHeadshot = false;
                 float headshotMultiplier = 1;
                 NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(projectile, this, player, projectile.getGunId(), projectile.getGunDisplayId(), damage, Pair.of(source, source), isHeadshot, headshotMultiplier, LogicalSide.SERVER));
-                NetworkHandler.sendToClientPlayer(new ServerMessageGunHurt(projectile.getId(), this.getId(), player.getId(), projectile.getGunId(), projectile.getGunDisplayId(), damage, isHeadshot, headshotMultiplier), (ServerPlayer) this);
+                if (this instanceof ServerPlayer serverPlayer) {
+                    NetworkHandler.sendToClientPlayer(new ServerMessageGunHurt(projectile.getId(), this.getId(), player.getId(), projectile.getGunId(), projectile.getGunDisplayId(), damage, isHeadshot, headshotMultiplier), serverPlayer);
+                }
             }
         }
     }

@@ -31,7 +31,9 @@ import com.tacz.guns.util.block.BlockRayTrace;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.TagType;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -347,10 +349,10 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         float headShotMultiplier = Math.max(this.headShot, 0);
         var preEvent = new EntityHurtByGunEvent.Pre(this, entity, attacker, this.gunId, this.gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER);
         // Updated event bus call
-        boolean cancelled = NeoForge.EVENT_BUS.post(preEvent).isCanceled();
-        if (cancelled) {
-            return;
-        }
+        // boolean cancelled = NeoForge.EVENT_BUS.post(preEvent).isCanceled();
+        // if (cancelled) {
+        //     return;
+        // }
         entity = preEvent.getHurtEntity();
         var parts = MaybeMultipartEntity.of(entity);
         attacker = preEvent.getAttacker();
@@ -363,7 +365,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
             return;
         }
         if (this.igniteEntity && AmmoConfig.IGNITE_ENTITY.get()) {
-            ((LivingEntity) entity).setSecondsOnFire(this.igniteEntityTime);
+            ((LivingEntity) entity).igniteForSeconds(this.igniteEntityTime);
             if (this.level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.LAVA, entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ(), 1, 0, 0, 0, 0);
             }
@@ -389,11 +391,15 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
                 if (livingCore.isDeadOrDying()) {
                     // Updated event bus call
                     NeoForge.EVENT_BUS.post(new EntityKillByGunEvent(this, livingCore, attacker, newGunId, gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER));
-                    NetworkHandler.sendToClientPlayer(new ServerMessageGunKill(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), (ServerPlayer) livingCore);
+                    if (livingCore instanceof ServerPlayer serverPlayer) {
+                        NetworkHandler.sendToClientPlayer(new ServerMessageGunKill(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), serverPlayer);
+                    }
                 } else {
                     // Updated event bus call
                     NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(this, livingCore, attacker, newGunId, gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER));
-                    NetworkHandler.sendToClientPlayer(new ServerMessageGunHurt(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), (ServerPlayer) livingCore);
+                    if (livingCore instanceof ServerPlayer serverPlayer) {
+                        NetworkHandler.sendToClientPlayer(new ServerMessageGunHurt(getId(), livingCore.getId(), attackerId, newGunId, gunDisplayId, damage, headshot, headShotMultiplier), serverPlayer);
+                    }
                 }
             }
         }
@@ -406,9 +412,9 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         BlockPos pos = result.getBlockPos();
         Vec3 hitVec = result.getLocation();
         // Updated event bus call
-        if (NeoForge.EVENT_BUS.post(new AmmoHitBlockEvent(this.level(), result, this.level().getBlockState(pos))).isCanceled()) {
-            return;
-        }
+        // if (NeoForge.EVENT_BUS.post(new AmmoHitBlockEvent(this.level(), result, this.level().getBlockState(pos))).isCanceled()) {
+        //     return;
+        // }
         super.onHitBlock(result);
         if (this.explosion) {
             ExplodeUtil.createExplosion(this.getOwner(), this, this.explosionDamage, this.explosionRadius, this.explosionKnockback, this.explosionDestroyBlock, hitVec);
@@ -475,9 +481,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         parts.hitPart().hurt(source2, damage * armorDamagePercent);
     }
 
-    public Packet<ClientGamePacketListener> getSpawnPacket() {
-        return IEntityWithComplexSpawn.super.getSpawnPacket();
-    }
+    
 
     @Override
     public void writeSpawnData(RegistryFriendlyByteBuf buffer) {

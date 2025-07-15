@@ -54,21 +54,21 @@ public class BulletHoleParticle extends TextureSheetParticle {
         if (state.is(ModBlocks.TARGET.get()) || shouldRemove()) {
             this.remove();
         }
-        TimelessAPI.getGunDisplay(ResourceLocation.parse(gunDisplayId)).ifPresent(gunIndex -> {
-            float[] gunTracerColor = gunIndex.getTracerColor();
-            if (gunTracerColor != null) {
-                this.rCol = gunTracerColor[0];
-                this.gCol = gunTracerColor[1];
-                this.bCol = gunTracerColor[2];
-            } else {
-                TimelessAPI.getClientAmmoIndex(ResourceLocation.fromNamespaceAndPath(ammoId)).ifPresent(ammoIndex -> {
-                    float[] ammoTracerColor = ammoIndex.getTracerColor();
-                    this.rCol = ammoTracerColor[0];
-                    this.gCol = ammoTracerColor[1];
-                    this.bCol = ammoTracerColor[2];
-                });
-            }
-        });
+        // TimelessAPI.getGunDisplay(ResourceLocation.parse(gunDisplayId)).ifPresent(gunIndex -> {
+        //     float[] gunTracerColor = gunIndex.getTracerColor();
+        //     if (gunTracerColor != null) {
+        //         this.rCol = gunTracerColor[0];
+        //         this.gCol = gunTracerColor[1];
+        //         this.bCol = gunTracerColor[2];
+        //     } else {
+        //         TimelessAPI.getClientAmmoIndex(ResourceLocation.fromNamespaceAndPath(ammoId)).ifPresent(ammoIndex -> {
+        //             float[] ammoTracerColor = ammoIndex.getTracerColor();
+        //             this.rCol = ammoTracerColor[0];
+        //             this.gCol = ammoTracerColor[1];
+        //             this.bCol = ammoTracerColor[2];
+        //         });
+        //     }
+        // });
         this.alpha = 0.9F;
     }
 
@@ -165,10 +165,13 @@ public class BulletHoleParticle extends TextureSheetParticle {
         float fade = 1.0f - (float) (Math.max(this.age - threshold, 0) / (this.lifetime - threshold));
         float alphaFade = this.alpha * fade;
 
-        buffer.addVertex(points[0].x(), points[0].y(), points[0].z()).setUv(u1, v1).setColor(red, green, blue, alphaFade).setUv2(lightColor);
-        buffer.addVertex(points[1].x(), points[1].y(), points[1].z()).setUv(u1, v0).setColor(red, green, blue, alphaFade).setUv2(lightColor);
-        buffer.addVertex(points[2].x(), points[2].y(), points[2].z()).setUv(u0, v0).setColor(red, green, blue, alphaFade).setUv2(lightColor);
-        buffer.addVertex(points[3].x(), points[3].y(), points[3].z()).setUv(u0, v1).setColor(red, green, blue, alphaFade).setUv2(lightColor);
+        int blockLight = LightTexture.block(lightColor);
+        int skyLight = LightTexture.sky(lightColor);
+
+        buffer.addVertex(points[0].x(), points[0].y(), points[0].z()).setUv(u1, v1).setColor(red, green, blue, alphaFade).setUv2(blockLight, skyLight);
+        buffer.addVertex(points[1].x(), points[1].y(), points[1].z()).setUv(u1, v0).setColor(red, green, blue, alphaFade).setUv2(blockLight, skyLight);
+        buffer.addVertex(points[2].x(), points[2].y(), points[2].z()).setUv(u0, v0).setColor(red, green, blue, alphaFade).setUv2(blockLight, skyLight);
+        buffer.addVertex(points[3].x(), points[3].y(), points[3].z()).setUv(u0, v1).setColor(red, green, blue, alphaFade).setUv2(blockLight, skyLight);
     }
 
     @Override

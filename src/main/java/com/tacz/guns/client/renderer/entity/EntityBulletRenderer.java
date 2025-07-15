@@ -9,6 +9,7 @@ import com.tacz.guns.client.renderer.item.GunItemRendererWrapper;
 import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.InternalAssetLoader;
 import com.tacz.guns.config.client.RenderConfig;
+import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.entity.EntityKineticBullet;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -50,7 +51,7 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
         if (display.isEmpty()) {
             return;
         }
-        float @Nullable [] tracerColor = bullet.getTracerColorOverride().orElse(display.get().getTracerColor());
+        float @Nullable [] tracerColor = null;
         ResourceLocation ammoId = bullet.getAmmoId();
         TimelessAPI.getClientAmmoIndex(ammoId).ifPresent(ammoIndex -> {
             BedrockAmmoModel ammoEntityModel = ammoIndex.getAmmoEntityModel();

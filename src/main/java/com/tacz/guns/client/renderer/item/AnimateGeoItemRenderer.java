@@ -287,7 +287,7 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
         MathUtil.applyMatrixLerp(transformMatrix, idleViewMatrix, transformMatrix, 1);
 
         poseStack.translate(0, 1.5f, 0);
-        poseStack.last().mul(transformMatrix);
+        poseStack.mulPose(transformMatrix);
         poseStack.translate(0, -1.5f, 0);
     }
 }
