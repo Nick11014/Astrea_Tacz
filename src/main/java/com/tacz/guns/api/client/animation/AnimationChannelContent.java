@@ -23,7 +23,6 @@ public class AnimationChannelContent {
             this.keyframeTimeS = Arrays.copyOf(source.keyframeTimeS, source.keyframeTimeS.length);
         }
         if (source.values != null) {
-            // ÃƒÂ¦Ã‚Â·Ã‚Â±ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â·ÃƒÂ¨Ã‚Â´Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
             this.values = Arrays.stream(source.values)
                     .map(values -> Arrays.copyOf(values, values.length))
                     .toArray(float[][]::new);

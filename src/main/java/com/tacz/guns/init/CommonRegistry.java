@@ -21,8 +21,6 @@ public final class CommonRegistry {
         
         // Registrar DataComponents
         event.enqueueWork(() -> {
-            // Os DataComponents sÃƒÆ’Ã‚Â£o registrados automaticamente pelo DeferredRegister
-            // quando o registro ÃƒÆ’Ã‚Â© anexado ao event bus do mod
         });
     }
 

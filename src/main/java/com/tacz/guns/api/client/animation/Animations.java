@@ -29,16 +29,13 @@ public class Animations {
         for (AnimationModel animationModel : animationModels) {
             ObjectAnimation animation = new ObjectAnimation(animationModel.getName());
 
-            // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“
             List<AnimationModel.Channel> channelModels = animationModel.getChannels();
             for (AnimationModel.Channel channelModel : channelModels) {
                 ObjectAnimationChannel channel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.valueOf(channelModel.path().toUpperCase(Locale.ENGLISH)));
                 AnimationModel.Sampler sampler = channelModel.sampler();
 
-                // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã…Â Ã¢â‚¬Å¡ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
                 AnimationModel.Interpolation interpolation = sampler.interpolation();
                 NodeModel nodeModel = channelModel.nodeModel();
-                // ÃƒÂ¥Ã¢â‚¬ÂºÃ¢â‚¬ÂºÃƒÂ¥Ã¢â‚¬Â¦Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã¢â‚¬Â°Ã‚Â¹ÃƒÂ¦Ã‚Â®Ã…Â ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                 if (channel.type.equals(ObjectAnimationChannel.ChannelType.ROTATION) && interpolation.equals(AnimationModel.Interpolation.LINEAR)) {
                     channel.interpolator = InterpolatorUtil.fromInterpolation(InterpolatorUtil.InterpolatorType.SLERP);
                 } else {
@@ -46,7 +43,6 @@ public class Animations {
                 }
                 channel.node = nodeModel.getName();
 
-                // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â 
                 AnimationListener animationListener = supplier.supplyListeners(channel.node, channel.type);
                 if (animationListener == null) {
                     continue;
@@ -63,16 +59,11 @@ public class Animations {
                     inverseValue[2] = -inverseValue[2];
                 }
 
-                // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
-                // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â®Ã‚Â¿ÃƒÂ©Ã¢â‚¬â€Ã‚Â®ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Cast temporÃƒÆ’Ã‚Â¡rio enquanto sampler retorna Object
                 AccessorModel input = (AccessorModel) sampler.input();
                 AccessorData inputData = input.getAccessorData();
                 if (!(inputData instanceof AccessorFloatData inputFloatData)) {
                     throw new IllegalArgumentException("Input data is not an AccessorFloatData, but " + inputData.getClass());
                 }
-                // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â®Ã‚Â¿ÃƒÂ©Ã¢â‚¬â€Ã‚Â®ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Cast temporÃƒÆ’Ã‚Â¡rio enquanto sampler retorna Object
                 AccessorModel output = (AccessorModel) sampler.output();
                 AccessorData outputData = output.getAccessorData();
                 if (!(outputData instanceof AccessorFloatData outputFloatData)) {
@@ -100,14 +91,11 @@ public class Animations {
                 channel.content.keyframeTimeS = keyframeTimeS;
                 channel.content.values = values;
 
-                // ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã‚Â¼Ã¢â‚¬â€œÃƒÂ¨Ã‚Â¯Ã¢â‚¬ËœÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
                 channel.interpolator.compile(channel.content);
 
-                // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¨Ã‚Â½Ã‚Â¨ÃƒÂ©Ã‚ÂÃ¢â‚¬Å“ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
                 animation.addChannel(channel);
             }
 
-            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¤Ã‚Â¸Ã‚Â­
             prototypes.add(animation);
         }
         return new AnimationController(prototypes, supplier);
@@ -132,7 +120,6 @@ public class Animations {
                         ObjectAnimationChannel translationChannel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.TRANSLATION);
                         translationChannel.node = boneEntry.getKey();
                         translationChannel.interpolator = new CustomInterpolator();
-                        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº AnimationChannel
                         writeBedrockTranslation(translationChannel, bone.getPosition());
                         translationChannel.interpolator.compile(translationChannel.content);
                         animation.addChannel(translationChannel);
@@ -141,7 +128,6 @@ public class Animations {
                         ObjectAnimationChannel rotationChannel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.ROTATION);
                         rotationChannel.node = boneEntry.getKey();
                         rotationChannel.interpolator = new CustomInterpolator();
-                        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº AnimationChannel
                         writeBedrockRotation(rotationChannel, bone.getRotation());
                         rotationChannel.interpolator.compile(rotationChannel.content);
                         animation.addChannel(rotationChannel);
@@ -150,14 +136,12 @@ public class Animations {
                         ObjectAnimationChannel scaleChannel = new ObjectAnimationChannel(ObjectAnimationChannel.ChannelType.SCALE);
                         scaleChannel.node = boneEntry.getKey();
                         scaleChannel.interpolator = new CustomInterpolator();
-                        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ§Ã‚Â¼Ã‚Â©ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº AnimationChannel
                         writeBedrockScale(scaleChannel, bone.getScale());
                         scaleChannel.interpolator.compile(scaleChannel.content);
                         animation.addChannel(scaleChannel);
                     }
                 }
             }
-            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã‹â€ Ã‚Â° ObjectAnimation ÃƒÂ¤Ã‚Â¸Ã‚Â­
             SoundEffectKeyframes soundEffectKeyframes = bedrockAnimation.getSoundEffects();
             if (soundEffectKeyframes != null) {
                 ObjectAnimationSoundChannel soundChannel = new ObjectAnimationSoundChannel();
@@ -179,17 +163,13 @@ public class Animations {
     }
 
     private static void writeBedrockTranslation(ObjectAnimationChannel animationChannel, AnimationKeyframes keyframes) {
-        // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã¢â‚¬Å¡Ã‚Â¨ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã¢â€šÂ¬Ã…â€™ tac ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ§Ã‚Â»Ã…Â¸ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ‚Â ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
-        // ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         Double2ObjectRBTreeMap<AnimationKeyframes.Keyframe> keyframesMap = keyframes.getKeyframes();
         animationChannel.content.keyframeTimeS = new float[keyframesMap.size()];
         animationChannel.content.values = new float[keyframesMap.size()][];
         animationChannel.content.lerpModes = new AnimationChannelContent.LerpMode[keyframesMap.size()];
         int index = 0;
         for (Double2ObjectMap.Entry<AnimationKeyframes.Keyframe> entry : keyframesMap.double2ObjectEntrySet()) {
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             animationChannel.content.keyframeTimeS[index] = (float) entry.getDoubleKey();
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             AnimationKeyframes.Keyframe keyframe = entry.getValue();
             if (keyframe.pre() != null || keyframe.post() != null) {
                 if (keyframe.pre() != null && keyframe.post() != null) {
@@ -217,7 +197,6 @@ public class Animations {
                 data.mul(1 / 16f, 1 / 16f, 1 / 16f);
                 readVector3fToArray(animationChannel.content.values[index], data, 0);
             }
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
             String lerpModeName = keyframe.lerpMode();
             if (lerpModeName != null) {
                 try {
@@ -239,9 +218,7 @@ public class Animations {
         animationChannel.content.lerpModes = new AnimationChannelContent.LerpMode[keyframesMap.size()];
         int index = 0;
         for (Double2ObjectMap.Entry<AnimationKeyframes.Keyframe> entry : keyframesMap.double2ObjectEntrySet()) {
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             animationChannel.content.keyframeTimeS[index] = (float) entry.getDoubleKey();
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             AnimationKeyframes.Keyframe keyframe = entry.getValue();
             if (keyframe.pre() != null || keyframe.post() != null) {
                 if (keyframe.pre() != null && keyframe.post() != null) {
@@ -300,9 +277,7 @@ public class Animations {
         animationChannel.content.lerpModes = new AnimationChannelContent.LerpMode[keyframesMap.size()];
         int index = 0;
         for (Double2ObjectMap.Entry<AnimationKeyframes.Keyframe> entry : keyframesMap.double2ObjectEntrySet()) {
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             animationChannel.content.keyframeTimeS[index] = (float) entry.getDoubleKey();
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             AnimationKeyframes.Keyframe keyframe = entry.getValue();
             if (keyframe.pre() != null || keyframe.post() != null) {
                 if (keyframe.pre() != null && keyframe.post() != null) {
@@ -325,7 +300,6 @@ public class Animations {
                 Vector3f data = keyframe.data();
                 readVector3fToArray(animationChannel.content.values[index], data, 0);
             }
-            // ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¥Ã‚Â¸Ã‚Â§ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
             String lerpModeName = keyframe.lerpMode();
             if (lerpModeName != null) {
                 try {

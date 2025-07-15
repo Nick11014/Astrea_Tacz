@@ -38,7 +38,6 @@ public class SoundAssetsManager extends SimplePreparableReloadListener<Map<Resou
         Map<ResourceLocation, SoundData> output = Maps.newHashMap();
         
         // TODO: OggAudioStream foi removido no NeoForge 1.21.1
-        // Funcionalidade temporariamente desabilitada atÃƒÆ’Ã‚Â© encontrar alternativa
         /*
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             ResourceLocation resourcelocation = entry.getKey();

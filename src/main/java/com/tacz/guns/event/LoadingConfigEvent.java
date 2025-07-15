@@ -6,7 +6,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 
-// MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: EventBusSubscriber.Bus.MOD
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class LoadingConfigEvent {
     private static final String CONFIG_NAME = "tacz-server.toml";

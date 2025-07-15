@@ -40,7 +40,6 @@ public class ModPainting {
     // public static final DeferredHolder<PaintingVariant, PaintingVariant> BLOOD_STRIKE_1 = PAINTING_VARIANTS.register("blood_strike_1", 
     //      () -> new PaintingVariant(2, 2, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "painting/blood_strike_1")));
 
-    // Se a pintura realmente deve ter 32x32 BLOCOS (o que ÃƒÆ’Ã‚Â© enorme), o original estaria correto:
     // public static final DeferredHolder<PaintingVariant, PaintingVariant> BLOOD_STRIKE_1 = PAINTING_VARIANTS.register("blood_strike_1", 
     //      () -> new PaintingVariant(32, 32, ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "painting/blood_strike_1")));
 }

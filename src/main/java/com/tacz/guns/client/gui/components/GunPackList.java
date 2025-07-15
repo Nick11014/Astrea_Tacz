@@ -115,7 +115,6 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
     }
 
     public int getRowLeft() {
-        // getRowLeft() já é fornecido pela superclasse, mas pode ser customizado
         return super.getRowLeft();
     }
 

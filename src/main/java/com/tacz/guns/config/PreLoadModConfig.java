@@ -33,7 +33,6 @@ public class PreLoadModConfig {
     public void setConfigData(final CommentedConfig configData) {
         this.configData = configData;
         // Em NeoForge 1.21.1, apenas armazenamos os dados
-        // Os eventos de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o sÃƒÆ’Ã‚Â£o tratados pelo sistema padrÃƒÆ’Ã‚Â£o
     }
 
     public void save() {

@@ -25,7 +25,6 @@ public class LaserRender implements IFunctionalRenderer {
         this.bedrockGunModel = bedrockGunModel;
         this.attachmentIndex = attachmentIndex;
         
-        // Inicializar cor do laser se disponÃƒÆ’Ã‚Â­vel
         if (attachmentIndex != null && attachmentIndex.isLaser()) {
             LaserConfig config = attachmentIndex.getLaserConfig();
             if (config != null) {
@@ -40,19 +39,16 @@ public class LaserRender implements IFunctionalRenderer {
             return;
         }
 
-        // SÃƒÆ’Ã‚Â³ renderiza se for um laser
         if (!attachmentIndex.isLaser()) {
             return;
         }
 
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de laser quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         /*
         if (transformType instanceof ItemDisplayContext displayContext) {
             if (displayContext.firstPerson() || displayContext == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
                 // Renderizar feixe de laser
                 renderLaserBeam(poseStack, vertexBuffer, light, overlay);
                 
-                // Renderizar ponto de mira se necessÃƒÆ’Ã‚Â¡rio
                 if (shouldRenderLaserDot()) {
                     renderLaserDot(poseStack, vertexBuffer, light, overlay);
                 }
@@ -60,7 +56,6 @@ public class LaserRender implements IFunctionalRenderer {
         }
         */
 
-        // Atualizar estatÃƒÆ’Ã‚Â­sticas do laser
         updateLaserStats();
     }
 
@@ -135,7 +130,6 @@ public class LaserRender implements IFunctionalRenderer {
         if (attachmentIndex != null && attachmentIndex.isLaser()) {
             LaserConfig config = attachmentIndex.getLaserConfig();
             if (config != null) {
-                // TODO: Obter intensidade da configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o quando disponÃƒÆ’Ã‚Â­vel
                 return 1.0f;
             }
         }

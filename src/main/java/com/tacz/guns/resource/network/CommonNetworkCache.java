@@ -6,9 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.tacz.guns.GunMod;
-// HABILITADO: Sistema de modificadores agora disponÃƒÆ’Ã‚Â­vel com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
 import com.tacz.guns.api.modifier.JsonProperty;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ CommonAssetsManager habilitado - serializers customizados funcionais
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.ICommonResourceProvider;
 import com.tacz.guns.resource.filter.RecipeFilter;
@@ -16,7 +14,6 @@ import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonAttachmentIndex;
 import com.tacz.guns.resource.index.CommonBlockIndex;
 import com.tacz.guns.resource.index.CommonGunIndex;
-// HABILITADO: Sistema de modificadores agora disponÃƒÆ’Ã‚Â­vel com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.block.BlockData;
@@ -140,7 +137,6 @@ public enum CommonNetworkCache implements ICommonResourceProvider {
 
         attachmentTags.clear();
         allowAttachmentTags.clear();
-        // ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â 
         Map<DataType, Map<ResourceLocation, String>> delayed = new HashMap<>();
         for (Map.Entry<DataType, Map<ResourceLocation, String>> entry : cache.entrySet()) {
             switch (entry.getKey()) {
@@ -159,36 +155,29 @@ public enum CommonNetworkCache implements ICommonResourceProvider {
     }
 
     private <T> T parse(String json, Class<T> dataClass) {
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ CommonAssetsManager.GSON restaurado - serializers customizados funcionais
         return CommonAssetsManager.GSON.fromJson(json, dataClass);
     }
 
     private AttachmentData parseAttachmentData(String json) {
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ CommonAssetsManager.GSON restaurado - serializers customizados funcionais
         AttachmentData data = CommonAssetsManager.GSON.fromJson(json, AttachmentData.class);
         JsonElement element = CommonAssetsManager.GSON.fromJson(json, JsonElement.class);
         if (data != null) {
-            // HABILITADO: LÃƒÆ’Ã‚Â³gica de modificadores restaurada com implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica
-            // ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â±Ã…Â¾ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹
             AttachmentPropertyManager.getModifiers().forEach((key, value) -> {
                 if (!element.isJsonObject()) {
                     return;
                 }
                 JsonObject jsonObject = element.getAsJsonObject();
                 
-                // TODO: Restaurar quando IAttachmentModifier estiver disponÃƒÆ’Ã‚Â­vel
                 // if (jsonObject.has(key)) {
                 //     JsonProperty<?> property = value.readJson(json);
                 //     property.initComponents();
                 //     data.addModifier(key, property);
                 // } else if (jsonObject.has(value.getOptionalFields())) {
-                //     // ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ¦Ã‚Â®Ã‚ÂµÃƒÂ¥Ã‚ÂÃ‚Â
                 //     JsonProperty<?> property = value.readJson(json);
                 //     property.initComponents();
                 //     data.addModifier(key, property);
                 // }
                 
-                // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas processamento bÃƒÆ’Ã‚Â¡sico
                 if (jsonObject.has(key)) {
                     // System.out.println("Processing network modifier: " + key);
                 }
@@ -199,7 +188,6 @@ public enum CommonNetworkCache implements ICommonResourceProvider {
 
     private void resolveAttachmentTags(Map<ResourceLocation, String> data) {
         for (Map.Entry<ResourceLocation, String> entry : data.entrySet()) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar CommonAssetsManager.GSON quando habilitado
             List<String> tags = new Gson().fromJson(entry.getValue(), new TypeToken<>(){});
             if (entry.getKey().getPath().startsWith("allow_attachments/") && entry.getKey().getPath().length()>18) {
                 ResourceLocation gunId = entry.getKey().withPath(entry.getKey().getPath().substring(18));

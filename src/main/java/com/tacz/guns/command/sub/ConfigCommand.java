@@ -23,7 +23,6 @@ public class ConfigCommand {
 
     public static LiteralArgumentBuilder<CommandSourceStack> get() {
         var config = Commands.literal(CONFIG_NAME);
-        // Migrado para NeoForge 1.21.1: Usando StringArgumentType com sugestÃƒÆ’Ã‚Âµes personalizadas
         var configKey = Commands.argument(KEY, StringArgumentType.string())
                 .suggests(ConfigCommand::suggestConfigKeys);
         var state = Commands.argument(ENABLE, BoolArgumentType.bool());

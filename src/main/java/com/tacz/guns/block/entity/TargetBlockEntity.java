@@ -62,7 +62,6 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
 
     public void setOwner(@Nullable GameProfile owner) {
         this.owner = owner;
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] SkullBlockEntity.updateGameprofile removido no NeoForge 1.21.1
         // SkullBlockEntity.updateGameprofile(this.owner, gameProfile -> {
         //     this.owner = gameProfile;
         //     this.refresh();
@@ -73,11 +72,9 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
     protected void loadAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         if (tag.contains(OWNER_TAG, Tag.TAG_COMPOUND)) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] NbtUtils.readGameProfile pode ter mudado
             // this.owner = NbtUtils.readGameProfile(tag.getCompound(OWNER_TAG));
         }
         if (tag.contains(CUSTOM_NAME_TAG, Tag.TAG_STRING)) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Component.Serializer.fromJson agora requer HolderLookup.Provider
             // this.name = Component.Serializer.fromJson(tag.getString(CUSTOM_NAME_TAG));
         }
     }
@@ -86,11 +83,9 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
     protected void saveAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         if (owner != null) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] NbtUtils.writeGameProfile pode ter mudado
             // tag.put(OWNER_TAG, NbtUtils.writeGameProfile(new CompoundTag(), owner));
         }
         if (this.name != null) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Component.Serializer.toJson agora requer HolderLookup.Provider
             // tag.putString(CUSTOM_NAME_TAG, Component.Serializer.toJson(this.name));
         }
     }
@@ -128,7 +123,6 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
         }
     }
 
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] getRenderBoundingBox removido ou mudou no NeoForge 1.21.1
     // @Override
     // public AABB getRenderBoundingBox() {
     //     return new AABB(worldPosition.offset(-2, 0, -2).getCenter(), worldPosition.offset(2, 2, 2).getCenter());
@@ -137,7 +131,6 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
     public void hit(Level level, BlockState state, BlockHitResult hit, boolean isUpperBlock) {
         if (this.level != null && state.getValue(STAND)) {
             BlockPos blockPos = hit.getBlockPos();
-            // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã…Â Ã…Â ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â 
             if (isUpperBlock) {
                 blockPos = blockPos.below();
                 state = level.getBlockState(blockPos);
@@ -145,8 +138,6 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
             int redstoneStrength = TargetBlock.getRedstoneStrength(hit, isUpperBlock);
             level.setBlock(blockPos, state.setValue(STAND, false).setValue(OUTPUT_POWER, redstoneStrength), Block.UPDATE_ALL);
             level.scheduleTick(blockPos, state.getBlock(), RESET_TIME);
-            // ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ§Ã¢â‚¬ÂÃ‚Â± volume ÃƒÂ¥Ã¢â‚¬Â Ã‚Â³ÃƒÂ¥Ã‚Â®Ã…Â¡
-            // ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¤Ã‚ÂºÃ…Â½ 1 ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Âº = 16 * volume
             float volume = OtherConfig.TARGET_SOUND_DISTANCE.get() / 16.0f;
             volume = Math.max(volume, 0);
             level.playSound(null, blockPos, ModSounds.TARGET_HIT.get(), SoundSource.BLOCKS, volume, this.level.random.nextFloat() * 0.1F + 0.9F);

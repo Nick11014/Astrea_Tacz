@@ -18,7 +18,6 @@ import java.util.Optional;
  * TODO: Expandir quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
  */
 public class ClientAttachmentIndex {
-    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - usando Object para evitar dependÃƒÆ’Ã‚Âªncias quebradas
     private Object model; // TODO: BedrockAttachmentModel quando disponÃƒÆ’Ã‚Â­vel
     private Object texture; // TODO: ResourceLocation quando import estiver funcionando
     private String name;
@@ -47,13 +46,11 @@ public class ClientAttachmentIndex {
     public static ClientAttachmentIndex getInstance(Object attachmentId, AttachmentIndexPOJO indexPojo) {
         ClientAttachmentIndex index = new ClientAttachmentIndex();
         
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - dados bÃƒÆ’Ã‚Â¡sicos
         index.name = indexPojo.getName();
         if (index.name == null || index.name.trim().isEmpty()) {
             index.name = "custom.tacz.error.no_name";
         }
         
-        // TODO: Carregar dados completos quando disponÃƒÆ’Ã‚Â­vel
         // index.data = loadAttachmentData(indexPojo.getData());
         // index.display = loadAttachmentDisplay(indexPojo.getDisplay());
         // index.model = loadAttachmentModel(...);
@@ -61,7 +58,6 @@ public class ClientAttachmentIndex {
         return index;
     }
 
-    // Getters bÃƒÆ’Ã‚Â¡sicos para compatibilidade
     public String getName() {
         return name;
     }
@@ -153,7 +149,6 @@ public class ClientAttachmentIndex {
         return null;
     }
 
-    // MÃƒÆ’Ã‚Â©todos adicionais requeridos pelo AttachmentItemRenderer (implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com Object strategy)
     
     /**
      * Retorna o modelo de acessÃƒÆ’Ã‚Â³rio - agora compatÃƒÆ’Ã‚Â­vel com BedrockAttachmentModel
@@ -185,7 +180,6 @@ public class ClientAttachmentIndex {
      */
     /*
     public Object getLodModel() {
-        // TODO: Implementar sistema LOD quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
         // Retorna null por enquanto (sem modelo LOD)
         return Optional.empty();
     }
@@ -197,14 +191,12 @@ public class ClientAttachmentIndex {
      */
     public Object createAttachmentModel() {
         if (model == null) {
-            // TODO: Criar BedrockAttachmentModel quando POJO estiver disponÃƒÆ’Ã‚Â­vel
             // model = new BedrockAttachmentModel(pojo, version);
             // configurar propriedades: isScope, isSight, etc.
         }
         return model;
     }
 
-    // MÃƒÆ’Ã‚Â©todos utilitÃƒÆ’Ã‚Â¡rios adicionais para expansÃƒÆ’Ã‚Â£o de funcionalidades
 
     /**
      * Verifica se este acessÃƒÆ’Ã‚Â³rio tem modelo disponÃƒÆ’Ã‚Â­vel
@@ -265,8 +257,6 @@ public class ClientAttachmentIndex {
      * TODO: Implementar corretamente quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static Object getOrLoadAttachmentModel(Object modelLocation) {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna null temporariamente
-        // Quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel, implementar:
         // return ClientAssetsManager.INSTANCE.getBedrockModelPOJO(modelLocation);
         return null;
     }

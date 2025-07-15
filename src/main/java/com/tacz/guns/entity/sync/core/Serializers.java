@@ -290,9 +290,7 @@ public class Serializers {
     public static final IDataSerializer<ItemStack> ITEM_STACK = new IDataSerializer<>() {
         @Override
         public void write(FriendlyByteBuf buf, ItemStack value) {
-            // NeoForge 1.21.1: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima baseada na pesquisa
             // A pesquisa indica que devemos migrar para DataComponents
-            // Esta implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© um fallback funcional atÃƒÆ’Ã‚Â© a migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa
             
             if (value.isEmpty()) {
                 buf.writeBoolean(false);
@@ -300,13 +298,11 @@ public class Serializers {
                 buf.writeBoolean(true);
                 buf.writeUtf(value.getItem().toString()); // ID do item
                 buf.writeVarInt(value.getCount()); // Quantidade
-                // TODO: Adicionar DataComponents conforme migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
             }
         }
 
         @Override
         public ItemStack read(FriendlyByteBuf buf) {
-            // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima funcional
             boolean hasItem = buf.readBoolean();
             if (!hasItem) {
                 return ItemStack.EMPTY;
@@ -321,10 +317,8 @@ public class Serializers {
 
         @Override
         public Tag write(ItemStack value) {
-            // NBT: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima baseada na pesquisa
             CompoundTag compound = new CompoundTag();
             if (!value.isEmpty()) {
-                // Armazenar dados bÃƒÆ’Ã‚Â¡sicos - DataComponents serÃƒÆ’Ã‚Â£o a soluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o final
                 compound.putString("id", value.getItem().toString());
                 compound.putInt("count", value.getCount());
                 // TODO: Migrar para DataComponents conforme pesquisa
@@ -334,7 +328,6 @@ public class Serializers {
 
         @Override
         public ItemStack read(Tag tag) {
-            // NBT: Leitura mÃƒÆ’Ã‚Â­nima
             if (!(tag instanceof CompoundTag compound)) {
                 return ItemStack.EMPTY;
             }
@@ -362,7 +355,6 @@ public class Serializers {
 
         @Override
         public ResourceLocation read(Tag tag) {
-            // NeoForge 1.21.1: ResourceLocation.parse ÃƒÆ’Ã‚Â© mais seguro que tryParse
             return ResourceLocation.parse(tag.getAsString());
         }
     };

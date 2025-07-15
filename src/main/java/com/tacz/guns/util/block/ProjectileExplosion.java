@@ -10,7 +10,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] ProtectionEnchantment foi removido
 // import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
@@ -114,7 +113,6 @@ public class ProjectileExplosion extends Explosion {
         int maxZ = Mth.floor(this.z + (double) radius + 1.0D);
         radius *= 2;
         List<Entity> entities = this.level.getEntities(this.exploder, new AABB(minX, minY, minZ, maxX, maxY, maxZ));
-        // MigraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o NeoForge 1.21.1: ForgeEventFactory foi movido para NeoForge
         net.neoforged.neoforge.event.EventHooks.onExplosionDetonate(this.level, this, entities, radius);
         Vec3 explosionPos = new Vec3(this.x, this.y, this.z);
 
@@ -183,14 +181,12 @@ public class ProjectileExplosion extends Explosion {
             entity.hurt(this.getDamageSource(), (float) damage * this.power);
 
             if (entity instanceof LivingEntity) {
-                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] ProtectionEnchantment.getExplosionKnockbackAfterDampener foi removido
                 // damage = (float) ProtectionEnchantment.getExplosionKnockbackAfterDampener((LivingEntity) entity, damage);
                 // Usar valor base por enquanto
                 damage = (float) damage;
             }
 
             float multiplier = this.power * radius / 500;
-            // ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ©Ã¢â€šÂ¬Ã¢â€šÂ¬ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œ
             if (AmmoConfig.EXPLOSIVE_AMMO_KNOCK_BACK.get() && this.knockback) {
                 entity.setDeltaMovement(entity.getDeltaMovement().add(deltaX * damage * multiplier, deltaY * damage * multiplier, deltaZ * damage * multiplier));
                 if (entity instanceof Player player) {

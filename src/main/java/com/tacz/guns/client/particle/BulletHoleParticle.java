@@ -85,7 +85,6 @@ public class BulletHoleParticle extends TextureSheetParticle {
         super.setSprite(sprite);
         this.uOffset = this.random.nextInt(16);
         this.vOffset = this.random.nextInt(16);
-        // ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â´Ã‚Â¨ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â¯Ã‚Â¥ÃƒÂ©Ã†â€™Ã‚Â½ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚Â½Ã‚Â¢
         this.textureDensity = (sprite.getU1() - sprite.getU0()) / 16.0F;
     }
 
@@ -135,7 +134,6 @@ public class BulletHoleParticle extends TextureSheetParticle {
         float particleZ = (float) (Mth.lerp(partialTicks, this.zo, this.z) - view.z());
         Quaternionf quaternion = this.direction.getRotation();
         Vector3f[] points = new Vector3f[]{
-                // Y ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã‚Â¨Ã‚ÂÃƒÂ¥Ã‚Â¾Ã‚Â®ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‹Å“Ã‚Â²ÃƒÂ¦Ã‚Â­Ã‚Â¢ z-fight
                 new Vector3f(-1.0F, 0.01F, -1.0F),
                 new Vector3f(-1.0F, 0.01F, 1.0F),
                 new Vector3f(1.0F, 0.01F, 1.0F),
@@ -150,23 +148,19 @@ public class BulletHoleParticle extends TextureSheetParticle {
             vector3f.add(particleX, particleY, particleZ);
         }
 
-        // UV ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡
         float u0 = this.getU0();
         float u1 = this.getU1();
         float v0 = this.getV0();
         float v1 = this.getV1();
 
-        // 0 - 30 tick ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã…Â½ 15 ÃƒÂ¤Ã‚ÂºÃ‚Â®ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¥Ã‹â€ Ã‚Â° 0 ÃƒÂ¤Ã‚ÂºÃ‚Â®ÃƒÂ¥Ã‚ÂºÃ‚Â¦
         int light = Math.max(15 - this.age / 2, 0);
         int lightColor = LightTexture.pack(light, light);
 
-        // ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¥Ã‹â€ Ã‚Â° 0 0 0ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¹Ã…Â¸ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ©Ã‚Â»Ã¢â‚¬ËœÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²
         float colorPercent = light / 15.0f;
         float red = this.rCol * colorPercent;
         float green = this.gCol * colorPercent;
         float blue = this.bCol * colorPercent;
 
-        // ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‹Å“Ã…Â½ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‹â€ Ã‚Â 0ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¹Ã…Â¸ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‹Å“Ã…Â½
         double threshold = RenderConfig.BULLET_HOLE_PARTICLE_FADE_THRESHOLD.get() * this.lifetime;
         float fade = 1.0f - (float) (Math.max(this.age - threshold, 0) / (this.lifetime - threshold));
         float alphaFade = this.alpha * fade;
@@ -187,7 +181,6 @@ public class BulletHoleParticle extends TextureSheetParticle {
         if (blockState.isAir()) {
             return true;
         } else {
-            // ÃƒÂ©Ã‹Å“Ã‚Â»ÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚Â­Ã¢â‚¬ÂÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ©Ã¢â€žÂ¢Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â€šÂ¬ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ§Ã‚Â»Ã‚Â§ÃƒÂ§Ã‚Â»Ã‚Â­ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
             VoxelShape shape = blockState.getCollisionShape(this.level, this.pos);
             if (shape.isEmpty()) {
                 return true;

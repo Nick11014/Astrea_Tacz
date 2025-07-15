@@ -34,7 +34,6 @@ public class LivingEntityFireSelect {
         NetworkHandler.sendToClientPlayer(new ServerMessageGunFireSelect(shooter.getId(), currentGunItem), (ServerPlayer) shooter);
         if (iGun instanceof AbstractGunItem logicGun) {
             logicGun.fireSelect(data, currentGunItem);
-            // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“
             AttachmentPropertyManager.postChangeEvent(shooter, currentGunItem);
         }
     }

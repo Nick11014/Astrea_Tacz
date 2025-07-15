@@ -30,15 +30,12 @@ public class AttachmentRender implements IFunctionalRenderer {
     }
 
     public static void renderAttachment(ItemStack attachmentItem, ItemStack gunItem, PoseStack poseStack, ItemDisplayContext transformType, int light, int overlay) {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o expandida - usando RenderDistance e validaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
         if (attachmentItem == null || gunItem == null || poseStack == null) {
             return;
         }
 
-        // Verificar distÃƒÆ’Ã‚Â¢ncia de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
         boolean highPoly = RenderDistance.inRenderHighPolyModelDistance(poseStack);
 
-        // TODO: Implementar renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         // poseStack.translate(0, -1.5, 0);
         // if (attachmentItem.getItem() instanceof IAttachment iAttachment) {
         //     ResourceLocation attachmentId = iAttachment.getAttachmentId(attachmentItem);
@@ -47,7 +44,6 @@ public class AttachmentRender implements IFunctionalRenderer {
         //         Object texture = attachmentIndex.getModelTexture();
         //         
         //         if (model != null && texture != null) {
-        //             // Usar LOD se necessÃƒÆ’Ã‚Â¡rio
         //             if (!highPoly) {
         //                 Object lodModel = attachmentIndex.getLodModel();
         //                 if (lodModel != null) {
@@ -72,12 +68,10 @@ public class AttachmentRender implements IFunctionalRenderer {
 
     @Override
     public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o expandida usando bedrockGunModel e type
         if (bedrockGunModel == null || type == null) {
             return;
         }
 
-        // TODO: Implementar quando EnumMap e outros tipos estiverem disponÃƒÆ’Ã‚Â­veis
         EnumMap<AttachmentType, ItemStack> currentAttachmentItem = bedrockGunModel.getCurrentAttachmentItem();
         ItemStack attachmentItem = currentAttachmentItem.get(type);
         if (attachmentItem != null && !attachmentItem.isEmpty()) {
@@ -91,22 +85,15 @@ public class AttachmentRender implements IFunctionalRenderer {
             });
         }
 
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atual
         renderBasic(poseStack, vertexBuffer, transformType, light, overlay);
     }
 
     private void renderBasic(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica que funciona com Object strategy
         if (RenderDistance.inRenderHighPolyModelDistance(poseStack)) {
-            // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de alta qualidade
-            // TODO: Expandir quando mais dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
         } else {
-            // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o LOD
-            // TODO: Implementar quando sistema LOD estiver disponÃƒÆ’Ã‚Â­vel
         }
     }
 
-    // MÃƒÆ’Ã‚Â©todos utilitÃƒÆ’Ã‚Â¡rios adicionais
 
     /**
      * ObtÃƒÆ’Ã‚Â©m o modelo de arma associado

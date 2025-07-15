@@ -93,7 +93,6 @@ public class StatueBlockEntity extends BlockEntity {
         return tag;
     }
 
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] getRenderBoundingBox removido ou mudou no NeoForge 1.21.1
     // @Override
     // public AABB getRenderBoundingBox() {
     //     return new AABB(worldPosition.offset(-2, 0, -2).getCenter(), worldPosition.offset(2, 2, 2).getCenter());

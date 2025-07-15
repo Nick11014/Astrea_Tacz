@@ -45,7 +45,6 @@ public class PreLoadConfig {
         // Associar os dados 
         config.setConfigData(configData);
         
-        // Salvar para garantir que as correÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes sejam persistidas
         config.save();
     }
 

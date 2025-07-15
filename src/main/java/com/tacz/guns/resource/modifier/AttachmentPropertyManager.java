@@ -20,7 +20,6 @@ import java.util.Map;
  * - LivingEntity e ItemStack quando imports estiverem funcionando
  */
 public class AttachmentPropertyManager {
-    // Object Strategy para evitar dependÃƒÆ’Ã‚Âªncias problemÃƒÆ’Ã‚Â¡ticas
     private static final Map<String, Object> MODIFIERS = Maps.newLinkedHashMap();
     private static boolean isInitialized = false;
 
@@ -33,10 +32,8 @@ public class AttachmentPropertyManager {
             return;
         }
         
-        // DamageModifier agora estÃƒÆ’Ã‚Â¡ funcionando como exemplo
         MODIFIERS.put(DamageModifier.ID, new DamageModifier());
         
-        // TODO: Habilitar quando modificadores customizados estiverem disponÃƒÆ’Ã‚Â­veis
         // MODIFIERS.put(AdsModifier.ID, new AdsModifier());
         // MODIFIERS.put(AmmoSpeedModifier.ID, new AmmoSpeedModifier());
         // MODIFIERS.put(ArmorIgnoreModifier.ID, new ArmorIgnoreModifier());
@@ -94,13 +91,11 @@ public class AttachmentPropertyManager {
      * TODO: Implementar quando engine LuaJ estiver disponÃƒÆ’Ã‚Â­vel para scripts customizados
      */
     public static double functionEval(double value, double input, String function) {
-        // TODO: Implementar avaliaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o quando LuaJ estiver funcional
         // if (StringUtils.isEmpty(function)) {
         //     return value;
         // }
         // return luaEngine.eval(function, value, input);
         
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas retorna valor original
         return value;
     }
 
@@ -115,7 +110,6 @@ public class AttachmentPropertyManager {
         // ChangeGunPropertyEvent event = new ChangeGunPropertyEvent(livingEntity, itemStack);
         // NeoForge.EVENT_BUS.post(event);
         
-        // Log temporÃƒÆ’Ã‚Â¡rio
         if (entity != null && gunItem != null) {
             // System.out.println("Property change event for: " + gunItem.toString());
         }
@@ -151,7 +145,6 @@ public class AttachmentPropertyManager {
                 MODIFIERS.size(), isInitialized);
     }
     
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE AVALIAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O (EVAL) - IMPLEMENTAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O MÃƒÆ’Ã‚ÂNIMA =====
     
     /**
      * Avalia modificadores de lista com valor base

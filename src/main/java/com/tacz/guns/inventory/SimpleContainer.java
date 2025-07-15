@@ -63,7 +63,6 @@ public class SimpleContainer implements Container {
 
     @Override
     public void setChanged() {
-        // Não é necessário fazer nada aqui para este caso simples
     }
 
     @Override

@@ -71,7 +71,6 @@ public class FunctionalRendererManager {
             return null;
         }
 
-        // Criar renderizador especÃƒÆ’Ã‚Â­fico baseado no tipo
         if (attachmentIndex.isLaser()) {
             return createLaserRenderer(gunModel, attachmentIndex);
         }
@@ -80,7 +79,6 @@ public class FunctionalRendererManager {
             return createScopeRenderer(gunModel, attachmentIndex);
         }
 
-        // Renderizador genÃƒÆ’Ã‚Â©rico para outros tipos
         return new ExampleRender(gunModel);
     }
 
@@ -93,7 +91,6 @@ public class FunctionalRendererManager {
             return null;
         }
 
-        // AttachmentRender agora estÃƒÆ’Ã‚Â¡ disponÃƒÆ’Ã‚Â­vel e funcional
         return new AttachmentRender(gunModel, (com.tacz.guns.api.item.attachment.AttachmentType) attachmentType);
     }
 

@@ -65,8 +65,6 @@ public interface AmmoBoxItemDataAccessor extends IAmmoBox {
             }
             ResourceLocation gunId = iGun.getGunId(gun);
             
-            // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando CommonGunIndex estiver disponÃƒÆ’Ã‚Â­vel
-            // Por enquanto, apenas verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica de nÃƒÆ’Ã‚Â£o-vazio
             return !gunId.equals(DefaultAssets.EMPTY_GUN_ID);
         }
         return false;
@@ -94,11 +92,9 @@ public interface AmmoBoxItemDataAccessor extends IAmmoBox {
     @Override
     default ItemStack setCreative(ItemStack ammoBox, boolean isAllType) {
         if (isAllType) {
-            // Remove possÃƒÆ’Ã‚Â­vel flag criativo especÃƒÆ’Ã‚Â­fico
             ammoBox.remove(ModDataComponents.AMMO_BOX_CREATIVE.get());
             ammoBox.set(ModDataComponents.AMMO_BOX_ALL_TYPE_CREATIVE.get(), true);
         } else {
-            // Remove possÃƒÆ’Ã‚Â­vel flag criativo universal
             ammoBox.remove(ModDataComponents.AMMO_BOX_ALL_TYPE_CREATIVE.get());
             ammoBox.set(ModDataComponents.AMMO_BOX_CREATIVE.get(), true);
         }

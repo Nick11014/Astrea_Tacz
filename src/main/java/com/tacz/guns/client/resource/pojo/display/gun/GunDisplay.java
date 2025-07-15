@@ -55,7 +55,6 @@ public class GunDisplay implements IDisplay {
     private Map<String, Object> stateMachineParam = null;
     @Nullable
     @SerializedName("use_default_animation")
-    // ÃƒÂ¥Ã‚Â¼Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¼Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ default_animation ÃƒÂ¦Ã…â€™Ã¢â‚¬Â¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
     private DefaultAnimationType defaultAnimationType;
     @Nullable
     @SerializedName("default_animation")

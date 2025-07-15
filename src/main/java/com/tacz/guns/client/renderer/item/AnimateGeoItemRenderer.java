@@ -119,8 +119,6 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
             stateMachine.trigger(GunAnimationConstant.INPUT_PUT_AWAY);
             KeepingItemRenderer.getRenderer().keep(stack, putAwayTime);
             stateMachine.exit();
-            // ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â¯Ã¢â‚¬ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚Â¨Ã‚ÂÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¤Ã‚ÂºÃ¢â‚¬ÂºÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¿ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Å¾Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã‚Â¢ÃƒÂ§Ã‚Â²Ã‚Â¾ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
-            // ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬tickÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â¯Ã‚Â¥ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Å¾Ã…Â¸ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
             stateMachine.setExitingTime(putAwayTime + 50);
         }
     }
@@ -220,9 +218,7 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
                 rootNode.additionalQuaternion.mul(Axis.YP.rotationDegrees(yRot * 0.05F));
             }
 
-            // ÃƒÂ¤Ã‚Â»Ã…Â½ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ (0, 24, 0) ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ (0, 0, 0)
             poseStack.translate(0, 1.5f, 0);
-            // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ©Ã‚Â¢Ã‚Â ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã‚Â¿Ã‚Â»ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
             doExtraTransforms(poseStack, model, stack);
 
@@ -236,7 +232,6 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
 
             model.render(poseStack, ctx, getRenderType(stack), light, OverlayTexture.NO_OVERLAY);
 
-            // ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢
             model.cleanAnimationTransform();
             poseStack.popPose();
         }
@@ -250,9 +245,7 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
         M model = getModel(stack);
         if (model != null) {
             poseStack.pushPose();
-            // ÃƒÂ¤Ã‚Â»Ã…Â½ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ (0, 24, 0) ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ (0, 0, 0)
             poseStack.translate(0.5, 1.5f, 0.5);
-            // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ©Ã‚Â¢Ã‚Â ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã‚Â¿Ã‚Â»ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
             poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
             model.render(poseStack, ctx, RenderType.entityCutout(
                     getTextureLocation(stack)
@@ -271,11 +264,9 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
         if (nodePath != null) {
             for (int i = nodePath.size() - 1; i >= 0; i--) {
                 BedrockPart part = nodePath.get(i);
-                // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
                 matrix4f.rotate(Axis.XN.rotation(part.xRot));
                 matrix4f.rotate(Axis.YN.rotation(part.yRot));
                 matrix4f.rotate(Axis.ZN.rotation(part.zRot));
-                // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
                 if (part.getParent() != null) {
                     matrix4f.translate(-part.x / 16.0F, -part.y / 16.0F, -part.z / 16.0F);
                 } else {
@@ -289,15 +280,12 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
     public static void applyFirstPersonPositioningTransform(PoseStack poseStack, BedrockAnimatedModel model, ItemStack stack) {
         Matrix4f transformMatrix = new Matrix4f();
         transformMatrix.identity();
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚Â
         List<BedrockPart> idleNodePath = model.getIdleSightPath();
 
         Matrix4f idleViewMatrix = getPositioningNodeInverse(idleNodePath);
 
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢
         MathUtil.applyMatrixLerp(transformMatrix, idleViewMatrix, transformMatrix, 1);
 
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‹â€ Ã‚Â° PoseStack
         poseStack.translate(0, 1.5f, 0);
         poseStack.last().mul(transformMatrix);
         poseStack.translate(0, -1.5f, 0);

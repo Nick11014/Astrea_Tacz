@@ -110,7 +110,6 @@ public class ShooterDataHolder {
     public Object cacheProperty = null; // Placeholder atÃƒÆ’Ã‚Â© AttachmentCacheProperty ser habilitado
 
     public void initialData() {
-        // ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
         shootTimestamp = -1;
         meleeTimestamp = -1;
         meleePrepTickCount = -1;

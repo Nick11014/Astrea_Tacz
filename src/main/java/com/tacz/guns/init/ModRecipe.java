@@ -25,8 +25,6 @@ public class ModRecipe {
     public static final DeferredHolder<RecipeType<?>, RecipeType<GunSmithTableRecipe>> GUN_SMITH_TABLE_CRAFTING = 
         RECIPE_TYPES.register("gun_smith_table_crafting", () -> RecipeType.simple(GunMod.loc("gun_smith_table_crafting")));
     
-    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â¡ sendo postergada atÃƒÆ’Ã‚Â© que todas as classes de crafting estejam prontas
-    // As receitas personalizadas requerem serializers especÃƒÆ’Ã‚Â­ficos
 }
 
 

@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 
 public class InnerThirdPersonManager {
     public static void setRotationAnglesHead(LivingEntity entityIn, ModelPart rightArm, ModelPart leftArm, ModelPart body, ModelPart head, float limbSwingAmount) {
-        // ÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¦Ã…Â¡Ã¢â‚¬Å¡ÃƒÂ¥Ã‚ÂÃ…â€œÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¼Ã…Â¡ StackOverflow
         if (Minecraft.getInstance().isPaused()) {
             return;
         }
@@ -32,7 +31,6 @@ public class InnerThirdPersonManager {
                 PlayerAnimatorCompat.stopAllAnimation(entityIn);
                 return;
             }
-            // ÃƒÂ§Ã‚ÂÃ‚Â¡ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â°ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã‹â€ Ã‚Â¬ÃƒÂ¦Ã‚Â¢Ã‚Â¯ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‚Â³Ã‚Â³ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã…Â¾Ã‹Å“ÃƒÂ§Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ©Ã‚Â£Ã…Â¾ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
             if (entityIn.getPose() == Pose.SLEEPING || entityIn.onClimbable() || entityIn.isSwimming() || entityIn.getPose() == Pose.FALL_FLYING) {
                 PlayerAnimatorCompat.stopAllAnimation(entityIn);
                 return;
@@ -49,11 +47,8 @@ public class InnerThirdPersonManager {
     }
 
     private static void playVanillaAnimation(LivingEntity entityIn, ModelPart rightArm, ModelPart leftArm, ModelPart body, ModelPart head, IGunOperator operator, ClientGunIndex gunIndex) {
-        // TODO: [MIGRAÇÃO] Adaptar para usar ClientGunIndex ao invés de GunDisplayInstance
-        // Por enquanto, verificamos se getDisplayInstance() retorna algo válido
         GunDisplayInstance display = gunIndex.getDisplayInstance();
         if (display == null) {
-            // Fallback para quando GunDisplayInstance não estiver disponível
             return;
         }
         

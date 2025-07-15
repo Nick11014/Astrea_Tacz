@@ -46,7 +46,6 @@ public class AimInaccuracyModifier implements IAttachmentModifier<Map<Inaccuracy
 
     @Override
     public void eval(List<Map<InaccuracyType, Modifier>> modifiedValues, CacheValue<Map<InaccuracyType, Float>> cache) {
-        // Implementação vazia, pois é deprecated
     }
 
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {

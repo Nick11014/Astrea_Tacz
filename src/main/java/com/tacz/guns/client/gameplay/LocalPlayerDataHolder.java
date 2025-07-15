@@ -88,8 +88,6 @@ public class LocalPlayerDataHolder {
     public void tickStateLock() {
         IGunOperator gunOperator = IGunOperator.fromLivingEntity(player);
         ReloadState reloadState = gunOperator.getSynReloadState();
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ©Ã¢â‚¬ÂÃ‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ©Ã¢â‚¬Â¡Ã…Â ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã¢â‚¬ÂÃ‚Â
-        // ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ©Ã¢â‚¬ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¥Ã¢â‚¬Å“Ã‚ÂÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â¯Ã‚Â«ÃƒÂ§Ã‚Â§Ã¢â‚¬â„¢
         long maxLockTime = 250;
         long lockTime = System.currentTimeMillis() - lockTimestamp;
         if (lockTime < maxLockTime && lockedCondition != null && !lockedCondition.test(gunOperator)) {
@@ -112,7 +110,6 @@ public class LocalPlayerDataHolder {
         if (gunOperator.getSynMeleeCoolDown() > 0) {
             return;
         }
-        // ÃƒÂ©Ã¢â‚¬Â¡Ã…Â ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã¢â‚¬ÂÃ‚Â
         clientStateLock = false;
     }
 
@@ -120,16 +117,12 @@ public class LocalPlayerDataHolder {
      * ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
      */
     public void reset() {
-        // ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ shoot ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¦Ã‹â€ Ã‚Â³
         isShootRecorded = true;
         clientShootTimestamp = -1;
-        // ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
         clientIsAiming = false;
         clientAimingProgress = 0;
         oldAimingProgress = 0;
-        // ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â°ÃƒÂ¦Ã‚Â Ã¢â‚¬Å“ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
         isBolting = false;
-        // ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã¢â‚¬ÂÃ‚Â
         clientStateLock = false;
     }
 }

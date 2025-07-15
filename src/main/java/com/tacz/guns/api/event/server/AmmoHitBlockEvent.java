@@ -13,18 +13,15 @@ public class AmmoHitBlockEvent extends Event {
     private final Level level;
     private final BlockHitResult hitResult;
     private final BlockState state;
-    // TODO: Re-adicionar EntityKineticBullet quando disponÃƒÆ’Ã‚Â­vel
     // private final EntityKineticBullet ammo;
 
     public AmmoHitBlockEvent(Level level, BlockHitResult hitResult, BlockState state) {
         this.level = level;
         this.hitResult = hitResult;
         this.state = state;
-        // TODO: Re-adicionar KubeJS integration quando disponÃƒÆ’Ã‚Â­vel
         // postServerEventToKubeJS(this);
     }
 
-    // Cancelable event - mÃƒÆ’Ã‚Â©todo isCancelable() nÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
     }
@@ -41,7 +38,6 @@ public class AmmoHitBlockEvent extends Event {
         return state;
     }
 
-    // TODO: Re-adicionar quando EntityKineticBullet estiver disponÃƒÆ’Ã‚Â­vel
     // public EntityKineticBullet getAmmo() {
     //     return ammo;
     // }

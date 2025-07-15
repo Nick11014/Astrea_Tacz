@@ -20,17 +20,13 @@ public class CustomInterpolator implements Interpolator {
         LerpMode fromLerpMode = content.lerpModes[indexFrom];
         LerpMode toLerpMode = content.lerpModes[indexTo];
         if (fromLerpMode == LerpMode.SPHERICAL_LINEAR && toLerpMode == LerpMode.SPHERICAL_LINEAR) {
-            // ÃƒÂ§Ã‚ÂÃ†â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ§Ã‚ÂºÃ‚Â¿ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
             return doSphericalLinear(indexFrom, indexTo, alpha);
         }
         if (fromLerpMode == LerpMode.SPHERICAL_SQUAD || toLerpMode == LerpMode.SPHERICAL_SQUAD) {
-            // ÃƒÂ§Ã‚ÂÃ†â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ Squad ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
             return this.doSphericalSquad(indexFrom, indexTo, alpha);
         } else if (fromLerpMode == LerpMode.CATMULLROM || toLerpMode == LerpMode.CATMULLROM) {
-            // Catmull-Rom ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
             return doCatmullromLerp(indexFrom, indexTo, alpha);
         } else {
-            // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¶ÃƒÂ¤Ã‚Â»Ã¢â‚¬â€œÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€
             return doOtherLerp(indexFrom, indexTo, alpha);
         }
     }
@@ -102,8 +98,6 @@ public class CustomInterpolator implements Interpolator {
         vx[3] = valueNext[0];
         vy[3] = valueNext[1];
         vz[3] = valueNext[2];
-        // ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ BlockBench ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ§Ã…Â½Ã‚Â°ÃƒÂ¨Ã‚Â´Ã‚Â´ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
-        // BlockBench ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ THREE.SplineCurveÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¶ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ§Ã…Â½Ã‚Â°ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ Catmull-Rom ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã…â€™Ã‚ÂºÃƒÂ¥Ã‹â€ Ã‚Â«ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¦Ã‚Â¯Ã¢â‚¬ÂÃƒÂ¨Ã‚Â¾Ã†â€™ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         return new float[]{
                 MathUtil.splineCurve(vx, 0.5f, alpha),
                 MathUtil.splineCurve(vy, 0.5f, alpha),
@@ -115,7 +109,6 @@ public class CustomInterpolator implements Interpolator {
         if (content.values.length == 1) {
             return getAsQuaternion(0, alpha > 0);
         }
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¦Ã…â€œÃ¢â‚¬Â° 8 ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã¢â‚¬ÂºÃ¢â‚¬ÂºÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚Â¸Ã‚Âº Post ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¨Ã‚ÂµÃ‚Â·ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹
         float[] q0 = getAsQuaternion(indexFrom, true);
         float[] q1 = getAsQuaternion(indexTo, false);
         return MathUtil.slerp(q0, q1, alpha);
@@ -132,8 +125,6 @@ public class CustomInterpolator implements Interpolator {
         float[] q2 = getAsQuaternion(indexTo, false);
         float[] q3 = getAsQuaternion(next, false);
 
-        // ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ BlockBench ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ§Ã…Â½Ã‚Â°ÃƒÂ¨Ã‚Â´Ã‚Â´ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
-        // BlockBench ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ THREE.SplineCurveÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¶ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ§Ã…Â½Ã‚Â°ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ Catmull-Rom ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã…â€™Ã‚ÂºÃƒÂ¥Ã‹â€ Ã‚Â«ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¦Ã‚Â¯Ã¢â‚¬ÂÃƒÂ¨Ã‚Â¾Ã†â€™ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         //float[] r = MathUtil.quaternionSplineCurve(new float[][]{q0, content.values[indexFrom], content.values[indexTo], content.values[next]}, 0.5f, alpha);
         return squad(q0, q1, q2, q3, alpha);
     }

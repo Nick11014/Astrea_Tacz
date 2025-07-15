@@ -15,7 +15,6 @@ public class SLerp implements Interpolator {
 
     @Override
     public float[] interpolate(int indexFrom, int indexTo, float alpha) {
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¦Ã…â€œÃ¢â‚¬Â° 8 ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã¢â‚¬ÂºÃ¢â‚¬ÂºÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚Â¸Ã‚Âº Post ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¨Ã‚ÂµÃ‚Â·ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹
         int offset = content.values[indexFrom].length == 8 ? 4 : 0;
         float ax = content.values[indexFrom][offset];
         float ay = content.values[indexFrom][1 + offset];

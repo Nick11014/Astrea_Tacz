@@ -34,7 +34,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] DyeableLeatherItem foi removido, criar implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o equivalente
 public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoBoxItemDataAccessor {
     public static final ResourceLocation PROPERTY_NAME = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ammo_statue");
 
@@ -101,23 +100,17 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
 
     @Override
     public boolean overrideStackedOnOther(ItemStack ammoBox, Slot slot, ClickAction action, Player player) {
-        // ÃƒÂ¥Ã‚ÂÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»
         if (action == ClickAction.SECONDARY) {
-            // ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¥Ã‚Â­Ã‚Â
             ItemStack slotItem = slot.getItem();
             ResourceLocation boxAmmoId = this.getAmmoId(ammoBox);
 
-            // ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã¢â‚¬Å“Ã‚Â
             if (slotItem.isEmpty()) {
-                // ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ©Ã¢â€šÂ¬Ã‚Â ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯ÃƒÂ§Ã‚Â®Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¤Ã‚Â»Ã‚Â»ÃƒÂ¤Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¤Ã‚Â¸Ã…â€œÃƒÂ¨Ã‚Â¥Ã‚Â¿
                 if (isAllTypeCreative(ammoBox) || isCreative(ammoBox)) {
                     return false;
                 }
-                // ÃƒÂ¥Ã¢â‚¬Â¢Ã‚Â¥ÃƒÂ¤Ã‚Â¹Ã…Â¸ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã¢â‚¬Â¡Ã‚Âº
                 if (boxAmmoId.equals(DefaultAssets.EMPTY_AMMO_ID)) {
                     return false;
                 }
-                // ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã¢â‚¬Â¡Ã‚Âº
                 int boxAmmoCount = this.getAmmoCount(ammoBox);
                 if (boxAmmoCount <= 0) {
                     return false;
@@ -137,25 +130,20 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
                 return true;
             }
 
-            // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹
             if (slotItem.getItem() instanceof IAmmo iAmmo) {
-                // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¨ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯ÃƒÂ§Ã‚Â®Ã‚Â±ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥
                 if (isAllTypeCreative(ammoBox)) {
                     return false;
                 }
                 ResourceLocation slotAmmoId = iAmmo.getAmmoId(slotItem);
-                // ÃƒÂ¦Ã‚Â Ã‚Â¼ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ ID ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾
                 if (slotAmmoId.equals(DefaultAssets.EMPTY_AMMO_ID)) {
                     return false;
                 }
-                // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã¢â‚¬ÂºÃ¢â‚¬â„¢ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ ID ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹
                 if (boxAmmoId.equals(DefaultAssets.EMPTY_AMMO_ID)) {
                     this.setAmmoId(ammoBox, slotAmmoId);
                 } else if (!slotAmmoId.equals(boxAmmoId)) {
                     return false;
                 }
                 TimelessAPI.getCommonAmmoIndex(slotAmmoId).ifPresent(index -> {
-                    // ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ©Ã¢â€šÂ¬Ã‚Â ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯ÃƒÂ§Ã‚Â®Ã‚Â±ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§
                     if (isCreative(ammoBox)) {
                         this.setAmmoCount(ammoBox, Integer.MAX_VALUE);
                         return;
@@ -167,7 +155,6 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
                     ItemStack takeItem = slot.safeTake(slotItem.getCount(), needCount, player);
                     this.setAmmoCount(ammoBox, boxAmmoCount + takeItem.getCount());
                 });
-                // ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³
                 this.playInsertSound(player);
                 return true;
             }
@@ -241,12 +228,10 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
     public static void fillItemCategory(CreativeModeTab.Output output) {
         ItemStack ammoBox = ModItems.AMMO_BOX.get().getDefaultInstance();
         if (ammoBox.getItem() instanceof IAmmoBox iAmmoBox) {
-            // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¦Ã¢â€žÂ¢Ã‚Â®ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯ÃƒÂ§Ã¢â‚¬ÂºÃ¢â‚¬â„¢
             output.accept(iAmmoBox.setAmmoLevel(ammoBox.copy(), IRON_LEVEL));
             output.accept(iAmmoBox.setAmmoLevel(ammoBox.copy(), GOLD_LEVEL));
             output.accept(iAmmoBox.setAmmoLevel(ammoBox.copy(), DIAMOND_LEVEL));
 
-            // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ©Ã¢â€šÂ¬Ã‚Â ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯ÃƒÂ§Ã¢â‚¬ÂºÃ¢â‚¬â„¢
             output.accept(iAmmoBox.setCreative(ammoBox.copy(), false));
             output.accept(iAmmoBox.setCreative(ammoBox.copy(), true));
         }

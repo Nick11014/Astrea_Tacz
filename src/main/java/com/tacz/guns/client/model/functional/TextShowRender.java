@@ -30,12 +30,8 @@ public class TextShowRender implements IFunctionalRenderer {
 
     @Override
     public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de texto desabilitada temporariamente
-        // Requer resoluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de imports: ItemDisplayContext, PoseStack, VertexConsumer, Minecraft, etc.
         
         /*
-        // Cast para tipos especÃƒÆ’Ã‚Â­ficos quando necessÃƒÆ’Ã‚Â¡rio  
-        // TODO: Remover casts quando interface voltar a usar tipos especÃƒÆ’Ã‚Â­ficos
         if (!(transformType instanceof ItemDisplayContext)) {
             return;
         }
@@ -51,12 +47,10 @@ public class TextShowRender implements IFunctionalRenderer {
         Matrix3f normal = new Matrix3f(poseStack.last().normal());
         Matrix4f pose = new Matrix4f(poseStack.last().pose());
 
-        // Resto da implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o comentada temporariamente...
         */
     }
     
     /*
-    // Resto da implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o comentada temporariamente - cÃƒÆ’Ã‚Â³digo ÃƒÆ’Ã‚Â³rfÃƒÆ’Ã‚Â£o removido
     // TODO: Restaurar quando imports estiverem funcionando
     */
 }

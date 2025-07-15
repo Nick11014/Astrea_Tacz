@@ -1,6 +1,5 @@
 package com.tacz.guns;
 
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Imports comentados temporariamente - reabilitar quando disponÃƒÆ’Ã‚Â­veis
 // import com.tacz.guns.client.event.ClientSetupEvent;
 // import com.tacz.guns.client.init.KeyBinding;
 import com.tacz.guns.config.common.GunConfig;
@@ -8,7 +7,6 @@ import com.tacz.guns.config.sync.SyncConfig;
 import com.tacz.guns.init.CommonRegistry;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.resource.network.CommonNetworkCache;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Import comentado temporariamente - reabilitar quando disponÃƒÆ’Ã‚Â­vel
 // import com.tacz.guns.resource.server.ServerGunPackManager;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -40,7 +38,6 @@ public class GunMod {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SyncConfig.init());
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Funcionalidades comentadas temporariamente - reabilitar quando disponÃƒÆ’Ã‚Â­veis
             // bus.addListener(ClientSetupEvent::init);
             // bus.addListener(KeyBinding::register);
         }
@@ -49,7 +46,6 @@ public class GunMod {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             // CommonNetworkCache.init(); // Removed as it's not found
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Funcionalidade comentada temporariamente - reabilitar quando disponÃƒÆ’Ã‚Â­vel
             // ServerGunPackManager.init();
         });
     }

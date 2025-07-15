@@ -57,13 +57,11 @@ public class TargetBlock extends BaseEntityBlock {
     }
 
     public static int getRedstoneStrength(BlockHitResult hit, boolean isUpperBlock) {
-        // ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¤Ã‚Â¸Ã‚Âº 1
         if (!isUpperBlock) {
             return 1;
         }
         Vec3 hitLocation = hit.getLocation();
         Direction direction = hit.getDirection();
-        // ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ©Ã‚ÂÃ‚Â¶ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã‚Â¿Ã†â€™ÃƒÂ¤Ã‚Â¸Ã‚Âº (0.5, 0.32, 0.5)
         double x = Math.abs(Mth.frac(hitLocation.x) - 0.5);
         double y = Math.abs(Mth.frac(hitLocation.y) - 0.32);
         double z = Math.abs(Mth.frac(hitLocation.z) - 0.5);
@@ -76,7 +74,6 @@ public class TargetBlock extends BaseEntityBlock {
         } else {
             distance = Math.max(y, z);
         }
-        // ÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã‚Â¿Ã†â€™ 0.25 ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¤Ã‚Â½Ã…Â½ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…Â¸
         double percent = Mth.clamp((0.25 - distance) / 0.25, 0, 1);
         return Math.max(1, Mth.ceil(15 * percent));
     }
@@ -84,7 +81,6 @@ public class TargetBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Ticker comentado temporariamente - TARGET_BE nÃƒÆ’Ã‚Â£o disponÃƒÆ’Ã‚Â­vel
         // return state.getValue(HALF).equals(DoubleBlockHalf.LOWER) && level.isClientSide() ? createTickerHelper(blockEntityType, ModBlocks.TARGET_BE.get(), TargetBlockEntity::clientTick) : null;
         return null;
     }
@@ -116,7 +112,6 @@ public class TargetBlock extends BaseEntityBlock {
 
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ¥Ã‹â€ Ã¢â‚¬â„¢ÃƒÂ¥Ã‹â€ Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹
         if (!state.getValue(STAND)) {
             level.setBlock(pos, state.setValue(STAND, true).setValue(OUTPUT_POWER, 0), Block.UPDATE_ALL);
         }
@@ -149,18 +144,15 @@ public class TargetBlock extends BaseEntityBlock {
 
         if (facing.getAxis() == Direction.Axis.Y) {
             if (half.equals(DoubleBlockHalf.LOWER) && facing == Direction.UP || half.equals(DoubleBlockHalf.UPPER) && facing == Direction.DOWN) {
-                // ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ…Â ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ…Â ÃƒÂ¨Ã‚Â·Ã…Â¸ÃƒÂ§Ã‚ÂÃ¢â€šÂ¬ÃƒÂ¦Ã‚Â²Ã‚Â¡
                 if (!facingState.is(this)) {
                     return Blocks.AIR.defaultBlockState();
                 }
-                // ÃƒÂ¥Ã‚ÂÃ…â€™ÃƒÂ¦Ã‚Â­Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
                 if (facingState.getValue(STAND) != stand) {
                     return state.setValue(STAND, facingState.getValue(STAND)).setValue(OUTPUT_POWER, facingState.getValue(OUTPUT_POWER));
                 }
             }
         }
 
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¤Ã‚Â¹Ã…Â¸ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â ÃƒÂ¦Ã…Â½Ã¢â‚¬Â°
         if (half == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.canSurvive(level, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         } else {

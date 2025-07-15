@@ -13,7 +13,6 @@ public class MenuIntegration {
      * TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real quando mod estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static boolean isLoaded() {
-        // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real do mod Cloth Config
         return false; // Retorna false por enquanto para evitar problemas
     }
     
@@ -22,7 +21,6 @@ public class MenuIntegration {
      * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static Screen createConfigScreen(Screen parent) {
-        // TODO: Implementar criaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real da tela de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
         // return ClothConfigBuilder.create()
         //     .setParentScreen(parent)
         //     .setTitle(Component.translatable("config.tacz.title"))
@@ -39,7 +37,6 @@ public class MenuIntegration {
         // ClothConfigBuilder builder = ClothConfigBuilder.create();
         // builder.addCategory("general", createGeneralCategory());
         // builder.addCategory("weapons", createWeaponsCategory());
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar problemas
     }
     
     /**
@@ -47,7 +44,6 @@ public class MenuIntegration {
      * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static Object createGeneralCategory() {
-        // TODO: Implementar criaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real da categoria geral
         // return CategoryBuilder.create()
         //     .add("enableSounds", ConfigEntryBuilder.create().build())
         //     .build();
@@ -59,7 +55,6 @@ public class MenuIntegration {
      * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static Object createWeaponsCategory() {
-        // TODO: Implementar criaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real da categoria de armas
         // return CategoryBuilder.create()
         //     .add("gunDamage", ConfigEntryBuilder.create().build())
         //     .build();
@@ -71,9 +66,7 @@ public class MenuIntegration {
      * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static void saveConfigs() {
-        // TODO: Implementar salvamento real das configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
         // ClothConfigAPI.saveConfigs();
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar problemas
     }
     
     /**
@@ -81,9 +74,7 @@ public class MenuIntegration {
      * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static void loadConfigs() {
-        // TODO: Implementar carregamento real das configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
         // ClothConfigAPI.loadConfigs();
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar problemas
     }
     
     /**
@@ -91,7 +82,6 @@ public class MenuIntegration {
      * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static boolean hasUnsavedChanges() {
-        // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real de mudanÃƒÆ’Ã‚Â§as
         // return ClothConfigAPI.hasUnsavedChanges();
         return false; // Retorna false por enquanto
     }

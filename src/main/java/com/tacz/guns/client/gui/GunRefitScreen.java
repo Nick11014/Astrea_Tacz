@@ -87,11 +87,8 @@ public class GunRefitScreen extends Screen {
     @Override
     public void init() {
         this.clearWidgets();
-        // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã‚Â§Ã‚Â½ÃƒÂ¤Ã‚Â½Ã‚Â
         this.addAttachmentTypeButtons();
-        // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨
         this.addInventoryAttachmentButtons();
-        // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã‚Â±Ã…Â¾ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â¾ÃƒÂ©Ã…Â¡Ã‚ÂÃƒÂ¨Ã¢â‚¬â€Ã‚ÂÃƒÂ¦Ã…â€™Ã¢â‚¬Â°ÃƒÂ©Ã¢â‚¬â„¢Ã‚Â®
         if (HIDE_GUN_PROPERTY_DIAGRAMS) {
             this.addRenderableWidget(new FlatColorButton(11, 11, 288, 16,
                     Component.translatable("gui.tacz.gun_refit.property_diagrams.show"), b -> switchHideButton()));
@@ -201,42 +198,39 @@ public class GunRefitScreen extends Screen {
         for (AttachmentType type : AttachmentType.values()) {
             if (type == AttachmentType.NONE) {
                 if (RefitTransform.getCurrentTransformType() == AttachmentType.NONE) {
-                    TimelessAPI.getGunDisplay(player.getMainHandItem())
-                            .map(gunDisplayInstance -> gunDisplayInstance.getLaserConfig())
-                            .ifPresent(laserConfig -> {
-                                if (laserConfig.canEdit()) {
-                                    // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â­ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â©ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
-                                    // HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, AttachmentType.NONE);
-                                    // this.addRenderableWidget(hsvSliderGroup.getHueSlider());
-                                    // this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
-                                }});
+                    // TimelessAPI.getGunDisplay(player.getMainHandItem())
+                    //         .map(gunDisplayInstance -> gunDisplayInstance.getLaserConfig())
+                    //         .ifPresent(laserConfig -> {
+                    //             if (laserConfig.canEdit()) {
+                    //                 // Add color adjustment buttons
+                    //                 // HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, AttachmentType.NONE);
+                    //                 // this.addRenderableWidget(hsvSliderGroup.getHueSlider());
+                    //                 // this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
+                    //             }
+                    //         });
                 }
                 continue;
             }
             GunAttachmentSlot button = new GunAttachmentSlot(startX, startY, type, inventory.selected, inventory, b -> {
                 AttachmentType buttonType = ((GunAttachmentSlot) b).getType();
-                // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¦Ã‚Â§Ã‚Â½ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ¥Ã‚Â®Ã¢â‚¬Â°ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ©Ã¢â€šÂ¬Ã¢â€šÂ¬ÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ¦Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¨Ã‚Â§Ã‹â€ ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã‚Â§Ã‚Â½ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
                 if (!((GunAttachmentSlot) b).isAllow()) {
                     if (RefitTransform.changeRefitScreenView(AttachmentType.NONE)) {
                         this.init();
                     }
                     return;
                 }
-                // ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â§Ã‚Â½ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ©Ã¢â€šÂ¬Ã¢â€šÂ¬ÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ¦Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¨Ã‚Â§Ã‹â€ 
                 if (RefitTransform.getCurrentTransformType() == buttonType && buttonType != AttachmentType.NONE) {
                     if (RefitTransform.changeRefitScreenView(AttachmentType.NONE)) {
                         this.init();
                     }
                     return;
                 }
-                // ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â§Ã‚Â½ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
                 if (RefitTransform.changeRefitScreenView(buttonType)) {
                     this.init();
                 }
             });
             if (RefitTransform.getCurrentTransformType() == type) {
                 button.setSelected(true);
-                // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â ÃƒÂ¥Ã‚ÂÃ‚Â¸ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã…â€™Ã¢â‚¬Â°ÃƒÂ©Ã¢â‚¬â„¢Ã‚Â®
                 RefitUnloadButton unloadButton = new RefitUnloadButton(startX + 5, startY + SLOT_SIZE + 2, b -> {
                     ItemStack attachmentItem = button.getAttachmentItem();
                     if (!attachmentItem.isEmpty()) {
@@ -258,7 +252,6 @@ public class GunRefitScreen extends Screen {
                                 .map(ClientAttachmentIndex::getLaserConfig)
                                 .ifPresent(laserConfig -> {
                                     if (laserConfig.canEdit()) {
-                                        // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â­ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â©ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
                                         // HSVSliderGroup hsvSliderGroup = new HSVSliderGroup(width-140, height-64, 120, 16, inventory, inventory.selected, type);
                                         // this.addRenderableWidget(hsvSliderGroup.getHueSlider());
                                         // this.addRenderableWidget(hsvSliderGroup.getSaturationSlider());
@@ -273,7 +266,6 @@ public class GunRefitScreen extends Screen {
 
     @Override
     public void onClose() {
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³ÃƒÂ©Ã¢â‚¬â€Ã‚Â­ÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
         LocalPlayer player = getMinecraft().player;
         if (player != null) {
             ItemStack gun = player.getMainHandItem();

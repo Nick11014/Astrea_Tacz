@@ -1,7 +1,6 @@
 package com.tacz.guns.resource.index;
 
 import com.google.common.base.Preconditions;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando CommonAssetsManager for habilitado
 // import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.pojo.BlockIndexPOJO;
@@ -36,7 +35,6 @@ public class CommonBlockIndex {
     private static void checkData(BlockIndexPOJO block, CommonBlockIndex index) {
         ResourceLocation pojoData = block.getData();
         Preconditions.checkArgument(pojoData != null, "index object missing pojoData field");
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar busca de dados quando CommonAssetsManager estiver habilitado
         // BlockData data = CommonAssetsManager.get().getBlockData(pojoData);
         // Preconditions.checkArgument(data != null, "there is no corresponding data file");
         // RecipeFilter recipeFilter = CommonAssetsManager.get().getRecipeFilter(data.getFilter());

@@ -133,21 +133,17 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
         if (currentAmmoCount >= maxAmmoCount) {
             return false;
         }
-        // 背包直读不进行换弹
         if (useInventoryAmmo(gunItem)) {
             return false;
         }
-        // 无限备弹不需要消耗实际子弹
         if (gunIndex.getGunData().getReloadData().isInfinite()) {
             return true;
         }        // 虚拟备弹处理
         if (useDummyAmmo(gunItem)) {
             return getDummyAmmoAmount(gunItem) > 0;
         }
-        // 检查背包内的弹药数量
         IItemHandler cap = shooter.getCapability(Capabilities.ItemHandler.ENTITY, null);
         if (cap != null) {
-            // 背包检查
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
                 if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(gunItem, checkAmmoStack)) {
@@ -170,11 +166,9 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     @Override
     public void dropAllAmmo(Player player, ItemStack gunItem) {
-        // 背包直读时不调用退弹
         if (useInventoryAmmo(gunItem)) {
             return;
         }
-        //TODO 这里操作的对象不应该是 Player 而是 LivingEntity。此外枪膛内的子弹也要退
         int ammoCount = getCurrentAmmoCount(gunItem);
         if (ammoCount <= 0) {
             return;
@@ -183,10 +177,8 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
         Object gunIndexObj = TimelessAPI.getCommonGunIndex(gunId).orElse(null);
         if (gunIndexObj != null && gunIndexObj instanceof CommonGunIndex) {
             CommonGunIndex index = (CommonGunIndex) gunIndexObj;
-            // 如果使用的是虚拟备弹，返还至虚拟备弹
             if (useDummyAmmo(gunItem)) {
                 setCurrentAmmoCount(gunItem, 0);
-                // 燃料罐类型的换弹不返还
                 if (index.getGunData().getReloadData().getType().equals(FeedType.FUEL)) {
                     return;
                 }
@@ -195,13 +187,11 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
             }
 
             ResourceLocation ammoId = index.getGunData().getAmmoId();
-            // 创造模式类型的换弹，只填满子弹总数，不进行任何卸载弹药逻辑
             if (player.isCreative()) {
                 int maxAmmCount = AttachmentDataUtils.getAmmoCountWithAttachment(gunItem, index.getGunData());
                 setCurrentAmmoCount(gunItem, maxAmmCount);
                 return;
             }
-            // 燃料罐类型的只清空不返还
             if (index.getGunData().getReloadData().getType().equals(FeedType.FUEL)) {
                 setCurrentAmmoCount(gunItem, 0);
                 return;
@@ -244,7 +234,6 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     public int findAndExtractInventoryAmmo(IItemHandler itemHandler, ItemStack gunItem, int needAmmoCount) {
         int cnt = needAmmoCount;
-        // 背包检查
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             ItemStack checkAmmoStack = itemHandler.getStackInSlot(i);
             if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(gunItem, checkAmmoStack)) {
@@ -413,7 +402,6 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                 return false;
             }
             CommonGunIndex gunIndex = (CommonGunIndex) gunIndexObj;
-            // 是否为弹药直读
             return gunIndex.getGunData().getReloadData().getType().equals(FeedType.INVENTORY);
         }
         return false;
@@ -426,21 +414,17 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
      */
     @Override
     public boolean hasInventoryAmmo(LivingEntity shooter, ItemStack gun, boolean needCheckAmmo) {
-        // 如果不是背包直读，则直接返回 false
         if (!useInventoryAmmo(gun)) {
             return false;
         }
-        // 如果不需要检查子弹，则直接返回 true
         if (!needCheckAmmo) {
             return true;
         }
-        // 虚拟备弹处理
         if (useDummyAmmo(gun)) {
             return getDummyAmmoAmount(gun) > 0;
         }        // 检查背包内的弹药数量
         IItemHandler cap = shooter.getCapability(Capabilities.ItemHandler.ENTITY, null);
         if (cap != null) {
-            // 背包检查
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
                 if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(gun, checkAmmoStack)) {

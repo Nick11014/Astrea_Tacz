@@ -49,17 +49,13 @@ import java.util.Optional;
  */
 @EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class FirstPersonRenderGunEvent {
-    // ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â²ÃƒÂ§Ã‚ÂºÃ‚Â¿ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ¨Ã‚ÂµÃ‚Â·ÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¥Ã‚Â¹Ã‚Â³ÃƒÂ¦Ã‚Â»Ã¢â‚¬Ëœ
     private static final SecondOrderDynamics AIMING_DYNAMICS = new SecondOrderDynamics(1.2f, 1.2f, 0.5f, 0);
     private static SecondOrderDynamics SWITCH_VIEW_DYNAMICS;
-    // ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¹Ã‚Â³ÃƒÂ¦Ã‚Â»Ã¢â‚¬Ëœ
     private static final SecondOrderDynamics REFIT_OPENING_DYNAMICS = new SecondOrderDynamics(1f, 1.2f, 0.5f, 0);
-    // ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¨Ã‚Â·Ã‚Â³ÃƒÂ¨Ã‚Â·Ã†â€™ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã‚Â»Ã…Â¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¹Ã‚Â³ÃƒÂ¦Ã‚Â»Ã¢â‚¬Ëœ
     private static final SecondOrderDynamics JUMPING_DYNAMICS = new SecondOrderDynamics(0.28f, 1f, 0.65f, 0);
     private static final float JUMPING_Y_SWAY = -2f;
     private static final float JUMPING_SWAY_TIME = 0.3f;
     private static final float LANDING_SWAY_TIME = 0.15f;
-    // ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã‚ÂºÃ‚Â§ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â¨Ã¢â‚¬Â¹ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
     private static final PerlinNoise SHOOT_X_SWAY_NOISE = new PerlinNoise(-0.2f, 0.2f, 400);
     private static final PerlinNoise SHOOT_Y_ROTATION_NOISE = new PerlinNoise(-0.0136f, 0.0136f, 100);
     private static final float SHOOT_Y_SWAY = -0.1f;
@@ -102,9 +98,7 @@ public class FirstPersonRenderGunEvent {
                 return;
             }
             TimelessAPI.getClientGunIndex(iGun.getGunId(mainHandItem)).ifPresent(gunIndex -> {
-                // ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¥Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¦Ã‹â€ Ã‚Â³ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â Ã¢â‚¬ÂºÃƒÂ§Ã‚Â¨Ã¢â‚¬Â¹ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
                 shootTimeStamp = System.currentTimeMillis();
-                // ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¥Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ§Ã¢â‚¬Å¾Ã‚Â°ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
                 MuzzleFlashRender.onShoot();
             });
         }
@@ -118,15 +112,10 @@ public class FirstPersonRenderGunEvent {
     }
 
     public static void applyFirstPersonGunTransform(LocalPlayer player, ItemStack gunItemStack, PoseStack poseStack, BedrockGunModel model, float partialTicks) {
-        // ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â²ÃƒÂ§Ã‚ÂºÃ‚Â¿ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¥Ã‚ÂºÃ‚Â¦
         float refitScreenOpeningProgress = REFIT_OPENING_DYNAMICS.update(RefitTransform.getOpeningProgress());
-        // ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â²ÃƒÂ§Ã‚ÂºÃ‚Â¿ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¥Ã‚ÂºÃ‚Â¦
         float aimingProgress = AIMING_DYNAMICS.update(IClientPlayerGunOperator.fromLocalPlayer(player).getClientAimingProgress(partialTicks));
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â Ã¢â‚¬ÂºÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã…â€™Ã‚ÂÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¨Ã‚Â·Ã‚Â³ÃƒÂ¨Ã‚Â·Ã†â€™ÃƒÂ§Ã‚Â­Ã¢â‚¬Â°
         applyGunMovements(model, aimingProgress, partialTicks);
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ¦Ã¢â‚¬ËœÃ¢â‚¬Å¾ÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¦Ã…â€™Ã‚ÂÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ§Ã‚Â­Ã¢â‚¬Â°ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
         applyFirstPersonPositioningTransform(poseStack, model, gunItemStack, aimingProgress, refitScreenOpeningProgress);
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢
         applyAnimationConstraintTransform(poseStack, model, aimingProgress * (1 - refitScreenOpeningProgress));
     }
 
@@ -145,7 +134,6 @@ public class FirstPersonRenderGunEvent {
         }
         Matrix4f transformMatrix = new Matrix4f();
         transformMatrix.identity();
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚Â
         List<BedrockPart> idleNodePath = model.getIdleSightPath();
         List<BedrockPart> aimingNodePath = null;
         ResourceLocation scopeId = iGun.getAttachmentId(stack, AttachmentType.SCOPE);
@@ -156,10 +144,8 @@ public class FirstPersonRenderGunEvent {
         int zoomNumber = AttachmentItemDataAccessor.getZoomNumberFromTag(scopeTag);
         int viewIndex = 1;
         if (DefaultAssets.isEmptyAttachmentId(scopeId)) {
-            // ÃƒÂ¦Ã…â€œÃ‚ÂªÃƒÂ¥Ã‚Â®Ã¢â‚¬Â°ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â·ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾
             aimingNodePath = model.getIronSightPath();
         } else {
-            // ÃƒÂ¥Ã‚Â®Ã¢â‚¬Â°ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â·ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â·ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â·ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â ÃƒÂ©Ã¢â‚¬Â¡Ã…Â½ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾
             List<BedrockPart> scopeNodePath = model.getScopePosPath();
             if (scopeNodePath != null) {
                 aimingNodePath = new ArrayList<>(scopeNodePath);
@@ -180,7 +166,6 @@ public class FirstPersonRenderGunEvent {
             }
         }
         Matrix4f aimingViewMatrix = getPositioningNodeInverse(aimingNodePath);
-        // ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚Â¤ÃƒÂ¤Ã‚Â¸Ã‚Âª scope view ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
         if (currentViewIndex == -1) {
             currentViewIndex = viewIndex;
             oldViewIndex = viewIndex;
@@ -196,10 +181,8 @@ public class FirstPersonRenderGunEvent {
             oldViewIndex = view_interpret;
             currentViewIndex = viewIndex;
         }
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢
         MathUtil.applyMatrixLerp(transformMatrix, getPositioningNodeInverse(idleNodePath), transformMatrix, (1 - refitScreenOpeningProgress));
         MathUtil.applyMatrixLerp(transformMatrix, aimingViewMatrix, transformMatrix, (1 - refitScreenOpeningProgress) * aimingProgress);
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚Â
         float refitTransformProgress = (float) Easing.easeOutCubic(RefitTransform.getTransformProgress());
         AttachmentType oldType = RefitTransform.getOldTransformType();
         AttachmentType currentType = RefitTransform.getCurrentTransformType();
@@ -207,7 +190,6 @@ public class FirstPersonRenderGunEvent {
         List<BedrockPart> toNode = model.getRefitAttachmentViewPath(currentType);
         MathUtil.applyMatrixLerp(transformMatrix, getPositioningNodeInverse(fromNode), transformMatrix, refitScreenOpeningProgress);
         MathUtil.applyMatrixLerp(transformMatrix, getPositioningNodeInverse(toNode), transformMatrix, refitScreenOpeningProgress * refitTransformProgress);
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‹â€ Ã‚Â° PoseStack
         poseStack.translate(0, 1.5f, 0);
         poseStack.mulPose(transformMatrix);
         poseStack.translate(0, -1.5f, 0);
@@ -223,11 +205,9 @@ public class FirstPersonRenderGunEvent {
         if (nodePath != null) {
             for (int i = nodePath.size() - 1; i >= 0; i--) {
                 BedrockPart part = nodePath.get(i);
-                // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
                 matrix4f.rotate(Axis.XN.rotation(part.xRot));
                 matrix4f.rotate(Axis.YN.rotation(part.yRot));
                 matrix4f.rotate(Axis.ZN.rotation(part.zRot));
-                // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
                 if (part.getParent() != null) {
                     matrix4f.translate(-part.x / 16.0F, -part.y / 16.0F, -part.z / 16.0F);
                 } else {
@@ -247,7 +227,6 @@ public class FirstPersonRenderGunEvent {
             }
             progress = (float) Easing.easeOutCubic(progress);
             rootNode.offsetX += SHOOT_X_SWAY_NOISE.getValue() / 16 * progress * (1 - aimingProgress);
-            // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ y ÃƒÂ¨Ã‚Â½Ã‚Â´ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ©Ã‚Â¢Ã‚Â ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ¯Ã‚Â¼Ã…â€™sway ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
             rootNode.offsetY += -SHOOT_Y_SWAY / 16 * progress * (1 - aimingProgress);
             rootNode.additionalQuaternion.mul(Axis.YP.rotation(SHOOT_Y_ROTATION_NOISE.getValue() * progress));
         }
@@ -276,7 +255,6 @@ public class FirstPersonRenderGunEvent {
                 }
             } else {
                 if (lastOnGround) {
-                    // 0.42 ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ§Ã¢â‚¬Å¾Ã‚Â¶ÃƒÂ¨Ã‚ÂµÃ‚Â·ÃƒÂ¨Ã‚Â·Ã‚Â³ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â€šÂ¬Ã…Â¸ÃƒÂ¥Ã‚ÂºÃ‚Â¦
                     jumpingSwayProgress = velocityY / 0.42f;
                     if (jumpingSwayProgress > 1) {
                         jumpingSwayProgress = 1;
@@ -294,7 +272,6 @@ public class FirstPersonRenderGunEvent {
         float ySway = JUMPING_DYNAMICS.update(JUMPING_Y_SWAY * jumpingSwayProgress);
         BedrockPart rootNode = model.getRootNode();
         if (rootNode != null) {
-            // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ y ÃƒÂ¨Ã‚Â½Ã‚Â´ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ©Ã‚Â¢Ã‚Â ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ¯Ã‚Â¼Ã…â€™sway ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
             rootNode.offsetY += -ySway / 16;
         }
     }
@@ -310,46 +287,37 @@ public class FirstPersonRenderGunEvent {
         if (nodePath == null) {
             return;
         }
-        // ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ§Ã…Â¸Ã‚Â©ÃƒÂ©Ã‹Å“Ã‚Âµ
         Matrix4f animeMatrix = new Matrix4f();
-        // ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ§Ã…Â¸Ã‚Â©ÃƒÂ©Ã‹Å“Ã‚Âµ
         Matrix4f originMatrix = new Matrix4f();
         animeMatrix.identity();
         originMatrix.identity();
         BedrockPart constrainNode = nodePath.get(nodePath.size() - 1);
         for (BedrockPart part : nodePath) {
-            // ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
             if (part != constrainNode) {
                 animeMatrix.translate(part.offsetX, part.offsetY, part.offsetZ);
             }
-            // ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
             if (part.getParent() != null) {
                 animeMatrix.translate(part.x / 16.0F, part.y / 16.0F, part.z / 16.0F);
             } else {
                 animeMatrix.translate(part.x / 16.0F, (part.y / 16.0F - 1.5F), part.z / 16.0F);
             }
-            // ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
             if (part != constrainNode) {
                 animeMatrix.rotate(part.additionalQuaternion);
             }
-            // ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
             animeMatrix.rotate(Axis.ZP.rotation(part.zRot));
             animeMatrix.rotate(Axis.YP.rotation(part.yRot));
             animeMatrix.rotate(Axis.XP.rotation(part.xRot));
 
-            // ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
             if (part.getParent() != null) {
                 originMatrix.translate(part.x / 16.0F, part.y / 16.0F, part.z / 16.0F);
             } else {
                 originMatrix.translate(part.x / 16.0F, (part.y / 16.0F - 1.5F), part.z / 16.0F);
             }
-            // ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
             originMatrix.rotate(Axis.ZP.rotation(part.zRot));
             originMatrix.rotate(Axis.YP.rotation(part.yRot));
             originMatrix.rotate(Axis.XP.rotation(part.xRot));
 
         }
-        // ÃƒÂ¦Ã…Â Ã…Â ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Âº
         animeMatrix.getTranslation(animatedTranslation);
         originMatrix.getTranslation(originTranslation);
         Vector3f animatedRotation = MathUtil.getEulerAngles(animeMatrix);
@@ -371,28 +339,23 @@ public class FirstPersonRenderGunEvent {
         if (gunModel.getConstraintObject() == null) {
             return;
         }
-        // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¤Ã‚Â¿Ã‚Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¯
         Vector3f originTranslation = new Vector3f();
         Vector3f animatedTranslation = new Vector3f();
         Vector3f rotation = new Vector3f();
         Vector3f translationICA = gunModel.getConstraintObject().translationConstraint;
         Vector3f rotationICA = gunModel.getConstraintObject().rotationConstraint;
         getAnimationConstraintTransform(nodePath, originTranslation, animatedTranslation, rotation);
-        // ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
         Vector3f inverseTranslation = new Vector3f(originTranslation);
         inverseTranslation.sub(animatedTranslation);
         inverseTranslation.mulDirection(poseStack.last().pose());
         inverseTranslation.mul(translationICA.x() - 1, translationICA.y() - 1, 1 - translationICA.z()); // ÃƒÂ¥Ã…Â¸Ã‚ÂºÃƒÂ¥Ã‚Â²Ã‚Â©ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¥Ã‚Â¯Ã‚Â¼ÃƒÂ¨Ã¢â‚¬Â¡Ã‚Â´ xy ÃƒÂ¨Ã‚Â½Ã‚Â´ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¥
-        // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã‚Â¬Ã‚Â§ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â°ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢
         Vector3f inverseRotation = new Vector3f(rotation);
         inverseRotation.mul(rotationICA.x() - 1, rotationICA.y() - 1, rotationICA.z() - 1);
-        // ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
         poseStack.translate(animatedTranslation.x(), animatedTranslation.y() + 1.5f, animatedTranslation.z());
         poseStack.mulPose(Axis.XP.rotation(inverseRotation.x() * weight));
         poseStack.mulPose(Axis.YP.rotation(inverseRotation.y() * weight));
         poseStack.mulPose(Axis.ZP.rotation(inverseRotation.z() * weight));
         poseStack.translate(-animatedTranslation.x(), -animatedTranslation.y() - 1.5f, -animatedTranslation.z());
-        // ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»
         Matrix4f poseMatrix = poseStack.last().pose();
         poseMatrix.m30(poseMatrix.m30() - inverseTranslation.x() * weight);
         poseMatrix.m31(poseMatrix.m31() - inverseTranslation.y() * weight);

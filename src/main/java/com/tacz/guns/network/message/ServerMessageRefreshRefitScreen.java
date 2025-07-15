@@ -33,7 +33,6 @@ public record ServerMessageRefreshRefitScreen() implements CustomPacketPayload {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && Minecraft.getInstance().screen instanceof GunRefitScreen screen) {
             screen.init();
-            // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             AttachmentPropertyManager.postChangeEvent(player, player.getMainHandItem());
         }
     }

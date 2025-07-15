@@ -55,7 +55,6 @@ public class AnimationController {
     }
 
     public void queueAnimation(int track, Queue<AnimationPlan> queue) {
-        // ÃƒÂ§Ã‚Â¡Ã‚Â®ÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ§Ã‚Â¡Ã‚Â®
         for (int i = animationQueue.size(); i <= track; i++) {
             animationQueue.add(null);
         }
@@ -66,14 +65,12 @@ public class AnimationController {
                 plan = queue.poll();
             }
             if (plan != null) {
-                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Cast temporÃƒÆ’Ã‚Â¡rio enquanto playType ÃƒÆ’Ã‚Â© Object
                 run(track, plan.animationName, (ObjectAnimation.PlayType) plan.playType, plan.transitionTimeS);
             }
         }
     }
 
     public void runAnimation(int track, String animationName, ObjectAnimation.PlayType playType, float transitionTimeS) {
-        // ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¥Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ©Ã‹Å“Ã…Â¸ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‹Å“Ã…Â¸ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         if (track < animationQueue.size()) {
             animationQueue.set(track, null);
         }
@@ -85,7 +82,6 @@ public class AnimationController {
         if (prototype == null) {
             return;
         }
-        // ÃƒÂ§Ã‚Â¡Ã‚Â®ÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ§Ã‚Â¡Ã‚Â®
         for (int i = currentRunners.size(); i <= track; i++) {
             currentRunners.add(null);
         }
@@ -110,7 +106,6 @@ public class AnimationController {
     }
 
     public void setBlending(int track, boolean blend) {
-        // ÃƒÂ§Ã‚Â¡Ã‚Â®ÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ§Ã‚Â¡Ã‚Â®
         for (int i = blending.size(); i <= track; i++) {
             blending.add(false);
         }
@@ -126,7 +121,6 @@ public class AnimationController {
     }
 
     synchronized public void update() {
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã…â€œÃ¢â‚¬Â° updatingTrackArrayÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¦Ã…â€™Ã¢â‚¬Â°ÃƒÂ§Ã¢â‚¬Â¦Ã‚Â§ updatingTrackArray ÃƒÂ¦Ã…â€™Ã¢â‚¬Â¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â¡Ã‚ÂºÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â»Ã…Â½ÃƒÂ¤Ã‚Â½Ã…Â½ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ©Ã‚Â«Ã‹Å“ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         if (updatingTrackArray != null) {
             updatingTrackArray.forEach(track -> this.updateByTrack(track, false));
         } else {
@@ -151,7 +145,6 @@ public class AnimationController {
         if (runner == null) {
             return;
         }
-        //ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»runner
         if (runner.isRunning() || runner.isHolding() || runner.isPausing() || runner.isTransitioning()) {
             if (isSoundOnly) {
                 runner.updateSoundOnly();
@@ -159,7 +152,6 @@ public class AnimationController {
                 runner.update(blend);
             }
         }
-        //ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¦Ã‚Â¸Ã‚Â¡ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â®ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»runnerÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¹Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã¢â‚¬ÂÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¦Ã‚Â¸Ã‚Â¡ÃƒÂ¥Ã‚Â·Ã‚Â²ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¶ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºcurrentRunners
         if (runner.getTransitionTo() != null) {
             if (isSoundOnly) {
                 runner.getTransitionTo().updateSoundOnly();
@@ -171,7 +163,6 @@ public class AnimationController {
                 runner = runner.getTransitionTo();
             }
         }
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ©Ã‹Å“Ã…Â¸ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾
         if ((runner.isHolding() || runner.isStopped()) && !runner.isTransitioning()) {
             if (track < animationQueue.size()) {
                 Queue<AnimationPlan> queue = animationQueue.get(track);
@@ -181,7 +172,6 @@ public class AnimationController {
                         plan = queue.poll();
                     }
                     if (plan != null) {
-                        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Cast temporÃƒÆ’Ã‚Â¡rio enquanto playType ÃƒÆ’Ã‚Â© Object
                         run(track, plan.animationName, (ObjectAnimation.PlayType) plan.playType, plan.transitionTimeS);
                     }
                 }

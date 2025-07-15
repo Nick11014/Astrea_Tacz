@@ -43,9 +43,7 @@ public record ClientMessageUnloadAttachment(int gunSlotIndex,
             ItemStack attachmentItem = iGun.getAttachment(gunItem, message.attachmentType);
             if (!attachmentItem.isEmpty() && inventory.add(attachmentItem)) {
                 iGun.unloadAttachment(gunItem, message.attachmentType);
-                // 刷新附件数据
                 AttachmentPropertyManager.postChangeEvent(player, gunItem);
-                // 如果是扩容弹夹，同时清空弹药
                 if (message.attachmentType == AttachmentType.EXTENDED_MAG) {
                     iGun.dropAllAmmo(player, gunItem);
                 }

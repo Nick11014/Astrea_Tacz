@@ -21,7 +21,6 @@ public class DefaultTableItem extends GunSmithTableItem{
 
     @Override
     public void setBlockId(ItemStack block, @Nullable ResourceLocation blockId) {
-        // ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾idÃƒÂ¦Ã¢â‚¬â€Ã‚Â ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬ÂÃ‚ÂÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Âº"tacz:gun_smith_table"
     }
 }
 

@@ -95,11 +95,8 @@ public abstract class LivingEntityMixin extends Entity implements IGunOperator, 
     @Override
     @Unique
     public void initialData() {
-        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ ShooterDataHolder
         this.tacz$data.initialData();
-        // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¦Ã‚Â­Ã‚Â¦ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
         this.tacz$data.currentGunItem = () -> tacz$shooter.getMainHandItem();
-        // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â±Ã…Â¾ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â§ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“
         AttachmentPropertyManager.postChangeEvent(tacz$shooter, tacz$shooter.getMainHandItem());
     }
 
@@ -210,9 +207,7 @@ public abstract class LivingEntityMixin extends Entity implements IGunOperator, 
 
     @Inject(method = "tick", at = @At(value = "RETURN"))
     private void onTickServerSide(CallbackInfo ci) {
-        // ÃƒÂ¤Ã‚Â»Ã¢â‚¬Â¦ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨
         if (!level().isClientSide()) {
-            // ÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ§Ã‚Â§Ã‚Â tick ÃƒÂ¤Ã‚Â»Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â¡
             ReloadState reloadState = this.tacz$reload.tickReloadState();
             this.tacz$aim.tickAimingProgress();
             this.tacz$aim.tickSprint();
@@ -222,7 +217,6 @@ public abstract class LivingEntityMixin extends Entity implements IGunOperator, 
             this.tacz$speed.updateSpeedModifier();
             this.tacz$heat.tickHeat();
             tacz$shooter.setSprinting(getProcessedSprintStatus(tacz$shooter.isSprinting()));
-            // ÃƒÂ¤Ã‚Â»Ã…Â½ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ…â€™ÃƒÂ¦Ã‚Â­Ã‚Â¥ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
             ModSyncedEntityData.SHOOT_COOL_DOWN_KEY.setValue(tacz$shooter, this.tacz$shoot.getShootCoolDown());
             ModSyncedEntityData.MELEE_COOL_DOWN_KEY.setValue(tacz$shooter, this.tacz$melee.getMeleeCoolDown());
             ModSyncedEntityData.DRAW_COOL_DOWN_KEY.setValue(tacz$shooter, this.tacz$draw.getDrawCoolDown());

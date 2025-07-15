@@ -1,8 +1,7 @@
 package com.tacz.guns.crafting;
 
 import com.tacz.guns.init.ModRecipe;
-import com.tacz.guns.inventory.SimpleContainer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -15,29 +14,23 @@ import java.util.List;
  * Classe que representa uma receita de mesa de armeiro.
  * Implementa a interface Recipe do Minecraft.
  */
-public class GunSmithTableRecipe implements Recipe<com.tacz.guns.crafting.SimpleContainer> {
-    private final ResourceLocation id;
-    private final ResourceLocation tab;
+public class GunSmithTableRecipe implements Recipe<SimpleContainer> {
     private final List<GunSmithTableIngredient> inputs;
     private final RawGunTableResult result;
 
-    public GunSmithTableRecipe(ResourceLocation id, ResourceLocation tab, List<GunSmithTableIngredient> inputs, RawGunTableResult result) {
-        this.id = id;
-        this.tab = tab;
+    public GunSmithTableRecipe(List<GunSmithTableIngredient> inputs, RawGunTableResult result) {
         this.inputs = inputs;
         this.result = result;
     }
 
     @Override
-    public boolean matches(com.tacz.guns.crafting.SimpleContainer container, Level level) {
-        // Implementação simples para verificar se a receita corresponde ao contêiner
-        // Na prática, você provavelmente verificaria os ingredientes no contêiner
+    public boolean matches(SimpleContainer container, Level level) {
         return true;
     }
 
     @Override
-    public ItemStack assemble(com.tacz.guns.crafting.SimpleContainer container) {
-        return this.getResultItem().copy();
+    public ItemStack assemble(SimpleContainer container, net.minecraft.core.HolderLookup.Provider provider) {
+        return this.getResultItem(provider).copy();
     }
 
     @Override
@@ -46,13 +39,8 @@ public class GunSmithTableRecipe implements Recipe<com.tacz.guns.crafting.Simple
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(net.minecraft.core.HolderLookup.Provider provider) {
         return this.result.getResult();
-    }
-
-    @Override
-    public ResourceLocation getId() {
-        return this.id;
     }
 
     @Override
@@ -63,10 +51,6 @@ public class GunSmithTableRecipe implements Recipe<com.tacz.guns.crafting.Simple
     @Override
     public RecipeType<?> getType() {
         return ModRecipe.GUN_SMITH_TABLE_CRAFTING.get();
-    }
-
-    public ResourceLocation getTab() {
-        return tab;
     }
 
     public List<GunSmithTableIngredient> getInputs() {

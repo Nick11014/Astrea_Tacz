@@ -47,7 +47,6 @@ public class FunctionalBedrockPart extends BedrockPart {
     public void render(PoseStack poseStack, ItemDisplayContext transformType, VertexConsumer consumer, int light, int overlay, float red, float green, float blue, float alpha) {
         int cubePackedLight = light;
         if (illuminated) {
-            // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¤Ã‚ÂºÃ‚Â®ÃƒÂ¥Ã‚ÂºÃ‚Â¦
             cubePackedLight = LightTexture.pack(15, 15);
         }
 

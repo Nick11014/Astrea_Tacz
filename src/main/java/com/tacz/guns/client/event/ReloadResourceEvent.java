@@ -22,7 +22,6 @@ public class ReloadResourceEvent {
     // public static void onTextureStitchEventPost(TextureStitchEvent.Post event) {
     //     if (BLOCK_ATLAS_TEXTURE.equals(event.getAtlas().location())) {
     //         // TODO: Re-enable when InternalAssetLoader is available
-    //         // InternalAssetLoader ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚ÂºÃ¢â‚¬ÂºÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
     //         // InternalAssetLoader.onResourceReload();
     //         // ClientReloadManager.reloadAllPack();
     //         
@@ -30,7 +29,6 @@ public class ReloadResourceEvent {
     //     }
     // }
     
-    // Classe mantida para estrutura, mas funcionalidade serÃƒÆ’Ã‚Â¡ reimplementada
     // quando um evento substituto for identificado
 }
 

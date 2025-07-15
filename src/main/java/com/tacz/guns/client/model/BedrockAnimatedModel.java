@@ -34,19 +34,15 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
     protected @Nullable List<BedrockPart> constraintPath;
     private @Nullable ConstraintObject constraintObject;
 
-    // ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾
     protected @Nullable BedrockPart root;
-    // ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°idleÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬ËœÃ¢â‚¬Å¾ÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â·Ã‚Â¯ÃƒÂ¥Ã‚Â¾Ã¢â‚¬Å¾
     protected @Nullable List<BedrockPart> idleSightPath;
 
     public BedrockAnimatedModel(BedrockModelPOJO pojo, BedrockVersion version) {
         super(pojo, version);
-        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ§Ã¢â‚¬ÂºÃ‚Â¸ÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
         ModelRendererWrapper cameraRendererWrapper = modelMap.get(CAMERA_NODE_NAME);
         if (cameraRendererWrapper != null) {
             cameraAnimationObject.cameraRenderer = cameraRendererWrapper;
         }
-        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã‚ÂºÃ‚Â¦ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
         constraintPath = getPath(modelMap.get(CONSTRAINT_NODE));
         if (constraintPath != null) {
             constraintObject = new ConstraintObject();
@@ -120,7 +116,6 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
             return;
         }
         for (BonesItem bones : pojo.getGeometryModelNew().getBones()) {
-            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  FunctionalBedrockPart ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ modelMap ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¯ÃƒÂ¦Ã…â€™Ã‚Â functionalRender ÃƒÂ¦Ã¢â‚¬Å“Ã‚ÂÃƒÂ¤Ã‚Â½Ã…â€œ
             FunctionalBedrockPart bedrockPart = new FunctionalBedrockPart(null, bones.getName());
             modelMap.putIfAbsent(bones.getName(), new ModelRendererWrapper(bedrockPart));
         }
@@ -135,7 +130,6 @@ public class BedrockAnimatedModel extends BedrockModel implements AnimationListe
             return;
         }
         for (BonesItem bones : pojo.getGeometryModelLegacy().getBones()) {
-            // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  FunctionalBedrockPart ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ modelMap ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¯ÃƒÂ¦Ã…â€™Ã‚Â functionalRender ÃƒÂ¦Ã¢â‚¬Å“Ã‚ÂÃƒÂ¤Ã‚Â½Ã…â€œ
             FunctionalBedrockPart bedrockPart = new FunctionalBedrockPart(null, bones.getName());
             modelMap.putIfAbsent(bones.getName(), new ModelRendererWrapper(bedrockPart));
         }

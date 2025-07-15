@@ -17,7 +17,6 @@ public class GunFinishReloadEvent extends Event implements KubeJSGunEventPoster<
         postEventToKubeJS(this);
     }
 
-    // Cancelable event - mÃƒÆ’Ã‚Â©todo isCancelable() nÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
     }

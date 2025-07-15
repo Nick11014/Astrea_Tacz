@@ -21,18 +21,14 @@ public class CompatRegistry {
 
     @SubscribeEvent
     public static void onEnqueue(final InterModEnqueueEvent event) {
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima: registra compatibilidades bÃƒÆ’Ã‚Â¡sicas
         event.enqueueWork(() -> {
             if (FMLEnvironment.dist == Dist.CLIENT) {
-                // TODO: Implementar quando ClothConfigScreen e MenuIntegration estiverem disponÃƒÆ’Ã‚Â­veis
                 // checkModLoad(CLOTH_CONFIG, MenuIntegration::registerModsPage);
                 // ClothConfigScreen.registerNoClothConfigPage();
             }
         });
-        // TODO: Implementar quando OculusCompat estiver disponÃƒÆ’Ã‚Â­vel
         // event.enqueueWork(() -> checkModLoad(OCULUS, OculusCompat::initCompat));
         
-        // TODO: Implementar quando BlackList estiver disponÃƒÆ’Ã‚Â­vel  
         // event.enqueueWork(() -> checkModLoad(CARRY_ON_ID, BlackList::addBlackList));
     }
 

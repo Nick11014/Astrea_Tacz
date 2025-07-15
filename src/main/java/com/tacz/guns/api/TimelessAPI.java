@@ -59,7 +59,6 @@ public final class TimelessAPI {
         return Optional.empty();
     }
 
-    // ===== MÉTODOS COMMON-SIDE =====
 
     public static Optional<CommonAmmoIndex> getCommonAmmoIndex(ResourceLocation ammoId) {
         var instance = CommonAssetsManager.getInstance();
@@ -93,7 +92,6 @@ public final class TimelessAPI {
         return Optional.ofNullable(instance.getGunIndex(gunId));
     }
 
-    // ===== MÉTODOS DE COLEÇÃO =====
 
     public static Set<Map.Entry<ResourceLocation, CommonGunIndex>> getAllCommonGunIndex() {
         var instance = CommonAssetsManager.getInstance();
@@ -127,21 +125,16 @@ public final class TimelessAPI {
         return instance.getAllBlocks();
     }
 
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE RECIPE =====
 
     public static RecipeType<?> getGunSmithTableRecipeType() {
-        // TODO: Retornar tipo de receita quando disponÃƒÆ’Ã‚Â­vel
         return null;
     }
 
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS DE TERCEIRA PESSOA =====
 
     @OnlyIn(Dist.CLIENT)
     public static void registerThirdPersonAnimation(ResourceLocation gunId, Object animationLister) {
-        // TODO: Implementar quando ThirdPersonManager estiver disponÃƒÆ’Ã‚Â­vel
     }
 
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS UTILITÃƒÆ’Ã‚ÂRIOS QUE FUNCIONAM IMEDIATAMENTE =====
 
     /**
      * Verifica se um ItemStack ÃƒÆ’Ã‚Â© uma arma vÃƒÆ’Ã‚Â¡lida

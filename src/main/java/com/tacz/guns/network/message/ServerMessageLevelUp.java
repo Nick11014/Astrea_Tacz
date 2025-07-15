@@ -39,7 +39,6 @@ public record ServerMessageLevelUp(ItemStack gun, int level) implements CustomPa
         if (player == null) {
             return;
         }
-        // TODO: Implementar a lÃƒÆ’Ã‚Â³gica de toast de level up quando o sistema de nÃƒÆ’Ã‚Â­vel estiver pronto.
     }
 }
 

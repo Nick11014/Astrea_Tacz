@@ -8,7 +8,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.tacz.guns.GunMod;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ CommonAssetsManager habilitado - serializers customizados funcionais
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.network.DataType;
 import com.tacz.guns.util.ResourceScanner;
@@ -35,7 +34,6 @@ public class AttachmentsTagManager extends SimplePreparableReloadListener<Map<Re
     protected Map<ResourceLocation, String> networkCache;
 
     public AttachmentsTagManager() {
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¦ CommonAssetsManager.GSON restaurado - serializers customizados funcionais
         this.gson = CommonAssetsManager.GSON;
         this.marker = MarkerManager.getMarker("AllowTagManager");
         this.fileToIdConverter = FileToIdConverter.json("tacz_tags/attachments");

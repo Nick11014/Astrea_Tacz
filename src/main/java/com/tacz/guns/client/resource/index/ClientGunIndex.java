@@ -22,7 +22,6 @@ public class ClientGunIndex {
     private String type;
     private String itemType;
 
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando GunDisplayInstance for habilitado
     // private GunDisplayInstance display;
     private GunDisplay display; // Placeholder temporÃƒÆ’Ã‚Â¡rio
 
@@ -32,11 +31,9 @@ public class ClientGunIndex {
     public static ClientGunIndex getInstance(GunIndexPOJO gunIndexPOJO) throws IllegalArgumentException {
         ClientGunIndex index = new ClientGunIndex();
         checkIndex(gunIndexPOJO, index);
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando GunDisplay e ClientAssetsManager forem habilitados
         GunDisplay display = checkDisplay(gunIndexPOJO);
         checkData(gunIndexPOJO, index);
         checkName(gunIndexPOJO, index);
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando GunDisplayInstance for habilitado
         // index.display = GunDisplayInstance.create(display);
         index.display = display; // Placeholder temporÃƒÆ’Ã‚Â¡rio
         return index;
@@ -61,13 +58,11 @@ public class ClientGunIndex {
         Preconditions.checkArgument(pojoData != null, "index object missing pojoData field");
         GunData data = CommonAssetsManager.get().getGunData(pojoData);
         Preconditions.checkArgument(data != null, "there is no corresponding data file");
-        // ÃƒÂ¥Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã‚Â Ã‚Â¡ÃƒÂ©Ã‚ÂªÃ…â€™ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™CommonÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬ËœÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã‚Â·Ã‚Â²ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ¦Ã‚Â Ã‚Â¡ÃƒÂ©Ã‚ÂªÃ…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â 
         index.gunData = data;
     }
 
     @NotNull
     private static GunDisplay checkDisplay(GunIndexPOJO gunIndexPOJO) {
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando ClientAssetsManager for habilitado
         // ResourceLocation pojoDisplay = gunIndexPOJO.getDisplay();
         // Preconditions.checkArgument(pojoDisplay != null, "index object missing display field");
         // GunDisplay display = ClientAssetsManager.INSTANCE.getGunDisplay(pojoDisplay);
@@ -92,7 +87,6 @@ public class ClientGunIndex {
         return gunData;
     }
 
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando GunDisplayInstance for habilitado
     // public GunDisplayInstance getDefaultDisplay() {
     //     return display;
     // }
@@ -127,14 +121,11 @@ public class ClientGunIndex {
 
     // Temporary method for AnimationStateMachine compatibility during migration
     public com.tacz.guns.api.client.animation.statemachine.AnimationStateMachine<?> getAnimationStateMachine() {
-        // TODO: [MIGRAÇÃO] Implementar quando GunDisplayInstance estiver completo
-        // Durante a migração, retornamos null e o código deve verificar essa condição
         return null;
     }
 
     // Temporary method for sound compatibility during migration
     public net.minecraft.resources.ResourceLocation getSounds(String name) {
-        // TODO: [MIGRAÇÃO] Implementar quando o sistema de som estiver migrado
         return null;
     }
 }

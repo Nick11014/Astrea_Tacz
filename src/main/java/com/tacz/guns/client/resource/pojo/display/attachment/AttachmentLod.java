@@ -12,7 +12,6 @@ public class AttachmentLod {
     protected ResourceLocation modelTexture;
 
     public void render(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        // TODO: Implementar a renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do modelo LOD
     }
 
     public ResourceLocation getModelLocation() {

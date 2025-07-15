@@ -29,7 +29,6 @@ public enum FireMode implements StringRepresentable {
     @SerializedName("unknown")
     UNKNOWN;
 
-    // Codecs necessÃƒÆ’Ã‚Â¡rios para DataComponents no NeoForge 1.21.1
     public static final Codec<FireMode> CODEC = StringRepresentable.fromEnum(FireMode::values);
     public static final StreamCodec<RegistryFriendlyByteBuf, FireMode> STREAM_CODEC = 
         StreamCodec.of((buf, mode) -> buf.writeUtf(mode.getSerializedName()),

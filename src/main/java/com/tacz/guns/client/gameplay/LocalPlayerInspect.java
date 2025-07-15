@@ -22,7 +22,6 @@ public class LocalPlayerInspect {
     }
 
     public void inspect() {
-        // ÃƒÂ¦Ã…Â¡Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â 
         ItemStack mainHandItem = player.getMainHandItem();
 
         if (!(mainHandItem.getItem() instanceof IGun iGun)) {
@@ -31,7 +30,6 @@ public class LocalPlayerInspect {
             }
             return;
         }
-        // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ©Ã¢â‚¬ÂÃ‚Â
         if (data.clientStateLock) {
             return;
         }
@@ -47,7 +45,6 @@ public class LocalPlayerInspect {
             } else {
                 noAmmo = !iGun.hasBulletInBarrel(mainHandItem);
             }
-            // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬Ëœ inspectÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ…â€œÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³
             SoundPlayManager.stopPlayGunSound();
             SoundPlayManager.playInspectSound(player, gunIndex, noAmmo);
             var animationStateMachine = gunIndex.getAnimationStateMachine();

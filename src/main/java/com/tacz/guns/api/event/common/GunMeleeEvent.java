@@ -22,7 +22,6 @@ public class GunMeleeEvent extends Event implements KubeJSGunEventPoster<GunMele
         postEventToKubeJS(this);
     }
 
-    // Cancelable event - método isCancelable() não é mais @Override no NeoForge 1.21.1
     public boolean isCancelable() {
         return true;
     }

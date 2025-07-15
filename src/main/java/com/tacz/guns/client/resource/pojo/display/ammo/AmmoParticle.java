@@ -23,7 +23,6 @@ public class AmmoParticle {
     @SerializedName("count")
     private int count = 1;
 
-    // ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã¢â€šÂ¬Ã…â€™ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚Â deco ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
     private transient ParticleOptions particleOptions;
 
     public String getName() {

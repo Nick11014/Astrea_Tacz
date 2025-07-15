@@ -28,7 +28,6 @@ import com.tacz.guns.util.math.MathUtil;
 import com.tacz.guns.init.ModDataComponents;
 
 public class AdsModifier implements IAttachmentModifier<Float, GunData> {
-    // ID público para uso externo (ex: cacheProperty.getCache(AdsModifier.ID))
     public static final String ID = "ads_modifier";
     private static final String ADS_ADDEND = "ads_addend";
 
@@ -55,7 +54,6 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
     }
 
     public String getPropertyId() {
-        // GunProperties.ADS_TIME é registrado como "ads" (ver GunProperties.java)
         return "ads";
     }
 
@@ -68,7 +66,6 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         return new AdsComponent(attachment);
     }
 
-    // Implementação mínima dos métodos obrigatórios da interface
     @Override
     public String getId() {
         return ID;
@@ -76,13 +73,11 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
 
     @Override
     public CacheValue<GunData> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
-        // Retorne null ou implemente conforme necessário para o sistema de cache
         return null;
     }
 
     @Override
     public void eval(List<Float> modifiedValues, CacheValue<GunData> cache) {
-        // Implementação vazia, ajuste conforme necessário
     }
 
     public static List<DiagramsData> getPropertyDiagramsData(GunData gunData, float modifiedAimTime) {
@@ -107,7 +102,6 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         private final float adsAddendTime;
 
         public AdsComponent(ItemStack attachment) {
-            // Usa DataComponent ao invés de NBT
             this.adsAddendTime = attachment.getOrDefault(ModDataComponents.ADS_ADDEND, 0f);
         }
 

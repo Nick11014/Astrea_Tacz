@@ -36,11 +36,12 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
 import static net.neoforged.neoforge.client.gui.VanillaGuiLayers.CROSSHAIR;
 
+import net.neoforged.fml.ModList;
+
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = net.neoforged.api.distmarker.Dist.CLIENT, modid = GunMod.MOD_ID)
 public class ClientSetupEvent {
     @SubscribeEvent
     public static void onClientSetup(RegisterKeyMappingsEvent event) {
-        // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ©Ã¢â‚¬ÂÃ‚Â®ÃƒÂ¤Ã‚Â½Ã‚Â
         event.register(InspectKey.INSPECT_KEY);
         event.register(ReloadKey.RELOAD_KEY);
         event.register(ShootKey.SHOOT_KEY);
@@ -56,7 +57,6 @@ public class ClientSetupEvent {
 
     @SubscribeEvent
     public static void onClientSetup(RegisterClientTooltipComponentFactoriesEvent event) {
-        // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â¤Ã‚Âº
         event.register(GunTooltip.class, ClientGunTooltip::new);
         event.register(AmmoBoxTooltip.class, ClientAmmoBoxTooltip::new);
         event.register(AttachmentItemTooltip.class, ClientAttachmentItemTooltip::new);
@@ -65,7 +65,6 @@ public class ClientSetupEvent {
 
     @SubscribeEvent
     public static void onRegisterGuiOverlays(RegisterGuiLayersEvent event) {
-        // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ HUD
         event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "gun_hud_overlay"), new GunHudOverlay());
         event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "heat_bar"), new HeatBarOverlay());
         event.registerAboveAll(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "kill_amount_overlay"), new KillAmountOverlay());
@@ -75,31 +74,25 @@ public class ClientSetupEvent {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â·Ã‚Â±ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â¡Ã‚Â¬ÃƒÂ§Ã‚Â¼Ã¢â‚¬â€œÃƒÂ§Ã‚Â Ã‚ÂÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â°ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»
         event.enqueueWork(ThirdPersonManager::registerDefault);
 
-        // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ©Ã‚Â¢Ã…â€œÃƒÂ¨Ã¢â‚¬Â°Ã‚Â²
         event.enqueueWork(() -> Minecraft.getInstance().getItemColors().register(AmmoBoxItem::getColor, ModItems.AMMO_BOX.get()));
 
-        // ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã…â€™ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ§Ã‚Â§Ã‚Â
         // noinspection deprecation
         event.enqueueWork(() -> ItemProperties.register(ModItems.AMMO_BOX.get(), AmmoBoxItem.PROPERTY_NAME, AmmoBoxItem::getStatue));
 
-        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â·Ã‚Â±ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨
 //        event.enqueueWork(ClientGunPackDownloadManager::init);
 
                 if (ModList.get().isLoaded("playeranimator")) {
             event.enqueueWork(PlayerAnimatorCompat::init);
         }
 
-        // ÃƒÂ¤Ã‚Â¸Ã…Â½ Shoulder Surfing Reloaded ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹
         if (ModList.get().getModContainerById("shouldersurfingreloaded").isPresent()) {
             event.enqueueWork(ShoulderSurfingCompat::init);
         }
 
-        // ÃƒÂ¤Ã‚Â¸Ã…Â½ Controllable ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹
         if (ModList.get().isLoaded("controllable")) {
-            event.enqueueWork(ControllableCompat::init);
+            // event.enqueueWork(ControllableCompat::init);
         }
     }
 

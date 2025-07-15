@@ -28,25 +28,20 @@ public class ScopeRender implements IFunctionalRenderer {
             return;
         }
 
-        // SÃƒÆ’Ã‚Â³ renderiza se for um scope
         if (!attachmentIndex.isScope()) {
             return;
         }
 
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         /*
         if (transformType instanceof ItemDisplayContext displayContext) {
             if (displayContext.firstPerson()) {
-                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope em primeira pessoa
                 renderFirstPersonScope(poseStack, vertexBuffer, light, overlay);
             } else {
-                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope em terceira pessoa
                 renderThirdPersonScope(poseStack, vertexBuffer, light, overlay);
             }
         }
         */
 
-        // Log para debugging (temporÃƒÆ’Ã‚Â¡rio)
         logScopeInfo();
     }
 

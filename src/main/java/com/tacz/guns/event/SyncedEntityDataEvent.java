@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
 
 @EventBusSubscriber
 public final class SyncedEntityDataEvent {
-    // O AttachCapabilitiesEvent foi removido - agora as capabilities sÃƒÆ’Ã‚Â£o registradas
-    // automaticamente atravÃƒÆ’Ã‚Â©s do RegisterCapabilitiesEvent no CapabilityRegistry
 
     @SubscribeEvent
     public static void onStartTracking(PlayerEvent.StartTracking event) {

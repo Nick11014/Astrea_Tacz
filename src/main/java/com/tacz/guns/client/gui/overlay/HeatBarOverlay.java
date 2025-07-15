@@ -67,8 +67,8 @@ public class HeatBarOverlay implements LayeredDraw.Layer {
             poseStack.scale(heatScale, heatScale, 1);
 
             boolean locked = iGun.isOverheatLocked(stack);
-            int tickCount = gui.getGuiTicks();
-            renderOverheat(percent, graphics, (int) (width / heatScale), (int) (height / heatScale), locked, graphics.getGuiTicks());
+            int tickCount = (int) deltaTracker.getGameTimeDeltaTicks();
+            renderOverheat(percent, graphics, (int) (width / heatScale), (int) (height / heatScale), locked, (int) deltaTracker.getGameTimeDeltaTicks());
             poseStack.popPose();
         }
     }

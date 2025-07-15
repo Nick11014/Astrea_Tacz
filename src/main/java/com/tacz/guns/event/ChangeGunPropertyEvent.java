@@ -18,10 +18,8 @@ public class ChangeGunPropertyEvent {
         }
         ResourceLocation gunId = iGun.getGunId(gunItem);
         
-        // TODO: Implementar quando CommonGunIndex estiver disponÃƒÆ’Ã‚Â­vel
         // TimelessAPI.getCommonGunIndex(gunId).ifPresent(gunIndex -> event.getCacheProperty().eval(gunItem, gunIndex.getGunData()));
         
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima: evento nÃƒÆ’Ã‚Â£o processado atÃƒÆ’Ã‚Â© CommonGunIndex estar disponÃƒÆ’Ã‚Â­vel
     }
 }
 

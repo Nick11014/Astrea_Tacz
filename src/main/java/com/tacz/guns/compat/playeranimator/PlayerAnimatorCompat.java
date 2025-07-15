@@ -17,14 +17,12 @@ public class PlayerAnimatorCompat {
      * Inicializa o PlayerAnimator (se disponível)
      */
     public static void init() {
-        // TODO: Implementar inicialização real do PlayerAnimator
     }
     
     /**
      * Verifica se o PlayerAnimator está instalado
      */
     public static boolean isInstalled() {
-        // TODO: Implementar verificação real do mod PlayerAnimator
         return false; // Retorna false por enquanto para evitar problemas
     }
     
@@ -32,7 +30,6 @@ public class PlayerAnimatorCompat {
      * Registra um reload listener para o PlayerAnimator
      */
     public static void registerReloadListener(Consumer<Object> registerFunction) {
-        // TODO: Implementar registro real quando PlayerAnimator estiver disponível
     }
     
     /**
@@ -40,7 +37,6 @@ public class PlayerAnimatorCompat {
      * TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real quando mod estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static boolean isLoaded() {
-        // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real do mod PlayerAnimator
         return false; // Retorna false por enquanto para evitar problemas
     }
     
@@ -51,7 +47,6 @@ public class PlayerAnimatorCompat {
     public static void playAnimation(Player player, ResourceLocation animationId) {
         // TODO: Implementar chamada real para PlayerAnimator
         // PlayerAnimatorAPI.playAnimation(player, animationId, ...);
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar crashes
     }
     
     /**
@@ -59,27 +54,21 @@ public class PlayerAnimatorCompat {
      * TODO: Implementar quando PlayerAnimator estiver disponÃƒÆ’Ã‚Â­vel  
      */
     public static void stopAllAnimations(Player player) {
-        // TODO: Implementar parada real de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
         // PlayerAnimatorAPI.stopAllAnimations(player);
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar crashes
     }
     
     /**
      * Para todas as animações de um jogador (com parâmetro int)
      */
     public static void stopAllAnimation(LivingEntity entity, int parameter) {
-        // TODO: Implementar parada real de animações
         // PlayerAnimatorAPI.stopAllAnimation(entity, parameter);
-        // Por enquanto não faz nada para evitar crashes
     }
     
     /**
      * Para todas as animações de um jogador
      */
     public static void stopAllAnimation(LivingEntity entity) {
-        // TODO: Implementar parada real de animações
         // PlayerAnimatorAPI.stopAllAnimation(entity);
-        // Por enquanto não faz nada para evitar crashes
     }
     
     /**
@@ -87,7 +76,6 @@ public class PlayerAnimatorCompat {
      * TODO: Implementar quando PlayerAnimator estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static boolean isAnimationPlaying(Player player, ResourceLocation animationId) {
-        // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real
         // return PlayerAnimatorAPI.isAnimationPlaying(player, animationId);
         return false; // Retorna false por enquanto
     }
@@ -96,8 +84,6 @@ public class PlayerAnimatorCompat {
      * Verifica se o PlayerAnimator tem animação de terceira pessoa para uma entidade
      */
     public static boolean hasPlayerAnimator3rd(LivingEntity entity, GunDisplayInstance display) {
-        // TODO: Implementar verificação real
-        // Se GunDisplayInstance for null (durante migração), retorna false
         if (display == null) {
             return false;
         }
@@ -109,12 +95,10 @@ public class PlayerAnimatorCompat {
      */
     public static void playAnimation(LivingEntity entity, GunDisplayInstance display, float limbSwingAmount) {
         // TODO: Implementar chamada real para PlayerAnimator
-        // Se GunDisplayInstance for null (durante migração), não faz nada
         if (display == null) {
             return;
         }
         // PlayerAnimatorAPI.playAnimation(entity, display, limbSwingAmount);
-        // Por enquanto não faz nada para evitar crashes
     }
     
     /**
@@ -122,9 +106,7 @@ public class PlayerAnimatorCompat {
      * TODO: Implementar quando PlayerAnimator estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static void playAnimationWithConfig(Player player, ResourceLocation animationId, float speed, boolean loop) {
-        // TODO: Implementar configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o avanÃƒÆ’Ã‚Â§ada de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
         // PlayerAnimatorAPI.playAnimation(player, animationId, speed, loop);
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar crashes  
     }
     
     /**
@@ -132,7 +114,6 @@ public class PlayerAnimatorCompat {
      * TODO: Implementar quando PlayerAnimator estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static Object getCurrentAnimationInfo(Player player) {
-        // TODO: Retornar informaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes reais da animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
         // return PlayerAnimatorAPI.getCurrentAnimation(player);
         return null; // Retorna null por enquanto
     }
@@ -142,9 +123,7 @@ public class PlayerAnimatorCompat {
      * TODO: Implementar quando PlayerAnimator estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static void registerAnimation(ResourceLocation animationId, Object animationData) {
-        // TODO: Implementar registro real de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
         // PlayerAnimatorAPI.registerAnimation(animationId, animationData);
-        // Por enquanto nÃƒÆ’Ã‚Â£o faz nada para evitar problemas
     }
 }
 

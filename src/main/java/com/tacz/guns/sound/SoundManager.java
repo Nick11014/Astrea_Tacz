@@ -97,7 +97,6 @@ public class SoundManager {
      */
     public static String INSTALL_SOUND = "install";
 
-    // ===== MÃƒÆ’Ã¢â‚¬Â°TODOS COM IMPLEMENTAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O MÃƒÆ’Ã‚ÂNIMA =====
 
     /**
      * Envia som para jogadores prÃƒÆ’Ã‚Â³ximos - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
@@ -112,10 +111,7 @@ public class SoundManager {
      * TODO: Implementar quando NetworkHandler e ServerMessageSound estiverem disponÃƒÆ’Ã‚Â­veis
      */
     public static void sendSoundToNearby(LivingEntity sourceEntity, int distance, ResourceLocation gunId, ResourceLocation gunDisplayId, String soundName, float volume, float pitch) {
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima: logs para debug
         if (sourceEntity.level() instanceof ServerLevel) {
-            // TODO: Implementar envio real de som via NetworkHandler quando disponÃƒÆ’Ã‚Â­vel
-            // Para agora, apenas nÃƒÆ’Ã‚Â£o faz nada (implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o silenciosa segura)
         }
     }
 }

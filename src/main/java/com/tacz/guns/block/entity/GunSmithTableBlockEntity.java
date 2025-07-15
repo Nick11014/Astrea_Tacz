@@ -49,7 +49,6 @@ public class GunSmithTableBlockEntity extends BlockEntity implements MenuProvide
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] getRenderBoundingBox removido ou mudou no NeoForge 1.21.1
     // @Override
     // @OnlyIn(Dist.CLIENT)
     // public AABB getRenderBoundingBox() {

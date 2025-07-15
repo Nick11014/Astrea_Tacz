@@ -1,6 +1,5 @@
 package com.tacz.guns.client.model;
 
-// Imports temporariamente usando Object Strategy para resolver dependÃƒÆ’Ã‚Âªncias quebradas
 // import com.mojang.blaze3d.vertex.PoseStack;
 // import net.minecraft.client.renderer.RenderType;
 // import net.minecraft.world.item.ItemDisplayContext;
@@ -13,7 +12,6 @@ import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
 import com.tacz.guns.client.resource.pojo.model.BedrockVersion;
 
-// import javax.annotation.Nonnull; // TODO: Restaurar quando mÃƒÆ’Ã‚Â©todos auxiliares estiverem funcionando
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     private static final String OCULAR_SCOPE_NODE = "ocular_scope";
     private static final Pattern LASER_BEAM_PATTERN = Pattern.compile("^laser_beam(_(\\d+))?$");
 
-    // Estruturas de dados para componentes do acessÃƒÆ’Ã‚Â³rio
     protected List<List<BedrockPart>> scopeViewPaths;
     protected @Nullable List<BedrockPart> scopeBodyPath;
     protected @Nullable List<BedrockPart> ocularRingPath;
@@ -52,7 +49,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
     protected List<List<BedrockPart>> divisionNodePaths;
     protected @Nullable List<List<BedrockPart>> laserBeamPaths;
 
-    // Estado atual - usando Object Strategy para resolver dependÃƒÆ’Ã‚Âªncias
     private @Nullable Object currentGunItem; // TODO: ItemStack quando import estiver funcionando
     private @Nullable Object attachmentItem; // TODO: ItemStack quando import estiver funcionando
     private boolean isScope = false;
@@ -85,7 +81,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
             path = getPath(modelMap.get(SCOPE_VIEW_NODE + '_' + i++));
         }
         
-        // Inicializar ocular paths com padrÃƒÆ’Ã‚Â£o regex
         initializeOcularPaths();
         
         // Inicializar laser beam paths
@@ -94,7 +89,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         // Inicializar division paths
         initializeDivisionPaths();
         
-        // Inicializar paths bÃƒÆ’Ã‚Â¡sicos
         scopeBodyPath = getPath(modelMap.get(SCOPE_BODY_NODE));
         ocularRingPath = getPath(modelMap.get(OCULAR_RING_NODE));
     }
@@ -163,7 +157,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         }
     }
 
-    // Getters e setters bÃƒÆ’Ã‚Â¡sicos
     @Nullable
     public List<BedrockPart> getScopeViewPath(int viewSwitchCount) {
         if (scopeViewPaths.isEmpty()) {
@@ -201,7 +194,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
      */
     public void setTextShowList(Map<String, TextShow> textShowList) {
         if (textShowList != null) {
-            // TODO: Habilitar quando TextShowRender estiver compatÃƒÆ’Ã‚Â­vel com Object Strategy
             // textShowList.forEach((name, textShow) -> this.setFunctionalRenderer(name,
             //         bedrockPart -> new TextShowRender(this, textShow, currentGunItem)));
         }
@@ -221,28 +213,22 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         this.currentGunItem = currentGunItem;
         this.attachmentItem = attachmentItem;
         
-        // TODO: RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica quando tipos estiverem funcionando
         // super.render(matrixStack, transformType, renderType, light, overlay);
         
-        // TODO: Expandir renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica quando funcionalidades estiverem completas
         // renderSpecificFeatures(matrixStack, transformType, renderType, light, overlay);
     }
     
-    // TODO: MÃƒÆ’Ã‚Â©todos auxiliares de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o - restaurar quando tipos estiverem funcionando
     /*
     private void renderFirstPersonSpecific(PoseStack matrixStack, ItemDisplayContext transformType, 
                                          RenderType renderType, int light, int overlay) {
-        // TODO: Implementar renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o complexa de scope/sight quando funcionalidades estiverem completas
     }
     
     private void renderThirdPersonSpecific(PoseStack matrixStack, ItemDisplayContext transformType, 
                                          RenderType renderType, int light, int overlay) {
-        // Renderizar corpo do scope se disponÃƒÆ’Ã‚Â­vel
         if (scopeBodyPath != null) {
             renderTempPart(matrixStack, transformType, renderType, light, overlay, scopeBodyPath);
         }
         
-        // Renderizar anel ocular se disponÃƒÆ’Ã‚Â­vel
         if (ocularRingPath != null) {
             renderTempPart(matrixStack, transformType, renderType, light, overlay, ocularRingPath);
         }
@@ -256,7 +242,6 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         
         poseStack.pushPose();
         try {
-            // Aplicar transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes de todas as partes exceto a ÃƒÆ’Ã‚Âºltima
             for (int i = 0; i < path.size() - 1; ++i) {
                 path.get(i).translateAndRotateAndScale(poseStack);
             }
@@ -284,13 +269,11 @@ public class BedrockAttachmentModel extends BedrockAnimatedModel {
         }
     }
     
-    // TODO: Expandir com funcionalidades avanÃƒÆ’Ã‚Â§adas quando dependÃƒÆ’Ã‚Âªncias estiverem estÃƒÆ’Ã‚Â¡veis:
     // - renderScope()
     // - renderSight() 
     // - renderBoth()
     // - renderLaserBeams()
     // - getBedrockPartCenter()
-    // - Sistema completo de visualizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de scope
 }
 
 

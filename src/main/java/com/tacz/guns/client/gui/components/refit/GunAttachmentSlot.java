@@ -58,7 +58,6 @@ public class GunAttachmentSlot extends Button implements IStackTooltip {
 
         RenderSystem.disableDepthTest();
         RenderSystem.enableBlend();
-        // ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¦Ã‚Â¡Ã¢â‚¬Â 
         int x = this.getX();
         int y = this.getY();
         if (isHoveredOrFocused() || selected) {
@@ -66,7 +65,6 @@ public class GunAttachmentSlot extends Button implements IStackTooltip {
         } else {
             graphics.blit(GunRefitScreen.SLOT_TEXTURE, x + 1, y + 1, 1, 1, width - 2, height - 2, GunRefitScreen.SLOT_SIZE, GunRefitScreen.SLOT_SIZE);
         }
-        // ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã¢â‚¬Å“Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾icon
         this.attachmentItem = iGun.getAttachment(gunItem, type);
         if (!attachmentItem.isEmpty()) {
             graphics.renderItem(attachmentItem, x + 1, y + 1);

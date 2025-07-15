@@ -44,11 +44,8 @@ public class MuzzleFlashRender implements IFunctionalRenderer {
     }
 
     public static void onShoot() {
-        // ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¥Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¦Ã‹â€ Ã‚Â³
         shootTimeStamp = System.currentTimeMillis();
-        // ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¥Ã‚Â½Ã¢â‚¬Â¢ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ§Ã¢â‚¬Å¾Ã‚Â°ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â®Ã‚Â°
         muzzleFlashStartMark = true;
-        // ÃƒÂ©Ã…Â¡Ã‚ÂÃƒÂ¦Ã…â€œÃ‚ÂºÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¤Ã‚ÂºÃ‹â€ ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ§Ã¢â‚¬Å¾Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
         muzzleFlashRandomRotate = (float) (Math.random() * 360);
     }
 
@@ -72,12 +69,10 @@ public class MuzzleFlashRender implements IFunctionalRenderer {
             muzzleFlashStartMark = false;
             MultiBufferSource multiBufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
 
-            // ÃƒÂ¦Ã…Â½Ã‚Â¨ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã…â€™Ã¢â‚¬Â¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
             PoseStack poseStack2 = new PoseStack();
             poseStack2.last().normal().mul(muzzleFlashNormal);
             poseStack2.last().pose().mul(muzzleFlashPose);
 
-            // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ…Â ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã‹Å“Ã…Â½ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¦Ã¢â€žÂ¢Ã‚Â¯
             poseStack2.pushPose();
             {
                 poseStack2.scale(scale, scale, scale);
@@ -88,7 +83,6 @@ public class MuzzleFlashRender implements IFunctionalRenderer {
             }
             poseStack2.popPose();
 
-            // ÃƒÂ§Ã¢â‚¬Å¾Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œ
             poseStack2.pushPose();
             {
                 poseStack2.scale(scale / 2, scale / 2, scale / 2);
@@ -124,15 +118,14 @@ public class MuzzleFlashRender implements IFunctionalRenderer {
                 TimelessAPI.getCommonAttachmentIndex(attachmentId).ifPresent(index -> {
                     var modifier = index.getData().getModifier();
                     if (modifier.containsKey(SilenceModifier.ID) && modifier.get(SilenceModifier.ID).getValue() instanceof Pair<?, ?> pair) {
-                        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚Â®Ã¢â‚¬Â°ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â ÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã‚ÂÃ‚Â£ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°
                         if (((Pair<Integer, Boolean>) pair).right()) {
                             return;
                         }
                     }
-                    renderMuzzleFlash(display, poseStack, bedrockGunModel, time);
+                    // renderMuzzleFlash(display, poseStack, bedrockGunModel, time);
                 });
             } else {
-                renderMuzzleFlash(display, poseStack, bedrockGunModel, time);
+            // renderMuzzleFlash(display, poseStack, bedrockGunModel, time);
             }
         });
     }

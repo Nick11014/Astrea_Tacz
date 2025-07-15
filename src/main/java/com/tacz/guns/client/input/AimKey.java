@@ -12,7 +12,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import net.neoforged.neoforge.client.settings.KeyModifier;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] Tick events nÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â£o disponÃƒÆ’Ã‚Â­veis ainda
 // import net.neoforged.neoforge.event.TickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -85,10 +84,8 @@ public class AimKey {
         return false;
     }
 
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] Tick events nÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â£o disponÃƒÆ’Ã‚Â­veis ainda
     // @SubscribeEvent
     // public static void cancelAim(TickEvent.ClientTickEvent event) {
-    //     // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] Usando API correta de eventos
     //     if (event.phase != TickEvent.Phase.END) {
     //         return;
     //     }

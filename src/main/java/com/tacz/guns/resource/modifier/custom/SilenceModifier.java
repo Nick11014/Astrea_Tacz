@@ -39,7 +39,6 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
             return new SilenceJsonProperty(Pair.of(new Modifier(), false));
         }
         Modifier distance = silence.getDistance();
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬
         if (distance == null) {
             distance = new Modifier();
             distance.setAddend(silence.getDistanceAddend());

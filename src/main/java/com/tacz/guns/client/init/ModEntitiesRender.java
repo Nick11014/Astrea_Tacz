@@ -1,5 +1,6 @@
 package com.tacz.guns.client.init;
 
+import com.tacz.guns.init.ModBlocks;
 import com.tacz.guns.block.entity.GunSmithTableBlockEntity;
 import com.tacz.guns.block.entity.StatueBlockEntity;
 import com.tacz.guns.block.entity.TargetBlockEntity;

@@ -49,7 +49,6 @@ public class BedrockModel {
         if (version == BedrockVersion.NEW) {
             loadNewModel(pojo);
         }
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°
         for (ModelRendererWrapper rendererWrapper : modelMap.values()) {
             if (rendererWrapper.getModelRenderer().name != null && rendererWrapper.getModelRenderer().name.endsWith("_illuminated")) {
                 rendererWrapper.getModelRenderer().illuminated = true;
@@ -78,7 +77,6 @@ public class BedrockModel {
             return;
         }
         Description description = pojo.getGeometryModelNew().getDescription();
-        // ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â´Ã‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‚Â®Ã‚Â½ÃƒÂ¥Ã‚ÂºÃ‚Â¦
         int texWidth = description.getTextureWidth();
         int texHeight = description.getTextureHeight();
 
@@ -91,54 +89,38 @@ public class BedrockModel {
         float height = description.getVisibleBoundsHeight() / 2.0f;
         this.size = new Vec2(width, height);
 
-        // ÃƒÂ¥Ã‚Â¾Ã¢â€šÂ¬ indexBones ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã‚Â»Ã‚Â­ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚ÂÃ…Â¡ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¨Ã¢â€šÂ¬Ã†â€™
         for (BonesItem bones : pojo.getGeometryModelNew().getBones()) {
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ§Ã‚Â´Ã‚Â¢ÃƒÂ¥Ã‚Â¼Ã¢â‚¬Â¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             indexBones.putIfAbsent(bones.getName(), bones);
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â©Ã‚Âº BedrockPart ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹
-            // ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â  parent ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã¢â‚¬Å¾Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¤Ã‚ÂºÃ…â€™ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã¢â‚¬Å¡Ã‚Â¨
             modelMap.putIfAbsent(bones.getName(), new ModelRendererWrapper(new BedrockPart(bones.getName())));
         }
 
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¾Ã¢â€šÂ¬ ModelRenderer ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
         for (BonesItem bones : pojo.getGeometryModelNew().getBones()) {
-            // ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°
             String name = bones.getName();
-            // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
             @Nullable List<Float> rotation = bones.getRotation();
-            // ÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
             @Nullable String parent = bones.getParent();
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº HashMap ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
             BedrockPart model = modelMap.get(name).getModelRenderer();
 
-            // ÃƒÂ©Ã¢â‚¬Â¢Ã…â€œÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
             model.mirror = bones.isMirror();
 
-            // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹
             model.setPos(convertPivot(bones, 0), convertPivot(bones, 1), convertPivot(bones, 2));
 
-            // Nullable ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¥Ã‚ÂºÃ‚Â¦
             if (rotation != null) {
                 setRotationAngle(model, convertRotation(rotation.get(0)), convertRotation(rotation.get(1)), convertRotation(rotation.get(2)));
             }
 
-            // Null ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ§Ã‚Â»Ã¢â‚¬ËœÃƒÂ¥Ã‚Â®Ã…Â¡
             if (parent != null) {
                 BedrockPart parentPart = modelMap.get(parent).getModelRenderer();
                 parentPart.addChild(model);
                 model.parent = parentPart;
             } else {
-                // ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
                 shouldRender.add(model);
                 model.parent = null;
             }
 
-            // ÃƒÂ¦Ã‹â€ Ã¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¤Ã‚Â©ÃƒÂ¯Ã‚Â¼Ã…â€™Cubes ÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦
             if (bones.getCubes() == null) {
                 continue;
             }
 
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ Cube List
             for (CubesItem cube : bones.getCubes()) {
                 List<Float> uv = cube.getUv();
                 @Nullable FaceUVsItem faceUv = cube.getFaceUv();
@@ -147,7 +129,6 @@ public class BedrockModel {
                 boolean mirror = cube.isMirror();
                 float inflate = cube.getInflate();
 
-                // ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã‚ÂÃ…Â¡ÃƒÂ¦Ã¢â€žÂ¢Ã‚Â®ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ cube ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥
                 if (cubeRotation == null) {
                     if (faceUv == null) {
                         model.cubes.add(new BedrockCubeBox(uv.get(0), uv.get(1),
@@ -161,7 +142,6 @@ public class BedrockModel {
                                 texWidth, texHeight, faceUv));
                     }
                 }
-                // ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚Âº Cube ModelRender
                 else {
                     BedrockPart cubeRenderer = new BedrockPart(null);
                     cubeRenderer.setPos(convertPivot(bones, cube, 0), convertPivot(bones, cube, 1), convertPivot(bones, cube, 2));
@@ -178,7 +158,6 @@ public class BedrockModel {
                                 texWidth, texHeight, faceUv));
                     }
 
-                    // ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ¤Ã‚Â¸Ã‚Â­
                     model.addChild(cubeRenderer);
                 }
             }
@@ -192,7 +171,6 @@ public class BedrockModel {
             return;
         }
 
-        // ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¨Ã‚Â´Ã‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‚Â®Ã‚Â½ÃƒÂ¥Ã‚ÂºÃ‚Â¦
         int texWidth = pojo.getGeometryModelLegacy().getTextureWidth();
         int texHeight = pojo.getGeometryModelLegacy().getTextureHeight();
 
@@ -205,51 +183,35 @@ public class BedrockModel {
         float height = pojo.getGeometryModelLegacy().getVisibleBoundsHeight() / 2.0f;
         this.size = new Vec2(width, height);
 
-        // ÃƒÂ¥Ã‚Â¾Ã¢â€šÂ¬ indexBones ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã‚Â»Ã‚Â­ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚ÂÃ…Â¡ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¨Ã¢â€šÂ¬Ã†â€™
         for (BonesItem bones : pojo.getGeometryModelLegacy().getBones()) {
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ§Ã‚Â´Ã‚Â¢ÃƒÂ¥Ã‚Â¼Ã¢â‚¬Â¢ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             indexBones.putIfAbsent(bones.getName(), bones);
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â©Ã‚Âº ModelRenderer ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹
-            // ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â  parent ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã¢â‚¬Å¾Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¤Ã‚ÂºÃ…â€™ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã¢â‚¬Å¡Ã‚Â¨
             modelMap.putIfAbsent(bones.getName(), new ModelRendererWrapper(new BedrockPart(bones.getName())));
         }
 
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¾Ã¢â€šÂ¬ ModelRenderer ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
         for (BonesItem bones : pojo.getGeometryModelLegacy().getBones()) {
-            // ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â³Ã‚Â¨ÃƒÂ¦Ã¢â‚¬Å¾Ã‚ÂÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ§Ã¢â‚¬ÂÃ‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¤Ã‚Â´ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ£Ã¢â€šÂ¬Ã‚ÂÃƒÂ¨Ã¢â‚¬Â¦Ã‚Â¿ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ§Ã‚Â­Ã¢â‚¬Â°ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ©Ã‚Â¡Ã‚Â»ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã¢â‚¬ÂºÃ‚ÂºÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¦Ã‚Â­Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             String name = bones.getName();
-            // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
             @Nullable List<Float> rotation = bones.getRotation();
-            // ÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚Âº
             @Nullable String parent = bones.getParent();
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Âº HashMap ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ©Ã‚ÂÃ‚Â¢ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â±Ã‚Â¡
             BedrockPart model = modelMap.get(name).getModelRenderer();
 
-            // ÃƒÂ©Ã¢â‚¬Â¢Ã…â€œÃƒÂ¥Ã†â€™Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
             model.mirror = bones.isMirror();
 
-            // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹
             model.setPos(convertPivot(bones, 0), convertPivot(bones, 1), convertPivot(bones, 2));
 
-            // Nullable ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¥Ã‚ÂºÃ‚Â¦
             if (rotation != null) {
                 setRotationAngle(model, convertRotation(rotation.get(0)), convertRotation(rotation.get(1)), convertRotation(rotation.get(2)));
             }
 
-            // Null ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ§Ã‚Â»Ã¢â‚¬ËœÃƒÂ¥Ã‚Â®Ã…Â¡
             if (parent != null) {
                 modelMap.get(parent).getModelRenderer().addChild(model);
             } else {
-                // ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã‹â€ Ã‚Â¶ÃƒÂ©Ã‚ÂªÃ‚Â¨ÃƒÂ©Ã‚ÂªÃ‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¦Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
                 shouldRender.add(model);
             }
 
-            // ÃƒÂ¦Ã‹â€ Ã¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¤Ã‚Â©ÃƒÂ¯Ã‚Â¼Ã…â€™Cubes ÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‚Â©Ã‚ÂºÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦
             if (bones.getCubes() == null) {
                 continue;
             }
 
-            // ÃƒÂ¥Ã‚Â¡Ã…Â¾ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ Cube List
             for (CubesItem cube : bones.getCubes()) {
                 List<Float> uv = cube.getUv();
                 List<Float> size = cube.getSize();

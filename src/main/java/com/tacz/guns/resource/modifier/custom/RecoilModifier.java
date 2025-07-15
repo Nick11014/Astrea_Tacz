@@ -49,7 +49,6 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
         RecoilModifier.Data data = CommonAssetsManager.GSON.fromJson(json, RecoilModifier.Data.class);
         NewRecoilData newRecoilData = data.newRecoilData;
         OldRecoilData oldRecoilData = data.oldRecoilData;
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¼ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¦Ã¢â‚¬â€Ã‚Â§ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
         if (newRecoilData == null && oldRecoilData != null) {
             Modifier pitch = new Modifier();
             Modifier yaw = new Modifier();

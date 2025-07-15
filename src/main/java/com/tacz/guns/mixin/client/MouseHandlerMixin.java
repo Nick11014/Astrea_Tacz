@@ -41,7 +41,6 @@ public class MouseHandlerMixin {
         }
         float zoomLevel = 1;
         if (DefaultAssets.isEmptyAttachmentId(scopeId)) {
-            // ÃƒÂ§Ã‚Â¼Ã‚Â©ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã…Â½Ã¢â‚¬Â¡
             zoomLevel = TimelessAPI.getGunDisplay(mainHandItem).map(clientGunIndex -> clientGunIndex.getIronZoom()).orElse(1f);
         } else {
             Optional<ClientAttachmentIndex> optional = TimelessAPI.getClientAttachmentIndex(scopeId);
@@ -55,16 +54,12 @@ public class MouseHandlerMixin {
         }
         Minecraft minecraft = Minecraft.getInstance();
         float progress = IGunOperator.fromLivingEntity(player).getSynAimingProgress();
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ©Ã¢â‚¬Â¢Ã…â€œÃƒÂ§Ã‚ÂÃ‚ÂµÃƒÂ¦Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
         double sensitivityMultiplier = ZoomConfig.ZOOM_SENSITIVITY_BASE_MULTIPLIER.get();
         sensitivityMultiplier = 1 + (sensitivityMultiplier - 1) * progress;
-        // ÃƒÂ¤Ã‚Â¸Ã‚Â¤ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ fov ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€
         double originalFov = minecraft.options.fov().get();
         double currentFov = MathUtil.magnificationToFov(1 + (zoomLevel - 1) * progress, originalFov);
-        // ÃƒÂ¨Ã‚ÂÃ‚Â§ÃƒÂ¥Ã‚Â¹Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™MC ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ COD ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â Ã‚Â·ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ MDV ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¤Ã‚Â¸Ã‚Âº MDV133ÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ§Ã‚Â³Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã‚Âº 1.33ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
         double coefficient = ZoomConfig.SCREEN_DISTANCE_COEFFICIENT.get();
         double denominator = MathUtil.zoomSensitivityRatio(currentFov, originalFov, coefficient) * sensitivityMultiplier;
-        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œ
         double finalYaw = yaw * denominator;
         double finalPitch = getCrawlPitch(player, pitch, denominator);
         original.call(player, finalYaw, finalPitch);
@@ -73,15 +68,11 @@ public class MouseHandlerMixin {
     @Unique
     private static double getCrawlPitch(LocalPlayer player, double pitch, double denominator) {
         double finalPitch = pitch * denominator;
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¨Ã‚Â¶Ã‚Â´ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¤Ã‚Â¹Ã‹â€ ÃƒÂ¨Ã‚Â¿Ã‹Å“ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ pitch ÃƒÂ¨Ã…â€™Ã†â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â´
         if (!player.isSwimming() && player.getPose() == Pose.SWIMMING) {
-            // ÃƒÂ¤Ã‚Â»Ã‚Â°ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ¨Ã‚Â´Ã…Â¸ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
             float playerPitch = -player.getXRot();
-            // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â»Ã‚Â°ÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ 25 ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ¤Ã‚Â¸Ã…Â 
             if (playerPitch > 45) {
                 finalPitch = Math.max(finalPitch, 0);
             }
-            // ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â¿Ã‚Â¯ÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ 25 ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¸ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹
             if (playerPitch < -30) {
                 finalPitch = Math.min(finalPitch, 0);
             }

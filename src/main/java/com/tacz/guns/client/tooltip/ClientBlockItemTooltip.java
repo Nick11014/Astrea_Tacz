@@ -61,7 +61,6 @@ public class ClientBlockItemTooltip implements ClientTooltipComponent {
             font.drawInBatch(component, pX, yOffset, 0xffaa00, false, matrix4f, bufferSource, Font.DisplayMode.NORMAL, 0, 0xF000F0);
             yOffset += 10;
         }
-        // ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã‚ÂÃ‚Â
         if (packInfo != null) {
             font.drawInBatch(this.packInfo, pX, yOffset + 6, 0xffffff, false, matrix4f, bufferSource, Font.DisplayMode.NORMAL, 0, 0xF000F0);
         }

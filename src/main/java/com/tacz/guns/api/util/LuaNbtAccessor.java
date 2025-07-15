@@ -178,7 +178,6 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
             }
             case "gun_fire_mode" -> {
                 if (value instanceof Integer intValue) {
-                    // FireMode ÃƒÆ’Ã‚Â© um enum, precisa converter
                     var fireMode = FireMode.values()[intValue % FireMode.values().length];
                     stack.set(ModDataComponents.GUN_FIRE_MODE.get(), fireMode);
                 }

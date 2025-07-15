@@ -23,7 +23,6 @@ public enum GunTooltipPart {
         if (hideFlags != null) {
             return hideFlags;
         }
-        // Fallback para 0 se nÃƒÆ’Ã‚Â£o houver flags definidas
         return 0;
     }
 

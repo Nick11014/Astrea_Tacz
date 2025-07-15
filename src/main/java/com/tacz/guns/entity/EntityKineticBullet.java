@@ -122,19 +122,13 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
     private boolean explosionKnockback = false;
     private boolean explosionDestroyBlock = false;
     private float damageModifier = 1;
-    // ÃƒÂ§Ã‚Â©Ã‚Â¿ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
     private int pierce = 1;
-    // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
     private Vec3 startPos;
-    // ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹
     private boolean isTracerAmmo;
-    // ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â³ÃƒÂ¥Ã¢â‚¬Â¦Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
     private float cameraXRot;
     private float cameraYRot;
     private Vector3f firstPersonRenderOffset;
-    // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â° ID
     private ResourceLocation gunId;
-    // ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°display ID
     private ResourceLocation gunDisplayId;
     private float armorIgnore;
     private float headShot;
@@ -168,7 +162,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         this.knockback = Math.max(cacheProperty.getCache(KnockbackModifier.ID), 0f);
         this.ammoId = ammoId;
         this.life = Mth.clamp((int) (bulletData.getLifeSecond() * 20), 1, Integer.MAX_VALUE);
-        // ÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ©Ã¢â€šÂ¬Ã…Â¸ÃƒÂ¤Ã‚Â¸Ã‚Âº 600 m / sÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¨Ã‚Â½Ã‚Â»ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¨Ã‚Â´Ã…Â¸ÃƒÂ¦Ã¢â‚¬Â¹Ã¢â‚¬Â¦
         this.speed = Mth.clamp(cacheProperty.<Float>getCache(AmmoSpeedModifier.ID) / 20f, 0f, 30f);
         this.gravity = Mth.clamp(bulletData.getGravity(), 0f, Float.MAX_VALUE);
         this.friction = Mth.clamp(bulletData.getFriction(), 0f, Float.MAX_VALUE);
@@ -178,7 +171,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         this.igniteBlock = bulletData.getIgnite().isIgniteBlock() || ignite.isIgniteBlock();
         this.damageAmount = cacheProperty.getCache(DamageModifier.ID);
         this.distanceAmount = cacheProperty.getCache(EffectiveRangeModifier.ID);
-        // ÃƒÂ©Ã…â€œÃ‚Â°ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â¯Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã‚Â£ÃƒÂ¥Ã…Â½Ã‚Â»
         if (bulletData.getBulletAmount() > 1) {
             this.damageModifier = 1f / bulletData.getBulletAmount();
         }
@@ -189,7 +181,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
             this.explosionDamage = (float) Mth.clamp(explosionData.getDamage() * SyncConfig.DAMAGE_BASE_MULTIPLIER.get(), 0, Float.MAX_VALUE);
             this.explosionRadius = Mth.clamp(explosionData.getRadius(), 0, Float.MAX_VALUE);
             this.explosionKnockback = explosionData.isKnockback();
-            // ÃƒÂ©Ã‹Å“Ã‚Â²ÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¨Ã‚Â¶Ã…Â ÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡
             int delayTickCount = (int)(explosionData.getDelay() * 20);
             if (delayTickCount < 0) {
                 delayTickCount = Integer.MAX_VALUE;
@@ -197,7 +188,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
             this.explosionDestroyBlock = explosionData.isDestroyBlock() && AmmoConfig.EXPLOSIVE_AMMO_DESTROYS_BLOCK.get();
             this.explosionDelayCount = Math.max(delayTickCount, 1);
         }
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
         double posX = throwerIn.xOld + (throwerIn.getX() - throwerIn.xOld) / 2.0;
         double posY = throwerIn.yOld + (throwerIn.getY() - throwerIn.yOld) / 2.0 + throwerIn.getEyeHeight();
         double posZ = throwerIn.zOld + (throwerIn.getZ() - throwerIn.zOld) / 2.0;
@@ -216,13 +206,10 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
     @Override
     public void tick() {
         super.tick();
-        // ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ TaC ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
         this.onBulletTick();
-        // ÃƒÂ§Ã‚Â²Ã¢â‚¬â„¢ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œ
         if (this.level().isClientSide) {
             AmmoParticleSpawner.addParticle(this);
         }
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ¦Ã…Â Ã¢â‚¬ÂºÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ§Ã‚ÂºÃ‚Â¿
         Vec3 movement = this.getDeltaMovement();
         double x = movement.x;
         double y = movement.y;
@@ -230,81 +217,62 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         double distance = movement.horizontalDistance();
         this.setYRot((float) Math.toDegrees(Mth.atan2(x, z)));
         this.setXRot((float) Math.toDegrees(Mth.atan2(y, distance)));
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®
         if (this.xRotO == 0.0F && this.yRotO == 0.0F) {
             this.yRotO = this.getYRot();
             this.xRotO = this.getXRot();
         }
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã‚ÂÃ‚Â«ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
         this.setXRot(lerpRotation(this.xRotO, this.getXRot()));
         this.setYRot(lerpRotation(this.yRotO, this.getYRot()));
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°
         double nextPosX = this.getX() + x;
         double nextPosY = this.getY() + y;
         double nextPosZ = this.getZ() + z;
         this.setPos(nextPosX, nextPosY, nextPosZ);
         float friction = this.friction;
         float gravity = this.gravity;
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã‚Â°Ã‚Â´ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
         if (this.isInWater()) {
             for (int i = 0; i < 4; i++) {
                 this.level().addParticle(ParticleTypes.BUBBLE, nextPosX - x * 0.25F, nextPosY - y * 0.25F, nextPosZ - z * 0.25F, x, y, z);
             }
-            // ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¦Ã‚Â°Ã‚Â´ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‹Å“Ã‚Â»ÃƒÂ¥Ã…Â Ã¢â‚¬Âº
             friction = 0.4F;
             gravity *= 0.6F;
         }
-        // ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã…Â Ã¢â‚¬ÂºÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ©Ã‹Å“Ã‚Â»ÃƒÂ¥Ã…Â Ã¢â‚¬ÂºÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â€šÂ¬Ã…Â¸ÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â
         this.setDeltaMovement(this.getDeltaMovement().scale(1 - friction));
         this.setDeltaMovement(this.getDeltaMovement().add(0, -gravity, 0));
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸
         if (this.tickCount >= this.life - 1) {
             this.discard();
         }
     }
 
-    // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬ËœÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â 
     protected void onBulletTick() {
-        // ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Ëœ
         if (!this.level().isClientSide()) {
-            // ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡
             if (this.explosion) {
                 if (this.explosionDelayCount > 0) {
                     this.explosionDelayCount--;
                 } else {
                     ExplodeUtil.createExplosion(this.getOwner(), this, this.explosionDamage, this.explosionRadius, this.explosionKnockback, this.explosionDestroyBlock, this.position());
-                    // ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ§Ã¢â‚¬Â¢Ã¢â€žÂ¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚Â­Ã¢â‚¬ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Ëœ
                     this.discard();
                     return;
                 }
             }
-            // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã…â€œÃ‚Â¨ tick ÃƒÂ¨Ã‚ÂµÃ‚Â·ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
             Vec3 startVec = this.position();
-            // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã…â€œÃ‚Â¨ tick ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
             Vec3 endVec = startVec.add(this.getDeltaMovement());
-            // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â¢Ã‚Â°ÃƒÂ¦Ã¢â‚¬â„¢Ã…Â¾ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã‚ÂµÃ¢â‚¬Â¹
             HitResult result = BlockRayTrace.rayTraceBlocks(this.level(), new ClipContext(startVec, endVec, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
             BlockHitResult resultB = (BlockHitResult) result;
             if (resultB.getType() != HitResult.Type.MISS) {
-                // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
                 endVec = resultB.getLocation();
             }
 
             List<EntityResult> hitEntities = null;
-            // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã‚ÂµÃ¢â‚¬Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã‚Â©Ã‚Â¿ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚Âº 1 ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ§Ã‚Â±Ã‚Â»ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯ÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ§Ã‚Â©Ã‚Â¿ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡
             if (this.pierce <= 1 || this.explosion) {
                 EntityResult entityResult = EntityUtil.findEntityOnPath(this, startVec, endVec);
-                // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ list
                 if (entityResult != null) {
                     hitEntities = Collections.singletonList(entityResult);
                 }
             } else {
                 hitEntities = EntityUtil.findEntitiesOnPath(this, startVec, endVec);
             }
-            // ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¨Ã‚Â¢Ã‚Â«ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
             if (hitEntities != null && !hitEntities.isEmpty()) {
                 EntityResult[] hitEntityResult = hitEntities.toArray(new EntityResult[0]);
-                // ÃƒÂ¥Ã‚Â¯Ã‚Â¹ÃƒÂ¨Ã‚Â¢Ã‚Â«ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã…Â½Ã¢â‚¬â„¢ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã…â€™Ã¢â‚¬Â°ÃƒÂ§Ã¢â‚¬Â¦Ã‚Â§ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¡ÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ¦Ã…Â½Ã¢â‚¬â„¢ÃƒÂ¥Ã‚ÂºÃ‚Â
                 for (int i = 0; (i < this.pierce || i < 1) && i < (hitEntityResult.length - 1); i++) {
                     int k = i;
                     for (int j = i + 1; j < hitEntityResult.length; j++) {
@@ -321,7 +289,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
                     this.onHitEntity((TacHitResult) result, startVec, endVec);
                     this.pierce--;
                     if (this.pierce < 1 || this.explosion) {
-                        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚Â·Ã‚Â²ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ§Ã‚Â©Ã‚Â¿ÃƒÂ©Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‚Â£Ã…Â¾ÃƒÂ¨Ã‚Â¡Ã…â€™
                         this.discard();
                         return;
                     }
@@ -369,28 +336,22 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         if (result.getEntity() instanceof ITargetEntity targetEntity) {
             DamageSource source = this.damageSources().thrown(this, this.getOwner());
             targetEntity.onProjectileHit(this, result, source, this.getDamage(result.getLocation()));
-            // ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ©Ã‚ÂÃ‚Â¶ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾
             return;
         }
-        // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œPreÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â¿Ã‚Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¯
         Entity entity = result.getEntity();
         @Nullable Entity owner = this.getOwner();
-        // ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â»ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦
         LivingEntity attacker = owner instanceof LivingEntity ? (LivingEntity) owner : null;
         var sources = createDamageSources(MaybeMultipartEntity.of(entity));
         boolean headshot = result.isHeadshot();
         float damage = this.getDamage(result.getLocation());
         float headShotMultiplier = Math.max(this.headShot, 0);
-        // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¥Ã‚Â¸Ã†â€™PreÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
         var preEvent = new EntityHurtByGunEvent.Pre(this, entity, attacker, this.gunId, this.gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER);
         // Updated event bus call
         boolean cancelled = NeoForge.EVENT_BUS.post(preEvent).isCanceled();
         if (cancelled) {
             return;
         }
-        // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ§Ã¢â‚¬ÂÃ‚Â±PreÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
         entity = preEvent.getHurtEntity();
-        // ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â®ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡
         var parts = MaybeMultipartEntity.of(entity);
         attacker = preEvent.getAttacker();
         var newGunId = preEvent.getGunId();
@@ -401,44 +362,30 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         if (entity == null) {
             return;
         }
-        // ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ§Ã¢â‚¬Â¡Ã†â€™
         if (this.igniteEntity && AmmoConfig.IGNITE_ENTITY.get()) {
             ((LivingEntity) entity).setSecondsOnFire(this.igniteEntityTime);
-            // ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¤Ã‚ÂºÃ‹â€ ÃƒÂ§Ã‚Â²Ã¢â‚¬â„¢ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œ
             if (this.level() instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.LAVA, entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ(), 1, 0, 0, 0, 0);
             }
         }
-        // TODO ÃƒÂ¦Ã…Â¡Ã‚Â´ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¤Ã‚Â´ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°ÃƒÂ¦Ã…Â¡Ã‚Â´ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬ËœÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¦Ã…Â¡Ã‚Â´ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ flag
         if (headshot) {
-            // ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¤Ã‚Â´ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³ÃƒÂ¦Ã‹Å“Ã‚Â¯ 1x
             damage *= headShotMultiplier;
         }
-        // ÃƒÂ¥Ã‚Â¯Ã‚Â¹ LivingEntity ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ©Ã¢â€šÂ¬Ã¢â€šÂ¬ÃƒÂ¥Ã‚Â¼Ã‚ÂºÃƒÂ¥Ã‚ÂºÃ‚Â¦ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â°
         if (parts.core() instanceof LivingEntity livingCore) {
-            // ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ©Ã¢â€šÂ¬Ã¢â€šÂ¬ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â·Ã‚Â±ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ©Ã¢â€šÂ¬Ã¢â€šÂ¬ÃƒÂ¥Ã‚Â¼Ã‚ÂºÃƒÂ¥Ã‚ÂºÃ‚Â¦
             KnockBackModifier modifier = KnockBackModifier.fromLivingEntity(livingCore);
             modifier.setKnockBackStrength(this.knockback);
-            // ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
             tacAttackEntity(parts, damage, sources);
-            // ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ¤Ã‚Â½Ã‚Â
             modifier.resetKnockBackStrength();
         } else {
-            // ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
             tacAttackEntity(parts, damage, sources);
         }
-        // ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Ëœ
         if (this.explosion) {
-            // ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¦Ã¢â‚¬â€Ã‚Â ÃƒÂ¦Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
             parts.core().invulnerableTime = 0;
             ExplodeUtil.createExplosion(this.getOwner(), this, this.explosionDamage, this.explosionRadius, this.explosionKnockback, this.explosionDestroyBlock, result.getLocation());
         }
-        // ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¥Ã‚Â¯Ã‚Â¹ LivingEntity ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¦Ã‚ÂÃ¢â€šÂ¬ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã…Â¡
         if (parts.core() instanceof LivingEntity livingCore) {
-            // ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ…â€™ÃƒÂ¦Ã‚Â­Ã‚Â¥ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã…Â½ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯
             if (!level().isClientSide) {
                 int attackerId = attacker == null ? 0 : attacker.getId();
-                // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¦Ã‚Â­Ã‚Â»ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â 
                 if (livingCore.isDeadOrDying()) {
                     // Updated event bus call
                     NeoForge.EVENT_BUS.post(new EntityKillByGunEvent(this, livingCore, attacker, newGunId, gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER));
@@ -458,21 +405,16 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         }
         BlockPos pos = result.getBlockPos();
         Vec3 hitVec = result.getLocation();
-        // ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
-        // ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¨Ã‚Â®Ã‚Â©ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¯Ã‚Â¼Ã‹â€ ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â²ÃƒÂ©Ã¢â‚¬â„¢Ã…Â¸ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¥Ã¢â€šÂ¬Ã¢â‚¬â„¢ÃƒÂ©Ã‚ÂÃ‚Â¶ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ§Ã‚Â­Ã¢â‚¬Â°ÃƒÂ¯Ã‚Â¼Ã¢â‚¬Â°
         // Updated event bus call
         if (NeoForge.EVENT_BUS.post(new AmmoHitBlockEvent(this.level(), result, this.level().getBlockState(pos))).isCanceled()) {
             return;
         }
         super.onHitBlock(result);
-        // ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸
         if (this.explosion) {
             ExplodeUtil.createExplosion(this.getOwner(), this, this.explosionDamage, this.explosionRadius, this.explosionKnockback, this.explosionDestroyBlock, hitVec);
-            // ÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¸ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ§Ã¢â‚¬Â¢Ã¢â€žÂ¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚Â­Ã¢â‚¬ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Ëœ
             this.discard();
             return;
         }
-        // ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã‚Â­Ã¢â‚¬ÂÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ§Ã¢â‚¬Â¡Ã†â€™ÃƒÂ§Ã¢â‚¬Â°Ã‚Â¹ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ 
         if (this.level() instanceof ServerLevel serverLevel) {
             BulletHoleOption bulletHoleOption = new BulletHoleOption(result.getDirection(), result.getBlockPos(), this.ammoId.toString(), this.gunId.toString(), this.gunDisplayId.toString());
             serverLevel.sendParticles(bulletHoleOption, hitVec.x, hitVec.y, hitVec.z, 1, 0, 0, 0, 0);
@@ -491,9 +433,7 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         this.discard();
     }
 
-    // ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³ÃƒÂ¨Ã‚Â¡Ã‚Â°ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ¨Ã‚Â®Ã‚Â¡
     public float getDamage(Vec3 hitVec) {
-        // ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â­
         double playerDistance = hitVec.distanceTo(this.startPos);
         for (DistanceDamagePair pair : this.damageAmount) {
             float effectiveDistance = this.damageAmount.get(0).getDistance() == pair.getDistance() ? this.distanceAmount : pair.getDistance();
@@ -502,7 +442,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
                 return Math.max(damage * this.damageModifier, 0F);
             }
         }
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚Â¿Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â°ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¦Ã‹â€ Ã¢â‚¬ËœÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚Â½Ã‚Â ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³ÃƒÂ¤Ã‚Â¸Ã‚Âº 0
         return 0;
     }
 
@@ -513,7 +452,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         DamageSource source1, source2;
         var hitPartType = parts.hitPart().getType();
         var directCause = hitPartType.is(PRETEND_MELEE_DAMAGE_ON) ? this.getOwner() : this;
-        // ÃƒÂ§Ã‚Â»Ã¢â€žÂ¢ÃƒÂ¦Ã…â€œÃ‚Â«ÃƒÂ¥Ã‚Â½Ã‚Â±ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ©Ã¢â€šÂ¬Ã‚Â ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         if (hitPartType.is(USE_MAGIC_DAMAGE_ON)) {
             source1 = source2 = this.damageSources().indirectMagic(this, getOwner());
         } else if (hitPartType.is(USE_VOID_DAMAGE_ON)) {
@@ -529,16 +467,11 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
     private void tacAttackEntity(MaybeMultipartEntity parts, float damage, Pair<DamageSource, DamageSource> sources) {
         var source1 = sources.getLeft();
         var source2 = sources.getRight();
-        // ÃƒÂ§Ã‚Â©Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â²ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¦Ã¢â€žÂ¢Ã‚Â®ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚Â¯Ã¢â‚¬ÂÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€
         float armorDamagePercent = Mth.clamp(this.armorIgnore, 0.0F, 1.0F);
         float normalDamagePercent = 1 - armorDamagePercent;
-        // ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¦Ã¢â‚¬â€Ã‚Â ÃƒÂ¦Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
         parts.core().invulnerableTime = 0;
-        // ÃƒÂ¦Ã¢â€žÂ¢Ã‚Â®ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         parts.hitPart().hurt(source1, damage * normalDamagePercent);
-        // ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¦Ã¢â‚¬â€Ã‚Â ÃƒÂ¦Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
         parts.core().invulnerableTime = 0;
-        // ÃƒÂ§Ã‚Â©Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â²ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         parts.hitPart().hurt(source2, damage * armorDamagePercent);
     }
 
@@ -646,8 +579,6 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
             return Optional.empty();
         } else {
             var ints = pd.getIntArray(TRACER_COLOR_OVERRIDER_KEY);
-            // ÃƒÂ¨Ã‚Â¯Ã‚Â·ÃƒÂ©Ã‚ÂÃ‚Â¿ÃƒÂ¥Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ 1 ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ 2 ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã‚Â»Ã¢â‚¬Å¾ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
-            // ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ 1~2 ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¯ÃƒÂ¤Ã‚Â»Ã¢â‚¬Â¦ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¤Ã‚Â¼Ã‹Å“ÃƒÂ©Ã¢â‚¬ÂºÃ¢â‚¬Â¦ÃƒÂ¥Ã…â€œÃ‚Â°ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¥Ã‚Â¼Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ¤Ã‚Â»Ã‚Â£ÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â¿ÃƒÂ¥Ã‚Â´Ã‚Â©ÃƒÂ¦Ã‚ÂºÃ†â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â½Ã…â€œÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…Â½Ã‚ÂªÃƒÂ¦Ã¢â‚¬â€œÃ‚Â½ :(
             switch (ints.length) {
                 case 0:
                     return Optional.empty();
@@ -701,17 +632,14 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
             this.headshot = headshot;
         }
 
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“
         public Entity getEntity() {
             return this.entity;
         }
 
-        // ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬ËœÃ‚Â½ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®
         public Vec3 getHitPos() {
             return this.hitVec;
         }
 
-        // ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ§Ã‹â€ Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¤Ã‚Â´
         public boolean isHeadshot() {
             return this.headshot;
         }

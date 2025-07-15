@@ -3,7 +3,6 @@ package com.tacz.guns.client.resource.manager;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonParseException;
 import com.tacz.guns.GunMod;
-// TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - sistema de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o GLTF desabilitado temporariamente
 // import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
 import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.pojo.animation.gltf.RawAnimationStructure;
@@ -37,7 +36,6 @@ public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLoca
     protected Map<ResourceLocation, Object> prepare(ResourceManager pResourceManager, ProfilerFiller pProfiler) {
         Map<ResourceLocation, Object> output = Maps.newHashMap();
         
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - sistema de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o GLTF desabilitado temporariamente
         /*
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             ResourceLocation resourcelocation = entry.getKey();

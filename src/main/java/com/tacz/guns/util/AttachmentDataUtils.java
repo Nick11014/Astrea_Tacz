@@ -144,10 +144,7 @@ public final class AttachmentDataUtils {
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
-        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
-        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base
         float finalBase = extraDamage != null ? extraDamage.getArmorIgnore() : 0f;
         finalBase = fireModeAdjustData != null ? finalBase + fireModeAdjustData.getArmorIgnore() : finalBase;
         finalBase *= SyncConfig.ARMOR_IGNORE_BASE_MULTIPLIER.get();
@@ -164,10 +161,7 @@ public final class AttachmentDataUtils {
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
-        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
-        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base
         float finalBase = extraDamage != null ? extraDamage.getHeadShotMultiplier() : 0f;
         finalBase = fireModeAdjustData != null ? finalBase + fireModeAdjustData.getHeadShotMultiplier() : finalBase;
         finalBase *= SyncConfig.HEAD_SHOT_BASE_MULTIPLIER.get();
@@ -184,11 +178,8 @@ public final class AttachmentDataUtils {
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);
-        // ÃƒÂ©Ã‚Â¢Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬â€œÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         ExtraDamage extraDamage = bulletData.getExtraDamage();
         float rawDamage = bulletData.getDamageAmount();
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â´
-        // ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ§Ã‚Â»Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ base ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
         float finalBase = fireModeAdjustData != null ? fireModeAdjustData.getDamageAmount() : 0f;
         if (extraDamage != null && extraDamage.getDamageAdjust() != null) {
             finalBase += extraDamage.getDamageAdjust().get(0).getDamage();

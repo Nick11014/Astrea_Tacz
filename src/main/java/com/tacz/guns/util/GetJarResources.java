@@ -104,25 +104,19 @@ public final class GetJarResources {
 
     private static void copyFolder(URI sourceURI, Path targetPath) throws IOException {
         if (Files.isDirectory(targetPath)) {
-            // ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚Â¹
             backupFiles(targetPath);
-            // ÃƒÂ¥Ã‹â€ Ã‚Â ÃƒÂ¦Ã…Â½Ã¢â‚¬Â°ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¾Ã‚Â¾ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã‚Â¼Ã‚ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¨Ã‚Â¦Ã¢â‚¬Â ÃƒÂ§Ã¢â‚¬ÂºÃ¢â‚¬â€œÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â¢Ã‹â€ ÃƒÂ¦Ã…Â¾Ã…â€œ
             deleteFiles(targetPath);
         }
-        // ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ Files.walk() ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚Â¹ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â®Ã‚Â¹
         try (Stream<Path> stream = Files.walk(Paths.get(sourceURI), Integer.MAX_VALUE)) {
             stream.forEach(source -> {
-                // ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ§Ã¢â‚¬ÂºÃ‚Â®ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â·Ã‚Â¯ÃƒÂ¥Ã‚Â¾Ã¢â‚¬Å¾
                 Path target = targetPath.resolve(sourceURI.relativize(source.toUri()).toString());
                 try {
-                    // ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚Â¹
                     if (Files.isDirectory(source)) {
                         Files.createDirectories(target);
                     } else {
                         Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
                     }
                 } catch (IOException e) {
-                    // ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¥Ã‚Â¼Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â¸Ã‚Â¸ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã‚ÂÃ†â€™ÃƒÂ©Ã¢â€žÂ¢Ã‚ÂÃƒÂ©Ã¢â‚¬â€Ã‚Â®ÃƒÂ©Ã‚Â¢Ã‹Å“ÃƒÂ§Ã‚Â­Ã¢â‚¬Â°
                     e.printStackTrace();
                 }
             });
@@ -130,7 +124,6 @@ public final class GetJarResources {
     }
 
     private static void backupFiles(Path targetPath) throws IOException {
-        // ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚ÂºÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚Â¹
         String dirName = targetPath.getFileName().toString();
         Path resourcePacksPath = FMLPaths.GAMEDIR.get().resolve("tacz_backup");
         Path backupPath = resourcePacksPath.resolve(dirName);
@@ -138,21 +131,16 @@ public final class GetJarResources {
             Files.createDirectories(backupPath);
         }
 
-        // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã‚Â ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
-        // ÃƒÂ¥Ã‚ÂÃ…â€™ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¥Ã‚Â¾Ã¢â‚¬â€ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ md5
         Set<String> cacheMd5 = checkOldBackups(backupPath);
 
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚Â¸Ã‚Â´ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶
         File tempFile = File.createTempFile(dirName, ".tmp");
         FileTime fileTime = FileTime.from(BACKUP_TIME);
 
-        // ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â‚¬Â Ã¢â€žÂ¢ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶
         try (ZipOutputStream zs = new ZipOutputStream(new FileOutputStream(tempFile));
              Stream<Path> fileWalks = Files.walk(targetPath)) {
             fileWalks.filter(Files::isRegularFile).forEach(path -> {
                 String entryPath = targetPath.relativize(path).toString();
                 ZipEntry zipEntry = new ZipEntry(entryPath);
-                // ÃƒÂ©Ã‹Å“Ã‚Â²ÃƒÂ¦Ã‚Â­Ã‚Â¢ÃƒÂ¥Ã¢â‚¬Å“Ã‹â€ ÃƒÂ¥Ã‚Â¸Ã…â€™ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¨Ã¢â‚¬Â¡Ã‚Â´ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã…â€™Ã¢â‚¬Â¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¥Ã¢â‚¬ÂºÃ‚ÂºÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´
                 zipEntry.setLastModifiedTime(fileTime);
                 try {
                     zs.putNextEntry(zipEntry);
@@ -164,15 +152,11 @@ public final class GetJarResources {
             });
         }
 
-        // ÃƒÂ¥Ã‚Â°Ã‚ÂÃƒÂ¨Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã¢â‚¬Å“Ã‹â€ ÃƒÂ¥Ã‚Â¸Ã…â€™ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
         try (FileInputStream inputStream = new FileInputStream(tempFile)) {
             String md5Hex = Md5Utils.md5Hex(inputStream);
-            // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¨Ã‚Â¯Ã‚Â¥ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã…â€œÃ‚Â¨
             if (cacheMd5.contains(md5Hex)) {
-                // ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¯Ã‚ÂÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã¢â‚¬Å¡Ã‚Â£ÃƒÂ¥Ã‚Â°Ã‚Â±ÃƒÂ¥Ã‹â€ Ã‚Â ÃƒÂ¦Ã…Â½Ã¢â‚¬Â°ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½
                 tempFile.deleteOnExit();
             } else {
-                // ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¦Ã…Â Ã…Â ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â½ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¥Ã‹â€ Ã‚Â¶ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â½
                 String dataName = BACKUP_DATE_FORMAT.format(new Date()).toLowerCase(Locale.ENGLISH);
                 Path backupZipFilePath = backupPath.resolve(String.format("backup-%s-%s.zip", dataName, md5Hex));
                 FileUtils.copyFile(tempFile, backupZipFilePath.toFile());
@@ -181,7 +165,6 @@ public final class GetJarResources {
     }
 
     private static Set<String> checkOldBackups(Path backupPath) {
-        // ÃƒÂ¤Ã‚Â¸Ã‚Â´ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶ md5
         Set<String> allMd5Hex = Sets.newHashSet();
         if (!Files.isDirectory(backupPath)) {
             return allMd5Hex;
@@ -192,11 +175,9 @@ public final class GetJarResources {
             int count = 1;
             for (File file : delFiles) {
                 if (count >= MAX_BACKUP_COUNT) {
-                    // ÃƒÂ¨Ã‚Â¶Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‹â€ Ã‚Â ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤
                     GunMod.LOGGER.info("Deleting old backup gun pack {}", file.getName());
                     FileUtils.deleteQuietly(file);
                 } else {
-                    // ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ md5ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ§Ã…â€œÃ¢â‚¬Â¹ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â¤Ã‚Â
                     try (FileInputStream inputStream = new FileInputStream(file)) {
                         allMd5Hex.add(Md5Utils.md5Hex(inputStream));
                     }
@@ -211,14 +192,12 @@ public final class GetJarResources {
 
     private static void deleteFiles(Path targetPath) throws IOException {
         Files.walkFileTree(targetPath, new SimpleFileVisitor<>() {
-            // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã…Â½Ã‚Â»ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¥Ã‹â€ Ã‚Â ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¤Ã‚Â»Ã‚Â¶
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                 Files.delete(file);
                 return FileVisitResult.CONTINUE;
             }
 
-            // ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¥Ã…Â½Ã‚Â»ÃƒÂ©Ã‚ÂÃ‚ÂÃƒÂ¥Ã…Â½Ã¢â‚¬Â ÃƒÂ¥Ã‹â€ Ã‚Â ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â®ÃƒÂ¥Ã‚Â½Ã¢â‚¬Â¢
             @Override
             public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
                 Files.delete(dir);

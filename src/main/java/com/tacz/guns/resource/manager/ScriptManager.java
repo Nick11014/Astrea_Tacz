@@ -39,9 +39,7 @@ public class ScriptManager extends SimplePreparableReloadListener< List<Map.Entr
     @Override
     @NotNull
     protected List<Map.Entry<String, Supplier<LuaTable>>> prepare(ResourceManager pResourceManager, ProfilerFiller pProfiler) {
-        // ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ globals
         initGlobals();
-        // ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Å“ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â½ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â® globals ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ preload
         List<Map.Entry<String, Supplier<LuaTable>>> output = new ArrayList<>();
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             var wrappedEntry = wrapLoadingFunction(entry.getKey(), entry.getValue());

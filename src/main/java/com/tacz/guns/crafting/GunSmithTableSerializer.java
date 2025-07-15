@@ -21,12 +21,10 @@ import java.util.Optional;
  */
 public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRecipe> {
 
-    // Registro auxiliar para lidar com a lógica onde o 'group' do resultado pode usar o 'tab' como padrão.
     private record IntermediateResult(ItemStack result, Optional<ResourceLocation> group) {}
 
     private static final Codec<IntermediateResult> INTERMEDIATE_RESULT_CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
-                    // Usa o codec simples para ItemStacks, que lê um objeto com "item" e "count" (opcional).
                     ItemStack.SIMPLE_CODEC.forGetter(IntermediateResult::result),
                     ResourceLocation.CODEC.optionalFieldOf("group").forGetter(IntermediateResult::group)
             ).apply(instance, IntermediateResult::new)
@@ -36,16 +34,13 @@ public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRe
             instance -> instance.group(
                     ResourceLocation.CODEC.optionalFieldOf("tab", new ResourceLocation(GunMod.MOD_ID, "guns"))
                             .forGetter(GunSmithTableRecipe::getTab),
-                    // Assume que GunSmithTableIngredient.CODEC está definido na classe correspondente
                     GunSmithTableIngredient.CODEC.listOf().fieldOf("ingredients")
                             .forGetter(GunSmithTableRecipe::getInputs),
                     INTERMEDIATE_RESULT_CODEC.fieldOf("result")
                             .forGetter(recipe -> new IntermediateResult(recipe.getResult().getResult(), Optional.of(recipe.getResult().getGroup())))
             ).apply(instance, (tabId, ingredients, intermediateResult) -> {
-                // Aplica a lógica de fallback do grupo aqui, durante a decodificação
                 ResourceLocation group = intermediateResult.group().orElse(tabId);
                 RawGunTableResult result = new RawGunTableResult(intermediateResult.result(), group);
-                // O ID da receita agora é gerenciado pelo RecipeHolder, então o removemos do construtor da receita.
                 return new GunSmithTableRecipe(tabId, ingredients, result);
             })
     );

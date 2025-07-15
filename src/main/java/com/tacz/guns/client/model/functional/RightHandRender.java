@@ -21,8 +21,6 @@ public class RightHandRender implements IFunctionalRenderer {
 
     @Override
     public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de mÃƒÆ’Ã‚Â£o direita desabilitada temporariamente
-        // Requer resoluÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de imports: PoseStack, VertexConsumer, ItemDisplayContext, Minecraft, etc.
 
         /*
         if (transformType.firstPerson()) {
@@ -32,7 +30,6 @@ public class RightHandRender implements IFunctionalRenderer {
             poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
             Matrix3f normal = new Matrix3f(poseStack.last().normal());
             Matrix4f pose = new Matrix4f(poseStack.last().pose());
-            //ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã…Â¾Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â±ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ©Ã‚Â¡Ã‚Â¶ÃƒÂ§Ã¢â‚¬Å¡Ã‚Â¹ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â Ã‚Â²ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã†â€™Ã‚Â½ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â£ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã‚ÂÃ…Â¸ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“
             bedrockGunModel.delegateRender((poseStack1, vertexBuffer1, transformType1, light1, overlay1) -> {
                 PoseStack poseStack2 = new PoseStack();
                 poseStack2.last().normal().mul(normal);

@@ -21,7 +21,6 @@ public interface KubeJSGunEventPoster<E extends Event> {
         // Placeholder - funcionalidade KubeJS desabilitada temporariamente
     }
 
-    //ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
     default void postClientEventToKubeJS(E event) {
         // TODO: Re-enable when KubeJS integration is available
         // if (ModList.get().isLoaded("kubejs")) {
@@ -31,7 +30,6 @@ public interface KubeJSGunEventPoster<E extends Event> {
         // Placeholder - funcionalidade KubeJS desabilitada temporariamente
     }
 
-    //ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢
     default void postServerEventToKubeJS(E event) {
         // TODO: Re-enable when KubeJS integration is available
         // if (ModList.get().isLoaded("kubejs")) {

@@ -3,7 +3,6 @@ package com.tacz.guns.resource.index;
 import com.google.common.base.Preconditions;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.item.gun.FireMode;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando CommonAssetsManager for habilitado
 // import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.GunIndexPOJO;
 import com.tacz.guns.resource.pojo.data.gun.*;
@@ -48,7 +47,6 @@ public class CommonGunIndex {
     private static void checkData(GunIndexPOJO gunIndexPOJO, CommonGunIndex index) {
         ResourceLocation pojoData = gunIndexPOJO.getData();
         Preconditions.checkArgument(pojoData != null, "index object missing pojoData field");
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar a busca de dados quando CommonAssetsManager estiver habilitado
         // GunData data = CommonAssetsManager.get().getGunData(pojoData);
         // Preconditions.checkArgument(data != null, "there is no corresponding data file");
         GunData data = new GunData(); // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
@@ -103,8 +101,6 @@ public class CommonGunIndex {
     }
 
     private static void checkScript(GunData data, CommonGunIndex index) {
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar carregamento de scripts quando CommonAssetsManager estiver habilitado
-        // ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¨Ã¢â‚¬Å¾Ã…Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬
         // ResourceLocation scriptId = data.getScript();
         // CommonAssetsManager commonAssetsManager = CommonAssetsManager.getInstance();
         // if (scriptId != null && commonAssetsManager != null) {
@@ -113,9 +109,7 @@ public class CommonGunIndex {
         //         GunMod.LOGGER.warn(MARKER, "script '{}' not found", scriptId);
         //     }
         // }
-        // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
         index.script = null;
-        // ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¨Ã¢â‚¬Å¾Ã…Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
         Map<String, Object> params = data.getScriptParam();
         if (params != null) {
             index.scriptParam = new LuaTable();

@@ -45,11 +45,9 @@ public enum InaccuracyType {
      */
     public static InaccuracyType getInaccuracyType(LivingEntity livingEntity) {
         float aimingProgress = IGunOperator.fromLivingEntity(livingEntity).getSynAimingProgress();
-        // ÃƒÂ§Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ¤Ã‚Â¼Ã‹Å“ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ§Ã‚ÂºÃ‚Â§ÃƒÂ¦Ã…â€œÃ¢â€šÂ¬ÃƒÂ©Ã‚Â«Ã‹Å“
         if (aimingProgress == 1.0f) {
             return InaccuracyType.AIM;
         }
-        // MOJANG ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¥Ã¢â‚¬Â¡ÃƒÂ¥Ã‚Â¦Ã¢â€žÂ¢ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¶Ã‚Â´ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â§Ã‚Â¿ÃƒÂ¥Ã…Â Ã‚Â¿ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¦Ã‹Å“Ã‚Â¯ SWIMMING
         if (!livingEntity.isSwimming() && livingEntity.getPose() == Pose.SWIMMING) {
             return InaccuracyType.LIE;
         }

@@ -176,7 +176,6 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         return processCameraEntity(entity -> {
                     IItemHandler cap = entity.getCapability(Capabilities.ItemHandler.ENTITY);
                     if (cap != null) {
-                        // ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥
                         for (int i = 0; i < cap.getSlots(); i++) {
                             ItemStack checkAmmoStack = cap.getStackInSlot(i);
                             if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(currentGunItem, checkAmmoStack)) {
@@ -351,14 +350,12 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         if (display.getShellEjection() != null) {
             BedrockGunModel gunModel = display.getGunModel();
             if (gunModel != null) {
-                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ShellRender system temporarily disabled - requires full renderer migration
                 // Optional<ShellRender> shellRenderOptional = gunModel.getShellRender(index);
                 Vector3f velocity = display.getShellEjection().getRandomVelocity();
                 // shellRenderOptional.ifPresent(shellRender -> shellRender.addShell(velocity));
 
                 var lod = display.getLodModel();
                 if (lod != null) {
-                    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] ShellRender system temporarily disabled - requires full renderer migration
                     // Optional<ShellRender> lodShellOptional = lod.getLeft().getShellRender(index);
                     // lodShellOptional.ifPresent(lodShell -> lodShell.addShell(velocity));
                 }
@@ -407,13 +404,11 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         this.currentGunItem = currentGunItem;
         this.iGun = IGun.getIGunOrNull(currentGunItem);
         if (iGun != null) {
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] getGunDisplay() retorna ClientGunIndex, precisa converter para GunDisplayInstance
             // display = TimelessAPI.getGunDisplay(currentGunItem).orElse(null);
             display = null; // Temporariamente null atÃƒÆ’Ã‚Â© migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa
             gunData = TimelessAPI.getClientGunIndex(iGun.getGunId(currentGunItem))
                     .map(ClientGunIndex::getGunData).orElse(null);
         }
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] hasTag() e getTag() removidos - migrar para DataComponents
         // if (currentGunItem.hasTag()) {
         //     nbtUtil = new LuaNbtAccessor(currentGunItem.getTag());
         // } else {

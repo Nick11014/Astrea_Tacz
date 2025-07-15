@@ -12,17 +12,14 @@ import java.util.List;
 public class BeamRenderer {
     
     public static void renderLaserBeam(Object stack, Object poseStack, Object transformType, @Nonnull List<BedrockPart> path) {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de feixe laser desabilitada temporariamente
         // Requer: ItemStack, PoseStack, ItemDisplayContext, MultiBufferSource, VertexConsumer, LaserConfig, etc.
         
         // if (stack == null || !transformType.firstPerson() && !(transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)) {
         //     return;
         // }
         
-        // TODO: Implementar renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
         // LaserConfig laserConfig = getLaserConfig(stack);
         // int color = LaserColorUtil.getLaserColor(stack, laserConfig);
-        // renderLaserBeam com cor e configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes...
     }
 
     /**
@@ -36,7 +33,6 @@ public class BeamRenderer {
      * MÃƒÆ’Ã‚Â©todo utilitÃƒÆ’Ã‚Â¡rio para obter intensidade do laser baseado na distÃƒÆ’Ã‚Â¢ncia
      */
     public static float getLaserIntensity(float distance) {
-        // Intensidade diminui com a distÃƒÆ’Ã‚Â¢ncia, mÃƒÆ’Ã‚Â­nimo de 0.1f
         return Math.max(0.1f, 1.0f - (distance / 100.0f));
     }
 

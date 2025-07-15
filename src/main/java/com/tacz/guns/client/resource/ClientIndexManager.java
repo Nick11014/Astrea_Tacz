@@ -3,7 +3,6 @@ package com.tacz.guns.client.resource;
 import com.google.common.collect.Maps;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.TimelessAPI;
-// TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - dependÃƒÆ’Ã‚Âªncias complexas desabilitadas temporariamente
 // import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
 // import com.tacz.guns.api.item.IGun;
 // import com.tacz.guns.client.resource.index.ClientAmmoIndex;
@@ -27,7 +26,6 @@ import java.util.Set;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientIndexManager {
-    // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - mapas simplificados temporariamente
     // public static final Map<ResourceLocation, GunDisplayInstance> GUN_DISPLAY = Maps.newHashMap();
     public static final Map<ResourceLocation, ClientGunIndex> GUN_INDEX = Maps.newHashMap();
     // public static final Map<ResourceLocation, ClientAmmoIndex> AMMO_INDEX = Maps.newHashMap();
@@ -35,7 +33,6 @@ public class ClientIndexManager {
     // public static final Map<ResourceLocation, ClientBlockIndex> BLOCK_INDEX = Maps.newHashMap();
 
     public static void reload() {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas GUN_INDEX habilitado
         // GUN_DISPLAY.clear();
         GUN_INDEX.clear();
         // AMMO_INDEX.clear();
@@ -48,19 +45,16 @@ public class ClientIndexManager {
         // loadAttachmentIndex();
         // loadBlockIndex();
 
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - lÃƒÆ’Ã‚Â³gica de player desabilitada temporariamente
         /*
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null && IGun.mainHandHoldGun(player)) {
             AttachmentPropertyManager.postChangeEvent(player, player.getMainHandItem());
 
-            // ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â¡ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¤Ã‚Â¾Ã‚Â¿ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã…â€œÃ‚Âº
             IClientPlayerGunOperator.fromLocalPlayer(player).draw(ItemStack.EMPTY);
         }
         */
     }
 
-    // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - mÃƒÆ’Ã‚Â©todo de gun display desabilitado temporariamente
     /*
     public static void loadGunDisplay() {
         ClientAssetsManager.INSTANCE.getGunDisplays().forEach(entry -> {
@@ -74,7 +68,6 @@ public class ClientIndexManager {
     */
 
     public static void loadGunIndex() {
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - carregamento simplificado temporariamente
         /*
         TimelessAPI.getAllCommonGunIndex().forEach(index -> {
             ResourceLocation id = index.getKey();
@@ -89,7 +82,6 @@ public class ClientIndexManager {
         GunMod.LOGGER.info("ClientIndexManager: loadGunIndex() - implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima");
     }
 
-    // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - mÃƒÆ’Ã‚Â©todos de ammo, attachment e block desabilitados temporariamente
     /*
     public static void loadAmmoIndex() {
         TimelessAPI.getAllCommonAmmoIndex().forEach(index -> {
@@ -132,7 +124,6 @@ public class ClientIndexManager {
         return GUN_INDEX.entrySet();
     }
 
-    // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - getters de ammo, attachment e block desabilitados temporariamente
     /*
     public static Set<Map.Entry<ResourceLocation, ClientAmmoIndex>> getAllAmmo() {
         return AMMO_INDEX.entrySet();

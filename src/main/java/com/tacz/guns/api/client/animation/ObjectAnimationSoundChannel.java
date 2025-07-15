@@ -35,7 +35,6 @@ public class ObjectAnimationSoundChannel {
         int to = computeIndex(toTimeS, false);
         int from = computeIndex(fromTimeS, true);
         float mixVolume = volume;
-        // ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ©Ã¢â‚¬Â¡Ã‚Â
         LocalPlayer player = Minecraft.getInstance().player;
         if (player != null) {
             mixVolume = mixVolume * (1.0F - Math.min(1.0F, (float) Math.sqrt(player.distanceToSqr(entity.getPosition(0))) / distance));

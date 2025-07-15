@@ -51,7 +51,6 @@ public class LocalPlayerShoot {
      * @return Um enum ShootResult indicando o resultado da tentativa de disparo.
      */
     public ShootResult shoot() {
-        // Impede disparos acidentais muito rápidos (debounce de 50ms)
         if (System.currentTimeMillis() - LocalPlayerDataHolder.clientClickButtonTimestamp < 50) {
             return ShootResult.COOL_DOWN;
         }
@@ -59,7 +58,6 @@ public class LocalPlayerShoot {
         if (!data.isShootRecorded) {
             return ShootResult.COOL_DOWN;
         }
-        // Bloqueia o disparo se o jogador estiver em outra ação (como sacar a arma)
         if (data.clientStateLock && data.lockedCondition != SHOOT_LOCKED_CONDITION && data.lockedCondition != null) {
             data.isShootRecorded = true;
             return ShootResult.IS_DRAWING;
@@ -87,7 +85,6 @@ public class LocalPlayerShoot {
         }
 
         IGunOperator gunOperator = IGunOperator.fromLivingEntity(player);
-        // Verifica se está recarregando, sacando a arma, ferrolhando ou em ataque corpo-a-corpo
         if (gunOperator.getSynReloadState().getStateType().isReloading()) {
             return ShootResult.IS_RELOADING;
         }
@@ -101,7 +98,6 @@ public class LocalPlayerShoot {
             return ShootResult.IS_MELEE;
         }
 
-        // Verificação de munição
         Bolt boltType = gunData.getBolt();
         boolean useInventoryAmmo = iGun.useInventoryAmmo(mainHandItem);
         boolean hasAmmoInBarrel = iGun.hasBulletInBarrel(mainHandItem) && boltType != Bolt.OPEN_BOLT;
@@ -114,19 +110,16 @@ public class LocalPlayerShoot {
             return ShootResult.NO_AMMO;
         }
 
-        // Verificação de superaquecimento
         if (gunData.hasHeatData() && iGun.isOverheatLocked(mainHandItem)) {
             SoundPlayManager.playDryFireSound(player, display.getDisplayInstance());
             return ShootResult.OVERHEATED;
         }
 
-        // Verifica se precisa ferrolhar (para armas de ação manual)
         if (boltType == Bolt.MANUAL_ACTION && !hasAmmoInBarrel) {
             IClientPlayerGunOperator.fromLocalPlayer(player).bolt();
             return ShootResult.NEED_BOLT;
         }
 
-        // Verifica se está correndo
         if (gunOperator.getSynSprintTime() > 0) {
             return ShootResult.IS_SPRINTING;
         }
@@ -138,11 +131,9 @@ public class LocalPlayerShoot {
             return ShootResult.FORGE_EVENT_CANCEL;
         }
 
-        // Bloqueia o estado do jogador para a ação de atirar
         data.lockState(SHOOT_LOCKED_CONDITION);
         data.isShootRecorded = false;
 
-        // Executa a lógica de disparo
         this.doShoot(display, iGun, mainHandItem, gunData, coolDown);
         return ShootResult.SUCCESS;
     }
@@ -184,7 +175,6 @@ public class LocalPlayerShoot {
                 NetworkHandler.sendToServer(new ClientMessagePlayerShoot(data.clientShootTimestamp - data.clientBaseTimestamp));
             }
 
-            // Submete a lógica de som e animação para a thread principal do jogo
             Minecraft.getInstance().submitAsync(() -> {
                 // Dispara o evento de "tiro" (GunFireEvent)
                 GunFireEvent gunFireEvent = new GunFireEvent(player, mainHandItem, LogicalSide.CLIENT);
@@ -192,7 +182,6 @@ public class LocalPlayerShoot {
                 boolean fire = !(gunFireEvent.isCancelable() && gunFireEvent.isCancelled());
 
                 if (fire) {
-                    // Aciona a animação de disparo
                     AnimationStateMachine<?> animationStateMachine = display.getAnimationStateMachine();
                     if (animationStateMachine != null) {
                         animationStateMachine.trigger(GunAnimationConstant.INPUT_SHOOT);

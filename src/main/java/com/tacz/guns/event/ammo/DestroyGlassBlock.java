@@ -5,7 +5,6 @@ import com.tacz.guns.config.common.AmmoConfig;
 import com.tacz.guns.entity.EntityKineticBullet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O NeoForge 1.21.1] AbstractGlassBlock foi removido, usar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o diferente
 // import net.minecraft.world.level.block.AbstractGlassBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;

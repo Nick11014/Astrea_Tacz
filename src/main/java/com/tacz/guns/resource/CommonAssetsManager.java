@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tacz.guns.api.vmlib.LuaGunLogicConstant;
 import com.tacz.guns.api.vmlib.LuaLibrary;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando sistema de crafting for habilitado
 // import com.tacz.guns.crafting.GunSmithTableIngredient;
 // import com.tacz.guns.crafting.GunSmithTableRecipe;
 // import com.tacz.guns.crafting.result.GunSmithTableResult;
@@ -22,7 +21,6 @@ import com.tacz.guns.resource.network.CommonNetworkCache;
 import com.tacz.guns.resource.network.DataType;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.block.BlockData;
-// TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando TabConfig for habilitado
 // import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.gun.ExtraDamage;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
@@ -56,7 +54,6 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer())
             .registerTypeAdapter(Pair.class, new PairSerializer())
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando sistema de crafting for habilitado
             // .registerTypeAdapter(GunSmithTableIngredient.class, new GunSmithTableIngredientSerializer())
             // .registerTypeAdapter(GunSmithTableResult.class, new GunSmithTableResultSerializer())
             .registerTypeAdapter(ExtraDamage.DistanceDamagePair.class, new DistanceDamagePairSerializer())
@@ -67,7 +64,6 @@ public class CommonAssetsManager implements ICommonResourceProvider {
             .registerTypeAdapter(CommonAmmoIndex.class, new CommonAmmoIndexSerializer())
             .registerTypeAdapter(CommonAttachmentIndex.class, new CommonAttachmentIndexSerializer())
             .registerTypeAdapter(CommonBlockIndex.class, new CommonBlockIndexSerializer())
-            // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando TabConfig for habilitado
             // .registerTypeAdapter(TabConfig.class, new TabConfig.Deserializer())
             .create();
 
@@ -86,7 +82,6 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     private final ScriptManager scriptManager = new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList);
 
     public void reloadAndRegister(Consumer<PreparableReloadListener> register) {
-        // ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ©Ã‚Â¡Ã‚ÂºÃƒÂ¥Ã‚ÂºÃ‚ÂÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã…Â Ã…Â indexÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ¤Ã‚Â¾Ã‚ÂÃƒÂ¨Ã‚ÂµÃ¢â‚¬â€œdataÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ©Ã‚ÂÃ‚Â¢
         gunData = register(new CommonDataManager<>(DataType.GUN_DATA, GunData.class, GSON, "data/guns", "GunDataLoader"));
         attachmentData = register(new AttachmentDataManager());
         attachmentsTagManager = register(new AttachmentsTagManager());
@@ -238,7 +233,6 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     public static void onReload(TagsUpdatedEvent event) {
         if (event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD){
             if (getInstance() !=null && getInstance().recipeManager != null) {
-                // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando sistema de crafting for habilitado
                 // List<GunSmithTableRecipe> recipes = getInstance().recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
                 // for (GunSmithTableRecipe recipe : recipes) {
                 //     recipe.init();
@@ -258,7 +252,6 @@ public class CommonAssetsManager implements ICommonResourceProvider {
         if (getInstance() == null) {
             return;
         }
-        // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Restaurar quando sistema de rede for habilitado
         // ServerMessageSyncGunPack message = new ServerMessageSyncGunPack(getInstance().getNetworkCache());
         // if (event.getPlayer() != null) {
         //     NetworkHandler.sendToClientPlayer(message, event.getPlayer());

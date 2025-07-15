@@ -299,7 +299,6 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
             return true;
         }
         if (!api.hasAmmoInBarrel()) {
-            // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¨Ã‚Â¯Ã‚Â»ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã‚ÂµÃ¢â‚¬Â¹ÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬â€ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã…â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¨Ã‚ÂÃ‚Â¯
             if (api.useInventoryAmmo()) {
                 if (api.consumeAmmoFromPlayer(1) == 1) {
                     api.setAmmoInBarrel(true);
@@ -313,10 +312,8 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
 
     private ReloadState defaultTickReload(ModernKineticGunScriptAPI api) {
         CommonGunIndex gunIndex = api.getGunIndex();
-        // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ ReloadData
         GunData gunData = gunIndex.getGunData();
         GunReloadData reloadData = gunData.getReloadData();
-        // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ stateType ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ countDown
         long countDown;
         ReloadState.StateType stateType;
         ReloadState.StateType oldStateType = ReloadState.StateType.values()[api.getReloadStateType()];
@@ -351,14 +348,12 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
             stateType = ReloadState.StateType.NOT_RELOADING;
             countDown = ReloadState.NOT_RELOADING_COUNTDOWN;
         }
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ ÃƒÂ¨Ã‚Â£Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â¡Ã‚Â« -> ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¶ÃƒÂ¥Ã‚Â°Ã‚Â¾ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¨Ã‚Â¡Ã‚Â¥ÃƒÂ¥Ã‚Â¼Ã‚Â¹
         if (oldStateType == ReloadState.StateType.EMPTY_RELOAD_FEEDING && oldStateType != stateType) {
             this.defaultReloadFinishing(api, false);
         }
         if (oldStateType == ReloadState.StateType.TACTICAL_RELOAD_FEEDING && oldStateType != stateType) {
             this.defaultReloadFinishing(api, true);
         }
-        // ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ tick ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œ
         ReloadState reloadState = new ReloadState();
         reloadState.setStateType(stateType);
         reloadState.setCountDown(countDown);
@@ -389,10 +384,8 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
                 }
             }
             default -> {
-                // ÃƒÂ¦Ã…â€œÃ‚ÂªÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ§Ã…Â½Ã‚Â°
             }
         }
-        // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¦Ã…â€œÃ‚Â¯ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã…â€™Ã‚Â£ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¾Ã…Â¡ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¾ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¨Ã¢â‚¬Â Ã¢â‚¬ÂºÃƒÂ¤Ã‚Â¸Ã‚Â­
         Bolt boltType = api.getGunIndex().getGunData().getBolt();
         if (!isTactical && (boltType == Bolt.MANUAL_ACTION || boltType == Bolt.CLOSED_BOLT)) {
             int i = api.removeAmmoFromMagazine(1);
@@ -403,15 +396,11 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
     }
 
     private void doMelee(LivingEntity user, float gunDistance, float meleeDistance, float rangeAngle, float knockback, float damage, List<EffectData> effects) {
-        // ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ + ÃƒÂ¥Ã‹â€ Ã‚ÂºÃƒÂ¥Ã‹â€ Ã¢â€šÂ¬ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ = ÃƒÂ¦Ã¢â€šÂ¬Ã‚Â»ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿
         double distance = gunDistance + meleeDistance;
         float xRot = (float) Math.toRadians(-user.getXRot());
         float yRot = (float) Math.toRadians(-user.getYRot());
-        // ÃƒÂ¨Ã‚Â§Ã¢â‚¬Â ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ©Ã¢â‚¬Â¡Ã‚Â
         Vec3 eyeVec = new Vec3(0, 0, 1).xRot(xRot).yRot(yRot).normalize().scale(distance);
-        // ÃƒÂ§Ã‚ÂÃ†â€™ÃƒÂ¥Ã‚Â¿Ã†â€™ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡
         Vec3 centrePos = user.getEyePosition().subtract(eyeVec);
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¨Ã…â€™Ã†â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“
         List<LivingEntity> entityList = user.level().getEntitiesOfClass(LivingEntity.class, user.getBoundingBox().inflate(distance));
         Supplier<Float> realDamage = Suppliers.memoize(() -> {
             var instance = user.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -429,33 +418,24 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
                 instance.removeModifier(modifier);
             }
         });
-        // ÃƒÂ¨Ã¢â€šÂ¬Ã…â€™ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ©Ã¢â‚¬ÂÃ‚Â¥ÃƒÂ¥Ã‚Â½Ã‚Â¢ÃƒÂ¨Ã…â€™Ã†â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦
         for (LivingEntity living : entityList) {
-            // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ§Ã‚ÂÃ†â€™ÃƒÂ¥Ã‚Â¿Ã†â€™->ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â®ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ©Ã¢â‚¬Â¡Ã‚Â
             Vec3 targetVec = living.getEyePosition().subtract(centrePos);
-            // ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â®ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ§Ã‚ÂÃ†â€™ÃƒÂ¥Ã‚Â¿Ã†â€™ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»
             double targetLength = targetVec.length();
-            // ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¥Ã¢â€šÂ¬Ã‚ÂÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¨Ã†â€™Ã…â€™ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
             if (targetLength < distance) {
                 continue;
             }
-            // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â¤Ã‚Â¹ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢
             double degree = Math.toDegrees(Math.acos(targetVec.dot(eyeVec) / (targetLength * distance)));
-            // ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â¤Ã‚Â¹ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ¨Ã…â€™Ã†â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¤Ã‚Â¼Ã‚Â¤ÃƒÂ¥Ã‚Â®Ã‚Â³
             if (degree < (rangeAngle / 2)) {
-                // ÃƒÂ¥Ã‹â€ Ã‚Â¤ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â­ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ©Ã‹Å“Ã‚Â»ÃƒÂ©Ã…Â¡Ã¢â‚¬Â
                 if (user.hasLineOfSight(living)) {
                     doPerLivingHurt(user, living, knockback, realDamage.get(), effects);
                 }
             }
         }
 
-        // ÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â£ÃƒÂ©Ã‚Â¥Ã‚Â±ÃƒÂ©Ã‚Â£Ã…Â¸ÃƒÂ¥Ã‚ÂºÃ‚Â¦
         if (user instanceof Player player) {
             player.causeFoodExhaustion(0.1F);
         }
 
-        // Debug ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚Â
         if (DebugCommand.DEBUG) {
             GunMeleeDebug.showRange(user, (int) Math.round(distance), centrePos, eyeVec, rangeAngle);
         }
@@ -471,7 +451,6 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
         } else {
             target.hurt(user.damageSources().mobAttack(user), damage);
         }
-        // ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬ËœÃƒÂ¦Ã‹â€ Ã‹Å“ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã‚Â¥Ã…Â¾ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¨Ã‚Â¯Ã‚ÂÃƒÂ¦Ã‚ÂÃ‚Â¡/ÃƒÂ¥Ã‚Â®Ã‚ÂÃƒÂ§Ã…Â¸Ã‚Â³ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾bug
         
 
         if (!target.isAlive()) {
@@ -517,7 +496,6 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
         TimelessAPI.getCommonGunIndex(gunId).map(gunIndex -> {
             FireMode fireMode = this.getFireMode(gunItem);
             List<FireMode> fireModeSet = gunIndex.getGunData().getFireModeSet();
-            // ÃƒÂ¥Ã‚ÂÃ‚Â³ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã…Â½Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â¿ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ FireModeÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ©Ã¢â‚¬Â¡Ã…â€™ÃƒÂ¤Ã‚Â¹Ã…Â¸ÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ¥Ã‹â€ Ã¢â‚¬Â¡ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ¥Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚Âµ
             int nextIndex = (fireModeSet.indexOf(fireMode) + 1) % fireModeSet.size();
             FireMode nextFireMode = fireModeSet.get(nextIndex);
             this.setFireMode(gunItem, nextFireMode);

@@ -67,7 +67,6 @@ public interface IAttachmentModifier<T, K> {
      * @return Valor cacheado ou null
      */
     default Object getCache(Object attachmentItem) {
-        // TODO: Implementar quando AttachmentCacheProperty estiver disponÃƒÆ’Ã‚Â­vel
         // ItemStack item = (ItemStack) attachmentItem;
         // return AttachmentCacheProperty.getCache(item, getId());
         return null;
@@ -81,7 +80,6 @@ public interface IAttachmentModifier<T, K> {
      * @param value Valor para cachear
      */
     default void setCache(Object attachmentItem, Object value) {
-        // TODO: Implementar quando AttachmentCacheProperty estiver disponÃƒÆ’Ã‚Â­vel
         // ItemStack item = (ItemStack) attachmentItem;
         // AttachmentCacheProperty.setCache(item, getId(), value);
     }
@@ -93,7 +91,6 @@ public interface IAttachmentModifier<T, K> {
      * @return Lista de componentes de texto para tooltip
      */
     default List<Object> getTooltip() {
-        // TODO: Implementar quando Component system estiver disponÃƒÆ’Ã‚Â­vel
         // return List.of(Component.translatable("tooltip.tacz.modifier." + getId()));
         return Collections.emptyList();
     }
@@ -106,7 +103,6 @@ public interface IAttachmentModifier<T, K> {
      * @return true se ativo
      */
     default boolean isActive(Object property) {
-        // TODO: Implementar validaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         return property != null;
     }
 

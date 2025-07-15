@@ -60,8 +60,6 @@ public class SoundPlayManager {
         }
     }
 
-    // TODO: [MIGRAÇÃO] Métodos temporários para compatibilidade com ClientGunIndex
-    // Estes métodos serão removidos quando GunDisplayInstance for totalmente migrado
 
     public static void playShootSound(LivingEntity entity, ClientGunIndex gunIndex, GunData gunData) {
         ResourceLocation soundLocation = gunIndex.getSounds(SoundManager.SHOOT_SOUND);
@@ -88,7 +86,6 @@ public class SoundPlayManager {
     }
 
     public static void stopPlayGunSound(ClientGunIndex gunIndex, String animationName) {
-        // TODO: [MIGRAÇÃO] Implementar verificação de som quando sistema de som estiver migrado
         if (tmpSoundInstance != null && tmpSoundInstance.getRegistryName() != null) {
             ResourceLocation expectedSound = gunIndex.getSounds(animationName);
             if (expectedSound != null && tmpSoundInstance.getRegistryName().equals(expectedSound)) {

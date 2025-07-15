@@ -17,7 +17,6 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registries.ITEM, GunMod.MOD_ID);
 
     // TODO: Re-enable when item classes are available
-    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com placeholders
     public static final DeferredHolder<Item, Item> MODERN_KINETIC_GUN = ITEMS.register("modern_kinetic_gun", 
         () -> new Item(new Item.Properties())); // Placeholder - ModernKineticGunItem::new
 

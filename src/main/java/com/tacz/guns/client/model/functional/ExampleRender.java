@@ -24,23 +24,16 @@ public class ExampleRender implements IFunctionalRenderer {
             return;
         }
         
-        // TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de exemplo - demonstra que a interface estÃƒÆ’Ã‚Â¡ funcional
-        // Este renderizador pode ser expandido para qualquer funcionalidade especÃƒÆ’Ã‚Â­fica
         
-        // Exemplo de como seria usado quando os tipos estiverem disponÃƒÆ’Ã‚Â­veis:
         /*
         if (transformType instanceof ItemDisplayContext displayContext) {
             if (displayContext.firstPerson()) {
-                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica para primeira pessoa
             } else {
-                // RenderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o para terceira pessoa
             }
         }
         
         if (poseStack instanceof PoseStack stack) {
-            // Manipular matriz de transformaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
             stack.pushPose();
-            // ... renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o especÃƒÆ’Ã‚Â­fica
             stack.popPose();
         }
         */

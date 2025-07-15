@@ -150,12 +150,10 @@ public class MathUtil {
      */
     public static float[] inverseQuaternion(float[] quaternion) {
         float[] result = new float[4];
-        // ÃƒÂ¦Ã‚Â±Ã¢â‚¬Å¡ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â±ÃƒÂ¨Ã‚Â½Ã‚Â­
         result[0] = -quaternion[0];
         result[1] = -quaternion[1];
         result[2] = -quaternion[2];
         result[3] = quaternion[3];
-        // ÃƒÂ¦Ã‚Â±Ã¢â‚¬Å¡ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ©Ã¢â‚¬Â¢Ã‚Â¿ÃƒÂ¥Ã‚Â¹Ã‚Â³ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¥Ã‚Â½Ã¢â‚¬â„¢ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ
         float m2 = quaternion[0] * quaternion[0] + quaternion[1] * quaternion[1] + quaternion[2] * quaternion[2] + quaternion[3] * quaternion[3];
         result[0] = result[0] / m2;
         result[1] = result[1] / m2;
@@ -314,7 +312,6 @@ public class MathUtil {
 
     public static float[] solveEquations(float[][] coefficients, float[] constants) {
         int n = constants.length;
-        // ÃƒÂ©Ã‚Â«Ã‹Å“ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¯ÃƒÂ¦Ã‚Â¶Ã‹â€ ÃƒÂ¥Ã¢â‚¬Â¦Ã†â€™
         for (int pivot = 0; pivot < n - 1; pivot++) {
             for (int row = pivot + 1; row < n; row++) {
                 float factor = coefficients[row][pivot] / coefficients[pivot][pivot];
@@ -324,7 +321,6 @@ public class MathUtil {
                 constants[row] -= constants[pivot] * factor;
             }
         }
-        // ÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ÃƒÂ¤Ã‚Â»Ã‚Â£ÃƒÂ¦Ã‚Â±Ã¢â‚¬Å¡ÃƒÂ¨Ã‚Â§Ã‚Â£
         float[] solution = new float[n];
         for (int i = n - 1; i >= 0; i--) {
             float sum = 0.0f;
@@ -381,17 +377,14 @@ public class MathUtil {
      * @param resultMatrix ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¤Ã‚Â¹Ã‹Å“ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ§Ã…Â¸Ã‚Â©ÃƒÂ©Ã‹Å“Ã‚Âµ
      */
     public static void applyMatrixLerp(Matrix4f fromMatrix, Matrix4f toMatrix, Matrix4f resultMatrix, float alpha) {
-        // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
         Vector3f translation = new Vector3f(toMatrix.m30() - fromMatrix.m30(), toMatrix.m31() - fromMatrix.m31(), toMatrix.m32() - fromMatrix.m32());
         translation.mul(alpha);
-        // ÃƒÂ¨Ã‚Â®Ã‚Â¡ÃƒÂ§Ã‚Â®Ã¢â‚¬â€ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‚ÂÃ¢â‚¬â„¢ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
         Vector3f fromRotation = MathUtil.getEulerAngles(fromMatrix);
         float[] qFrom = MathUtil.toQuaternion(fromRotation.x(), fromRotation.y(), fromRotation.z());
         Vector3f toRotation = MathUtil.getEulerAngles(toMatrix);
         float[] qTo = MathUtil.toQuaternion(toRotation.x(), toRotation.y(), toRotation.z());
         float[] qRelative = getRelativeQuaternion(qFrom, qTo);
         Quaternionf qLerped = MathUtil.toQuaternion(MathUtil.slerp(QUATERNION_ONE, qRelative, alpha));
-        // ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
         resultMatrix.m30(resultMatrix.m30() + translation.x);
         resultMatrix.m31(resultMatrix.m31() + translation.y);
         resultMatrix.m32(resultMatrix.m32() + translation.z);
@@ -401,7 +394,6 @@ public class MathUtil {
     public static Pair<Float, Vector3f> getAngleAndAxis(Quaternionf quaternion) {
         double angle = 2 * Math.acos(quaternion.w());
         double sin = Math.sin(angle / 2);
-        // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¤Ã‚Â¸Ã‚Âº 0 ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ 2*PIÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â½Ã‚Â´ÃƒÂ¦Ã¢â‚¬â€Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³
         if (sin == 0) {
             return Pair.of(0f, new Vector3f(0, 0, 0));
         }
@@ -413,7 +405,6 @@ public class MathUtil {
     public static Pair<Float, Vector3f> getAngleAndAxis(float[] quaternion) {
         double angle = 2 * Math.acos(quaternion[3]);
         double sin = Math.sin(angle / 2);
-        // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â§Ã¢â‚¬â„¢ÃƒÂ¤Ã‚Â¸Ã‚Âº 0 ÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¨Ã¢â€šÂ¬Ã¢â‚¬Â¦ 2*PIÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â»Ã¢â‚¬Å“ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¤Ã‚Â¸Ã…Â½ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ¨Ã‚Â½Ã‚Â´ÃƒÂ¦Ã¢â‚¬â€Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â³
         if (sin == 0) {
             return Pair.of(0f, new Vector3f(0, 0, 0));
         }

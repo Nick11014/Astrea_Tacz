@@ -178,7 +178,6 @@ public class ModDataComponents {
             .build()
     );
 
-    // === DADOS DE MUNIÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O ===
 
     /**
      * ID da muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (ResourceLocation)
@@ -191,7 +190,6 @@ public class ModDataComponents {
             .build()
     );
 
-    // === DADOS DE ACESSÃƒÆ’Ã¢â‚¬Å“RIOS ===
 
     /**
      * ID do acessÃƒÆ’Ã‚Â³rio (ResourceLocation)
@@ -204,7 +202,6 @@ public class ModDataComponents {
             .build()
     );
 
-    // === DADOS DE CAIXA DE MUNIÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O ===
 
     /**
      * ID da muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na caixa (ResourceLocation)

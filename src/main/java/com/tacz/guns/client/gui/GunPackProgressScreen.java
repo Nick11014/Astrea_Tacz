@@ -34,7 +34,6 @@ public class GunPackProgressScreen extends Screen implements ProgressListener {
         if (this.stop) {
             this.getMinecraft().setScreen(null);
         } else {
-            // Migrado para NeoForge 1.21.1: renderBackground agora requer 4 parÃƒÆ’Ã‚Â¢metros
             this.renderBackground(gui, mouseX, mouseY, partialTick);
             if (this.header != null) {
                 gui.drawCenteredString(this.font, this.header, this.width / 2, 70, 16777215);

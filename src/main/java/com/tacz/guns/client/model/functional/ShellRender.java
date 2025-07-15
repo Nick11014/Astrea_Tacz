@@ -24,7 +24,6 @@ import org.joml.Vector3f;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class ShellRender implements IFunctionalRenderer {
-    // ÃƒÂ¦Ã…Â Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â£Ã‚Â³ÃƒÂ©Ã‹Å“Ã…Â¸ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€
     private final ConcurrentLinkedDeque<Data> SHELL_QUEUE = new ConcurrentLinkedDeque<>();
     public static boolean isSelf = false;
 
@@ -46,7 +45,7 @@ public class ShellRender implements IFunctionalRenderer {
     }
 
     private void renderShell(ClientGunIndex display, GunData gunData, PoseStack poseStack, BedrockGunModel gunModel) {
-        ShellEjection shellEjection = display.getShellEjection();
+        // ShellEjection shellEjection = display.getShellEjection();
         if (shellEjection == null) {
             SHELL_QUEUE.clear();
             return;
@@ -62,15 +61,12 @@ public class ShellRender implements IFunctionalRenderer {
             }
             long lifeTime = (long) (shellEjection.getLivingTime() * 1000);
 
-            // ÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¦Ã‚Â²Ã‚Â¡ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¨Ã‚Â¸Ã‚Â¢ÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¥Ã…Â½Ã‚Â»ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã‹Å“Ã…Â¸ÃƒÂ¥Ã‹â€ Ã¢â‚¬â€
             checkShellQueue(lifeTime);
 
-            // ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
             Vector3f initialVelocity = shellEjection.getInitialVelocity();
             Vector3f acceleration = shellEjection.getAcceleration();
             Vector3f angularVelocity = shellEjection.getAngularVelocity();
 
-            // ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ PoseStack
             for (Data data : SHELL_QUEUE) {
                 if (data.normal == null && data.pose == null) {
                     data.normal = new Matrix3f(poseStack.last().normal());
@@ -78,7 +74,6 @@ public class ShellRender implements IFunctionalRenderer {
                 }
             }
 
-            // ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¦Ã…Â Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â£Ã‚Â³
             gunModel.delegateRender((poseStack1, vertexConsumer1, transformType1, light, overlay) ->{
                 SHELL_QUEUE.forEach(data -> renderSingleShell(transformType1, light, overlay, data, initialVelocity, acceleration, angularVelocity, model, location));
             });
@@ -86,27 +81,22 @@ public class ShellRender implements IFunctionalRenderer {
     }
 
     private void renderSingleShell(ItemDisplayContext transformType1, int light, int overlay, Data data, Vector3f initialVelocity, Vector3f acceleration, Vector3f angularVelocity, BedrockAmmoModel model, ResourceLocation location) {
-        // ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂÃƒÂ¦Ã‚Â£Ã¢â€šÂ¬ÃƒÂ¦Ã…Â¸Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¦Ã‚Â¬Ã‚Â¡
         if (data.normal == null && data.pose == null) {
             return;
         }
-        // ÃƒÂ¥Ã¢â‚¬Â¦Ã‹â€ ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Ëœ
         PoseStack poseStack2 = new PoseStack();
         poseStack2.last().normal().mul(data.normal);
         poseStack2.last().pose().mul(data.pose);
 
-        // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‚Â­Ã‹Å“ÃƒÂ§Ã¢â‚¬Â¢Ã¢â€žÂ¢ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¾ÃƒÂ§Ã‚Â§Ã‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°
         long remindTime = System.currentTimeMillis() - data.timeStamp;
         double time = remindTime / 1000.0;
         Vector3f randomOffset = data.randomOffset;
 
-        // ÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã‚Â»Ã‚Â¡ÃƒÂ¨Ã‚Â¶Ã‚Â³ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ¥Ã¢â‚¬Â¡Ã¢â‚¬Â ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…â€™Ã¢â€šÂ¬ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ©Ã¢â€šÂ¬Ã…Â¸ÃƒÂ§Ã¢â‚¬ÂºÃ‚Â´ÃƒÂ§Ã‚ÂºÃ‚Â¿ÃƒÂ¨Ã‚Â¿Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â¨
         double x = (initialVelocity.x() + randomOffset.x()) * time + 0.5 * acceleration.x() * time * time;
         double y = (initialVelocity.y() + randomOffset.y()) * time + 0.5 * acceleration.y() * time * time;
         double z = (initialVelocity.z() + randomOffset.z()) * time + 0.5 * acceleration.z() * time * time;
         poseStack2.translate(-x, -y, z);
 
-        // ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
         double xw = time * angularVelocity.x();
         double yw = time * angularVelocity.y();
         double zw = time * angularVelocity.z();

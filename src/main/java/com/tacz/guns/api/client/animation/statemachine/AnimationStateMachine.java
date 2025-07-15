@@ -79,7 +79,6 @@ public class AnimationStateMachine<T extends AnimationStateContext> {
         if (context == null || currentStates == null) {
             return;
         }
-        // ÃƒÂ¨Ã‚Â¿Ã‚Â­ÃƒÂ¤Ã‚Â»Ã‚Â£ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¨Ã‚Â½Ã‚Â¬ÃƒÂ§Ã‚Â§Ã‚Â»ÃƒÂ¥Ã‚ÂÃ…Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¦Ã¢â‚¬ÂºÃ‚Â¿ÃƒÂ¦Ã‚ÂÃ‚Â¢ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂºÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨
         ListIterator<AnimationState<T>> iterator = currentStates.listIterator();
         while (iterator.hasNext()) {
             AnimationState<T> state = iterator.next();
@@ -107,7 +106,6 @@ public class AnimationStateMachine<T extends AnimationStateContext> {
             throw new IllegalStateException("State machine is already initialized");
         }
         this.currentStates = new LinkedList<>();
-        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¤Ã‚Â¾Ã¢â‚¬ÂºÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¥Ã¢â‚¬Â¦Ã‚Â¥ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚Â¹Ã‚Â¶ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¥Ã‚Â®Ã†â€™ÃƒÂ¤Ã‚Â»Ã‚Â¬ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ entryAction ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         Optional.ofNullable(statesSupplier)
                 .map(Supplier::get)
                 .ifPresent(list -> list.forEach(state -> {
@@ -122,7 +120,6 @@ public class AnimationStateMachine<T extends AnimationStateContext> {
      */
     public void exit() {
         checkNullPointer();
-        // ÃƒÂ¨Ã‚Â°Ã†â€™ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ¥Ã‹â€ Ã¢â‚¬â€ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ§Ã…Â Ã‚Â¶ÃƒÂ¦Ã¢â€šÂ¬Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ exit actionÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
         currentStates.forEach(state -> state.exitAction(context));
         this.currentStates = null;
     }

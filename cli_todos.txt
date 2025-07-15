@@ -1,0 +1,5 @@
+I've confirmed AttachmentPropertyManager and IAttachmentModifier are obsolete in NeoForge 1.21.1, replaced by
+  AttachmentType and getData(). This requires a significant refactor of GunPropertyDiagrams.java. To get the project    
+  compiling, I'll first comment out the problematic code related to the old attachment system, then implement the new   
+  one. I'll start by commenting out getHidePropertyButtonYOffset and the
+  AttachmentPropertyManager.getModifiers().forEach loop in GunPropertyDiagrams.java.

@@ -19,13 +19,10 @@ public class LuaAnimationConstant implements LuaLibrary {
     private final Map<String, Object> constantMap = Maps.newHashMap();
 
     public LuaAnimationConstant() {
-        // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ AnimationConstant ÃƒÂ¤Ã‚Â¸Ã‚Â­ÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â° public ÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ¦Ã‚Â®Ã‚Âµ
         Field[] fields = AnimationConstant.class.getFields();
-        // ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â  static final ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¸Ã‚Â¸ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â­Ã¢â‚¬â€ÃƒÂ¦Ã‚Â®Ã‚ÂµÃƒÂ¦Ã‚ÂÃ‚ÂÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‹â€ Ã‚Â° constantMap
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
                 try {
-                    // ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
                     String name = field.getName();
                     Object value = field.get(null);
                     constantMap.put(name, value);
@@ -35,7 +32,6 @@ public class LuaAnimationConstant implements LuaLibrary {
             }
         }
 
-        // ÃƒÂ¦Ã‹Å“Ã‚Â ÃƒÂ¥Ã‚Â°Ã¢â‚¬Å¾ PlayType ÃƒÂ¦Ã…Â¾Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Â¾
         for (var playType : ObjectAnimation.PlayType.values()) {
             constantMap.put(playType.name(), playType.ordinal());
         }

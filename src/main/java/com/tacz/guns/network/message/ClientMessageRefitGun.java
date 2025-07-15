@@ -45,10 +45,8 @@ public record ClientMessageRefitGun(int attachmentSlotIndex, int gunSlotIndex,
             if (iGun.allowAttachment(gunItem, attachmentItem)) {
                 ItemStack oldAttachmentItem = iGun.getAttachment(gunItem, message.attachmentType);
                 iGun.installAttachment(gunItem, attachmentItem);
-                // ÃƒÂ¥Ã‹â€ Ã‚Â·ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®
                 AttachmentPropertyManager.postChangeEvent(player, gunItem);
                 inventory.setItem(message.attachmentSlotIndex, oldAttachmentItem);
-                // ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¥Ã‚ÂÃ‚Â¸ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã‚Â®Ã‚Â¹ÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã…â€™Ã‚Â£ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‚ÂÃ‚ÂÃƒÂ¥Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ¦Ã¢â‚¬Â°Ã¢â€šÂ¬ÃƒÂ¦Ã…â€œÃ¢â‚¬Â°ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹
                 if (message.attachmentType == AttachmentType.EXTENDED_MAG) {
                     iGun.dropAllAmmo(player, gunItem);
                 }

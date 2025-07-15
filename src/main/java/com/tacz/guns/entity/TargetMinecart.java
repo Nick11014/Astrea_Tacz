@@ -67,8 +67,6 @@ public class TargetMinecart extends AbstractMinecart implements ITargetEntity {
             this.setDamage(10);
             double dis = this.position().distanceTo(sourceEntity.position());
             player.displayClientMessage(Component.translatable("message.tacz.target_minecart.hit", String.format("%.1f", damage), String.format("%.2f", dis)), true);
-            // ÃƒÂ¥Ã…Â½Ã…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‹â€ ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¦Ã¢â‚¬â„¢Ã‚Â­ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ§Ã¢â‚¬ÂÃ‚Â± volume ÃƒÂ¥Ã¢â‚¬Â Ã‚Â³ÃƒÂ¥Ã‚Â®Ã…Â¡
-            // ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â£Ã‚Â°ÃƒÂ©Ã…Â¸Ã‚Â³ÃƒÂ¥Ã‚Â¤Ã‚Â§ÃƒÂ¤Ã‚ÂºÃ…Â½ 1 ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â·Ã‚ÂÃƒÂ§Ã‚Â¦Ã‚Â»ÃƒÂ¤Ã‚Â¸Ã‚Âº = 16 * volume
             float volume = OtherConfig.TARGET_SOUND_DISTANCE.get() / 16.0f;
             volume = Math.max(volume, 0);
             level().playSound(null, this, ModSounds.TARGET_HIT.get(), SoundSource.BLOCKS, volume, this.level().random.nextFloat() * 0.1F + 0.9F);

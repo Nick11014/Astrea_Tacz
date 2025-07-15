@@ -48,7 +48,6 @@ public record ServerMessageSyncGunPack(
     @OnlyIn(Dist.CLIENT)
     private static void doSync(ServerMessageSyncGunPack message) {
         CommonNetworkCache.INSTANCE.fromNetwork(message.cache);
-        // ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ§Ã…Â¸Ã‚Â¥ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¦Ã¢â‚¬â€œÃ‚Â°ÃƒÂ¦Ã…Â¾Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â»Ã‚ÂºClientIndex
         ClientIndexManager.reload();
     }
 }

@@ -35,8 +35,6 @@ public class PlayerModelMixin<T extends LivingEntity> extends HumanoidModel<T> {
             return;
         }
 
-        // ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¦Ã‚Â¸Ã¢â‚¬Â¦ÃƒÂ©Ã¢â€žÂ¢Ã‚Â¤ÃƒÂ©Ã‚Â»Ã‹Å“ÃƒÂ¨Ã‚Â®Ã‚Â¤ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¨Ã¢â‚¬Â¡Ã¢â‚¬Å¡ÃƒÂ¦Ã¢â‚¬â€Ã¢â‚¬Â¹ÃƒÂ¨Ã‚Â½Ã‚Â¬
-        // ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ§Ã‚Â¬Ã‚Â¬ÃƒÂ¤Ã‚Â¸Ã¢â€šÂ¬ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ§Ã‚Â§Ã‚Â°ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¯Ã‚Â¼Ã…â€™ageInTicks ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ¥Ã‚Â¥Ã‚Â½ÃƒÂ¦Ã‹Å“Ã‚Â¯ 0
         ItemStack currentItem = KeepingItemRenderer.getRenderer().getCurrentItem();
         if (ageInTicks == 0F && IGun.getIGunOrNull(currentItem) != null) {
             tacz$resetAll(this.rightArm);

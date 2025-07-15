@@ -25,7 +25,6 @@ public class ModBlocks {
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, GunMod.MOD_ID);
 
     // TODO: Re-enable when block classes are available
-    // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima com placeholders simples
     public static final DeferredHolder<Block, Block> GUN_SMITH_TABLE = BLOCKS.register("gun_smith_table", 
         () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F))); // Placeholder - GunSmithTableBlockB::new
         
@@ -44,11 +43,9 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> STATUE = BLOCKS.register("statue", 
         () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(2.0F, 3.0F))); // Placeholder - StatueBlock::new
 
-    // Block entities - apenas os que estÃƒÆ’Ã‚Â£o funcionando
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GunSmithTableBlockEntity>> GUN_SMITH_TABLE_BE = TILE_ENTITIES.register("gun_smith_table", 
         () -> BlockEntityType.Builder.of(GunSmithTableBlockEntity::new, GUN_SMITH_TABLE.get()).build(null));
         
-    // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] TargetBlockEntity precisa migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de APIs save/load
     // public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", 
     //     () -> BlockEntityType.Builder.of(TargetBlockEntity::new, TARGET.get()).build(null));
         

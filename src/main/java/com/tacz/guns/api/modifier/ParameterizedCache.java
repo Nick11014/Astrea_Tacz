@@ -48,7 +48,6 @@ public class ParameterizedCache<T> {
      * MÃƒÆ’Ã‚Â©todo temporÃƒÆ’Ã‚Â¡rio atÃƒÆ’Ã‚Â© AttachmentPropertyManager.functionEval estar disponÃƒÆ’Ã‚Â­vel
      */
     private double evaluateFunction(double value, double input, String function) {
-        // TODO: Implementar quando AttachmentPropertyManager.functionEval estiver disponÃƒÆ’Ã‚Â­vel
         // return AttachmentPropertyManager.functionEval(value, input, function);
         return value; // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna valor original
     }

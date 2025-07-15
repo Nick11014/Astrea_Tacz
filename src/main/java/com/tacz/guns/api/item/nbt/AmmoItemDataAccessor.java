@@ -40,8 +40,6 @@ public interface AmmoItemDataAccessor extends IAmmo {
             ResourceLocation gunId = iGun.getGunId(gun);
             ResourceLocation ammoId = iAmmo.getAmmoId(ammo);
             
-            // TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o completa quando CommonGunIndex estiver disponÃƒÆ’Ã‚Â­vel
-            // Por enquanto, apenas verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o bÃƒÆ’Ã‚Â¡sica de nÃƒÆ’Ã‚Â£o-vazio
             return !gunId.equals(DefaultAssets.EMPTY_GUN_ID) && 
                    !ammoId.equals(DefaultAssets.EMPTY_AMMO_ID);
         }

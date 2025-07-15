@@ -16,7 +16,6 @@ public class LaserColorUtil {
             return defaultConfig.getDefaultColor();
         }
 
-        // TODO: Implementar quando ItemStack estiver disponÃƒÆ’Ã‚Â­vel
         // if (stack.getItem() instanceof IAttachment iAttachment) {
         //     if (iAttachment.hasCustomLaserColor(stack)) {
         //         return iAttachment.getLaserColor(stack);
@@ -41,7 +40,6 @@ public class LaserColorUtil {
             return 0xFF0000;
         }
 
-        // TODO: Implementar quando ItemStack e dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
         // if (stack.getItem() instanceof IAttachment iAttachment) {
         //     if (iAttachment.hasCustomLaserColor(stack)) {
         //         return iAttachment.getLaserColor(stack);

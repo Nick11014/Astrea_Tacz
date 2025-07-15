@@ -62,7 +62,6 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
     @Override
     @OnlyIn(Dist.CLIENT)
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
-        // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         float modifiedDistance = cacheProperty.getCache(EffectiveRangeModifier.ID);
         LinkedList<DistanceDamagePair> damageAdjust = null;
         if (gunData.getBulletData().getExtraDamage() != null) {

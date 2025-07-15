@@ -33,7 +33,6 @@ public final class RenderHelper {
 
     private static void innerBlit(Matrix4f matrix, float x1, float x2, float y1, float y2, float blitOffset, float minU, float maxU, float minV, float maxV) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        // Migrado para NeoForge 1.21.1: Fluxo de renderizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o simplificado
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder bufferbuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.addVertex(matrix, x1, y2, blitOffset).setUv(minU, maxV);
@@ -47,7 +46,6 @@ public final class RenderHelper {
     public static void enableItemEntityStencilTest() {
         RenderSystem.assertOnRenderThread();
         if (OptifineCompat.isOptifineInstalled()) {
-            // ÃƒÂ¤Ã‚Â»Ã‚Â¥ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â£ÃƒÂ§Ã‚Â Ã‚ÂÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¥Ã‚ÂºÃ¢â‚¬ÂÃƒÂ¥Ã‚Â¯Ã‚Â¹ ÃƒÂ¤Ã‚Â½Ã‚Â¿ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ optifine ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã…â€œÃ‚ÂºÃƒÂ¦Ã¢â€žÂ¢Ã‚Â¯
             int depthTextureId = GL30.glGetFramebufferAttachmentParameteri(GL30.GL_FRAMEBUFFER, GL30.GL_DEPTH_ATTACHMENT, GL30.GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME);
             int stencilTextureId = GL30.glGetFramebufferAttachmentParameteri(GL30.GL_FRAMEBUFFER, GL30.GL_STENCIL_ATTACHMENT, GL30.GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE);
             if (depthTextureId != GL30.GL_NONE && stencilTextureId == GL30.GL_NONE) {

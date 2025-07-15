@@ -32,7 +32,6 @@ public class LivingEntitySpeedModifier {
         if (speedModifier == null) return;
 
         if (stack.getItem() instanceof AbstractGunItem) {
-            // ÃƒÂ¥Ã‚Â¤Ã¢â‚¬Å¾ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¥Ã‚Â¸Ã‚Â¦ÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã‚Â­Ã‚Â£
             AttachmentCacheProperty cacheProperty = IGunOperator.fromLivingEntity(shooter).getCacheProperty();
             if (cacheProperty != null) {
                 double weightFactor = SyncConfig.WEIGHT_SPEED_MULTIPLIER.get();
