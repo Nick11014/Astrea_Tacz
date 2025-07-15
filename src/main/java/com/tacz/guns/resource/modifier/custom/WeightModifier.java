@@ -1,8 +1,9 @@
+
 package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment.Slot;
+import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
@@ -44,7 +45,7 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
         return new CacheValue<>(gunData.getWeight());
     }
 
@@ -61,7 +62,7 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
         float weight = gunData.getWeight() ;
         float modifiedValue = cacheProperty.<Float>getCache(WeightModifier.ID);
         float modifier = modifiedValue - weight;
