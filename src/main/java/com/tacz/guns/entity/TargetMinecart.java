@@ -5,6 +5,7 @@ import com.tacz.guns.api.entity.ITargetEntity;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.config.common.OtherConfig;
+import com.tacz.guns.entity.EntityKineticBullet;
 import com.tacz.guns.init.ModBlocks;
 import com.tacz.guns.init.ModItems;
 import com.tacz.guns.init.ModSounds;
@@ -76,9 +77,8 @@ public class TargetMinecart extends AbstractMinecart implements ITargetEntity {
                 boolean isHeadshot = false;
                 float headshotMultiplier = 1;
                 NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(projectile, this, player, projectile.getGunId(), projectile.getGunDisplayId(), damage, Pair.of(source, source), isHeadshot, headshotMultiplier, LogicalSide.SERVER));
-                if (this instanceof ServerPlayer serverPlayer) {
-                    NetworkHandler.sendToClientPlayer(new ServerMessageGunHurt(projectile.getId(), this.getId(), player.getId(), projectile.getGunId(), projectile.getGunDisplayId(), damage, isHeadshot, headshotMultiplier), serverPlayer);
-                }
+                // Uma entidade TargetMinecart não pode ser um ServerPlayer, então esta verificação não faz sentido
+                // Remover esta verificação ou ajustar para um tipo adequado
             }
         }
     }

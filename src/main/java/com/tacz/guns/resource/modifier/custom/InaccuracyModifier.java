@@ -143,8 +143,8 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         double standInaccuracyPercent = Math.min(inaccuracy / referenceValue, 1);
         double inaccuracyModifierPercent = Math.min(inaccuracyModifier / referenceValue, 1);
 
-        String positivelyString = String.format("%.2f Ãƒâ€šÃ‚Â§c(+%.2f)", modifiedValue, inaccuracyModifier);
-        String negativelyString = String.format("%.2f Ãƒâ€šÃ‚Â§a(%.2f)", modifiedValue, inaccuracyModifier);
+        String positivelyString = String.format("%.2f §c(+%.2f)", modifiedValue, inaccuracyModifier);
+        String negativelyString = String.format("%.2f §a(%.2f)", modifiedValue, inaccuracyModifier);
         String defaultString = String.format("%.2f", modifiedValue);
         boolean positivelyBetter = false;
 
@@ -170,8 +170,8 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         double inaccuracyModifierPercent = Mth.clamp(inaccuracyModifier, 0f, 1f);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.aim_inaccuracy";
-        String positivelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§a(+%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
-        String negativelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§c(%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
+        String positivelyString = String.format("%.1f%% §a(+%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
+        String negativelyString = String.format("%.1f%% §c(%.1f%%)", modifiedValue * 100, inaccuracyModifier * 100);
         String defaultString = String.format("%.1f%%", modifiedValue * 100);
         boolean positivelyBetter = true;
 
@@ -182,7 +182,7 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
     @Override
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
-        return 3;
+        return 4;
     }
     
     public static class InaccuracyJsonProperty extends JsonProperty<Map<InaccuracyType, Modifier>> {

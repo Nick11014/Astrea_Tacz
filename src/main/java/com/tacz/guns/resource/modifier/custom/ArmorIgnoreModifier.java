@@ -82,8 +82,8 @@ public class ArmorIgnoreModifier implements IAttachmentModifier<Modifier, Float>
         double modifierPercent = Mth.clamp(modifier, 0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.armor_ignore";
-        String positivelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§a(+%.1f%%)", modifiedValue * 100, modifier * 100);
-        String negativelyString = String.format("%.1f%% Ãƒâ€šÃ‚Â§c(%.1f%%)", modifiedValue * 100, modifier * 100);
+        String positivelyString = String.format("%.1f%% §a(+%.1f%%)", modifiedValue * 100, modifier * 100);
+        String negativelyString = String.format("%.1f%% §c(%.1f%%)", modifiedValue * 100, modifier * 100);
         String defaultString = String.format("%.1f%%", modifiedValue * 100);
         boolean positivelyBetter = true;
 
