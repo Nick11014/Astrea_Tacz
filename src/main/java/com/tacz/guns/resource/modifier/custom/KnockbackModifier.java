@@ -43,7 +43,7 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
@@ -63,6 +63,7 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
         cache.setValue((float) eval);
     }
 
+    @Override
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
@@ -82,8 +83,8 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
         double modifierPercent = Mth.clamp(modifier, 0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.knockback";
-        String positivelyString = String.format("%.2f Ãƒâ€šÃ‚Â§a(+%.2f)", modifiedValue, modifier);
-        String negativelyString = String.format("%.2f Ãƒâ€šÃ‚Â§c(%.2f)", modifiedValue, modifier);
+        String positivelyString = String.format("%.2f §a(+%.2f)", modifiedValue, modifier);
+        String negativelyString = String.format("%.2f §c(%.2f)", modifiedValue, modifier);
         String defaultString = String.format("%.2f", modifiedValue);
         boolean positivelyBetter = true;
 
@@ -93,13 +94,10 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;
     }
-
+    
     public static class KnockbackJsonProperty extends JsonProperty<Modifier> {
         public KnockbackJsonProperty(Modifier value) {
             super(value);

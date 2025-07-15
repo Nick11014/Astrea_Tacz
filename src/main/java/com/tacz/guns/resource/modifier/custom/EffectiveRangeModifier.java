@@ -6,7 +6,6 @@ import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
@@ -40,13 +39,13 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
         LinkedList<DistanceDamagePair> damageAdjust = null;
         if (gunData.getBulletData().getExtraDamage() != null) {
             damageAdjust = gunData.getBulletData().getExtraDamage().getDamageAdjust();
         }
         float effectiveRange;
-        if (damageAdjust != null) {
+        if (damageAdjust != null && !damageAdjust.isEmpty()) {
             effectiveRange = damageAdjust.get(0).getDistance();
         } else {
             effectiveRange = Integer.MAX_VALUE;
@@ -62,7 +61,6 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @Override
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         float modifiedDistance = cacheProperty.getCache(EffectiveRangeModifier.ID);
@@ -71,7 +69,7 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
             damageAdjust = gunData.getBulletData().getExtraDamage().getDamageAdjust();
         }
         float effectiveRange;
-        if (damageAdjust != null) {
+        if (damageAdjust != null && !damageAdjust.isEmpty()) {
             effectiveRange = damageAdjust.get(0).getDistance();
         } else {
             effectiveRange = 0;
@@ -86,8 +84,8 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         double modifierPercent = Math.min(modifier / 100.0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.effective_range";
-        String positivelyString = String.format("%.1fm Ãƒâ€šÃ‚Â§a(+%.1f)", effectiveRange, modifier);
-        String negativelyString = String.format("%.1fm Ãƒâ€šÃ‚Â§c(%.1f)", effectiveRange, modifier);
+        String positivelyString = String.format("%.1fm §a(+%.1f)", effectiveRange, modifier);
+        String negativelyString = String.format("%.1fm §c(%.1f)", effectiveRange, modifier);
         String defaultString = String.format("%.1fm", effectiveRange);
         boolean positivelyBetter = true;
 
@@ -96,7 +94,6 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;
@@ -132,66 +129,3 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

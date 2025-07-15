@@ -80,13 +80,10 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
         return Collections.singletonList(diagramsData);
     }
 
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;
     }
-
+    
     public static class WeightJsonProperty extends JsonProperty<Modifier> {
         public WeightJsonProperty(Modifier value) {
             super(value);

@@ -37,7 +37,7 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
     }
 
     @Override
-    public CacheValue<Integer> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Integer> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
         int pierce = gunData.getBulletData().getPierce();
         return new CacheValue<>(pierce);
     }
@@ -48,6 +48,7 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
         cache.setValue((int) Math.round(eval));
     }
 
+    @Override
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         int pierce = gunData.getBulletData().getPierce();
         int modifiedValue = cacheProperty.<Integer>getCache(PierceModifier.ID);
@@ -68,13 +69,10 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;
     }
-
+    
     public static class PierceJsonProperty extends JsonProperty<Modifier> {
         public PierceJsonProperty(Modifier value) {
             super(value);

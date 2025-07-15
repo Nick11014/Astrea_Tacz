@@ -120,13 +120,10 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 2;
     }
-
+    
     private static float getMaxInGunRecoilKeyFrame(GunRecoilKeyFrame[] frames) {
         if (frames.length == 0) {
             return 0;

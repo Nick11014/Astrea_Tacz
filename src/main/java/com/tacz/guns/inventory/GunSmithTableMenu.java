@@ -70,7 +70,7 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
         Recipe<?> recipe = recipeManager.byKey(recipeId).map(net.minecraft.world.item.crafting.RecipeHolder::value).orElse(null);
         if (recipe instanceof GunSmithTableRecipe gunSmithTableRecipe) {
             boolean flag = TimelessAPI.getCommonBlockIndex(getBlockId()).map(blockIndex -> {
-                return blockIndex.getData().getTabs().stream().map(TabConfig.class::cast).noneMatch(tab -> tab.id().equals(gunSmithTableRecipe.getTab()));
+                    return blockIndex.getData().getTabs().stream().map(com.tacz.guns.resource.pojo.data.block.TabConfig.class::cast).noneMatch(tab -> tab.id().equals(gunSmithTableRecipe.getTab()));
             }).orElse(true);
             if (DefaultAssets.DEFAULT_BLOCK_ID.equals(getBlockId()) && !SyncConfig.ENABLE_TABLE_FILTER.get()) {
                 flag = false;
@@ -82,6 +82,16 @@ public class GunSmithTableMenu extends AbstractContainerMenu {
         }
         return null;
     }
+        
+        /**
+         * Retorna um contêiner simples para ser usado na verificação de receitas.
+         * Este método é chamado pelo GunSmithTableScreen para obter ingredientes das receitas.
+         * 
+         * @return Um contêiner simples para processamento de receitas
+         */
+        public SimpleContainer getRecipeInput() {
+            return new SimpleContainer(0);
+        }
 
     public void doCraft(ResourceLocation recipeId, Player player) {
         GunSmithTableRecipe recipe = getRecipe(recipeId, player.level().getRecipeManager());

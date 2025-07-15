@@ -86,6 +86,11 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
         }
     }
 
+    @Override
+    protected int getScrollbarPosition() {
+        return this.getRowLeft() + this.getRowWidth() - 6; // 6 é a largura típica do scrollbar
+    }
+    
     public String getSearchText() {
         return byName.getValue();
     }
@@ -108,12 +113,6 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
         parent.init();
         parent.setIndexPage(0);
     }
-
-    protected int getScrollbarPosition() {
-        // Usar getRowLeft() + getRowWidth() para calcular a posição do scrollbar
-        return this.getRowLeft() + this.getRowWidth() - 6; // 6 é a largura típica do scrollbar
-    }
-
 
     public int getRowLeft() {
         // getRowLeft() já é fornecido pela superclasse, mas pode ser customizado
@@ -209,66 +208,3 @@ public class GunPackList extends ContainerObjectSelectionList<GunPackList.Entry>
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

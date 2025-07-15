@@ -8,7 +8,6 @@ import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.config.sync.SyncConfig;
 import com.tacz.guns.resource.CommonAssetsManager;
@@ -34,6 +33,11 @@ import java.util.Objects;
 public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
     public static final String ID = GunProperties.HEADSHOT_MULTIPLIER.name();
 
+    @Override
+    public String getId() {
+        return ID;
+    }
+
     public String getOptionalFields() {
         return ID;
     }
@@ -45,7 +49,7 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
@@ -70,7 +74,6 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @Override
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
         // ÃƒÂ¥Ã‚Â¿Ã¢â‚¬Â¦ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬Â¢Ã‚Â°ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œ
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
@@ -93,8 +96,8 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
         double modifierPercent = Mth.clamp(modifier / 5.0, 0, 1);
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.head_shot";
-        String positivelyString = String.format("x%.1f Ãƒâ€šÃ‚Â§a(+%.1f)", modifiedValue, modifier);
-        String negativelyString = String.format("x%.1f Ãƒâ€šÃ‚Â§c(%.1f)", modifiedValue, modifier);
+        String positivelyString = String.format("x%.1f §a(+%.1f)", modifiedValue, modifier);
+        String negativelyString = String.format("x%.1f §c(%.1f)", modifiedValue, modifier);
         String defaultString = String.format("x%.1f", modifiedValue);
         boolean positivelyBetter = true;
 
@@ -103,12 +106,10 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;
     }
-
+    
     public static class HeadShotJsonProperty extends JsonProperty<Modifier> {
         public HeadShotJsonProperty(Modifier value) {
             super(value);

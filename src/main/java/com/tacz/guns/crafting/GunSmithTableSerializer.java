@@ -1,5 +1,95 @@
 package com.tacz.guns.crafting;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.tacz.guns.GunMod;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Serializador para receitas de mesa de armeiro.
+ * Responsável por ler/escrever receitas de/para JSON e pacotes de rede.
+ */
+public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRecipe> {
+
+    @Override
+    public GunSmithTableRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        // Ler o grupo da receita
+        ResourceLocation tabId = new ResourceLocation(GsonHelper.getAsString(json, "tab", GunMod.MOD_ID + ":guns"));
+        
+        // Ler ingredientes
+        JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
+        List<GunSmithTableIngredient> inputs = new ArrayList<>();
+        
+        for (JsonElement element : ingredients) {
+            JsonObject ingredientObject = element.getAsJsonObject();
+            Ingredient ingredient = Ingredient.fromJson(ingredientObject.get("ingredient"));
+            int count = GsonHelper.getAsInt(ingredientObject, "count", 1);
+            inputs.add(new GunSmithTableIngredient(ingredient, count));
+        }
+        
+        // Ler resultado
+        JsonObject resultObj = GsonHelper.getAsJsonObject(json, "result");
+        ItemStack result = ShapedRecipe.itemStackFromJson(resultObj);
+        ResourceLocation group = new ResourceLocation(GsonHelper.getAsString(resultObj, "group", tabId.toString()));
+        
+        RawGunTableResult gunResult = new RawGunTableResult(result, group);
+        
+        return new GunSmithTableRecipe(recipeId, tabId, inputs, gunResult);
+    }
+
+    @Nullable
+    @Override
+    public GunSmithTableRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        // Ler o grupo da receita
+        ResourceLocation tabId = buffer.readResourceLocation();
+        
+        // Ler ingredientes
+        int ingredientCount = buffer.readVarInt();
+        List<GunSmithTableIngredient> inputs = new ArrayList<>();
+        
+        for (int i = 0; i < ingredientCount; i++) {
+            Ingredient ingredient = Ingredient.fromNetwork(buffer);
+            int count = buffer.readVarInt();
+            inputs.add(new GunSmithTableIngredient(ingredient, count));
+        }
+        
+        // Ler resultado
+        ItemStack result = buffer.readItem();
+        ResourceLocation group = buffer.readResourceLocation();
+        
+        RawGunTableResult gunResult = new RawGunTableResult(result, group);
+        
+        return new GunSmithTableRecipe(recipeId, tabId, inputs, gunResult);
+    }
+
+    @Override
+    public void toNetwork(FriendlyByteBuf buffer, GunSmithTableRecipe recipe) {
+        // Escrever o grupo da receita
+        buffer.writeResourceLocation(recipe.getTab());
+        
+        // Escrever ingredientes
+        buffer.writeVarInt(recipe.getInputs().size());
+        for (GunSmithTableIngredient input : recipe.getInputs()) {
+            input.getIngredient().toNetwork(buffer);
+            buffer.writeVarInt(input.getCount());
+        }
+        
+        // Escrever resultado
+        buffer.writeItem(recipe.getResult().getResult());
+        buffer.writeResourceLocation(recipe.getResult().getGroup());
+    }
+}
 import com.google.gson.JsonObject;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -126,7 +216,99 @@ public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRe
 
 
 
+package com.tacz.guns.crafting;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.tacz.guns.GunMod;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.neoforged.neoforge.common.crafting.CraftingHelper;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Serializador para receitas de mesa de armeiro.
+ * Responsável por ler/escrever receitas de/para JSON e pacotes de rede.
+ */
+public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRecipe> {
+
+    @Override
+    public GunSmithTableRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        // Ler o grupo da receita
+        ResourceLocation tabId = new ResourceLocation(GsonHelper.getAsString(json, "tab", GunMod.MOD_ID + ":guns"));
+        
+        // Ler ingredientes
+        JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
+        List<GunSmithTableIngredient> inputs = new ArrayList<>();
+        
+        for (JsonElement element : ingredients) {
+            JsonObject ingredientObject = element.getAsJsonObject();
+            Ingredient ingredient = Ingredient.fromJson(ingredientObject.get("ingredient"));
+            int count = GsonHelper.getAsInt(ingredientObject, "count", 1);
+            inputs.add(new GunSmithTableIngredient(ingredient, count));
+        }
+        
+        // Ler resultado
+        JsonObject resultObj = GsonHelper.getAsJsonObject(json, "result");
+        ItemStack result = ShapedRecipe.itemStackFromJson(resultObj);
+        ResourceLocation group = new ResourceLocation(GsonHelper.getAsString(resultObj, "group", tabId.toString()));
+        
+        RawGunTableResult gunResult = new RawGunTableResult(result, group);
+        
+        return new GunSmithTableRecipe(recipeId, tabId, inputs, gunResult);
+    }
+
+    @Nullable
+    @Override
+    public GunSmithTableRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        // Ler o grupo da receita
+        ResourceLocation tabId = buffer.readResourceLocation();
+        
+        // Ler ingredientes
+        int ingredientCount = buffer.readVarInt();
+        List<GunSmithTableIngredient> inputs = new ArrayList<>();
+        
+        for (int i = 0; i < ingredientCount; i++) {
+            Ingredient ingredient = Ingredient.fromNetwork(buffer);
+            int count = buffer.readVarInt();
+            inputs.add(new GunSmithTableIngredient(ingredient, count));
+        }
+        
+        // Ler resultado
+        ItemStack result = buffer.readItem();
+        ResourceLocation group = buffer.readResourceLocation();
+        
+        RawGunTableResult gunResult = new RawGunTableResult(result, group);
+        
+        return new GunSmithTableRecipe(recipeId, tabId, inputs, gunResult);
+    }
+
+    @Override
+    public void toNetwork(FriendlyByteBuf buffer, GunSmithTableRecipe recipe) {
+        // Escrever o grupo da receita
+        buffer.writeResourceLocation(recipe.getTab());
+        
+        // Escrever ingredientes
+        buffer.writeVarInt(recipe.getInputs().size());
+        for (GunSmithTableIngredient input : recipe.getInputs()) {
+            input.getIngredient().toNetwork(buffer);
+            buffer.writeVarInt(input.getCount());
+        }
+        
+        // Escrever resultado
+        buffer.writeItem(recipe.getResult().getResult());
+        buffer.writeResourceLocation(recipe.getResult().getGroup());
+    }
+}
 
 
 

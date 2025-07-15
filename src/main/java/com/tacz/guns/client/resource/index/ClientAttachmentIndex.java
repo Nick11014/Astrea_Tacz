@@ -35,7 +35,7 @@ public class ClientAttachmentIndex {
     private float fov = 70f;
     private float[] viewsFov;
     private AttachmentLod attachmentLod;
-    private Map<String, ResourceLocation> sounds; // TODO: Map<String, ResourceLocation> quando import estiver funcionando
+    private Map<String, ResourceLocation> sounds;
     private LaserConfig laserConfig; // ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do laser
 
     private ClientAttachmentIndex() {
@@ -135,8 +135,13 @@ public class ClientAttachmentIndex {
         return Optional.ofNullable(attachmentLod);
     }
 
-    public Map<String, Object> getSounds() { // TODO: retornar Map<String, ResourceLocation> quando import estiver funcionando
+    @Nullable
+    public Map<String, ResourceLocation> getSounds() {
         return sounds;
+    }
+    
+    public Optional<Map<String, ResourceLocation>> getSoundsOptional() {
+        return Optional.ofNullable(sounds);
     }
 
     public LaserConfig getLaserConfig() {

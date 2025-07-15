@@ -71,68 +71,20 @@ public interface IAttachment {
     void setLaserColor(ItemStack attachmentStack, int color);
 
     public class Slot<T> {
+        private final T item;
+        private final int index;
+
+        public Slot(T item, int index) {
+            this.item = item;
+            this.index = index;
+        }
+
+        public T getItem() {
+            return item;
+        }
+
+        public int getIndex() {
+            return index;
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

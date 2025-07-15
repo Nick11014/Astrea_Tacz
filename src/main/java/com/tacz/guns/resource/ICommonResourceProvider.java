@@ -15,24 +15,41 @@ import org.luaj.vm2.LuaTable;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Interface para provedores de recursos comuns
+ */
 public interface ICommonResourceProvider {
-    @Nullable GunData getGunData(ResourceLocation id);
+    @Nullable
+    GunData getGunData(ResourceLocation id);
 
-    @Nullable AttachmentData getAttachmentData(ResourceLocation attachmentId);
+    @Nullable
+    AttachmentData getAttachmentData(ResourceLocation attachmentId);
 
-    @Nullable BlockData getBlockData(ResourceLocation id);
+    @Nullable
+    BlockData getBlockData(ResourceLocation id);
 
-    @Nullable RecipeFilter getRecipeFilter(ResourceLocation id);
+    @Nullable
+    RecipeFilter getRecipeFilter(ResourceLocation id);
 
-    @Nullable CommonGunIndex getGunIndex(ResourceLocation gunId);
+    @Nullable
+    CommonGunIndex getGunIndex(ResourceLocation gunId);
 
-    @Nullable CommonAmmoIndex getAmmoIndex(ResourceLocation ammoId);
+    @Nullable
+    CommonAmmoIndex getAmmoIndex(ResourceLocation ammoId);
 
-    @Nullable CommonAttachmentIndex getAttachmentIndex(ResourceLocation attachmentId);
+    /**
+     * Obtém o índice de acessório pelo ID
+     * @param attachmentId ID do acessório
+     * @return Índice do acessório ou null se não encontrado
+     */
+    @Nullable
+    CommonAttachmentIndex getAttachmentIndex(ResourceLocation attachmentId);
 
-    @Nullable CommonBlockIndex getBlockIndex(ResourceLocation blockId);
+    @Nullable
+    CommonBlockIndex getBlockIndex(ResourceLocation blockId);
 
-    @Nullable public LuaTable getScript(ResourceLocation scriptId);
+    @Nullable
+    LuaTable getScript(ResourceLocation scriptId);
 
     Set<Map.Entry<ResourceLocation, CommonGunIndex>> getAllGuns();
 

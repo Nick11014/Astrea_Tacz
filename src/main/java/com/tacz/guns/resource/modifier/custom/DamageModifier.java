@@ -1,6 +1,14 @@
 package com.tacz.guns.resource.modifier.custom;
 
+import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
+import com.tacz.guns.api.modifier.JsonProperty;
+import com.tacz.guns.resource.pojo.data.attachment.Modifier;
+import com.tacz.guns.resource.pojo.data.gun.GunData;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 
 /**
  * DamageModifier - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o MÃƒÆ’Ã‚Â­nima EstratÃƒÆ’Ã‚Â©gica
@@ -31,15 +39,22 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
     }
 
     @SuppressWarnings("deprecation")
-    public JsonProperty<Modifier> readJson(String json) {
+    @Override
+    public Object readJson(String json) {
         // TODO: Implementar leitura JSON especÃƒÆ’Ã‚Â­fica quando tipos estiverem disponÃƒÆ’Ã‚Â­veis
         // Gson gson = CommonAssetsManager.GSON;
         // return gson.fromJson(json, Modifier.class);
-        
+
         // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas verificar se contÃƒÆ’Ã‚Â©m damage
         if (json != null && json.contains("damage")) {
             // System.out.println("DamageModifier: Found damage data in JSON");
-            return new Object(); // Placeholder
+            return new JsonProperty<Modifier>(new Modifier()) {
+                @Override
+                public void initComponents() {
+                    // Initialize components for display
+                    // No components needed for minimal implementation
+                }
+            };
         }
         return null;
     }
@@ -57,7 +72,7 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
         // if (bulletData != null && modifier.getMultiplier() != 1.0f) {
         //     bulletData.setDamage(bulletData.getDamage() * modifier.getMultiplier());
         // }
-        
+
         // Log temporÃƒÆ’Ã‚Â¡rio
         if (gunData != null && property != null) {
             // System.out.println("DamageModifier: Applied damage modification");
@@ -88,7 +103,7 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
         // GunData data = (GunData) gunData;
         // ExtraDamage extraDamage = (ExtraDamage) attachmentData;
         // return extraDamage.calculateDamage(data.getBulletData().getDamage(), distance);
-        
+
         // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna dano base
         return 1.0f; // Placeholder
     }
@@ -104,70 +119,21 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
     }
 
     @Override
+    public CacheValue<Object> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+        // Minimal implementation
+        return new CacheValue<>(null);
+    }
+
+    @Override
+    public void eval(List<Object> modifiedValues, CacheValue<Object> cache) {
+        // Minimal implementation
+        if (modifiedValues != null && cache != null) {
+            // No-op for now
+        }
+    }
+
+    @Override
     public String getStats() {
         return String.format("DamageModifier{id=%s, type=damage_modification}", ID);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -78,13 +78,10 @@ public class RpmModifier implements IAttachmentModifier<Modifier, Integer> {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;
     }
-
+    
     public static class RpmJsonProperty extends JsonProperty<Modifier> {
         public RpmJsonProperty(Modifier value) {
             super(value);
