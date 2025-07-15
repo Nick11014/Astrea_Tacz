@@ -8,6 +8,7 @@ import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.attachment.Modifier;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import net.minecraft.ChatFormatting;
@@ -22,65 +23,76 @@ import java.util.List;
 
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
- 
+import com.tacz.guns.api.item.attachment.AttachmentType;
+import com.tacz.guns.util.math.MathUtil;
+import com.tacz.guns.init.ModDataComponents;
 
 public class AdsModifier implements IAttachmentModifier<Float, GunData> {
+    // ID público para uso externo (ex: cacheProperty.getCache(AdsModifier.ID))
+    public static final String ID = "ads_modifier";
     private static final String ADS_ADDEND = "ads_addend";
 
-    @Override
     public List<Float> getAttachmentsValue(ItemStack gun, GunData gunData, AttachmentData attachmentData) {
-        // A lógica agora obtém o valor diretamente de AttachmentData
-        return List.of(attachmentData.getAdsAdd());
+        // Busca o modificador "ads_addend" no mapa de modificadores do attachment
+        JsonProperty<?> prop = attachmentData.getModifier().get(ADS_ADDEND);
+        float value = 0f;
+        if (prop != null && prop.getValue() instanceof Number num) {
+            value = num.floatValue();
+        }
+        return List.of(value);
     }
 
-    @Override
     public Float getSumValue(List<Float> values) {
         return values.stream().reduce(0f, Float::sum);
     }
 
-    @Override
     public Float getMultipliedValue(List<Float> values) {
-        // Para tempo de mira, a modificação é geralmente aditiva, não multiplicativa.
-        // Se for multiplicativa, a lógica seria:
-        // return values.stream().reduce(1f, (a, b) -> a * (1 + b)) - 1;
-        return getSumValue(values); // Usando soma como padrão
+        return getSumValue(values);
     }
 
-    @Override
     public float getModification(float base, Float modifier) {
-        // O tempo de mira é reduzido, então subtraímos o modificador.
         return base - modifier;
     }
 
-    @Override
     public String getPropertyId() {
-        return GunProperties.ADS_TIME.getName();
+        // GunProperties.ADS_TIME é registrado como "ads" (ver GunProperties.java)
+        return "ads";
     }
 
-    @Override
     public boolean applicable(AttachmentType type) {
         return type == AttachmentType.SCOPE || type == AttachmentType.GRIP;
     }
 
-    @Override
-    public IComponent<Float> getComponent(ItemStack attachment) {
-        // Implementação para obter o componente de tooltip
+    // Removido: IComponent não existe, substitua por POJO ou ajuste conforme necessário
+    public AdsComponent getComponent(ItemStack attachment) {
         return new AdsComponent(attachment);
     }
 
-    /**
-     * Lógica para os diagramas da UI, agora como um método estático.
-     */
+    // Implementação mínima dos métodos obrigatórios da interface
+    @Override
+    public String getId() {
+        return "ads_modifier";
+    }
+
+    @Override
+    public CacheValue<GunData> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
+        // Retorne null ou implemente conforme necessário para o sistema de cache
+        return null;
+    }
+
+    @Override
+    public void eval(List<Float> modifiedValues, CacheValue<GunData> cache) {
+        // Implementação vazia, ajuste conforme necessário
+    }
+
     public static List<DiagramsData> getPropertyDiagramsData(GunData gunData, float modifiedAimTime) {
         float aimTime = gunData.getAimTime();
         float adsTimeModifier = modifiedAimTime - aimTime;
 
-        // Normalizando para um valor entre 0 e 1. 0.5s é um tempo de mira rápido.
-        double percent = 1 - Mth.clamp(aimTime / 0.5, 0, 1);
-        double adsTimeModifierPercent = -Mth.clamp(adsTimeModifier / 0.5, -1, 1);
+        double percent = 1 - Math.max(0, Math.min(aimTime / 0.5, 1));
+        double adsTimeModifierPercent = -Math.max(-1, Math.min(adsTimeModifier / 0.5, 1));
 
         String titleKey = "gui.tacz.gun_refit.property_diagrams.ads";
-        // Tempo de mira menor é melhor (positivo)
         String positivelyString = String.format("%.2fs §a(%.2fs)", modifiedAimTime, adsTimeModifier);
         String negativelyString = String.format("%.2fs §c(+%.2fs)", modifiedAimTime, adsTimeModifier);
         String defaultString = String.format("%.2fs", modifiedAimTime);
@@ -90,49 +102,29 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         return Collections.singletonList(diagramsData);
     }
 
-    /**
-     * Componente que fornece a lógica para o tooltip do item.
-     */
-    public static class AdsComponent implements IComponent<Float> {
+    public static class AdsComponent {
         private final float adsAddendTime;
 
         public AdsComponent(ItemStack attachment) {
-            float totalAdsAdd = 0;
-            // A lógica de ler JSON diretamente aqui é complexa.
-            // O ideal é que o valor já venha processado do AttachmentData.
-            // Esta é uma aproximação.
-            // Supondo que o NBT do attachment tenha o valor pré-calculado.
-            if(attachment.hasTag() && attachment.getTag().contains(ADS_ADDEND)){
-                totalAdsAdd = attachment.getTag().getFloat(ADS_ADDEND);
-            }
-            this.adsAddendTime = totalAdsAdd;
+            this.adsAddendTime = attachment.getOrDefault(ModDataComponents.ADS_ADDEND, 0f);
         }
 
-        @Override
-        public void applier(List<Component> components) {
-            // Tempo de mira menor é melhor
-            if (adsAddendTime > 0) {
-                components.add(Component.translatable("tooltip.tacz.attachment.ads.increase").withStyle(ChatFormatting.RED));
-            } else if (adsAddendTime < 0) {
-                components.add(Component.translatable("tooltip.tacz.attachment.ads.decrease").withStyle(ChatFormatting.GREEN));
-            }
+        public float getAdsAddendTime() {
+            return adsAddendTime;
         }
     }
-    
-    /**
-     * Classe interna para desserializar dados do JSON, mantida para compatibilidade.
-     */
+
     public static class Data {
         @Nullable
         @SerializedName("ads")
-        private Modifier ads;
+        private com.tacz.guns.resource.pojo.data.attachment.Modifier ads;
 
         @SerializedName("ads_addend")
         @Deprecated
         private float adsAddendTime = 0;
 
         @Nullable
-        public Modifier getAds() {
+        public com.tacz.guns.resource.pojo.data.attachment.Modifier getAds() {
             return ads;
         }
 
@@ -142,40 +134,3 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

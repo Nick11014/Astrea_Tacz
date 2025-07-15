@@ -19,6 +19,16 @@ import java.util.function.Supplier;
  * onde ItemStack.getOrCreateTag() foi substituÃƒÆ’Ã‚Â­do por DataComponents.
  */
 public class ModDataComponents {
+    /**
+     * Modificador de tempo de ADS (float)
+     * Substitui: ADS_ADDEND (usado em acessórios)
+     */
+    public static final Supplier<DataComponentType<Float>> ADS_ADDEND = COMPONENTS.register("ads_addend",
+        () -> DataComponentType.<Float>builder()
+            .persistent(Codec.FLOAT)
+            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.FLOAT)
+            .build()
+    );
     public static final DeferredRegister<DataComponentType<?>> COMPONENTS = 
         DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
 
