@@ -3,7 +3,7 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment.Slot;
+import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
@@ -48,7 +48,7 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
     }
 
     @Override
-    public CacheValue<Pair<Integer, Boolean>> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Pair<Integer, Boolean>> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
         int defaultDistance = GunConfig.DEFAULT_GUN_FIRE_SOUND_DISTANCE.get();
         return new CacheValue<>(Pair.of(defaultDistance, false));
     }

@@ -63,7 +63,7 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         return type == AttachmentType.SCOPE || type == AttachmentType.GRIP;
     }
 
-    // Removido: IComponent não existe, substitua por POJO ou ajuste conforme necessário
+    // Usa DataComponent para obter o valor do attachment
     public AdsComponent getComponent(ItemStack attachment) {
         return new AdsComponent(attachment);
     }
@@ -71,7 +71,7 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
     // Implementação mínima dos métodos obrigatórios da interface
     @Override
     public String getId() {
-        return "ads_modifier";
+        return ID;
     }
 
     @Override
@@ -102,10 +102,12 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         return Collections.singletonList(diagramsData);
     }
 
+    // Usa DataComponent para obter o valor de ads_addend do attachment
     public static class AdsComponent {
         private final float adsAddendTime;
 
         public AdsComponent(ItemStack attachment) {
+            // Usa DataComponent ao invés de NBT
             this.adsAddendTime = attachment.getOrDefault(ModDataComponents.ADS_ADDEND, 0f);
         }
 
