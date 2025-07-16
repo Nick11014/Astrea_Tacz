@@ -40,7 +40,7 @@ public class RpmModifier implements IAttachmentModifier<Modifier, Integer> {
     }
 
     @Override
-    public CacheValue<Integer> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+    public CacheValue<Integer> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         int roundsPerMinute = gunData.getRoundsPerMinute(fireMode);

@@ -4,10 +4,6 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import com.tacz.guns.GunMod;
-import com.tacz.guns.api.event.common.EntityHurtByGunEvent;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -30,14 +26,14 @@ public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerI
     public static final CustomPacketPayload.Type<ServerMessageGunHurt> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_hurt"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunHurt> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.INT, ServerMessageGunHurt::bulletId,
-            ByteBufCodecs.INT, ServerMessageGunHurt::hurtEntityId,
-            ByteBufCodecs.INT, ServerMessageGunHurt::attackerId,
-            ResourceLocation.STREAM_CODEC, ServerMessageGunHurt::gunId,
-            ResourceLocation.STREAM_CODEC, ServerMessageGunHurt::gunDisplayId,
-            ByteBufCodecs.FLOAT, ServerMessageGunHurt::amount,
-            ByteBufCodecs.BOOL, ServerMessageGunHurt::isHeadShot,
-            ByteBufCodecs.FLOAT, ServerMessageGunHurt::headshotMultiplier,
+            ByteBufCodecs.INT.fieldOf(ServerMessageGunHurt::bulletId),
+            ByteBufCodecs.INT.fieldOf(ServerMessageGunHurt::hurtEntityId),
+            ByteBufCodecs.INT.fieldOf(ServerMessageGunHurt::attackerId),
+            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunHurt::gunId),
+            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunHurt::gunDisplayId),
+            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunHurt::amount),
+            ByteBufCodecs.BOOL.fieldOf(ServerMessageGunHurt::isHeadShot),
+            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunHurt::headshotMultiplier),
             ServerMessageGunHurt::new
     );
 

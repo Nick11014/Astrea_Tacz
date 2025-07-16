@@ -39,7 +39,7 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         LinkedList<DistanceDamagePair> damageAdjust = null;
         if (gunData.getBulletData().getExtraDamage() != null) {
             damageAdjust = gunData.getBulletData().getExtraDamage().getDamageAdjust();

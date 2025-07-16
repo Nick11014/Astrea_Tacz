@@ -21,9 +21,9 @@ public record ClientMessageRefitGun(int attachmentSlotIndex, int gunSlotIndex,
     public static final CustomPacketPayload.Type<ClientMessageRefitGun> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_refit_gun"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageRefitGun> STREAM_CODEC = StreamCodec.composite(
-        ByteBufCodecs.INT, ClientMessageRefitGun::attachmentSlotIndex,
-        ByteBufCodecs.INT, ClientMessageRefitGun::gunSlotIndex,
-        ByteBufCodecs.fromEnum(AttachmentType.class), ClientMessageRefitGun::attachmentType,
+        ByteBufCodecs.INT.fieldOf(ClientMessageRefitGun::attachmentSlotIndex),
+        ByteBufCodecs.INT.fieldOf(ClientMessageRefitGun::gunSlotIndex),
+        ByteBufCodecs.fromEnum(AttachmentType::values).fieldOf(ClientMessageRefitGun::attachmentType),
         ClientMessageRefitGun::new
     );
 

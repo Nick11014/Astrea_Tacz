@@ -4,7 +4,7 @@ import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import net.minecraft.world.item.ItemStack;
 
-public class AttachmentSlot extends IAttachment.Slot<ItemStack> {
+public class AttachmentSlot {
     private final AttachmentType type;
 
     public AttachmentSlot(AttachmentType type) {

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IAttachmentModifier<T, K> {
 
-    CacheValue<K> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot);
+    CacheValue<K> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem);
 
     void eval(List<T> modifiedValues, CacheValue<K> cache);
 

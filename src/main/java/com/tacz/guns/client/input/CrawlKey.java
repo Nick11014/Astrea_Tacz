@@ -76,7 +76,7 @@ public class CrawlKey {
         if (!(player instanceof IClientPlayerGunOperator operator)) {
             return false;
         }
-        if (!IGun.mainHandHoldGun(player)) {
+        if (!IGun.mainhandHoldGun(player)) {
             return false;
         }
         boolean action = true;

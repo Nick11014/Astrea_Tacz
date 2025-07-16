@@ -36,9 +36,9 @@ public abstract class GameRendererMixin {
                 return;
             }
         }
-        boolean cancel;
+        boolean cancel = false;
         if (!tacz$useFovSetting) {
-            boolean cancel = NeoForge.EVENT_BUS.post(new RenderItemInHandBobEvent.BobHurt());
+            cancel = NeoForge.EVENT_BUS.post(new RenderItemInHandBobEvent.BobHurt());
         } else {
             cancel = NeoForge.EVENT_BUS.post(new RenderLevelBobEvent.BobHurt());
         }
@@ -49,11 +49,11 @@ public abstract class GameRendererMixin {
 
     @Inject(method = "bobView", at = @At("HEAD"), cancellable = true)
     public void onBobView(PoseStack pMatrixStack, float pPartialTicks, CallbackInfo ci) {
-        boolean cancel;
+        boolean cancel = false;
         if (!tacz$useFovSetting) {
-            boolean cancel = NeoForge.EVENT_BUS.post(new RenderItemInHandBobEvent.BobView());
+            cancel = NeoForge.EVENT_BUS.post(new RenderItemInHandBobEvent.BobHurt());
         } else {
-            cancel = NeoForge.EVENT_BUS.post(new RenderLevelBobEvent.BobView());
+            cancel = NeoForge.EVENT_BUS.post(new RenderLevelBobEvent.BobHurt());
         }
         if (cancel) {
             ci.cancel();

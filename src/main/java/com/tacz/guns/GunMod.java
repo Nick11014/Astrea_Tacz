@@ -34,6 +34,7 @@ public class GunMod {
     public GunMod(IEventBus bus, ModContainer container) {
         bus.addListener(this::setup);
         bus.addListener(this::registerPayloadHandler);
+        com.tacz.guns.init.ModDataComponents.register(bus);
 
         container.registerConfig(ModConfig.Type.COMMON, GunConfig.init());
         container.registerConfig(ModConfig.Type.COMMON, SyncConfig.init());

@@ -72,7 +72,7 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
     }
 
     @Override
-    public CacheValue<GunData> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
+    public CacheValue<GunData> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         return null;
     }
 

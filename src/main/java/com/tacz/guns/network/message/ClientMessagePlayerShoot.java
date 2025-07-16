@@ -16,7 +16,7 @@ public record ClientMessagePlayerShoot(long timestamp) implements CustomPacketPa
     public static final CustomPacketPayload.Type<ClientMessagePlayerShoot> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_player_shoot"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessagePlayerShoot> STREAM_CODEC = StreamCodec.composite(
-        ByteBufCodecs.LONG, ClientMessagePlayerShoot::timestamp,
+        ByteBufCodecs.VAR_LONG, ClientMessagePlayerShoot::timestamp,
         ClientMessagePlayerShoot::new
     );
 

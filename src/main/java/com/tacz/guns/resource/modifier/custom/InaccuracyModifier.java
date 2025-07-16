@@ -77,7 +77,7 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
     }
 
     @Override
-    public CacheValue<Map<InaccuracyType, Float>> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Map<InaccuracyType, Float>> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         Map<InaccuracyType, Float> tmp = Maps.newHashMap();
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);

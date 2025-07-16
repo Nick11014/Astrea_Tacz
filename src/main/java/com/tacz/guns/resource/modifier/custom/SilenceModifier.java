@@ -47,7 +47,7 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
     }
 
     @Override
-    public CacheValue<Pair<Integer, Boolean>> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+    public CacheValue<Pair<Integer, Boolean>> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         int defaultDistance = GunConfig.DEFAULT_GUN_FIRE_SOUND_DISTANCE.get();
         return new CacheValue<>(Pair.of(defaultDistance, false));
     }
@@ -62,7 +62,7 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
         });
         Pair<Integer, Boolean> cacheValue = cache.getValue();
         double evalDistance = AttachmentPropertyManager.eval(distanceModifiers, cacheValue.left());
-        boolean useSilenceSound = AttachmentPropertyManager.eval(useSilenceSoundModifiers, cacheValue.right());
+        boolean useSilenceSound = AttachmentPropertyManager.eval(useSilenceSoundModifiers, cacheValue.getRight());
         cache.setValue(Pair.of((int) Math.round(evalDistance), useSilenceSound));
     }
 

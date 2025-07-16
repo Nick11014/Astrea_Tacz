@@ -49,7 +49,7 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         BulletData bulletData = gunData.getBulletData();

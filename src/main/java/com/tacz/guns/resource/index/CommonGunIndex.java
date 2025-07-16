@@ -50,6 +50,9 @@ public class CommonGunIndex {
         // GunData data = CommonAssetsManager.get().getGunData(pojoData);
         // Preconditions.checkArgument(data != null, "there is no corresponding data file");
         GunData data = new GunData(); // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
+        if (data == null) {
+            return;
+        }
         Preconditions.checkArgument(data.getAmmoId() != null, "ammo id is empty");
         Preconditions.checkArgument(data.getAmmoAmount() >= 1, "ammo count must >= 1");
         int[] extendedMagAmmoAmount = data.getExtendedMagAmmoAmount();

@@ -37,7 +37,7 @@ public class InteractKeyTextOverlay implements LayeredDraw.Layer {
         if (player == null || player.isSpectator()) {
             return;
         }
-        if (!IGun.mainHandHoldGun(player)) {
+        if (!IGun.mainhandHoldGun(player)) {
             return;
         }
         HitResult hitResult = mc.hitResult;

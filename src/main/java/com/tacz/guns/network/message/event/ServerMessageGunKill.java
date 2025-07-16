@@ -29,14 +29,14 @@ public record ServerMessageGunKill(int bulletId, int killEntityId, int attackerI
     public static final CustomPacketPayload.Type<ServerMessageGunKill> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_kill"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunKill> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.INT, ServerMessageGunKill::bulletId,
-            ByteBufCodecs.INT, ServerMessageGunKill::killEntityId,
-            ByteBufCodecs.INT, ServerMessageGunKill::attackerId,
-            ResourceLocation.STREAM_CODEC, ServerMessageGunKill::gunId,
-            ResourceLocation.STREAM_CODEC, ServerMessageGunKill::gunDisplayId,
-            ByteBufCodecs.FLOAT, ServerMessageGunKill::baseDamage,
-            ByteBufCodecs.BOOL, ServerMessageGunKill::isHeadShot,
-            ByteBufCodecs.FLOAT, ServerMessageGunKill::headshotMultiplier,
+            ByteBufCodecs.INT.fieldOf(ServerMessageGunKill::bulletId),
+            ByteBufCodecs.INT.fieldOf(ServerMessageGunKill::killEntityId),
+            ByteBufCodecs.INT.fieldOf(ServerMessageGunKill::attackerId),
+            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunKill::gunId),
+            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunKill::gunDisplayId),
+            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunKill::baseDamage),
+            ByteBufCodecs.BOOL.fieldOf(ServerMessageGunKill::isHeadShot),
+            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunKill::headshotMultiplier),
             ServerMessageGunKill::new
     );
 

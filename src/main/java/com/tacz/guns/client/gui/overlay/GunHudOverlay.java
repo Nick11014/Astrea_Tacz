@@ -166,7 +166,7 @@ public class GunHudOverlay implements LayeredDraw.Layer {
         // graphics.blit(hudTexture, width - 117, height - 44, 0, 0, 39, 13, 39, 13);
 
         // ...existing code...
-        FireMode fireMode = IGun.getMainHandFireMode(player);
+        FireMode fireMode = IGun.getMainhandFireMode(player);
         ResourceLocation fireModeTexture = switch (fireMode) {
             case AUTO -> AUTO;
             case BURST -> BURST;

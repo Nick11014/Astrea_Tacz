@@ -55,7 +55,7 @@ public class InteractKey {
             if (player == null || player.isSpectator()) {
                 return false;
             }
-            if (!IGun.mainHandHoldGun(player)) {
+            if (!IGun.mainhandHoldGun(player)) {
                 return false;
             }
             HitResult hitResult = mc.hitResult;
@@ -80,7 +80,7 @@ public class InteractKey {
         if (player == null || player.isSpectator()) {
             return;
         }
-        if (!IGun.mainHandHoldGun(player)) {
+        if (!IGun.mainhandHoldGun(player)) {
             return;
         }
         HitResult hitResult = mc.hitResult;

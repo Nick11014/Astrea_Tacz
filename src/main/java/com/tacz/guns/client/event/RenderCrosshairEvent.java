@@ -50,7 +50,7 @@ public class RenderCrosshairEvent {
             if (player == null) {
                 return;
             }
-            if (!IGun.mainHandHoldGun(player)) {
+            if (!IGun.mainhandHoldGun(player)) {
                 return;
             }
             event.setCanceled(true);

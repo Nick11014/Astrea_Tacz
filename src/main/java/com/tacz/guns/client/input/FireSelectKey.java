@@ -48,7 +48,7 @@ public class FireSelectKey {
             if (player == null || player.isSpectator()) {
                 return false;
             }
-            if (IGun.mainHandHoldGun(player)) {
+            if (IGun.mainhandHoldGun(player)) {
                 IClientPlayerGunOperator.fromLocalPlayer(player).fireSelect();
                 return true;
             }
@@ -61,7 +61,7 @@ public class FireSelectKey {
         if (player == null || player.isSpectator()) {
             return;
         }
-        if (IGun.mainHandHoldGun(player)) {
+        if (IGun.mainhandHoldGun(player)) {
             IClientPlayerGunOperator.fromLocalPlayer(player).fireSelect();
         }
     }

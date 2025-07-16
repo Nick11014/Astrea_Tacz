@@ -75,14 +75,8 @@ public final class SyncedEntityDataEvent {
     }
 
     @SubscribeEvent
-    public static void onServerTick(ServerTickEvent event) {
+    public static void onServerTick(ServerTickEvent.Post event) {
         SyncedEntityData instance = SyncedEntityData.instance();
-        if (event.getSide() != LogicalSide.SERVER) {
-            return;
-        }
-        if (event.getPhase() != ServerTickEvent.Phase.END) {
-            return;
-        }
         if (!instance.isDirty()) {
             return;
         }

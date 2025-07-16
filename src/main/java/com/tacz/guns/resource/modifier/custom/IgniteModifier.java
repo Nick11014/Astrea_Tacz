@@ -36,7 +36,7 @@ public class IgniteModifier implements IAttachmentModifier<Ignite, Ignite> {
     }
 
     @Override
-    public CacheValue<Ignite> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<Ignite> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         Ignite ignite = gunData.getBulletData().getIgnite();
         return new CacheValue<>(ignite);
     }

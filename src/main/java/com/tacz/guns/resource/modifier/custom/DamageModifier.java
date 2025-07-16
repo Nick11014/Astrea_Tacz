@@ -109,7 +109,7 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
     }
 
     @Override
-    public CacheValue<Object> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+    public CacheValue<Object> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         // Minimal implementation
         return new CacheValue<>(null);
     }

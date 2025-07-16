@@ -132,19 +132,19 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
         if (stack.isEmpty()) return null;
         
         return switch (key) {
-            case "current_ammo" -> stack.get(ModDataComponents.GUN_CURRENT_AMMO_COUNT.get());
-            case "has_bullet_in_barrel" -> stack.get(ModDataComponents.GUN_HAS_BULLET_IN_BARREL.get());
-            case "gun_fire_mode" -> stack.get(ModDataComponents.GUN_FIRE_MODE.get());
+            case "current_ammo" -> stack.get(ModDataComponents.CURRENT_AMMO_COUNT.get());
+            case "has_bullet_in_barrel" -> stack.get(ModDataComponents.BULLET_IN_BARREL.get());
+            case "gun_fire_mode" -> stack.get(ModDataComponents.FIRE_MODE.get());
             case "gun_id" -> stack.get(ModDataComponents.GUN_ID.get());
-            case "gun_exp" -> stack.get(ModDataComponents.GUN_EXP.get());
+            case "gun_exp" -> stack.get(ModDataComponents.EXP.get());
             case "gun_attachments" -> stack.get(ModDataComponents.GUN_ATTACHMENTS.get());
-            case "gun_dummy_ammo" -> stack.get(ModDataComponents.GUN_DUMMY_AMMO.get());
-            case "gun_max_dummy_ammo" -> stack.get(ModDataComponents.GUN_MAX_DUMMY_AMMO.get());
-            case "gun_attachment_lock" -> stack.get(ModDataComponents.GUN_ATTACHMENT_LOCK.get());
+            case "gun_dummy_ammo" -> stack.get(ModDataComponents.DUMMY_AMMO_AMOUNT.get());
+            case "gun_max_dummy_ammo" -> stack.get(ModDataComponents.MAX_DUMMY_AMMO_AMOUNT.get());
+            case "gun_attachment_lock" -> stack.get(ModDataComponents.ATTACHMENT_LOCK.get());
             case "gun_display_id" -> stack.get(ModDataComponents.GUN_DISPLAY_ID.get());
             case "laser_color" -> stack.get(ModDataComponents.LASER_COLOR.get());
-            case "gun_overheat" -> stack.get(ModDataComponents.GUN_OVERHEAT.get());
-            case "gun_overheat_lock" -> stack.get(ModDataComponents.GUN_OVERHEAT_LOCK.get());
+            case "gun_overheat" -> stack.get(ModDataComponents.HEAT_AMOUNT.get());
+            case "gun_overheat_lock" -> stack.get(ModDataComponents.OVERHEAT_LOCKED.get());
             case "ammo_id" -> stack.get(ModDataComponents.AMMO_ID.get());
             case "attachment_id" -> stack.get(ModDataComponents.ATTACHMENT_ID.get());
             case "ammo_box_ammo_id" -> stack.get(ModDataComponents.AMMO_BOX_AMMO_ID.get());
@@ -168,18 +168,17 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
         switch (key) {
             case "current_ammo" -> {
                 if (value instanceof Integer intValue) {
-                    stack.set((DataComponentType<Integer>) ModDataComponents.GUN_CURRENT_AMMO_COUNT.get(), intValue);
+                    stack.set((DataComponentType<Integer>) ModDataComponents.CURRENT_AMMO_COUNT.get(), intValue);
                 }
             }
             case "has_bullet_in_barrel" -> {
                 if (value instanceof Boolean boolValue) {
-                    stack.set((DataComponentType<Boolean>) ModDataComponents.GUN_HAS_BULLET_IN_BARREL.get(), boolValue);
+                    stack.set((DataComponentType<Boolean>) ModDataComponents.BULLET_IN_BARREL.get(), boolValue);
                 }
             }
             case "gun_fire_mode" -> {
-                if (value instanceof Integer intValue) {
-                    var fireMode = FireMode.values()[intValue % FireMode.values().length];
-                    stack.set(ModDataComponents.GUN_FIRE_MODE.get(), fireMode);
+                if (value instanceof String stringValue) {
+                    stack.set(ModDataComponents.FIRE_MODE.get(), stringValue);
                 }
             }
             case "gun_id" -> {
@@ -189,22 +188,22 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
             }
             case "gun_exp" -> {
                 if (value instanceof Integer intValue) {
-                    stack.set((DataComponentType<Integer>) ModDataComponents.GUN_EXP.get(), intValue);
+                    stack.set((DataComponentType<Integer>) ModDataComponents.EXP.get(), intValue);
                 }
             }
             case "gun_dummy_ammo" -> {
                 if (value instanceof Integer intValue) {
-                    stack.set((DataComponentType<Integer>) ModDataComponents.GUN_DUMMY_AMMO.get(), intValue);
+                    stack.set((DataComponentType<Integer>) ModDataComponents.DUMMY_AMMO_AMOUNT.get(), intValue);
                 }
             }
             case "gun_max_dummy_ammo" -> {
                 if (value instanceof Integer intValue) {
-                    stack.set((DataComponentType<Integer>) ModDataComponents.GUN_MAX_DUMMY_AMMO.get(), intValue);
+                    stack.set((DataComponentType<Integer>) ModDataComponents.MAX_DUMMY_AMMO_AMOUNT.get(), intValue);
                 }
             }
             case "gun_attachment_lock" -> {
                 if (value instanceof Boolean boolValue) {
-                    stack.set((DataComponentType<Boolean>) ModDataComponents.GUN_ATTACHMENT_LOCK.get(), boolValue);
+                    stack.set((DataComponentType<Boolean>) ModDataComponents.ATTACHMENT_LOCK.get(), boolValue);
                 }
             }
             case "gun_display_id" -> {
@@ -219,12 +218,12 @@ public record LuaNbtAccessor(ItemStack stack, CompoundTag fallbackNbt) {
             }
             case "gun_overheat" -> {
                 if (value instanceof Float floatValue) {
-                    stack.set((DataComponentType<Float>) ModDataComponents.GUN_OVERHEAT.get(), floatValue);
+                    stack.set((DataComponentType<Float>) ModDataComponents.HEAT_AMOUNT.get(), floatValue);
                 }
             }
             case "gun_overheat_lock" -> {
                 if (value instanceof Boolean boolValue) {
-                    stack.set((DataComponentType<Boolean>) ModDataComponents.GUN_OVERHEAT_LOCK.get(), boolValue);
+                    stack.set((DataComponentType<Boolean>) ModDataComponents.OVERHEAT_LOCKED.get(), boolValue);
                 }
             }
             case "ammo_id" -> {

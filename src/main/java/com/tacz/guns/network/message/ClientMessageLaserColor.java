@@ -29,10 +29,10 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
     public static final CustomPacketPayload.Type<ClientMessageLaserColor> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_laser_color"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageLaserColor> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.map(HashMap::new, ByteBufCodecs.fromEnum(AttachmentType.class), ByteBufCodecs.INT), ClientMessageLaserColor::colorMap,
-            ByteBufCodecs.BOOL, ClientMessageLaserColor::applyGunColor,
-            ByteBufCodecs.INT, ClientMessageLaserColor::gunColor,
-            ByteBufCodecs.INT, ClientMessageLaserColor::gunSlotIndex,
+            ByteBufCodecs.map(HashMap::new, ByteBufCodecs.fromEnum(AttachmentType::values), ByteBufCodecs.INT).fieldOf(ClientMessageLaserColor::colorMap),
+            ByteBufCodecs.BOOL.fieldOf(ClientMessageLaserColor::applyGunColor),
+            ByteBufCodecs.INT.fieldOf(ClientMessageLaserColor::gunColor),
+            ByteBufCodecs.INT.fieldOf(ClientMessageLaserColor::gunSlotIndex),
             ClientMessageLaserColor::new
     );
 

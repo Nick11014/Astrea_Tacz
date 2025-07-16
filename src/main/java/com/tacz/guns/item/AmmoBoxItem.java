@@ -90,8 +90,7 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
     }
 
     private static int getTagColor(ItemStack stack) {
-        CompoundTag compoundtag = stack.getOrCreateTagElement(DISPLAY_TAG);
-        return compoundtag != null && compoundtag.contains(COLOR_TAG, Tag.TAG_ANY_NUMERIC) ? compoundtag.getInt(COLOR_TAG) : 0x727d6b;
+        return stack.getOrDefault(com.tacz.guns.init.ModDataComponents.AMMO_BOX_COLOR.get(), 0x727d6b);
     }
 
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack pOther, Slot slot, ClickAction action, Player player, SlotAccess access) {
@@ -254,7 +253,6 @@ public class AmmoBoxItem extends Item implements /* DyeableLeatherItem, */ AmmoB
         return Optional.of(new AmmoBoxTooltip(stack, ammoStack, ammoCount));
     }
 
-    @Override
     public void appendHoverText(ItemStack stack, @Nullable Level pLevel, List<Component> components, TooltipFlag isAdvanced) {
         if (isAllTypeCreative(stack)) {
             components.add(Component.translatable("tooltip.tacz.ammo_box.usage.all_type_creative").withStyle(ChatFormatting.GOLD));

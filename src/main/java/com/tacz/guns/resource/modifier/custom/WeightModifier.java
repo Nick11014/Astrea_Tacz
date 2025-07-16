@@ -44,7 +44,7 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         return new CacheValue<>(gunData.getWeight());
     }
 

@@ -117,7 +117,7 @@ public class ProjectileExplosion extends Explosion {
         Vec3 explosionPos = new Vec3(this.x, this.y, this.z);
 
         for (Entity entity : entities) {
-            if (entity.ignoreExplosion()) {
+            if (entity.ignoreExplosion(this)) {
                 continue;
             }
 

@@ -37,7 +37,7 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
     }
 
     @Override
-    public CacheValue<Integer> initCache(ItemStack gunItem, GunData gunData, Slot<ItemStack> slot) {
+    public CacheValue<Integer> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         int pierce = gunData.getBulletData().getPierce();
         return new CacheValue<>(pierce);
     }

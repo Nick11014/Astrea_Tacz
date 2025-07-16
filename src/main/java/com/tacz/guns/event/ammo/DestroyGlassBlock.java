@@ -22,6 +22,8 @@ public class DestroyGlassBlock {
         Level level = event.getLevel();
         BlockState state = event.getState();
         BlockPos pos = event.getHitResult().getBlockPos();
+        Block stateBlock = state.getBlock();
+        NoteBlockInstrument instrument = state.instrument();
         if (AmmoConfig.DESTROY_GLASS.get() && (instrument.equals(NoteBlockInstrument.HAT) || // Glass blocks
                 stateBlock instanceof StainedGlassPaneBlock ||
                 (stateBlock instanceof IronBarsBlock && instrument.equals(NoteBlockInstrument.HAT)))) {

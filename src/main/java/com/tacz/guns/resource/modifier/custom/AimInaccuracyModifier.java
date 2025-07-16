@@ -39,7 +39,7 @@ public class AimInaccuracyModifier implements IAttachmentModifier<Map<Inaccuracy
     }
 
     @Override
-    public CacheValue<Map<InaccuracyType, Float>> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+    public CacheValue<Map<InaccuracyType, Float>> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         Map<InaccuracyType, Float> tmp = Maps.newHashMap();
         return new CacheValue<>(tmp);
     }

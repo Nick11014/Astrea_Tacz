@@ -49,9 +49,9 @@ import java.util.function.Supplier;
 public class ModernKineticGunItem extends AbstractGunItem implements GunItemDataAccessor {
     public static final String TYPE_NAME = "modern_kinetic";
 
+    private static final ResourceLocation MELEE_DAMAGE_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath("tacz", "melee_damage_modifier");
     private static final DoubleFunction<AttributeModifier> AM_FACTORY = amount -> new AttributeModifier(
-            UUID.randomUUID(), "TACZ Melee Damage",
-            amount, AttributeModifier.Operation.ADDITION
+            MELEE_DAMAGE_MODIFIER_ID, amount, AttributeModifier.Operation.ADD_VALUE
     );
 
     public ModernKineticGunItem() {
@@ -463,7 +463,7 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
             }
             int time = Math.max(0, data.getTime() * 20);
             int amplifier = Math.max(0, data.getAmplifier());
-            MobEffectInstance effectInstance = new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.getHolderOrThrow(data.getEffectId()), time, amplifier, false, data.isHideParticles());
+            MobEffectInstance effectInstance = new MobEffectInstance(mobEffect.builtInRegistryHolder(), time, amplifier, false, data.isHideParticles());
             target.addEffect(effectInstance);
         }
         if (user.level() instanceof ServerLevel serverLevel) {

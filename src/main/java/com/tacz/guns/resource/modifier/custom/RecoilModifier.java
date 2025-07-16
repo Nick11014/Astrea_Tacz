@@ -61,7 +61,7 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
     }
 
     @Override
-    public CacheValue<ParameterizedCachePair<Float, Float>> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<ParameterizedCachePair<Float, Float>> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         GunRecoil recoil = gunData.getRecoil();
         if (recoil == null) {
             return new CacheValue<>(ParameterizedCachePair.of(0f, 0f));

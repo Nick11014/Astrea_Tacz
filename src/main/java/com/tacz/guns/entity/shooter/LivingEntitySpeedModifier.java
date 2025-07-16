@@ -9,7 +9,6 @@ import com.tacz.guns.resource.modifier.custom.WeightModifier;
 import com.tacz.guns.resource.pojo.data.gun.MoveSpeed;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 
@@ -40,10 +39,9 @@ public class LivingEntitySpeedModifier {
                     float targetSpeed = cacheProperty.getCache(WeightModifier.ID);
                     targetSpeed *= (float) -weightFactor;
                     AttributeModifier currentModifier = speedModifier.getModifier(WEIGHT_SPEED_MODIFIER_ID);
-                    if (currentModifier == null || currentModifier.getAmount() != targetSpeed) {
+                    if (currentModifier == null || currentModifier.amount() != targetSpeed) {
                         speedModifier.removeModifier(WEIGHT_SPEED_MODIFIER_ID);
-                        speedModifier.addTransientModifier(new AttributeModifier(WEIGHT_SPEED_MODIFIER_ID, "Gun Speed Modifier",
-                                targetSpeed, AttributeModifier.Operation.MULTIPLY_BASE));
+                        speedModifier.addTransientModifier(new AttributeModifier(WEIGHT_SPEED_MODIFIER_ID, targetSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
                     }
                 }
 
@@ -51,11 +49,9 @@ public class LivingEntitySpeedModifier {
                 if (speed != null) {
                     double targetSpeed = getTargetSpeed(speed);
                     AttributeModifier currentModifier = speedModifier.getModifier(EXTRA_SPEED_MODIFIER_ID);
-                    if (currentModifier == null || !currentModifier.equals(new AttributeModifier(EXTRA_SPEED_MODIFIER_ID, "Extra Gun Speed Modifier",
-                            targetSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL))) {
+                    if (currentModifier == null || !currentModifier.equals(new AttributeModifier(EXTRA_SPEED_MODIFIER_ID, targetSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL))) {
                         speedModifier.removeModifier(EXTRA_SPEED_MODIFIER_ID);
-                        speedModifier.addTransientModifier(new AttributeModifier(EXTRA_SPEED_MODIFIER_ID, "Extra Gun Speed Modifier",
-                                targetSpeed, AttributeModifier.Operation.MULTIPLY_TOTAL));
+                        speedModifier.addTransientModifier(new AttributeModifier(EXTRA_SPEED_MODIFIER_ID, targetSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
                     }
                 }
             }

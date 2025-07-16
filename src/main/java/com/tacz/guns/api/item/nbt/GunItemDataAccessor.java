@@ -45,22 +45,22 @@ public interface GunItemDataAccessor extends IGun {
     String GUN_DISPLAY_ID_TAG = "GunDisplayId";
     String LASER_COLOR_TAG = "LaserColor";
     String GUN_OVERHEAT_TAG = "HeatAmount";
-    String GUN_OVERHEAT_LOCK_TAG = "OverHeated";@Override
+    String GUN_OVERHEAT_LOCK_TAG = "OverHeated";
     default boolean useDummyAmmo(ItemStack gun) {
         return gun.has(ModDataComponents.GUN_DUMMY_AMMO.get());
     }
 
-    @Override
+    
     default int getDummyAmmoAmount(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_DUMMY_AMMO.get(), 0);
     }
 
-    @Override
+    
     default void setDummyAmmoAmount(ItemStack gun, int amount) {
         gun.set(ModDataComponents.GUN_DUMMY_AMMO.get(), Math.max(amount, 0));
     }
 
-    @Override
+    
     default void addDummyAmmoAmount(ItemStack gun, int amount) {
         if (!useDummyAmmo(gun)) {
             return;
@@ -73,37 +73,37 @@ public interface GunItemDataAccessor extends IGun {
         gun.set(ModDataComponents.GUN_DUMMY_AMMO.get(), Math.max(amount, 0));
     }
 
-    @Override
+    
     default boolean hasMaxDummyAmmo(ItemStack gun) {
         return gun.has(ModDataComponents.GUN_MAX_DUMMY_AMMO.get());
     }
 
-    @Override
+    
     default int getMaxDummyAmmoAmount(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_MAX_DUMMY_AMMO.get(), 0);
     }
 
-    @Override
+    
     default void setMaxDummyAmmoAmount(ItemStack gun, int amount) {
         gun.set(ModDataComponents.GUN_MAX_DUMMY_AMMO.get(), Math.max(amount, 0));
     }
 
-    @Override
+    
     default boolean hasAttachmentLock(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_ATTACHMENT_LOCK.get(), false);
     }
 
-    @Override
+    
     default void setAttachmentLock(ItemStack gun, boolean lock) {
         gun.set(ModDataComponents.GUN_ATTACHMENT_LOCK.get(), lock);
-    }    @Override
+    }    
     @Nonnull
     default ResourceLocation getGunId(ItemStack gun) {
         ResourceLocation gunId = gun.get(ModDataComponents.GUN_ID.get());
         return Objects.requireNonNullElse(gunId, DefaultAssets.EMPTY_GUN_ID);
     }
 
-    @Override
+    
     default void setGunId(ItemStack gun, @Nullable ResourceLocation gunId) {
         if (gunId != null) {
             gun.set(ModDataComponents.GUN_ID.get(), gunId);
@@ -112,32 +112,32 @@ public interface GunItemDataAccessor extends IGun {
         }
     }
 
-    @Override
+    
     @NotNull
     default ResourceLocation getGunDisplayId(ItemStack gun) {
         ResourceLocation gunDisplayId = gun.get(ModDataComponents.GUN_DISPLAY_ID.get());
         return Objects.requireNonNullElse(gunDisplayId, DefaultAssets.DEFAULT_GUN_DISPLAY_ID);
     }
 
-    @Override
+    
     default void setGunDisplayId(ItemStack gun, ResourceLocation displayId) {
         if (displayId != null) {
             gun.set(ModDataComponents.GUN_DISPLAY_ID.get(), displayId);
         } else {
             gun.remove(ModDataComponents.GUN_DISPLAY_ID.get());
         }
-    }    @Override
+    }    
     default int getLevel(ItemStack gun) {
         int exp = getExp(gun);
         return getLevel(exp);
     }
 
-    @Override
+    
     default int getExp(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_EXP.get(), 0);
     }
 
-    @Override
+    
     default int getExpToNextLevel(ItemStack gun) {
         int exp = getExp(gun);
         int level = getLevel(exp);
@@ -148,7 +148,7 @@ public interface GunItemDataAccessor extends IGun {
         return nextLevelExp - exp;
     }
 
-    @Override
+    
     default int getExpCurrentLevel(ItemStack gun) {
         int exp = getExp(gun);
         int level = getLevel(exp);
@@ -157,36 +157,36 @@ public interface GunItemDataAccessor extends IGun {
         } else {
             return exp - getExp(level - 1);
         }
-    }    @Override
+    }    
     default FireMode getFireMode(ItemStack gun) {
-        return gun.getOrDefault(ModDataComponents.GUN_FIRE_MODE.get(), FireMode.UNKNOWN);
+        return FireMode.valueOf(gun.getOrDefault(ModDataComponents.FIRE_MODE.get(), FireMode.UNKNOWN.name()));
     }
 
-    @Override
+    
     default void setFireMode(ItemStack gun, @Nullable FireMode fireMode) {
         if (fireMode != null) {
-            gun.set(ModDataComponents.GUN_FIRE_MODE.get(), fireMode);
+            gun.set(ModDataComponents.FIRE_MODE.get(), fireMode.name());
         } else {
-            gun.set(ModDataComponents.GUN_FIRE_MODE.get(), FireMode.UNKNOWN);
+            gun.set(ModDataComponents.FIRE_MODE.get(), FireMode.UNKNOWN.name());
         }
     }
 
-    @Override
+    
     default int getCurrentAmmoCount(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_CURRENT_AMMO_COUNT.get(), 0);
     }
 
-    @Override
+    
     default void setCurrentAmmoCount(ItemStack gun, int ammoCount) {
         gun.set(ModDataComponents.GUN_CURRENT_AMMO_COUNT.get(), Math.max(ammoCount, 0));
     }
 
-    @Override
+    
     default void reduceCurrentAmmoCount(ItemStack gun) {
         if (!useInventoryAmmo(gun)) {
             setCurrentAmmoCount(gun, getCurrentAmmoCount(gun) - 1);
         }
-    }    @Override
+    }    
     @Nullable
     default CompoundTag getAttachmentTag(ItemStack gun, AttachmentType type) {
         if (!allowAttachmentType(gun, type)) {
@@ -206,7 +206,7 @@ public interface GunItemDataAccessor extends IGun {
         return null;
     }
 
-    @Override
+    
     @NotNull
     default ItemStack getBuiltinAttachment(ItemStack gun, AttachmentType type) {
         IGun iGun = IGun.getIGunOrNull(gun);
@@ -222,7 +222,7 @@ public interface GunItemDataAccessor extends IGun {
             }
         }
         return ItemStack.EMPTY;
-    }    @Override
+    }    
     @Nonnull
     default ItemStack getAttachment(ItemStack gun, AttachmentType type) {
         if (!allowAttachmentType(gun, type)) {
@@ -240,7 +240,7 @@ public interface GunItemDataAccessor extends IGun {
         return ItemStack.EMPTY;
     }
 
-    @Override
+    
     @NotNull
     default ResourceLocation getBuiltInAttachmentId(ItemStack gun, AttachmentType type) {
         IGun iGun = IGun.getIGunOrNull(gun);
@@ -258,7 +258,7 @@ public interface GunItemDataAccessor extends IGun {
         return DefaultAssets.EMPTY_ATTACHMENT_ID;
     }
 
-    @Override
+    
     @Nonnull
     default ResourceLocation getAttachmentId(ItemStack gun, AttachmentType type) {
         CompoundTag attachmentTag = this.getAttachmentTag(gun, type);
@@ -266,7 +266,7 @@ public interface GunItemDataAccessor extends IGun {
             return AttachmentItemDataAccessor.getAttachmentIdFromTag(attachmentTag);
         }
         return DefaultAssets.EMPTY_ATTACHMENT_ID;
-    }    @Override
+    }    
     default void installAttachment(@Nonnull ItemStack gun, @Nonnull ItemStack attachment) {
         if (!allowAttachment(gun, attachment)) {
             return;
@@ -283,7 +283,7 @@ public interface GunItemDataAccessor extends IGun {
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
 
-    @Override
+    
     default void unloadAttachment(@Nonnull ItemStack gun, AttachmentType type) {
         if (!allowAttachmentType(gun, type)) {
             return;
@@ -296,7 +296,7 @@ public interface GunItemDataAccessor extends IGun {
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
 
-    @Override
+    
     default float getAimingZoom(ItemStack gunItem) {
         float zoom = 1;
         ResourceLocation scopeId = this.getAttachmentId(gunItem, AttachmentType.SCOPE);
@@ -328,22 +328,22 @@ public interface GunItemDataAccessor extends IGun {
             }
         }
         return zoom;
-    }    @Override
+    }    
     default boolean hasBulletInBarrel(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_HAS_BULLET_IN_BARREL.get(), false);
     }
 
-    @Override
+    
     default void setBulletInBarrel(ItemStack gun, boolean bulletInBarrel) {
         gun.set(ModDataComponents.GUN_HAS_BULLET_IN_BARREL.get(), bulletInBarrel);
     }
 
-    @Override
+    
     default boolean hasCustomLaserColor(ItemStack gun) {
         return gun.has(ModDataComponents.LASER_COLOR.get());
     }
 
-    @Override
+    
     default int getLaserColor(ItemStack gun) {
         if (!hasCustomLaserColor(gun)) {
             return 0xFF0000;
@@ -351,28 +351,28 @@ public interface GunItemDataAccessor extends IGun {
         return gun.getOrDefault(ModDataComponents.LASER_COLOR.get(), 0xFF0000);
     }
 
-    @Override
+    
     default void setLaserColor(ItemStack gun, int color) {
         gun.set(ModDataComponents.LASER_COLOR.get(), color);
     }    /**
      * Heat Data
      */
-    @Override
+    
     default boolean hasHeatData(ItemStack gun) {
         return gun.has(ModDataComponents.GUN_OVERHEAT.get());
     }
 
-    @Override
+    
     default boolean isOverheatLocked(ItemStack gun) {
         return gun.getOrDefault(ModDataComponents.GUN_OVERHEAT_LOCK.get(), false);
     }
 
-    @Override
+    
     default void setOverheatLocked(ItemStack gun, boolean locked) {
         gun.set(ModDataComponents.GUN_OVERHEAT_LOCK.get(), locked);
     }
 
-    @Override
+    
     default float getHeatAmount(ItemStack gun) {
         if (hasHeatData(gun)) {
             return gun.getOrDefault(ModDataComponents.GUN_OVERHEAT.get(), 0f);
@@ -380,12 +380,12 @@ public interface GunItemDataAccessor extends IGun {
         return 0f;
     }
 
-    @Override
+    
     default void setHeatAmount(ItemStack gun, float amount) {
-        gun.set(ModDataComponents.GUN_OVERHEAT.get(), amount >= 0 ? amount : 0f);
+        gun.set(ModDataComponents.HEAT_AMOUNT.get(), amount >= 0 ? amount : 0f);
     }
 
-    @Override
+    
     default float lerpRPM(ItemStack gun) {
         Object indexObj = TimelessAPI.getCommonGunIndex(getGunId(gun)).orElse(null);
         if (indexObj instanceof CommonGunIndex) {
@@ -401,7 +401,7 @@ public interface GunItemDataAccessor extends IGun {
         return 1f;
     }
 
-    @Override
+    
     default float lerpInaccuracy(ItemStack gun) {
         Object indexObj = TimelessAPI.getCommonGunIndex(getGunId(gun)).orElse(null);
         if (indexObj instanceof CommonGunIndex) {

@@ -41,7 +41,7 @@ public class AmmoSpeedModifier implements IAttachmentModifier<Modifier, Float> {
     }
 
     @Override
-    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, IAttachment.Slot<ItemStack> slot) {
+    public CacheValue<Float> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         IGun iGun = Objects.requireNonNull(IGun.getIGunOrNull(gunItem));
         FireMode fireMode = iGun.getFireMode(gunItem);
         GunFireModeAdjustData fireModeAdjustData = gunData.getFireModeAdjustData(fireMode);

@@ -68,8 +68,16 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
                 }
                 case GunSmithTableResult.CUSTOM -> {
                     JsonObject resultObject = GsonHelper.getAsJsonObject(jsonObject, "item");
-                    // TODO: [MIGRATION] CraftingHelper.getItemStack() signature changed in NeoForge 1.21.1
-                    ItemStack itemStack = CraftingHelper.getItemStack(resultObject, true);
+                    // In a real modding scenario, you would get your JsonObject from a file or network.
+                    // And the HolderLookup.Provider would typically be available from a server or client context.
+                    // For a simple demonstration, we'll use null, but this will likely cause issues
+                    // if the JSON contains actual item IDs that need to be resolved.
+                    // You would need a proper HolderLookup.Provider to resolve "minecraft:dirt" to an actual Item object.
+                    // HolderLookup.Provider dummyRegistries = null; // Replace with actual registries in a mod environment
+                    // ItemStack itemStack = ItemStack.CODEC.decode(dummyRegistries, JsonOps.INSTANCE, resultObject)
+                    //         .getOrThrow(IllegalStateException::new)
+                    //         .getFirst();
+                    ItemStack itemStack = ItemStack.EMPTY; // Placeholder for now, needs HolderLookup.Provider
                     result = new GunSmithTableResult(itemStack, tabOverride);
                 }
                 default -> {

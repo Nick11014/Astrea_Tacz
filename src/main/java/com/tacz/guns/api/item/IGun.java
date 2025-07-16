@@ -38,37 +38,11 @@ public interface IGun {
         return null;
     }
 
-    /**
-     * ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¦Ã…â€™Ã‚ÂÃƒÂ¦Ã…Â¾Ã‚Âª
-     */
-    @Deprecated
     static boolean mainhandHoldGun(LivingEntity livingEntity) {
         return livingEntity.getMainHandItem().getItem() instanceof IGun;
     }
 
-    /**
-     * ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¥Ã‚ÂÃ‚Â¦ÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¦Ã…â€™Ã‚ÂÃƒÂ¦Ã…Â¾Ã‚Âª
-     */
-    static boolean mainHandHoldGun(LivingEntity livingEntity) {
-        return livingEntity.getMainHandItem().getItem() instanceof IGun;
-    }
-
-    /**
-     * ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚Â
-     */
-    @Deprecated
     static FireMode getMainhandFireMode(LivingEntity livingEntity) {
-        ItemStack mainHandItem = livingEntity.getMainHandItem();
-        if (mainHandItem.getItem() instanceof IGun iGun) {
-            return iGun.getFireMode(mainHandItem);
-        }
-        return FireMode.UNKNOWN;
-    }
-
-    /**
-     * ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¤Ã‚Â¸Ã‚Â»ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â¼Ã¢â€šÂ¬ÃƒÂ§Ã‚ÂÃ‚Â«ÃƒÂ¦Ã‚Â¨Ã‚Â¡ÃƒÂ¥Ã‚Â¼Ã‚Â
-     */
-    static FireMode getMainHandFireMode(LivingEntity livingEntity) {
         ItemStack mainHandItem = livingEntity.getMainHandItem();
         if (mainHandItem.getItem() instanceof IGun iGun) {
             return iGun.getFireMode(mainHandItem);

@@ -39,7 +39,7 @@ public class ExtraMovementModifier implements IAttachmentModifier<MoveSpeed, Mov
     }
 
     @Override
-    public CacheValue<MoveSpeed> initCache(ItemStack gunItem, GunData gunData) {
+    public CacheValue<MoveSpeed> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         return new CacheValue<>(gunData.getMoveSpeed());
     }
 

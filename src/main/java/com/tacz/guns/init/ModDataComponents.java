@@ -2,346 +2,300 @@ package com.tacz.guns.init;
 
 import com.mojang.serialization.Codec;
 import com.tacz.guns.GunMod;
-import com.tacz.guns.api.item.gun.FireMode;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 
-/**
- * Registra todos os DataComponents necessÃƒÆ’Ã‚Â¡rios para substituir o sistema NBT
- * usado anteriormente para armazenar dados de armas, muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes e acessÃƒÆ’Ã‚Â³rios.
- * 
- * Esta ÃƒÆ’Ã‚Â© a migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o principal da versÃƒÆ’Ã‚Â£o 1.20.1 para 1.21.1 do Minecraft,
- * onde ItemStack.getOrCreateTag() foi substituÃƒÆ’Ã‚Â­do por DataComponents.
- */
 public class ModDataComponents {
-    /**
-     * Modificador de tempo de ADS (float)
-     * Substitui: ADS_ADDEND (usado em acessórios)
-     */
-    public static final Supplier<DataComponentType<Float>> ADS_ADDEND = COMPONENTS.register("ads_addend",
-        () -> DataComponentType.<Float>builder()
-            .persistent(Codec.FLOAT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.FLOAT)
-            .build()
-    );
-    public static final DeferredRegister<DataComponentType<?>> COMPONENTS = 
-        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
 
-    // === DADOS DE ARMAS ===
-    
-    /**
-     * ID da arma (ResourceLocation)
-     * Substitui: GUN_ID_TAG
-     */
-    public static final Supplier<DataComponentType<ResourceLocation>> GUN_ID = COMPONENTS.register("gun_id",
-        () -> DataComponentType.<ResourceLocation>builder()
-            .persistent(ResourceLocation.CODEC)
-            .networkSynchronized(ResourceLocation.STREAM_CODEC)
-            .build()
+    public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES =
+                                                                                                DeferredRegister.create(net.minecraft.core.registries.BuiltInRegistries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
+
+    public static final Supplier<DataComponentType<Integer>> AMMO_BOX_COLOR = DATA_COMPONENT_TYPES.register(
+            "ammo_box_color",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
     );
 
-    /**
-     * Modo de tiro da arma (FireMode)
-     * Substitui: GUN_FIRE_MODE_TAG
-     */
-    public static final Supplier<DataComponentType<FireMode>> GUN_FIRE_MODE = COMPONENTS.register("gun_fire_mode",
-        () -> DataComponentType.<FireMode>builder()
-            .persistent(FireMode.CODEC)
-            .networkSynchronized(FireMode.STREAM_CODEC)
-            .build()
+    public static final Supplier<DataComponentType<ResourceLocation>> AMMO_BOX_AMMO_ID = DATA_COMPONENT_TYPES.register(
+            "ammo_box_ammo_id",
+            () -> DataComponentType.<ResourceLocation>builder()
+                    .persistent(ResourceLocation.CODEC)
+                    .build()
     );
 
-    /**
-     * Se hÃƒÆ’Ã‚Â¡ bala no cano (boolean)
-     * Substitui: GUN_HAS_BULLET_IN_BARREL
-     */
-    public static final Supplier<DataComponentType<Boolean>> GUN_HAS_BULLET_IN_BARREL = COMPONENTS.register("gun_has_bullet_in_barrel",
-        () -> DataComponentType.<Boolean>builder()
-            .persistent(Codec.BOOL)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
-            .build()
+    public static final Supplier<DataComponentType<Integer>> AMMO_BOX_AMOUNT = DATA_COMPONENT_TYPES.register(
+            "ammo_box_amount",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
     );
 
-    /**
-     * Quantidade atual de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na arma (int)
-     * Substitui: GUN_CURRENT_AMMO_COUNT_TAG
-     */
-    public static final Supplier<DataComponentType<Integer>> GUN_CURRENT_AMMO_COUNT = COMPONENTS.register("gun_current_ammo_count",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<Integer>> AMMO_BOX_LEVEL = DATA_COMPONENT_TYPES.register(
+            "ammo_box_level",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
     );
 
-    /**
-     * Dados de acessÃƒÆ’Ã‚Â³rios da arma (CompoundTag)
-     * Substitui: GUN_ATTACHMENT_BASE + sufixos
-     * Nota: Mantendo CompoundTag temporariamente para facilitar a migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
-     */
-    public static final Supplier<DataComponentType<CompoundTag>> GUN_ATTACHMENTS = COMPONENTS.register("gun_attachments",
-        () -> DataComponentType.<CompoundTag>builder()
-            .persistent(CompoundTag.CODEC)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.COMPOUND_TAG)
-            .build()
+    public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_CREATIVE = DATA_COMPONENT_TYPES.register(
+            "ammo_box_creative",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
     );
 
-    /**
-     * ExperiÃƒÆ’Ã‚Âªncia/nÃƒÆ’Ã‚Â­vel da arma (int)
-     * Substitui: GUN_EXP_TAG
-     */
-    public static final Supplier<DataComponentType<Integer>> GUN_EXP = COMPONENTS.register("gun_exp",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_ALL_TYPE_CREATIVE = DATA_COMPONENT_TYPES.register(
+            "ammo_box_all_type_creative",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
     );
 
-    /**
-     * MuniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o dummy (int)
-     * Substitui: GUN_DUMMY_AMMO
-     */
-    public static final Supplier<DataComponentType<Integer>> GUN_DUMMY_AMMO = COMPONENTS.register("gun_dummy_ammo",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<ResourceLocation>> ATTACHMENT_ID = DATA_COMPONENT_TYPES.register(
+            "attachment_id",
+            () -> DataComponentType.<ResourceLocation>builder()
+                    .persistent(ResourceLocation.CODEC)
+                    .build()
     );
 
-    /**
-     * MÃƒÆ’Ã‚Â¡ximo de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o dummy (int)
-     * Substitui: GUN_MAX_DUMMY_AMMO
-     */
-    public static final Supplier<DataComponentType<Integer>> GUN_MAX_DUMMY_AMMO = COMPONENTS.register("gun_max_dummy_ammo",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<Integer>> LASER_COLOR = DATA_COMPONENT_TYPES.register(
+            "laser_color",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
     );
 
-    /**
-     * Trava de acessÃƒÆ’Ã‚Â³rios (boolean)
-     * Substitui: GUN_ATTACHMENT_LOCK
-     */
-    public static final Supplier<DataComponentType<Boolean>> GUN_ATTACHMENT_LOCK = COMPONENTS.register("gun_attachment_lock",
-        () -> DataComponentType.<Boolean>builder()
-            .persistent(Codec.BOOL)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
-            .build()
+    public static final Supplier<DataComponentType<ResourceLocation>> GUN_ID = DATA_COMPONENT_TYPES.register(
+            "gun_id",
+            () -> DataComponentType.<ResourceLocation>builder()
+                    .persistent(ResourceLocation.CODEC)
+                    .build()
     );
 
-    /**
-     * ID de display da arma (ResourceLocation)
-     * Substitui: GUN_DISPLAY_ID_TAG
-     */
-    public static final Supplier<DataComponentType<ResourceLocation>> GUN_DISPLAY_ID = COMPONENTS.register("gun_display_id",
-        () -> DataComponentType.<ResourceLocation>builder()
-            .persistent(ResourceLocation.CODEC)
-            .networkSynchronized(ResourceLocation.STREAM_CODEC)
-            .build()
+    public static final Supplier<DataComponentType<ResourceLocation>> GUN_DISPLAY_ID = DATA_COMPONENT_TYPES.register(
+            "gun_display_id",
+            () -> DataComponentType.<ResourceLocation>builder()
+                    .persistent(ResourceLocation.CODEC)
+                    .build()
     );
 
-    /**
-     * Cor do laser (int)
-     * Substitui: LASER_COLOR_TAG
-     */
-    public static final Supplier<DataComponentType<Integer>> LASER_COLOR = COMPONENTS.register("laser_color",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<String>> FIRE_MODE = DATA_COMPONENT_TYPES.register(
+            "fire_mode",
+            () -> DataComponentType.<String>builder()
+                    .persistent(Codec.STRING)
+                    .build()
     );
 
-    /**
-     * Quantidade de superaquecimento (float)
-     * Substitui: GUN_OVERHEAT_TAG
-     */
-    public static final Supplier<DataComponentType<Float>> GUN_OVERHEAT = COMPONENTS.register("gun_overheat",
-        () -> DataComponentType.<Float>builder()
-            .persistent(Codec.FLOAT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.FLOAT)
-            .build()
+    public static final Supplier<DataComponentType<Integer>> CURRENT_AMMO_COUNT = DATA_COMPONENT_TYPES.register(
+            "current_ammo_count",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
     );
 
-    /**
-     * Se a arma estÃƒÆ’Ã‚Â¡ travada por superaquecimento (boolean)
-     * Substitui: GUN_OVERHEAT_LOCK_TAG
-     */
-    public static final Supplier<DataComponentType<Boolean>> GUN_OVERHEAT_LOCK = COMPONENTS.register("gun_overheat_lock",
-        () -> DataComponentType.<Boolean>builder()
-            .persistent(Codec.BOOL)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
-            .build()
+    public static final Supplier<DataComponentType<Boolean>> BULLET_IN_BARREL = DATA_COMPONENT_TYPES.register(
+            "bullet_in_barrel",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
     );
 
-
-    /**
-     * ID da muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (ResourceLocation)
-     * Substitui: AMMO_ID_TAG
-     */
-    public static final Supplier<DataComponentType<ResourceLocation>> AMMO_ID = COMPONENTS.register("ammo_id",
-        () -> DataComponentType.<ResourceLocation>builder()
-            .persistent(ResourceLocation.CODEC)
-            .networkSynchronized(ResourceLocation.STREAM_CODEC)
-            .build()
+    public static final Supplier<DataComponentType<Float>> HEAT_AMOUNT = DATA_COMPONENT_TYPES.register(
+            "heat_amount",
+            () -> DataComponentType.<Float>builder()
+                    .persistent(Codec.FLOAT)
+                    .build()
     );
 
-
-    /**
-     * ID do acessÃƒÆ’Ã‚Â³rio (ResourceLocation)
-     * Para AttachmentItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<ResourceLocation>> ATTACHMENT_ID = COMPONENTS.register("attachment_id",
-        () -> DataComponentType.<ResourceLocation>builder()
-            .persistent(ResourceLocation.CODEC)
-            .networkSynchronized(ResourceLocation.STREAM_CODEC)
-            .build()
+    public static final Supplier<DataComponentType<Boolean>> OVERHEAT_LOCKED = DATA_COMPONENT_TYPES.register(
+            "overheat_locked",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
     );
 
-
-    /**
-     * ID da muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na caixa (ResourceLocation)
-     * Para AmmoBoxItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<ResourceLocation>> AMMO_BOX_AMMO_ID = COMPONENTS.register("ammo_box_ammo_id",
-        () -> DataComponentType.<ResourceLocation>builder()
-            .persistent(ResourceLocation.CODEC)
-            .networkSynchronized(ResourceLocation.STREAM_CODEC)
-            .build()
-    );    /**
-     * Quantidade de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o na caixa (int)
-     * Para AmmoBoxItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<Integer>> AMMO_BOX_AMOUNT = COMPONENTS.register("ammo_box_amount",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<Float>> AIMING_PROGRESS = DATA_COMPONENT_TYPES.register(
+            "aiming_progress",
+            () -> DataComponentType.<Float>builder()
+                    .persistent(Codec.FLOAT)
+                    .build()
     );
 
-    /**
-     * NÃƒÆ’Ã‚Â­vel da caixa de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (int)
-     * Para AmmoBoxItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<Integer>> AMMO_BOX_LEVEL = COMPONENTS.register("ammo_box_level",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<Integer>> RELOAD_STATE_TYPE = DATA_COMPONENT_TYPES.register(
+            "reload_state_type",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
     );
 
-    /**
-     * Modo criativo da caixa de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (boolean)
-     * Para AmmoBoxItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_CREATIVE = COMPONENTS.register("ammo_box_creative",
-        () -> DataComponentType.<Boolean>builder()
-            .persistent(Codec.BOOL)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
-            .build()
+    public static final Supplier<DataComponentType<Long>> LAST_SHOOT_TIMESTAMP = DATA_COMPONENT_TYPES.register(
+            "last_shoot_timestamp",
+            () -> DataComponentType.<Long>builder()
+                    .persistent(Codec.LONG)
+                    .build()
     );
 
-    /**
-     * Modo criativo universal da caixa de muniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o (boolean)
-     * Para AmmoBoxItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<Boolean>> AMMO_BOX_ALL_TYPE_CREATIVE = COMPONENTS.register("ammo_box_all_type_creative",
-        () -> DataComponentType.<Boolean>builder()
-            .persistent(Codec.BOOL)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
-            .build()
+    public static final Supplier<DataComponentType<Long>> BASE_TIMESTAMP = DATA_COMPONENT_TYPES.register(
+            "base_timestamp",
+            () -> DataComponentType.<Long>builder()
+                    .persistent(Codec.LONG)
+                    .build()
     );
 
-    // === DADOS DE BLOCOS ===
-
-    /**
-     * ID do bloco (ResourceLocation)
-     * Para BlockItemDataAccessor
-     */
-    public static final Supplier<DataComponentType<ResourceLocation>> BLOCK_ID = COMPONENTS.register("block_id",
-        () -> DataComponentType.<ResourceLocation>builder()
-            .persistent(ResourceLocation.CODEC)
-            .networkSynchronized(ResourceLocation.STREAM_CODEC)
-            .build()
+    public static final Supplier<DataComponentType<Long>> BOLT_TIMESTAMP = DATA_COMPONENT_TYPES.register(
+            "bolt_timestamp",
+            () -> DataComponentType.<Long>builder()
+                    .persistent(Codec.LONG)
+                    .build()
     );
 
-    // === DADOS DE TOOLTIP ===
-
-    /**
-     * Flags para ocultar partes do tooltip (int)
-     * Para GunTooltipPart
-     */
-    public static final Supplier<DataComponentType<Integer>> HIDE_FLAGS = COMPONENTS.register("hide_flags",
-        () -> DataComponentType.<Integer>builder()
-            .persistent(Codec.INT)
-            .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.VAR_INT)
-            .build()
+    public static final Supplier<DataComponentType<Long>> RELOAD_TIMESTAMP = DATA_COMPONENT_TYPES.register(
+            "reload_timestamp",
+            () -> DataComponentType.<Long>builder()
+                    .persistent(Codec.LONG)
+                    .build()
     );
+
+    public static final Supplier<DataComponentType<Integer>> DUMMY_AMMO_AMOUNT = DATA_COMPONENT_TYPES.register(
+            "dummy_ammo_amount",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> MAX_DUMMY_AMMO_AMOUNT = DATA_COMPONENT_TYPES.register(
+            "max_dummy_ammo_amount",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> ATTACHMENT_LOCK = DATA_COMPONENT_TYPES.register(
+            "attachment_lock",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> LEVEL = DATA_COMPONENT_TYPES.register(
+            "level",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> EXP = DATA_COMPONENT_TYPES.register(
+            "exp",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> ZOOM_NUMBER = DATA_COMPONENT_TYPES.register(
+            "zoom_number",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Float>> ADS_ADDEND = DATA_COMPONENT_TYPES.register(
+            "ads_addend",
+            () -> DataComponentType.<Float>builder()
+                    .persistent(Codec.FLOAT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<ResourceLocation>> AMMO_ID = DATA_COMPONENT_TYPES.register(
+            "ammo_id",
+            () -> DataComponentType.<ResourceLocation>builder()
+                    .persistent(ResourceLocation.CODEC)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<ResourceLocation>> BLOCK_ID = DATA_COMPONENT_TYPES.register(
+            "block_id",
+            () -> DataComponentType.<ResourceLocation>builder()
+                    .persistent(ResourceLocation.CODEC)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> GUN_DUMMY_AMMO = DATA_COMPONENT_TYPES.register(
+            "gun_dummy_ammo",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<net.minecraft.nbt.CompoundTag>> GUN_ATTACHMENTS = DATA_COMPONENT_TYPES.register(
+            "gun_attachments",
+            () -> DataComponentType.<net.minecraft.nbt.CompoundTag>builder()
+                    .persistent(net.minecraft.nbt.CompoundTag.CODEC)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> HIDE_FLAGS = DATA_COMPONENT_TYPES.register(
+            "hide_flags",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Float>> GUN_OVERHEAT = DATA_COMPONENT_TYPES.register(
+            "gun_overheat",
+            () -> DataComponentType.<Float>builder()
+                    .persistent(Codec.FLOAT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> GUN_OVERHEAT_LOCK = DATA_COMPONENT_TYPES.register(
+            "gun_overheat_lock",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> GUN_EXP = DATA_COMPONENT_TYPES.register(
+            "gun_exp",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> GUN_CURRENT_AMMO_COUNT = DATA_COMPONENT_TYPES.register(
+            "gun_current_ammo_count",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> GUN_HAS_BULLET_IN_BARREL = DATA_COMPONENT_TYPES.register(
+            "gun_has_bullet_in_barrel",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Integer>> GUN_MAX_DUMMY_AMMO = DATA_COMPONENT_TYPES.register(
+            "gun_max_dummy_ammo",
+            () -> DataComponentType.<Integer>builder()
+                    .persistent(Codec.INT)
+                    .build()
+    );
+
+    public static final Supplier<DataComponentType<Boolean>> GUN_ATTACHMENT_LOCK = DATA_COMPONENT_TYPES.register(
+            "gun_attachment_lock",
+            () -> DataComponentType.<Boolean>builder()
+                    .persistent(Codec.BOOL)
+                    .build()
+    );
+
+    public static void register(IEventBus eventBus) {
+        DATA_COMPONENT_TYPES.register(eventBus);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -56,7 +56,7 @@ public class ReloadKey {
             if (player == null || player.isSpectator()) {
                 return false;
             }
-            if (IGun.mainHandHoldGun(player)) {
+            if (IGun.mainhandHoldGun(player)) {
                 IClientPlayerGunOperator.fromLocalPlayer(player).reload();
                 return true;
             }

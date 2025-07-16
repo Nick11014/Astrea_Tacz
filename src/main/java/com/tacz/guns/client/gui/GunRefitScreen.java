@@ -96,7 +96,7 @@ public class GunRefitScreen extends Screen {
             this.addRenderableWidget(new FlatColorButton(14, 14, 12, 12, Component.literal("S"), b -> {
                 LocalPlayer player = Minecraft.getInstance().player;
                 if (player == null || player.isSpectator()) return;
-                if (IGun.mainHandHoldGun(player)) {
+                if (IGun.mainhandHoldGun(player)) {
                     IClientPlayerGunOperator.fromLocalPlayer(player).fireSelect();
                     this.init();
                 }

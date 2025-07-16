@@ -30,7 +30,7 @@ public class AttachmentCacheProperty {
         var modifiers = AttachmentPropertyManager.getModifiers();
         modifiers.forEach((id, value) -> {
             if (value instanceof IAttachmentModifier<?, ?> modifier) {
-                cacheValues.put(id, modifier.initCache(gunItem, gunData, (IAttachment.Slot<ItemStack>) null));
+                cacheValues.put(id, modifier.initCache(gunItem, gunData, (ItemStack) null));
                 cacheModifiers.put(id, Lists.newArrayList());
             }
         });

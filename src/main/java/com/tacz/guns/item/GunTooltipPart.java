@@ -28,7 +28,7 @@ public enum GunTooltipPart {
 
     public static void setHideFlags(ItemStack stack, int mask) {
         // Migrado para DataComponents no NeoForge 1.21.1
-        stack.set(ModDataComponents.HIDE_FLAGS.get(), mask);
+        stack.set(com.tacz.guns.init.ModDataComponents.HIDE_FLAGS.get(), mask);
     }
 }
 

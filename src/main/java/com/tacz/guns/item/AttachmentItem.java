@@ -31,7 +31,7 @@ import java.util.function.Consumer;
 
 import static com.tacz.guns.util.datafixer.AttachmentIdFix.updateAttachmentIdInTag;
 
-public class AttachmentItem extends Item implements AttachmentItemDataAccessor {
+public class AttachmentItem extends Item {
     public AttachmentItem() {
         super(new Properties().stacksTo(1));
     }
@@ -40,7 +40,11 @@ public class AttachmentItem extends Item implements AttachmentItemDataAccessor {
     @Nonnull
     @OnlyIn(Dist.CLIENT)
     public Component getName(@Nonnull ItemStack stack) {
-        ResourceLocation attachmentId = this.getAttachmentId(stack);
+        IAttachment iAttachment = IAttachment.getIAttachmentOrNull(stack);
+        if (iAttachment == null) {
+            return super.getName(stack);
+        }
+        ResourceLocation attachmentId = IAttachment.getIAttachmentOrNull(stack).getAttachmentId(stack);
         Optional<ClientAttachmentIndex> attachmentIndex = TimelessAPI.getClientAttachmentIndex(attachmentId);
         if (attachmentIndex.isPresent()) {
             return Component.translatable(attachmentIndex.get().getName());
@@ -76,7 +80,6 @@ public class AttachmentItem extends Item implements AttachmentItemDataAccessor {
         });
     }
 
-    @Override
     @Nonnull
     public AttachmentType getType(ItemStack attachmentStack) {
         IAttachment iAttachment = IAttachment.getIAttachmentOrNull(attachmentStack);
@@ -88,12 +91,14 @@ public class AttachmentItem extends Item implements AttachmentItemDataAccessor {
         }
     }
 
-    @Override
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-        return Optional.of(new AttachmentItemTooltip(this.getAttachmentId(stack), this.getType(stack), stack));
+        IAttachment iAttachment = IAttachment.getIAttachmentOrNull(stack);
+        if (iAttachment == null) {
+            return Optional.empty();
+        }
+        return Optional.of(new AttachmentItemTooltip(iAttachment.getAttachmentId(stack), this.getType(stack), stack));
     }
 
-    @Override
     public void verifyTagAfterLoad(@NotNull CompoundTag tag) {
         updateAttachmentIdInTag(tag);
     }
