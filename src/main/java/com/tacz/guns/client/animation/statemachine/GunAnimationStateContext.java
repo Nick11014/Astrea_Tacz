@@ -412,9 +412,19 @@ public class GunAnimationStateContext extends ItemAnimationStateContext {
         // if (currentGunItem.hasTag()) {
         //     nbtUtil = new LuaNbtAccessor(currentGunItem.getTag());
         // } else {
-        //     nbtUtil = null;
+        //     // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
+        if (!currentGunItem.isEmpty()) {
+            nbtUtil = LuaNbtAccessor.from(currentGunItem);
+        } else {
+            nbtUtil = null;
+        }
         // }
-        nbtUtil = null; // TemporÃƒÆ’Ã‚Â¡rio atÃƒÆ’Ã‚Â© migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de DataComponents
+        // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
+        if (!currentGunItem.isEmpty()) {
+            nbtUtil = LuaNbtAccessor.from(currentGunItem);
+        } else {
+            nbtUtil = null;
+        } // TemporÃƒÆ’Ã‚Â¡rio atÃƒÆ’Ã‚Â© migraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de DataComponents
     }
 }
 

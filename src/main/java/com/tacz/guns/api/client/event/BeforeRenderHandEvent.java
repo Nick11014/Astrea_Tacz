@@ -9,14 +9,18 @@ import net.neoforged.bus.api.Event;
  */
 public class BeforeRenderHandEvent extends Event {
     private final PoseStack poseStack;
+    private final float partialTick;
 
-    public BeforeRenderHandEvent(PoseStack poseStack) {
+    public BeforeRenderHandEvent(PoseStack poseStack, float partialTick) {
         this.poseStack = poseStack;
+        this.partialTick = partialTick;
         // TODO: Re-add KubeJS integration when dependencies are available
+    }    public PoseStack getPoseStack() {
+        return poseStack;
     }
 
-    public PoseStack getPoseStack() {
-        return poseStack;
+    public float getPartialTick() {
+        return partialTick;
     }
 }
 

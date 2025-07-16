@@ -19,7 +19,7 @@ public record ServerMessageSound(int entityId, ResourceLocation gunId, ResourceL
         ByteBufCodecs.VAR_INT, ServerMessageSound::entityId,
         ResourceLocation.STREAM_CODEC, ServerMessageSound::gunId,
         ResourceLocation.STREAM_CODEC, ServerMessageSound::gunDisplayId,
-        ByteBufCodecs.STRING, ServerMessageSound::soundName,
+        ByteBufCodecs.stringUtf8(32767), ServerMessageSound::soundName,
         ByteBufCodecs.FLOAT, ServerMessageSound::volume,
         ByteBufCodecs.FLOAT, ServerMessageSound::pitch,
         ByteBufCodecs.INT, ServerMessageSound::distance,

@@ -171,7 +171,10 @@ public enum ClientAssetsManager {
         if (ammoDisplay == null) {
             return java.util.Optional.empty();
         }
-        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientAmmoIndex.getInstance(ammoDisplay));
+        // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
+        // Precisa converter AmmoDisplay para AmmoIndexPOJO ou ajustar o método getInstance
+        // TODO: Implementar conversão adequada ou ajustar ClientAmmoIndex.getInstance
+        return java.util.Optional.empty(); // Temporário até resolver a incompatibilidade de tipos
     }
     
     public java.util.Optional<com.tacz.guns.client.resource.index.ClientBlockIndex> getBlockIndex(ResourceLocation blockId) {
@@ -179,7 +182,10 @@ public enum ClientAssetsManager {
         if (blockDisplay == null) {
             return java.util.Optional.empty();
         }
-        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(blockDisplay));
+        // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
+        // Precisa converter BlockDisplay para BlockIndexPOJO ou ajustar o método getInstance
+        // TODO: Implementar conversão adequada ou ajustar ClientBlockIndex.getInstance
+        return java.util.Optional.empty(); // Temporário até resolver a incompatibilidade de tipos
     }
 
     @OnlyIn(Dist.CLIENT)

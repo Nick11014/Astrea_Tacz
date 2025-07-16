@@ -410,7 +410,7 @@ public class ModernKineticGunScriptAPI {
         if (abstractGunItem.useDummyAmmo(itemStack)) {
             return abstractGunItem.findAndExtractDummyAmmo(itemStack, neededAmount);
         } else {
-            return shooter.getCapability(ForgeCapabilities.ITEM_HANDLER, null)
+            return shooter.getCapability(Capabilities.ItemHandler.ENTITY, null)
                     .map(cap -> abstractGunItem.findAndExtractInventoryAmmo(cap, itemStack, neededAmount))
                     .orElse(0);
         }
@@ -428,7 +428,7 @@ public class ModernKineticGunScriptAPI {
         if (abstractGunItem.useDummyAmmo(itemStack)) {
             return abstractGunItem.getDummyAmmoAmount(itemStack) > 0;
         }
-        return shooter.getCapability(ForgeCapabilities.ITEM_HANDLER, null).map(cap -> {
+        return shooter.getCapability(Capabilities.ItemHandler.ENTITY, null).map(cap -> {
             for (int i = 0; i < cap.getSlots(); i++) {
                 ItemStack checkAmmoStack = cap.getStackInSlot(i);
                 if (checkAmmoStack.getItem() instanceof IAmmo iAmmo && iAmmo.isAmmoOfGun(itemStack, checkAmmoStack)) {
@@ -740,10 +740,9 @@ public class ModernKineticGunScriptAPI {
         gunDisplayId = gunItem.getGunDisplayId(itemStack);
         Optional<CommonGunIndex> gunIndexOptional = TimelessAPI.getCommonGunIndex(gunId);
         gunIndex = gunIndexOptional.orElse(null);
-        abstractGunItem = gunItem;
-        if (itemStack.getTag() != null) {
-            nbtUtil = new LuaNbtAccessor(itemStack.getTag());
-        }
+        abstractGunItem = gunItem;        // Migração para DataComponents (NeoForge 1.21.1)
+        // Em vez de usar itemStack.getTag(), agora usamos LuaNbtAccessor.from(itemStack)
+        nbtUtil = LuaNbtAccessor.from(itemStack);
     }
 
 

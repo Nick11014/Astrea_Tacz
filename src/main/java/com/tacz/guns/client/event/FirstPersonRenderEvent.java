@@ -53,11 +53,11 @@ public class FirstPersonRenderEvent {
             }
             boolean flag = ItemStack.matches(player.getMainHandItem(), stack);
             if (flag && renderer.needReInit(stack)) {
-                renderer.tryInit(stack, player, event.getPartialTick());
+                renderer.tryInit(stack, player, (float) event.getPartialTick());
             }
 
             renderer.renderFirstPerson(player, stack, transformType, event.getPoseStack(), event.getMultiBufferSource(),
-                    event.getPackedLight(), event.getPartialTick());
+                    event.getPackedLight(), (float) event.getPartialTick());
             event.setCanceled(true);
         }
     }
