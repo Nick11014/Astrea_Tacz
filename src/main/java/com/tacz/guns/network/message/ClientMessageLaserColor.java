@@ -4,10 +4,6 @@ import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.network.NetworkHandler;
-import com.tacz.guns.api.item.IAttachment;
-import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.api.item.attachment.AttachmentType;
-import com.tacz.guns.network.NetworkHandler;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -29,15 +25,23 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
     public static final CustomPacketPayload.Type<ClientMessageLaserColor> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_laser_color"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageLaserColor> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.map(HashMap::new, ByteBufCodecs.fromEnum(AttachmentType::values), ByteBufCodecs.INT).fieldOf(ClientMessageLaserColor::colorMap),
-            ByteBufCodecs.BOOL.fieldOf(ClientMessageLaserColor::applyGunColor),
-            ByteBufCodecs.INT.fieldOf(ClientMessageLaserColor::gunColor),
-            ByteBufCodecs.INT.fieldOf(ClientMessageLaserColor::gunSlotIndex),
+            ByteBufCodecs.map(HashMap::new, AttachmentType.STREAM_CODEC, ByteBufCodecs.INT),
+            ClientMessageLaserColor::colorMap,
+            ByteBufCodecs.BOOL,
+            ClientMessageLaserColor::applyGunColor,
+            ByteBufCodecs.INT,
+            ClientMessageLaserColor::gunColor,
+            ByteBufCodecs.INT,
+            ClientMessageLaserColor::gunSlotIndex,
             ClientMessageLaserColor::new
     );
 
     public ClientMessageLaserColor(@NotNull ItemStack gun, int gunSlotIndex) {
-        this(new HashMap<>(), false, 0, -1);
+        this(createColorMap(gun), shouldApplyGunColor(gun), getGunColor(gun), gunSlotIndex);
+    }
+
+    private static Map<AttachmentType, Integer> createColorMap(ItemStack gun) {
+        Map<AttachmentType, Integer> colorMap = new HashMap<>();
         if (gun.getItem() instanceof IGun iGun) {
             for (AttachmentType type : AttachmentType.values()) {
                 ItemStack attachment = iGun.getAttachment(gun, type);
@@ -47,12 +51,22 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
                     }
                 }
             }
-            if (iGun.hasCustomLaserColor(gun)) {
-                this.gunColor = iGun.getLaserColor(gun);
-                this.applyGunColor = true;
-            }
-            this.gunSlotIndex = gunSlotIndex;
         }
+        return colorMap;
+    }
+
+    private static boolean shouldApplyGunColor(ItemStack gun) {
+        if (gun.getItem() instanceof IGun iGun) {
+            return iGun.hasCustomLaserColor(gun);
+        }
+        return false;
+    }
+
+    private static int getGunColor(ItemStack gun) {
+        if (gun.getItem() instanceof IGun iGun) {
+            return iGun.getLaserColor(gun);
+        }
+        return 0;
     }
 
     @Override
@@ -83,66 +97,3 @@ public record ClientMessageLaserColor(Map<AttachmentType, Integer> colorMap, boo
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

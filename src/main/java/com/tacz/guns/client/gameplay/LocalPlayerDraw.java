@@ -41,8 +41,7 @@ public class LocalPlayerDraw {
         long putAwayTime = Math.abs(drawTime);
 
         if (Minecraft.getInstance().gameMode != null) {
-            // TODO: [MIGRATION] ensureHasSentCarriedItem() is now private in NeoForge 1.21.1
-            // Minecraft.getInstance().gameMode.ensureHasSentCarriedItem();
+            
         }            NetworkHandler.sendToServer(new ClientMessagePlayerDrawGun());
         NeoForge.EVENT_BUS.post(new GunDrawEvent(player, lastItem, currentItem, LogicalSide.CLIENT));
 

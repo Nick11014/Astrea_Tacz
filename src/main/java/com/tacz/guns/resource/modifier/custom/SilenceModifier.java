@@ -16,7 +16,7 @@ import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import com.tacz.guns.resource.pojo.data.attachment.Modifier;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
-import it.unimi.dsi.fastutil.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -57,12 +57,12 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
         List<Modifier> distanceModifiers = Lists.newArrayList();
         List<Boolean> useSilenceSoundModifiers = Lists.newArrayList();
         modifiedValues.forEach(v -> {
-            distanceModifiers.add(v.left());
-            useSilenceSoundModifiers.add(v.right());
+            distanceModifiers.add(v.getLeft());
+            useSilenceSoundModifiers.add(v.getRight());
         });
         Pair<Integer, Boolean> cacheValue = cache.getValue();
-        double evalDistance = AttachmentPropertyManager.eval(distanceModifiers, cacheValue.left());
-        boolean useSilenceSound = AttachmentPropertyManager.eval(useSilenceSoundModifiers, cacheValue.getRight());
+        double evalDistance = AttachmentPropertyManager.eval(distanceModifiers, cacheValue.getLeft());
+        boolean useSilenceSound = AttachmentPropertyManager.eval(useSilenceSoundModifiers, cacheValue.getRight().booleanValue());
         cache.setValue(Pair.of((int) Math.round(evalDistance), useSilenceSound));
     }
 
@@ -76,14 +76,14 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
             Pair<Modifier, Boolean> value = this.getValue();
             if (value != null) {
                 int defaultDistance = GunConfig.DEFAULT_GUN_FIRE_SOUND_DISTANCE.get();
-                double eval = AttachmentPropertyManager.eval(value.left(), defaultDistance);
+                double eval = AttachmentPropertyManager.eval(value.getLeft(), defaultDistance);
                 int distance = (int) Math.round(eval);
                 if (distance > defaultDistance) {
                     components.add(Component.translatable("tooltip.tacz.attachment.sound_distance.increase").withStyle(ChatFormatting.RED));
                 } else if (distance < defaultDistance) {
                     components.add(Component.translatable("tooltip.tacz.attachment.sound_distance.increase").withStyle(ChatFormatting.GREEN));
                 }
-                if (value.right()) {
+                if (value.getRight()) {
                     components.add(Component.translatable("tooltip.tacz.attachment.silence").withStyle(ChatFormatting.GREEN));
                 }
             }

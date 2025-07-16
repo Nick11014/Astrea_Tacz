@@ -5,9 +5,8 @@ import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.util.DelayedTask;
 import net.minecraft.client.player.LocalPlayer;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-// TODO: Migrate to new tick event API in NeoForge 1.21.1
-// import net.neoforged.neoforge.event.tick.TickEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent.Clone;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 
@@ -19,89 +18,21 @@ import java.util.function.BooleanSupplier;
 @EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class RefreshClonePlayerDataEvent {
     @SubscribeEvent
-    public static void onClientPlayerClone(ClientPlayerNetworkEvent.Clone event) {
+    public static void onClientPlayerClone(Clone event) {
         LocalPlayer newPlayer = event.getNewPlayer();
         DelayedTask.add(() -> IGunOperator.fromLivingEntity(newPlayer).initialData(), 10);
     }
 
     /**
      * ÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ©Ã¢â€šÂ¬Ã…Â¡ÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ¦Ã¢â‚¬Â°Ã‚Â§ÃƒÂ¨Ã‚Â¡Ã…â€™ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾
-     * TODO: Re-enable when tick events are migrated to NeoForge 1.21.1
      */
-    /*
     @SubscribeEvent
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.START) {
+    public static void onClientTick(ClientTickEvent.Pre event) {
             try {
                 DelayedTask.SUPPLIERS.removeIf(BooleanSupplier::getAsBoolean);
             } catch (Exception e) {
                 DelayedTask.SUPPLIERS.clear();
                 GunMod.LOGGER.catching(e);
             }
-        }
     }
-    */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

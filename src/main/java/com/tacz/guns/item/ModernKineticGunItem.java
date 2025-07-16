@@ -457,13 +457,13 @@ public class ModernKineticGunItem extends AbstractGunItem implements GunItemData
             return;
         }
         for (EffectData data : effects) {
-            MobEffect mobEffect = BuiltInRegistries.MOB_EFFECT.get(data.getEffectId());
-            if (mobEffect == null) {
+            var mobEffectHolder = BuiltInRegistries.MOB_EFFECT.getHolder(data.getEffectId());
+            if (mobEffectHolder.isEmpty()) {
                 continue;
             }
             int time = Math.max(0, data.getTime() * 20);
             int amplifier = Math.max(0, data.getAmplifier());
-            MobEffectInstance effectInstance = new MobEffectInstance(mobEffect.builtInRegistryHolder(), time, amplifier, false, data.isHideParticles());
+            MobEffectInstance effectInstance = new MobEffectInstance(mobEffectHolder.get(), time, amplifier, false, data.isHideParticles());
             target.addEffect(effectInstance);
         }
         if (user.level() instanceof ServerLevel serverLevel) {

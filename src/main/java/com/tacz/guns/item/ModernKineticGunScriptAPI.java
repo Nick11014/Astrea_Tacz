@@ -207,7 +207,7 @@ public class ModernKineticGunScriptAPI {
         if (boltType == Bolt.CLOSED_BOLT) {
             if (!noAmmo) {
                 if (useInventoryAmmo()) {
-                    return consumeAmmoFromPlayer(1) == 1;
+                    return consumeAmmoFromPlayer(1) > 0;
                 }
                 abstractGunItem.reduceCurrentAmmoCount(itemStack);
                 return true;
@@ -431,12 +431,8 @@ public class ModernKineticGunScriptAPI {
         } else {
             IItemHandler itemHandler = shooter.getCapability(Capabilities.ItemHandler.ENTITY, null);
             if (itemHandler != null) {
-                // CORREÇÃO: O método deve retornar um int, não um boolean.
-                // Removido "> 0" para retornar a quantidade de munição extraída.
                 return abstractGunItem.findAndExtractInventoryAmmo(itemHandler, itemStack, neededAmount);
             } else {
-                // CORREÇÃO: O método deve retornar um int, não um boolean.
-                // Retornando 0 para indicar que nenhuma munição foi consumida.
                 return 0;
             }
         }

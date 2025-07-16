@@ -21,8 +21,10 @@ public record ClientMessageUnloadAttachment(int gunSlotIndex,
     public static final CustomPacketPayload.Type<ClientMessageUnloadAttachment> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(MOD_ID, "client_unload_attachment"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientMessageUnloadAttachment> STREAM_CODEC = StreamCodec.composite(
-        net.minecraft.network.codec.ByteBufCodecs.VAR_INT.fieldOf(ClientMessageUnloadAttachment::gunSlotIndex),
-        ByteBufCodecs.fromEnum(AttachmentType::values).fieldOf(ClientMessageUnloadAttachment::attachmentType),
+        ByteBufCodecs.VAR_INT,
+        ClientMessageUnloadAttachment::gunSlotIndex,
+        AttachmentType.STREAM_CODEC,
+        ClientMessageUnloadAttachment::attachmentType,
         ClientMessageUnloadAttachment::new
     );
 

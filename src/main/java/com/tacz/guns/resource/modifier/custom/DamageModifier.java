@@ -1,6 +1,5 @@
 package com.tacz.guns.resource.modifier.custom;
 
-import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.JsonProperty;
@@ -11,20 +10,22 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 /**
- * DamageModifier - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o MÃƒÆ’Ã‚Â­nima EstratÃƒÆ’Ã‚Â©gica
- * 
- * Modificador de dano para acessÃƒÆ’Ã‚Â³rios de armas
- * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para demonstrar sistema de modificadores funcionando
- * 
- * TODO: Expandir funcionalidade quando dependÃƒÆ’Ã‚Âªncias estiverem habilitadas:
+ * DamageModifier - Implementação Mínima Estratégica
+ * <p>
+ * Modificador de dano para acessórios de armas
+ * Implementação mínima para demonstrar sistema de modificadores funcionando
+ * <p>
+ * TODO: Expandir funcionalidade quando dependências estiverem habilitadas:
  * - GunProperties enum
  * - ExtraDamage system
  * - DistanceDamagePair processing
  * - BulletData modification
  * - Component system para tooltips
  */
-public class DamageModifier implements IAttachmentModifier<Object, Object> {
-    public static final String ID = "damage"; // Simplificado por enquanto
+// 1. CORREÇÃO: Tipos genéricos foram especificados para Modifier e Object.
+//    Isso define que 'T' é Modifier e 'K' é Object para todos os métodos da interface.
+public class DamageModifier implements IAttachmentModifier<Modifier, Object> {
+    public static final String ID = "damage";
 
     @Override
     public String getId() {
@@ -33,23 +34,18 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
 
     @Override
     public String getOptionalFields() {
-        // return GunProperties.DAMAGE.getOptionalName();
-        return "bullet_damage"; // Nome alternativo comum
+        return "bullet_damage";
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public Object readJson(String json) {
-        // Gson gson = CommonAssetsManager.GSON;
-        // return gson.fromJson(json, Modifier.class);
-
+    // 2. CORREÇÃO: O tipo de retorno agora é JsonProperty<Modifier>, conforme exigido pela interface.
+    public JsonProperty<Modifier> readJson(String json) {
         if (json != null && json.contains("damage")) {
-            // System.out.println("DamageModifier: Found damage data in JSON");
             return new JsonProperty<Modifier>(new Modifier()) {
                 @Override
                 public void initComponents() {
-                    // Initialize components for display
-                    // No components needed for minimal implementation
+                    // Sem componentes para implementação mínima
                 }
             };
         }
@@ -57,73 +53,51 @@ public class DamageModifier implements IAttachmentModifier<Object, Object> {
     }
 
     @Override
-    public void modify(Object gunData, Object property) {
-        // GunData data = (GunData) gunData;
-        // Modifier modifier = (Modifier) property;
-        // 
-        // BulletData bulletData = data.getBulletData();
-        // if (bulletData != null && modifier.getAddition() != 0) {
-        //     bulletData.setDamage(bulletData.getDamage() + modifier.getAddition());
-        // }
-        // if (bulletData != null && modifier.getMultiplier() != 1.0f) {
-        //     bulletData.setDamage(bulletData.getDamage() * modifier.getMultiplier());
-        // }
-
-        if (gunData != null && property != null) {
-            // System.out.println("DamageModifier: Applied damage modification");
+    // 3. CORREÇÃO: Os tipos dos parâmetros agora são GunData e JsonProperty<Modifier>.
+    public void modify(GunData gunData, JsonProperty<Modifier> property) {
+        if (gunData != null && property != null && property.getValue() != null) {
+            // Lógica de modificação (atualmente comentada) pode ser usada aqui.
+            // Ex: Modifier modifier = property.getValue();
+            // System.out.println("DamageModifier: Aplicando modificação de dano: " + modifier.getAddition());
         }
     }
 
     @Override
-    public Object getCache(Object attachmentItem) {
-        // ItemStack item = (ItemStack) attachmentItem;
-        // return AttachmentCacheProperty.getCache(item, ID);
+    // 4. CORREÇÃO: O tipo do parâmetro agora é ItemStack.
+    public Object getCache(ItemStack attachmentItem) {
         return null;
     }
 
     @Override
-    public void setCache(Object attachmentItem, Object value) {
-        // ItemStack item = (ItemStack) attachmentItem;
-        // AttachmentCacheProperty.setCache(item, ID, value);
-    }
-
-    /**
-     * Calcula dano modificado baseado na distÃƒÆ’Ã‚Â¢ncia
-     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - Object Strategy
-     */
-    public float calculateDamage(Object gunData, Object attachmentData, float distance) {
-        // GunData data = (GunData) gunData;
-        // ExtraDamage extraDamage = (ExtraDamage) attachmentData;
-        // return extraDamage.calculateDamage(data.getBulletData().getDamage(), distance);
-
-        return 1.0f; // Placeholder
-    }
-
-    /**
-     * Verifica se o modificador afeta o dano
-     */
-    public boolean affectsDamage(Object property) {
-        // Modifier modifier = (Modifier) property;
-        // return modifier.getAddition() != 0 || modifier.getMultiplier() != 1.0f;
-        return property != null;
+    // 5. CORREÇÃO: O tipo do primeiro parâmetro agora é ItemStack.
+    public void setCache(ItemStack attachmentItem, Object value) {
+        // Lógica de cache
     }
 
     @Override
     public CacheValue<Object> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
-        // Minimal implementation
         return new CacheValue<>(null);
     }
 
     @Override
-    public void eval(List<Object> modifiedValues, CacheValue<Object> cache) {
-        // Minimal implementation
+    // 6. CORREÇÃO: O tipo da lista agora é List<Modifier>.
+    public void eval(List<Modifier> modifiedValues, CacheValue<Object> cache) {
         if (modifiedValues != null && cache != null) {
-            // No-op for now
+            // Lógica de avaliação
         }
     }
 
     @Override
     public String getStats() {
         return String.format("DamageModifier{id=%s, type=damage_modification}", ID);
+    }
+
+    // Métodos auxiliares que não fazem parte da interface
+    public float calculateDamage(Object gunData, Object attachmentData, float distance) {
+        return 1.0f; // Placeholder
+    }
+
+    public boolean affectsDamage(Object property) {
+        return property != null;
     }
 }

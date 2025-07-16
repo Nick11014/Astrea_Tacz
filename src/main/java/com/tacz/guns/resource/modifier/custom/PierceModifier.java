@@ -49,7 +49,8 @@ public class PierceModifier implements IAttachmentModifier<Modifier, Integer> {
     }
 
     @Override
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
+    @OnlyIn(Dist.CLIENT)
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
         int pierce = gunData.getBulletData().getPierce();
         int modifiedValue = cacheProperty.<Integer>getCache(PierceModifier.ID);
         int pierceModifier = modifiedValue - pierce;

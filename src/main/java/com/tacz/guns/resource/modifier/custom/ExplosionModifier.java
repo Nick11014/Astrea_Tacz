@@ -38,7 +38,7 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
     }
 
     @Override
-    public CacheValue<ExplosionModifier.ExplosionModifierValue> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
+    public CacheValue<ExplosionData> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem) {
         ExplosionData explosionData = gunData.getBulletData().getExplosionData();
         if (explosionData == null) {
             explosionData = new ExplosionData(false, 0.5f, 2, false, 30, false);

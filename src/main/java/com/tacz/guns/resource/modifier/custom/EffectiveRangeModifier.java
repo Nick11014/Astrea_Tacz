@@ -59,9 +59,10 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         cache.setValue((float) eval);
     }
 
+    /** Removido parametro Slot<ItemStack> slot */
     @Override
     @OnlyIn(Dist.CLIENT)
-    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, Slot<ItemStack> slot) {
+    public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty) {
         float modifiedDistance = cacheProperty.getCache(EffectiveRangeModifier.ID);
         LinkedList<DistanceDamagePair> damageAdjust = null;
         if (gunData.getBulletData().getExtraDamage() != null) {
@@ -92,7 +93,6 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         return Collections.singletonList(diagramsData);
     }
 
-    @Override
     @OnlyIn(Dist.CLIENT)
     public int getDiagramsDataSize() {
         return 1;

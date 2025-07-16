@@ -25,16 +25,28 @@ public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerI
                                    float headshotMultiplier) implements CustomPacketPayload {
     public static final CustomPacketPayload.Type<ServerMessageGunHurt> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_hurt"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunHurt> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.INT.fieldOf(ServerMessageGunHurt::bulletId),
-            ByteBufCodecs.INT.fieldOf(ServerMessageGunHurt::hurtEntityId),
-            ByteBufCodecs.INT.fieldOf(ServerMessageGunHurt::attackerId),
-            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunHurt::gunId),
-            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunHurt::gunDisplayId),
-            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunHurt::amount),
-            ByteBufCodecs.BOOL.fieldOf(ServerMessageGunHurt::isHeadShot),
-            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunHurt::headshotMultiplier),
-            ServerMessageGunHurt::new
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunHurt> STREAM_CODEC = StreamCodec.of(
+            (buf, message) -> {
+                buf.writeInt(message.bulletId());
+                buf.writeInt(message.hurtEntityId());
+                buf.writeInt(message.attackerId());
+                ResourceLocation.STREAM_CODEC.encode(buf, message.gunId());
+                ResourceLocation.STREAM_CODEC.encode(buf, message.gunDisplayId());
+                buf.writeFloat(message.amount());
+                buf.writeBoolean(message.isHeadShot());
+                buf.writeFloat(message.headshotMultiplier());
+            },
+            buf -> {
+                int bulletId = buf.readInt();
+                int hurtEntityId = buf.readInt();
+                int attackerId = buf.readInt();
+                ResourceLocation gunId = ResourceLocation.STREAM_CODEC.decode(buf);
+                ResourceLocation gunDisplayId = ResourceLocation.STREAM_CODEC.decode(buf);
+                float amount = buf.readFloat();
+                boolean isHeadShot = buf.readBoolean();
+                float headshotMultiplier = buf.readFloat();
+                return new ServerMessageGunHurt(bulletId, hurtEntityId, attackerId, gunId, gunDisplayId, amount, isHeadShot, headshotMultiplier);
+            }
     );
 
     @Override
@@ -58,66 +70,3 @@ public record ServerMessageGunHurt(int bulletId, int hurtEntityId, int attackerI
         NeoForge.EVENT_BUS.post(new EntityHurtByGunEvent.Post(bullet, hurtEntity, attacker, message.gunId, message.gunDisplayId, message.amount, null, message.isHeadShot, message.headshotMultiplier, LogicalSide.CLIENT));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

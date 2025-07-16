@@ -1,6 +1,9 @@
 package com.tacz.guns.api.item.attachment;
 
 import com.google.gson.annotations.SerializedName;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 
 public enum AttachmentType {
     /**
@@ -19,7 +22,7 @@ public enum AttachmentType {
     @SerializedName("stock")
     STOCK,
     /**
-     * ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¦Ã…Â Ã…Â 
+     * ÃƒÂ¦Ã‚ÂÃ‚Â¡ÃƒÂ¦Ã…ÂÃ…Â 
      */
     @SerializedName("grip")
     GRIP,
@@ -36,7 +39,9 @@ public enum AttachmentType {
     /**
      * ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã‚ÂÃ‚Â¥ÃƒÂ¨Ã‚Â¡Ã‚Â¨ÃƒÂ§Ã‚Â¤Ã‚ÂºÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã¢â‚¬Å“Ã‚ÂÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã†â€™Ã¢â‚¬Â¦ÃƒÂ¥Ã¢â‚¬Â Ã‚ÂµÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Å¡
      */
-    NONE
+    NONE;
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, AttachmentType> STREAM_CODEC = (StreamCodec) ByteBufCodecs.idMapper(i -> AttachmentType.values()[i], AttachmentType::ordinal);
 }
 
 

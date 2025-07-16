@@ -4,10 +4,6 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.event.common.EntityKillByGunEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import com.tacz.guns.GunMod;
-import com.tacz.guns.api.event.common.EntityKillByGunEvent;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
@@ -28,16 +24,28 @@ public record ServerMessageGunKill(int bulletId, int killEntityId, int attackerI
                                    float headshotMultiplier) implements CustomPacketPayload {
     public static final CustomPacketPayload.Type<ServerMessageGunKill> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "server_gun_kill"));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunKill> STREAM_CODEC = StreamCodec.composite(
-            ByteBufCodecs.INT.fieldOf(ServerMessageGunKill::bulletId),
-            ByteBufCodecs.INT.fieldOf(ServerMessageGunKill::killEntityId),
-            ByteBufCodecs.INT.fieldOf(ServerMessageGunKill::attackerId),
-            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunKill::gunId),
-            ResourceLocation.STREAM_CODEC.fieldOf(ServerMessageGunKill::gunDisplayId),
-            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunKill::baseDamage),
-            ByteBufCodecs.BOOL.fieldOf(ServerMessageGunKill::isHeadShot),
-            ByteBufCodecs.FLOAT.fieldOf(ServerMessageGunKill::headshotMultiplier),
-            ServerMessageGunKill::new
+    public static final StreamCodec<RegistryFriendlyByteBuf, ServerMessageGunKill> STREAM_CODEC = StreamCodec.of(
+            (buf, message) -> {
+                buf.writeInt(message.bulletId());
+                buf.writeInt(message.killEntityId());
+                buf.writeInt(message.attackerId());
+                ResourceLocation.STREAM_CODEC.encode(buf, message.gunId());
+                ResourceLocation.STREAM_CODEC.encode(buf, message.gunDisplayId());
+                buf.writeFloat(message.baseDamage());
+                buf.writeBoolean(message.isHeadShot());
+                buf.writeFloat(message.headshotMultiplier());
+            },
+            buf -> {
+                int bulletId = buf.readInt();
+                int killEntityId = buf.readInt();
+                int attackerId = buf.readInt();
+                ResourceLocation gunId = ResourceLocation.STREAM_CODEC.decode(buf);
+                ResourceLocation gunDisplayId = ResourceLocation.STREAM_CODEC.decode(buf);
+                float baseDamage = buf.readFloat();
+                boolean isHeadShot = buf.readBoolean();
+                float headshotMultiplier = buf.readFloat();
+                return new ServerMessageGunKill(bulletId, killEntityId, attackerId, gunId, gunDisplayId, baseDamage, isHeadShot, headshotMultiplier);
+            }
     );
 
     @Override
@@ -61,66 +69,3 @@ public record ServerMessageGunKill(int bulletId, int killEntityId, int attackerI
         NeoForge.EVENT_BUS.post(new EntityKillByGunEvent(bullet, killedEntity, attacker, message.gunId, message.gunDisplayId, message.baseDamage, null, message.isHeadShot, message.headshotMultiplier, LogicalSide.CLIENT));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

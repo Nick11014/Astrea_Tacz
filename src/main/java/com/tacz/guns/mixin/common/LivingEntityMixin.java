@@ -234,7 +234,6 @@ public abstract class LivingEntityMixin extends Entity implements IGunOperator, 
         this.tacz$data.knockbackStrength = -1;
     }
 
-    @Override
     @Unique
     public double getKnockBackStrength() {
         return this.tacz$data.knockbackStrength;
