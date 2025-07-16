@@ -59,6 +59,11 @@ public final class TimelessAPI {
         return Optional.empty();
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static Optional<ClientGunIndex> getGunDisplay(ResourceLocation displayId, ResourceLocation gunId) {
+        return getClientGunIndex(gunId);
+    }
+    
 
     public static Optional<CommonAmmoIndex> getCommonAmmoIndex(ResourceLocation ammoId) {
         var instance = CommonAssetsManager.getInstance();

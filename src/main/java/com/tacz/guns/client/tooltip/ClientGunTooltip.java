@@ -6,6 +6,7 @@ import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.client.input.RefitKey;
 import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.resource.pojo.PackInfo;
 import com.tacz.guns.client.resource.pojo.display.gun.AmmoCountStyle;
 import com.tacz.guns.client.resource.pojo.display.gun.DamageStyle;
@@ -67,7 +68,7 @@ public class ClientGunTooltip implements ClientTooltipComponent {
         this.iGun = tooltip.getIGun();
         ResourceLocation ammoId = tooltip.getAmmoId();
         this.gunIndex = tooltip.getGunIndex();
-        this.display = TimelessAPI.getGunDisplay(gun).orElse(null);
+        this.display = TimelessAPI.getGunDisplay(gun).flatMap(index -> java.util.Optional.ofNullable(index.getDisplayInstance())).orElse(null);
         this.ammo = AmmoItemBuilder.create().setId(ammoId).build();
         this.maxWidth = 0;
         this.getText();
@@ -221,7 +222,7 @@ public class ClientGunTooltip implements ClientTooltipComponent {
 
         if (shouldShow(GunTooltipPart.PACK_INFO)) {
             ResourceLocation gunId = iGun.getGunId(gun);
-            PackInfo packInfoObject = ClientAssetsManager.INSTANCE.getPackInfo(gunId);
+            PackInfo packInfoObject = com.tacz.guns.client.resource.ClientAssetsManager.INSTANCE.getPackInfo(gunId);
             if (packInfoObject != null) {
                 packInfo = Component.translatable(packInfoObject.getName()).withStyle(ChatFormatting.BLUE).withStyle(ChatFormatting.ITALIC);
                 this.maxWidth = Math.max(font.width(this.packInfo), this.maxWidth);

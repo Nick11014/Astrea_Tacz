@@ -53,13 +53,17 @@ public class GunModPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         if(Minecraft.getInstance().level==null) return;
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
-        List<RecipeHolder<GunSmithTableRecipe>> recipes = recipeManager.getRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+        List<net.minecraft.world.item.crafting.RecipeHolder<GunSmithTableRecipe>> recipes = recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
 
         for (var entry : recipeTypeMap.entrySet()) {
             TimelessAPI.getCommonBlockIndex(entry.getKey()).ifPresent(blockIndex -> {
-                List<GunSmithTableRecipe> recipeList = blockIndex.getFilter().filter(recipes, GunSmithTableRecipe::getId);
+                List<GunSmithTableRecipe> recipeList = blockIndex.getFilter().filter(
+                    recipes.stream().map(net.minecraft.world.item.crafting.RecipeHolder::value).toList(), 
+                    recipe -> recipe.getResult().getGroup());
                 recipeList.removeIf(recipe -> {
-                    return blockIndex.getData().getTabs().stream().noneMatch(tab -> Objects.equals(((TabConfig) tab).id(), recipe.getResult().getGroup()));
+                    return blockIndex.getData().getTabs().stream()
+                        .map(tab -> (com.tacz.guns.resource.pojo.data.block.TabConfig) tab)
+                        .noneMatch(tab -> Objects.equals(tab.id(), recipe.getResult().getGroup()));
                 });
                 registration.addRecipes(entry.getValue(), recipeList);
             });

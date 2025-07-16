@@ -9,6 +9,7 @@ import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.network.message.event.ServerMessageGunReload;
 import com.tacz.guns.resource.pojo.data.gun.Bolt;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
@@ -55,7 +56,9 @@ public class LivingEntityReload {
             if (IGunOperator.fromLivingEntity(shooter).needCheckAmmo() && !gunItem.canReload(shooter, currentGunItem)) {
                 return;
             }
-            if (NeoForge.EVENT_BUS.post(new GunReloadEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
+            GunReloadEvent event = new GunReloadEvent(shooter, currentGunItem, LogicalSide.SERVER);
+            NeoForge.EVENT_BUS.post(event);
+            if (event.isCancelled()) {
                 return;
             }
             NetworkHandler.sendToClientPlayer(new ServerMessageGunReload(shooter.getId(), currentGunItem), (ServerPlayer) shooter);

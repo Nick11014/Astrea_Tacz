@@ -13,10 +13,11 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.fml.ModLoadingContext;
-import net.neoforged.fml.config.ModConfig;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,12 +31,12 @@ public class GunMod {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
-    public GunMod(IEventBus bus) {
+    public GunMod(IEventBus bus, ModContainer container) {
         bus.addListener(this::setup);
         bus.addListener(this::registerPayloadHandler);
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GunConfig.init());
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SyncConfig.init());
+        container.registerConfig(ModConfig.Type.COMMON, GunConfig.init());
+        container.registerConfig(ModConfig.Type.COMMON, SyncConfig.init());
 
         if (FMLEnvironment.dist == Dist.CLIENT) {
             // bus.addListener(ClientSetupEvent::init);

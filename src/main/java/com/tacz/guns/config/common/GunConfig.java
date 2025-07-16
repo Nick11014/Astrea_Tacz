@@ -2,12 +2,23 @@ package com.tacz.guns.config.common;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 
+import net.neoforged.neoforge.common.ModConfigSpec;
+
 public class GunConfig {
     public static ModConfigSpec.IntValue DEFAULT_GUN_FIRE_SOUND_DISTANCE;
     public static ModConfigSpec.IntValue DEFAULT_GUN_SILENCE_SOUND_DISTANCE;
     public static ModConfigSpec.IntValue DEFAULT_GUN_OTHER_SOUND_DISTANCE;
     public static ModConfigSpec.BooleanValue CREATIVE_PLAYER_CONSUME_AMMO;
     public static ModConfigSpec.BooleanValue AUTO_RELOAD_WHEN_RESPAWN;
+    
+    private static ModConfigSpec CONFIG_SPEC;
+
+    public static ModConfigSpec init() {
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+        init(builder);
+        CONFIG_SPEC = builder.build();
+        return CONFIG_SPEC;
+    }
 
     public static void init(ModConfigSpec.Builder builder) {
         builder.push("gun");

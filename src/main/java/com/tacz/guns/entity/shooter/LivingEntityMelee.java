@@ -13,6 +13,7 @@ import com.tacz.guns.resource.pojo.data.attachment.MeleeData;
 import com.tacz.guns.resource.pojo.data.gun.GunDefaultMeleeData;
 import com.tacz.guns.resource.pojo.data.gun.GunMeleeData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
@@ -47,7 +48,9 @@ public class LivingEntityMelee {
             return;
         }
         ItemStack currentGunItem = data.currentGunItem.get();
-        if (NeoForge.EVENT_BUS.post(new GunMeleeEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
+        GunMeleeEvent event = new GunMeleeEvent(shooter, currentGunItem, LogicalSide.SERVER);
+        NeoForge.EVENT_BUS.post(event);
+        if (event.isCancelled()) {
             return;
         }
         NetworkHandler.sendToClientPlayer(new ServerMessageGunMelee(shooter.getId(), currentGunItem), (ServerPlayer) shooter);

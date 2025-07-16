@@ -6,6 +6,7 @@ import com.tacz.guns.api.item.gun.AbstractGunItem;
 import com.tacz.guns.network.NetworkHandler;
 import com.tacz.guns.network.message.event.ServerMessageGunFireSelect;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
@@ -28,9 +29,13 @@ public class LivingEntityFireSelect {
         if (!(currentGunItem.getItem() instanceof IGun iGun)) {
             return;
         }
-        if (NeoForge.EVENT_BUS.post(new GunFireSelectEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
+        
+        GunFireSelectEvent event = new GunFireSelectEvent(shooter, currentGunItem, LogicalSide.SERVER);
+        NeoForge.EVENT_BUS.post(event);
+        if (event.isCancelled()) {
             return;
         }
+        
         NetworkHandler.sendToClientPlayer(new ServerMessageGunFireSelect(shooter.getId(), currentGunItem), (ServerPlayer) shooter);
         if (iGun instanceof AbstractGunItem logicGun) {
             logicGun.fireSelect(data, currentGunItem);

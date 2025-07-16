@@ -21,28 +21,36 @@ import java.util.Optional;
  */
 public class GunSmithTableSerializer implements RecipeSerializer<GunSmithTableRecipe> {
 
-    private record IntermediateResult(ItemStack result, Optional<ResourceLocation> group) {}
-
-    private static final Codec<IntermediateResult> INTERMEDIATE_RESULT_CODEC = RecordCodecBuilder.create(
-            instance -> instance.group(
-                    ItemStack.SIMPLE_CODEC.forGetter(IntermediateResult::result),
-                    ResourceLocation.CODEC.optionalFieldOf("group").forGetter(IntermediateResult::group)
-            ).apply(instance, IntermediateResult::new)
+    private record RecipeResult(ItemStack item, ResourceLocation group) {
+        // Construtor que converte de RawGunTableResult
+        public static RecipeResult fromRawResult(RawGunTableResult raw) {
+            return new RecipeResult(raw.getResult(), raw.getGroup());
+        }
+        
+        // Converter para RawGunTableResult
+        public RawGunTableResult toRawResult() {
+            return new RawGunTableResult(item, group);
+        }
+    }
+    
+    private static final Codec<RecipeResult> RESULT_CODEC = RecordCodecBuilder.create(
+        instance -> instance.group(
+            ItemStack.CODEC.fieldOf("item").forGetter(RecipeResult::item),
+            ResourceLocation.CODEC.fieldOf("group").forGetter(RecipeResult::group)
+        ).apply(instance, RecipeResult::new)
     );
-
+    
     private static final MapCodec<GunSmithTableRecipe> CODEC = RecordCodecBuilder.mapCodec(
-            instance -> instance.group(
-                    ResourceLocation.CODEC.optionalFieldOf("tab", new ResourceLocation(GunMod.MOD_ID, "guns"))
-                            .forGetter(GunSmithTableRecipe::getTab),
-                    GunSmithTableIngredient.CODEC.listOf().fieldOf("ingredients")
-                            .forGetter(GunSmithTableRecipe::getInputs),
-                    INTERMEDIATE_RESULT_CODEC.fieldOf("result")
-                            .forGetter(recipe -> new IntermediateResult(recipe.getResult().getResult(), Optional.of(recipe.getResult().getGroup())))
-            ).apply(instance, (tabId, ingredients, intermediateResult) -> {
-                ResourceLocation group = intermediateResult.group().orElse(tabId);
-                RawGunTableResult result = new RawGunTableResult(intermediateResult.result(), group);
-                return new GunSmithTableRecipe(tabId, ingredients, result);
-            })
+        instance -> instance.group(
+            ResourceLocation.CODEC.optionalFieldOf("tab", ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "guns"))
+                .forGetter(GunSmithTableRecipe::getTab),
+            GunSmithTableIngredient.CODEC.listOf().fieldOf("ingredients")
+                .forGetter(GunSmithTableRecipe::getInputs),
+            RESULT_CODEC.fieldOf("result")
+                .forGetter(recipe -> RecipeResult.fromRawResult(recipe.getResult()))
+        ).apply(instance, (tabId, ingredients, recipeResult) -> 
+            new GunSmithTableRecipe(tabId, ingredients, recipeResult.toRawResult())
+        )
     );
 
     private static final StreamCodec<RegistryFriendlyByteBuf, GunSmithTableRecipe> STREAM_CODEC = StreamCodec.of(

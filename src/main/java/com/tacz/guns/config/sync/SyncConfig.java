@@ -5,6 +5,10 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.List;
 
+import net.neoforged.neoforge.common.ModConfigSpec;
+import com.google.common.collect.Lists;
+import java.util.List;
+
 public class SyncConfig {
     public static ModConfigSpec.ConfigValue<List<String>> INTERACT_KEY_WHITELIST_BLOCKS;
     public static ModConfigSpec.ConfigValue<List<String>> INTERACT_KEY_WHITELIST_ENTITIES;
@@ -23,6 +27,15 @@ public class SyncConfig {
     public static ModConfigSpec.IntValue AMMO_BOX_STACK_SIZE;
     public static ModConfigSpec.ConfigValue<List<List<String>>> CLIENT_GUN_PACK_DOWNLOAD_URLS;
     public static ModConfigSpec.BooleanValue ENABLE_CRAWL;
+    
+    private static ModConfigSpec CONFIG_SPEC;
+
+    public static ModConfigSpec init() {
+        ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
+        init(builder);
+        CONFIG_SPEC = builder.build();
+        return CONFIG_SPEC;
+    }
 
     public static void init(ModConfigSpec.Builder builder) {
         interactKey(builder);

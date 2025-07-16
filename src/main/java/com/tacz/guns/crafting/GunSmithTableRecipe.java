@@ -1,7 +1,9 @@
 package com.tacz.guns.crafting;
 
+import com.tacz.guns.GunMod;
 import com.tacz.guns.init.ModRecipe;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -17,10 +19,20 @@ import java.util.List;
 public class GunSmithTableRecipe implements Recipe<SimpleContainer> {
     private final List<GunSmithTableIngredient> inputs;
     private final RawGunTableResult result;
+    private final ResourceLocation tabId;
 
     public GunSmithTableRecipe(List<GunSmithTableIngredient> inputs, RawGunTableResult result) {
+        this(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "guns"), inputs, result);
+    }
+    
+    public GunSmithTableRecipe(ResourceLocation tabId, List<GunSmithTableIngredient> inputs, RawGunTableResult result) {
+        this.tabId = tabId;
         this.inputs = inputs;
         this.result = result;
+    }
+    
+    public ResourceLocation getTab() {
+        return tabId;
     }
 
     @Override

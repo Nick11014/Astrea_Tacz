@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.fml.LogicalSide;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.Objects;
@@ -111,7 +112,10 @@ public class LivingEntityShoot {
             }
             iGun.setBulletInBarrel(currentGunItem, true);
         }
-        if (NeoForge.EVENT_BUS.post(new GunShootEvent(shooter, currentGunItem, LogicalSide.SERVER))) {
+        
+        GunShootEvent event = new GunShootEvent(shooter, currentGunItem, LogicalSide.SERVER);
+        NeoForge.EVENT_BUS.post(event);
+        if (event.isCancelled()) {
             return ShootResult.FORGE_EVENT_CANCEL;
         }
 
@@ -177,8 +181,10 @@ public class LivingEntityShoot {
         if (abstractGunItem.useDummyAmmo(itemStack)) {
             abstractGunItem.findAndExtractDummyAmmo(itemStack, neededAmount);
         } else {
-            shooter.getCapability(Capabilities.ItemHandler.ENTITY)
-                    .map(cap -> abstractGunItem.findAndExtractInventoryAmmo(cap, itemStack, neededAmount));
+            IItemHandler itemHandler = shooter.getCapability(Capabilities.ItemHandler.ENTITY);
+            if (itemHandler != null) {
+                abstractGunItem.findAndExtractInventoryAmmo(itemHandler, itemStack, neededAmount);
+            }
         }
     }
 }
