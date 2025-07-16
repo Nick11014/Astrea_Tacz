@@ -2,6 +2,8 @@ package com.tacz.guns.client.resource.index;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
+import com.tacz.guns.client.model.BedrockGunModel;
+import com.tacz.guns.client.resource.pojo.TransformScale;
 import com.tacz.guns.client.resource.pojo.display.gun.GunDisplay;
 import com.tacz.guns.client.resource.pojo.display.gun.LayerGunShow;
 import com.tacz.guns.resource.CommonAssetsManager;
@@ -11,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -127,6 +130,32 @@ public class ClientGunIndex {
     // Temporary method for sound compatibility during migration
     public net.minecraft.resources.ResourceLocation getSounds(String name) {
         return null;
+    }
+    
+    // Implementação dos métodos necessários
+    public BedrockGunModel getGunModel() {
+        // Implementação temporária retornando um modelo vazio
+        return new BedrockGunModel(null, null);
+    }
+    
+    public ResourceLocation getModelTexture() {
+        // Implementação temporária retornando uma textura padrão
+        return ResourceLocation.fromNamespaceAndPath("tacz", "textures/item/default_gun.png");
+    }
+    
+    public ResourceLocation getSlotTexture() {
+        // Implementação temporária retornando uma textura de slot padrão
+        return ResourceLocation.fromNamespaceAndPath("tacz", "textures/item/default_slot.png");
+    }
+    
+    public Pair<BedrockGunModel, ResourceLocation> getLodModel() {
+        // Implementação temporária retornando um par com modelo e textura padrão
+        return Pair.of(getGunModel(), getModelTexture());
+    }
+    
+    public TransformScale getScale() {
+        // Implementação temporária retornando uma escala padrão
+        return TransformScale.getGunDefault();
     }
 }
 

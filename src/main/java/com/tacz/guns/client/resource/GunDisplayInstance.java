@@ -1,5 +1,6 @@
 package com.tacz.guns.client.resource;
 
+import com.tacz.guns.client.resource.pojo.TransformScale;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -339,14 +340,18 @@ public class GunDisplayInstance {
     public BedrockGunModel getGunModel() {
         return gunModel;
     }
+    
+    public TransformScale getScale() {
+        return transform != null ? transform.getScale() : null;
+    }
 
     @Nullable
     public Pair<BedrockGunModel, ResourceLocation> getLodModel() {
         return lodModel;
     }
 
-    public LuaAnimationStateMachine<? extends AnimationStateContext> getAnimationStateMachine() {
-        return animationStateMachine;
+    public LuaAnimationStateMachine<GunAnimationStateContext> getAnimationStateMachine() {
+            return (LuaAnimationStateMachine<GunAnimationStateContext>) animationStateMachine;
     }
 
     public @Nullable LuaTable getStateMachineParam() {

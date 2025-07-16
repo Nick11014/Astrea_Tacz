@@ -118,17 +118,19 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
     @Nullable
     @Override
     public LuaAnimationStateMachine<GunAnimationStateContext> getStateMachine(ItemStack stack) {
-        return TimelessAPI.getGunDisplay(stack).map(clientGunIndex -> clientGunIndex.getAnimationStateMachine()).orElse(null);
+        return TimelessAPI.getGunDisplay(stack)
+                .map(clientGunIndex -> (LuaAnimationStateMachine<GunAnimationStateContext>) clientGunIndex.getAnimationStateMachine())
+                .orElse(null);
     }
 
     @Override
     public BedrockGunModel getModel(ItemStack stack) {
-        return TimelessAPI.getGunDisplay(stack).map(clientGunIndex -> clientGunIndex.getGunModel()).orElse(null);
+        return TimelessAPI.getGunDisplay(stack).map(display -> display.getGunModel()).orElse(null);
     }
 
     @Override
     public ResourceLocation getTextureLocation(ItemStack stack) {
-        return TimelessAPI.getGunDisplay(stack).map(clientGunIndex -> clientGunIndex.getModelTexture()).orElse(null);
+        return TimelessAPI.getGunDisplay(stack).map(display -> display.getModelTexture()).orElse(null);
     }
 
     @Override
@@ -142,7 +144,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
                 lastModel = model;
             }
             IClientPlayerGunOperator clientPlayerGunOperator = IClientPlayerGunOperator.fromLocalPlayer(player);
-            float partialTicks = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+            float partialTicks = (float) event.getPartialTick();
             float aimingProgress = clientPlayerGunOperator.getClientAimingProgress(partialTicks);
             float zoom = iGun.getAimingZoom(stack);
             float multiplier = 1 - aimingProgress + aimingProgress / (float) Math.sqrt(zoom);
@@ -158,7 +160,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
         Optional.ofNullable(getModel(stack)).ifPresent(model -> {
             PoseStack poseStack = event.getPoseStack();
             IClientPlayerGunOperator clientPlayerGunOperator = IClientPlayerGunOperator.fromLocalPlayer(player);
-            float partialTicks = Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
+            float partialTicks = (float) Minecraft.getInstance().getDeltaFrameTime();
             float aimingProgress = clientPlayerGunOperator.getClientAimingProgress(partialTicks);
             float zoom = iGun.getAimingZoom(stack);
             float multiplier = 1 - aimingProgress + aimingProgress / (float) Math.sqrt(zoom);
@@ -177,7 +179,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
 
         TimelessAPI.getGunDisplay(stack).ifPresent(display -> {
             BedrockGunModel gunModel = display.getGunModel();
-            var animationStateMachine = display.getAnimationStateMachine();
+            var animationStateMachine = (LuaAnimationStateMachine<GunAnimationStateContext>) display.getAnimationStateMachine();
             if (gunModel == null) {
                 return;
             }
@@ -260,7 +262,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
             if (transformType == GUI) {
                 poseStack.translate(0.5, 1.5, 0.5);
                 poseStack.mulPose(Axis.ZN.rotationDegrees(180));
-                VertexConsumer buffer = pBuffer.getBuffer(RenderType.entityTranslucent(gunIndex.getSlotTextureLocation()));
+                VertexConsumer buffer = pBuffer.getBuffer(RenderType.entityTranslucent(gunIndex.getSlotTexture()));
                 SLOT_GUN_MODEL.renderToBuffer(poseStack, buffer, pPackedLight, pPackedOverlay);
                 return;
             }
@@ -276,8 +278,9 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
             }
             poseStack.translate(0.5, 2, 0.5);
             poseStack.scale(-1, -1, 1);
-            applyPositioningTransform(transformType, gunIndex.getTransform().getScale(), gunModel, poseStack);
-            applyScaleTransform(transformType, gunIndex.getTransform().getScale(), poseStack);
+            TransformScale scale = gunIndex.getScale();
+            applyPositioningTransform(transformType, scale, gunModel, poseStack);
+            applyScaleTransform(transformType, scale, poseStack);
             RenderType renderType = RenderType.entityCutout(gunTexture);
             gunModel.render(poseStack, stack, transformType, renderType, pPackedLight, pPackedOverlay);
         }, () -> {

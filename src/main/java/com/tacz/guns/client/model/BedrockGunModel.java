@@ -14,7 +14,6 @@ import com.tacz.guns.client.model.bedrock.BedrockPart;
 import com.tacz.guns.client.model.bedrock.ModelRendererWrapper;
 import com.tacz.guns.client.model.functional.*;
 import com.tacz.guns.client.model.listener.model.ModelAdditionalMagazineListener;
-// import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
 import com.tacz.guns.client.resource.pojo.model.BedrockVersion;
@@ -138,7 +137,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             String defaultNodeName = type.name().toLowerCase() + DEFAULT_ATTACHMENT_SUFFIX;
             this.setFunctionalRenderer(positionNodeName, bedrockPart -> {
                 bedrockPart.visible = false;
-                return new AttachmentRender(this, type); // HABILITADO: AttachmentRender agora estÃƒÆ’Ã‚Â¡ funcional
+                return new AttachmentRender(this, type); // HABILITADO: AttachmentRender agora está funcional
             });
             this.setFunctionalRenderer(defaultNodeName, bedrockPart -> {
                 ItemStack attachmentItem = currentAttachmentItem.get(type);
@@ -157,7 +156,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             ResourceLocation attachmentId = iAttachment.getAttachmentId(attachmentItem);
             var attachmentIndex = TimelessAPI.getClientAttachmentIndex(attachmentId);
             if (attachmentIndex.isPresent()) {
-                bedrockPart.visible = true; // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
+                bedrockPart.visible = true; // Implementação mínima
                 return true;
             }
         }
@@ -201,14 +200,14 @@ public class BedrockGunModel extends BedrockAnimatedModel {
     }
 
     /**
-     * ÃƒÂ¦Ã‚Â·Ã‚Â»ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¨Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â°ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã¢â‚¬â€œÃ¢â‚¬Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¦Ã‹Å“Ã‚Â¾ÃƒÂ§Ã‚Â¤Ã‚Âº
+     * 添加枪械状态的文本显示
      */
     public void setTextShowList(Map<String, TextShow> textShowList) {
         if (textShowList != null) {
             textShowList.forEach((name, textShow) -> {
                 // Registrar o text show para uso futuro
                 // this.setFunctionalRenderer(name, bedrockPart -> new TextShowRender(this, textShow, currentGunItem));
-                
+
                 // System.out.println("Registering text show: " + name + " -> " + textShow.getTextKey());
             });
         }
@@ -391,66 +390,3 @@ public class BedrockGunModel extends BedrockAnimatedModel {
         this.renderHand = renderHand;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

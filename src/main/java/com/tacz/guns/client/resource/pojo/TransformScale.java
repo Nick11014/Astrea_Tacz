@@ -3,17 +3,18 @@ package com.tacz.guns.client.resource.pojo;
 import com.google.gson.annotations.SerializedName;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.world.item.ItemDisplayContext;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
-
-import javax.annotation.Nullable;
 
 public class TransformScale {
     @SerializedName("thirdperson")
     @Nullable
     private Vector3f thirdPerson;
+
     @SerializedName("ground")
     @Nullable
     private Vector3f ground;
+
     @SerializedName("fixed")
     @Nullable
     private Vector3f fixed;
@@ -65,66 +66,3 @@ public class TransformScale {
         return fixed;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
