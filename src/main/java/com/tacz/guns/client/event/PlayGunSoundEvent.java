@@ -13,11 +13,7 @@ public class PlayGunSoundEvent {
     @SubscribeEvent
     public static void onPlaySoundSource(PlaySoundSourceEvent event) {
         if (event.getSound() instanceof GunSoundInstance instance) {
-            SoundBuffer soundBuffer = instance.getSoundBuffer();
-            if (soundBuffer != null) {
-                event.getChannel().attachStaticBuffer(soundBuffer);
-                event.getChannel().play();
-            }
+            event.getChannel().play();
         }
     }
 }

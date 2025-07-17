@@ -23,11 +23,11 @@ public class TooltipEvent {
     public static void onTooltip(ItemTooltipEvent event) {
         if (event.getFlags().isAdvanced() && RenderConfig.ENABLE_TACZ_ID_IN_TOOLTIP.get()) {
             if (event.getItemStack().getItem() instanceof GunItemDataAccessor item) {
-                event.getToolTip().add(formatTooltip(GunItemDataAccessor.GUN_ID_TAG, item.getGunId(event.getItemStack())));
+                event.getToolTip().add(formatTooltip(ModDataComponents.GUN_ID.get().toString(), item.getGunId(event.getItemStack())));
             } else if (event.getItemStack().getItem() instanceof AmmoItemDataAccessor item) {
-                event.getToolTip().add(formatTooltip("AmmoId", item.getAmmoId(event.getItemStack())));
+                event.getToolTip().add(formatTooltip(ModDataComponents.AMMO_ID.get().toString(), item.getAmmoId(event.getItemStack())));
             } else if (event.getItemStack().getItem() instanceof AttachmentItemDataAccessor item) {
-                event.getToolTip().add(formatTooltip(AttachmentItemDataAccessor.ATTACHMENT_ID_TAG, item.getAttachmentId(event.getItemStack())));
+                event.getToolTip().add(formatTooltip(ModDataComponents.ATTACHMENT_ID.get().toString(), item.getAttachmentId(event.getItemStack())));
             } else if (event.getItemStack().getItem() instanceof BlockItemDataAccessor item && !ModItems.GUN_SMITH_TABLE.get().equals(item)) {
                 event.getToolTip().add(formatTooltip(BlockItemDataAccessor.BLOCK_ID, item.getBlockId(event.getItemStack())));
             }

@@ -33,19 +33,7 @@ import java.util.Objects;
  * @see ModDataComponents para as definiÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes dos componentes
  */
 public interface GunItemDataAccessor extends IGun {
-    String GUN_ID_TAG = "GunId";
-    String GUN_FIRE_MODE_TAG = "GunFireMode";
-    String GUN_HAS_BULLET_IN_BARREL = "HasBulletInBarrel";
-    String GUN_CURRENT_AMMO_COUNT_TAG = "GunCurrentAmmoCount";
-    String GUN_ATTACHMENT_BASE = "Attachment";
-    String GUN_EXP_TAG = "GunLevelExp";
-    String GUN_DUMMY_AMMO = "DummyAmmo";
-    String GUN_MAX_DUMMY_AMMO = "MaxDummyAmmo";
-    String GUN_ATTACHMENT_LOCK = "AttachmentLock";
-    String GUN_DISPLAY_ID_TAG = "GunDisplayId";
-    String LASER_COLOR_TAG = "LaserColor";
-    String GUN_OVERHEAT_TAG = "HeatAmount";
-    String GUN_OVERHEAT_LOCK_TAG = "OverHeated";
+    
     default boolean useDummyAmmo(ItemStack gun) {
         return gun.has(ModDataComponents.GUN_DUMMY_AMMO.get());
     }
@@ -196,12 +184,9 @@ public interface GunItemDataAccessor extends IGun {
         if (attachments == null) {
             return null;
         }
-        String key = GUN_ATTACHMENT_BASE + type.name();
+        String key = type.name();
         if (attachments.contains(key, Tag.TAG_COMPOUND)) {
-            CompoundTag allItemStackTag = attachments.getCompound(key);
-            if (allItemStackTag.contains("tag", Tag.TAG_COMPOUND)) {
-                return allItemStackTag.getCompound("tag");
-            }
+            return attachments.getCompound(key);
         }
         return null;
     }
@@ -232,10 +217,9 @@ public interface GunItemDataAccessor extends IGun {
         if (attachments == null) {
             return ItemStack.EMPTY;
         }
-        String key = GUN_ATTACHMENT_BASE + type.name();
+        String key = type.name();
         if (attachments.contains(key, Tag.TAG_COMPOUND)) {
-            // return ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), attachments.getCompound(key)).orElse(ItemStack.EMPTY);
-            return ItemStack.EMPTY; // Placeholder temporÃƒÆ’Ã‚Â¡rio
+            return ItemStack.parseOptional(BuiltInRegistries.ITEM.asLookup(), attachments.getCompound(key)).orElse(ItemStack.EMPTY);
         }
         return ItemStack.EMPTY;
     }
@@ -276,9 +260,8 @@ public interface GunItemDataAccessor extends IGun {
             return;
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
-        String key = GUN_ATTACHMENT_BASE + iAttachment.getType(attachment).name();
-        // CompoundTag attachmentTag = (CompoundTag) attachment.save(BuiltInRegistries.ITEM.asLookup());
-        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporÃƒÆ’Ã‚Â¡rio
+        String key = iAttachment.getType(attachment).name();
+        CompoundTag attachmentTag = attachment.save(net.minecraft.client.Minecraft.getInstance().level.registryAccess());
         attachments.put(key, attachmentTag);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
@@ -289,10 +272,8 @@ public interface GunItemDataAccessor extends IGun {
             return;
         }
         CompoundTag attachments = gun.getOrDefault(ModDataComponents.GUN_ATTACHMENTS.get(), new CompoundTag());
-        String key = GUN_ATTACHMENT_BASE + type.name();
-        // CompoundTag attachmentTag = (CompoundTag) ItemStack.EMPTY.save(BuiltInRegistries.ITEM.asLookup());
-        CompoundTag attachmentTag = new CompoundTag(); // Placeholder temporÃƒÆ’Ã‚Â¡rio
-        attachments.put(key, attachmentTag);
+        String key = type.name();
+        attachments.remove(key);
         gun.set(ModDataComponents.GUN_ATTACHMENTS.get(), attachments);
     }
 
@@ -308,24 +289,15 @@ public interface GunItemDataAccessor extends IGun {
         if (!DefaultAssets.isEmptyAttachmentId(scopeId)) {
             CompoundTag attachmentTag = this.getAttachmentTag(gunItem, AttachmentType.SCOPE);
             int zoomNumber = builtin ? 0 : AttachmentItemDataAccessor.getZoomNumberFromTag(attachmentTag);
-            Object attachmentIndexObj = TimelessAPI.getClientAttachmentIndex(scopeId).orElse(null);
-            float[] zooms = null;
-            if (attachmentIndexObj != null) {
-                // ClientAttachmentIndex attachmentIndex = (ClientAttachmentIndex) attachmentIndexObj;
-                // zooms = attachmentIndex.getZoom();
-            }
-            if (zooms != null) {
-                zoom = zooms[zoomNumber % zooms.length];
-            }
+            zoom = TimelessAPI.getClientAttachmentIndex(scopeId).map(attachmentIndex -> {
+                float[] zooms = attachmentIndex.getZoom();
+                if (zooms != null) {
+                    return zooms[zoomNumber % zooms.length];
+                }
+                return 1f;
+            }).orElse(1f);
         } else {
-            Object gunDisplayObj = TimelessAPI.getGunDisplay(gunItem).orElse(null);
-            if (gunDisplayObj != null) {
-                // GunDisplayInstance gunDisplay = (GunDisplayInstance) gunDisplayObj;
-                // zoom = gunDisplay.getIronZoom();
-                zoom = 1f; // Placeholder temporÃƒÆ’Ã‚Â¡rio
-            } else {
-                zoom = 1f;
-            }
+            zoom = TimelessAPI.getGunDisplay(gunItem).map(clientGunIndex -> clientGunIndex.getDefaultDisplay().getIronZoom()).orElse(1f);
         }
         return zoom;
     }    
@@ -387,34 +359,23 @@ public interface GunItemDataAccessor extends IGun {
 
     
     default float lerpRPM(ItemStack gun) {
-        Object indexObj = TimelessAPI.getCommonGunIndex(getGunId(gun)).orElse(null);
-        if (indexObj instanceof CommonGunIndex) {
-            CommonGunIndex index = (CommonGunIndex) indexObj;
-            Object heatDataObj = index.getGunData().getHeatData();
-            if (heatDataObj != null) {
-                // GunHeatData heatData = (GunHeatData) heatDataObj;
-                // float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
-                // return Mth.lerp(heatPercentage, heatData.getMinRpmMod(), heatData.getMaxRpmMod());
-                return 1f; // Placeholder temporÃƒÆ’Ã‚Â¡rio
+        return TimelessAPI.getCommonGunIndex(getGunId(gun)).map(index -> {
+            if (index.getGunData().getHeatData() != null) {
+                float heatPercentage = (getHeatAmount(gun) / index.getGunData().getHeatData().getHeatMax());
+                return Mth.lerp(heatPercentage, index.getGunData().getHeatData().getMinRpmMod(), index.getGunData().getHeatData().getMaxRpmMod());
             }
-        }
-        return 1f;
+            return 1f;
+        }).orElse(1f);
     }
 
-    
     default float lerpInaccuracy(ItemStack gun) {
-        Object indexObj = TimelessAPI.getCommonGunIndex(getGunId(gun)).orElse(null);
-        if (indexObj instanceof CommonGunIndex) {
-            CommonGunIndex index = (CommonGunIndex) indexObj;
-            Object heatDataObj = index.getGunData().getHeatData();
-            if (heatDataObj != null) {
-                // GunHeatData heatData = (GunHeatData) heatDataObj;
-                // float heatPercentage = (getHeatAmount(gun) / heatData.getHeatMax());
-                // return Mth.lerp(heatPercentage, heatData.getMinInaccuracy(), heatData.getMaxInaccuracy());
-                return 1f; // Placeholder temporÃƒÆ’Ã‚Â¡rio
+        return TimelessAPI.getCommonGunIndex(getGunId(gun)).map(index -> {
+            if (index.getGunData().getHeatData() != null) {
+                float heatPercentage = (getHeatAmount(gun) / index.getGunData().getHeatData().getHeatMax());
+                return Mth.lerp(heatPercentage, index.getGunData().getHeatData().getMinInaccuracy(), index.getGunData().getHeatData().getMaxInaccuracy());
             }
-        }
-        return 1f;
+            return 1f;
+        }).orElse(1f);
     }
 }
 

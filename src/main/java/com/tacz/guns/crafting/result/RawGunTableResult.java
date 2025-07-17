@@ -29,8 +29,6 @@ public class RawGunTableResult {
     private final ResourceLocation id;
     @Nullable
     private GunResult extraData;
-    @Nullable
-    private CompoundTag nbt;
 
     public RawGunTableResult(@NotNull String type, @NotNull ResourceLocation id, int count) {
         this.type = type;
@@ -42,27 +40,13 @@ public class RawGunTableResult {
         this.extraData = extraData;
     }
 
-    public void setNbt(@Nullable CompoundTag nbt) {
-        this.nbt = nbt;
-    }
-
     public static GunSmithTableResult init(RawGunTableResult raw) {
         GunSmithTableResult result = switch (raw.type) {
             case GunSmithTableResult.GUN -> raw.getGunStack();
             case GunSmithTableResult.AMMO -> raw.getAmmoStack();
             case GunSmithTableResult.ATTACHMENT -> raw.getAttachmentStack();
             default -> new GunSmithTableResult(ItemStack.EMPTY, TabConfig.TAB_EMPTY);
-        };        // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
-        // O sistema NBT foi substituído por DataComponents
-        // TODO: Implementar migração específica de NBT para DataComponents quando necessário
-        // Por enquanto, mantemos compatibilidade básica através do LuaNbtAccessor
-        if (raw.nbt != null) {
-            // Aplicar dados NBT usando o sistema de compatibilidade
-            // Nota: Este é um fallback temporário - idealmente deveria usar DataComponents específicos
-            var accessor = com.tacz.guns.api.util.LuaNbtAccessor.from(result.getResult());
-            // A aplicação específica de NBT será feita através dos DataComponents apropriados
-            // quando os builders forem chamados (GunItemBuilder, AmmoItemBuilder, etc.)
-        }
+        };
         return result;
     }
 

@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.tacz.guns.client.resource.manager.DisplayManager;
 import com.tacz.guns.client.resource.manager.GltfManager;
 import com.tacz.guns.client.resource.manager.PackInfoManager;
-import com.tacz.guns.client.resource.manager.SoundAssetsManager;
+
 import com.tacz.guns.client.resource.pojo.CommonTransformObject;
 import com.tacz.guns.client.resource.pojo.PackInfo;
 import com.tacz.guns.client.resource.pojo.animation.bedrock.AnimationKeyframes;
@@ -75,7 +75,7 @@ public enum ClientAssetsManager {
     private GltfManager gltfAnimation;
     // private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
     // private ScriptManager scriptManager;
-    private SoundAssetsManager soundAssetsManager;
+    
     private PackInfoManager packInfo;
 
     private List<PreparableReloadListener> listeners;
@@ -91,7 +91,7 @@ public enum ClientAssetsManager {
             bedrockAnimation = register(new JsonDataManager<>(BedrockAnimationFile.class, GSON, new FileToIdConverter("animations", ".animation.json"), "BedrockAnimationLoader"));
             gltfAnimation = register(new GltfManager());
             // scriptManager = register(new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList));
-            soundAssetsManager = register(new SoundAssetsManager());
+            
             packInfo = register(new PackInfoManager());
         }
         listeners.forEach(register);
@@ -148,10 +148,7 @@ public enum ClientAssetsManager {
         return null;
     }
 
-    @Nullable
-    public SoundAssetsManager.SoundData getSoundBuffers(ResourceLocation id) {
-        return soundAssetsManager.getData(id);
-    }
+    
 
     @Nullable
     public PackInfo getPackInfo(String namespace) {
@@ -171,10 +168,7 @@ public enum ClientAssetsManager {
         if (ammoDisplay == null) {
             return java.util.Optional.empty();
         }
-        // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
-        // Precisa converter AmmoDisplay para AmmoIndexPOJO ou ajustar o método getInstance
-        // TODO: Implementar conversão adequada ou ajustar ClientAmmoIndex.getInstance
-        return java.util.Optional.empty(); // Temporário até resolver a incompatibilidade de tipos
+        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientAmmoIndex.getInstance(ammoDisplay));
     }
     
     public java.util.Optional<com.tacz.guns.client.resource.index.ClientBlockIndex> getBlockIndex(ResourceLocation blockId) {
@@ -182,10 +176,8 @@ public enum ClientAssetsManager {
         if (blockDisplay == null) {
             return java.util.Optional.empty();
         }
-        // MIGRAÇÃO PARA DATACOMPONENTS (NeoForge 1.21.1)
-        // Precisa converter BlockDisplay para BlockIndexPOJO ou ajustar o método getInstance
-        // TODO: Implementar conversão adequada ou ajustar ClientBlockIndex.getInstance
-        return java.util.Optional.empty(); // Temporário até resolver a incompatibilidade de tipos
+        // return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(blockDisplay));
+        return java.util.Optional.empty();
     }
 
     @OnlyIn(Dist.CLIENT)

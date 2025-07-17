@@ -1,10 +1,19 @@
 package com.tacz.guns.entity.sync.core;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.nbt.ByteTag;
+import net.minecraft.nbt.ShortTag;
+import net.minecraft.nbt.IntTag;
+import net.minecraft.nbt.LongTag;
+import net.minecraft.nbt.FloatTag;
+import net.minecraft.nbt.DoubleTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.UUID;
 
@@ -290,50 +299,25 @@ public class Serializers {
     public static final IDataSerializer<ItemStack> ITEM_STACK = new IDataSerializer<>() {
         @Override
         public void write(FriendlyByteBuf buf, ItemStack value) {
-            // A pesquisa indica que devemos migrar para DataComponents
-            
-            if (value.isEmpty()) {
-                buf.writeBoolean(false);
-            } else {
-                buf.writeBoolean(true);
-                buf.writeUtf(value.getItem().toString()); // ID do item
-                buf.writeVarInt(value.getCount()); // Quantidade
-            }
+            buf.writeItem(value);
         }
 
         @Override
         public ItemStack read(FriendlyByteBuf buf) {
-            boolean hasItem = buf.readBoolean();
-            if (!hasItem) {
-                return ItemStack.EMPTY;
-            } else {
-                String itemId = buf.readUtf(); // ID do item
-                int count = buf.readVarInt(); // Quantidade
-                // TODO: Reconstruir ItemStack com DataComponents
-                // Por ora, retorna vazio como fallback seguro
-                return ItemStack.EMPTY;
-            }
+            return buf.readItem();
         }
 
         @Override
         public Tag write(ItemStack value) {
+            // DataComponents são serializados automaticamente quando o ItemStack é salvo em NBT
             CompoundTag compound = new CompoundTag();
-            if (!value.isEmpty()) {
-                compound.putString("id", value.getItem().toString());
-                compound.putInt("count", value.getCount());
-                // TODO: Migrar para DataComponents conforme pesquisa
-            }
+            value.save(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound);
             return compound;
         }
 
         @Override
         public ItemStack read(Tag tag) {
-            if (!(tag instanceof CompoundTag compound)) {
-                return ItemStack.EMPTY;
-            }
-            // TODO: Implementar leitura completa com DataComponents
-            // Por ora, retorna vazio como fallback seguro
-            return ItemStack.EMPTY;
+            return ItemStack.parseOptional(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound).orElse(ItemStack.EMPTY);
         }
     };
 

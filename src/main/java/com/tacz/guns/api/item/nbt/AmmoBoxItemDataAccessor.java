@@ -21,11 +21,7 @@ import java.util.Objects;
  */
 
 public interface AmmoBoxItemDataAccessor extends IAmmoBox {
-    String AMMO_ID_TAG = "AmmoId";
-    String AMMO_COUNT_TAG = "AmmoCount";
-    String CREATIVE_TAG = "Creative";
-    String ALL_TYPE_CREATIVE_TAG = "AllTypeCreative";
-    String LEVEL_TAG = "Level";    @Override
+        @Override
     default ResourceLocation getAmmoId(ItemStack ammoBox) {
         ResourceLocation ammoId = ammoBox.get(ModDataComponents.AMMO_BOX_AMMO_ID.get());
         return Objects.requireNonNullElse(ammoId, DefaultAssets.EMPTY_AMMO_ID);

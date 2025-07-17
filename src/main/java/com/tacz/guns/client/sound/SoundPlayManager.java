@@ -35,16 +35,14 @@ public class SoundPlayManager {
      */
     private static GunSoundInstance tmpSoundInstance = null;
 
-    public static GunSoundInstance playClientSound(Entity entity, @Nullable ResourceLocation name, float volume, float pitch, int distance, boolean mono) {
+    public static GunSoundInstance playClientSound(Entity entity, @Nullable ResourceLocation name, float volume, float pitch, int distance) {
         Minecraft minecraft = Minecraft.getInstance();
-        GunSoundInstance instance = new GunSoundInstance(ModSounds.GUN.get(), SoundSource.PLAYERS, volume, pitch, entity, distance, name, mono);
+        GunSoundInstance instance = new GunSoundInstance(ModSounds.GUN.get(), SoundSource.PLAYERS, volume, pitch, entity, distance);
         minecraft.getSoundManager().play(instance);
         return instance;
     }
 
-    public static GunSoundInstance playClientSound(Entity entity, @Nullable ResourceLocation name, float volume, float pitch, int distance) {
-        return playClientSound(entity, name, volume, pitch, distance, false);
-    }
+    
 
     public static void stopPlayGunSound() {
         if (tmpSoundInstance != null) {
@@ -54,9 +52,7 @@ public class SoundPlayManager {
 
     public static void stopPlayGunSound(GunDisplayInstance gunIndex, String animationName) {
         if (tmpSoundInstance != null) {
-            if (tmpSoundInstance.getRegistryName() != null && tmpSoundInstance.getRegistryName().equals(gunIndex.getSounds(animationName))) {
-                tmpSoundInstance.setStop();
-            }
+            tmpSoundInstance.setStop();
         }
     }
 
@@ -86,11 +82,8 @@ public class SoundPlayManager {
     }
 
     public static void stopPlayGunSound(ClientGunIndex gunIndex, String animationName) {
-        if (tmpSoundInstance != null && tmpSoundInstance.getRegistryName() != null) {
-            ResourceLocation expectedSound = gunIndex.getSounds(animationName);
-            if (expectedSound != null && tmpSoundInstance.getRegistryName().equals(expectedSound)) {
-                tmpSoundInstance.setStop();
-            }
+        if (tmpSoundInstance != null) {
+            tmpSoundInstance.setStop();
         }
     }
 
@@ -243,7 +236,7 @@ public class SoundPlayManager {
                 return;
             }
             if (SoundManager.SHOOT_3P_SOUND.equals(soundName) || SoundManager.SILENCE_3P_SOUND.equals(soundName)) {
-                playClientSound(livingEntity, soundId, message.volume(), message.pitch(), message.distance(), true);
+                playClientSound(livingEntity, soundId, message.volume(), message.pitch(), message.distance());
             } else {
                 playClientSound(livingEntity, soundId, message.volume(), message.pitch(), message.distance());
             }
