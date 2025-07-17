@@ -30,6 +30,7 @@ public class GunMod {
         bus.addListener(this::setup);
         bus.addListener(this::registerPayloadHandler);
         com.tacz.guns.init.ModDataComponents.register(bus);
+        com.tacz.guns.init.ModSoundEvents.SOUND_EVENTS.register(bus);
 
         // Registra apenas uma vez a configuração COMMON para evitar conflito
         container.registerConfig(ModConfig.Type.COMMON, GunConfig.init());
