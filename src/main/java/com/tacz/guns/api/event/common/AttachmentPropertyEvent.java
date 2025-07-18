@@ -1,7 +1,7 @@
 package com.tacz.guns.api.event.common;
 
 // TODO: Re-habilitar quando AttachmentCacheProperty for habilitado
-// import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
+import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.Event;
 
@@ -15,11 +15,9 @@ import net.neoforged.bus.api.Event;
 public class AttachmentPropertyEvent extends Event /* implements KubeJSGunEventPoster<AttachmentPropertyEvent> */ {
     private final ItemStack gunItem;
     // TODO: Re-habilitar quando AttachmentCacheProperty for habilitado
-    // private final AttachmentCacheProperty cacheProperty;
-    private final Object cacheProperty; // Placeholder
+    private final AttachmentCacheProperty cacheProperty;
 
-    // TODO: Atualizar construtor quando AttachmentCacheProperty for habilitado
-    public AttachmentPropertyEvent(ItemStack gunItem, Object attachmentProperty) {
+    public AttachmentPropertyEvent(ItemStack gunItem, AttachmentCacheProperty attachmentProperty) {
         this.gunItem = gunItem;
         this.cacheProperty = attachmentProperty;
     }
@@ -28,8 +26,7 @@ public class AttachmentPropertyEvent extends Event /* implements KubeJSGunEventP
         return gunItem;
     }
 
-    // TODO: Re-habilitar quando AttachmentCacheProperty for habilitado
-    public Object getCacheProperty() {
+    public AttachmentCacheProperty getCacheProperty() {
         return cacheProperty;
     }
 }

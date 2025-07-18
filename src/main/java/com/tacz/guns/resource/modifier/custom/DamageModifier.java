@@ -37,9 +37,7 @@ public class DamageModifier implements IAttachmentModifier<Modifier, Object> {
         return "bullet_damage";
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    // 2. CORREÇÃO: O tipo de retorno agora é JsonProperty<Modifier>, conforme exigido pela interface.
     public JsonProperty<Modifier> readJson(String json) {
         if (json != null && json.contains("damage")) {
             return new JsonProperty<Modifier>(new Modifier()) {
@@ -53,6 +51,11 @@ public class DamageModifier implements IAttachmentModifier<Modifier, Object> {
     }
 
     @Override
+    public Class<Modifier> getPropertyClass() {
+        return Modifier.class;
+    }
+
+    @Override
     // 3. CORREÇÃO: Os tipos dos parâmetros agora são GunData e JsonProperty<Modifier>.
     public void modify(GunData gunData, JsonProperty<Modifier> property) {
         if (gunData != null && property != null && property.getValue() != null) {
@@ -63,13 +66,11 @@ public class DamageModifier implements IAttachmentModifier<Modifier, Object> {
     }
 
     @Override
-    // 4. CORREÇÃO: O tipo do parâmetro agora é ItemStack.
     public Object getCache(ItemStack attachmentItem) {
         return null;
     }
 
     @Override
-    // 5. CORREÇÃO: O tipo do primeiro parâmetro agora é ItemStack.
     public void setCache(ItemStack attachmentItem, Object value) {
         // Lógica de cache
     }
@@ -80,7 +81,6 @@ public class DamageModifier implements IAttachmentModifier<Modifier, Object> {
     }
 
     @Override
-    // 6. CORREÇÃO: O tipo da lista agora é List<Modifier>.
     public void eval(List<Modifier> modifiedValues, CacheValue<Object> cache) {
         if (modifiedValues != null && cache != null) {
             // Lógica de avaliação

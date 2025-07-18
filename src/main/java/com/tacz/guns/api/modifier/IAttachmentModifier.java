@@ -1,31 +1,33 @@
-package com.tacz.guns.api.modifier;
-
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Collections;
 import java.util.List;
 
 public interface IAttachmentModifier<T, K> {
 
+    Gson GSON = new GsonBuilder().create();
+
     CacheValue<K> initCache(ItemStack gunItem, GunData gunData, ItemStack attachmentItem);
 
     void eval(List<T> modifiedValues, CacheValue<K> cache);
 
     /**
-     * Configuração básica de modificador, usado como ID no sistema JSON
+     * ConfiguraÃ§Ã£o bÃ¡sica de modificador, usado como ID no sistema JSON
      *
-     * @return ID do modificador para identificação no JSON
+     * @return ID do modificador para identificaÃ§Ã£o no JSON
      */
     String getId();
 
     /**
-     * Campo opcional para compatibilidade com versões antigas
-     * Implementação mínima - retorna string vazia
+     * Campo opcional para compatibilidade com versÃµes antigas
+     * ImplementaÃ§Ã£o mÃ­nima - retorna string vazia
      *
      * @return Nome do campo alternativo para JSON antigo
      */
@@ -34,21 +36,21 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Lê propriedade do JSON
-     * Implementação mínima - usando Object Strategy
+     * LÃª propriedade do JSON
+     * ImplementaÃ§Ã£o mÃ­nima - retorna null
      *
      * @param json String JSON para processamento
      * @return JsonProperty processada
      */
     default JsonProperty<T> readJson(String json) {
-        // TODO: Implementar quando JsonProperty estiver completo
-        // return gson.fromJson(json, getPropertyClass());
-        return null;
+        return GSON.fromJson(json, getPropertyClass());
     }
 
+    Class<T> getPropertyClass();
+
     /**
-     * Aplica modificação nas propriedades da arma
-     * Implementação mínima - apenas estrutura
+     * Aplica modificaÃ§Ã£o nas propriedades da arma
+     * ImplementaÃ§Ã£o mÃ­nima - apenas estrutura
      *
      * @param gunData Dados da arma para modificar
      * @param property Propriedade do modificador
@@ -58,10 +60,10 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Obtém valor da propriedade cacheada
-     * Implementação mínima - Object Strategy
+     * ObtÃ©m valor da propriedade cacheada
+     * ImplementaÃ§Ã£o mÃ­nima - Object Strategy
      *
-     * @param attachmentItem ItemStack do acessório
+     * @param attachmentItem ItemStack do acessÃ³rio
      * @return Valor cacheado ou null
      */
     default K getCache(ItemStack attachmentItem) {
@@ -71,9 +73,9 @@ public interface IAttachmentModifier<T, K> {
 
     /**
      * Define valor no cache
-     * Implementação mínima - Object Strategy
+     * ImplementaÃ§Ã£o mÃ­nima - Object Strategy
      *
-     * @param attachmentItem ItemStack do acessório
+     * @param attachmentItem ItemStack do acessÃ³rio
      * @param value Valor para cachear
      */
     default void setCache(ItemStack attachmentItem, K value) {
@@ -81,8 +83,8 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Obtém descrição do modificador para tooltips
-     * Implementação mínima - lista vazia
+     * ObtÃ©m descriÃ§Ã£o do modificador para tooltips
+     * ImplementaÃ§Ã£o mÃ­nima - lista vazia
      *
      * @return Lista de componentes de texto para tooltip
      */
@@ -93,8 +95,8 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Verifica se o modificador está ativo
-     * Implementação mínima - sempre true
+     * Verifica se o modificador estÃ¡ ativo
+     * ImplementaÃ§Ã£o mÃ­nima - sempre true
      *
      * @param property Propriedade para verificar
      * @return true se ativo
@@ -104,19 +106,19 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Obtém estatísticas do modificador
+     * ObtÃ©m estatÃ­sticas do modificador
      */
     default String getStats() {
         return String.format("IAttachmentModifier{id=%s}", getId());
     }
 
     /**
-     * Obtém dados de diagrama para interface de refit
-     * Implementação mínima - lista vazia
+     * ObtÃ©m dados de diagrama para interface de refit
+     * ImplementaÃ§Ã£o mÃ­nima - lista vazia
      *
      * @param gunItem       ItemStack da arma
      * @param gunData       Dados da arma
-     * @param cacheProperty Propriedades de cache do acessório
+     * @param cacheProperty Propriedades de cache do acessÃ³rio
      * @return Lista de dados de diagrama
      */
     @OnlyIn(Dist.CLIENT)
@@ -125,9 +127,9 @@ public interface IAttachmentModifier<T, K> {
     }
 
     /**
-     * Obtém o tamanho dos dados de diagrama para cálculo de offset de botões
+     * ObtÃ©m o tamanho dos dados de diagrama para cÃ¡lculo de offset de botÃµes
      *
-     * @return Número de diagramas
+     * @return NÃºmero de diagramas
      */
     @OnlyIn(Dist.CLIENT)
     default int getDiagramsDataSize() {
@@ -137,14 +139,14 @@ public interface IAttachmentModifier<T, K> {
     /**
      * Dados de diagrama para interface de propriedades
      *
-     * @param defaultPercent  Porcentagem do valor padrão da arma
+     * @param defaultPercent  Porcentagem do valor padrÃ£o da arma
      * @param modifierPercent Porcentagem do valor modificado
-     * @param modifier        Valor modificado, usado para comparação com valor padrão
+     * @param modifier        Valor modificado, usado para comparaÃ§Ã£o com valor padrÃ£o
      * @param titleKey        Chave do arquivo de idioma para nome da propriedade
-     * @param positivelyString Texto exibido quando maior que valor padrão
-     * @param negativeString  Texto exibido quando menor que valor padrão
-     * @param defaultString   Texto exibido quando igual ao valor padrão
-     * @param positivelyBetter true se maior que padrão é melhor (verde), false se pior (vermelho)
+     * @param positivelyString Texto exibido quando maior que valor padrÃ£o
+     * @param negativeString  Texto exibido quando menor que valor padrÃ£o
+     * @param defaultString   Texto exibido quando igual ao valor padrÃ£o
+     * @param positivelyBetter true se maior que padrÃ£o Ã© melhor (verde), false se pior (vermelho)
      */
     @OnlyIn(Dist.CLIENT)
     record DiagramsData(double defaultPercent, double modifierPercent, Number modifier,

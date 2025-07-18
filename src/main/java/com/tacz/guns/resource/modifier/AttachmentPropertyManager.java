@@ -1,7 +1,26 @@
 package com.tacz.guns.resource.modifier;
 
 import com.google.common.collect.Maps;
+import com.tacz.guns.api.event.common.ChangeGunPropertyEvent;
+import com.tacz.guns.resource.modifier.custom.AdsModifier;
+import com.tacz.guns.resource.modifier.custom.AmmoSpeedModifier;
+import com.tacz.guns.resource.modifier.custom.ArmorIgnoreModifier;
 import com.tacz.guns.resource.modifier.custom.DamageModifier;
+import com.tacz.guns.resource.modifier.custom.EffectiveRangeModifier;
+import com.tacz.guns.resource.modifier.custom.ExplosionModifier;
+import com.tacz.guns.resource.modifier.custom.ExtraMovementModifier;
+import com.tacz.guns.resource.modifier.custom.HeadShotModifier;
+import com.tacz.guns.resource.modifier.custom.IgniteModifier;
+import com.tacz.guns.resource.modifier.custom.InaccuracyModifier;
+import com.tacz.guns.resource.modifier.custom.KnockbackModifier;
+import com.tacz.guns.resource.modifier.custom.PierceModifier;
+import com.tacz.guns.resource.modifier.custom.RecoilModifier;
+import com.tacz.guns.resource.modifier.custom.RpmModifier;
+import com.tacz.guns.resource.modifier.custom.SilenceModifier;
+import com.tacz.guns.resource.modifier.custom.WeightModifier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.NeoForge;
 
 import java.util.Map;
 
@@ -33,22 +52,21 @@ public class AttachmentPropertyManager {
         }
         
         MODIFIERS.put(DamageModifier.ID, new DamageModifier());
-        
-        // MODIFIERS.put(AdsModifier.ID, new AdsModifier());
-        // MODIFIERS.put(AmmoSpeedModifier.ID, new AmmoSpeedModifier());
-        // MODIFIERS.put(ArmorIgnoreModifier.ID, new ArmorIgnoreModifier());
-        // MODIFIERS.put(EffectiveRangeModifier.ID, new EffectiveRangeModifier());
-        // MODIFIERS.put(ExplosionModifier.ID, new ExplosionModifier());
-        // MODIFIERS.put(HeadShotModifier.ID, new HeadShotModifier());
-        // MODIFIERS.put(IgniteModifier.ID, new IgniteModifier());
-        // MODIFIERS.put(InaccuracyModifier.ID, new InaccuracyModifier());
-        // MODIFIERS.put(KnockbackModifier.ID, new KnockbackModifier());
-        // MODIFIERS.put(PierceModifier.ID, new PierceModifier());
-        // MODIFIERS.put(RecoilModifier.ID, new RecoilModifier());
-        // MODIFIERS.put(RpmModifier.ID, new RpmModifier());
-        // MODIFIERS.put(SilenceModifier.ID, new SilenceModifier());
-        // MODIFIERS.put(WeightModifier.ID, new WeightModifier());
-        // MODIFIERS.put(ExtraMovementModifier.ID, new ExtraMovementModifier());
+        MODIFIERS.put(AdsModifier.ID, new AdsModifier());
+        MODIFIERS.put(AmmoSpeedModifier.ID, new AmmoSpeedModifier());
+        MODIFIERS.put(ArmorIgnoreModifier.ID, new ArmorIgnoreModifier());
+        MODIFIERS.put(EffectiveRangeModifier.ID, new EffectiveRangeModifier());
+        MODIFIERS.put(ExplosionModifier.ID, new ExplosionModifier());
+        MODIFIERS.put(HeadShotModifier.ID, new HeadShotModifier());
+        MODIFIERS.put(IgniteModifier.ID, new IgniteModifier());
+        MODIFIERS.put(InaccuracyModifier.ID, new InaccuracyModifier());
+        MODIFIERS.put(KnockbackModifier.ID, new KnockbackModifier());
+        MODIFIERS.put(PierceModifier.ID, new PierceModifier());
+        MODIFIERS.put(RecoilModifier.ID, new RecoilModifier());
+        MODIFIERS.put(RpmModifier.ID, new RpmModifier());
+        MODIFIERS.put(SilenceModifier.ID, new SilenceModifier());
+        MODIFIERS.put(WeightModifier.ID, new WeightModifier());
+        MODIFIERS.put(ExtraMovementModifier.ID, new ExtraMovementModifier());
         
         isInitialized = true;
         
@@ -71,17 +89,24 @@ public class AttachmentPropertyManager {
      * Aplica modificadores a uma arma
      * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - nÃƒÆ’Ã‚Â£o faz nada mas nÃƒÆ’Ã‚Â£o quebra o sistema
      */
-    public static void applyModifiers(Object gunItem, Object attachmentData) {
-        // TODO: Implementar quando modificadores estiverem funcionais
-        // ItemStack gun = (ItemStack) gunItem;
-        // AttachmentData data = (AttachmentData) attachmentData;
-        // 
-        // data.getModifier().forEach((id, property) -> {
-        //     IAttachmentModifier modifier = MODIFIERS.get(id);
-        //     if (modifier != null) {
-        //         modifier.apply(gun, property);
-        //     }
-        // });
+    public static void applyModifiers(ItemStack gunItem, AttachmentData attachmentData) {
+        IGun iGun = IGun.getIGunOrNull(gunItem);
+        if (iGun == null) {
+            return;
+        }
+        GunData gunData = TimelessAPI.getCommonGunIndex(iGun.getGunId(gunItem))
+                .map(CommonGunIndex::getGunData)
+                .orElse(null);
+        if (gunData == null) {
+            return;
+        }
+
+        attachmentData.getModifier().forEach((id, property) -> {
+            Object modifier = MODIFIERS.get(id);
+            if (modifier instanceof IAttachmentModifier<?, ?> attachmentModifier) {
+                attachmentModifier.modify(gunData, property);
+            }
+        });
     }
 
     /**
@@ -104,15 +129,10 @@ public class AttachmentPropertyManager {
      * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas estrutura
      */
     public static void postChangeEvent(Object entity, Object gunItem) {
-        // TODO: Implementar quando sistema de eventos estiver funcional
-        // LivingEntity livingEntity = (LivingEntity) entity;
-        // ItemStack itemStack = (ItemStack) gunItem;
-        // ChangeGunPropertyEvent event = new ChangeGunPropertyEvent(livingEntity, itemStack);
-        // NeoForge.EVENT_BUS.post(event);
-        
-        if (entity != null && gunItem != null) {
-            // System.out.println("Property change event for: " + gunItem.toString());
-        }
+        LivingEntity livingEntity = (LivingEntity) entity;
+        ItemStack itemStack = (ItemStack) gunItem;
+        ChangeGunPropertyEvent event = new ChangeGunPropertyEvent(livingEntity, itemStack);
+        NeoForge.EVENT_BUS.post(event);
     }
 
     /**

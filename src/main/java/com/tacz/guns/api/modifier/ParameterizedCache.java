@@ -44,14 +44,6 @@ public class ParameterizedCache<T> {
         return defaultValue;
     }
 
-    /**
-     * MÃƒÆ’Ã‚Â©todo temporÃƒÆ’Ã‚Â¡rio atÃƒÆ’Ã‚Â© AttachmentPropertyManager.functionEval estar disponÃƒÆ’Ã‚Â­vel
-     */
-    private double evaluateFunction(double value, double input, String function) {
-        // return AttachmentPropertyManager.functionEval(value, input, function);
-        return value; // ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - retorna valor original
-    }
-
     public double eval(double input) {
         double percent = Math.max(this.percent, 0);
         double value = (input + addend) * percent * multiplier;
@@ -59,7 +51,7 @@ public class ParameterizedCache<T> {
             if (StringUtils.isEmpty(function)) {
                 continue;
             }
-            value = evaluateFunction(value, input, function);
+            value = AttachmentPropertyManager.functionEval(value, input, function);
         }
         return value;
     }
@@ -72,7 +64,7 @@ public class ParameterizedCache<T> {
             if (StringUtils.isEmpty(function)) {
                 continue;
             }
-            value = evaluateFunction(value, input, function);
+            value = AttachmentPropertyManager.functionEval(value, input, function);
         }
         return value;
     }
