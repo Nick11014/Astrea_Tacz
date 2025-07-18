@@ -299,17 +299,19 @@ public class Serializers {
     public static final IDataSerializer<ItemStack> ITEM_STACK = new IDataSerializer<>() {
         @Override
         public void write(FriendlyByteBuf buf, ItemStack value) {
-            buf.writeItem(value);
+            CompoundTag compound = new CompoundTag();
+            value.save(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound);
+            buf.writeNbt(compound);
         }
 
         @Override
         public ItemStack read(FriendlyByteBuf buf) {
-            return buf.readItem();
+            CompoundTag compound = buf.readNbt();
+            return ItemStack.parse(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound).orElse(ItemStack.EMPTY);
         }
 
         @Override
         public Tag write(ItemStack value) {
-            // DataComponents são serializados automaticamente quando o ItemStack é salvo em NBT
             CompoundTag compound = new CompoundTag();
             value.save(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound);
             return compound;
@@ -317,7 +319,8 @@ public class Serializers {
 
         @Override
         public ItemStack read(Tag tag) {
-            return ItemStack.parseOptional(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound).orElse(ItemStack.EMPTY);
+            CompoundTag compound = (CompoundTag) tag;
+            return ItemStack.parse(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound).orElse(ItemStack.EMPTY);
         }
     };
 
@@ -343,66 +346,4 @@ public class Serializers {
         }
     };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

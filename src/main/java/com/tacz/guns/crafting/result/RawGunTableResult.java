@@ -8,8 +8,6 @@ import com.tacz.guns.api.item.builder.AttachmentItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
 import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.recipe.GunResult;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
