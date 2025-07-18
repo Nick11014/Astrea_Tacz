@@ -1,9 +1,8 @@
 package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
-// TODO: Re-enable when all entity classes are available
-// import com.tacz.guns.entity.EntityKineticBullet;
-// import com.tacz.guns.entity.TargetMinecart;
+import com.tacz.guns.entity.EntityKineticBullet;
+import com.tacz.guns.entity.TargetMinecart;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -11,14 +10,12 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Registro de entidades baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
- * Usando implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© as classes de entidade estarem disponÃƒÆ’Ã‚Â­veis
+ * Registro de entidades baseado no padrÃ£o do SuperbWarfare 1.21.1
+ * Usando implementaÃ§Ã£o mÃ­nima atÃ© as classes de entidade estarem disponÃ­veis
  */
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, GunMod.MOD_ID);
 
-    // TODO: Re-enable when entity classes are available
-    /*
     public static final DeferredHolder<EntityType<?>, EntityType<EntityKineticBullet>> BULLET = ENTITY_TYPES.register("bullet", 
         () -> EntityType.Builder.<EntityKineticBullet>of(EntityKineticBullet::new, MobCategory.MISC)
                 .setShouldReceiveVelocityUpdates(false)
@@ -34,8 +31,6 @@ public class ModEntities {
                 .setUpdateInterval(3)
                 .sized(0.98F, 0.7F)
                 .build("target_minecart"));
-    */
-    
 }
 
 

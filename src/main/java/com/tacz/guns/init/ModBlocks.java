@@ -1,12 +1,14 @@
 package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
+import com.tacz.guns.block.GunSmithTableBlockA;
+import com.tacz.guns.block.GunSmithTableBlockB;
+import com.tacz.guns.block.GunSmithTableBlockC;
+import com.tacz.guns.block.StatueBlock;
+import com.tacz.guns.block.TargetBlock;
 import com.tacz.guns.block.entity.GunSmithTableBlockEntity;
-import com.tacz.guns.block.entity.TargetBlockEntity;
 import com.tacz.guns.block.entity.StatueBlockEntity;
-// import com.tacz.guns.block.entity.TargetBlockEntity; // TODO: Migrar APIs
-// TODO: Re-enable when all block classes are available
-// import com.tacz.guns.block.*;
+import com.tacz.guns.block.entity.TargetBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -18,31 +20,24 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 /**
- * Registro de blocos baseado no padrÃƒÆ’Ã‚Â£o do SuperbWarfare 1.21.1
- * Usando implementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© as classes de bloco estarem disponÃƒÆ’Ã‚Â­veis
+ * Registro de blocos baseado no padrÃ£o do SuperbWarfare 1.21.1
+ * Usando implementaÃ§Ã£o mÃ­nima atÃ© as classes de bloco estarem disponÃ­veis
  */
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, GunMod.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, GunMod.MOD_ID);
 
-    // TODO: Re-enable when block classes are available
-    public static final DeferredHolder<Block, Block> GUN_SMITH_TABLE = BLOCKS.register("gun_smith_table", 
-        () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F))); // Placeholder - GunSmithTableBlockB::new
+    public static final DeferredHolder<Block, GunSmithTableBlockB> GUN_SMITH_TABLE = BLOCKS.register("gun_smith_table", GunSmithTableBlockB::new);
         
-    public static final DeferredHolder<Block, Block> WORKBENCH_111 = BLOCKS.register("workbench_a", 
-        () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F))); // Placeholder - GunSmithTableBlockA::new
+    public static final DeferredHolder<Block, GunSmithTableBlockA> WORKBENCH_111 = BLOCKS.register("workbench_a", GunSmithTableBlockA::new);
         
-    public static final DeferredHolder<Block, Block> WORKBENCH_211 = BLOCKS.register("workbench_b", 
-        () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F))); // Placeholder - GunSmithTableBlockB::new
+    public static final DeferredHolder<Block, GunSmithTableBlockB> WORKBENCH_211 = BLOCKS.register("workbench_b", GunSmithTableBlockB::new);
         
-    public static final DeferredHolder<Block, Block> WORKBENCH_121 = BLOCKS.register("workbench_c", 
-        () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F, 3.0F))); // Placeholder - GunSmithTableBlockC::new
+    public static final DeferredHolder<Block, GunSmithTableBlockC> WORKBENCH_121 = BLOCKS.register("workbench_c", GunSmithTableBlockC::new);
 
-    public static final DeferredHolder<Block, Block> TARGET = BLOCKS.register("target", 
-        () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 2.0F))); // Placeholder - TargetBlock::new
+    public static final DeferredHolder<Block, TargetBlock> TARGET = BLOCKS.register("target", TargetBlock::new);
         
-    public static final DeferredHolder<Block, Block> STATUE = BLOCKS.register("statue", 
-        () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).strength(2.0F, 3.0F))); // Placeholder - StatueBlock::new
+    public static final DeferredHolder<Block, StatueBlock> STATUE = BLOCKS.register("statue", StatueBlock::new);
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GunSmithTableBlockEntity>> GUN_SMITH_TABLE_BE = TILE_ENTITIES.register("gun_smith_table", 
         () -> BlockEntityType.Builder.of(GunSmithTableBlockEntity::new, GUN_SMITH_TABLE.get()).build(null));

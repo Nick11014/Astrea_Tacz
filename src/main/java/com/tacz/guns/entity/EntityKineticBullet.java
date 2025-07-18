@@ -349,10 +349,10 @@ public class EntityKineticBullet extends Projectile implements IEntityWithComple
         float headShotMultiplier = Math.max(this.headShot, 0);
         var preEvent = new EntityHurtByGunEvent.Pre(this, entity, attacker, this.gunId, this.gunDisplayId, damage, sources, headshot, headShotMultiplier, LogicalSide.SERVER);
         // Updated event bus call
-        // boolean cancelled = NeoForge.EVENT_BUS.post(preEvent).isCanceled();
-        // if (cancelled) {
-        //     return;
-        // }
+                boolean cancelled = NeoForge.EVENT_BUS.post(preEvent).isCanceled();
+        if (cancelled) {
+            return;
+        }
         entity = preEvent.getHurtEntity();
         var parts = MaybeMultipartEntity.of(entity);
         attacker = preEvent.getAttacker();

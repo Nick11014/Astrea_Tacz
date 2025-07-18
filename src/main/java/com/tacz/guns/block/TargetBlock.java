@@ -81,8 +81,7 @@ public class TargetBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        // return state.getValue(HALF).equals(DoubleBlockHalf.LOWER) && level.isClientSide() ? createTickerHelper(blockEntityType, ModBlocks.TARGET_BE.get(), TargetBlockEntity::clientTick) : null;
-        return null;
+        return state.getValue(HALF).equals(DoubleBlockHalf.LOWER) && level.isClientSide() ? createTickerHelper(blockEntityType, ModBlocks.TARGET_BE.get(), TargetBlockEntity::clientTick) : null;
     }
 
     @Override
