@@ -146,9 +146,8 @@ public enum ClientAssetsManager {
     }
 
     @Nullable
-    public Object getGltfAnimation(ResourceLocation id) {
-        // return gltfAnimation.getGltfAnimation(id);
-        return null;
+    public AnimationStructure getGltfAnimation(ResourceLocation id) {
+        return gltfAnimation.getGltfAnimation(id);
     }
 
     @Nullable

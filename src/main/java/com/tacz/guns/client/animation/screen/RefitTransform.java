@@ -2,21 +2,17 @@ package com.tacz.guns.client.animation.screen;
 
 import com.tacz.guns.GunMod;
 import com.tacz.guns.api.item.attachment.AttachmentType;
-// TODO: Re-enable when GunRefitScreen is available
-// import com.tacz.guns.client.gui.GunRefitScreen;
+import com.tacz.guns.client.gui.GunRefitScreen;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
-// TODO: Migrate to new tick event API in NeoForge 1.21.1
-// import net.neoforged.neoforge.event.tick.TickEvent;
-// import net.neoforged.bus.api.SubscribeEvent;
-// import net.neoforged.fml.common.Mod;
-// import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
 
-// TODO: Re-enable event subscription when tick events are migrated
-// @EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
+@EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class RefitTransform {
     private static final float REFIT_SCREEN_TRANSFORM_TIMES = 0.25f;
     private static float refitScreenTransformProgress = 1;
@@ -63,9 +59,8 @@ public class RefitTransform {
     }
 
     // TODO: Re-enable when tick events are migrated and GunRefitScreen is available
-    /*
     @SubscribeEvent
-    public static void tickInterpolation(TickEvent.RenderTickEvent event) {
+    public static void tickInterpolation(ClientTickEvent.Post event) {
         // tick opening progress
         if (refitScreenOpeningTimestamp == -1) {
             refitScreenOpeningTimestamp = System.currentTimeMillis();
@@ -92,7 +87,6 @@ public class RefitTransform {
         }
         refitScreenTransformTimestamp = System.currentTimeMillis();
     }
-    */
 }
 
 

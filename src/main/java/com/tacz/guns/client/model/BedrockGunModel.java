@@ -205,10 +205,7 @@ public class BedrockGunModel extends BedrockAnimatedModel {
     public void setTextShowList(Map<String, TextShow> textShowList) {
         if (textShowList != null) {
             textShowList.forEach((name, textShow) -> {
-                // Registrar o text show para uso futuro
-                // this.setFunctionalRenderer(name, bedrockPart -> new TextShowRender(this, textShow, currentGunItem));
-
-                // System.out.println("Registering text show: " + name + " -> " + textShow.getTextKey());
+                this.setFunctionalRenderer(name, bedrockPart -> new TextShowRender(this, textShow, currentGunItem));
             });
         }
     }
@@ -233,18 +230,17 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             IAttachment attachment = IAttachment.getIAttachmentOrNull(attachmentItem);
             if (attachment != null) {
                 TimelessAPI.getClientAttachmentIndex(attachment.getAttachmentId(attachmentItem)).ifPresent(index -> {
-                    // TODO: Implementar quando ClientAttachmentIndex estiver completo
-                    // if (type == AttachmentType.EXTENDED_MAG) {
-                    //     currentExtendMagLevel = index.getData().getExtendedMagLevel();
-                    // }
-                    // if (index.getAdapterNodeName() != null) {
-                    //     adapterToRender.add(index.getAdapterNodeName());
-                    // }
+                    if (type == AttachmentType.EXTENDED_MAG) {
+                        currentExtendMagLevel = index.getData().getExtendedMagLevel();
+                    }
+                    if (index.getAdapterNodeName() != null) {
+                        adapterToRender.add(index.getAdapterNodeName());
+                    }
                 });
             }
         }
         if (laserBeamPaths != null) {
-            // BeamRenderer.renderLaserBeam(gunItem, matrixStack, transformType, laserBeamPaths); // TODO: Implementar quando BeamRenderer estiver completo
+            BeamRenderer.renderLaserBeam(gunItem, matrixStack, transformType, laserBeamPaths);
         }
         ItemStack attachmentItem = currentAttachmentItem.get(AttachmentType.SCOPE);
         IAttachment iAttachment = IAttachment.getIAttachmentOrNull(attachmentItem);
@@ -253,18 +249,17 @@ public class BedrockGunModel extends BedrockAnimatedModel {
             for (BedrockPart bedrockPart : scopePosPath) {
                 bedrockPart.translateAndRotateAndScale(matrixStack);
             }
-            // AttachmentRender.renderAttachment(attachmentItem, currentGunItem, matrixStack, transformType, light, overlay); // HABILITADO: Funcionalidade restaurada gradualmente
+            AttachmentRender.renderAttachment(attachmentItem, currentGunItem, matrixStack, transformType, light, overlay);
             matrixStack.popPose();
             if (iAttachment != null) {
-                // TODO: Implementar quando ClientAttachmentIndex estiver completo
-                // Optional<ClientAttachmentIndex> attachmentIndex = TimelessAPI.getClientAttachmentIndex(iAttachment.getAttachmentId(attachmentItem));
-                // attachmentIndex.ifPresent(index -> {
-                //         RenderHelper.enableItemEntityStencilTest();
-                //         RenderSystem.stencilFunc(GL11.GL_GREATER, 127, 0xFF);
-                //         RenderHelper.enableItemEntityStencilTest();
-                //         RenderSystem.stencilFunc(GL11.GL_EQUAL, 0, 0xFF);
-                //     }
-                // });
+                Optional<ClientAttachmentIndex> attachmentIndex = TimelessAPI.getClientAttachmentIndex(iAttachment.getAttachmentId(attachmentItem));
+                attachmentIndex.ifPresent(index -> {
+                        RenderHelper.enableItemEntityStencilTest();
+                        RenderSystem.stencilFunc(GL11.GL_GREATER, 127, 0xFF);
+                        RenderHelper.enableItemEntityStencilTest();
+                        RenderSystem.stencilFunc(GL11.GL_EQUAL, 0, 0xFF);
+                    }
+                );
             }
         }
         RenderSystem.stencilOp(GL11.GL_KEEP, GL11.GL_KEEP, GL11.GL_KEEP);

@@ -1,9 +1,7 @@
-package com.tacz.guns.client.resource.manager;
-
 import com.google.common.collect.Maps;
 import com.google.gson.JsonParseException;
 import com.tacz.guns.GunMod;
-// import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
+import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
 import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.pojo.animation.gltf.RawAnimationStructure;
 import net.minecraft.resources.FileToIdConverter;
@@ -22,21 +20,20 @@ import java.util.Map;
 
 
 /**
- * Gerenciador de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes GLTF - ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima
- * TODO: Sistema de animaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o GLTF desabilitado temporariamente
+ * Gerenciador de animaÃ§Ãµes GLTF - ImplementaÃ§Ã£o mÃ­nima
+ * TODO: Sistema de animaÃ§Ã£o GLTF desabilitado temporariamente
  */
-public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLocation, Object>> {
+public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLocation, AnimationStructure>> {
     private static final Marker MARKER = MarkerManager.getMarker("GltfAnimationLoader");
 
-    private final Map<ResourceLocation, Object> dataMap = Maps.newHashMap();
+    private final Map<ResourceLocation, AnimationStructure> dataMap = Maps.newHashMap();
     private final FileToIdConverter filetoidconverter = new FileToIdConverter("animations", ".gltf");
 
     @Override
     @NotNull
-    protected Map<ResourceLocation, Object> prepare(ResourceManager pResourceManager, ProfilerFiller pProfiler) {
-        Map<ResourceLocation, Object> output = Maps.newHashMap();
+    protected Map<ResourceLocation, AnimationStructure> prepare(ResourceManager pResourceManager, ProfilerFiller pProfiler) {
+        Map<ResourceLocation, AnimationStructure> output = Maps.newHashMap();
         
-        /*
         for(Map.Entry<ResourceLocation, Resource> entry : filetoidconverter.listMatchingResources(pResourceManager).entrySet()) {
             ResourceLocation resourcelocation = entry.getKey();
             ResourceLocation resourcelocation1 = filetoidconverter.fileToId(resourcelocation);
@@ -49,18 +46,17 @@ public class GltfManager extends SimplePreparableReloadListener<Map<ResourceLoca
                 GunMod.LOGGER.warn(MARKER, "Failed to read gltf animation file: {}", resourcelocation);
             }
         }
-        */
         
         return output;
     }
 
     @Override
-    protected void apply(Map<ResourceLocation, Object> pObject, ResourceManager pResourceManager, ProfilerFiller pProfiler) {
+    protected void apply(Map<ResourceLocation, AnimationStructure> pObject, ResourceManager pResourceManager, ProfilerFiller pProfiler) {
         dataMap.clear();
         dataMap.putAll(pObject);
     }
 
-    public Object getGltfAnimation(ResourceLocation id) {
+    public AnimationStructure getGltfAnimation(ResourceLocation id) {
         return dataMap.get(id);
     }
 }
