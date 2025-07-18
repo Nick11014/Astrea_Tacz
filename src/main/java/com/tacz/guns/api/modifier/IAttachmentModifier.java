@@ -1,11 +1,13 @@
+package com.tacz.guns.api.modifier;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,9 +44,7 @@ public interface IAttachmentModifier<T, K> {
      * @param json String JSON para processamento
      * @return JsonProperty processada
      */
-    default JsonProperty<T> readJson(String json) {
-        return GSON.fromJson(json, getPropertyClass());
-    }
+    JsonProperty<T> readJson(String json);
 
     Class<T> getPropertyClass();
 

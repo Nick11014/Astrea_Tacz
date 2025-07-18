@@ -14,7 +14,7 @@ import com.tacz.guns.api.item.gun.AbstractGunItem;
 import com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor;
 import com.tacz.guns.api.modifier.ParameterizedCachePair;
 import com.tacz.guns.client.renderer.item.AnimateGeoItemRenderer;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;

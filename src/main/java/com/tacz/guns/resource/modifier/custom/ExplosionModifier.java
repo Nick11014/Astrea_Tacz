@@ -7,9 +7,6 @@ import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
@@ -82,6 +79,11 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
         cache.setValue(explosionData);
     }
 
+    @Override
+    public Class<ExplosionModifierValue> getPropertyClass() {
+        return ExplosionModifierValue.class;
+    }
+
     public static class ExplosionJsonProperty extends JsonProperty<ExplosionModifierValue> {
         public ExplosionJsonProperty(ExplosionModifier.ExplosionModifierValue value) {
             super(value);
@@ -134,66 +136,4 @@ public class ExplosionModifier implements IAttachmentModifier<ExplosionModifier.
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

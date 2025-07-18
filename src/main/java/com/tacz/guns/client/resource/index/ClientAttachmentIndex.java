@@ -39,6 +39,7 @@ public class ClientAttachmentIndex {
     private AttachmentLod attachmentLod;
     private Map<String, ResourceLocation> sounds;
     private LaserConfig laserConfig;
+    private String tooltipKey;
 
     private ClientAttachmentIndex() {
     }
@@ -54,10 +55,10 @@ public class ClientAttachmentIndex {
             index.name = "custom.tacz.error.no_name";
         }
         
-        index.data = ClientAssetsManager.INSTANCE.getAttachmentData(indexPojo.getData());
+        index.data = com.tacz.guns.resource.CommonAssetsManager.get().getAttachmentData(indexPojo.getData());
         index.display = ClientAssetsManager.INSTANCE.getAttachmentDisplay(indexPojo.getDisplay());
         index.model = createAttachmentModel(index.display);
-        index.texture = index.display.getModelTexture();
+        index.texture = index.display.getTexture();
         index.slotTextureLocation = index.display.getSlotTextureLocation();
         index.adapterNodeName = index.display.getAdapterNodeName();
         index.showMuzzle = index.display.isShowMuzzle();
@@ -192,8 +193,8 @@ public class ClientAttachmentIndex {
     /**
      * Cria uma instÃ¢ncia de BedrockAttachmentModel bÃ¡sica se necessÃ¡rio
      */
-    private static BedrockAttachmentModel createAttachmentModel(AttachmentDisplay display) {
-        ResourceLocation modelLocation = display.getModelLocation();
+    public static BedrockAttachmentModel createAttachmentModel(AttachmentDisplay display) {
+        ResourceLocation modelLocation = display.getModel();
         if (modelLocation == null) {
             return null;
         }
@@ -283,65 +284,4 @@ public class ClientAttachmentIndex {
         return null;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -8,7 +8,7 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.client.model.BedrockAmmoModel;
 import com.tacz.guns.client.model.BedrockGunModel;
 import com.tacz.guns.client.model.IFunctionalRenderer;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.resource.pojo.display.gun.ShellEjection;
 import com.tacz.guns.compat.oculus.OculusCompat;

@@ -3,6 +3,8 @@ package com.tacz.guns.resource;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.tacz.guns.api.vmlib.LuaGunLogicConstant;
+import com.tacz.guns.api.vmlib.LuaLibrary;
 import com.tacz.guns.crafting.GunSmithTableRecipe;
 import com.tacz.guns.crafting.result.GunSmithTableResult;
 import com.tacz.guns.init.ModRecipe;
@@ -45,6 +47,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.ArrayList;
 
 @EventBusSubscriber
 public class CommonAssetsManager implements ICommonResourceProvider {
@@ -232,7 +235,10 @@ public class CommonAssetsManager implements ICommonResourceProvider {
             if (instance != null && instance.recipeManager != null) {
                 GunSmithTableResultSerializer.REGISTRY_ACCESS_THREAD_LOCAL.set(event.getRegistryAccess());
                 try {
-                    List<GunSmithTableRecipe> recipes = instance.recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+                    List<GunSmithTableRecipe> recipes = instance.recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get())
+                        .stream()
+                        .map(holder -> (GunSmithTableRecipe) holder.value())
+                        .toList();
                     for (GunSmithTableRecipe recipe : recipes) {
                         recipe.init();
                     }
@@ -274,68 +280,4 @@ public class CommonAssetsManager implements ICommonResourceProvider {
         server.reloadResources(collection);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

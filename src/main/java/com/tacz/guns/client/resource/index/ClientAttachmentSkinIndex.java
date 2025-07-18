@@ -1,7 +1,8 @@
 package com.tacz.guns.client.resource.index;
 
 import com.google.common.base.Preconditions;
-// import com.tacz.guns.client.model.BedrockAttachmentModel;
+import com.tacz.guns.client.model.BedrockAttachmentModel;
+import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.pojo.skin.attachment.AttachmentSkin;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.commons.lang3.StringUtils;
@@ -56,66 +57,4 @@ public class ClientAttachmentSkinIndex {
         return name;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

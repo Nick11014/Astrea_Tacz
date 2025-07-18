@@ -3,6 +3,8 @@ package com.tacz.guns.api.item;
 import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.item.gun.FireMode;
+import com.tacz.guns.resource.index.CommonGunIndex;
+import com.tacz.guns.resource.pojo.data.gun.GunData;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -308,10 +310,6 @@ public interface IGun {
      * ÃƒÂ¨Ã‚Â®Ã‚Â¾ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã‚Â¿Ã¢â‚¬Â¡ÃƒÂ§Ã†â€™Ã‚Â­ÃƒÂ¥Ã¢â€šÂ¬Ã‚Â¼
      */
     void setHeatAmount(ItemStack gun, float amount);
-
-    float lerpRPM(ItemStack gun);
-
-    float lerpInaccuracy(ItemStack gun);
 
     float getHeatAmount(ItemStack gun);
 }

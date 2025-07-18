@@ -101,7 +101,12 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
     public int getDiagramsDataSize() {
         return 1;
     }
-    
+
+    @Override
+    public Class<Modifier> getPropertyClass() {
+        return Modifier.class;
+    }
+
     public static class HeadShotJsonProperty extends JsonProperty<Modifier> {
         public HeadShotJsonProperty(Modifier value) {
             super(value);
@@ -132,66 +137,4 @@ public class HeadShotModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

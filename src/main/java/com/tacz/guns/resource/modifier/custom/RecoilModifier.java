@@ -122,7 +122,12 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
     public int getDiagramsDataSize() {
         return 2;
     }
-    
+
+    @Override
+    public Class<Pair<Modifier, Modifier>> getPropertyClass() {
+        return (Class<Pair<Modifier, Modifier>>) (Class<?>) Pair.class;
+    }
+
     private static float getMaxInGunRecoilKeyFrame(GunRecoilKeyFrame[] frames) {
         if (frames.length == 0) {
             return 0;
@@ -206,66 +211,6 @@ public class RecoilModifier implements IAttachmentModifier<Pair<Modifier, Modifi
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,21 +1,20 @@
 package com.tacz.guns.resource.serialize;
 
 import com.google.gson.*;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.JsonOps;
 import com.tacz.guns.GunMod;
 import com.tacz.guns.crafting.result.GunSmithTableResult;
 import com.tacz.guns.crafting.result.RawGunTableResult;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.recipe.GunResult;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 
 import java.lang.reflect.Type;
-
-
-import net.minecraft.core.HolderLookup;
-import net.minecraft.world.item.crafting.CraftingContext;
 
 public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithTableResult> {
     public static final ThreadLocal<HolderLookup.Provider> REGISTRY_ACCESS_THREAD_LOCAL = new ThreadLocal<>();
@@ -57,7 +56,10 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
                     if (provider == null) {
                         throw new JsonParseException("HolderLookup.Provider is not available.");
                     }
-                    ItemStack itemStack = ItemStack.parse(provider, resultObject).orElseThrow(() -> new JsonParseException("Failed to parse ItemStack"));
+                    // Correção para 1.21.1: Usar o Codec do ItemStack para parsing de JSON
+                    DataResult<ItemStack> dataResult = ItemStack.CODEC.parse(provider.createSerializationContext(JsonOps.INSTANCE), resultObject);
+                    ItemStack itemStack = dataResult.getOrThrow(JsonParseException::new);
+                    itemStack.setCount(count); // Aplica a contagem lida do JSON principal
                     result = new GunSmithTableResult(itemStack, tabOverride);
                 }
                 default -> {
@@ -73,66 +75,3 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
         return ResourceLocation.parse(GsonHelper.getAsString(jsonObject, "id"));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

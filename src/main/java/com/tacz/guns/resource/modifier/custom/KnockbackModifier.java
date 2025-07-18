@@ -91,7 +91,12 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
     public int getDiagramsDataSize() {
         return 1;
     }
-    
+
+    @Override
+    public Class<Modifier> getPropertyClass() {
+        return Modifier.class;
+    }
+
     public static class KnockbackJsonProperty extends JsonProperty<Modifier> {
         public KnockbackJsonProperty(Modifier value) {
             super(value);
@@ -122,66 +127,4 @@ public class KnockbackModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

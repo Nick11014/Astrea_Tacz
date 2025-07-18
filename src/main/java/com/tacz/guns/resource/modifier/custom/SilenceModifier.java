@@ -3,12 +3,9 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.common.collect.Lists;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
-import com.tacz.guns.api.item.IAttachment;
+import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.config.common.GunConfig;
@@ -64,6 +61,11 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
         double evalDistance = AttachmentPropertyManager.eval(distanceModifiers, cacheValue.getLeft());
         boolean useSilenceSound = AttachmentPropertyManager.eval(useSilenceSoundModifiers, cacheValue.getRight().booleanValue());
         cache.setValue(Pair.of((int) Math.round(evalDistance), useSilenceSound));
+    }
+
+    @Override
+    public Class<Pair<Modifier, Boolean>> getPropertyClass() {
+        return (Class<Pair<Modifier, Boolean>>) (Class<?>) Pair.class;
     }
 
     public static class SilenceJsonProperty extends JsonProperty<Pair<Modifier, Boolean>> {
@@ -128,66 +130,4 @@ public class SilenceModifier implements IAttachmentModifier<Pair<Modifier, Boole
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -2,18 +2,34 @@ package com.tacz.guns.init;
 
 import com.mojang.serialization.Codec;
 import com.tacz.guns.GunMod;
+import com.tacz.guns.api.GunProperties;
+import com.tacz.guns.api.item.attachment.AttachmentType;
+import com.tacz.guns.crafting.GunSmithTableIngredient;
+import com.tacz.guns.crafting.GunSmithTableRecipe;
+import com.tacz.guns.crafting.GunSmithTableSerializer;
+import com.tacz.guns.crafting.result.GunSmithTableResult;
+import com.tacz.guns.resource.pojo.data.gun.ExtraDamage;
+import com.tacz.guns.resource.pojo.data.gun.GunData;
+import com.tacz.guns.resource.pojo.data.gun.GunFireModeAdjustData;
+import com.tacz.guns.resource.pojo.data.gun.GunRecoil;
+import com.tacz.guns.resource.pojo.data.gun.GunRecoilKeyFrame;
+import com.tacz.guns.resource.pojo.data.gun.Ignite;
+import com.tacz.guns.resource.pojo.data.gun.InaccuracyType;
+import com.tacz.guns.resource.pojo.data.gun.MoveSpeed;
+import com.tacz.guns.resource.serialize.GunSmithTableIngredientSerializer;
+import com.tacz.guns.resource.serialize.GunSmithTableResultSerializer;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 
 public class ModDataComponents {
 
     public static final DeferredRegister<DataComponentType<?>> DATA_COMPONENT_TYPES =
-                                                                                                DeferredRegister.create(net.minecraft.core.registries.BuiltInRegistries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
+        DeferredRegister.create(BuiltInRegistries.DATA_COMPONENT_TYPE, GunMod.MOD_ID);
 
     public static final Supplier<DataComponentType<Integer>> AMMO_BOX_COLOR = DATA_COMPONENT_TYPES.register(
             "ammo_box_color",

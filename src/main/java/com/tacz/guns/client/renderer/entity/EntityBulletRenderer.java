@@ -6,7 +6,7 @@ import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.client.model.BedrockAmmoModel;
 import com.tacz.guns.client.model.bedrock.BedrockModel;
 import com.tacz.guns.client.renderer.item.GunItemRendererWrapper;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.InternalAssetLoader;
 import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.client.resource.index.ClientGunIndex;

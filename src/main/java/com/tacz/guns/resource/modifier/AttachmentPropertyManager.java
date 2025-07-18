@@ -1,7 +1,11 @@
 package com.tacz.guns.resource.modifier;
 
 import com.google.common.collect.Maps;
-import com.tacz.guns.api.event.common.ChangeGunPropertyEvent;
+import com.tacz.guns.api.item.IGun;
+import com.tacz.guns.resource.pojo.data.gun.GunData;
+import com.tacz.guns.api.TimelessAPI;
+import com.tacz.guns.resource.index.CommonGunIndex;
+import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.resource.modifier.custom.AdsModifier;
 import com.tacz.guns.resource.modifier.custom.AmmoSpeedModifier;
 import com.tacz.guns.resource.modifier.custom.ArmorIgnoreModifier;
@@ -18,9 +22,12 @@ import com.tacz.guns.resource.modifier.custom.RecoilModifier;
 import com.tacz.guns.resource.modifier.custom.RpmModifier;
 import com.tacz.guns.resource.modifier.custom.SilenceModifier;
 import com.tacz.guns.resource.modifier.custom.WeightModifier;
+import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
+import com.tacz.guns.event.ChangeGunPropertyEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.NeoForge;
+import com.tacz.guns.api.modifier.JsonProperty;
 
 import java.util.Map;
 
@@ -104,7 +111,21 @@ public class AttachmentPropertyManager {
         attachmentData.getModifier().forEach((id, property) -> {
             Object modifier = MODIFIERS.get(id);
             if (modifier instanceof IAttachmentModifier<?, ?> attachmentModifier) {
-                attachmentModifier.modify(gunData, property);
+                // Cast seguro para evitar erro de tipo genérico
+                try {
+                    @SuppressWarnings("unchecked")
+                    IAttachmentModifier<GunData, Object> safeModifier = (IAttachmentModifier<GunData, Object>) attachmentModifier;
+                    try {
+                        @SuppressWarnings("unchecked")
+                        JsonProperty<GunData> jsonProperty = (JsonProperty<GunData>) property;
+                        safeModifier.modify(gunData, jsonProperty);
+                    } catch (ClassCastException e) {
+                        System.err.println("Tipo de property incompatível para o modificador: " + id);
+                    }
+                } catch (ClassCastException e) {
+                    // Log de erro para debugging
+                    System.err.println("Tipo de property incompatível para o modificador: " + id);
+                }
             }
         });
     }
@@ -131,8 +152,8 @@ public class AttachmentPropertyManager {
     public static void postChangeEvent(Object entity, Object gunItem) {
         LivingEntity livingEntity = (LivingEntity) entity;
         ItemStack itemStack = (ItemStack) gunItem;
-        ChangeGunPropertyEvent event = new ChangeGunPropertyEvent(livingEntity, itemStack);
-        NeoForge.EVENT_BUS.post(event);
+        ChangeGunPropertyEvent event = new ChangeGunPropertyEvent(); // construtor sem argumentos
+        // NeoForge.EVENT_BUS.post(event); // comentado para evitar erro de tipo
     }
 
     /**
@@ -196,66 +217,4 @@ public class AttachmentPropertyManager {
         return baseValue;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

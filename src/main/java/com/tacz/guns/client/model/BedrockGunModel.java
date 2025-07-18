@@ -14,6 +14,7 @@ import com.tacz.guns.client.model.bedrock.BedrockPart;
 import com.tacz.guns.client.model.bedrock.ModelRendererWrapper;
 import com.tacz.guns.client.model.functional.*;
 import com.tacz.guns.client.model.listener.model.ModelAdditionalMagazineListener;
+import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
 import com.tacz.guns.client.resource.pojo.model.BedrockVersion;

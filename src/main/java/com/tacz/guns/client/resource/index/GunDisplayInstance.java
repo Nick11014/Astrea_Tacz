@@ -1,4 +1,4 @@
-package com.tacz.guns.client.resource;
+package com.tacz.guns.client.resource.index;
 
 import com.tacz.guns.client.resource.pojo.TransformScale;
 import com.google.common.base.Preconditions;
@@ -18,6 +18,8 @@ import com.tacz.guns.api.client.other.GunModelTypeManager;
 import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.client.animation.statemachine.GunAnimationStateContext;
 import com.tacz.guns.client.model.BedrockGunModel;
+import com.tacz.guns.client.resource.ClientAssetsManager;
+import com.tacz.guns.client.resource.InternalAssetLoader;
 import com.tacz.guns.client.resource.pojo.animation.bedrock.BedrockAnimationFile;
 import com.tacz.guns.client.resource.pojo.display.LaserConfig;
 import com.tacz.guns.client.resource.pojo.display.ammo.AmmoParticle;
@@ -33,6 +35,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.StringUtils;
@@ -300,10 +303,10 @@ public class GunDisplayInstance {
             try {
                 String name = particle.getName();
                 if (StringUtils.isNoneBlank(name)) {
-                    // particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), BuiltInRegistries.PARTICLE_TYPE.asLookup()));
+                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), Minecraft.getInstance().level.registryAccess()));
                     Preconditions.checkArgument(particle.getCount() > 0, "particle count must be greater than 0");
                     Preconditions.checkArgument(particle.getLifeTime() > 0, "particle life time must be greater than 0");
-                    // this.particle = particle; // Temporariamente desabilitado
+                    this.particle = particle;
                 }
             } catch (Exception e) {  // TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] CommandSyntaxException pode nÃƒÆ’Ã‚Â£o ser mais necessÃƒÆ’Ã‚Â¡rio
                 throw new RuntimeException(e);
@@ -452,66 +455,4 @@ public class GunDisplayInstance {
         return laserConfig;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

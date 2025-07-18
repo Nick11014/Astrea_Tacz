@@ -76,5 +76,8 @@ public class GunSmithTableRecipe implements Recipe<SimpleContainer> {
     public ItemStack getOutput() {
         return result.getResult();
     }
-}
 
+    public void init() {
+        // TODO: Método vazio para inicialização futura, se necessário
+    }
+}

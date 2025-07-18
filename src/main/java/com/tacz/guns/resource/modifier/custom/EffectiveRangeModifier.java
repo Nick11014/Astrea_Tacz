@@ -98,6 +98,11 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         return 1;
     }
 
+    @Override
+    public Class<Modifier> getPropertyClass() {
+        return Modifier.class;
+    }
+
     public static class EffectiveRangeJsonProperty extends JsonProperty<Modifier> {
         public EffectiveRangeJsonProperty(Modifier value) {
             super(value);
@@ -128,3 +133,4 @@ public class EffectiveRangeModifier implements IAttachmentModifier<Modifier, Flo
         }
     }
 }
+

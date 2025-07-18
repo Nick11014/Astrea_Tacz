@@ -2,10 +2,7 @@ package com.tacz.guns.client.resource;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-// import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
-// import com.tacz.guns.api.vmlib.LuaAnimationConstant;
-// import com.tacz.guns.api.vmlib.LuaGunAnimationConstant;
-// import com.tacz.guns.api.vmlib.LuaLibrary;
+import com.tacz.guns.api.client.animation.gltf.AnimationStructure;
 import com.tacz.guns.client.resource.manager.DisplayManager;
 import com.tacz.guns.client.resource.manager.GltfManager;
 import com.tacz.guns.client.resource.manager.PackInfoManager;
@@ -75,8 +72,8 @@ public enum ClientAssetsManager {
     private GltfManager gltfAnimation;
     private JsonDataManager<com.tacz.guns.resource.pojo.AmmoIndexPOJO> ammoIndex;
     private JsonDataManager<com.tacz.guns.resource.pojo.BlockIndexPOJO> blockIndex;
-    // private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
-    // private ScriptManager scriptManager;
+    private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
+    private ScriptManager scriptManager;
     
     private PackInfoManager packInfo;
 
@@ -92,7 +89,7 @@ public enum ClientAssetsManager {
             bedrockModel = register(new JsonDataManager<>(BedrockModelPOJO.class, GSON, "geo_models", "BedrockModelLoader"));
             bedrockAnimation = register(new JsonDataManager<>(BedrockAnimationFile.class, GSON, new FileToIdConverter("animations", ".animation.json"), "BedrockAnimationLoader"));
             gltfAnimation = register(new GltfManager());
-            // scriptManager = register(new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList));
+            scriptManager = register(new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList));
             packInfo = register(new PackInfoManager());
             ammoIndex = register(new JsonDataManager<>(com.tacz.guns.resource.pojo.AmmoIndexPOJO.class, GSON, "index/ammo", "AmmoIndexLoader"));
             blockIndex = register(new JsonDataManager<>(com.tacz.guns.resource.pojo.BlockIndexPOJO.class, GSON, "index/blocks", "BlockIndexLoader"));
@@ -141,8 +138,7 @@ public enum ClientAssetsManager {
 
     @Nullable
     public LuaTable getScript(ResourceLocation id) {
-        // return scriptManager.getScript(id);
-        return null;
+        return scriptManager.getScript(id);
     }
 
     @Nullable

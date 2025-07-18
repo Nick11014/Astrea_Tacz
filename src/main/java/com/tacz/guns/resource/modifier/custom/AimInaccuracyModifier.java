@@ -48,6 +48,11 @@ public class AimInaccuracyModifier implements IAttachmentModifier<Map<Inaccuracy
     public void eval(List<Map<InaccuracyType, Modifier>> modifiedValues, CacheValue<Map<InaccuracyType, Float>> cache) {
     }
 
+    @Override
+    public Class<Map<InaccuracyType, Modifier>> getPropertyClass() {
+        return (Class<Map<InaccuracyType, Modifier>>) (Class<?>) Map.class;
+    }
+
     public List<DiagramsData> getPropertyDiagramsData(ItemStack gunItem, GunData gunData, AttachmentCacheProperty cacheProperty, IAttachment.Slot<ItemStack> slot) {
         return List.of();
     }
@@ -80,66 +85,5 @@ public class AimInaccuracyModifier implements IAttachmentModifier<Map<Inaccuracy
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -10,7 +10,7 @@ import com.tacz.guns.client.model.BedrockGunModel;
 import com.tacz.guns.client.model.IFunctionalRenderer;
 import com.tacz.guns.client.model.SlotModel;
 import com.tacz.guns.client.model.bedrock.BedrockModel;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.pojo.display.gun.MuzzleFlash;
 import com.tacz.guns.compat.oculus.OculusCompat;
 import com.tacz.guns.resource.modifier.custom.SilenceModifier;

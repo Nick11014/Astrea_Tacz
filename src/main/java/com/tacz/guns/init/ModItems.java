@@ -4,6 +4,7 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.item.gun.GunItemManager;
 import com.tacz.guns.item.*;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -48,70 +49,8 @@ public class ModItems {
     @SubscribeEvent
     public static void onRegisterItems(RegisterEvent event) {
         if (event.getRegistryKey().equals(Registries.ITEM)) {
-            GunItemManager.addGunItems();
+            GunItemManager.getAllGunItems().forEach(item -> event.register(Registries.ITEM, item.getId(), item::get));
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

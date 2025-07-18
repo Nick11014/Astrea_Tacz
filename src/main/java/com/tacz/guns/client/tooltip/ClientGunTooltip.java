@@ -4,8 +4,6 @@ import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.client.input.RefitKey;
-import com.tacz.guns.client.resource.GunDisplayInstance;
-import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.resource.pojo.PackInfo;
 import com.tacz.guns.client.resource.pojo.display.gun.AmmoCountStyle;
@@ -47,19 +45,19 @@ public class ClientGunTooltip implements ClientTooltipComponent {
     private final ItemStack gun;
     private final IGun iGun;
     private final CommonGunIndex gunIndex;
-    private final @Nullable GunDisplayInstance display;
+    private final @Nullable Object display; // Alterado tipo para Object
     private final ItemStack ammo;
     private @Nullable List<FormattedCharSequence> desc;
-    private Component ammoName;
-    private MutableComponent ammoCountText;
-    private @Nullable MutableComponent gunType;
-    private MutableComponent damage;
-    private MutableComponent armorIgnore;
-    private MutableComponent headShotMultiplier;
-    private MutableComponent weight;
-    private MutableComponent tips;
-    private MutableComponent levelInfo;
-    private @Nullable MutableComponent packInfo;
+    private Component ammoName = null;
+    private MutableComponent ammoCountText = null;
+    private @Nullable MutableComponent gunType = null;
+    private MutableComponent damage = null;
+    private MutableComponent armorIgnore = null;
+    private MutableComponent headShotMultiplier = null;
+    private MutableComponent weight = null;
+    private MutableComponent tips = null;
+    private MutableComponent levelInfo = null;
+    private @Nullable MutableComponent packInfo = null;
 
     private int maxWidth;
 
@@ -68,7 +66,7 @@ public class ClientGunTooltip implements ClientTooltipComponent {
         this.iGun = tooltip.getIGun();
         ResourceLocation ammoId = tooltip.getAmmoId();
         this.gunIndex = tooltip.getGunIndex();
-        this.display = TimelessAPI.getGunDisplay(gun).flatMap(index -> java.util.Optional.ofNullable(index.getDisplayInstance())).orElse(null);
+        this.display = TimelessAPI.getGunDisplay(gun).flatMap(index -> java.util.Optional.ofNullable(index.getDisplayInstance())).orElse(null); // Ajustado para Object
         this.ammo = AmmoItemBuilder.create().setId(ammoId).build();
         this.maxWidth = 0;
         this.getText();
@@ -133,14 +131,14 @@ public class ClientGunTooltip implements ClientTooltipComponent {
             int currentAmmoCount = iGun.getCurrentAmmoCount(this.gun) + barrelBulletAmount;
 
             if (!iGun.useDummyAmmo(gun)) {
-                if (display != null && display.getAmmoCountStyle()== AmmoCountStyle.PERCENT) {
+                if (display != null && display instanceof com.tacz.guns.client.resource.pojo.display.gun.GunDisplay && ((com.tacz.guns.client.resource.pojo.display.gun.GunDisplay) display).getAmmoCountStyle() == AmmoCountStyle.PERCENT) {
                     this.ammoCountText = Component.literal(CURRENT_AMMO_FORMAT_PERCENT.format((float) currentAmmoCount / (maxAmmoCount == 0 ? 1f : maxAmmoCount)));
                 } else {
                     this.ammoCountText = Component.literal("%d/%d".formatted(currentAmmoCount, maxAmmoCount));
                 }
             } else {
                 int dummyAmmoAmount = iGun.getDummyAmmoAmount(gun);
-                if (display != null && display.getAmmoCountStyle()== AmmoCountStyle.PERCENT) {
+                if (display != null && display instanceof com.tacz.guns.client.resource.pojo.display.gun.GunDisplay && ((com.tacz.guns.client.resource.pojo.display.gun.GunDisplay) display).getAmmoCountStyle() == AmmoCountStyle.PERCENT) {
                     String p = CURRENT_AMMO_FORMAT_PERCENT.format((float) currentAmmoCount / (maxAmmoCount == 0 ? 1f : maxAmmoCount));
                     this.ammoCountText = Component.literal("%s (%d)".formatted(p, dummyAmmoAmount));
                 } else {
@@ -175,8 +173,8 @@ public class ClientGunTooltip implements ClientTooltipComponent {
             double damage = AttachmentDataUtils.getDamageWithAttachment(gun, gunData);
             int bulletAmount = gunData.getBulletData().getBulletAmount();
             MutableComponent value;
-            if (display != null && display.getDamageStyle() == DamageStyle.PER_PROJECTILE && bulletAmount > 1) {
-                value = Component.literal(DAMAGE_FORMAT.format(damage/bulletAmount) + "x" + bulletAmount).withStyle(ChatFormatting.AQUA);
+            if (display != null && display instanceof com.tacz.guns.client.resource.pojo.display.gun.GunDisplay && ((com.tacz.guns.client.resource.pojo.display.gun.GunDisplay) display).getDamageStyle() == DamageStyle.PER_PROJECTILE && bulletAmount > 1) {
+                value = Component.literal(DAMAGE_FORMAT.format(damage / bulletAmount) + "x" + bulletAmount).withStyle(ChatFormatting.AQUA);
             } else {
                 value = Component.literal(DAMAGE_FORMAT.format(damage)).withStyle(ChatFormatting.AQUA);
             }
@@ -319,66 +317,4 @@ public class ClientGunTooltip implements ClientTooltipComponent {
         return (GunTooltipPart.getHideFlags(this.gun) & part.getMask()) == 0;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

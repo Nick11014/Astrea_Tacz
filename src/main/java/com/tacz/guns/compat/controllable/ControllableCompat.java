@@ -1,91 +1,77 @@
 package com.tacz.guns.compat.controllable;
 
+import com.tacz.guns.init.CompatRegistry;
+import com.mrcrayfish.controllable.Controllable;
+import com.mrcrayfish.controllable.client.Buttons;
 import net.minecraft.client.player.LocalPlayer;
+import net.neoforged.fml.ModList;
 
 /**
- * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para compatibilidade com Controllable
- * TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Expandir quando Controllable for completamente integrado
+ * Implementação para compatibilidade com Controllable
  */
 public class ControllableCompat {
     
     /**
-     * Verifica se o Controllable estÃƒÆ’Ã‚Â¡ carregado
-     * TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real quando mod estiver disponÃƒÆ’Ã‚Â­vel
+     * Verifica se o Controllable está carregado
      */
     public static boolean isLoaded() {
-        return false; // Retorna false por enquanto para evitar problemas
+        return ModList.get().isLoaded(CompatRegistry.CONTROLLABLE);
     }
     
     /**
-     * Verifica se um controle estÃƒÆ’Ã‚Â¡ conectado
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Verifica se um controle está conectado
      */
     public static boolean isControllerConnected() {
-        // return ControllableAPI.isControllerConnected();
-        return false; // Retorna false por enquanto
+        return Controllable.isControllerConnected();
     }
     
     /**
-     * ObtÃƒÆ’Ã‚Â©m input de controle para mira
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Obtém input de controle para mira
      */
     public static boolean isAimButtonPressed() {
-        // return ControllableAPI.isButtonPressed(Buttons.AIM);
-        return false; // Retorna false por enquanto
+        return Controllable.isButtonPressed(Buttons.AIM);
     }
     
     /**
-     * ObtÃƒÆ’Ã‚Â©m input de controle para tiro
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Obtém input de controle para tiro
      */
     public static boolean isShootButtonPressed() {
-        // return ControllableAPI.isButtonPressed(Buttons.SHOOT);
-        return false; // Retorna false por enquanto
+        return Controllable.isButtonPressed(Buttons.SHOOT);
     }
     
     /**
-     * ObtÃƒÆ’Ã‚Â©m input analÃƒÆ’Ã‚Â³gico de movimento do controle
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Obtém input analógico de movimento do controle
      */
     public static float getMovementInput() {
-        // return ControllableAPI.getLeftStickValue();
-        return 0.0f; // Retorna 0 por enquanto (sem movimento)
+        return Controllable.getLeftStickValue();
     }
     
     /**
-     * Configura vibraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do controle
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Configura vibração do controle
      */
     public static void setControllerVibration(float intensity, int duration) {
-        // ControllableAPI.setVibration(intensity, duration);
+        Controllable.setVibration(intensity, duration);
     }
     
     /**
-     * Verifica se o player estÃƒÆ’Ã‚Â¡ usando controle
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Verifica se o player está usando controle
      */
     public static boolean isPlayerUsingController(LocalPlayer player) {
-        // return ControllableAPI.isPlayerUsingController(player);
-        return false; // Retorna false por enquanto
+        return Controllable.isPlayerUsingController(player);
     }
     
     /**
-     * ObtÃƒÆ’Ã‚Â©m sensibilidade de mira configurada no controle
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
+     * Obtém sensibilidade de mira configurada no controle
      */
     public static float getAimSensitivity() {
-        // TODO: Implementar leitura real da sensibilidade
-        // return ControllableAPI.getAimSensitivity();
-        return 1.0f; // Retorna sensibilidade padrÃƒÆ’Ã‚Â£o por enquanto
+        return Controllable.getAimSensitivity();
     }
     
     /**
      * Converte input de controle para valores de mira
-     * TODO: Implementar quando Controllable estiver disponÃƒÆ’Ã‚Â­vel
      */
     public static float[] getAimInput() {
-        // return ControllableAPI.getAimInput();
-        return new float[]{0.0f, 0.0f}; // Retorna sem movimento por enquanto
+        return Controllable.getAimInput();
     }
 }
 

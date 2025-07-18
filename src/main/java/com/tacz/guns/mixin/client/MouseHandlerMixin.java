@@ -8,7 +8,7 @@ import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.config.client.ZoomConfig;
 import com.tacz.guns.util.math.MathUtil;
@@ -80,66 +80,4 @@ public class MouseHandlerMixin {
         return finalPitch;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

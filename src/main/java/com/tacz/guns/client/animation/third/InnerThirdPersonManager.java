@@ -4,7 +4,7 @@ import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.client.other.ThirdPersonManager;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.compat.playeranimator.PlayerAnimatorCompat;
 import net.minecraft.client.Minecraft;

@@ -48,7 +48,7 @@ public class TextShowRender implements IFunctionalRenderer {
         // Render text
         Font font = Minecraft.getInstance().font;
         MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
-        font.drawInBatch(text, 0, 0, textShow.getColor(), false, pose, bufferSource, Font.DisplayMode.NORMAL, 0, LightTexture.FULL_BRIGHT);
+        font.drawInBatch(text, 0, 0, textShow.getColorInt(), false, pose, bufferSource, Font.DisplayMode.NORMAL, 0, LightTexture.FULL_BRIGHT);
         bufferSource.endBatch();
     }
 }

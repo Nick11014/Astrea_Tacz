@@ -18,6 +18,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
+
 @OnlyIn(Dist.CLIENT)
 public class ClientGunIndex {
     private String name;
@@ -116,7 +118,7 @@ public class ClientGunIndex {
     }
 
     // Temporary method to get GunDisplayInstance for compatibility with existing sound system
-    public com.tacz.guns.client.resource.GunDisplayInstance getDisplayInstance() {
+    public com.tacz.guns.client.resource.index.GunDisplayInstance getDisplayInstance() {
         // This is a temporary workaround until the display system is fully migrated
         // For now, we'll return null and update the calling code to handle this case
         return null;
@@ -158,66 +160,4 @@ public class ClientGunIndex {
         return TransformScale.getGunDefault();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

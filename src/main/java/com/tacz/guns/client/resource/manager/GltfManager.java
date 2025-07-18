@@ -1,3 +1,5 @@
+package com.tacz.guns.client.resource.manager;
+
 import com.google.common.collect.Maps;
 import com.google.gson.JsonParseException;
 import com.tacz.guns.GunMod;

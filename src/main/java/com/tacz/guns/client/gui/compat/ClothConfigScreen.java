@@ -1,6 +1,6 @@
 package com.tacz.guns.client.gui.compat;
 
-// import com.tacz.guns.init.CompatRegistry; // TODO: Re-enable when CompatRegistry is habilitado
+import com.tacz.guns.init.CompatRegistry; // TODO: Re-enable when CompatRegistry is habilitado
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -28,12 +28,10 @@ public class ClothConfigScreen extends Screen {
 
     public static void registerNoClothConfigPage() {
         // TODO: Re-enable when CompatRegistry is habilitado
-        /*
         if (!ModList.get().isLoaded(CompatRegistry.CLOTH_CONFIG)) {
             ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () ->
                     (client, parent) -> new ClothConfigScreen(parent));
         }
-        */
     }
 
     @Override

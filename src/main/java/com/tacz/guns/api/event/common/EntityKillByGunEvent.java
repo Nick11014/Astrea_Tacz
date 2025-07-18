@@ -12,11 +12,9 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
- * ÃƒÂ§Ã¢â‚¬ÂÃ…Â¸ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¨Ã‚Â¢Ã‚Â«ÃƒÂ¦Ã…Â¾Ã‚ÂªÃƒÂ¦Ã‚Â¢Ã‚Â°ÃƒÂ¥Ã‚Â­Ã‚ÂÃƒÂ¥Ã‚Â¼Ã‚Â¹ÃƒÂ¥Ã¢â‚¬Â¡Ã‚Â»ÃƒÂ¦Ã‚ÂÃ¢â€šÂ¬ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬ËœÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶
- * 
- * TODO: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima atÃƒÆ’Ã‚Â© KubeJSGunEventPoster ser habilitado
+ * Evento disparado quando uma entidade é morta por uma arma de fogo.
  */
-public class EntityKillByGunEvent extends Event /* implements KubeJSGunEventPoster<EntityKillByGunEvent> */ {
+public class EntityKillByGunEvent extends Event implements KubeJSGunEventPoster<EntityKillByGunEvent> {
     private final Entity bullet;
     private final @Nullable LivingEntity killedEntity;
     private final @Nullable LivingEntity attacker;
@@ -43,12 +41,11 @@ public class EntityKillByGunEvent extends Event /* implements KubeJSGunEventPost
         this.isHeadShot = isHeadShot;
         this.headshotMultiplier = headshotMultiplier;
         this.logicalSide = logicalSide;
-        // TODO: Re-habilitar quando KubeJSGunEventPoster for habilitado
-        // postEventToKubeJS(this);
+        postEventToKubeJS(this);
     }
 
     /**
-     * ÃƒÂ¥Ã…â€œÃ‚Â¨ÃƒÂ©Ã¢â€šÂ¬Ã‚Â»ÃƒÂ¨Ã‚Â¾Ã¢â‚¬ËœÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ¤Ã‚Â¿Ã‚ÂÃƒÂ¨Ã‚Â¯Ã‚ÂÃƒÂ¨Ã†â€™Ã‚Â½ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨
+     * No cliente, não é garantido que funcione.
      */
     public Entity getBullet() {
         return bullet;

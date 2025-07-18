@@ -294,12 +294,19 @@ public class Serializers {
     public static final IDataSerializer<ItemStack> ITEM_STACK = new IDataSerializer<>() {
         @Override
         public void write(FriendlyByteBuf buf, ItemStack value) {
-            buf.writeItemStack(value);
+            HolderLookup.Provider provider = getProvider();
+            if (provider == null) {
+                buf.writeNbt(new CompoundTag());
+            } else {
+                buf.writeNbt(value.save(provider));
+            }
         }
 
         @Override
         public ItemStack read(FriendlyByteBuf buf) {
-            return buf.readItemStack();
+            CompoundTag tag = buf.readNbt();
+            HolderLookup.Provider provider = getProvider();
+            return tag == null || provider == null ? ItemStack.EMPTY : ItemStack.parse(provider, tag).orElse(ItemStack.EMPTY);
         }
 
         @Override

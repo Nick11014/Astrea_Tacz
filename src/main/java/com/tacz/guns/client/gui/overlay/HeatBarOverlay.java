@@ -5,7 +5,7 @@ import com.tacz.guns.GunMod;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
 import com.tacz.guns.api.item.IGun;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.resource.pojo.data.gun.GunData;

@@ -7,9 +7,6 @@ import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
@@ -57,6 +54,11 @@ public class IgniteModifier implements IAttachmentModifier<Ignite, Ignite> {
         cache.setValue(new Ignite(igniteEntity, igniteBlock));
     }
 
+    @Override
+    public Class<Ignite> getPropertyClass() {
+        return Ignite.class;
+    }
+
     public static class IgniteJsonProperty extends JsonProperty<Ignite> {
         public IgniteJsonProperty(Ignite value) {
             super(value);
@@ -87,66 +89,4 @@ public class IgniteModifier implements IAttachmentModifier<Ignite, Ignite> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

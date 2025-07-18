@@ -184,7 +184,7 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
     public int getDiagramsDataSize() {
         return 4;
     }
-    
+
     public static class InaccuracyJsonProperty extends JsonProperty<Map<InaccuracyType, Modifier>> {
         public InaccuracyJsonProperty(Map<InaccuracyType, Modifier> value) {
             super(value);
@@ -211,6 +211,11 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
                 components.add(Component.translatable(increaseKey).withStyle(ChatFormatting.GREEN));
             }
         }
+    }
+
+    @Override
+    public Class<Map<InaccuracyType, Modifier>> getPropertyClass() {
+        return (Class<Map<InaccuracyType, Modifier>>) (Class<?>) Map.class;
     }
 
     public static class Data {
@@ -260,6 +265,7 @@ public class InaccuracyModifier implements IAttachmentModifier<Map<InaccuracyTyp
         }
     }
 }
+
 
 
 

@@ -9,7 +9,7 @@ import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.client.animation.screen.RefitTransform;
 import com.tacz.guns.client.gui.components.FlatColorButton;
 import com.tacz.guns.client.gui.components.refit.*;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.network.NetworkHandler;

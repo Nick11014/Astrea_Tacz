@@ -2,17 +2,14 @@ package com.tacz.guns.resource.modifier;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.tacz.guns.api.GunProperty;
-import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.attachment.AttachmentType;
+import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.util.AttachmentDataUtils;
 import net.minecraft.world.item.ItemStack;
-
 
 import java.util.List;
 import java.util.Map;

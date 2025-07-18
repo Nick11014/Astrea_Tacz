@@ -1,4 +1,3 @@
-
 package com.tacz.guns.resource.modifier.custom;
 
 import com.google.gson.annotations.SerializedName;
@@ -6,7 +5,6 @@ import com.tacz.guns.api.GunProperties;
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
@@ -57,6 +55,11 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
     @Override
     public String getOptionalFields() {
         return "weight";
+    }
+
+    @Override
+    public Class<Modifier> getPropertyClass() {
+        return Modifier.class;
     }
 
     @Override
@@ -124,66 +127,4 @@ public class WeightModifier implements IAttachmentModifier<Modifier, Float> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

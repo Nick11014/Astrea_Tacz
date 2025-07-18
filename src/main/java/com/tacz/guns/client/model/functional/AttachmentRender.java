@@ -8,13 +8,16 @@ import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.client.model.BedrockAttachmentModel;
 import com.tacz.guns.client.model.BedrockGunModel;
 import com.tacz.guns.client.model.IFunctionalRenderer;
+import com.tacz.guns.client.resource.pojo.display.attachment.AttachmentLod;
 import com.tacz.guns.util.RenderDistance;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 import java.util.EnumMap;
+import java.util.Optional;
 
 /**
  * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica para AttachmentRender
@@ -50,7 +53,7 @@ public class AttachmentRender implements IFunctionalRenderer {
                             // TODO: usar modelo LOD
                         }
                     }
-                    model.render(poseStack, texture, transformType, light, overlay);
+                    model.render(attachmentItem, gunItem, poseStack, transformType, texture, light, overlay);
                 }
             }, () -> {
                 // Renderizar placeholder/erro
@@ -124,66 +127,4 @@ public class AttachmentRender implements IFunctionalRenderer {
                 type, bedrockGunModel != null ? "present" : "null");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

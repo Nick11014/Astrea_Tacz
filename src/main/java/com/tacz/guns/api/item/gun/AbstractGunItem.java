@@ -453,7 +453,7 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                 FireMode fireMode = getFireMode(gun);
                 int rpm = gunData.getRoundsPerMinute(fireMode);
                 if (iGun.hasHeatData(gun)) {
-                    rpm *= (int) iGun.lerpRPM(gun);
+                    
                 }
                 return rpm;
             }

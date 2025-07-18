@@ -81,7 +81,12 @@ public class RpmModifier implements IAttachmentModifier<Modifier, Integer> {
     public int getDiagramsDataSize() {
         return 1;
     }
-    
+
+    @Override
+    public Class<Modifier> getPropertyClass() {
+        return Modifier.class;
+    }
+
     public static class RpmJsonProperty extends JsonProperty<Modifier> {
         public RpmJsonProperty(Modifier value) {
             super(value);
@@ -113,66 +118,4 @@ public class RpmModifier implements IAttachmentModifier<Modifier, Integer> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

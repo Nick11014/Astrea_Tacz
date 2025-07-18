@@ -1,89 +1,92 @@
 package com.tacz.guns.compat.cloth;
 
+import com.tacz.guns.init.CompatRegistry;
+import me.shedaniel.clothconfig2.api.ConfigBuilder;
+import me.shedaniel.clothconfig2.api.ConfigCategory;
+import me.shedaniel.clothconfig2.api.ClothConfigAPI;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.neoforged.fml.ModList;
 
 /**
- * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima para integraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o com Cloth Config
- * TODO: [MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O] Expandir quando Cloth Config for completamente integrado
+ * Implementação mínima para integração com Cloth Config
+ * TODO: [MIGRAÇÃO] Expandir quando Cloth Config for completamente integrado
  */
 public class MenuIntegration {
     
     /**
-     * Verifica se o Cloth Config estÃƒÆ’Ã‚Â¡ carregado
-     * TODO: Implementar verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o real quando mod estiver disponÃƒÆ’Ã‚Â­vel
+     * Verifica se o Cloth Config está carregado
+     * TODO: Implementar verificação real quando mod estiver disponível
      */
     public static boolean isLoaded() {
-        return false; // Retorna false por enquanto para evitar problemas
+        return ModList.get().isLoaded(CompatRegistry.CLOTH_CONFIG);
     }
     
     /**
-     * Cria a tela de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do TacZ
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Cria a tela de configuração do TacZ
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
     public static Screen createConfigScreen(Screen parent) {
-        // return ClothConfigBuilder.create()
-        //     .setParentScreen(parent)
-        //     .setTitle(Component.translatable("config.tacz.title"))
-        //     .build();
-        return parent; // Retorna tela pai por enquanto para evitar crashes
+        ConfigBuilder builder = ConfigBuilder.create()
+            .setParentScreen(parent)
+            .setTitle(Component.translatable("config.tacz.title"));
+
+        // Add categories
+        createGeneralCategory(builder);
+        createWeaponsCategory(builder);
+
+        return builder.build();
     }
     
     /**
-     * Registra categorias de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Registra categorias de configuração
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
     public static void registerConfigCategories() {
-        // TODO: Implementar registro real de categorias
-        // ClothConfigBuilder builder = ClothConfigBuilder.create();
-        // builder.addCategory("general", createGeneralCategory());
-        // builder.addCategory("weapons", createWeaponsCategory());
+        // This method is typically used to register the config screen itself,
+        // not individual categories. Categories are added when building the screen.
+        // The previous TODOs were a bit misleading here.
     }
     
     /**
-     * Cria categoria de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes gerais
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Cria categoria de configurações gerais
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
-    public static Object createGeneralCategory() {
-        // return CategoryBuilder.create()
-        //     .add("enableSounds", ConfigEntryBuilder.create().build())
-        //     .build();
-        return null; // Retorna null por enquanto
+    public static ConfigCategory createGeneralCategory(ConfigBuilder builder) {
+        return builder.getOrCreateCategory(Component.translatable("config.tacz.category.general"));
     }
     
     /**
-     * Cria categoria de configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes de armas
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Cria categoria de configurações de armas
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
-    public static Object createWeaponsCategory() {
-        // return CategoryBuilder.create()
-        //     .add("gunDamage", ConfigEntryBuilder.create().build())
-        //     .build();
-        return null; // Retorna null por enquanto
+    public static ConfigCategory createWeaponsCategory(ConfigBuilder builder) {
+        return builder.getOrCreateCategory(Component.translatable("config.tacz.category.weapons"));
     }
     
     /**
-     * Salva as configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Salva as configurações
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
     public static void saveConfigs() {
-        // ClothConfigAPI.saveConfigs();
+        ClothConfigAPI.getConfigBuilder().save();
     }
     
     /**
-     * Carrega as configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Carrega as configurações
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
     public static void loadConfigs() {
-        // ClothConfigAPI.loadConfigs();
+        // ClothConfigAPI does not have a direct load method, usually configs are loaded on startup.
+        // If a specific reload is needed, it depends on the config implementation.
     }
     
     /**
-     * Verifica se as configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes foram modificadas
-     * TODO: Implementar quando Cloth Config estiver disponÃƒÆ’Ã‚Â­vel
+     * Verifica se as configurações foram modificadas
+     * TODO: Implementar quando Cloth Config estiver disponível
      */
     public static boolean hasUnsavedChanges() {
-        // return ClothConfigAPI.hasUnsavedChanges();
-        return false; // Retorna false por enquanto
+        return ClothConfigAPI.getConfigBuilder().isEdited();
     }
 }
 

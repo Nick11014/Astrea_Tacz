@@ -6,9 +6,6 @@ import com.tacz.guns.api.item.IAttachment.Slot;
 import com.tacz.guns.api.modifier.CacheValue;
 import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
@@ -48,6 +45,11 @@ public class ExtraMovementModifier implements IAttachmentModifier<MoveSpeed, Mov
         cache.setValue(MoveSpeed.of(cache.getValue(), modifiers));
     }
 
+    @Override
+    public Class<MoveSpeed> getPropertyClass() {
+        return MoveSpeed.class;
+    }
+
     public static class ExtraSpeedJsonProperty extends JsonProperty<MoveSpeed> {
         public ExtraSpeedJsonProperty(MoveSpeed value) {
             super(value);
@@ -82,66 +84,4 @@ public class ExtraMovementModifier implements IAttachmentModifier<MoveSpeed, Mov
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

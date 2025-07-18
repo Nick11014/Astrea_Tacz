@@ -3,7 +3,8 @@ package com.tacz.guns.resource.modifier.custom;
 import com.google.gson.annotations.SerializedName;
 import com.tacz.guns.api.GunProperties;
 import com.tacz.guns.api.modifier.CacheValue;
-import com.tacz.guns.api.item.IAttachment.Slot;
+import com.tacz.guns.api.item.attachment.AttachmentType;
+import com.tacz.guns.api.modifier.IAttachmentModifier;
 import com.tacz.guns.api.modifier.JsonProperty;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.modifier.AttachmentCacheProperty;
@@ -11,6 +12,7 @@ import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.attachment.Modifier;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
+import com.tacz.guns.init.ModDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -20,12 +22,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-
-import com.tacz.guns.api.modifier.IAttachmentModifier;
-import com.tacz.guns.api.modifier.IAttachmentModifier.DiagramsData;
-import com.tacz.guns.api.item.attachment.AttachmentType;
-import com.tacz.guns.util.math.MathUtil;
-import com.tacz.guns.init.ModDataComponents;
 
 public class AdsModifier implements IAttachmentModifier<Float, GunData> {
     public static final String ID = "ads_modifier";
@@ -110,6 +106,32 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         }
     }
 
+    // Subclasse concreta de JsonProperty para encapsular o valor float
+    public static class AdsJsonProperty extends JsonProperty<Float> {
+        public AdsJsonProperty(Float value) {
+            super(value);
+        }
+
+        @Override
+        public void initComponents() {
+            // Nenhum componente extra necessário
+        }
+    }
+
+    @Override
+    public JsonProperty<Float> readJson(String json) {
+        Data data = GSON.fromJson(json, Data.class);
+        if (data != null) {
+            return new AdsJsonProperty(data.getAdsAddendTime());
+        }
+        return null;
+    }
+
+    @Override
+    public Class<Float> getPropertyClass() {
+        return Float.class;
+    }
+
     public static class Data {
         @Nullable
         @SerializedName("ads")
@@ -130,3 +152,4 @@ public class AdsModifier implements IAttachmentModifier<Float, GunData> {
         }
     }
 }
+

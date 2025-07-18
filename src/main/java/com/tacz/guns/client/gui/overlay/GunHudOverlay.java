@@ -10,7 +10,7 @@ import com.tacz.guns.api.item.IAmmo;
 import com.tacz.guns.api.item.IAmmoBox;
 import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.gun.FireMode;
-import com.tacz.guns.client.resource.GunDisplayInstance;
+import com.tacz.guns.client.resource.index.GunDisplayInstance;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.client.resource.pojo.display.gun.AmmoCountStyle;
 import com.tacz.guns.config.client.RenderConfig;
