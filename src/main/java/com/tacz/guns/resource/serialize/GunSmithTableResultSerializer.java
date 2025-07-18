@@ -7,24 +7,18 @@ import com.tacz.guns.crafting.result.RawGunTableResult;
 import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.recipe.GunResult;
-import com.google.gson.*;
-import com.tacz.guns.GunMod;
-import com.tacz.guns.crafting.result.GunSmithTableResult;
-import com.tacz.guns.crafting.result.RawGunTableResult;
-import com.tacz.guns.resource.CommonAssetsManager;
-import com.tacz.guns.resource.pojo.data.block.TabConfig;
-import com.tacz.guns.resource.pojo.data.recipe.GunResult;
-import net.minecraft.core.component.DataComponentPatch;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.crafting.CraftingHelper;
 
 import java.lang.reflect.Type;
 
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.world.item.crafting.CraftingContext;
+
 public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithTableResult> {
+    public static final ThreadLocal<HolderLookup.Provider> REGISTRY_ACCESS_THREAD_LOCAL = new ThreadLocal<>();
 
     @Override
     public GunSmithTableResult deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -59,7 +53,11 @@ public class GunSmithTableResultSerializer implements JsonDeserializer<GunSmithT
                 }
                 case GunSmithTableResult.CUSTOM -> {
                     JsonObject resultObject = GsonHelper.getAsJsonObject(jsonObject, "item");
-                    ItemStack itemStack = ItemStack.EMPTY; // Placeholder for now, needs HolderLookup.Provider
+                    HolderLookup.Provider provider = REGISTRY_ACCESS_THREAD_LOCAL.get();
+                    if (provider == null) {
+                        throw new JsonParseException("HolderLookup.Provider is not available.");
+                    }
+                    ItemStack itemStack = ItemStack.parse(provider, resultObject).orElseThrow(() -> new JsonParseException("Failed to parse ItemStack"));
                     result = new GunSmithTableResult(itemStack, tabOverride);
                 }
                 default -> {

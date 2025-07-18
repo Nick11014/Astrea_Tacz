@@ -1,19 +1,14 @@
 package com.tacz.guns.entity.sync.core;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.nbt.ByteTag;
-import net.minecraft.nbt.ShortTag;
-import net.minecraft.nbt.IntTag;
-import net.minecraft.nbt.LongTag;
-import net.minecraft.nbt.FloatTag;
-import net.minecraft.nbt.DoubleTag;
-import net.minecraft.nbt.StringTag;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.*;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 import java.util.UUID;
 
@@ -25,7 +20,7 @@ import java.util.UUID;
  * Author: MrCrayfish
  * Open source at <a href="https://github.com/MrCrayfish/Framework">Github</a> under LGPL License.
  * <p>
- * Migrado para NeoForge 1.21.1 baseado no padrÃƒÆ’Ã‚Â£o SuperbWarfare
+ * Migrado para NeoForge 1.21.1 baseado no padrÃ£o SuperbWarfare
  */
 public class Serializers {
     public static final IDataSerializer<Boolean> BOOLEAN = new IDataSerializer<>() {
@@ -299,28 +294,43 @@ public class Serializers {
     public static final IDataSerializer<ItemStack> ITEM_STACK = new IDataSerializer<>() {
         @Override
         public void write(FriendlyByteBuf buf, ItemStack value) {
-            CompoundTag compound = new CompoundTag();
-            value.save(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound);
-            buf.writeNbt(compound);
+            buf.writeItemStack(value);
         }
 
         @Override
         public ItemStack read(FriendlyByteBuf buf) {
-            CompoundTag compound = buf.readNbt();
-            return ItemStack.parse(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound).orElse(ItemStack.EMPTY);
+            return buf.readItemStack();
         }
 
         @Override
         public Tag write(ItemStack value) {
-            CompoundTag compound = new CompoundTag();
-            value.save(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound);
-            return compound;
+            HolderLookup.Provider provider = getProvider();
+            if (provider == null) {
+                return new CompoundTag();
+            }
+            return value.save(provider);
         }
 
         @Override
         public ItemStack read(Tag tag) {
-            CompoundTag compound = (CompoundTag) tag;
-            return ItemStack.parse(net.minecraft.client.Minecraft.getInstance().level.registryAccess(), compound).orElse(ItemStack.EMPTY);
+            HolderLookup.Provider provider = getProvider();
+            if (provider == null) {
+                return ItemStack.EMPTY;
+            }
+            if (tag instanceof CompoundTag compound) {
+                return ItemStack.parse(provider, compound).orElse(ItemStack.EMPTY);
+            }
+            return ItemStack.EMPTY;
+        }
+
+        private HolderLookup.Provider getProvider() {
+            if (ServerLifecycleHooks.getCurrentServer() != null) {
+                return ServerLifecycleHooks.getCurrentServer().registryAccess();
+            }
+            if (Minecraft.getInstance() != null && Minecraft.getInstance().level != null) {
+                return Minecraft.getInstance().level.registryAccess();
+            }
+            return null;
         }
     };
 

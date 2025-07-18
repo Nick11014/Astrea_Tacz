@@ -3,14 +3,11 @@ package com.tacz.guns.resource;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tacz.guns.api.vmlib.LuaGunLogicConstant;
-import com.tacz.guns.api.vmlib.LuaLibrary;
-// import com.tacz.guns.crafting.GunSmithTableIngredient;
-// import com.tacz.guns.crafting.GunSmithTableRecipe;
-// import com.tacz.guns.crafting.result.GunSmithTableResult;
-// import com.tacz.guns.init.ModRecipe;
-// import com.tacz.guns.network.NetworkHandler;
-// import com.tacz.guns.network.message.ServerMessageSyncGunPack;
+import com.tacz.guns.crafting.GunSmithTableRecipe;
+import com.tacz.guns.crafting.result.GunSmithTableResult;
+import com.tacz.guns.init.ModRecipe;
+import com.tacz.guns.network.NetworkHandler;
+import com.tacz.guns.network.message.ServerMessageSyncGunPack;
 import com.tacz.guns.resource.filter.RecipeFilter;
 import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonAttachmentIndex;
@@ -21,7 +18,6 @@ import com.tacz.guns.resource.network.CommonNetworkCache;
 import com.tacz.guns.resource.network.DataType;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 import com.tacz.guns.resource.pojo.data.block.BlockData;
-// import com.tacz.guns.resource.pojo.data.block.TabConfig;
 import com.tacz.guns.resource.pojo.data.gun.ExtraDamage;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.resource.pojo.data.gun.Ignite;
@@ -38,14 +34,16 @@ import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.TagsUpdatedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 import org.luaj.vm2.LuaTable;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 
 @EventBusSubscriber
@@ -54,8 +52,7 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer())
             .registerTypeAdapter(Pair.class, new PairSerializer())
-            // .registerTypeAdapter(GunSmithTableIngredient.class, new GunSmithTableIngredientSerializer())
-            // .registerTypeAdapter(GunSmithTableResult.class, new GunSmithTableResultSerializer())
+            .registerTypeAdapter(GunSmithTableResult.class, new GunSmithTableResultSerializer())
             .registerTypeAdapter(ExtraDamage.DistanceDamagePair.class, new DistanceDamagePairSerializer())
             .registerTypeAdapter(Vec3.class, new Vec3Serializer())
             .registerTypeAdapter(Ignite.class, new IgniteSerializer())
@@ -64,7 +61,6 @@ public class CommonAssetsManager implements ICommonResourceProvider {
             .registerTypeAdapter(CommonAmmoIndex.class, new CommonAmmoIndexSerializer())
             .registerTypeAdapter(CommonAttachmentIndex.class, new CommonAttachmentIndexSerializer())
             .registerTypeAdapter(CommonBlockIndex.class, new CommonBlockIndexSerializer())
-            // .registerTypeAdapter(TabConfig.class, new TabConfig.Deserializer())
             .create();
 
     private final List<INetworkCacheReloadListener> listeners = new ArrayList<>();
@@ -194,10 +190,10 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     }
 
     /**
-     * ÃƒÂ¨Ã…Â½Ã‚Â·ÃƒÂ¥Ã‚ÂÃ¢â‚¬â€œÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹<br/>
-     * ÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã¢â‚¬Â¦ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â Ã¢â‚¬Â¦ÃƒÂ§Ã‚Â½Ã‚Â®ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨/ÃƒÂ¤Ã‚Â¸Ã¢â‚¬Å“ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ¥Ã¢â€žÂ¢Ã‚Â¨ÃƒÂ¥Ã‚ÂÃ‚Â¯ÃƒÂ¥Ã…Â Ã‚Â¨ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¦Ã¢â‚¬Â°Ã‚ÂÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¨Ã‚Â¢Ã‚Â«ÃƒÂ¥Ã‹â€ Ã¢â‚¬ÂºÃƒÂ¥Ã‚Â»Ã‚Âº<br/>
-     * ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¦Ã‚Â­Ã‚Â£ÃƒÂ¨Ã‚Â¿Ã…Â¾ÃƒÂ¦Ã…Â½Ã‚Â¥ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã‚Â¤Ã…Â¡ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¯Ã‚Â¥ÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹ÃƒÂ¦Ã‚Â³Ã¢â‚¬Â¢ÃƒÂ¥Ã‚Â°Ã¢â‚¬Â ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾ null
-     * @return CommonAssetsMangerÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹
+     * Gets the singleton instance of the CommonAssetsManager.
+     * The instance is only available on the server side.
+     * If the client is connected to a multiplayer game, this method will return null.
+     * @return The singleton instance of the CommonAssetsManager.
      */
     @Nullable
     public static CommonAssetsManager getInstance() {
@@ -205,10 +201,10 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     }
 
     /**
-     * ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã‚ÂÃ‚Â®ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ§Ã…Â½Ã‚Â¯ÃƒÂ¥Ã‚Â¢Ã†â€™ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Â°ÃƒÂ¦Ã¢â‚¬Â¹Ã‚Â©ÃƒÂ¥Ã‚ÂÃ‹â€ ÃƒÂ©Ã¢â€šÂ¬Ã¢â‚¬Å¡ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ§Ã‚Â¼Ã¢â‚¬Å“ÃƒÂ¥Ã‚Â­Ã‹Å“<br/>
-     * ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ§Ã…Â½Ã‚Â¯ÃƒÂ¥Ã‚Â¢Ã†â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚ÂÃ¢â‚¬Â¢ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ¦Ã‹â€ Ã¢â‚¬â€œÃƒÂ¥Ã‚Â¤Ã…Â¡ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¦Ã…â€œÃ‚ÂÃƒÂ¥Ã…Â Ã‚Â¡ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾CommonAssetsMangerÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹<br/>
-     * ÃƒÂ¥Ã‚Â½Ã¢â‚¬Å“ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ§Ã…Â½Ã‚Â¯ÃƒÂ¥Ã‚Â¢Ã†â€™ÃƒÂ¤Ã‚Â¸Ã‚ÂºÃƒÂ¥Ã‚Â¤Ã…Â¡ÃƒÂ¤Ã‚ÂºÃ‚ÂºÃƒÂ¦Ã‚Â¸Ã‚Â¸ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾CommonNetworkCacheÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹
-     * @return ICommonResourceProviderÃƒÂ¥Ã‚Â®Ã…Â¾ÃƒÂ¤Ã‚Â¾Ã¢â‚¬Â¹
+     * Gets the appropriate resource provider based on the current environment.
+     * If the environment is a dedicated server or a single-player game, it returns the CommonAssetsManager instance.
+     * If the environment is a client connected to a multiplayer game, it returns the CommonNetworkCache instance.
+     * @return The appropriate ICommonResourceProvider instance.
      */
     public static ICommonResourceProvider get() {
         return INSTANCE == null ? CommonNetworkCache.INSTANCE : INSTANCE;
@@ -225,18 +221,24 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     public RecipeManager recipeManager;
 
     /**
-     * ÃƒÂ¨Ã‚Â¿Ã¢â€žÂ¢ÃƒÂ¤Ã‚Â¸Ã‚ÂªÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ§Ã‚ÂÃ¢â‚¬Â ÃƒÂ¨Ã‚Â®Ã‚ÂºÃƒÂ¤Ã‚Â¸Ã…Â ÃƒÂ¤Ã‚Â¼Ã…Â¡ÃƒÂ¥Ã…â€œÃ‚Â¨server resourceÃƒÂ¥Ã‚Â·Ã‚Â²ÃƒÂ§Ã‚Â»Ã‚ÂÃƒÂ¥Ã‚Â®Ã…â€™ÃƒÂ¦Ã‹â€ Ã‚ÂÃƒÂ©Ã¢â‚¬Â¡Ã‚ÂÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ¥Ã¢â‚¬â„¢Ã…â€™ÃƒÂ¤Ã‚Â¼Ã‚Â ÃƒÂ¨Ã‚Â¾Ã¢â‚¬Å“ÃƒÂ¥Ã‹â€ Ã‚Â°ÃƒÂ¥Ã‚Â®Ã‚Â¢ÃƒÂ¦Ã‹â€ Ã‚Â·ÃƒÂ§Ã‚Â«Ã‚Â¯ÃƒÂ¤Ã‚Â¹Ã¢â‚¬Â¹ÃƒÂ¥Ã¢â‚¬Â°Ã‚ÂÃƒÂ¨Ã‚Â§Ã‚Â¦ÃƒÂ¥Ã‚ÂÃ¢â‚¬Ëœ<br/>
-     * ÃƒÂ¥Ã‚Â°Ã‚ÂÃƒÂ¨Ã‚Â¯Ã¢â‚¬Â¢ÃƒÂ¦Ã‚Â Ã‚Â¹ÃƒÂ¦Ã‚ÂÃ‚Â®common dataÃƒÂ¥Ã‹â€ Ã‚ÂÃƒÂ¥Ã‚Â§Ã¢â‚¬Â¹ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œÃƒÂ¥Ã‚Â»Ã‚Â¶ÃƒÂ¨Ã‚Â¿Ã…Â¸ÃƒÂ¥Ã…Â Ã‚Â ÃƒÂ¨Ã‚Â½Ã‚Â½ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ÃƒÂ©Ã¢â‚¬Â¦Ã‚ÂÃƒÂ¦Ã¢â‚¬â€œÃ‚Â¹
-     * @param event
+     * This event is triggered after server resources have been reloaded and sent to the client.
+     * We take this opportunity to initialize the delayed loading of recipes based on common data.
+     * @param event The event object.
      */
     @SubscribeEvent
     public static void onReload(TagsUpdatedEvent event) {
-        if (event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD){
-            if (getInstance() !=null && getInstance().recipeManager != null) {
-                // List<GunSmithTableRecipe> recipes = getInstance().recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
-                // for (GunSmithTableRecipe recipe : recipes) {
-                //     recipe.init();
-                // }
+        if (event.getUpdateCause() == TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD) {
+            CommonAssetsManager instance = getInstance();
+            if (instance != null && instance.recipeManager != null) {
+                GunSmithTableResultSerializer.REGISTRY_ACCESS_THREAD_LOCAL.set(event.getRegistryAccess());
+                try {
+                    List<GunSmithTableRecipe> recipes = instance.recipeManager.getAllRecipesFor(ModRecipe.GUN_SMITH_TABLE_CRAFTING.get());
+                    for (GunSmithTableRecipe recipe : recipes) {
+                        recipe.init();
+                    }
+                } finally {
+                    GunSmithTableResultSerializer.REGISTRY_ACCESS_THREAD_LOCAL.remove();
+                }
             }
         }
     }
@@ -252,12 +254,12 @@ public class CommonAssetsManager implements ICommonResourceProvider {
         if (getInstance() == null) {
             return;
         }
-        // ServerMessageSyncGunPack message = new ServerMessageSyncGunPack(getInstance().getNetworkCache());
-        // if (event.getPlayer() != null) {
-        //     NetworkHandler.sendToClientPlayer(message, event.getPlayer());
-        // } else {
-        //     event.getPlayerList().getPlayers().forEach(player -> NetworkHandler.sendToClientPlayer(message, player));
-        // }
+        ServerMessageSyncGunPack message = new ServerMessageSyncGunPack(getInstance().getNetworkCache());
+        if (event.getPlayer() != null) {
+            NetworkHandler.sendToClientPlayer(message, event.getPlayer());
+        } else {
+            event.getPlayerList().getPlayers().forEach(player -> NetworkHandler.sendToClientPlayer(message, player));
+        }
     }
 
     public static void reloadAllPack() {

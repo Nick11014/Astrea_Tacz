@@ -74,6 +74,7 @@ public enum ClientAssetsManager {
     private JsonDataManager<BedrockAnimationFile> bedrockAnimation;
     private GltfManager gltfAnimation;
     private JsonDataManager<com.tacz.guns.resource.pojo.AmmoIndexPOJO> ammoIndex;
+    private JsonDataManager<com.tacz.guns.resource.pojo.BlockIndexPOJO> blockIndex;
     // private final List<LuaLibrary> libList = List.of(new LuaAnimationConstant(), new LuaGunAnimationConstant());
     // private ScriptManager scriptManager;
     
@@ -94,6 +95,7 @@ public enum ClientAssetsManager {
             // scriptManager = register(new ScriptManager(new FileToIdConverter("scripts", ".lua"), libList));
             packInfo = register(new PackInfoManager());
             ammoIndex = register(new JsonDataManager<>(com.tacz.guns.resource.pojo.AmmoIndexPOJO.class, GSON, "index/ammo", "AmmoIndexLoader"));
+            blockIndex = register(new JsonDataManager<>(com.tacz.guns.resource.pojo.BlockIndexPOJO.class, GSON, "index/blocks", "BlockIndexLoader"));
         }
         listeners.forEach(register);
     }
@@ -167,6 +169,11 @@ public enum ClientAssetsManager {
         return ammoIndex.getData(id);
     }
 
+    @Nullable
+    public com.tacz.guns.resource.pojo.BlockIndexPOJO getBlockIndexPOJO(ResourceLocation id) {
+        return blockIndex.getData(id);
+    }
+
     public java.util.Optional<com.tacz.guns.client.resource.index.ClientAmmoIndex> getAmmoIndex(ResourceLocation ammoId) {
         com.tacz.guns.resource.pojo.AmmoIndexPOJO pojo = getAmmoIndexPOJO(ammoId);
         if (pojo == null) {
@@ -176,12 +183,11 @@ public enum ClientAssetsManager {
     }
     
     public java.util.Optional<com.tacz.guns.client.resource.index.ClientBlockIndex> getBlockIndex(ResourceLocation blockId) {
-        BlockDisplay blockDisplay = getBlockDisplay(blockId);
-        if (blockDisplay == null) {
+        com.tacz.guns.resource.pojo.BlockIndexPOJO pojo = getBlockIndexPOJO(blockId);
+        if (pojo == null) {
             return java.util.Optional.empty();
         }
-        // return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(blockDisplay));
-        return java.util.Optional.empty();
+        return java.util.Optional.of(com.tacz.guns.client.resource.index.ClientBlockIndex.getInstance(pojo));
     }
 
     @OnlyIn(Dist.CLIENT)
