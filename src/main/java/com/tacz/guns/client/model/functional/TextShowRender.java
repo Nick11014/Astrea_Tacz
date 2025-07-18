@@ -30,8 +30,6 @@ public class TextShowRender implements IFunctionalRenderer {
 
     @Override
     public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-        
-        /*
         if (!(transformType instanceof ItemDisplayContext)) {
             return;
         }
@@ -47,12 +45,12 @@ public class TextShowRender implements IFunctionalRenderer {
         Matrix3f normal = new Matrix3f(poseStack.last().normal());
         Matrix4f pose = new Matrix4f(poseStack.last().pose());
 
-        */
+        // Render text
+        Font font = Minecraft.getInstance().font;
+        MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
+        font.drawInBatch(text, 0, 0, textShow.getColor(), false, pose, bufferSource, Font.DisplayMode.NORMAL, 0, LightTexture.FULL_BRIGHT);
+        bufferSource.endBatch();
     }
-    
-    /*
-    // TODO: Restaurar quando imports estiverem funcionando
-    */
 }
 
 

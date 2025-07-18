@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.apache.commons.lang3.StringUtils;
 
 public class ClientAttachmentSkinIndex {
-    private Object model; // TODO: BedrockAttachmentModel quando disponÃƒÆ’Ã‚Â­vel
+    private BedrockAttachmentModel model;
     private ResourceLocation texture;
     private String name;
 
@@ -36,15 +36,15 @@ public class ClientAttachmentSkinIndex {
     private static void checkTextureAndModel(AttachmentSkin skinPojo, ClientAttachmentSkinIndex index) {
         ResourceLocation modelLocation = skinPojo.getModel();
         Preconditions.checkArgument(modelLocation != null, "display object missing model field");
-        index.model = ClientAttachmentIndex.getOrLoadAttachmentModel(modelLocation);
-        // Preconditions.checkArgument(index.model != null, "there is no model data in the model file");
+        index.model = ClientAttachmentIndex.createAttachmentModel(ClientAssetsManager.INSTANCE.getAttachmentDisplay(modelLocation));
+        Preconditions.checkArgument(index.model != null, "there is no model data in the model file");
         
         ResourceLocation textureLocation = skinPojo.getTexture();
         Preconditions.checkArgument(textureLocation != null, "missing default texture");
         index.texture = textureLocation;
     }
 
-    public Object getModel() {
+    public BedrockAttachmentModel getModel() {
         return model;
     }
 

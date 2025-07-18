@@ -1,9 +1,13 @@
 package com.tacz.guns.client.resource.index;
 
+import com.tacz.guns.client.model.BedrockAttachmentModel;
+import com.tacz.guns.client.resource.ClientAssetsManager;
 import com.tacz.guns.client.resource.pojo.display.attachment.AttachmentDisplay;
 import com.tacz.guns.client.resource.pojo.display.attachment.AttachmentLod;
 import com.tacz.guns.client.resource.pojo.display.gun.TextShow;
 import com.tacz.guns.client.resource.pojo.display.LaserConfig;
+import com.tacz.guns.client.resource.pojo.model.BedrockModelPOJO;
+import com.tacz.guns.client.resource.pojo.model.BedrockVersion;
 import com.tacz.guns.resource.pojo.AttachmentIndexPOJO;
 import com.tacz.guns.resource.pojo.data.attachment.AttachmentData;
 
@@ -14,16 +18,15 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima estratÃƒÆ’Ã‚Â©gica para ClientAttachmentIndex
- * TODO: Expandir quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
+ * ImplementaÃ§Ã£o mÃ­nima estratÃ©gica para ClientAttachmentIndex
  */
 public class ClientAttachmentIndex {
-    private Object model; // TODO: BedrockAttachmentModel quando disponÃƒÆ’Ã‚Â­vel
-    private Object texture; // TODO: ResourceLocation quando import estiver funcionando
+    private BedrockAttachmentModel model;
+    private ResourceLocation texture;
     private String name;
     private AttachmentData data;
-    private AttachmentDisplay display; // TODO: AttachmentDisplay quando necessÃƒÆ’Ã‚Â¡rio
-    private Object slotTextureLocation; // TODO: ResourceLocation quando import estiver funcionando
+    private AttachmentDisplay display;
+    private ResourceLocation slotTextureLocation;
     private String adapterNodeName;
     private boolean showMuzzle = false;
     private Map<String, TextShow> textShows;
@@ -35,15 +38,15 @@ public class ClientAttachmentIndex {
     private float[] viewsFov;
     private AttachmentLod attachmentLod;
     private Map<String, ResourceLocation> sounds;
-    private LaserConfig laserConfig; // ConfiguraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o do laser
+    private LaserConfig laserConfig;
 
     private ClientAttachmentIndex() {
     }
 
     /**
-     * ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima - apenas estrutura bÃƒÆ’Ã‚Â¡sica
+     * ImplementaÃ§Ã£o mÃ­nima - apenas estrutura bÃ¡sica
      */
-    public static ClientAttachmentIndex getInstance(Object attachmentId, AttachmentIndexPOJO indexPojo) {
+    public static ClientAttachmentIndex getInstance(ResourceLocation attachmentId, AttachmentIndexPOJO indexPojo) {
         ClientAttachmentIndex index = new ClientAttachmentIndex();
         
         index.name = indexPojo.getName();
@@ -51,9 +54,24 @@ public class ClientAttachmentIndex {
             index.name = "custom.tacz.error.no_name";
         }
         
-        // index.data = loadAttachmentData(indexPojo.getData());
-        // index.display = loadAttachmentDisplay(indexPojo.getDisplay());
-        // index.model = loadAttachmentModel(...);
+        index.data = ClientAssetsManager.INSTANCE.getAttachmentData(indexPojo.getData());
+        index.display = ClientAssetsManager.INSTANCE.getAttachmentDisplay(indexPojo.getDisplay());
+        index.model = createAttachmentModel(index.display);
+        index.texture = index.display.getModelTexture();
+        index.slotTextureLocation = index.display.getSlotTextureLocation();
+        index.adapterNodeName = index.display.getAdapterNodeName();
+        index.showMuzzle = index.display.isShowMuzzle();
+        index.textShows = index.display.getTextShows();
+        index.zoom = index.display.getZoom();
+        index.views = index.display.getViews();
+        index.isScope = index.display.isScope();
+        index.isSight = index.display.isSight();
+        index.fov = index.display.getFov();
+        index.viewsFov = index.display.getViewsFov();
+        index.attachmentLod = index.display.getAttachmentLod();
+        index.sounds = index.display.getSounds();
+        index.laserConfig = index.display.getLaserConfig();
+        index.tooltipKey = indexPojo.getTooltip();
         
         return index;
     }
@@ -62,11 +80,11 @@ public class ClientAttachmentIndex {
         return name;
     }
 
-    public Object getModel() { // TODO: retornar BedrockAttachmentModel quando disponÃƒÆ’Ã‚Â­vel
+    public BedrockAttachmentModel getModel() {
         return model;
     }
 
-    public Object getTexture() { // TODO: retornar ResourceLocation quando import estiver funcionando
+    public ResourceLocation getTexture() {
         return texture;
     }
 
@@ -78,7 +96,7 @@ public class ClientAttachmentIndex {
         return Optional.ofNullable(display);
     }
 
-    public Object getSlotTextureLocation() { // TODO: retornar ResourceLocation quando import estiver funcionando
+    public ResourceLocation getSlotTextureLocation() {
         return slotTextureLocation;
     }
 
@@ -151,91 +169,86 @@ public class ClientAttachmentIndex {
 
     
     /**
-     * Retorna o modelo de acessÃƒÆ’Ã‚Â³rio - agora compatÃƒÆ’Ã‚Â­vel com BedrockAttachmentModel
-     * TODO: Retornar BedrockAttachmentModel tipado quando imports estiverem estÃƒÆ’Ã‚Â¡veis
+     * Retorna o modelo de acessÃ³rio - agora compatÃ­vel com BedrockAttachmentModel
      */
-    public Object getAttachmentModel() {
-        return model; // Retorna como Object por enquanto
-    }
-    
-    /**
-     * Retorna a textura do modelo como Object  
-     * TODO: Retornar ResourceLocation quando disponÃƒÆ’Ã‚Â­vel
-     */
-    public Object getModelTexture() {
-        return texture; // Retorna como Object por enquanto
-    }
-    
-    /**
-     * Retorna a textura do slot como Object
-     * TODO: Retornar ResourceLocation quando disponÃƒÆ’Ã‚Â­vel  
-     */
-    public Object getSlotTexture() {
-        return slotTextureLocation; // Retorna como Object por enquanto
-    }
-    
-    /**
-     * Retorna o modelo LOD (Level of Detail) como Object
-     * TODO: Retornar Pair<BedrockAttachmentModel, ResourceLocation> quando disponÃƒÆ’Ã‚Â­vel
-     */
-    /*
-    public Object getLodModel() {
-        // Retorna null por enquanto (sem modelo LOD)
-        return Optional.empty();
-    }
-    */
-
-    /**
-     * Cria uma instÃƒÆ’Ã‚Â¢ncia de BedrockAttachmentModel bÃƒÆ’Ã‚Â¡sica se necessÃƒÆ’Ã‚Â¡rio
-     * TODO: Expandir quando BedrockModelPOJO e dependÃƒÆ’Ã‚Âªncias estiverem disponÃƒÆ’Ã‚Â­veis
-     */
-    public Object createAttachmentModel() {
-        if (model == null) {
-            // model = new BedrockAttachmentModel(pojo, version);
-            // configurar propriedades: isScope, isSight, etc.
-        }
+    public BedrockAttachmentModel getAttachmentModel() {
         return model;
     }
+    
+    /**
+     * Retorna a textura do modelo como ResourceLocation  
+     */
+    public ResourceLocation getModelTexture() {
+        return texture;
+    }
+    
+    /**
+     * Retorna a textura do slot como ResourceLocation
+     */
+    public ResourceLocation getSlotTexture() {
+        return slotTextureLocation;
+    }
+    
+    /**
+     * Cria uma instÃ¢ncia de BedrockAttachmentModel bÃ¡sica se necessÃ¡rio
+     */
+    private static BedrockAttachmentModel createAttachmentModel(AttachmentDisplay display) {
+        ResourceLocation modelLocation = display.getModelLocation();
+        if (modelLocation == null) {
+            return null;
+        }
+        BedrockModelPOJO modelPOJO = ClientAssetsManager.INSTANCE.getBedrockModelPOJO(modelLocation);
+        if (modelPOJO == null) {
+            return null;
+        }
+        if (BedrockVersion.isLegacyVersion(modelPOJO) && modelPOJO.getGeometryModelLegacy() != null) {
+            return new BedrockAttachmentModel(modelPOJO, BedrockVersion.LEGACY);
+        }
+        if (BedrockVersion.isNewVersion(modelPOJO) && modelPOJO.getGeometryModelNew() != null) {
+            return new BedrockAttachmentModel(modelPOJO, BedrockVersion.NEW);
+        }
+        return null;
+    }
 
 
     /**
-     * Verifica se este acessÃƒÆ’Ã‚Â³rio tem modelo disponÃƒÆ’Ã‚Â­vel
+     * Verifica se este acessÃ³rio tem modelo disponÃ­vel
      */
     public boolean hasModel() {
         return model != null;
     }
 
     /**
-     * Verifica se este acessÃƒÆ’Ã‚Â³rio tem textura disponÃƒÆ’Ã‚Â­vel
+     * Verifica se este acessÃ³rio tem textura disponÃ­vel
      */
     public boolean hasTexture() {
         return texture != null;
     }
 
     /**
-     * Verifica se este acessÃƒÆ’Ã‚Â³rio suporta sistema LOD
+     * Verifica se este acessÃ³rio suporta sistema LOD
      */
     public boolean hasLodSupport() {
         return attachmentLod != null;
     }
 
     /**
-     * Verifica se este acessÃƒÆ’Ã‚Â³rio ÃƒÆ’Ã‚Â© um laser
+     * Verifica se este acessÃ³rio Ã© um laser
      */
     public boolean isLaser() {
         return laserConfig != null;
     }
 
     /**
-     * Verifica se este acessÃƒÆ’Ã‚Â³rio tem configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes de som
+     * Verifica se este acessÃ³rio tem configuraÃ§Ãµes de som
      */
     public boolean hasSounds() {
         return sounds != null && !sounds.isEmpty();
     }
 
     /**
-     * Retorna o tipo de acessÃƒÆ’Ã‚Â³rio baseado nas configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
-     * TODO: Expandir quando AttachmentType estiver disponÃƒÆ’Ã‚Â­vel
+     * Retorna o tipo de acessÃ³rio baseado nas configuraÃ§Ãµes
+     * TODO: Expandir quando AttachmentType estiver disponÃ­vel
      */
     public String getAttachmentType() {
         if (isScope()) return "scope";
@@ -246,18 +259,27 @@ public class ClientAttachmentIndex {
     }
 
     /**
-     * Verifica se o acessÃƒÆ’Ã‚Â³rio deve ser renderizado baseado nas configuraÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes
+     * Verifica se o acessÃ³rio deve ser renderizado baseado nas configuraÃ§Ãµes
      */
     public boolean shouldRender() {
         return hasModel() && hasTexture();
     }
 
     /**
-     * MÃƒÆ’Ã‚Â©todo estÃƒÆ’Ã‚Â¡tico placeholder para carregar modelo de acessÃƒÆ’Ã‚Â³rio
-     * TODO: Implementar corretamente quando BedrockAttachmentModel estiver disponÃƒÆ’Ã‚Â­vel
+     * MÃ©todo estÃ¡tico placeholder para carregar modelo de acessÃ³rio
+     * TODO: Implementar corretamente quando BedrockAttachmentModel estiver disponÃ­vel
      */
-    public static Object getOrLoadAttachmentModel(Object modelLocation) {
-        // return ClientAssetsManager.INSTANCE.getBedrockModelPOJO(modelLocation);
+    public static BedrockAttachmentModel getOrLoadAttachmentModel(ResourceLocation modelLocation) {
+        BedrockModelPOJO modelPOJO = ClientAssetsManager.INSTANCE.getBedrockModelPOJO(modelLocation);
+        if (modelPOJO == null) {
+            return null;
+        }
+        if (BedrockVersion.isLegacyVersion(modelPOJO) && modelPOJO.getGeometryModelLegacy() != null) {
+            return new BedrockAttachmentModel(modelPOJO, BedrockVersion.LEGACY);
+        }
+        if (BedrockVersion.isNewVersion(modelPOJO) && modelPOJO.getGeometryModelNew() != null) {
+            return new BedrockAttachmentModel(modelPOJO, BedrockVersion.NEW);
+        }
         return null;
     }
 }

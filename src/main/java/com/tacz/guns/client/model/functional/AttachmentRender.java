@@ -36,26 +36,26 @@ public class AttachmentRender implements IFunctionalRenderer {
 
         boolean highPoly = RenderDistance.inRenderHighPolyModelDistance(poseStack);
 
-        // poseStack.translate(0, -1.5, 0);
-        // if (attachmentItem.getItem() instanceof IAttachment iAttachment) {
-        //     ResourceLocation attachmentId = iAttachment.getAttachmentId(attachmentItem);
-        //     TimelessAPI.getClientAttachmentIndex(attachmentId).ifPresentOrElse(attachmentIndex -> {
-        //         Object model = attachmentIndex.getAttachmentModel();
-        //         Object texture = attachmentIndex.getModelTexture();
-        //         
-        //         if (model != null && texture != null) {
-        //             if (!highPoly) {
-        //                 Object lodModel = attachmentIndex.getLodModel();
-        //                 if (lodModel != null) {
-        //                     // TODO: usar modelo LOD
-        //                 }
-        //             }
-        //             // TODO: renderizar modelo
-        //         }
-        //     }, () -> {
-        //         // Renderizar placeholder/erro
-        //     });
-        // }
+        poseStack.translate(0, -1.5, 0);
+        if (attachmentItem.getItem() instanceof IAttachment iAttachment) {
+            ResourceLocation attachmentId = iAttachment.getAttachmentId(attachmentItem);
+            TimelessAPI.getClientAttachmentIndex(attachmentId).ifPresentOrElse(attachmentIndex -> {
+                BedrockAttachmentModel model = attachmentIndex.getAttachmentModel();
+                ResourceLocation texture = attachmentIndex.getModelTexture();
+                
+                if (model != null && texture != null) {
+                    if (!highPoly) {
+                        Optional<AttachmentLod> lodModel = attachmentIndex.getLodModel();
+                        if (lodModel.isPresent()) {
+                            // TODO: usar modelo LOD
+                        }
+                    }
+                    model.render(poseStack, texture, transformType, light, overlay);
+                }
+            }, () -> {
+                // Renderizar placeholder/erro
+            });
+        }
 
         // Log para debugging
         logRenderAttempt(attachmentItem, gunItem, highPoly);

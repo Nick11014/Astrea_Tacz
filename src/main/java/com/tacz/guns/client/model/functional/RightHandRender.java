@@ -21,8 +21,6 @@ public class RightHandRender implements IFunctionalRenderer {
 
     @Override
     public void render(PoseStack poseStack, VertexConsumer vertexBuffer, ItemDisplayContext transformType, int light, int overlay) {
-
-        /*
         if (transformType.firstPerson()) {
             if (!bedrockGunModel.getRenderHand()) {
                 return;
@@ -38,7 +36,6 @@ public class RightHandRender implements IFunctionalRenderer {
                 Minecraft.getInstance().renderBuffers().bufferSource().endBatch();
             });
         }
-        */
     }
 }
 
