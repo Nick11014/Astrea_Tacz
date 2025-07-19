@@ -40,6 +40,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
+import org.luaj.vm2.LuaTable;
 
 import java.util.Collection;
 import java.util.List;
@@ -166,7 +167,7 @@ public class CommonAssetsManager implements ICommonResourceProvider {
     }
 
     @Override
-    public Object getScript(ResourceLocation scriptId) {
+    public LuaTable getScript(ResourceLocation scriptId) {
         return scriptManager.getScript(scriptId);
     }
 

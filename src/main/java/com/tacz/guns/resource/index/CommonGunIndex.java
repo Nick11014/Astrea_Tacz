@@ -11,6 +11,8 @@ import net.minecraft.util.Mth;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
+import org.luaj.vm2.LuaTable;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -21,8 +23,8 @@ public class CommonGunIndex {
     private String type;
     private GunIndexPOJO pojo;
     private int sort;
-    private Object script;
-    private Object scriptParam;
+    private LuaTable script;
+    private LuaTable scriptParam;
 
     private CommonGunIndex() {
     }
@@ -113,8 +115,10 @@ public class CommonGunIndex {
         index.script = null;
         Map<String, Object> params = data.getScriptParam();
         if (params != null) {
-            // Temporariamente usando HashMap até LuaJ estar disponível
-            index.scriptParam = new java.util.HashMap<>(params);
+            index.scriptParam = new LuaTable();
+            for (Map.Entry<String, Object> entry : params.entrySet()) {
+                index.scriptParam.set(entry.getKey(), CoerceJavaToLua.coerce(entry.getValue()));
+            }
         }
     }
 
@@ -134,11 +138,11 @@ public class CommonGunIndex {
         return pojo;
     }
 
-    public Object getScript() {
+    public LuaTable getScript() {
         return script;
     }
 
-    public Object getScriptParam() {
+    public LuaTable getScriptParam() {
         return scriptParam;
     }
 
