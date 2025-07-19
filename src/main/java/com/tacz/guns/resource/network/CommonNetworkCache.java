@@ -23,7 +23,6 @@ import com.tacz.guns.resource.pojo.data.block.BlockData;
 import com.tacz.guns.resource.pojo.data.gun.GunData;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
-import org.luaj.vm2.LuaTable;
 
 import java.util.*;
 
@@ -91,7 +90,7 @@ public enum CommonNetworkCache implements ICommonResourceProvider {
     }
 
     @Override
-    public @Nullable LuaTable getScript(ResourceLocation scriptId) {
+    public @Nullable Object getScript(ResourceLocation scriptId) {
         return null; // ÃƒÂ¨Ã¢â‚¬Å¾Ã…Â¡ÃƒÂ¦Ã…â€œÃ‚Â¬ÃƒÂ¤Ã‚Â¸Ã‚ÂÃƒÂ©Ã…â€œÃ¢â€šÂ¬ÃƒÂ¨Ã‚Â¦Ã‚ÂÃƒÂ¥Ã‚ÂÃ…â€™ÃƒÂ¦Ã‚Â­Ã‚Â¥
     }
 

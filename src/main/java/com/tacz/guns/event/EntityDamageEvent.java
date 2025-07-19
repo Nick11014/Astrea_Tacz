@@ -13,7 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 public class EntityDamageEvent {
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void onLivingHurt(LivingDamageEvent event){
+    public static void onLivingHurt(LivingDamageEvent.Pre event){
         // As APIs getSource(), getAmount(), setAmount() precisam ser investigadas
         /*
         if (event.getSource().is(ModDamageTypes.BULLETS_TAG)) {

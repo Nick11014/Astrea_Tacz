@@ -66,9 +66,9 @@ public class ReloadKey {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void autoReload(PlayerTickEvent event) {
+    public static void autoReload(PlayerTickEvent.Post event) {
         // No need to check phase or side, as this is a client-side event
-        // and PlayerTickEvent is fired at the start of the tick.
+        // and PlayerTickEvent.Post is fired at the end of the tick.
 
         if (!KeyConfig.AUTO_RELOAD.get()) {
             return;
