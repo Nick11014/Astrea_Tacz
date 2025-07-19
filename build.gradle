@@ -144,8 +144,8 @@ dependencies {
     // Player Animator - Versão confirmada no SuperbWarfare
     implementation "curse.maven:playeranimator-658587:6024462"
     
-    // Player Animator - API para animações customizadas (temporariamente comentado até resolver dependência)
-    // implementation 'dev.kosmx.player-anim:player-animation-lib-neoforge:1.0.2'
+    // Player Animator - API para animações customizadas (VERSÃO CORRETA para MC 1.21.1)
+    implementation 'dev.kosmx.player-anim:player-animation-lib-forge:2.0.1+1.21.1'
 
     // Controllable - Para suporte a controles/joysticks (opcional)
     compileOnly "curse.maven:controllable-317269:6277379"
