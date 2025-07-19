@@ -1,139 +1,82 @@
 package com.tacz.guns.compat.controllable;
 
-import com.tacz.guns.init.CompatRegistry;
-import com.mrcrayfish.controllable.Controllable;
-import com.mrcrayfish.controllable.client.Buttons;
-import net.minecraft.client.player.LocalPlayer;
 import net.neoforged.fml.ModList;
 
 /**
  * Implementação para compatibilidade com Controllable
  */
 public class ControllableCompat {
-    
+    private static final String MOD_ID = "controllable";
+
     /**
      * Verifica se o Controllable está carregado
      */
     public static boolean isLoaded() {
-        return ModList.get().isLoaded(CompatRegistry.CONTROLLABLE);
+        return ModList.get().isLoaded(MOD_ID);
     }
-    
+
     /**
      * Verifica se um controle está conectado
+     * (Stub: sempre retorna false, pois API não está disponível)
      */
     public static boolean isControllerConnected() {
-        return Controllable.isControllerConnected();
+        return false;
     }
-    
+
     /**
      * Obtém input de controle para mira
+     * (Stub: sempre retorna false)
      */
     public static boolean isAimButtonPressed() {
-        return Controllable.isButtonPressed(Buttons.AIM);
+        return false;
     }
-    
+
     /**
      * Obtém input de controle para tiro
+     * (Stub: sempre retorna false)
      */
     public static boolean isShootButtonPressed() {
-        return Controllable.isButtonPressed(Buttons.SHOOT);
+        return false;
     }
-    
+
     /**
      * Obtém input analógico de movimento do controle
+     * (Stub: sempre retorna 0)
      */
     public static float getMovementInput() {
-        return Controllable.getLeftStickValue();
+        return 0f;
     }
-    
+
     /**
      * Configura vibração do controle
+     * (Stub: não faz nada)
      */
     public static void setControllerVibration(float intensity, int duration) {
-        Controllable.setVibration(intensity, duration);
+        // Stub
     }
-    
+
     /**
      * Verifica se o player está usando controle
+     * (Stub: sempre retorna false)
      */
-    public static boolean isPlayerUsingController(LocalPlayer player) {
-        return Controllable.isPlayerUsingController(player);
+    public static boolean isPlayerUsingController(Object player) {
+        return false;
     }
-    
+
     /**
      * Obtém sensibilidade de mira configurada no controle
+     * (Stub: sempre retorna 1.0)
      */
     public static float getAimSensitivity() {
-        return Controllable.getAimSensitivity();
+        return 1.0f;
     }
-    
+
     /**
      * Converte input de controle para valores de mira
+     * (Stub: sempre retorna [0,0])
      */
     public static float[] getAimInput() {
-        return Controllable.getAimInput();
+        return new float[]{0f, 0f};
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

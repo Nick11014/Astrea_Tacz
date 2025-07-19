@@ -67,6 +67,18 @@ repositories {
             includeGroup "vazkii.patchouli"
         }
     }
+
+    // KosmX Maven for Player Animator
+    maven {
+        name "Kosmx's Maven"
+        url "https://maven.kosmx.dev/"
+        content {
+            // Permite a API principal
+            includeGroup "io.github.kosmx.player-anim"
+            // Permite a biblioteca interna (dependência transitiva)
+            includeGroup "dev.kosmx.player-anim"
+        }
+    }
 }
 
 base {
@@ -132,6 +144,9 @@ dependencies {
     // Player Animator - Versão confirmada no SuperbWarfare
     implementation "curse.maven:playeranimator-658587:6024462"
     
+    // Player Animator - API para animações customizadas (temporariamente comentado até resolver dependência)
+    // implementation 'dev.kosmx.player-anim:player-animation-lib-neoforge:1.0.2'
+
     // Controllable - Para suporte a controles/joysticks (opcional)
     compileOnly "curse.maven:controllable-317269:6277379"
     localRuntime "curse.maven:controllable-317269:6277379"

@@ -1,21 +1,19 @@
 package com.tacz.guns.compat.kubejs.events;
 
-import dev.latvian.mods.kubejs.event.EventGroup;
-import dev.latvian.mods.kubejs.event.EventJS;
-import dev.latvian.mods.kubejs.event.KubeEvent;
-import dev.latvian.mods.kubejs.event.KubeEventJS;
 import net.neoforged.bus.api.Event;
 
 public class TimelessClientEvents {
-    public static final EventGroup GROUP = EventGroup.of("TimelessClientEvents").register();
-
-    public static final KubeEvent<ClientEventJS> CLIENT_EVENT = GROUP.client("client_event", ClientEventJS.class);
+    // TODO: [MIGRAÇÃO] Reimplementar quando KubeJS for completamente migrado para 1.21.1
+    // A API do KubeJS mudou significativamente entre versões
+    
+    public static final TimelessClientEvents INSTANCE = new TimelessClientEvents();
 
     public static void postKubeJSEvent(Event event) {
-        CLIENT_EVENT.post(new ClientEventJS(event));
+        // TODO: Implementar quando a API do KubeJS estiver estável
+        // Por enquanto, apenas um stub para evitar erros de compilação
     }
 
-    public static class ClientEventJS extends KubeEventJS {
+    public static class ClientEventJS {
         private final Event forgeEvent;
 
         public ClientEventJS(Event forgeEvent) {

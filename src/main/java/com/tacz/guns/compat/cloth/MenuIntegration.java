@@ -3,7 +3,6 @@ package com.tacz.guns.compat.cloth;
 import com.tacz.guns.init.CompatRegistry;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
-import me.shedaniel.clothconfig2.api.ClothConfigAPI;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.fml.ModList;
@@ -68,8 +67,10 @@ public class MenuIntegration {
      * Salva as configurações
      * TODO: Implementar quando Cloth Config estiver disponível
      */
-    public static void saveConfigs() {
-        ClothConfigAPI.getConfigBuilder().save();
+    public static void saveConfigs(ConfigBuilder builder) {
+        // TODO: Verificar API correta do Cloth Config para 1.21.1
+        // Método save() pode ter sido removido ou alterado
+        // builder.save();
     }
     
     /**
@@ -85,70 +86,11 @@ public class MenuIntegration {
      * Verifica se as configurações foram modificadas
      * TODO: Implementar quando Cloth Config estiver disponível
      */
-    public static boolean hasUnsavedChanges() {
-        return ClothConfigAPI.getConfigBuilder().isEdited();
+    public static boolean hasUnsavedChanges(ConfigBuilder builder) {
+        // TODO: Verificar API correta do Cloth Config para 1.21.1
+        // Método isEdited() pode ter sido removido ou alterado
+        // return builder.isEdited();
+        return false; // Placeholder por enquanto
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
