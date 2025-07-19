@@ -1,144 +1,184 @@
 # 🎯 PLANO ESTRATÉGICO: DIVIDIR E CONQUISTAR - TacZ NeoForge 1.21.1
 
-## 📊 Análise do Crash Atual
+## 🧩 Estratégia: Desabilitar Tudo, Habilitar Seção por Seção
 
-**Problema Principal:** `NoClassDefFoundError: org/luaj/vm2/LuaTable`
+**Filosofia:** Em vez de tentar corrigir erros específicos, vamos desabilitar TODAS as funcionalidades do mod e habilitar apenas UMA seção por vez. Só passamos para a próxima quando a atual estiver 100% funcional.
 
-O erro indica que a dependência LuaJ não está sendo carregada corretamente ou há um conflito de versões. O mod está tentando carregar classes relacionadas ao sistema de scripts Lua durante a inicialização.
+**Critério de Sucesso:** `runClient` executa sem erros para a seção atual antes de habilitar a próxima.
 
-## 🔧 Estratégia de Divisão em Fases
+## 🔧 Estratégia de Implementação por Seções
 
-### **FASE 0: ESTABILIZAÇÃO BASE (PRIORIDADE MÁXIMA)**
-*Objetivo: Fazer o mod carregar sem crashes*
+### **SEÇÃO 1: REGISTROS BÁSICOS** 
+*Objetivo: Fazer o mod carregar apenas com registros mínimos*
 
-#### **Etapa 0.1: Correção de Dependências**
-- [ ] **Verificar e corrigir dependência LuaJ no build.gradle**
-- [ ] **Testar versões alternativas do LuaJ compatíveis com NeoForge 1.21.1**
-- [ ] **Verificar conflitos com outras dependências**
+#### **O que manter habilitado:**
+- [ ] **ModItems.java** - Apenas registros de itens sem lógica
+- [ ] **ModSoundEvents.java** - Apenas registros de sons
+- [ ] **ModDataComponents.java** - Apenas registros de DataComponents
+- [ ] **GunMod.java** - Apenas inicialização básica dos registros
 
-#### **Etapa 0.2: Desabilitar Sistema de Scripts Temporariamente**
-- [ ] **Comentar/desabilitar ScriptManager no GunMod.java**
-- [ ] **Comentar imports e referências a LuaTable em:**
-  - `CommonAssetsManager.java`
-  - `CommonNetworkCache.java` 
-  - `CommonGunIndex.java`
-  - `ScriptManager.java`
+#### **O que desabilitar temporariamente:**
+- [ ] **Todo o sistema de assets/recursos**
+- [ ] **Todo o sistema de renderização**
+- [ ] **Todo o sistema de rede**
+- [ ] **Todo o sistema de scripts**
+- [ ] **Todo o sistema de compatibilidade**
+- [ ] **Toda lógica de gameplay**
+- [ ] **Todas as configurações complexas**
 
-#### **Etapa 0.3: Teste de Carregamento Básico**
-- [ ] **Executar `runClient` para verificar se o mod carrega**
-- [ ] **Verificar se registros básicos funcionam (itens, sons, etc.)**
+#### **Arquivos a comentar/desabilitar:**
+- [ ] **CommonAssetsManager.java** - Comentar toda a classe
+- [ ] **ScriptManager.java** - Comentar toda a classe
+- [ ] **NetworkHandler.java** - Comentar toda a classe
+- [ ] **Toda pasta `client/`** - Comentar imports no GunMod
+- [ ] **Toda pasta `compat/`** - Comentar imports no GunMod
+- [ ] **GunConfig.java** - Comentar configurações complexas
 
----
-
-### **FASE 1: NÚCLEO BÁSICO**
-*Objetivo: Sistemas fundamentais funcionando*
-
-#### **Etapa 1.1: Sistema de Registros**
-- [ ] **Verificar ModDataComponents**
-- [ ] **Verificar ModSoundEvents**
-- [ ] **Testar criação de itens básicos**
-
-#### **Etapa 1.2: Configurações**
-- [ ] **Verificar GunConfig**
-- [ ] **Testar carregamento de configurações**
-
-#### **Etapa 1.3: Rede Básica**
-- [ ] **Verificar NetworkHandler**
-- [ ] **Testar comunicação cliente-servidor básica**
+**✅ Critério de Sucesso:** `runClient` carrega o mod e mostra itens no Creative Tab sem crashes.
 
 ---
 
-### **FASE 2: RECURSOS E ASSETS**
-*Objetivo: Sistema de carregamento de recursos*
+### **SEÇÃO 2: CONFIGURAÇÕES BÁSICAS**
+*Objetivo: Sistema de configurações funcionando*
 
-#### **Etapa 2.1: Gerenciadores de Recursos (SEM Scripts)**
-- [ ] **Reabilitar CommonAssetsManager (sem LuaTable)**
-- [ ] **Verificar carregamento de texturas e modelos**
-- [ ] **Testar sistema de índices básico**
+#### **O que habilitar:**
+- [ ] **GunConfig.java** - Configurações simples
+- [ ] **ConfigIO.java** - Sistema de I/O de configs
 
-#### **Etapa 2.2: Sistema de Cache**
-- [ ] **Reabilitar CommonNetworkCache (sem scripts)**
-- [ ] **Verificar sincronização de dados**
+#### **Mantém da seção anterior:**
+- [ ] Todos os registros básicos
 
----
-
-### **FASE 3: RENDERIZAÇÃO BÁSICA**
-*Objetivo: Visualização de itens e blocos*
-
-#### **Etapa 3.1: Renderização de Itens**
-- [ ] **Reabilitar renderização básica de armas**
-- [ ] **Verificar texturas e modelos simples**
-
-#### **Etapa 3.2: Interface Básica**
-- [ ] **Reabilitar HUD simples (sem animações)**
-- [ ] **Verificar menus básicos**
+**✅ Critério de Sucesso:** Configurações carregam sem erros e podem ser modificadas.
 
 ---
 
-### **FASE 4: GAMEPLAY BÁSICO**
+### **SEÇÃO 3: SISTEMA DE REDE BÁSICO**
+*Objetivo: Comunicação cliente-servidor básica*
+
+#### **O que habilitar:**
+- [ ] **NetworkHandler.java** - Apenas pacotes básicos
+- [ ] **Pacotes essenciais do `network/`** - Um por vez
+
+#### **Mantém das seções anteriores:**
+- [ ] Registros básicos
+- [ ] Configurações
+
+**✅ Critério de Sucesso:** Servidor e cliente se comunicam sem crashes de rede.
+
+---
+
+### **SEÇÃO 4: SISTEMA DE RECURSOS (SEM SCRIPTS)**
+*Objetivo: Carregamento de assets básicos*
+
+#### **O que habilitar:**
+- [ ] **CommonAssetsManager.java** - SEM LuaTable/Scripts
+- [ ] **CommonNetworkCache.java** - Versão simplificada
+- [ ] **CommonGunIndex.java** - SEM scripts
+
+#### **O que manter desabilitado:**
+- [ ] **ScriptManager.java** - Continua comentado
+- [ ] **Qualquer referência a LuaTable**
+
+**✅ Critério de Sucesso:** Assets carregam sem scripts, dados básicos disponíveis.
+
+---
+
+### **SEÇÃO 5: RENDERIZAÇÃO BÁSICA**
+*Objetivo: Visualização de itens*
+
+#### **O que habilitar:**
+- [ ] **Renderização básica de itens**
+- [ ] **Modelos 3D simples**
+- [ ] **Texturas básicas**
+
+#### **O que manter desabilitado:**
+- [ ] **Animações complexas**
+- [ ] **Sistema GLTF/Bedrock**
+- [ ] **HUD avançado**
+
+**✅ Critério de Sucesso:** Itens aparecem com modelos e texturas corretas.
+
+---
+
+### **SEÇÃO 6: GAMEPLAY BÁSICO**
 *Objetivo: Mecânicas fundamentais das armas*
 
-#### **Etapa 4.1: Sistema de Armas Básico**
-- [ ] **Reabilitar criação de armas**
-- [ ] **Verificar carregamento de stats básicos**
+#### **O que habilitar:**
+- [ ] **Sistema de armas básico**
+- [ ] **Tiro simples (sem animações)**
+- [ ] **Recarga básica**
 
-#### **Etapa 4.2: Mecânicas Básicas**
-- [ ] **Implementar tiro básico (sem animações)**
-- [ ] **Implementar recarga básica**
-
----
-
-### **FASE 5: SISTEMA DE SCRIPTS**
-*Objetivo: Reintegrar funcionalidades avançadas*
-
-#### **Etapa 5.1: Correção de LuaJ**
-- [ ] **Investigar versão correta do LuaJ para NeoForge 1.21.1**
-- [ ] **Implementar wrapper alternativo se necessário**
-
-#### **Etapa 5.2: Reintegração Gradual**
-- [ ] **Reabilitar ScriptManager**
-- [ ] **Reintegrar sistema de scripts nas armas**
+**✅ Critério de Sucesso:** Armas funcionam basicamente (atirar e recarregar).
 
 ---
 
-### **FASE 6: FUNCIONALIDADES AVANÇADAS**
-*Objetivo: Recursos completos do mod*
+### **SEÇÃO 7: SISTEMA DE SCRIPTS**
+*Objetivo: Funcionalidades avançadas com Lua*
 
-#### **Etapa 6.1: Animações Complexas**
+#### **O que habilitar:**
+- [ ] **ScriptManager.java**
+- [ ] **Sistema LuaTable**
+- [ ] **Scripts nas armas**
+
+**✅ Critério de Sucesso:** Scripts funcionam e armas têm comportamentos avançados.
+
+---
+
+### **SEÇÃO 8: RENDERIZAÇÃO AVANÇADA**
+*Objetivo: Animações e efeitos visuais*
+
+#### **O que habilitar:**
 - [ ] **Sistema GLTF/Bedrock**
 - [ ] **Animações de recarga e tiro**
+- [ ] **HUD complexo**
 
-#### **Etapa 6.2: Compatibilidade**
-- [ ] **Integração com JEI, KubeJS, etc.**
-- [ ] **Sistemas de compatibilidade**
+**✅ Critério de Sucesso:** Animações funcionam corretamente.
+
+---
+
+### **SEÇÃO 9: COMPATIBILIDADE**
+*Objetivo: Integração com outros mods*
+
+#### **O que habilitar:**
+- [ ] **Sistema JEI**
+- [ ] **Sistema KubeJS**
+- [ ] **Outras integrações**
+
+**✅ Critério de Sucesso:** Compatibilidade funciona sem conflitos.
 
 ---
 
 ## 🚀 IMPLEMENTAÇÃO IMEDIATA
 
-### **Arquivos a Modificar na Fase 0:**
+### **Passo 1: Preparar Base Limpa**
+1. **Identificar todos os pontos de inicialização no GunMod.java**
+2. **Comentar TUDO exceto registros básicos**
+3. **Criar flags booleanas para controlar seções:**
 
-1. **build.gradle** - Verificar dependência LuaJ
-2. **GunMod.java** - Desabilitar carregamento de sistemas com LuaTable
-3. **CommonAssetsManager.java** - Comentar métodos com LuaTable
-4. **CommonNetworkCache.java** - Comentar métodos com LuaTable
-5. **CommonGunIndex.java** - Comentar fields e métodos com LuaTable
-6. **ScriptManager.java** - Classe inteira comentada temporariamente
+```java
+public class GunMod {
+    // Flags de controle de seções
+    public static final boolean ENABLE_CONFIGS = false;
+    public static final boolean ENABLE_NETWORK = false;
+    public static final boolean ENABLE_ASSETS = false;
+    public static final boolean ENABLE_CLIENT = false;
+    public static final boolean ENABLE_SCRIPTS = false;
+    public static final boolean ENABLE_COMPAT = false;
+    
+    // Apenas registros básicos habilitados inicialmente
+}
+```
 
-### **Critérios de Sucesso por Fase:**
+### **Passo 2: Implementar Controle Condicional**
+- Envolver cada inicialização com `if (ENABLE_SECTION)`
+- Comentar imports desnecessários temporariamente
+- Usar `@SuppressWarnings` onde necessário
 
-- **Fase 0:** Mod carrega sem crashes
-- **Fase 1:** Registros funcionam, configurações carregam
-- **Fase 2:** Assets básicos carregam
-- **Fase 3:** Itens aparecem no jogo com texturas
-- **Fase 4:** Armas podem ser usadas basicamente
-- **Fase 5:** Scripts funcionam novamente
-- **Fase 6:** Todas as funcionalidades restauradas
+### **Passo 3: Processo de Teste**
+1. **Habilitar uma flag por vez**
+2. **Executar `runClient`**
+3. **Corrigir TODOS os erros da seção atual**
+4. **Só após sucesso total, passar para próxima seção**
 
-### **Monitoramento:**
-- Após cada fase, executar `runClient` e documentar problemas
-- Manter log de mudanças para poder reverter se necessário
-- Testar funcionalidades básicas antes de prosseguir
-
-## 📋 STATUS ATUAL: FASE 0 - ESTABILIZAÇÃO BASE
-**Próximo Passo:** Implementar correções emergenciais para fazer o mod carregar.
+## 📋 STATUS ATUAL: PREPARAÇÃO PARA SEÇÃO 1
+**Próximo Passo:** Comentar todas as funcionalidades e deixar apenas registros básicos ativos.
