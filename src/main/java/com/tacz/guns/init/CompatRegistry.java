@@ -30,9 +30,9 @@ public class CompatRegistry {
                     com.tacz.guns.client.gui.compat.ClothConfigScreen.registerNoClothConfigPage();
                 });
                 
-                // Controllable integration (basic)
+                // Controllable integration (complete)
                 checkModLoad(CONTROLLABLE, () -> {
-                    com.tacz.guns.compat.controllable.ControllableCompatBasic.init();
+                    com.tacz.guns.compat.controllable.ControllableCompat.init();
                 });
                 
                 // PlayerAnimator integration
@@ -43,7 +43,7 @@ public class CompatRegistry {
             
             // KubeJS integration (common for client and server)
             checkModLoad(KUBEJS, () -> {
-                com.tacz.guns.compat.kubejs.TimelessKubeJSPluginBasic.init();
+                com.tacz.guns.compat.kubejs.TimelessKubeJSPlugin.staticInit();
             });
         });
     }
