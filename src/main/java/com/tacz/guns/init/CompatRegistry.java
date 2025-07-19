@@ -10,30 +10,46 @@ import net.neoforged.fml.loading.FMLEnvironment;
 /**
  * Registro de compatibilidade com outros mods.
  * 
- * MIGRAÃƒÆ’Ã¢â‚¬Â¡ÃƒÆ’Ã†â€™O 1.21.1: ImplementaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o mÃƒÆ’Ã‚Â­nima que mantÃƒÆ’Ã‚Â©m as constantes
- * e funcionalidade bÃƒÆ’Ã‚Â¡sica de verificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de mod.
+ * MIGRAÇÃO 1.21.1: Implementação básica funcionando
  */
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class CompatRegistry {
     public static final String CLOTH_CONFIG = "cloth_config";
     public static final String OCULUS = "oculus";
     public static final String CARRY_ON_ID = "carryon";
+    public static final String CONTROLLABLE = "controllable";
+    public static final String KUBEJS = "kubejs";
+    public static final String PLAYER_ANIMATOR = "playeranimator";
 
     @SubscribeEvent
     public static void onEnqueue(final InterModEnqueueEvent event) {
         event.enqueueWork(() -> {
             if (FMLEnvironment.dist == Dist.CLIENT) {
-                // checkModLoad(CLOTH_CONFIG, MenuIntegration::registerModsPage);
-                // ClothConfigScreen.registerNoClothConfigPage();
+                // Cloth Config integration
+                checkModLoad(CLOTH_CONFIG, () -> {
+                    com.tacz.guns.client.gui.compat.ClothConfigScreen.registerNoClothConfigPage();
+                });
+                
+                // Controllable integration (basic)
+                checkModLoad(CONTROLLABLE, () -> {
+                    com.tacz.guns.compat.controllable.ControllableCompatBasic.init();
+                });
+                
+                // PlayerAnimator integration
+                checkModLoad(PLAYER_ANIMATOR, () -> {
+                    com.tacz.guns.compat.playeranimator.PlayerAnimatorCompat.init();
+                });
             }
+            
+            // KubeJS integration (common for client and server)
+            checkModLoad(KUBEJS, () -> {
+                com.tacz.guns.compat.kubejs.TimelessKubeJSPluginBasic.init();
+            });
         });
-        // event.enqueueWork(() -> checkModLoad(OCULUS, OculusCompat::initCompat));
-        
-        // event.enqueueWork(() -> checkModLoad(CARRY_ON_ID, BlackList::addBlackList));
     }
 
     /**
-     * Verifica se um mod estÃƒÆ’Ã‚Â¡ carregado e executa um Runnable se estiver
+     * Verifica se um mod está carregado e executa um Runnable se estiver
      */
     public static void checkModLoad(String modId, Runnable runnable) {
         if (ModList.get().isLoaded(modId)) {
