@@ -41,6 +41,7 @@ public class NetworkHandler {
         registerServerMessage(registrar, ServerMessageSyncGunPack.TYPE, ServerMessageSyncGunPack.STREAM_CODEC, ServerMessageSyncGunPack::handle);
         registerServerMessage(registrar, ServerMessageUpdateEntityData.TYPE, ServerMessageUpdateEntityData.STREAM_CODEC, ServerMessageUpdateEntityData::handle);
         registerServerMessage(registrar, ServerMessageRefreshRefitScreen.TYPE, ServerMessageRefreshRefitScreen.STREAM_CODEC, ServerMessageRefreshRefitScreen::handle);
+        registerServerMessage(registrar, ServerMessageSyncBaseTimestamp.TYPE, ServerMessageSyncBaseTimestamp.STREAM_CODEC, ServerMessageSyncBaseTimestamp::handle);
     }
 
     private static <T extends net.minecraft.network.protocol.common.custom.CustomPacketPayload> void registerClientMessage(

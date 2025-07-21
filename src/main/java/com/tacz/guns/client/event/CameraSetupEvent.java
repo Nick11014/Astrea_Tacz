@@ -5,7 +5,6 @@ import com.tacz.guns.api.DefaultAssets;
 import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.client.event.BeforeRenderHandEvent;
 import com.tacz.guns.api.client.gameplay.IClientPlayerGunOperator;
-import com.tacz.guns.api.client.other.KeepingItemRenderer;
 import com.tacz.guns.api.entity.IGunOperator;
 import com.tacz.guns.api.event.common.GunFireEvent;
 import com.tacz.guns.api.item.IGun;
@@ -45,7 +44,7 @@ import java.util.Optional;
 @EventBusSubscriber(value = Dist.CLIENT, modid = GunMod.MOD_ID)
 public class CameraSetupEvent {
     /**
-     * ÃƒÂ§Ã¢â‚¬ÂÃ‚Â¨ÃƒÂ¤Ã‚ÂºÃ…Â½ÃƒÂ¥Ã‚Â¹Ã‚Â³ÃƒÂ¦Ã‚Â»Ã¢â‚¬Ëœ FOV ÃƒÂ¥Ã‚ÂÃ‹Å“ÃƒÂ¥Ã…â€™Ã¢â‚¬â€œ
+     * 用于平滑 FOV 变化
      */
     public static final SecondOrderDynamics WORLD_FOV_DYNAMICS = new SecondOrderDynamics(0.5f, 1.2f, 0.5f, 0);
     public static final SecondOrderDynamics ITEM_MODEL_FOV_DYNAMICS = new SecondOrderDynamics(0.5f, 1.2f, 0.5f, 0);
@@ -64,7 +63,8 @@ public class CameraSetupEvent {
         if (player == null) {
             return;
         }
-        ItemStack stack = KeepingItemRenderer.getRenderer().getCurrentItem();
+        // Corrigido: usa item da mão principal diretamente para evitar ClassCastException
+        ItemStack stack = player.getMainHandItem();
         if (IClientItemExtensions.of(stack.getItem()).getCustomRenderer() instanceof AnimateGeoItemRenderer<?, ?> renderer) {
             renderer.applyLevelCameraAnimation(event, stack, player);
         }
@@ -80,7 +80,8 @@ public class CameraSetupEvent {
         if (player == null) {
             return;
         }
-        ItemStack stack = KeepingItemRenderer.getRenderer().getCurrentItem();
+        // Corrigido: usa item da mão principal diretamente para evitar ClassCastException
+        ItemStack stack = player.getMainHandItem();
         if (IClientItemExtensions.of(stack.getItem()).getCustomRenderer() instanceof AnimateGeoItemRenderer<?, ?> renderer) {
             renderer.applyItemInHandCameraAnimation(event, stack, player);
         }
@@ -89,11 +90,12 @@ public class CameraSetupEvent {
     @SubscribeEvent
     public static void applyScopeMagnification(ViewportEvent.ComputeFov event) {
         if (!event.usedConfiguredFov()) {
-            return; // ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¤Ã‚Â¸Ã¢â‚¬â€œÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ fovÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ fov ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾
+            return; // 只修改世界渲染的 fov，因此如果是手部渲染 fov 事件，则返回
         }
         Entity entity = event.getCamera().getEntity();
         if (entity instanceof LivingEntity livingEntity) {
-            ItemStack stack = KeepingItemRenderer.getRenderer().getCurrentItem();
+            // Corrigido: usa item da mão principal diretamente para evitar ClassCastException
+            ItemStack stack = livingEntity instanceof LocalPlayer player ? player.getMainHandItem() : livingEntity.getMainHandItem();
             if (!(stack.getItem() instanceof IGun iGun)) {
                 float fov = WORLD_FOV_DYNAMICS.update((float) event.getFOV());
                 event.setFOV(fov);
@@ -117,11 +119,12 @@ public class CameraSetupEvent {
     @SubscribeEvent
     public static void applyGunModelFovModifying(ViewportEvent.ComputeFov event) {
         if (event.usedConfiguredFov()) {
-            return; // ÃƒÂ¥Ã‚ÂÃ‚ÂªÃƒÂ¤Ã‚Â¿Ã‚Â®ÃƒÂ¦Ã¢â‚¬ÂÃ‚Â¹ÃƒÂ¦Ã¢â‚¬Â°Ã¢â‚¬Â¹ÃƒÂ©Ã†â€™Ã‚Â¨ÃƒÂ§Ã¢â‚¬Â°Ã‚Â©ÃƒÂ¥Ã¢â‚¬Å“Ã‚ÂÃƒÂ§Ã…Â¡Ã¢â‚¬Å¾ fovÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¦Ã‚Â­Ã‚Â¤ÃƒÂ¥Ã‚Â¦Ã¢â‚¬Å¡ÃƒÂ¦Ã…Â¾Ã…â€œÃƒÂ¦Ã‹Å“Ã‚Â¯ÃƒÂ¤Ã‚Â¸Ã¢â‚¬â€œÃƒÂ§Ã¢â‚¬Â¢Ã…â€™ÃƒÂ¦Ã‚Â¸Ã‚Â²ÃƒÂ¦Ã…Â¸Ã¢â‚¬Å“ fov ÃƒÂ¤Ã‚ÂºÃ¢â‚¬Â¹ÃƒÂ¤Ã‚Â»Ã‚Â¶ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¥Ã‹â€ Ã¢â€žÂ¢ÃƒÂ¨Ã‚Â¿Ã¢â‚¬ÂÃƒÂ¥Ã¢â‚¬ÂºÃ…Â¾
+            return; // 只修改手部物品的 fov，因此如果是世界渲染 fov 事件，则返回
         }
         Entity entity = event.getCamera().getEntity();
         if (entity instanceof LivingEntity livingEntity) {
-            ItemStack stack = KeepingItemRenderer.getRenderer().getCurrentItem();
+            // Corrigido: usa item da mão principal diretamente para evitar ClassCastException
+            ItemStack stack = livingEntity instanceof LocalPlayer player ? player.getMainHandItem() : livingEntity.getMainHandItem();
             if (!(stack.getItem() instanceof IGun iGun)) {
                 float fov = ITEM_MODEL_FOV_DYNAMICS.update((float) event.getFOV());
                 event.setFOV(fov);
@@ -238,66 +241,3 @@ public class CameraSetupEvent {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
