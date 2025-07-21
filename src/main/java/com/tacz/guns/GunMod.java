@@ -51,6 +51,7 @@ public class GunMod {
         ModParticles.PARTICLE_TYPES.register(bus);
         ModAttributes.ATTRIBUTES.register(bus);
         ModPainting.PAINTINGS.register(bus);
+        ModDataComponents.DATA_COMPONENT_TYPES.register(bus);
 
         registerDefaultExtraGunPack();
         AttachmentPropertyManager.registerModifier();
