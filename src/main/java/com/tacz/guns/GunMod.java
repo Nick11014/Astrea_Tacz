@@ -1,19 +1,19 @@
-
 package com.tacz.guns;
 
-// import com.tacz.guns.client.event.ClientSetupEvent;
-// import com.tacz.guns.client.init.KeyBinding;
-import com.tacz.guns.config.common.GunConfig;
-import com.tacz.guns.network.NetworkHandler;
+import com.tacz.guns.api.resource.ResourceManager;
+import com.tacz.guns.config.ClientConfig;
+import com.tacz.guns.config.CommonConfig;
+import com.tacz.guns.config.PreLoadConfig;
+import com.tacz.guns.config.ServerConfig;
+import com.tacz.guns.init.*;
+import com.tacz.guns.resource.GunPackLoader;
+import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+import net.minecraft.server.packs.PackType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.minecraft.resources.ResourceLocation;
+import net.neoforged.fml.loading.FMLLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,144 +21,43 @@ import org.apache.logging.log4j.Logger;
 public class GunMod {
     public static final String MOD_ID = "tacz";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    /**
+     * 默认模型包文件夹
+     */
+    public static final String DEFAULT_GUN_PACK_NAME = "tacz_default_gun";
 
-    // ===== SEÇÃO DE CONTROLE: DIVIDIR E CONQUISTAR =====
-    // Flags para controlar quais seções estão ativas
-    public static final boolean ENABLE_CONFIGS = false;           // SEÇÃO 2: Configurações
-    public static final boolean ENABLE_NETWORK = false;           // SEÇÃO 3: Sistema de rede
-    public static final boolean ENABLE_ASSETS = false;            // SEÇÃO 4: Sistema de recursos
-    public static final boolean ENABLE_CLIENT = false;            // SEÇÃO 5: Renderização
-    public static final boolean ENABLE_GAMEPLAY = false;          // SEÇÃO 6: Gameplay básico
-    public static final boolean ENABLE_SCRIPTS = false;           // SEÇÃO 7: Sistema de scripts
-    public static final boolean ENABLE_ADVANCED_RENDER = false;   // SEÇÃO 8: Renderização avançada
-    public static final boolean ENABLE_COMPAT = false;            // SEÇÃO 9: Compatibilidade
-    
-    // SEÇÃO 1: REGISTROS BÁSICOS - SEMPRE ATIVO
-    // DataComponents e SoundEvents são essenciais para o funcionamento básico
+    public static net.neoforged.fml.ModContainer container;
 
-    public static ResourceLocation loc(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    public GunMod(IEventBus bus, net.neoforged.fml.ModContainer container) {
+        GunMod.container = container;
+        container.registerConfig(ModConfig.Type.COMMON, CommonConfig.spec);
+        container.registerConfig(ModConfig.Type.SERVER, ServerConfig.spec);
+        container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.spec);
+
+        Dist side = FMLLoader.getDist();
+        GunPackLoader.INSTANCE.packType = side.isClient() ? PackType.CLIENT_RESOURCES : PackType.SERVER_DATA;
+
+        CapabilityRegistry.ATTACHMENT_TYPES.register(bus);
+        ModBlocks.BLOCKS.register(bus);
+        ModBlocks.TILE_ENTITIES.register(bus);
+        ModCreativeTabs.TABS.register(bus);
+        ModItems.ITEMS.register(bus);
+        ModEntities.ENTITY_TYPES.register(bus);
+        ModIngredientTypes.INGREDIENT_TYPES.register(bus);
+        ModRecipe.RECIPE_SERIALIZERS.register(bus);
+        ModRecipe.RECIPE_TYPES.register(bus);
+        ModContainer.CONTAINER_TYPE.register(bus);
+        ModSounds.SOUNDS.register(bus);
+        ModParticles.PARTICLE_TYPES.register(bus);
+        ModAttributes.ATTRIBUTES.register(bus);
+        ModPainting.PAINTINGS.register(bus);
+
+        registerDefaultExtraGunPack();
+        AttachmentPropertyManager.registerModifier();
     }
 
-    public GunMod(IEventBus bus, ModContainer container) {
-        bus.addListener(this::setup);
-        
-        // SEÇÃO 1: REGISTROS BÁSICOS - SEMPRE ATIVO
-        com.tacz.guns.init.ModDataComponents.register(bus);
-        com.tacz.guns.init.ModSoundEvents.SOUND_EVENTS.register(bus);
-        com.tacz.guns.init.ModItems.ITEMS.register(bus);
-        com.tacz.guns.init.ModBlocks.BLOCKS.register(bus);
-        com.tacz.guns.init.ModBlocks.TILE_ENTITIES.register(bus);
-        
-        // SEÇÃO 2: CONFIGURAÇÕES
-        if (ENABLE_CONFIGS) {
-            container.registerConfig(ModConfig.Type.COMMON, GunConfig.init());
-        }
-        
-        // SEÇÃO 3: SISTEMA DE REDE
-        if (ENABLE_NETWORK) {
-            bus.addListener(this::registerPayloadHandler);
-        }
-
-        // SEÇÃO 5: RENDERIZAÇÃO (Cliente)
-        if (ENABLE_CLIENT && FMLEnvironment.dist == Dist.CLIENT) {
-            // bus.addListener(ClientSetupEvent::init);
-            // bus.addListener(KeyBinding::register);
-        }
-    }
-
-    private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            // SEÇÃO 4: SISTEMA DE RECURSOS
-            if (ENABLE_ASSETS) {
-                // CommonNetworkCache.init(); // Removed as it's not found
-                // ServerGunPackManager.init();
-            }
-            
-            // SEÇÃO 6: GAMEPLAY BÁSICO
-            if (ENABLE_GAMEPLAY) {
-                // Inicialização de gameplay será adicionada aqui
-            }
-            
-            // SEÇÃO 7: SISTEMA DE SCRIPTS
-            if (ENABLE_SCRIPTS) {
-                // ScriptManager.init(); // Será reabilitado na fase apropriada
-            }
-            
-            // SEÇÃO 9: COMPATIBILIDADE
-            if (ENABLE_COMPAT) {
-                // Inicialização de compatibilidade será adicionada aqui
-            }
-        });
-    }
-
-    private void registerPayloadHandler(final RegisterPayloadHandlersEvent event) {
-        // SEÇÃO 3: SISTEMA DE REDE
-        if (ENABLE_NETWORK) {
-            NetworkHandler.register(event);
-        }
+    private static void registerDefaultExtraGunPack() {
+        String jarDefaultPackPath = String.format("/assets/%s/custom/%s", GunMod.MOD_ID, DEFAULT_GUN_PACK_NAME);
+        ResourceManager.registerExportResource(GunMod.class, jarDefaultPackPath);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
