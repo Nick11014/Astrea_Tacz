@@ -28,9 +28,17 @@ public class FirstPersonRenderEvent {
             return;
         }
         if (event.getHand() == InteractionHand.OFF_HAND) {
-            ItemStack stack = KeepingItemRenderer.getRenderer().getCurrentItem();
-            if (stack.getItem() instanceof IGun) {
-                event.setCanceled(true);
+            try {
+                ItemStack stack = KeepingItemRenderer.getRenderer().getCurrentItem();
+                if (stack.getItem() instanceof IGun) {
+                    event.setCanceled(true);
+                }
+            } catch (Exception e) {
+                // Fallback if KeepingItemRenderer is not available yet
+                ItemStack mainHandStack = player.getMainHandItem();
+                if (mainHandStack.getItem() instanceof IGun) {
+                    event.setCanceled(true);
+                }
             }
             return;
         }

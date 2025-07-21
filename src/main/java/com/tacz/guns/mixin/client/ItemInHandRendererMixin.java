@@ -31,9 +31,16 @@ public class ItemInHandRendererMixin implements KeepingItemRenderer {
     private long tacz$KeepTimeMs;
     @Unique
     private long tacz$KeepTimestamp;
+    @Unique
+    private boolean tacz$Registered = false;
 
     @Inject(method = "renderHandsWithItems", at = @At("HEAD"))
     public void beforeHandRender(float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource.BufferSource pBuffer, LocalPlayer pPlayerEntity, int pCombinedLight, CallbackInfo ci) {
+        // Ensure registration happens on first render
+        if (!tacz$Registered) {
+            KeepingItemRenderer.Registry.setInstance(this);
+            tacz$Registered = true;
+        }
         NeoForge.EVENT_BUS.post(new BeforeRenderHandEvent(pMatrixStack, pPartialTicks));
     }
 
