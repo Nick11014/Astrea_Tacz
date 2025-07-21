@@ -75,14 +75,18 @@ public enum GunPackLoader implements RepositorySource {
             }
         }
 
-        PreLoadConfig.load(resourcePacksPath);
+        // 确保配置文件加载，这个阶段将比标准的forge配置文件加载早
+        /* FIXME: Config loading disabled during NeoForge migration - causes crash before config is loaded
+        PreLoadConfig.load(resourcePacksPath);*/
 
+        // 仅在第一次加载时复制默认资源包
         if (firstLoad) {
-            if (!PreLoadConfig.override.get()) {
+            // Temporarily disable override check during migration - always copy default packs
+            // if (!PreLoadConfig.override.get()) {
                 for (ResourceManager.ExtraEntry entry : ResourceManager.EXTRA_ENTRIES) {
                     GetJarResources.copyModDirectory(entry.modMainClass(), entry.srcPath(), resourcePacksPath, entry.extraDirName());
                 }
-            }
+            // }
             firstLoad = false;
         }
 
