@@ -42,9 +42,9 @@ public class ModBlocks {
             WORKBENCH_211.get(),
             WORKBENCH_121.get()).build(null));
     public static DeferredHolder<BlockEntityType<?>, BlockEntityType<TargetBlockEntity>> TARGET_BE = TILE_ENTITIES.register("target", () -> 
-        BlockEntityType.Builder.<TargetBlockEntity>of((pos, state) -> new TargetBlockEntity(pos, state), TARGET.get()).build(null));
+        BlockEntityType.Builder.<TargetBlockEntity>of(TargetBlockEntity::new, TARGET.get()).build(null));
     public static DeferredHolder<BlockEntityType<?>, BlockEntityType<StatueBlockEntity>> STATUE_BE = TILE_ENTITIES.register("statue", () -> 
-        BlockEntityType.Builder.<StatueBlockEntity>of((pos, state) -> new StatueBlockEntity(pos, state), STATUE.get()).build(null));
+        BlockEntityType.Builder.<StatueBlockEntity>of(StatueBlockEntity::new, STATUE.get()).build(null));
     
     public static final TagKey<Block> BULLET_IGNORE_BLOCKS = BlockTags.create(GunMod.loc("bullet_ignore"));
 }

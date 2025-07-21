@@ -7,26 +7,22 @@ import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.config.common.OtherConfig;
 import com.tacz.guns.entity.EntityKineticBullet;
 import com.tacz.guns.init.ModBlocks;
+import com.tacz.guns.init.ModEntities;
 import com.tacz.guns.init.ModItems;
 import com.tacz.guns.init.ModSounds;
-import com.tacz.guns.network.NetworkHandler;
-import com.tacz.guns.network.message.event.ServerMessageGunHurt;
 import net.minecraft.network.chat.Component;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.neoforge.common.NeoForge;
@@ -38,10 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import static net.minecraft.world.entity.vehicle.AbstractMinecart.Type.RIDEABLE;
 
 public class TargetMinecart extends AbstractMinecart implements ITargetEntity {
-    public static EntityType<TargetMinecart> TYPE = EntityType.Builder.<TargetMinecart>of(TargetMinecart::new, MobCategory.MISC)
-            .sized(0.75F, 2.4F)
-            .clientTrackingRange(8)
-            .build("target_minecart");
+    // Removed static TYPE field - use ModEntities.TARGET_MINECART.get() instead
 
     private @Nullable GameProfile gameProfile = null;
 
@@ -50,7 +43,7 @@ public class TargetMinecart extends AbstractMinecart implements ITargetEntity {
     }
 
     public TargetMinecart(Level level, double x, double y, double z) {
-        super(TYPE, level, x, y, z);
+        super(ModEntities.TARGET_MINECART.get(), level, x, y, z);
     }
 
     @Override

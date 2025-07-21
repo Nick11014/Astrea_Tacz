@@ -5,7 +5,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
@@ -15,19 +14,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 
 import static com.tacz.guns.block.StatueBlock.FACING;
 
 public class StatueBlockEntity extends BlockEntity {
-    public static final BlockEntityType<StatueBlockEntity> TYPE = BlockEntityType.Builder.of(StatueBlockEntity::new, ModBlocks.STATUE.get()).build(null);
+    // Removed static TYPE field - use ModBlocks.STATUE_BE.get() instead
     private static final String ITEM_TAG = "Item";
     private ItemStack gunItem = ItemStack.EMPTY;
 
     public StatueBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(TYPE, pPos, pBlockState);
+        super(ModBlocks.STATUE_BE.get(), pPos, pBlockState);
     }
 
     public static void clientTick(Level level, BlockPos blockPos, BlockState state, StatueBlockEntity statueBlockEntity) {
@@ -83,13 +80,17 @@ public class StatueBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.put(ITEM_TAG, gunItem.save(registries, new CompoundTag()));
+        if (!gunItem.isEmpty()) {
+            tag.put(ITEM_TAG, gunItem.save(registries, new CompoundTag()));
+        }
     }
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         CompoundTag tag = super.getUpdateTag(registries);
-        tag.put(ITEM_TAG, gunItem.save(registries, new CompoundTag()));
+        if (!gunItem.isEmpty()) {
+            tag.put(ITEM_TAG, gunItem.save(registries, new CompoundTag()));
+        }
         return tag;
     }
 

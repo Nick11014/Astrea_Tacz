@@ -1,13 +1,11 @@
 package com.tacz.guns.block.entity;
 
-import com.mojang.authlib.GameProfile;
 import com.tacz.guns.block.TargetBlock;
 import com.tacz.guns.config.common.OtherConfig;
 import com.tacz.guns.init.ModBlocks;
 import com.tacz.guns.init.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -18,11 +16,9 @@ import net.minecraft.world.Nameable;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.item.component.ResolvableProfile;
 
 import javax.annotation.Nullable;
 
@@ -30,7 +26,7 @@ import static com.tacz.guns.block.TargetBlock.OUTPUT_POWER;
 import static com.tacz.guns.block.TargetBlock.STAND;
 
 public class TargetBlockEntity extends BlockEntity implements Nameable {
-    public static final BlockEntityType<TargetBlockEntity> TYPE = BlockEntityType.Builder.of(TargetBlockEntity::new, ModBlocks.TARGET.get()).build(null);
+    // Removed static TYPE field - use ModBlocks.TARGET_BE.get() instead
     /**
      * ÃƒÂ¦Ã‚Â Ã¢â‚¬Â¡ÃƒÂ©Ã‚ÂÃ‚Â¶ÃƒÂ¥Ã‚Â¤Ã‚ÂÃƒÂ¤Ã‚Â½Ã‚ÂÃƒÂ¦Ã¢â‚¬â€Ã‚Â¶ÃƒÂ©Ã¢â‚¬â€Ã‚Â´ÃƒÂ¯Ã‚Â¼Ã…â€™ÃƒÂ¦Ã…Â¡Ã¢â‚¬Å¡ÃƒÂ¥Ã‚Â®Ã…Â¡ÃƒÂ¤Ã‚Â¸Ã‚Âº 5 ÃƒÂ§Ã‚Â§Ã¢â‚¬â„¢
      */
@@ -39,11 +35,11 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
     private static final String CUSTOM_NAME_TAG = "CustomName";
     public float rot = 0;
     public float oRot = 0;
-    private @Nullable GameProfile owner;
+    private @Nullable ResolvableProfile owner;
     private @Nullable Component name;
 
     public TargetBlockEntity(BlockPos pos, BlockState blockState) {
-        super(TYPE, pos, blockState);
+        super(ModBlocks.TARGET_BE.get(), pos, blockState);
     }
 
     public static void clientTick(Level level, BlockPos pos, BlockState state, TargetBlockEntity pBlockEntity) {
@@ -56,11 +52,11 @@ public class TargetBlockEntity extends BlockEntity implements Nameable {
     }
 
     @Nullable
-    public GameProfile getOwner() {
+    public ResolvableProfile getOwner() {
         return owner;
     }
 
-    public void setOwner(@Nullable GameProfile owner) {
+    public void setOwner(@Nullable ResolvableProfile owner) {
         this.owner = owner;
         // SkullBlockEntity.updateGameprofile(this.owner, gameProfile -> {
         //     this.owner = gameProfile;

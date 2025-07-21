@@ -29,11 +29,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.item.component.ResolvableProfile;
 import org.jetbrains.annotations.Nullable;
 
 public class TargetBlock extends BaseEntityBlock {
@@ -120,9 +120,9 @@ public class TargetBlock extends BaseEntityBlock {
     public void onProjectileHit(Level world, BlockState state, BlockHitResult hit, Projectile projectile) {
         if (hit.getDirection().getOpposite().equals(state.getValue(FACING))) {
             if (state.getValue(HALF).equals(DoubleBlockHalf.LOWER)) {
-                world.getBlockEntity(hit.getBlockPos(), TargetBlockEntity.TYPE).ifPresent(e -> e.hit(world, state, hit, false));
+                world.getBlockEntity(hit.getBlockPos(), ModBlocks.TARGET_BE.get()).ifPresent(e -> e.hit(world, state, hit, false));
             } else if (state.getValue(HALF).equals(DoubleBlockHalf.UPPER)) {
-                world.getBlockEntity(hit.getBlockPos().below(), TargetBlockEntity.TYPE).ifPresent(e -> e.hit(world, state, hit, true));
+                world.getBlockEntity(hit.getBlockPos().below(), ModBlocks.TARGET_BE.get()).ifPresent(e -> e.hit(world, state, hit, true));
             }
 
             if (!world.isClientSide() && projectile.getOwner() instanceof Player player && state.getValue(STAND)) {
@@ -183,8 +183,9 @@ public class TargetBlock extends BaseEntityBlock {
                 BlockEntity blockentity = world.getBlockEntity(pos);
                 if (blockentity instanceof TargetBlockEntity e) {
                     net.minecraft.network.chat.Component customName = stack.get(net.minecraft.core.component.DataComponents.CUSTOM_NAME);
-                    GameProfile gameprofile = new GameProfile(null, customName.getString());
-                    e.setOwner(gameprofile);
+                    GameProfile gameProfile = new GameProfile(null, customName.getString());
+                    ResolvableProfile resolvableProfile = new ResolvableProfile(gameProfile);
+                    e.setOwner(resolvableProfile);
                     e.setCustomName(customName);
                     e.refresh();
                 }
@@ -203,7 +204,7 @@ public class TargetBlock extends BaseEntityBlock {
             }
             return stack;
         }
-        return super.getCloneItemStack(level, pos, state);
+        return new ItemStack(this);
     }
 
     public boolean canSurvive(BlockState state, BlockGetter level, BlockPos pos) {
