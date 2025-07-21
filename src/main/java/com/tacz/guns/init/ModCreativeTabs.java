@@ -39,14 +39,14 @@ public class ModCreativeTabs {
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> AMMO_TAB = TABS.register("ammo", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.tab.tacz.ammo")).withTabsBefore(GunMod.loc("other"))
+            .title(Component.translatable("itemGroup.tab.tacz.ammo")).withTabsBefore(OTHER_TAB.getId())
             .icon(() -> AmmoItemBuilder.create().setId(DefaultAssets.DEFAULT_AMMO_ID).build())
             .displayItems((parameters, output) -> {
                 output.acceptAll(AmmoItem.fillItemCategory());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_SCOPE_TAB = TABS.register("scope", () -> CreativeModeTab.builder()
-            .title(Component.translatable("tacz.type.scope.name")).withTabsBefore(GunMod.loc("ammo"))
+            .title(Component.translatable("tacz.type.scope.name")).withTabsBefore(AMMO_TAB.getId())
             .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("scope_acog_ta31")).build())
             .displayItems((parameters, output) -> {
                 output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.SCOPE));

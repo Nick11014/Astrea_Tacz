@@ -7,6 +7,7 @@ import com.tacz.guns.config.ServerConfig;
 import com.tacz.guns.init.*;
 import com.tacz.guns.resource.GunPackLoader;
 import com.tacz.guns.resource.modifier.AttachmentPropertyManager;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -58,5 +59,14 @@ public class GunMod {
     private static void registerDefaultExtraGunPack() {
         String jarDefaultPackPath = String.format("/assets/%s/custom/%s", GunMod.MOD_ID, DEFAULT_GUN_PACK_NAME);
         ResourceManager.registerExportResource(GunMod.class, jarDefaultPackPath);
+    }
+
+    /**
+     * Helper method to create ResourceLocation with mod ID
+     * @param path the path for the resource location
+     * @return a new ResourceLocation with the mod's namespace
+     */
+    public static ResourceLocation loc(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }

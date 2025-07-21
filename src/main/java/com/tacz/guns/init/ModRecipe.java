@@ -1,7 +1,6 @@
 package com.tacz.guns.init;
 
 import com.tacz.guns.GunMod;
-// TODO: Re-enable when all crafting classes are available
 import com.tacz.guns.crafting.GunSmithTableRecipe;
 import com.tacz.guns.crafting.GunSmithTableSerializer;
 import net.minecraft.core.registries.BuiltInRegistries;
