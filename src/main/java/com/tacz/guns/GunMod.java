@@ -3,7 +3,6 @@ package com.tacz.guns;
 import com.tacz.guns.api.resource.ResourceManager;
 import com.tacz.guns.config.ClientConfig;
 import com.tacz.guns.config.CommonConfig;
-import com.tacz.guns.config.PreLoadConfig;
 import com.tacz.guns.config.ServerConfig;
 import com.tacz.guns.init.*;
 import com.tacz.guns.resource.GunPackLoader;
@@ -30,9 +29,9 @@ public class GunMod {
 
     public GunMod(IEventBus bus, net.neoforged.fml.ModContainer container) {
         GunMod.container = container;
-        container.registerConfig(ModConfig.Type.COMMON, CommonConfig.spec);
-        container.registerConfig(ModConfig.Type.SERVER, ServerConfig.spec);
-        container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.spec);
+        container.registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
+        container.registerConfig(ModConfig.Type.SERVER, ServerConfig.init());
+        container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.init());
 
         Dist side = FMLLoader.getDist();
         GunPackLoader.INSTANCE.packType = side.isClient() ? PackType.CLIENT_RESOURCES : PackType.SERVER_DATA;
