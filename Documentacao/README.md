@@ -1,97 +1,67 @@
-# 📚 DOCUMENTAÇÃO - TacZ NeoForge 1.21.1
+<p align="center">
+    <img width="300" src="https://s2.loli.net/2024/04/30/NJrstR1QzpoLyIT.png" alt="title">
+</p>
+<hr>
+<p align="center">Timeless and Classics Guns Zero</p>
+<p align="center">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/timeless-and-classics-zero">
+        <img src="http://cf.way2muchnoise.eu/full_timeless-and-classics-zero.svg" alt="CurseForge Download">
+    </a>
+    <img src="https://img.shields.io/badge/license-GNU GPL 3.0 | CC%20BY--NC--ND%204.0-green" alt="License">
+    <br>
+    <a href="https://jitpack.io/#MCModderAnchor/TACZ">
+        <img src="https://jitpack.io/v/MCModderAnchor/TACZ.svg" alt="jitpack build">
+    </a>
+    <a href="https://crowdin.com/project/tacz">
+        <img src="https://badges.crowdin.net/tacz/localized.svg" alt="crowdin">
+    </a>
+</p>
+<p align="center">
+    <a href="https://github.com/MCModderAnchor/TACZ/issues">Report Bug</a>    ·
+    <a href="https://github.com/MCModderAnchor/TACZ/releases">View Release</a>    ·
+    <a href="https://tacwiki.mcma.club/zh/">Wiki</a>
+</p>
 
-**Projeto:** Migração TacZ para NeoForge 1.21.1  
-**Data de Organização:** 2025-07-09  
-**Status:** Documentação completa e organizada
+Timeless and Classics Guns Zero is a gun mod for Minecraft Forge 1.20.1.
 
----
+## Notice
 
-## 📁 **ESTRUTURA DA DOCUMENTAÇÃO**
+- If you have any bugs, you can visit [Issues](https://github.com/MCModderAnchor/TACZ/issues) to
+  submit issues.
 
-### **📊 Arquivos Principais**
-- **`PROGRESS.md`** - ✅ **ARQUIVO PRINCIPAL** - Status atual do projeto (62.6% completo)
-- **`DEBITO_TECNICO.md`** - Histórico de conquistas e breakthrough técnico
-- **`PLANO_MIGRACAO.md`** - Plano original de migração (referência)
-- **`implementacoes-minimas.md`** - Análise de implementações mínimas
+## Authors
 
-### **📂 Pastas Organizadas**
+- Programmer: `286799714`, `TartaricAcid`, `F1zeiL`, `xjqsh`, `ClumsyAlien`
+- Artist: `NekoCrane`, `Receke`, `Pos_2333`
 
-#### **🔧 Scripts/** 
-Scripts PowerShell para automação e análise:
-- Scripts de análise de progresso
-- Scripts de habilitação de arquivos
-- Scripts de limpeza e organização
+## Credits
 
-#### **📋 Relatorios/**
-Relatórios de sessões de desenvolvimento:
-- Relatórios de fases (A, B, C, D)
-- Relatórios de ondas de desenvolvimento
-- Relatórios de conquistas específicas
+- Other players who have helped me in any ways, and you
 
-#### **🔍 Analises/**
-Análises técnicas detalhadas:
-- Análises de crashes e problemas
-- Análises de dependências
-- Build errors e soluções
-- Migrações específicas
+## License
 
-#### **📝 Planejamento/**
-Pasta original com planejamento por fases:
-- Estratégias de migração
-- Exemplos de código
-- Documentação de APIs
+- Code: [GNU GPL 3.0](https://www.gnu.org/licenses/gpl-3.0.txt)
+- Assets: [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
----
+## Maven
 
-## 🎯 **ARQUIVO PRINCIPAL DE CONSULTA**
+```groovy
+repositories {
+    maven {
+        // Add curse maven to repositories
+        name = "Curse Maven"
+        url = "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
 
-### **📊 PROGRESS.md**
-**O arquivo mais importante para consulta rápida:**
+dependencies {
+    // You can see the https://www.cursemaven.com/
+    // Choose one of the following three
 
-- ✅ **609 arquivos** analisados automaticamente
-- ✅ **381 habilitados** (62.6% do projeto)
-- ✅ **31 com implementação mínima** claramente identificados
-- ✅ **350 com implementação completa**
-- ✅ **Indicadores visuais** para tipos de implementação
-- ✅ **Prioridades** para próximos desenvolvimentos
-
-### **🔍 Indicadores no PROGRESS.md:**
-- **`MINIMA: OBJECT`** - Object Strategy (alta prioridade)
-- **`MINIMA: TODO`** - Aguardando dependências  
-- **`MINIMA: PLACEHOLDER`** - Dados temporários
-
----
-
-## 🚀 **CONQUISTAS DOCUMENTADAS**
-
-### **🏆 Principais Breakthrough:**
-1. **BedrockAttachmentModel** - Considerado "impossível", agora funcional
-2. **AttachmentItemRenderer** - Sistema de renderização operacional  
-3. **Object Strategy** - Técnica inovadora para dependências quebradas
-4. **Sistema de Análise Automática** - Scripts que monitoram progresso real
-
-### **📈 Progresso Documentado:**
-- **Início:** ~50% estimado
-- **Estado atual:** 62.6% comprovado
-- **Qualidade:** 91.9% implementação completa nos arquivos habilitados
-
----
-
-## 📖 **COMO USAR ESTA DOCUMENTAÇÃO**
-
-### **Para Status Rápido:**
-1. Consulte **`PROGRESS.md`** para visão geral atual
-2. Execute scripts em **`Scripts/`** para análise atualizada
-
-### **Para Desenvolvimento:**
-1. Identifique arquivos **`MINIMA: OBJECT`** no PROGRESS.md (alta prioridade)
-2. Consulte **`DEBITO_TECNICO.md`** para técnicas de breakthrough
-3. Use **`Planejamento/`** para estratégias por fase
-
-### **Para Histórico:**
-1. **`Relatorios/`** - Conquistas sessão por sessão
-2. **`Analises/`** - Problemas técnicos e soluções
-
----
-
-**Esta documentação representa um dos projetos de migração mais bem documentados da comunidade Minecraft modding.** 🎯
+    // If you want to use version tacz-1.20.1-1.1.6-release
+    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:6632240-sources-6633203")
+}
+```

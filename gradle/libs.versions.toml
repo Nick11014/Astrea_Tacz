@@ -1,0 +1,64 @@
+[versions]
+neoforge = "21.1.169"
+neoforge-range = "[21.1.169,)"
+moddev = "2.0.74"
+parchment = "2024.11.17"
+minecraft = "1.21.1"
+minecraft-range = "[1.21.1]"
+
+# Core dependencies
+commons-math = "3.6.1"
+luaj = "3.0.8-figura"
+bcel = "6.6.1"
+geckolib = "4.7.5"
+
+# Mod dependencies
+cloth-config = "15.0.140"
+jei = "19.21.2.313"
+kubejs = "2101.7.1-build.181"
+rhino = "2101.2.7-build.74"
+player-animation-lib = "2.0.1+1.21.1"
+
+# Optional mods (CurseForge)
+controllable = "6277379"
+framework = "6531439"
+jade = "6291517"
+cold-sweat = "6176789"
+better-combat = "6532547"
+iris = "6661598"
+sodium = "6382651"
+player-animator = "6024462"
+shoulder-surfing = "6672715"
+carry-on = "5649344"
+
+[libraries]
+# Core dependencies
+org-apache-commons-math3 = { module = "org.apache.commons:commons-math3", version.ref = "commons-math" }
+com-github-figuraMC-luaj-core = { module = "com.github.FiguraMC.luaj:luaj-core", version.ref = "luaj" }
+com-github-figuraMC-luaj-jse = { module = "com.github.FiguraMC.luaj:luaj-jse", version.ref = "luaj" }
+org-apache-bcel = { module = "org.apache.bcel:bcel", version.ref = "bcel" }
+software-bernie-geckolib-neoforge = { module = "software.bernie.geckolib:geckolib-neoforge-1.21.1", version.ref = "geckolib" }
+
+# Mod dependencies
+me-shedaniel-cloth-config-neoforge = { module = "me.shedaniel.cloth:cloth-config-neoforge", version.ref = "cloth-config" }
+mezz-jei-common-api = { module = "mezz.jei:jei-1.21.1-common-api", version.ref = "jei" }
+mezz-jei-neoforge-api = { module = "mezz.jei:jei-1.21.1-neoforge-api", version.ref = "jei" }
+mezz-jei-neoforge = { module = "mezz.jei:jei-1.21.1-neoforge", version.ref = "jei" }
+dev-latvian-mods-kubejs-neoforge = { module = "dev.latvian.mods:kubejs-neoforge", version.ref = "kubejs" }
+dev-latvian-mods-rhino = { module = "dev.latvian.mods:rhino", version.ref = "rhino" }
+dev-kosmx-player-animation-lib-forge = { module = "dev.kosmx.player-anim:player-animation-lib-forge", version.ref = "player-animation-lib" }
+
+# CurseForge dependencies
+curse-controllable = { module = "curse.maven:controllable-317269", version.ref = "controllable" }
+curse-framework = { module = "curse.maven:framework-549225", version.ref = "framework" }
+curse-jade = { module = "curse.maven:jade-324717", version.ref = "jade" }
+curse-cold-sweat = { module = "curse.maven:cold-sweat-506194", version.ref = "cold-sweat" }
+curse-better-combat = { module = "curse.maven:better-combat-by-daedelus-639842", version.ref = "better-combat" }
+curse-iris = { module = "curse.maven:irisshaders-455508", version.ref = "iris" }
+curse-sodium = { module = "curse.maven:sodium-394468", version.ref = "sodium" }
+curse-player-animator = { module = "curse.maven:playeranimator-658587", version.ref = "player-animator" }
+curse-shoulder-surfing = { module = "curse.maven:shoulder-surfing-reloaded-243190", version.ref = "shoulder-surfing" }
+curse-carry-on = { module = "curse.maven:carry-on-274259", version.ref = "carry-on" }
+
+[plugins]
+moddev = { id = "net.neoforged.moddev", version.ref = "moddev" }
