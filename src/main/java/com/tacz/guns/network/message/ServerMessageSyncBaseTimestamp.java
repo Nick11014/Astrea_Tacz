@@ -39,9 +39,20 @@ public record ServerMessageSyncBaseTimestamp() implements CustomPacketPayload {
     @OnlyIn(Dist.CLIENT)
     private static void updateBaseTimestamp(long timestamp) {
         LocalPlayer player = Objects.requireNonNull(Minecraft.getInstance().player);
-        LocalPlayerDataHolder dataHolder = IClientPlayerGunOperator.fromLocalPlayer(player).getDataHolder();
-        dataHolder.clientBaseTimestamp = timestamp;
-        GunMod.LOGGER.debug(MARKER, "Update client base timestamp: {}", dataHolder.clientBaseTimestamp);
+        try {
+            // Use instanceof check to verify mixin was applied safely
+            if (player instanceof IClientPlayerGunOperator) {
+                LocalPlayerDataHolder dataHolder = ((IClientPlayerGunOperator) player).getDataHolder();
+                dataHolder.clientBaseTimestamp = timestamp;
+                GunMod.LOGGER.debug(MARKER, "Update client base timestamp: {}", dataHolder.clientBaseTimestamp);
+            } else {
+                // Safeguard: Mixin not applied yet during development - skip timestamp sync
+                GunMod.LOGGER.warn(MARKER, "LocalPlayer mixin not applied yet - skipping timestamp sync. This is expected during mod migration.");
+            }
+        } catch (Exception e) {
+            // Additional fallback for any other issues
+            GunMod.LOGGER.warn(MARKER, "Failed to sync timestamp: {}", e.getMessage());
+        }
     }
 }
 

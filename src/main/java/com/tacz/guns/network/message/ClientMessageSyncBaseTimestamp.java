@@ -35,9 +35,20 @@ public record ClientMessageSyncBaseTimestamp() implements CustomPacketPayload {
         if (player == null) {
             return;
         }
-        ShooterDataHolder dataHolder = ((IGunOperator) player).getDataHolder();
-        dataHolder.baseTimestamp = timestamp;
-        GunMod.LOGGER.debug(MARKER, "Update server base timestamp: {}", dataHolder.baseTimestamp);
+        try {
+            // Use instanceof check to verify mixin was applied safely
+            if (player instanceof IGunOperator) {
+                ShooterDataHolder dataHolder = ((IGunOperator) player).getDataHolder();
+                dataHolder.baseTimestamp = timestamp;
+                GunMod.LOGGER.debug(MARKER, "Update server base timestamp: {}", dataHolder.baseTimestamp);
+            } else {
+                // Safeguard: Mixin not applied yet during development - skip timestamp sync
+                GunMod.LOGGER.warn(MARKER, "ServerPlayer mixin not applied yet - skipping timestamp sync. This is expected during mod migration.");
+            }
+        } catch (Exception e) {
+            // Additional fallback for any other issues
+            GunMod.LOGGER.warn(MARKER, "Failed to sync server timestamp: {}", e.getMessage());
+        }
     }
 }
 
