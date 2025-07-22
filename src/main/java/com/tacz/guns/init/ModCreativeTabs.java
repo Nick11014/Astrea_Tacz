@@ -31,88 +31,231 @@ public class ModCreativeTabs {
             .title(Component.translatable("itemGroup.tab.tacz.other"))
             .icon(() -> ModItems.GUN_SMITH_TABLE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.acceptAll(GunSmithTableItem.fillItemCategory());
+                // Adiciona itens básicos sempre disponíveis
+                output.accept(ModItems.GUN_SMITH_TABLE.get());
                 output.accept(ModItems.TARGET.get());
                 output.accept(ModItems.STATUE.get());
                 output.accept(ModItems.TARGET_MINECART.get());
-                AmmoBoxItem.fillItemCategory(output);
+                // Nota: AmmoBox é adicionado via fillItemCategory() abaixo
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(GunSmithTableItem.fillItemCategory());
+                    AmmoBoxItem.fillItemCategory(output);
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> AMMO_TAB = TABS.register("ammo", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab.tacz.ammo")).withTabsBefore(OTHER_TAB.getId())
-            .icon(() -> AmmoItemBuilder.create().setId(DefaultAssets.DEFAULT_AMMO_ID).build())
+            .icon(() -> ModItems.AMMO.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.acceptAll(AmmoItem.fillItemCategory());
+                // Adiciona item básico de munição
+                output.accept(ModItems.AMMO.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AmmoItem.fillItemCategory());
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_SCOPE_TAB = TABS.register("scope", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.scope.name")).withTabsBefore(AMMO_TAB.getId())
-            .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("scope_acog_ta31")).build())
+            .icon(() -> ModItems.ATTACHMENT.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.SCOPE));
+                // Adiciona item básico de anexo
+                output.accept(ModItems.ATTACHMENT.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.SCOPE));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_MUZZLE_TAB = TABS.register("muzzle", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.muzzle.name")).withTabsBefore(GunMod.loc("scope"))
-            .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("muzzle_compensator_trident")).build())
+            .icon(() -> ModItems.ATTACHMENT.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.MUZZLE));
+                // Adiciona item básico de anexo
+                output.accept(ModItems.ATTACHMENT.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.MUZZLE));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_STOCK_TAB = TABS.register("stock", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.stock.name")).withTabsBefore(GunMod.loc("muzzle"))
-            .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("stock_ar15_m4")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.STOCK))).build());
+            .icon(() -> ModItems.ATTACHMENT.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de anexo
+                output.accept(ModItems.ATTACHMENT.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.STOCK));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_GRIP_TAB = TABS.register("grip", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.grip.name")).withTabsBefore(GunMod.loc("stock"))
-            .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("grip_vertical_grip")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.GRIP))).build());
+            .icon(() -> ModItems.ATTACHMENT.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de anexo
+                output.accept(ModItems.ATTACHMENT.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.GRIP));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_EXTENDED_MAG_TAB = TABS.register("extended_mag", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.extended_mag.name")).withTabsBefore(GunMod.loc("grip"))
-            .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("extended_mag_ar15_std")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.EXTENDED_MAG))).build());
+            .icon(() -> ModItems.ATTACHMENT.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de anexo
+                output.accept(ModItems.ATTACHMENT.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.EXTENDED_MAG));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ATTACHMENT_LASER_TAB = TABS.register("laser", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.laser.name")).withTabsBefore(GunMod.loc("extended_mag"))
-            .icon(() -> AttachmentItemBuilder.create().setId(GunMod.loc("laser_laser_light")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.LASER))).build());
+            .icon(() -> ModItems.ATTACHMENT.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de anexo
+                output.accept(ModItems.ATTACHMENT.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AttachmentItem.fillItemCategory(AttachmentType.LASER));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_PISTOL_TAB = TABS.register("pistol", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.pistol.name")).withTabsBefore(GunMod.loc("laser"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("pistol_glock17")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.PISTOL))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.PISTOL));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_SNIPER_TAB = TABS.register("sniper", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.sniper.name")).withTabsBefore(GunMod.loc("pistol"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("sniper_awp")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SNIPER))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SNIPER));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_RIFLE_TAB = TABS.register("rifle", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.rifle.name")).withTabsBefore(GunMod.loc("sniper"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("rifle_ak47")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RIFLE))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RIFLE));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_SHOTGUN_TAB = TABS.register("shotgun", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.shotgun.name")).withTabsBefore(GunMod.loc("rifle"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("shotgun_m870")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SHOTGUN))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SHOTGUN));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_SMG_TAB = TABS.register("smg", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.smg.name")).withTabsBefore(GunMod.loc("shotgun"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("smg_mp5")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SMG))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.SMG));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_RPG_TAB = TABS.register("rpg", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.rpg.name")).withTabsBefore(GunMod.loc("smg"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("rpg_rpg7")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RPG))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.RPG));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GUN_MG_TAB = TABS.register("mg", () -> CreativeModeTab.builder()
             .title(Component.translatable("tacz.type.mg.name")).withTabsBefore(GunMod.loc("rpg"))
-            .icon(() -> GunItemBuilder.create().setId(GunMod.loc("mg_m249")).build())
-            .displayItems((parameters, output) -> output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.MG))).build());
+            .icon(() -> ModItems.MODERN_KINETIC_GUN.get().getDefaultInstance())
+            .displayItems((parameters, output) -> {
+                // Adiciona item básico de arma
+                output.accept(ModItems.MODERN_KINETIC_GUN.get());
+                
+                // Adiciona itens dinâmicos se disponíveis
+                try {
+                    output.acceptAll(AbstractGunItem.fillItemCategory(GunTabType.MG));
+                } catch (Exception e) {
+                    // Ignora erros se gun packs não estão carregados ainda
+                }
+            }).build());
 }
 
 
