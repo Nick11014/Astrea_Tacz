@@ -23,12 +23,6 @@ public abstract class GuiMixin {
     @Shadow @Final private Minecraft minecraft;
 
     @Shadow public abstract int getGuiTicks();
-    
-    // Static instances for overlays
-    private static final GunHudOverlay GUN_HUD_OVERLAY = new GunHudOverlay();
-    private static final HeatBarOverlay HEAT_BAR_OVERLAY = new HeatBarOverlay();
-    private static final KillAmountOverlay KILL_AMOUNT_OVERLAY = new KillAmountOverlay();
-    private static final InteractKeyTextOverlay INTERACT_KEY_OVERLAY = new InteractKeyTextOverlay();
 
     @Inject(method = "renderHotbarAndDecorations", at = @At("HEAD"), cancellable = true)
     private void renderHotbarAndDecorations(GuiGraphics graphics, DeltaTracker delta, CallbackInfo ci) {
@@ -38,10 +32,11 @@ public abstract class GuiMixin {
 
     @Inject(method = "renderItemHotbar", at = @At("HEAD"))
     private void renderItemHotbar(GuiGraphics graphics, DeltaTracker delta, CallbackInfo ci) {
-        GUN_HUD_OVERLAY.render(graphics, delta);
-        HEAT_BAR_OVERLAY.render(graphics, delta);
-        KILL_AMOUNT_OVERLAY.render(graphics, delta);
-        INTERACT_KEY_OVERLAY.render(graphics, delta);
+        // Create overlay instances safely during render instead of static initialization
+        new GunHudOverlay().render(graphics, delta);
+        new HeatBarOverlay().render(graphics, delta);
+        new KillAmountOverlay().render(graphics, delta);
+        new InteractKeyTextOverlay().render(graphics, delta);
     }
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)

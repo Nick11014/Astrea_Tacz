@@ -4,7 +4,6 @@ import com.tacz.guns.api.TimelessAPI;
 import com.tacz.guns.api.item.IAttachment;
 import com.tacz.guns.api.item.attachment.AttachmentType;
 import com.tacz.guns.api.item.builder.AttachmentItemBuilder;
-import com.tacz.guns.api.item.nbt.AttachmentItemDataAccessor;
 import com.tacz.guns.client.renderer.item.AttachmentItemRenderer;
 import com.tacz.guns.client.resource.index.ClientAttachmentIndex;
 import com.tacz.guns.inventory.tooltip.AttachmentItemTooltip;
@@ -64,6 +63,12 @@ public class AttachmentItem extends Item {
             }
             if (type.equals(entry.getValue().getType())) {
                 ItemStack itemStack = AttachmentItemBuilder.create().setId(entry.getKey()).build();
+                
+                // Guarantee count is 1 for creative tabs to prevent crash
+                if (itemStack.getCount() != 1) {
+                    itemStack.setCount(1);
+                }
+                
                 stacks.add(itemStack);
             }
         });

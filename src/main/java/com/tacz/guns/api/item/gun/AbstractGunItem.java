@@ -11,6 +11,7 @@ import com.tacz.guns.client.renderer.item.GunItemRendererWrapper;
 import com.tacz.guns.client.resource.index.ClientGunIndex;
 import com.tacz.guns.entity.shooter.ShooterDataHolder;
 import com.tacz.guns.inventory.tooltip.GunTooltip;
+import com.tacz.guns.resource.CommonAssetsManager;
 import com.tacz.guns.resource.index.CommonAmmoIndex;
 import com.tacz.guns.resource.index.CommonGunIndex;
 import com.tacz.guns.resource.pojo.data.gun.FeedType;
@@ -18,6 +19,7 @@ import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.util.AllowAttachmentTagMatcher;
 import com.tacz.guns.util.AttachmentDataUtils;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -42,10 +44,6 @@ import java.util.function.Supplier;
 public abstract class AbstractGunItem extends Item implements IGun, IAnimationItem {
     protected AbstractGunItem(Properties pProperties) {
         super(pProperties);
-    }
-
-    private static Comparator<Map.Entry<ResourceLocation, CommonGunIndex>> idNameSort() {
-        return Comparator.comparingInt(m -> m.getValue().getSort());
     }
 
     /**
@@ -351,6 +349,60 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                     stacks.add(itemStack);
                 }
         });
+        return stacks;
+    }
+
+    /**
+     * 获取某一类 TabType 的所有枪械物品的实例，使用 HolderLookup.Provider。用于填充创造物品栏。
+     */
+    public static NonNullList<ItemStack> fillItemCategory(GunTabType type, HolderLookup.Provider provider) {
+        NonNullList<ItemStack> stacks = NonNullList.create();
+        
+        // Verificar se os dados estão disponíveis
+        var assetsManager = CommonAssetsManager.getInstance();
+        if (assetsManager == null) {
+            // Se não estão carregados, retornar lista vazia
+            // System.out.println("TACZ DEBUG: CommonAssetsManager is null for type: " + type);
+            return stacks;
+        }
+        
+        Comparator<Map.Entry<ResourceLocation, CommonGunIndex>> idNameSort = (o1, o2) -> {
+            CommonGunIndex index1 = o1.getValue();
+            CommonGunIndex index2 = o2.getValue();
+            return Integer.compare(index1.getSort(), index2.getSort());
+        };
+        
+        Set<Map.Entry<ResourceLocation, CommonGunIndex>> allGuns = TimelessAPI.getAllCommonGunIndex();
+        if (allGuns.isEmpty()) {
+            // System.out.println("TACZ DEBUG: No guns found in fillItemCategory for type: " + type);
+            return stacks;
+        }
+        
+        allGuns.stream().sorted(idNameSort).forEach(entry -> {
+            CommonGunIndex index = entry.getValue();
+            GunData gunData = index.getGunData();
+            String key = type.name().toLowerCase(Locale.US);
+            String indexType = index.getType();
+            if (key.equals(indexType)) {
+                ItemStack itemStack = GunItemBuilder.create()
+                        .setId(entry.getKey())
+                        .setFireMode(gunData.getFireModeSet().get(0))
+                        .setAmmoCount(gunData.getAmmoAmount())
+                        .setHeatData(gunData.hasHeatData())
+                        .setAmmoInBarrel(true)
+                        .build(provider);
+                
+                // Guarantee count is 1 for creative tabs to prevent crash
+                if (itemStack.getCount() != 1) {
+                    itemStack.setCount(1);
+                }
+                
+                stacks.add(itemStack);
+                // System.out.println("TACZ DEBUG: Added gun " + entry.getKey() + " to tab " + type);
+            }
+        });
+        
+        // System.out.println("TACZ DEBUG: Tab " + type + " populated with " + stacks.size() + " items");
         return stacks;
     }
 

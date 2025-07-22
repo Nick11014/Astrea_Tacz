@@ -8,6 +8,7 @@ import com.tacz.guns.api.item.gun.AbstractGunItem;
 import com.tacz.guns.api.item.gun.FireMode;
 import com.tacz.guns.api.item.gun.GunItemManager;
 import com.tacz.guns.init.ModItems;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -93,6 +94,53 @@ public final class GunItemBuilder {
 
     public ItemStack build() {
         String itemType = TimelessAPI.getCommonGunIndex(gunId).map(index -> index.getPojo().getItemType()).orElse(null);        if (itemType == null) {
+            return ItemStack.EMPTY;
+        }
+
+        DeferredHolder<Item, ? extends AbstractGunItem> gunItemRegistryObject = GunItemManager.getGunItemRegistryObject(itemType);
+        if (gunItemRegistryObject == null) {
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack gun = new ItemStack(gunItemRegistryObject.get(), this.count);
+        if (gun.getItem() instanceof IGun iGun) {
+            iGun.setGunId(gun, this.gunId);
+            iGun.setFireMode(gun, this.fireMode);
+            iGun.setCurrentAmmoCount(gun, this.ammoCount);
+            iGun.setBulletInBarrel(gun, this.bulletInBarrel);
+            this.attachments.forEach((type, id) -> {
+                ItemStack attachmentStack = AttachmentItemBuilder.create().setId(id).build();
+                iGun.installAttachment(gun, attachmentStack);
+            });
+        }
+        return gun;
+    }
+
+    /**
+     * Força a construção de um item de arma com HolderLookup.Provider para acesso aos registries
+     */
+    public ItemStack forceBuild(HolderLookup.Provider provider) {
+        ItemStack gun = new ItemStack(ModItems.MODERN_KINETIC_GUN.get(), this.count);
+        if (gun.getItem() instanceof IGun iGun) {
+            iGun.setGunId(gun, this.gunId);
+            iGun.setFireMode(gun, this.fireMode);
+            iGun.setCurrentAmmoCount(gun, this.ammoCount);
+            iGun.setBulletInBarrel(gun, this.bulletInBarrel);
+            if(heatData) iGun.setHeatAmount(gun, 0f);
+            this.attachments.forEach((type, id) -> {
+                ItemStack attachmentStack = AttachmentItemBuilder.create().setId(id).build();
+                iGun.installAttachment(gun, attachmentStack);
+            });
+        }
+        return gun;
+    }
+
+    /**
+     * Constrói um item de arma com HolderLookup.Provider para acesso aos registries
+     */
+    public ItemStack build(HolderLookup.Provider provider) {
+        String itemType = TimelessAPI.getCommonGunIndex(gunId).map(index -> index.getPojo().getItemType()).orElse(null);
+        if (itemType == null) {
             return ItemStack.EMPTY;
         }
 

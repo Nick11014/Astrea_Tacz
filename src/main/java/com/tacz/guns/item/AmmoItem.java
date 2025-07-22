@@ -60,6 +60,12 @@ public class AmmoItem extends Item implements AmmoItemDataAccessor {
         NonNullList<ItemStack> stacks = NonNullList.create();
         TimelessAPI.getAllAmmos().forEach(entry -> {
             ItemStack itemStack = AmmoItemBuilder.create().setId(entry.getKey()).build();
+            
+            // Guarantee count is 1 for creative tabs to prevent crash
+            if (itemStack.getCount() != 1) {
+                itemStack.setCount(1);
+            }
+            
             stacks.add(itemStack);
         });
         return stacks;
